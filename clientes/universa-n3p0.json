@@ -1,8 +1,8 @@
 {
   "slug": "universa-n3p0",
   "cliente": "Universa",
-  "projeto": "Conteúdos de Maio",
-  "data": "Maio de 2026",
+  "projeto": "Entrega de Janeiro",
+  "data": "Janeiro de 2026",
   "pasta": "https://drive.google.com/drive/folders/1DRYsGebk65DMqpjGy8_-80pv4NXkiiMD",
   "capa": "19iduVYGeq7dFm3zPSzqcJ7D8nJUVX9h-",
   "videos": [
@@ -88,5 +88,6 @@
       "arquivo": "Universa Fotos_11.png",
       "bytes": 35545263
     }
-  ]
+  ],
+  "mes_referencia": "2026-01"
 }
