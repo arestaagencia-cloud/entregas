@@ -44,7 +44,12 @@ Sempre atualize `atualizado_em` (ISO, UTC).
    - Arquivos precisam estar como "Qualquer pessoa com o link" (`get_file_permissions` em um arquivo).
      Se não estiverem → `atencao` explicando como compartilhar.
 2. **Mês de referência = nome das pastas no Drive**, nunca a data de criação dos arquivos.
-   Ex.: arquivos dentro de `01. Janeiro` são da entrega de Janeiro, mesmo que criados em maio.
+   Ex.: arquivos dentro de `01. Universa - Janeiro.26` são da entrega de Janeiro/2026, mesmo que criados em maio.
+   Estrutura do Drive (espelho do Notion, desde nov/2026):
+   `1. Clientes Ativos / NN. Cliente / 01. Entregas / MM. Cliente - Mês.AA`
+   (eventos do Sarau: `MM. Sarau Convida - Detalhe - Mês.AA`, ou subpastas de evento dentro do mês).
+   O nome da pasta do mês, sem o prefixo `MM. `, é exatamente o nome da página no Notion.
+   Pastas antigas no formato `01. Janeiro` ainda valem: leia o mês do nome e o ano da pasta-mãe/contexto.
 3. **Achar a página no Notion.** Use `notion_url` do pedido. Se vier vazio (pedido pelo chat), procure na
    data source pelo nome no padrão **`Cliente - Mês.AA`** (mês por extenso, ano com 2 dígitos), ex.:
    "Universa Digital - Janeiro.26", "Niso Engenharia - Novembro.26". Eventos com detalhe seguem
