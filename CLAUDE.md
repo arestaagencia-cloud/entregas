@@ -46,8 +46,11 @@ Sempre atualize `atualizado_em` (ISO, UTC).
 2. **Mês de referência = nome das pastas no Drive**, nunca a data de criação dos arquivos.
    Ex.: arquivos dentro de `01. Janeiro` são da entrega de Janeiro, mesmo que criados em maio.
 3. **Achar a página no Notion.** Use `notion_url` do pedido. Se vier vazio (pedido pelo chat), procure na
-   data source por cliente + mês + ano. Os nomes variam ("Universa - Maio.26", "Universa Digital- Janeiro.2026",
-   "Niso Engenharia - Nov.26"). Mais de uma candidata ou nenhuma → `atencao` listando as opções. Nunca chute.
+   data source pelo nome no padrão **`Cliente - Mês.AA`** (mês por extenso, ano com 2 dígitos), ex.:
+   "Universa Digital - Janeiro.26", "Niso Engenharia - Novembro.26". Eventos com detalhe seguem
+   `Cliente - Detalhe - Mês.AA` (ex.: "Sarau Convida - Magrão - Junho.26").
+   "Universa" e "Universa Digital" são páginas diferentes. Mais de uma candidata ou nenhuma → `atencao`
+   listando as opções. Nunca chute.
 4. **Montar `clientes/<slug>.json`.** Slug = nome do cliente em minúsculas, sem acento, com hífens,
    + `-` + 4 caracteres aleatórios `[a-z0-9]` (ex.: `universa-n3p0`). Campos:
    `slug, cliente, projeto ("Entrega de <Mês>"), data ("<Mês> de <Ano>"), mes_referencia ("AAAA-MM"),
