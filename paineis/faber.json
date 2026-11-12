@@ -5,6 +5,985 @@
  "eyebrow": "Painel de conteúdos · Clínica Faber",
  "drive_raiz": "1FQqUfaNkUFLBZAaGE-_t0wYm3g8dDGj2",
  "cliente_unico": "Clínica Faber",
- "clientes": ["Clínica Faber"],
- "itens": []
+ "clientes": [
+  "Clínica Faber"
+ ],
+ "itens": [
+  {
+   "id": "1-a3_jqWzWzMTwLVT8kzSjyWWHe79ryow",
+   "nome": "F. Ortodôntico - Orto em Criança - Dr. Jorge - V.1.mp4",
+   "tipo": "video",
+   "cliente": "Clínica Faber",
+   "mes": "2025-12",
+   "pasta": "1HUVV1NhzP8d0vnDvsY_VcqvFFxPjVvOa"
+  },
+  {
+   "id": "12HRBfS8kJ-jQUmOcMK_x5OAFYyOsIN7y",
+   "nome": "F.Ambiente-Decoração - Dr. Jorge & Dra Carol - V.1.mov",
+   "tipo": "video",
+   "cliente": "Clínica Faber",
+   "mes": "2025-12",
+   "pasta": "1HUVV1NhzP8d0vnDvsY_VcqvFFxPjVvOa"
+  },
+  {
+   "id": "1CpCac_DsIFIP_ISMfMHxNEVrLniSu-0_",
+   "nome": "F. Invisalign - iTero - Dr. Jorge - V.1.mov",
+   "tipo": "video",
+   "cliente": "Clínica Faber",
+   "mes": "2025-12",
+   "pasta": "1HUVV1NhzP8d0vnDvsY_VcqvFFxPjVvOa"
+  },
+  {
+   "id": "1Q-fO_2YvxleIgIXF_gq4mEq0jiNaaTYU",
+   "nome": "F. Ambiente - Radiografia - Dr. Jorge - V.1.mov",
+   "tipo": "video",
+   "cliente": "Clínica Faber",
+   "mes": "2025-12",
+   "pasta": "1HUVV1NhzP8d0vnDvsY_VcqvFFxPjVvOa"
+  },
+  {
+   "id": "1Qd0Ih646SV_w5cUYGwTm_j5px6-NHWZw",
+   "nome": "F.AOS - Tratar com Eficiência - Dr. Jorge - V.1.mov",
+   "tipo": "video",
+   "cliente": "Clínica Faber",
+   "mes": "2025-12",
+   "pasta": "1HUVV1NhzP8d0vnDvsY_VcqvFFxPjVvOa"
+  },
+  {
+   "id": "1R6yS-LcxgFQeua_vFCDjj1qrmVB8e_-e",
+   "nome": "F. Estética - Bullying - Dra Carol -V.2.mp4",
+   "tipo": "video",
+   "cliente": "Clínica Faber",
+   "mes": "2025-12",
+   "pasta": "1HUVV1NhzP8d0vnDvsY_VcqvFFxPjVvOa"
+  },
+  {
+   "id": "1faSCW48zDbeDDP8sGxZVUSnDb0FXzTrL",
+   "nome": "F. Invisalign - Participação Paciente - Dr. Jorge .mp4",
+   "tipo": "video",
+   "cliente": "Clínica Faber",
+   "mes": "2025-12",
+   "pasta": "1HUVV1NhzP8d0vnDvsY_VcqvFFxPjVvOa"
+  },
+  {
+   "id": "1fr3GwQQUDaTDohMwTCnzikwMAgUB5EeE",
+   "nome": "F. Ambiente - Nova Clínica - Dr. Jorge - V.1.mov",
+   "tipo": "video",
+   "cliente": "Clínica Faber",
+   "mes": "2025-12",
+   "pasta": "1HUVV1NhzP8d0vnDvsY_VcqvFFxPjVvOa"
+  },
+  {
+   "id": "1hBvsusSfQwvbqhYBDg0z-1cu5FaebGuS",
+   "nome": "F.Ambiente - Nova Unidade - Dr. Jorge & Dra Carol .mov",
+   "tipo": "video",
+   "cliente": "Clínica Faber",
+   "mes": "2025-12",
+   "pasta": "1HUVV1NhzP8d0vnDvsY_VcqvFFxPjVvOa"
+  },
+  {
+   "id": "1orgCnDAcUzwntPzCiL_unBOu4AIN8mt4",
+   "nome": "F. Ambiente - Estacionamento - Dr. Jorge - V.1.mov",
+   "tipo": "video",
+   "cliente": "Clínica Faber",
+   "mes": "2025-12",
+   "pasta": "1HUVV1NhzP8d0vnDvsY_VcqvFFxPjVvOa"
+  },
+  {
+   "id": "1x76IHg6htcbNSlFk8pFJvfzppPQluhMp",
+   "nome": "F. Orto - Maturidade Neurologica - Dr. Jorge - V.1.mp4",
+   "tipo": "video",
+   "cliente": "Clínica Faber",
+   "mes": "2025-12",
+   "pasta": "1HUVV1NhzP8d0vnDvsY_VcqvFFxPjVvOa"
+  },
+  {
+   "id": "12QLo1O4PpBnrVl-Rv8o0PlWtFNUrnJLf",
+   "nome": "F. Ortodontia - Tratamento perfeito - Dr. Jorge - V.1.mov",
+   "tipo": "video",
+   "cliente": "Clínica Faber",
+   "mes": "2026-01",
+   "pasta": "1fT9oCyylPDcBu9C-LlMNqiEDHcKuJ_uj"
+  },
+  {
+   "id": "16zVTPLV2bOxpJHVKVXZatHBwNEXcBksk",
+   "nome": "F. Alinhadores - Opta - Dr. Jorge - V.1.mov",
+   "tipo": "video",
+   "cliente": "Clínica Faber",
+   "mes": "2026-01",
+   "pasta": "1fT9oCyylPDcBu9C-LlMNqiEDHcKuJ_uj"
+  },
+  {
+   "id": "1FBoqf_1kRdlnG9LuciKZaoXJMXqD3cjM",
+   "nome": "F. Ortodôntico - Orto em Criança - Dr. Jorge - V.1.mp4",
+   "tipo": "video",
+   "cliente": "Clínica Faber",
+   "mes": "2026-01",
+   "pasta": "1fT9oCyylPDcBu9C-LlMNqiEDHcKuJ_uj"
+  },
+  {
+   "id": "1G8oseAs0ytcYJ3vYAPA5_V5kKBW-0Ld3",
+   "nome": "F. Boas experiência - Metas - Dr. Jorge - V.1.mov",
+   "tipo": "video",
+   "cliente": "Clínica Faber",
+   "mes": "2026-01",
+   "pasta": "1fT9oCyylPDcBu9C-LlMNqiEDHcKuJ_uj"
+  },
+  {
+   "id": "1GjA7s7MB0uf4iAqAgMsKZJ_bERFXLASw",
+   "nome": "F. Crianças - Benefícios Crianças - Dr. Jorge - V..mp4",
+   "tipo": "video",
+   "cliente": "Clínica Faber",
+   "mes": "2026-01",
+   "pasta": "1fT9oCyylPDcBu9C-LlMNqiEDHcKuJ_uj"
+  },
+  {
+   "id": "1Rt9CufOsX1oLN4fiCh030_Jcy6m3j42X",
+   "nome": "F. Orto - Maturidade Neurologica - Dr. Jorge - V.1.mp4",
+   "tipo": "video",
+   "cliente": "Clínica Faber",
+   "mes": "2026-01",
+   "pasta": "1fT9oCyylPDcBu9C-LlMNqiEDHcKuJ_uj"
+  },
+  {
+   "id": "1UIudDASOCdYV0dvg6xMixWU2M8A4dpLJ",
+   "nome": "F. Invisalign - Participação Paciente - Dr. Jorge .mp4",
+   "tipo": "video",
+   "cliente": "Clínica Faber",
+   "mes": "2026-01",
+   "pasta": "1fT9oCyylPDcBu9C-LlMNqiEDHcKuJ_uj"
+  },
+  {
+   "id": "1mKeA0ZQgPwxz3oocv5wGLcBwG0LsJSRo",
+   "nome": "F. AOS - Sono da criança - Dr. Jorge - V.1.mp4",
+   "tipo": "video",
+   "cliente": "Clínica Faber",
+   "mes": "2026-01",
+   "pasta": "1fT9oCyylPDcBu9C-LlMNqiEDHcKuJ_uj"
+  },
+  {
+   "id": "1nNUrazmKThDIWTD0DfMnUuwYI-jx5ZC5",
+   "nome": "F. Ortodontia - 30% - Dr. Jorge -  V.1.mov",
+   "tipo": "video",
+   "cliente": "Clínica Faber",
+   "mes": "2026-01",
+   "pasta": "1fT9oCyylPDcBu9C-LlMNqiEDHcKuJ_uj"
+  },
+  {
+   "id": "1tMWOO_uVRyrnI5SLQdDyX9vr_ppslM8D",
+   "nome": "F. Ortodontia - Estalar de dedos - Dr. Jorge - V.1.mov",
+   "tipo": "video",
+   "cliente": "Clínica Faber",
+   "mes": "2026-01",
+   "pasta": "1fT9oCyylPDcBu9C-LlMNqiEDHcKuJ_uj"
+  },
+  {
+   "id": "1uSzDGOGKmf9qXBfP7xhHDWgglkYr76-4",
+   "nome": "F. Orto Infantil - A pergunta - Dr. Jorge -  V.1.mov",
+   "tipo": "video",
+   "cliente": "Clínica Faber",
+   "mes": "2026-01",
+   "pasta": "1fT9oCyylPDcBu9C-LlMNqiEDHcKuJ_uj"
+  },
+  {
+   "id": "10hw7BwzlTiu_1HsfIugE99LWzJyD747z",
+   "nome": "P. Clínica Faber - A7400478 - V.1.jpg",
+   "tipo": "foto",
+   "cliente": "Clínica Faber",
+   "mes": "2026-02",
+   "pasta": "1CpDOUjJNM7tkdmEY4rzrywDyhQwy3oic"
+  },
+  {
+   "id": "18qImNWNpPa2W8RfoIXAebhiy11chkR9r",
+   "nome": "P. Clínica Faber - A7400480 - V.1.jpg",
+   "tipo": "foto",
+   "cliente": "Clínica Faber",
+   "mes": "2026-02",
+   "pasta": "1CpDOUjJNM7tkdmEY4rzrywDyhQwy3oic"
+  },
+  {
+   "id": "18ta-txVK4WywlSwjwpd5Z-paVZJGo5w5",
+   "nome": "P. Clínica Faber - A7400565 - V.1.jpg",
+   "tipo": "foto",
+   "cliente": "Clínica Faber",
+   "mes": "2026-02",
+   "pasta": "1CpDOUjJNM7tkdmEY4rzrywDyhQwy3oic"
+  },
+  {
+   "id": "1BLs6z0NZDbisTcCs6ii1jy7TqNTDUiVe",
+   "nome": "P. Clínica Faber - A7400533 - V.1.jpg",
+   "tipo": "foto",
+   "cliente": "Clínica Faber",
+   "mes": "2026-02",
+   "pasta": "1CpDOUjJNM7tkdmEY4rzrywDyhQwy3oic"
+  },
+  {
+   "id": "1BfSza6UOCJ3DfosCrkJOF703-YX2dOnO",
+   "nome": "P. Clínica Faber - A7400539 - V.1.jpg",
+   "tipo": "foto",
+   "cliente": "Clínica Faber",
+   "mes": "2026-02",
+   "pasta": "1CpDOUjJNM7tkdmEY4rzrywDyhQwy3oic"
+  },
+  {
+   "id": "1BmEo7xbCcuM0_KbhNjytes8qA7IgCfRl",
+   "nome": "P. Clínica Faber - A7400535 - V.1.jpg",
+   "tipo": "foto",
+   "cliente": "Clínica Faber",
+   "mes": "2026-02",
+   "pasta": "1CpDOUjJNM7tkdmEY4rzrywDyhQwy3oic"
+  },
+  {
+   "id": "1EWo_wDdABWz45hh6Fmu8bQly40SOH4z2",
+   "nome": "F. Clinica Faber - AfterMovie - V.1.mov",
+   "tipo": "video",
+   "cliente": "Clínica Faber",
+   "mes": "2026-02",
+   "pasta": "1CpDOUjJNM7tkdmEY4rzrywDyhQwy3oic"
+  },
+  {
+   "id": "1EbBPC6NfA1hl3WagqJwb1Nju-mgj4ksw",
+   "nome": "F. Clinica Faber - Dentes Suprenumerarios. V.1.mov",
+   "tipo": "video",
+   "cliente": "Clínica Faber",
+   "mes": "2026-02",
+   "pasta": "1CpDOUjJNM7tkdmEY4rzrywDyhQwy3oic"
+  },
+  {
+   "id": "1GElxsK_fyUQ4bkH_Lu6Vw0kZ2mayOcs8",
+   "nome": "P. Clínica Faber - A7400527 - V.1.jpg",
+   "tipo": "foto",
+   "cliente": "Clínica Faber",
+   "mes": "2026-02",
+   "pasta": "1CpDOUjJNM7tkdmEY4rzrywDyhQwy3oic"
+  },
+  {
+   "id": "1H7_1c-KaBX99EMWuDFE-RTwgRCNSa1Yu",
+   "nome": "P. Clínica Faber - A7400487 - V.1.jpg",
+   "tipo": "foto",
+   "cliente": "Clínica Faber",
+   "mes": "2026-02",
+   "pasta": "1CpDOUjJNM7tkdmEY4rzrywDyhQwy3oic"
+  },
+  {
+   "id": "1IRHN7BdE9hAk4VvG6YR8BzgGchPyA_uo",
+   "nome": "F. AOS Infantil - Crianças que roncam - V.1.mov",
+   "tipo": "video",
+   "cliente": "Clínica Faber",
+   "mes": "2026-02",
+   "pasta": "1CpDOUjJNM7tkdmEY4rzrywDyhQwy3oic"
+  },
+  {
+   "id": "1JUPcwOXMWxfiPhSLLhnple0E7xhFwYJ4",
+   "nome": "P. Clínica Faber - A7400551 - V.1.jpg",
+   "tipo": "foto",
+   "cliente": "Clínica Faber",
+   "mes": "2026-02",
+   "pasta": "1CpDOUjJNM7tkdmEY4rzrywDyhQwy3oic"
+  },
+  {
+   "id": "1MDANBgsXuvwc1deJs2mrz1rVdQVTX8QV",
+   "nome": "F - Ortodontia - Previsibilidade - Dr. jorge - v2.mp4",
+   "tipo": "video",
+   "cliente": "Clínica Faber",
+   "mes": "2026-02",
+   "pasta": "1CpDOUjJNM7tkdmEY4rzrywDyhQwy3oic"
+  },
+  {
+   "id": "1PrYN1DbsQR_7kuL299NvhXJH0nEg82qt",
+   "nome": "P. Clínica Faber - A7400464 - V.1.jpg",
+   "tipo": "foto",
+   "cliente": "Clínica Faber",
+   "mes": "2026-02",
+   "pasta": "1CpDOUjJNM7tkdmEY4rzrywDyhQwy3oic"
+  },
+  {
+   "id": "1QfwGMUXvGX4xa3oylYlXChN9WrmI44VE",
+   "nome": "P. Clínica Faber - A7400511 - V.1.jpg",
+   "tipo": "foto",
+   "cliente": "Clínica Faber",
+   "mes": "2026-02",
+   "pasta": "1CpDOUjJNM7tkdmEY4rzrywDyhQwy3oic"
+  },
+  {
+   "id": "1TB7NuoOMKHbblrGFlbusI6zHwx7uooFK",
+   "nome": "F.Ortodontia-Problema pequeno grande- Dr. Jorge-v2.mp4",
+   "tipo": "video",
+   "cliente": "Clínica Faber",
+   "mes": "2026-02",
+   "pasta": "1CpDOUjJNM7tkdmEY4rzrywDyhQwy3oic"
+  },
+  {
+   "id": "1TjUDcV468nTGs8emtVsCUFdi6UVJg3mn",
+   "nome": "P. Clínica Faber - A7400476 - V.1.jpg",
+   "tipo": "foto",
+   "cliente": "Clínica Faber",
+   "mes": "2026-02",
+   "pasta": "1CpDOUjJNM7tkdmEY4rzrywDyhQwy3oic"
+  },
+  {
+   "id": "1UvoejLxKkbILdIQ0ImfzSv9MwtG15RT8",
+   "nome": "P. Clínica Faber - A7400525 - V.1.jpg",
+   "tipo": "foto",
+   "cliente": "Clínica Faber",
+   "mes": "2026-02",
+   "pasta": "1CpDOUjJNM7tkdmEY4rzrywDyhQwy3oic"
+  },
+  {
+   "id": "1VK93650cfwO-OOGVeTTwceRPZUQCnKIG",
+   "nome": "P. Clínica Faber - A7400473 - V.1.jpg",
+   "tipo": "foto",
+   "cliente": "Clínica Faber",
+   "mes": "2026-02",
+   "pasta": "1CpDOUjJNM7tkdmEY4rzrywDyhQwy3oic"
+  },
+  {
+   "id": "1VkUJWyHrRoxHaTER8z6cBrqWX_VLy0aD",
+   "nome": "F. Benefício Antecipado - Beneficio - Dr. Jorge-v2.mp4",
+   "tipo": "video",
+   "cliente": "Clínica Faber",
+   "mes": "2026-02",
+   "pasta": "1CpDOUjJNM7tkdmEY4rzrywDyhQwy3oic"
+  },
+  {
+   "id": "1XFU_7uYM8-qAhGcEid69mkMuWioo3rKM",
+   "nome": "F- Nível do Emprego - Dr. Jorge- v2.mp4",
+   "tipo": "video",
+   "cliente": "Clínica Faber",
+   "mes": "2026-02",
+   "pasta": "1CpDOUjJNM7tkdmEY4rzrywDyhQwy3oic"
+  },
+  {
+   "id": "1YToKrobCMUTAr_62OkQ3sUQbqwxTCTIF",
+   "nome": "P. Clínica Faber - A7400531 - V.1.jpg",
+   "tipo": "foto",
+   "cliente": "Clínica Faber",
+   "mes": "2026-02",
+   "pasta": "1CpDOUjJNM7tkdmEY4rzrywDyhQwy3oic"
+  },
+  {
+   "id": "1ZNCafm2dN3inqxbEw0TpiIfVoU1iAQbw",
+   "nome": "P. Clínica Faber - A7400486 - V.1.jpg",
+   "tipo": "foto",
+   "cliente": "Clínica Faber",
+   "mes": "2026-02",
+   "pasta": "1CpDOUjJNM7tkdmEY4rzrywDyhQwy3oic"
+  },
+  {
+   "id": "1_LXf6kHnQGVf6d7BuFX98v6eCwiTdcxy",
+   "nome": "F. Diastema- Criança Dentuça em casa- Dr Jorge- v2.mp4",
+   "tipo": "video",
+   "cliente": "Clínica Faber",
+   "mes": "2026-02",
+   "pasta": "1CpDOUjJNM7tkdmEY4rzrywDyhQwy3oic"
+  },
+  {
+   "id": "1_SvxybsjXezmFNgF_g3zLHCh4I534nf-",
+   "nome": "P. Clínica Faber - A7400475 - V.1.jpg",
+   "tipo": "foto",
+   "cliente": "Clínica Faber",
+   "mes": "2026-02",
+   "pasta": "1CpDOUjJNM7tkdmEY4rzrywDyhQwy3oic"
+  },
+  {
+   "id": "1_mxWnTfKTJAFOTE1Yuz9OCdz6g0sxIUw",
+   "nome": "F. Autoridade - 13 Aula - Dr. Jorge - v2.mp4",
+   "tipo": "video",
+   "cliente": "Clínica Faber",
+   "mes": "2026-02",
+   "pasta": "1CpDOUjJNM7tkdmEY4rzrywDyhQwy3oic"
+  },
+  {
+   "id": "1iAxe2Q2twfCwQLWwsgigYKbDqmnmotUE",
+   "nome": "P. Clínica Faber - A7400501 - V.1.jpg",
+   "tipo": "foto",
+   "cliente": "Clínica Faber",
+   "mes": "2026-02",
+   "pasta": "1CpDOUjJNM7tkdmEY4rzrywDyhQwy3oic"
+  },
+  {
+   "id": "1iT9akkVr6ml7VRglkX0-a9ZvpXoe1wAC",
+   "nome": "P. Clínica Faber - A7400530 - V.1.jpg",
+   "tipo": "foto",
+   "cliente": "Clínica Faber",
+   "mes": "2026-02",
+   "pasta": "1CpDOUjJNM7tkdmEY4rzrywDyhQwy3oic"
+  },
+  {
+   "id": "1jUN4oaarHuOjlMHmzuF50rZVLy482gyp",
+   "nome": "F. Diastema - Top model - Dr. Jorge. v2.mp4",
+   "tipo": "video",
+   "cliente": "Clínica Faber",
+   "mes": "2026-02",
+   "pasta": "1CpDOUjJNM7tkdmEY4rzrywDyhQwy3oic"
+  },
+  {
+   "id": "1nH9qHEWr4e7Q_oW4D0OH0JL1JpCIqxcH",
+   "nome": "P. Clínica Faber - A7400528 - V.1.jpg",
+   "tipo": "foto",
+   "cliente": "Clínica Faber",
+   "mes": "2026-02",
+   "pasta": "1CpDOUjJNM7tkdmEY4rzrywDyhQwy3oic"
+  },
+  {
+   "id": "1pMaXZuLE7LfCBxs7Nm4RyA3YqQe5704B",
+   "nome": "P. Clínica Faber - A7400471 - V.1.jpg",
+   "tipo": "foto",
+   "cliente": "Clínica Faber",
+   "mes": "2026-02",
+   "pasta": "1CpDOUjJNM7tkdmEY4rzrywDyhQwy3oic"
+  },
+  {
+   "id": "1q_sqjvlwLAsNoCTgTU2wuKKkooyFhuYR",
+   "nome": "P. Clínica Faber - A7400559 - V.1.jpg",
+   "tipo": "foto",
+   "cliente": "Clínica Faber",
+   "mes": "2026-02",
+   "pasta": "1CpDOUjJNM7tkdmEY4rzrywDyhQwy3oic"
+  },
+  {
+   "id": "1r47XH2Icf-ffKa8FqzrC4ruH-Xaab6Y8",
+   "nome": "P. Clínica Faber - A7400507 - V.1.jpg",
+   "tipo": "foto",
+   "cliente": "Clínica Faber",
+   "mes": "2026-02",
+   "pasta": "1CpDOUjJNM7tkdmEY4rzrywDyhQwy3oic"
+  },
+  {
+   "id": "1tWVjFYeAdRSC2mRceCa9awh5PlmEnZQr",
+   "nome": "P. Clínica Faber - A7400518 - V.1.jpg",
+   "tipo": "foto",
+   "cliente": "Clínica Faber",
+   "mes": "2026-02",
+   "pasta": "1CpDOUjJNM7tkdmEY4rzrywDyhQwy3oic"
+  },
+  {
+   "id": "1wZbsmPz8xe9zH0HnSRKg57Me6xIavMOn",
+   "nome": "F. Caninos Problema - Dr. Jorge - v2.mp4",
+   "tipo": "video",
+   "cliente": "Clínica Faber",
+   "mes": "2026-02",
+   "pasta": "1CpDOUjJNM7tkdmEY4rzrywDyhQwy3oic"
+  },
+  {
+   "id": "1yT9wjWRuFb_rjlKuAqDunzRaj-a4g5wK",
+   "nome": "F. Clinica Faber - Ranger dos dentes. V.1.mov",
+   "tipo": "video",
+   "cliente": "Clínica Faber",
+   "mes": "2026-02",
+   "pasta": "1CpDOUjJNM7tkdmEY4rzrywDyhQwy3oic"
+  },
+  {
+   "id": "1yp07cscFbsNSEARxcdUdAH6-qX3nR3Xr",
+   "nome": "P. Clínica Faber - A7400460 - V.1.jpg",
+   "tipo": "foto",
+   "cliente": "Clínica Faber",
+   "mes": "2026-02",
+   "pasta": "1CpDOUjJNM7tkdmEY4rzrywDyhQwy3oic"
+  },
+  {
+   "id": "11PjSSDXT-EaVGx7hTobAOolge6qOXm9J",
+   "nome": "F. Ortodontia Infantil - Não Fazer Nada V.2.mov",
+   "tipo": "video",
+   "cliente": "Clínica Faber",
+   "mes": "2026-03",
+   "pasta": "1wdms-qJNcpjSour_ELA1ff-JvnESRQVt"
+  },
+  {
+   "id": "13dGbVbaUQbstd-yw7CfchKgsGrJu3gAS",
+   "nome": "F. Beneficio antecipado serve para todos - V.1.mov",
+   "tipo": "video",
+   "cliente": "Clínica Faber",
+   "mes": "2026-03",
+   "pasta": "1wdms-qJNcpjSour_ELA1ff-JvnESRQVt"
+  },
+  {
+   "id": "16kxJa1tp23HXHHVBiVLQnODVE6ZA2egf",
+   "nome": "F. O que é o bruxismo. V.2.mov",
+   "tipo": "video",
+   "cliente": "Clínica Faber",
+   "mes": "2026-03",
+   "pasta": "1wdms-qJNcpjSour_ELA1ff-JvnESRQVt"
+  },
+  {
+   "id": "17sUXOtys_Qo7-usVDGpxT_8kwihuykcH",
+   "nome": "F. Exame do sono - V.1.mov",
+   "tipo": "video",
+   "cliente": "Clínica Faber",
+   "mes": "2026-03",
+   "pasta": "1wdms-qJNcpjSour_ELA1ff-JvnESRQVt"
+  },
+  {
+   "id": "1AoFme3_o3xkt6sSt0M6Emx0T5aq4lFvx",
+   "nome": "F. Clinica Faber - Mickey. V1.0.mov",
+   "tipo": "video",
+   "cliente": "Clínica Faber",
+   "mes": "2026-03",
+   "pasta": "1wdms-qJNcpjSour_ELA1ff-JvnESRQVt"
+  },
+  {
+   "id": "1EsN2ul25xDdHC47aEU2xHWTqppOJVBW8",
+   "nome": "F. Dra Carol - 3 Sinais Impotantes - V.1 .mov",
+   "tipo": "video",
+   "cliente": "Clínica Faber",
+   "mes": "2026-03",
+   "pasta": "1wdms-qJNcpjSour_ELA1ff-JvnESRQVt"
+  },
+  {
+   "id": "1HqKVHUxGfgNMfF_BvCNZ7RVDMjuv37NW",
+   "nome": "F. Refluxo causa Bruxismo - V.1.mov",
+   "tipo": "video",
+   "cliente": "Clínica Faber",
+   "mes": "2026-03",
+   "pasta": "1wdms-qJNcpjSour_ELA1ff-JvnESRQVt"
+  },
+  {
+   "id": "1Z8fFbBfGw6ByICPj6ms2sx7ucV6ohz4K",
+   "nome": "F. Congresso Orlando - V.2.mov",
+   "tipo": "video",
+   "cliente": "Clínica Faber",
+   "mes": "2026-03",
+   "pasta": "1wdms-qJNcpjSour_ELA1ff-JvnESRQVt"
+  },
+  {
+   "id": "1_hGem6Tv6lBeNpXGFGrPiaSEZ9-9nlNm",
+   "nome": "F. Clinica Faber - Vídeo Clinica. V.2.mov",
+   "tipo": "video",
+   "cliente": "Clínica Faber",
+   "mes": "2026-03",
+   "pasta": "1wdms-qJNcpjSour_ELA1ff-JvnESRQVt"
+  },
+  {
+   "id": "1eCuUR9lZd4Z98_nEgFYYq3tKpRikuLhf",
+   "nome": "F. Clínica Faber - Falta de Dentes - V.2.mov",
+   "tipo": "video",
+   "cliente": "Clínica Faber",
+   "mes": "2026-03",
+   "pasta": "1wdms-qJNcpjSour_ELA1ff-JvnESRQVt"
+  },
+  {
+   "id": "1rR3gtyr-Ow84oJIjaRNTi6y4F8dbu6uI",
+   "nome": "F. Quem sabe faz ao vivo - V.2.mov",
+   "tipo": "video",
+   "cliente": "Clínica Faber",
+   "mes": "2026-03",
+   "pasta": "1wdms-qJNcpjSour_ELA1ff-JvnESRQVt"
+  },
+  {
+   "id": "1wx1pgxz1Ibje9GHatrcvR-lbOKH3gUww",
+   "nome": "F. Quais as causas do Bruxismo - V.2.mov",
+   "tipo": "video",
+   "cliente": "Clínica Faber",
+   "mes": "2026-03",
+   "pasta": "1wdms-qJNcpjSour_ELA1ff-JvnESRQVt"
+  },
+  {
+   "id": "1zAYvW_Hd5qxjvnACp4TPM6Vn1mcv8F16",
+   "nome": "F. Marpe e Expansão Maxilar - V.2.mov",
+   "tipo": "video",
+   "cliente": "Clínica Faber",
+   "mes": "2026-03",
+   "pasta": "1wdms-qJNcpjSour_ELA1ff-JvnESRQVt"
+  },
+  {
+   "id": "17KXkSSvDKmBgvfyltB4DBinhWZK-MDdP",
+   "nome": "Entrevista Dr Jorge DF1.mp4",
+   "tipo": "video",
+   "cliente": "Clínica Faber",
+   "mes": "2026-05",
+   "pasta": "1iD7WV4oqXwDofqixMIypBUlq6ol_tvON"
+  },
+  {
+   "id": "1Xpm6vXzUTVfpzHDJuPGdtLwUwLC4QoR4",
+   "nome": "F. Clínica Faber - Efeitos Especiais - V.1.mov",
+   "tipo": "video",
+   "cliente": "Clínica Faber",
+   "mes": "2026-05",
+   "pasta": "1iD7WV4oqXwDofqixMIypBUlq6ol_tvON"
+  },
+  {
+   "id": "1geOzvDD18Grz8ZNtSyhgZ8OoiivIOrI3",
+   "nome": "F. Clínica Faber- E se ninguém fizesse - V.2.mov",
+   "tipo": "video",
+   "cliente": "Clínica Faber",
+   "mes": "2026-05",
+   "pasta": "1iD7WV4oqXwDofqixMIypBUlq6ol_tvON"
+  },
+  {
+   "id": "1hlnveYszKviqV1RfaoDMiqDeAxr6dtEg",
+   "nome": "F. Clínica Faber- Bate Bola - V.1.mov",
+   "tipo": "video",
+   "cliente": "Clínica Faber",
+   "mes": "2026-05",
+   "pasta": "1iD7WV4oqXwDofqixMIypBUlq6ol_tvON"
+  },
+  {
+   "id": "1sdn4VjzDEgqU1cWvNKHijTHfyMUwCu8k",
+   "nome": "F. Clínica Faber - Passarinho - V.3.mov",
+   "tipo": "video",
+   "cliente": "Clínica Faber",
+   "mes": "2026-05",
+   "pasta": "1iD7WV4oqXwDofqixMIypBUlq6ol_tvON"
+  },
+  {
+   "id": "1vnwLUNKDcCrOxuPpngwOpArWd0NLnpjD",
+   "nome": "F. Clínica Faber - DFTV 1 - Entrevista - V.4.mov",
+   "tipo": "video",
+   "cliente": "Clínica Faber",
+   "mes": "2026-05",
+   "pasta": "1iD7WV4oqXwDofqixMIypBUlq6ol_tvON"
+  },
+  {
+   "id": "10AXmOCG33sST6eUQ1YUIbs5xvBcvYsc_",
+   "nome": "F. Clinica Faber - Acordar cansado. V.1.mov",
+   "tipo": "video",
+   "cliente": "Clínica Faber",
+   "mes": "2026-06",
+   "pasta": "1_NxM68l2HQUtdZGFGWP76L0BtPuA_Xuy"
+  },
+  {
+   "id": "13mu0yYGJ0PFHIU7Pd5m9NF-dyABDDVdV",
+   "nome": "F. Clinica Faber - APP de Monitoramento. V.1.mov",
+   "tipo": "video",
+   "cliente": "Clínica Faber",
+   "mes": "2026-06",
+   "pasta": "1_NxM68l2HQUtdZGFGWP76L0BtPuA_Xuy"
+  },
+  {
+   "id": "1N3q0XtrlQLReFDbjwFnEgrsHQ9wbGIHz",
+   "nome": "F. Clinica Faber-DF. Tv - Pijama dos dentes. V.1.mov",
+   "tipo": "video",
+   "cliente": "Clínica Faber",
+   "mes": "2026-06",
+   "pasta": "1_NxM68l2HQUtdZGFGWP76L0BtPuA_Xuy"
+  },
+  {
+   "id": "1cRKLfMCKJmmzACvEL6QpCZHzghwyoxS1",
+   "nome": "F. Clinica Faber - Pai morreu. V.1.mov",
+   "tipo": "video",
+   "cliente": "Clínica Faber",
+   "mes": "2026-06",
+   "pasta": "1_NxM68l2HQUtdZGFGWP76L0BtPuA_Xuy"
+  },
+  {
+   "id": "1dkxQoUlK3wfGXTSfpWX3mbkqoxQNLCKj",
+   "nome": "F. Dr. Jorge. Monalisa. v.1.mov",
+   "tipo": "video",
+   "cliente": "Clínica Faber",
+   "mes": "2026-06",
+   "pasta": "1_NxM68l2HQUtdZGFGWP76L0BtPuA_Xuy"
+  },
+  {
+   "id": "18xHqqiHgMqCNNpw88-ihEQcetwX5sbld",
+   "nome": "F. Clinica Faber - Dra Carol - Invisalign. V.1 .mov",
+   "tipo": "video",
+   "cliente": "Clínica Faber",
+   "mes": "2026-07",
+   "pasta": "1B2icho1ryjTH-cunkNWRsqnKi6h1KY3M"
+  },
+  {
+   "id": "19Enb7_G2slE9dEH_XcPDxrc2PJhY9pKD",
+   "nome": "F. Dra. Laís -C. Faber - Excelência na odontologia.mov",
+   "tipo": "video",
+   "cliente": "Clínica Faber",
+   "mes": "2026-07",
+   "pasta": "1B2icho1ryjTH-cunkNWRsqnKi6h1KY3M"
+  },
+  {
+   "id": "1C7_mM7cSgR55_Wvr-Da4nRFrBVJSnNUR",
+   "nome": "F. Vídeo para Fachada - Clínica Faber - V.2.mov",
+   "tipo": "video",
+   "cliente": "Clínica Faber",
+   "mes": "2026-07",
+   "pasta": "1B2icho1ryjTH-cunkNWRsqnKi6h1KY3M"
+  },
+  {
+   "id": "1J1kBhxQKX96jVCp0nIylWHAwAXOs6L4L",
+   "nome": "F. Faber - Seu sorriso te incomoda- v.1.mov",
+   "tipo": "video",
+   "cliente": "Clínica Faber",
+   "mes": "2026-07",
+   "pasta": "1B2icho1ryjTH-cunkNWRsqnKi6h1KY3M"
+  },
+  {
+   "id": "1KMHjHCTBoB8iAXod6yYM9hN7EV2FqbiD",
+   "nome": "Q. Dr. Jorge - Renderização 3D. V.2.mov",
+   "tipo": "video",
+   "cliente": "Clínica Faber",
+   "mes": "2026-07",
+   "pasta": "1B2icho1ryjTH-cunkNWRsqnKi6h1KY3M"
+  },
+  {
+   "id": "1_MPrEmaVMJAY3d3zcErJtNihpZcgsVIg",
+   "nome": "F. C. Faber - Arco dentário Amplo- v.1.mov",
+   "tipo": "video",
+   "cliente": "Clínica Faber",
+   "mes": "2026-07",
+   "pasta": "1B2icho1ryjTH-cunkNWRsqnKi6h1KY3M"
+  },
+  {
+   "id": "1eHv2LfSRWbELpekAd-mLPLfa-lWJQNFh",
+   "nome": "F. Clínica Faber. Freddie Mercury. v.1.mov",
+   "tipo": "video",
+   "cliente": "Clínica Faber",
+   "mes": "2026-07",
+   "pasta": "1B2icho1ryjTH-cunkNWRsqnKi6h1KY3M"
+  },
+  {
+   "id": "1hstzVKct8JieH69DRbBtDyDZoIuzun1e",
+   "nome": "F. Clinica Faber - Desconfortável.mov",
+   "tipo": "video",
+   "cliente": "Clínica Faber",
+   "mes": "2026-07",
+   "pasta": "1B2icho1ryjTH-cunkNWRsqnKi6h1KY3M"
+  },
+  {
+   "id": "1vIDASU4L0_P3m6QZJsDocLc-tOyj8At4",
+   "nome": "F. Invisalign - Quadro a Quadro - Dr. Jorge - V.1.mov",
+   "tipo": "video",
+   "cliente": "Clínica Faber",
+   "mes": "2026-07",
+   "pasta": "1B2icho1ryjTH-cunkNWRsqnKi6h1KY3M"
+  },
+  {
+   "id": "1xjI37KcLjbFm_xP6aZWoeCipg237JKrS",
+   "nome": "F - Dr. Jorge - Pacientes adolescentes. V.1.mov",
+   "tipo": "video",
+   "cliente": "Clínica Faber",
+   "mes": "2026-07",
+   "pasta": "1B2icho1ryjTH-cunkNWRsqnKi6h1KY3M"
+  },
+  {
+   "id": "1zgwqYRm73HecBpQ5CZz8yUCjbpCZ9Pm2",
+   "nome": "F. Dra. Laís - C. Faber - Antes de cuidar. V.1.mov",
+   "tipo": "video",
+   "cliente": "Clínica Faber",
+   "mes": "2026-07",
+   "pasta": "1B2icho1ryjTH-cunkNWRsqnKi6h1KY3M"
+  },
+  {
+   "id": "1HDzXawg-aG5RFcyFTa8_dWtweP-g3P06",
+   "nome": "F. DFTV - Corte Dr. Jorge 02 - V.1.mov",
+   "tipo": "video",
+   "cliente": "Clínica Faber",
+   "mes": "2026-08",
+   "pasta": "12k6AfsV0FNyOiC0X9vehcSdWfx-xs_jY"
+  },
+  {
+   "id": "1S3RDKMIrKRA36BWyndMihR1uSRDGUk36",
+   "nome": "F. DFTV - Corte Dr. Jorge 06. V.3.mov",
+   "tipo": "video",
+   "cliente": "Clínica Faber",
+   "mes": "2026-08",
+   "pasta": "12k6AfsV0FNyOiC0X9vehcSdWfx-xs_jY"
+  },
+  {
+   "id": "1YRMjYHPXr6HmWX7amIHl7SxB1CiEFPXs",
+   "nome": "F. Band - Corte Dr. Jorge 17. V.2.mov",
+   "tipo": "video",
+   "cliente": "Clínica Faber",
+   "mes": "2026-08",
+   "pasta": "12k6AfsV0FNyOiC0X9vehcSdWfx-xs_jY"
+  },
+  {
+   "id": "1buLpvr3U9hDPdmQhmR3zB0zLSH8Wa6DT",
+   "nome": "F. DFTV - Corte Dr. Jorge 03. V.1.mov",
+   "tipo": "video",
+   "cliente": "Clínica Faber",
+   "mes": "2026-08",
+   "pasta": "12k6AfsV0FNyOiC0X9vehcSdWfx-xs_jY"
+  },
+  {
+   "id": "1jwgpaBn8DaN-3saxPEV_vjl96xh4T24T",
+   "nome": "F. Faber - Invisalign em todos os casos. V.1.mov",
+   "tipo": "video",
+   "cliente": "Clínica Faber",
+   "mes": "2026-08",
+   "pasta": "12k6AfsV0FNyOiC0X9vehcSdWfx-xs_jY"
+  },
+  {
+   "id": "113eYEtpqB9xg2NjrNAV0LY5qmTFg6o8c",
+   "nome": "F. Faber Setembro - Vídeo 4 - V.2.mp4",
+   "tipo": "video",
+   "cliente": "Clínica Faber",
+   "mes": "2026-09",
+   "pasta": "126COma8g2EEMCFe5zMaUMKUnereGU4DS"
+  },
+  {
+   "id": "16Npdx7RQmuNU8tmGaxaJ3YobQe9G_hyx",
+   "nome": "1.png",
+   "tipo": "foto",
+   "cliente": "Clínica Faber",
+   "mes": "2026-09",
+   "pasta": "126COma8g2EEMCFe5zMaUMKUnereGU4DS"
+  },
+  {
+   "id": "1AAq1dEoubrRvdbOkRoWBj0cFjnyD1_wa",
+   "nome": "F. Faber Setembro - Vídeo 5 - V.3.mp4",
+   "tipo": "video",
+   "cliente": "Clínica Faber",
+   "mes": "2026-09",
+   "pasta": "126COma8g2EEMCFe5zMaUMKUnereGU4DS"
+  },
+  {
+   "id": "1JMXlGY5why51MCVMaxmbHooZQ2LYvI0t",
+   "nome": "4.png",
+   "tipo": "foto",
+   "cliente": "Clínica Faber",
+   "mes": "2026-09",
+   "pasta": "126COma8g2EEMCFe5zMaUMKUnereGU4DS"
+  },
+  {
+   "id": "1VIZWNNdFfIUeKwZ_Fd1V7Xr6bxUcvue4",
+   "nome": "5.png",
+   "tipo": "foto",
+   "cliente": "Clínica Faber",
+   "mes": "2026-09",
+   "pasta": "126COma8g2EEMCFe5zMaUMKUnereGU4DS"
+  },
+  {
+   "id": "1g-3IcUfjIxTSsua8S2zOYb2ViRiGp7DD",
+   "nome": "3.png",
+   "tipo": "foto",
+   "cliente": "Clínica Faber",
+   "mes": "2026-09",
+   "pasta": "126COma8g2EEMCFe5zMaUMKUnereGU4DS"
+  },
+  {
+   "id": "1hKyGPjSnvpoJsgKEZt5U3v-of0cdMb0c",
+   "nome": "F. Faber Setembro - Vídeo 3 - V.2.mp4",
+   "tipo": "video",
+   "cliente": "Clínica Faber",
+   "mes": "2026-09",
+   "pasta": "126COma8g2EEMCFe5zMaUMKUnereGU4DS"
+  },
+  {
+   "id": "1jGEXl6Cg1itgGE5b2Pb3HHPYPUJnvWRv",
+   "nome": "F. Faber Setembro - Vídeo 1 - V.3.mp4",
+   "tipo": "video",
+   "cliente": "Clínica Faber",
+   "mes": "2026-09",
+   "pasta": "126COma8g2EEMCFe5zMaUMKUnereGU4DS"
+  },
+  {
+   "id": "1nwbJLGoEhPXwQ4_XR8tOvWEYCpwDRexH",
+   "nome": "2.png",
+   "tipo": "foto",
+   "cliente": "Clínica Faber",
+   "mes": "2026-09",
+   "pasta": "126COma8g2EEMCFe5zMaUMKUnereGU4DS"
+  },
+  {
+   "id": "1swmJofWVobq5g1zX7NDuuoBs1hDfL3Zl",
+   "nome": "F. Faber - Setembro Video 2. V.2.mp4",
+   "tipo": "video",
+   "cliente": "Clínica Faber",
+   "mes": "2026-09",
+   "pasta": "126COma8g2EEMCFe5zMaUMKUnereGU4DS"
+  },
+  {
+   "id": "15qvgUvEjl6ggSAiJoG8LGnqDkWBeC3Zz",
+   "nome": "F. Clinica Faber - Dr Jorge - Graphy - V.2.mp4",
+   "tipo": "video",
+   "cliente": "Clínica Faber",
+   "mes": "2026-10",
+   "pasta": "1rhEklyDDcVArjwqMKoCqZgpwga6YNZi0"
+  },
+  {
+   "id": "1Nbi5dg_TxufX8ptE4M6H2RQKnVCYsUDJ",
+   "nome": "Dr. Jorge_2.jpg",
+   "tipo": "foto",
+   "cliente": "Clínica Faber",
+   "mes": "2026-10",
+   "pasta": "1rhEklyDDcVArjwqMKoCqZgpwga6YNZi0"
+  },
+  {
+   "id": "1_W4MmNJX1lJF4E_8nailETo6JNFTEBgz",
+   "nome": "F. Clinica Faber - Dr Jorge - Ranking - V.2.mp4",
+   "tipo": "video",
+   "cliente": "Clínica Faber",
+   "mes": "2026-10",
+   "pasta": "1rhEklyDDcVArjwqMKoCqZgpwga6YNZi0"
+  },
+  {
+   "id": "1aHzKNIN3d1v-ufvjR5z4LyLeth8oNR75",
+   "nome": "Dr. Jorge.jpg",
+   "tipo": "foto",
+   "cliente": "Clínica Faber",
+   "mes": "2026-10",
+   "pasta": "1rhEklyDDcVArjwqMKoCqZgpwga6YNZi0"
+  },
+  {
+   "id": "1cV7RFvnfDx8n4SZG9Rj9aEZSEtbXIL_4",
+   "nome": "Dr. Jorge_1.jpg",
+   "tipo": "foto",
+   "cliente": "Clínica Faber",
+   "mes": "2026-10",
+   "pasta": "1rhEklyDDcVArjwqMKoCqZgpwga6YNZi0"
+  },
+  {
+   "id": "1fNkc0QroGphz958VH9HhqGv8Q_ZnH1bB",
+   "nome": "F. Clínica Faber - Dr. Carol - Trocas de Dentes - V.2.mp4",
+   "tipo": "video",
+   "cliente": "Clínica Faber",
+   "mes": "2026-10",
+   "pasta": "1rhEklyDDcVArjwqMKoCqZgpwga6YNZi0"
+  },
+  {
+   "id": "1fPtXuFFKGpwjxOt6MkDiADxgCIVvsSMC",
+   "nome": "Timeline 2_01_01_04_09.jpg",
+   "tipo": "foto",
+   "cliente": "Clínica Faber",
+   "mes": "2026-10",
+   "pasta": "1rhEklyDDcVArjwqMKoCqZgpwga6YNZi0"
+  },
+  {
+   "id": "1sMqQTTwmhaOHYY2x_5eRRgWKZ28e7jhv",
+   "nome": "F. Faber - Alinhador com Memória - V.4.mp4",
+   "tipo": "video",
+   "cliente": "Clínica Faber",
+   "mes": "2026-10",
+   "pasta": "1rhEklyDDcVArjwqMKoCqZgpwga6YNZi0"
+  },
+  {
+   "id": "1vrLsUWgQq5a2IqQxYDtVRpSeDOsY6dZb",
+   "nome": "F. Clínica Faber - Dr. Carol - Respiração Bocal - V.2.mp4",
+   "tipo": "video",
+   "cliente": "Clínica Faber",
+   "mes": "2026-10",
+   "pasta": "1rhEklyDDcVArjwqMKoCqZgpwga6YNZi0"
+  },
+  {
+   "id": "11djOwNkpr_0L1GOCDXAZyRGiIl-2P5jR",
+   "nome": "F. Faber - Receio Aparelho Fixo - V.2.mp4",
+   "tipo": "video",
+   "cliente": "Clínica Faber",
+   "mes": "2026-11",
+   "pasta": "1hBKI8ZuhmQBT_VFMjd3WT19Je1V7AwH_"
+  },
+  {
+   "id": "1Qi8FQypSTNu2MGSMxx-B5gEuRDcrVi0O",
+   "nome": "F. Clínica Faber. Conversa Importante. v.2.mp4",
+   "tipo": "video",
+   "cliente": "Clínica Faber",
+   "mes": "2026-11",
+   "pasta": "1hBKI8ZuhmQBT_VFMjd3WT19Je1V7AwH_"
+  },
+  {
+   "id": "1W9_UpjLw_IgCdlQ0iiy2rIYOjrEsPd9P",
+   "nome": "F. Faber - Vergonha de Sorrir em Foto - V.2.mp4",
+   "tipo": "video",
+   "cliente": "Clínica Faber",
+   "mes": "2026-11",
+   "pasta": "1hBKI8ZuhmQBT_VFMjd3WT19Je1V7AwH_"
+  },
+  {
+   "id": "1aEVV1sNsuqGWNQqqC9hiVWZEEgFqJJvH",
+   "nome": "F. Faber - Alinhadores Filhos - V.2.mp4",
+   "tipo": "video",
+   "cliente": "Clínica Faber",
+   "mes": "2026-11",
+   "pasta": "1hBKI8ZuhmQBT_VFMjd3WT19Je1V7AwH_"
+  }
+ ]
 }
