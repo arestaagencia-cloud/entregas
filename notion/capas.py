@@ -70,8 +70,8 @@ def main():
     def url_capa(p):
         c = p.get("cover") or {}
         return (c.get(c.get("type"), {}) or {}).get("url", "")
-    cont = Counter(re.sub(r"\?.*", "", url_capa(p))[:90] for p in paginas if p.get("cover"))
-    print("CAPAS EXISTENTES:", sum(cont.values()), cont.most_common(6))
+    cont = Counter(re.sub(r"\?.*", "", url_capa(p))[:160] for p in paginas if p.get("cover"))
+    print("CAPAS EXISTENTES:", sum(cont.values()), len(cont), cont.most_common(4))
 
     def avaliar(p):
         link = prop(p, "Link") or ""
