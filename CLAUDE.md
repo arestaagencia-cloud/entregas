@@ -161,3 +161,15 @@ com "1. Clientes Recorrentes" e "2. Clientes Freelancers"). A lista com as pasta
 O PDF: capa (mosaico + cliente + mês), resumo (números, diárias, observações), vídeos (15 por página),
 fotos (até 20, "+N no seu painel"), página final com QR code para o dashboard (ou, sem dashboard, para a pasta da entrega no Drive). Cada miniatura é um link
 invisível que abre o arquivo no player do Drive (`/file/d/<id>/view`).
+
+## Notion · sincronização de Conteúdos com o Drive
+
+Integração "Robô ArestAgência" (segredo `NOTION_TOKEN`) com acesso às databases Conteúdos, Serviços e Clientes.
+Script `notion/sync_conteudos.py`, workflow "Notion · sincronizar conteúdos" (`notion-sync.yml`, input `aplicar`):
+sem `aplicar` só gera a prévia no log (entre `=====RELATORIO=====` e `=====FIM=====`); com `aplicar` cria/corrige.
+Regras: vídeos e carrosséis dos painéis (fotos não); casa pelo ID do Drive no Link e depois pelo nome; não renomeia
+páginas existentes; ajusta Link, Clientes, Serviços ("Cliente - Mês.AA", marcas da Universa também "Universa - Mês.AA"),
+SubCategorias Universa, Tipo de Conteúdo (Reels | Vídeo Horizontal pela proporção da capa | Carrossel) e Status
+("Entregue e Aprovado" se vazio/em produção). Duplicatas pelo nome: fica a mais antiga, as outras vão para a lixeira.
+Nunca mexe em Formato, Data de Publicação e Desenvolveu. Rode sempre a prévia antes de aplicar.
+Primeira sincronização (12/11/2026): 154 criadas, 169 corrigidas, 8 duplicatas na lixeira; 392/392 corretos.
