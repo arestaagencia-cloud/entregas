@@ -106,7 +106,9 @@ fotos do Drive, filtros por Cliente, Mês e tipo. Config em `paineis/<cliente>.j
 `clientes` (ordem dos filtros) e `itens` (preenchido pelo robô).
 
 Estrutura esperada no Drive: `raiz / [NN. ]Marca / N. Marca - Mês.AA / arquivos` (subpastas como `Fotos`
-são lidas). Pastas de mês fora do padrão são ignoradas e aparecem como AVISO no log.
+são lidas). **Carrosséis:** uma subpasta cujo nome começa com "Carrossel" vira UM item `tipo: "carrossel"` com
+`slides` (fotos e/ou vídeos) na ordem natural do nome dos arquivos (1, 2, … 10). No dashboard abre um player
+deslizante (arrastar/setas, baixar slide atual) e há o filtro "Carrosséis"; no PDF ganha seção própria. Pastas de mês fora do padrão são ignoradas e aparecem como AVISO no log.
 
 **Robô:** `.github/workflows/atualizar-paineis.yml` roda de hora em hora (minuto 17) e também sob demanda
 (REST: `gh api -X POST repos/arestaagencia-cloud/entregas/actions/workflows/atualizar-paineis.yml/dispatches -f ref=main -f 'inputs[forcar]=true'`). Ele executa `atualizar_painel.py` para cada `paineis/*.json` e só
