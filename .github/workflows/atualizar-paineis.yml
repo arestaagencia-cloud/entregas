@@ -32,7 +32,8 @@ jobs:
         run: |
           for cfg in paineis/*.json; do
             echo "::group::$cfg"
-            python3 atualizar_painel.py "$cfg" ${{ inputs.forcar && '--forcar' || '' }}
+            python3 atualizar_painel.py "$cfg" ${{ inputs.forcar && '--forcar' || '' }} \
+              || echo "::warning::$cfg não foi atualizado (veja o log acima); os outros painéis seguem normalmente"
             echo "::endgroup::"
           done
       - name: Publicar se mudou
