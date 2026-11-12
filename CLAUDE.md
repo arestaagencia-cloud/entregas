@@ -118,7 +118,7 @@ sem ele, usa a listagem pública das pastas (precisam estar como "qualquer pesso
 **Novo cliente:** criar `paineis/<cliente>.json` com slug, titulo, marca e drive_raiz, rodar
 `python3 atualizar_painel.py paineis/<cliente>.json --forcar` (ou o workflow com "forcar"), conferir e publicar.
 
-Dashboards no ar: `universa` (9 marcas, raiz = pasta Universa) `niso` (Niso Engenharia) e `faber` (Clínica Faber), os dois com
+Dashboards no ar: `universa` (9 marcas, raiz = pasta Universa) `niso` (Niso Engenharia), `faber` (Clínica Faber) e `equipe-prime`, todos com
 `cliente_unico` e raiz = pasta do cliente. Ao criar um novo, atualize também `relatorios/clientes.json` (campo `painel`).
 
 Layout: `painel_template.html` + `gerar_painel.py`. Endereço antigo `/painel-universa-k7q2/` redireciona para `/universa/`.
