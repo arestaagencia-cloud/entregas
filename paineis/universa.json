@@ -16,144 +16,16 @@
  ],
  "itens": [
   {
-   "id": "1kFg25gJPRY2gfYt_Go8Axh7xK2nDUVOl",
-   "nome": "A7407572.jpg",
-   "tipo": "foto",
-   "cliente": "IGG",
-   "mes": "2026-07",
-   "pasta": "1Ev3ilG_YLHxDjrxO0lUAY1XMK3h-0rsp"
-  },
-  {
-   "id": "1vfTcaWtX0u0nzYtwVPTXoefeIFN8xLFj",
-   "nome": "A7407578.jpg",
-   "tipo": "foto",
-   "cliente": "IGG",
-   "mes": "2026-07",
-   "pasta": "1Ev3ilG_YLHxDjrxO0lUAY1XMK3h-0rsp"
-  },
-  {
-   "id": "19zGO--FeajCTRIFaqdVl00sIcwqKl4ZE",
-   "nome": "F. IGG - Maria Paula Vd 02 - Horizontal. V.1.mov",
+   "id": "1chVQzRmKAEGcWYaodrh_fetD3cVwObsx",
+   "nome": "F. EduCriarte - Rematrícula - Tia Léia - V.3.mov",
    "tipo": "video",
-   "cliente": "IGG",
-   "mes": "2026-06",
-   "pasta": "1HGsyAcFpprONkmvdbOiC2sEDOMMnfoB3"
-  },
-  {
-   "id": "1MUp9_9iqTLSmmqK0YCvQto-u2dFI3ZI_",
-   "nome": "A7409785.jpg",
-   "tipo": "foto",
-   "cliente": "Hauzen",
-   "mes": "2026-10",
-   "pasta": "1dQdBFieFOM7kjLDqtzWFKk4ag0oupNa2"
-  },
-  {
-   "id": "1iv5g4p5brCylR1l71c40hx2mcDQMK3Ou",
-   "nome": "FX301279.jpg",
-   "tipo": "foto",
-   "cliente": "Hauzen",
-   "mes": "2026-08",
-   "pasta": "1G_afCzJdwMmQ_8QiUzGss_2LinmzDNLl"
-  },
-  {
-   "id": "1LJ6aWv5jmd_E-yQUbig-npPiUSvisQyS",
-   "nome": "FX301268.jpg",
-   "tipo": "foto",
-   "cliente": "Hauzen",
-   "mes": "2026-08",
-   "pasta": "1G_afCzJdwMmQ_8QiUzGss_2LinmzDNLl"
-  },
-  {
-   "id": "1vuOhOZJYN9Beqw0ud7dLVr5XT5eYiSvt",
-   "nome": "FX301266.jpg",
-   "tipo": "foto",
-   "cliente": "Hauzen",
-   "mes": "2026-08",
-   "pasta": "1G_afCzJdwMmQ_8QiUzGss_2LinmzDNLl"
-  },
-  {
-   "id": "1ccwSO2bI2ybBYZ1mzAJG3cTOmUESPhuk",
-   "nome": "F. Hauzen - Casa QI - V.3.mp4",
-   "tipo": "video",
-   "cliente": "Hauzen",
-   "mes": "2026-08",
-   "pasta": "1G_afCzJdwMmQ_8QiUzGss_2LinmzDNLl"
-  },
-  {
-   "id": "1rusXUS8wOvq4vcMDQ6WSEehpDk_tquyD",
-   "nome": "FX301277.jpg",
-   "tipo": "foto",
-   "cliente": "Hauzen",
-   "mes": "2026-08",
-   "pasta": "1G_afCzJdwMmQ_8QiUzGss_2LinmzDNLl"
-  },
-  {
-   "id": "1qahVZSfP3raZXptLzo-LHmhNiaSziiWg",
-   "nome": "FX301274.jpg",
-   "tipo": "foto",
-   "cliente": "Hauzen",
-   "mes": "2026-08",
-   "pasta": "1G_afCzJdwMmQ_8QiUzGss_2LinmzDNLl"
-  },
-  {
-   "id": "10i61ZpTpdu4GW0Jpt8gJjf5ZVHZ8cBsi",
-   "nome": "F. Hauzen - Entrevista Alice - V.11.mov",
-   "tipo": "video",
-   "cliente": "Hauzen",
-   "mes": "2026-08",
-   "pasta": "1G_afCzJdwMmQ_8QiUzGss_2LinmzDNLl"
-  },
-  {
-   "id": "1xLKj-l8rNYR67cwWHWnXG6oKgaAdqpr7",
-   "nome": "A7407586.jpg",
-   "tipo": "foto",
-   "cliente": "Hauzen",
-   "mes": "2026-07",
-   "pasta": "1AbEP7JlEhSjMdZk3QmzQVNQBktfQq6_c"
-  },
-  {
-   "id": "1x1KraQacSaCu9S_QkL-LUlpn00dufG3f",
-   "nome": "A7407590.jpg",
-   "tipo": "foto",
-   "cliente": "Hauzen",
-   "mes": "2026-07",
-   "pasta": "1AbEP7JlEhSjMdZk3QmzQVNQBktfQq6_c"
-  },
-  {
-   "id": "1jfRUNRDvVOc4EUqchjYcutODRAyQN6vV",
-   "nome": "A7407579.jpg",
-   "tipo": "foto",
-   "cliente": "Hauzen",
-   "mes": "2026-07",
-   "pasta": "1AbEP7JlEhSjMdZk3QmzQVNQBktfQq6_c"
-  },
-  {
-   "id": "1OTAcHd4Qcsb7JmJ0r2vpjVoWfyk0efP6",
-   "nome": "F. Hauzen - Concretagem - V.1.mp4",
-   "tipo": "video",
-   "cliente": "Hauzen",
-   "mes": "2025-12",
-   "pasta": "1QW8HWARe4L4m0X4H8_37wdrfh_a4kF1r"
-  },
-  {
-   "id": "1LpSninXdgl7_j358Fk106L7TIG1keMds",
-   "nome": "F. Hauzen - Maior Erro - V.1.mp4",
-   "tipo": "video",
-   "cliente": "Hauzen",
-   "mes": "2025-12",
-   "pasta": "1QW8HWARe4L4m0X4H8_37wdrfh_a4kF1r"
-  },
-  {
-   "id": "1TBaAhfV1kXYhctYFknoQRTaDdIknUVt9",
-   "nome": "A7405664.jpg",
-   "tipo": "foto",
-   "cliente": "Hauzen",
+   "cliente": "EduCriarte",
    "mes": "2025-10",
-   "pasta": "1hRyGyFBgi1KeCUwNxs2IWO-aBTGuOsLL"
+   "pasta": "1SvhBfGAJO4xhr560Mg9oF36Bgyh8r1Un"
   },
   {
-   "id": "1o7lvX8ce7kREivabgM8vBmFv74x1fG6G",
-   "nome": "A7405673.jpg",
+   "id": "12lPCLKfeMqRJP3Bum_h6vl_O0Hb7GsRQ",
+   "nome": "A7405659.jpg",
    "tipo": "foto",
    "cliente": "Hauzen",
    "mes": "2025-10",
@@ -176,137 +48,1033 @@
    "pasta": "1hRyGyFBgi1KeCUwNxs2IWO-aBTGuOsLL"
   },
   {
-   "id": "12lPCLKfeMqRJP3Bum_h6vl_O0Hb7GsRQ",
-   "nome": "A7405659.jpg",
+   "id": "1TBaAhfV1kXYhctYFknoQRTaDdIknUVt9",
+   "nome": "A7405664.jpg",
    "tipo": "foto",
    "cliente": "Hauzen",
    "mes": "2025-10",
    "pasta": "1hRyGyFBgi1KeCUwNxs2IWO-aBTGuOsLL"
   },
   {
-   "id": "1L-fPlK9FxRxGVIVYRaB7bR8_HBZc1u_G",
-   "nome": "F. Hauzen. Duas opções. v.2.mov",
+   "id": "1WZ44o2cYVE2TGYGFtTGfcYYOlUFtR_xa",
+   "nome": "F. Hauzen - Confiaria - Leonardo - V.2.mov",
    "tipo": "video",
    "cliente": "Hauzen",
-   "mes": "2026-10",
-   "pasta": "1dQdBFieFOM7kjLDqtzWFKk4ag0oupNa2"
+   "mes": "2025-10",
+   "pasta": "1hRyGyFBgi1KeCUwNxs2IWO-aBTGuOsLL"
   },
   {
-   "id": "16lBqJ-KLS5MD-RlRd57N0fLQfUKAAY4X",
-   "nome": "2.16.2_2.16.2.jpg",
+   "id": "1hDOiUsaazLmdQopp2iB0dkYkfFMFofpi",
+   "nome": "F. Hauzen - Sonho - Leonardo - V.3.mp4",
+   "tipo": "video",
+   "cliente": "Hauzen",
+   "mes": "2025-10",
+   "pasta": "1hRyGyFBgi1KeCUwNxs2IWO-aBTGuOsLL"
+  },
+  {
+   "id": "1o7lvX8ce7kREivabgM8vBmFv74x1fG6G",
+   "nome": "A7405673.jpg",
    "tipo": "foto",
-   "cliente": "IGG",
-   "mes": "2026-10",
-   "pasta": "1mlfv_iT80jdKsH5YKf6YZSwAMhj_AkbM"
+   "cliente": "Hauzen",
+   "mes": "2025-10",
+   "pasta": "1hRyGyFBgi1KeCUwNxs2IWO-aBTGuOsLL"
   },
   {
-   "id": "1TchaCfYNXN82fTBuzzshi1YsDZqR3d6l",
-   "nome": "2.51.3_2.51.3.jpg",
+   "id": "1AyokxDN3RwaSzW6u1P8E1NAieaFOqyP8",
+   "nome": "F. Universa - ChatGPT Mkt - Gabriela- V.4.mp4",
+   "tipo": "video",
+   "cliente": "Universa Digital",
+   "mes": "2025-10",
+   "pasta": "1qT-CjuJSRVSgnpbWU8o0xj7JgoDd1-Jo"
+  },
+  {
+   "id": "1FQS5XJ1g7gZ6eFp8I8gEvN7InRXWhAF4",
+   "nome": "A7405727.jpg",
    "tipo": "foto",
-   "cliente": "IGG",
-   "mes": "2026-10",
-   "pasta": "1mlfv_iT80jdKsH5YKf6YZSwAMhj_AkbM"
+   "cliente": "Universa Digital",
+   "mes": "2025-10",
+   "pasta": "1qT-CjuJSRVSgnpbWU8o0xj7JgoDd1-Jo"
   },
   {
-   "id": "1BkRHjjM_M7tePXeqa4kiDkbeUxKSnGou",
-   "nome": "1.4.1_1.4.1.jpg",
+   "id": "1FyCV6wtIit4mfvU0wOW2WTLOO2SAnEmc",
+   "nome": "A7405747.jpg",
    "tipo": "foto",
+   "cliente": "Universa Digital",
+   "mes": "2025-10",
+   "pasta": "1qT-CjuJSRVSgnpbWU8o0xj7JgoDd1-Jo"
+  },
+  {
+   "id": "1HZ3HA-J1CPUMt69SG90O5tZRh63qqDEU",
+   "nome": "A7405761.jpg",
+   "tipo": "foto",
+   "cliente": "Universa Digital",
+   "mes": "2025-10",
+   "pasta": "1qT-CjuJSRVSgnpbWU8o0xj7JgoDd1-Jo"
+  },
+  {
+   "id": "1lZh8PTO75WCVtWMXWYJfBqdfAKhNStGq",
+   "nome": "F. Universa - OpenAI Atendimento- Gabriela -V.4.mp4",
+   "tipo": "video",
+   "cliente": "Universa Digital",
+   "mes": "2025-10",
+   "pasta": "1qT-CjuJSRVSgnpbWU8o0xj7JgoDd1-Jo"
+  },
+  {
+   "id": "1ttmJsDyAxjYkPqSnJhld_DoY3Xv77Xkc",
+   "nome": "A7405757.jpg",
+   "tipo": "foto",
+   "cliente": "Universa Digital",
+   "mes": "2025-10",
+   "pasta": "1qT-CjuJSRVSgnpbWU8o0xj7JgoDd1-Jo"
+  },
+  {
+   "id": "1uCfISp8eBXr_CJTH8Fu0Awc54VIl5KmY",
+   "nome": "F. Universa -Não Resolve problema - Gabriela V.3.mov",
+   "tipo": "video",
+   "cliente": "Universa Digital",
+   "mes": "2025-10",
+   "pasta": "1qT-CjuJSRVSgnpbWU8o0xj7JgoDd1-Jo"
+  },
+  {
+   "id": "1z7Firk9Fhu4ufhra2fHADf1UGjngJa7d",
+   "nome": "A7405748.jpg",
+   "tipo": "foto",
+   "cliente": "Universa Digital",
+   "mes": "2025-10",
+   "pasta": "1qT-CjuJSRVSgnpbWU8o0xj7JgoDd1-Jo"
+  },
+  {
+   "id": "11uiHr2G5BPz9yb56xxCJXtvBWSlkiXfE",
+   "nome": "F. Vitrinni - Abrir seu negócio - Andressa - V.1.mov",
+   "tipo": "video",
+   "cliente": "Vitrinni",
+   "mes": "2025-10",
+   "pasta": "1gEH9y-SSX1gwPCHcEcwS365NLu7RGVrP"
+  },
+  {
+   "id": "1KFjw0cNyW7Qg9wgSOLK-BkinHJ3c05AN",
+   "nome": "F. Vitrinni - Black Friday - Andressa - V.2.mov",
+   "tipo": "video",
+   "cliente": "Vitrinni",
+   "mes": "2025-10",
+   "pasta": "1gEH9y-SSX1gwPCHcEcwS365NLu7RGVrP"
+  },
+  {
+   "id": "1KaarkumJOy_Ns_A8coxXk5cZf4S6hK_V",
+   "nome": "F. Vitrinni - Tendência Alfaiataria - Andressa V.1.mov",
+   "tipo": "video",
+   "cliente": "Vitrinni",
+   "mes": "2025-10",
+   "pasta": "1gEH9y-SSX1gwPCHcEcwS365NLu7RGVrP"
+  },
+  {
+   "id": "1xpIHcwly-mqG8PwBrowmItQMBpWKiAi_",
+   "nome": "F. Vitrinni - Erro Fashion - Andressa - V.1.mov",
+   "tipo": "video",
+   "cliente": "Vitrinni",
+   "mes": "2025-10",
+   "pasta": "1gEH9y-SSX1gwPCHcEcwS365NLu7RGVrP"
+  },
+  {
+   "id": "1SIQjKX0lpTX3LO3rc2TAOZSYgN5pZ6FB",
+   "nome": "F. Universa - Óptica Premium - Luiz - V.4.mov",
+   "tipo": "video",
+   "cliente": "Óptica Premium",
+   "mes": "2025-10",
+   "pasta": "1WuATaSOgn8k9hjW2uCj3wT2752pQsb1m"
+  },
+  {
+   "id": "1z0rpeu4V1Q4a0m2Bxra--b3vnSNv30US",
+   "nome": "F. Óptica Premium - Ray Ban - Luiz - V.3.mov",
+   "tipo": "video",
+   "cliente": "Óptica Premium",
+   "mes": "2025-10",
+   "pasta": "1WuATaSOgn8k9hjW2uCj3wT2752pQsb1m"
+  },
+  {
+   "id": "16hgjX-IWelB0tLDealyZBjpzz6X2Qjnl",
+   "nome": "F. Educriarte - Rematrícula 2 - Tia Léia - V.3.mov",
+   "tipo": "video",
+   "cliente": "EduCriarte",
+   "mes": "2025-11",
+   "pasta": "1oFO3So0gVWVuuIm2mp4nWxyIwjBjOTpl"
+  },
+  {
+   "id": "12c9WcwJxXZnGUC0aOR_JE1Is84KkRcZC",
+   "nome": "F. Hauzen - Bem-te-vi 3D - Geral - V.1.mov",
+   "tipo": "video",
+   "cliente": "Hauzen",
+   "mes": "2025-11",
+   "pasta": "1yhHwbhu4IjFMgbIAJ_CzojlDgrFZtLqb"
+  },
+  {
+   "id": "1BCKdQ7-WQT_8Ph6AFOBQoidiPpqFyZuG",
+   "nome": "F. Hauzen - Escola de Dragões - Leo - V.2.mov",
+   "tipo": "video",
+   "cliente": "Hauzen",
+   "mes": "2025-11",
+   "pasta": "1yhHwbhu4IjFMgbIAJ_CzojlDgrFZtLqb"
+  },
+  {
+   "id": "18qtT4EjXI7mIvbkM3-l6GIURmFfNkNhK",
+   "nome": "F. Universa - Disney - Gabi - V.4.mov",
+   "tipo": "video",
+   "cliente": "Universa Digital",
+   "mes": "2025-11",
+   "pasta": "1R6KIhzevwSNJtUCSQ4DmsMLk83sb-KMw"
+  },
+  {
+   "id": "1BEwGhqTnhmdWabMloe4XqJqibnGf22AU",
+   "nome": "FX300269.jpg",
+   "tipo": "foto",
+   "cliente": "Universa Digital",
+   "mes": "2025-11",
+   "pasta": "1R6KIhzevwSNJtUCSQ4DmsMLk83sb-KMw"
+  },
+  {
+   "id": "1CbVd1eGvUQ5sZk53ufD0coWSMowHpnr9",
+   "nome": "FX300266.jpg",
+   "tipo": "foto",
+   "cliente": "Universa Digital",
+   "mes": "2025-11",
+   "pasta": "1R6KIhzevwSNJtUCSQ4DmsMLk83sb-KMw"
+  },
+  {
+   "id": "1DXXnnroZaZ-JMwBcRIM_wSAD0tWlXFlP",
+   "nome": "FX300272.jpg",
+   "tipo": "foto",
+   "cliente": "Universa Digital",
+   "mes": "2025-11",
+   "pasta": "1R6KIhzevwSNJtUCSQ4DmsMLk83sb-KMw"
+  },
+  {
+   "id": "1KFeaTfaTaRKU48jqqh88WYz9zBjBwX7G",
+   "nome": "FX300261.jpg",
+   "tipo": "foto",
+   "cliente": "Universa Digital",
+   "mes": "2025-11",
+   "pasta": "1R6KIhzevwSNJtUCSQ4DmsMLk83sb-KMw"
+  },
+  {
+   "id": "1Nqo_aVEJVlLMtZfgYYLd-B4NKSHAiDOZ",
+   "nome": "FX300268.jpg",
+   "tipo": "foto",
+   "cliente": "Universa Digital",
+   "mes": "2025-11",
+   "pasta": "1R6KIhzevwSNJtUCSQ4DmsMLk83sb-KMw"
+  },
+  {
+   "id": "1Ox6apkvdYVeLPaQZHLvuBrfK5n40Ejtl",
+   "nome": "F. Universa - BIC - Gabi - V.4.mov",
+   "tipo": "video",
+   "cliente": "Universa Digital",
+   "mes": "2025-11",
+   "pasta": "1R6KIhzevwSNJtUCSQ4DmsMLk83sb-KMw"
+  },
+  {
+   "id": "1_AX92wfulRC1DAeVv-wUplKKP24LeUP6",
+   "nome": "F. Universa -  Nostalgia - Gabi V.3.mov",
+   "tipo": "video",
+   "cliente": "Universa Digital",
+   "mes": "2025-11",
+   "pasta": "1R6KIhzevwSNJtUCSQ4DmsMLk83sb-KMw"
+  },
+  {
+   "id": "1leJen4q-wlg05GXljipTpr_iRo_GYVFZ",
+   "nome": "FX300259.jpg",
+   "tipo": "foto",
+   "cliente": "Universa Digital",
+   "mes": "2025-11",
+   "pasta": "1R6KIhzevwSNJtUCSQ4DmsMLk83sb-KMw"
+  },
+  {
+   "id": "1zknZhMvnfRThTcYQO5VEqDIa6F10uNUR",
+   "nome": "F. Universa - Marcas Ignoram - Gabi - V.3.mov",
+   "tipo": "video",
+   "cliente": "Universa Digital",
+   "mes": "2025-11",
+   "pasta": "1R6KIhzevwSNJtUCSQ4DmsMLk83sb-KMw"
+  },
+  {
+   "id": "16uVbtKm3Ffd0YQpY2t6T82v8ALVppfw6",
+   "nome": "F. Vitrinni - Natal no Vitrinni - Andressa - V.3.mov",
+   "tipo": "video",
+   "cliente": "Vitrinni",
+   "mes": "2025-11",
+   "pasta": "1wA_9Ky2bH6LFclZj0F7-oGQ7rM9EkWDJ"
+  },
+  {
+   "id": "1gLEU8KvcuFQ0JtDs0o9JkD8k1MkPBahf",
+   "nome": "F. Vitrinni - Avenida das Óticas - Andressa - V.1.mov",
+   "tipo": "video",
+   "cliente": "Vitrinni",
+   "mes": "2025-11",
+   "pasta": "1wA_9Ky2bH6LFclZj0F7-oGQ7rM9EkWDJ"
+  },
+  {
+   "id": "1knGpTkf1Qjls-GoShqvBYgx7zUFmPQMG",
+   "nome": "F. Vitrinni - Doações - Andressa - V.3.mov",
+   "tipo": "video",
+   "cliente": "Vitrinni",
+   "mes": "2025-11",
+   "pasta": "1wA_9Ky2bH6LFclZj0F7-oGQ7rM9EkWDJ"
+  },
+  {
+   "id": "1wIEfWHnY1iM7hxYuDRgzWCfn9rZLsFGN",
+   "nome": "F. Vitrinni - 6 Ideias - Andressa - V.3.mov",
+   "tipo": "video",
+   "cliente": "Vitrinni",
+   "mes": "2025-11",
+   "pasta": "1wA_9Ky2bH6LFclZj0F7-oGQ7rM9EkWDJ"
+  },
+  {
+   "id": "1DQVXdh3Nc0aleIwgA7WOqlgC3D5u4N0W",
+   "nome": "A7406801.jpg",
+   "tipo": "foto",
+   "cliente": "Óptica Premium",
+   "mes": "2025-11",
+   "pasta": "11y4pdJ3OLfUA2rYnaYSU9dGK2IGdLeb1"
+  },
+  {
+   "id": "1O43WxNI5uN7yZHiT3uo0Tp_ktOBzJC-j",
+   "nome": "A7406786.jpg",
+   "tipo": "foto",
+   "cliente": "Óptica Premium",
+   "mes": "2025-11",
+   "pasta": "11y4pdJ3OLfUA2rYnaYSU9dGK2IGdLeb1"
+  },
+  {
+   "id": "1iRccLV1KlqllZbBamtTYzO7S8dm6cKv0",
+   "nome": "A7406768.jpg",
+   "tipo": "foto",
+   "cliente": "Óptica Premium",
+   "mes": "2025-11",
+   "pasta": "11y4pdJ3OLfUA2rYnaYSU9dGK2IGdLeb1"
+  },
+  {
+   "id": "1nVPpw56vpA_xSFxhp85HgNSaHlsTSEsL",
+   "nome": "A7406790.jpg",
+   "tipo": "foto",
+   "cliente": "Óptica Premium",
+   "mes": "2025-11",
+   "pasta": "11y4pdJ3OLfUA2rYnaYSU9dGK2IGdLeb1"
+  },
+  {
+   "id": "1rOoWMFiJT3mGPX3K1zLdMioPgdmqB6it",
+   "nome": "F. Óptica Premium - Black - Luiz - V.3.mov",
+   "tipo": "video",
+   "cliente": "Óptica Premium",
+   "mes": "2025-11",
+   "pasta": "11y4pdJ3OLfUA2rYnaYSU9dGK2IGdLeb1"
+  },
+  {
+   "id": "1tuQ0DPKq_UDh45a_GCYuy4LY7V5TXMfD",
+   "nome": "A7406798.jpg",
+   "tipo": "foto",
+   "cliente": "Óptica Premium",
+   "mes": "2025-11",
+   "pasta": "11y4pdJ3OLfUA2rYnaYSU9dGK2IGdLeb1"
+  },
+  {
+   "id": "1uJq19-spJsJNfID_0o-B480zy7SowPeF",
+   "nome": "F. Óptica Premium - Ray Ban Meta - Luiz - V.1.mov",
+   "tipo": "video",
+   "cliente": "Óptica Premium",
+   "mes": "2025-11",
+   "pasta": "11y4pdJ3OLfUA2rYnaYSU9dGK2IGdLeb1"
+  },
+  {
+   "id": "1LpSninXdgl7_j358Fk106L7TIG1keMds",
+   "nome": "F. Hauzen - Maior Erro - V.1.mp4",
+   "tipo": "video",
+   "cliente": "Hauzen",
+   "mes": "2025-12",
+   "pasta": "1QW8HWARe4L4m0X4H8_37wdrfh_a4kF1r"
+  },
+  {
+   "id": "1OTAcHd4Qcsb7JmJ0r2vpjVoWfyk0efP6",
+   "nome": "F. Hauzen - Concretagem - V.1.mp4",
+   "tipo": "video",
+   "cliente": "Hauzen",
+   "mes": "2025-12",
+   "pasta": "1QW8HWARe4L4m0X4H8_37wdrfh_a4kF1r"
+  },
+  {
+   "id": "16KJFba6zEzEA-V8KIETIeP7GL2w_y_fY",
+   "nome": "F. Universa - Coca x Pepsi - Gabi - V.2.mov",
+   "tipo": "video",
+   "cliente": "Universa Digital",
+   "mes": "2025-12",
+   "pasta": "1MgXO4Ze8RnqzOKrXAZ40b_GLrPfrwkUp"
+  },
+  {
+   "id": "1J4u5lI757XgAMrOTfrTputDwjG9iiHr1",
+   "nome": "F. Gabi 04.jpg",
+   "tipo": "foto",
+   "cliente": "Universa Digital",
+   "mes": "2025-12",
+   "pasta": "1MgXO4Ze8RnqzOKrXAZ40b_GLrPfrwkUp"
+  },
+  {
+   "id": "1JwQES17GqgvDyZo75GU4lr54Wwk1w9h3",
+   "nome": "F. Universa - BrasilCore - Gabi - V.2.mov",
+   "tipo": "video",
+   "cliente": "Universa Digital",
+   "mes": "2025-12",
+   "pasta": "1MgXO4Ze8RnqzOKrXAZ40b_GLrPfrwkUp"
+  },
+  {
+   "id": "1QK0PNK3wKos7hY2I9lFy2jayx4Hsm7Ff",
+   "nome": "F. Universa - Carvão e IA - Gabi V.2.mov",
+   "tipo": "video",
+   "cliente": "Universa Digital",
+   "mes": "2025-12",
+   "pasta": "1MgXO4Ze8RnqzOKrXAZ40b_GLrPfrwkUp"
+  },
+  {
+   "id": "1RD9zDLxYy0ILkFQ4_VIAVk-kEMbG6mmf",
+   "nome": "F. Gabi 01.jpg",
+   "tipo": "foto",
+   "cliente": "Universa Digital",
+   "mes": "2025-12",
+   "pasta": "1MgXO4Ze8RnqzOKrXAZ40b_GLrPfrwkUp"
+  },
+  {
+   "id": "1X78JKQ6d0VlUX78zp-fJSQ4H5x_75BDN",
+   "nome": "F. Gabi 03.jpg",
+   "tipo": "foto",
+   "cliente": "Universa Digital",
+   "mes": "2025-12",
+   "pasta": "1MgXO4Ze8RnqzOKrXAZ40b_GLrPfrwkUp"
+  },
+  {
+   "id": "1dFUk8E4j_nkqUXioYN3TO6g1LPPuDECI",
+   "nome": "F. Universa - Khaby Lame - V.3.mov",
+   "tipo": "video",
+   "cliente": "Universa Digital",
+   "mes": "2025-12",
+   "pasta": "1MgXO4Ze8RnqzOKrXAZ40b_GLrPfrwkUp"
+  },
+  {
+   "id": "1mr6J44HD75hDfSxIaF4_4A24Ws48o5OB",
+   "nome": "F. Gabi 02.jpg",
+   "tipo": "foto",
+   "cliente": "Universa Digital",
+   "mes": "2025-12",
+   "pasta": "1MgXO4Ze8RnqzOKrXAZ40b_GLrPfrwkUp"
+  },
+  {
+   "id": "10tZwMs62JK28bpGZR8XpNCzD5QIXNzO5",
+   "nome": "F. Vitrinni - Moda Praia - Andressa - V.1.mp4",
+   "tipo": "video",
+   "cliente": "Vitrinni",
+   "mes": "2025-12",
+   "pasta": "1UyjKepQOAIXlCN3FLLbS_qvjn2HmlaYu"
+  },
+  {
+   "id": "18v3YR078g8CmUdU3c3_fEXx8ZqDccf0m",
+   "nome": "F. Vitrinni - Cabe Aqui - Andressa - V.1.mp4",
+   "tipo": "video",
+   "cliente": "Vitrinni",
+   "mes": "2025-12",
+   "pasta": "1UyjKepQOAIXlCN3FLLbS_qvjn2HmlaYu"
+  },
+  {
+   "id": "1L42h2mFCWzNAe48XLuxx_JqlorlxLc2z",
+   "nome": "F. Vitrinni - Volta as aulas - Andressa - V.1.mp4",
+   "tipo": "video",
+   "cliente": "Vitrinni",
+   "mes": "2025-12",
+   "pasta": "1UyjKepQOAIXlCN3FLLbS_qvjn2HmlaYu"
+  },
+  {
+   "id": "1SVCG2twUogNeY04hTIAfwVcl6ASG4CFS",
+   "nome": "F. Vitrinni - Casa Vup - Andressa - V.1.mp4",
+   "tipo": "video",
+   "cliente": "Vitrinni",
+   "mes": "2025-12",
+   "pasta": "1UyjKepQOAIXlCN3FLLbS_qvjn2HmlaYu"
+  },
+  {
+   "id": "10E-fcmFBCCRySQR-D9SldB6z1U7JN8PQ",
+   "nome": "F. Óptica Premium - Destino Final - Luiz - V.1.mp4",
+   "tipo": "video",
+   "cliente": "Óptica Premium",
+   "mes": "2025-12",
+   "pasta": "18899Mb5ierQScfz8E5_KNiihz3Q2g1Ql"
+  },
+  {
+   "id": "1Tf6W0ninPNNZW7uBdyM-8cAsev4O3kb8",
+   "nome": "F. Óptica Premiun - Vlog 1 - Luiz - V.1.mov",
+   "tipo": "video",
+   "cliente": "Óptica Premium",
+   "mes": "2025-12",
+   "pasta": "18899Mb5ierQScfz8E5_KNiihz3Q2g1Ql"
+  },
+  {
+   "id": "16OdJWjSMhsVxZZLyNq-kUHXzw9cs5JHv",
+   "nome": "F. Scalercio. Park Avenue. Geral. V1.mov",
+   "tipo": "video",
+   "cliente": "Scalercio",
+   "mes": "2026-01",
+   "pasta": "1AQ1iQ2UAWl10TMflVNfQlrxAnyQmoMkm"
+  },
+  {
+   "id": "1x1whJUdFDdRr7F8lA4qAUiDFhkjwYrot",
+   "nome": "F. Scalercio. Compromisso com nome. Marcos. V.2.mov",
+   "tipo": "video",
+   "cliente": "Scalercio",
+   "mes": "2026-01",
+   "pasta": "1AQ1iQ2UAWl10TMflVNfQlrxAnyQmoMkm"
+  },
+  {
+   "id": "15_HZGHkEurkrtTEB66gZ2DhhjdGUV79g",
+   "nome": "Universa Fotos_1.jpg",
+   "tipo": "foto",
+   "cliente": "Universa Digital",
+   "mes": "2026-01",
+   "pasta": "1lu2wQJqLbkjwmN8_ly4A11KQkWztVJoO"
+  },
+  {
+   "id": "185RjlVrudKBO-gDpwYQxOj47_uLSlBPr",
+   "nome": "Universa Fotos_9.jpg",
+   "tipo": "foto",
+   "cliente": "Universa Digital",
+   "mes": "2026-01",
+   "pasta": "1lu2wQJqLbkjwmN8_ly4A11KQkWztVJoO"
+  },
+  {
+   "id": "1EbxddB6s5Xjz96KWJGOMzQ7mW9nrRZue",
+   "nome": "Universa Fotos_3.jpg",
+   "tipo": "foto",
+   "cliente": "Universa Digital",
+   "mes": "2026-01",
+   "pasta": "1lu2wQJqLbkjwmN8_ly4A11KQkWztVJoO"
+  },
+  {
+   "id": "1GJJTZaWCMWrMm7OFsEkOc54ORchTCvAs",
+   "nome": "F. Universa - Será - Gabi - V.1.mov",
+   "tipo": "video",
+   "cliente": "Universa Digital",
+   "mes": "2026-01",
+   "pasta": "1lu2wQJqLbkjwmN8_ly4A11KQkWztVJoO"
+  },
+  {
+   "id": "1XJ2QIpAE-Weoioyk880sbFOXBBE8FYGi",
+   "nome": "Universa Fotos.jpg",
+   "tipo": "foto",
+   "cliente": "Universa Digital",
+   "mes": "2026-01",
+   "pasta": "1lu2wQJqLbkjwmN8_ly4A11KQkWztVJoO"
+  },
+  {
+   "id": "1XdwS-VWR8axnWHazA0vNYAs_vGohzB5B",
+   "nome": "Universa Fotos_5.jpg",
+   "tipo": "foto",
+   "cliente": "Universa Digital",
+   "mes": "2026-01",
+   "pasta": "1lu2wQJqLbkjwmN8_ly4A11KQkWztVJoO"
+  },
+  {
+   "id": "1ZQ07pK4mlRza7czqFnrwnsgzRKe5px7v",
+   "nome": "F. Universa - TikTok Shop - Gabi - V.1.mov",
+   "tipo": "video",
+   "cliente": "Universa Digital",
+   "mes": "2026-01",
+   "pasta": "1lu2wQJqLbkjwmN8_ly4A11KQkWztVJoO"
+  },
+  {
+   "id": "1hyq2QvMMkksbr4c-Z6zsH48OpjASlymx",
+   "nome": "Universa Fotos_10.jpg",
+   "tipo": "foto",
+   "cliente": "Universa Digital",
+   "mes": "2026-01",
+   "pasta": "1lu2wQJqLbkjwmN8_ly4A11KQkWztVJoO"
+  },
+  {
+   "id": "1j4NeMTo_7JEggjT2b0EE4P7Ub-Fvs_pS",
+   "nome": "Universa Fotos_6.jpg",
+   "tipo": "foto",
+   "cliente": "Universa Digital",
+   "mes": "2026-01",
+   "pasta": "1lu2wQJqLbkjwmN8_ly4A11KQkWztVJoO"
+  },
+  {
+   "id": "1kDLjjPgluKSdRp8hp-kyZeBgFApdLanp",
+   "nome": "Universa Fotos_7.jpg",
+   "tipo": "foto",
+   "cliente": "Universa Digital",
+   "mes": "2026-01",
+   "pasta": "1lu2wQJqLbkjwmN8_ly4A11KQkWztVJoO"
+  },
+  {
+   "id": "1mIcIJNvwkwsoyCQJ1KvbhikUZqim1liY",
+   "nome": "Universa Fotos_4.jpg",
+   "tipo": "foto",
+   "cliente": "Universa Digital",
+   "mes": "2026-01",
+   "pasta": "1lu2wQJqLbkjwmN8_ly4A11KQkWztVJoO"
+  },
+  {
+   "id": "1qVIYHI5oQL1lgolI8SNrTF5YfiAqTve8",
+   "nome": "Universa Fotos_2.jpg",
+   "tipo": "foto",
+   "cliente": "Universa Digital",
+   "mes": "2026-01",
+   "pasta": "1lu2wQJqLbkjwmN8_ly4A11KQkWztVJoO"
+  },
+  {
+   "id": "1rM3yeso6EySTP82K9rRmHrgmki_4cThi",
+   "nome": "F. Universa - 7 Erros - Gabi - V.2.mov",
+   "tipo": "video",
+   "cliente": "Universa Digital",
+   "mes": "2026-01",
+   "pasta": "1lu2wQJqLbkjwmN8_ly4A11KQkWztVJoO"
+  },
+  {
+   "id": "1tpB0MMs6pWdvGaHKw2UdV8Jy-q6A0to_",
+   "nome": "Universa Fotos_11.png",
+   "tipo": "foto",
+   "cliente": "Universa Digital",
+   "mes": "2026-01",
+   "pasta": "1lu2wQJqLbkjwmN8_ly4A11KQkWztVJoO"
+  },
+  {
+   "id": "1vh848q_-pkppRSgEM9gsEYfxckHVU5Re",
+   "nome": "F. Universa - ChatGPT X Claude - V.2.mov",
+   "tipo": "video",
+   "cliente": "Universa Digital",
+   "mes": "2026-01",
+   "pasta": "1lu2wQJqLbkjwmN8_ly4A11KQkWztVJoO"
+  },
+  {
+   "id": "1xV9oF0babwz19lnfXsqsA-_isCVSD2au",
+   "nome": "Universa Fotos_8.jpg",
+   "tipo": "foto",
+   "cliente": "Universa Digital",
+   "mes": "2026-01",
+   "pasta": "1lu2wQJqLbkjwmN8_ly4A11KQkWztVJoO"
+  },
+  {
+   "id": "1FUxyTkwsLbDbXQkqZCuWn6gTN9EqcU0E",
+   "nome": "F. Vitrinni - Entrega do Carro - Andressa - V.1.mov",
+   "tipo": "video",
+   "cliente": "Vitrinni",
+   "mes": "2026-01",
+   "pasta": "16H3hb6wArW81PS885uUuyPab2U6ZWGZh"
+  },
+  {
+   "id": "1SO4vKbRSapaAvZtgLiWH_OZbnR2SXJ8d",
+   "nome": "F. Vitrinni. Auto cuidado. Andressa. V.2.mov",
+   "tipo": "video",
+   "cliente": "Vitrinni",
+   "mes": "2026-01",
+   "pasta": "16H3hb6wArW81PS885uUuyPab2U6ZWGZh"
+  },
+  {
+   "id": "1qVhLUwSil3tDXx_cch2iJgWm905miEsI",
+   "nome": "F. Vitrinni. Carnaval. Andressa. V2.mov",
+   "tipo": "video",
+   "cliente": "Vitrinni",
+   "mes": "2026-01",
+   "pasta": "16H3hb6wArW81PS885uUuyPab2U6ZWGZh"
+  },
+  {
+   "id": "1s8u0OFITwjnJsqhHoa5QOP7NnhW6yVNS",
+   "nome": "F. Vitrinni. Restaurantes. Andressa. V2.mov",
+   "tipo": "video",
+   "cliente": "Vitrinni",
+   "mes": "2026-01",
+   "pasta": "16H3hb6wArW81PS885uUuyPab2U6ZWGZh"
+  },
+  {
+   "id": "1EAjAMX2zTBE6-t2TzlI523Bx05mQXwag",
+   "nome": "F. Óptica Premium - Destino Final - Luiz - V.1.mp4",
+   "tipo": "video",
+   "cliente": "Óptica Premium",
+   "mes": "2026-01",
+   "pasta": "1pQs7NVp5XaAyeMx8exAF2-JSWjKAzsS8"
+  },
+  {
+   "id": "1P7RonnGrqEyd9rMTvADLSL6pIs6N98MF",
+   "nome": "F. Óptica Premium - Fashion Film 2 - Luiz - V.1.mov",
+   "tipo": "video",
+   "cliente": "Óptica Premium",
+   "mes": "2026-01",
+   "pasta": "1pQs7NVp5XaAyeMx8exAF2-JSWjKAzsS8"
+  },
+  {
+   "id": "1Fs-Jqx9wKCTvZvvocdV-sBEr43kq8H_F",
+   "nome": "F. Scalercio - Ouro Branco VI - Ap2 - V.2.mov",
+   "tipo": "video",
+   "cliente": "Scalercio",
+   "mes": "2026-02",
+   "pasta": "1Ey2mxJHIiIJACP9p8LXXs-jRvELpcW7g"
+  },
+  {
+   "id": "1euZQllbJQAXdWlDPjokhRHse0KL0iLRX",
+   "nome": "F. Scalercio - Apartamento - Meet - V.2.mov",
+   "tipo": "video",
+   "cliente": "Scalercio",
+   "mes": "2026-02",
+   "pasta": "1Ey2mxJHIiIJACP9p8LXXs-jRvELpcW7g"
+  },
+  {
+   "id": "12dkdp5RMqsCe1B7qp7YESW1Rnyf3MxCm",
+   "nome": "FX300712.jpg",
+   "tipo": "foto",
+   "cliente": "Vitrinni",
+   "mes": "2026-02",
+   "pasta": "1JdTn1_iDsopEqEaYqNd1iCzvqpWzhLvA"
+  },
+  {
+   "id": "1EHjNja3zUF1YncgAjUUxeom7sRArBWuQ",
+   "nome": "F.Vitrinni.Se Arrume.Andressa.V1.mp4",
+   "tipo": "video",
+   "cliente": "Vitrinni",
+   "mes": "2026-02",
+   "pasta": "1JdTn1_iDsopEqEaYqNd1iCzvqpWzhLvA"
+  },
+  {
+   "id": "1JQ_AlijssNIYtiReh4Ys6OqCaqBn_yZs",
+   "nome": "F.Vitrinni.Mês da Mulher.Andressa.V1.mp4",
+   "tipo": "video",
+   "cliente": "Vitrinni",
+   "mes": "2026-02",
+   "pasta": "1JdTn1_iDsopEqEaYqNd1iCzvqpWzhLvA"
+  },
+  {
+   "id": "1L-XntznnWD2SwrEYhWATXoSpb7qMwKNT",
+   "nome": "FX300710.jpg",
+   "tipo": "foto",
+   "cliente": "Vitrinni",
+   "mes": "2026-02",
+   "pasta": "1JdTn1_iDsopEqEaYqNd1iCzvqpWzhLvA"
+  },
+  {
+   "id": "1V8EkAEdDklFeDRkHsbzTMAMA2S_UKZAu",
+   "nome": "FX300711.jpg",
+   "tipo": "foto",
+   "cliente": "Vitrinni",
+   "mes": "2026-02",
+   "pasta": "1JdTn1_iDsopEqEaYqNd1iCzvqpWzhLvA"
+  },
+  {
+   "id": "1Z-0acCweeDKioDl5A7a3mjG2G9Y2b3O5",
+   "nome": "F.Vitrinni.Dia das Mulhres.Andressa.V1.mp4",
+   "tipo": "video",
+   "cliente": "Vitrinni",
+   "mes": "2026-02",
+   "pasta": "1JdTn1_iDsopEqEaYqNd1iCzvqpWzhLvA"
+  },
+  {
+   "id": "1q78HCQYTGX6KbdRsCvUipwKtyJwzGmlu",
+   "nome": "F.Vitrinni.Cada Vitrine.Andressa.V1(6).mp4",
+   "tipo": "video",
+   "cliente": "Vitrinni",
+   "mes": "2026-02",
+   "pasta": "1JdTn1_iDsopEqEaYqNd1iCzvqpWzhLvA"
+  },
+  {
+   "id": "1OG85ibGO1bVq9WQYXxwRZXo_7NCa82Gp",
+   "nome": "F. Óptica Premium - Fashion Film 2 - Luiz - V.1.mov",
+   "tipo": "video",
+   "cliente": "Óptica Premium",
+   "mes": "2026-02",
+   "pasta": "1omhyRxAlNZPik-otYsh_Qdr_Ey3UPtcq"
+  },
+  {
+   "id": "1bj-TBeZ3h3LTPztOPSPEvEgRl2vraE21",
+   "nome": "F. Óptica Premium - Park Shopping - Luiz. V.2.mov",
+   "tipo": "video",
+   "cliente": "Óptica Premium",
+   "mes": "2026-02",
+   "pasta": "1omhyRxAlNZPik-otYsh_Qdr_Ey3UPtcq"
+  },
+  {
+   "id": "12BIxm0iqtf3ZLoYbdZpnJkaOwwcMOrC5",
+   "nome": "F. IGG- Depoimentos  -Geral - V.3.mov.mov",
+   "tipo": "video",
    "cliente": "IGG",
-   "mes": "2026-10",
-   "pasta": "1mlfv_iT80jdKsH5YKf6YZSwAMhj_AkbM"
+   "mes": "2026-03",
+   "pasta": "1w0_xd2G9RgQeBeZhQGfESVNNpvRO-fGr"
   },
   {
-   "id": "1LKC98uD46wjV3opvwUOq2U-n81AD4LSw",
-   "nome": "F. Hauzen. Entrevista 02. v.1.mov",
-   "tipo": "video",
-   "cliente": "Hauzen",
-   "mes": "2026-10",
-   "pasta": "1dQdBFieFOM7kjLDqtzWFKk4ag0oupNa2"
-  },
-  {
-   "id": "1J-f5pCUzdwQgMUmzRDWvR74iQpwMuj-t",
-   "nome": "F. IGG. Entrevista 02. v3.mov",
+   "id": "1ZDMyhkoIIQ6RjgqF0U4dTyHYOlM3ySe9",
+   "nome": "F. IGG - AfterMovie Rodoviária - Geral - V.4.mov",
    "tipo": "video",
    "cliente": "IGG",
-   "mes": "2026-10",
-   "pasta": "1mlfv_iT80jdKsH5YKf6YZSwAMhj_AkbM"
+   "mes": "2026-03",
+   "pasta": "1w0_xd2G9RgQeBeZhQGfESVNNpvRO-fGr"
   },
   {
-   "id": "1f5f9ka1MqmKgqpkMNd9kbEYXrzyzM0wI",
-   "nome": "F. IGG. Entrevista 01. v3.mov",
+   "id": "1gpNsYUlZUKp85mnVoUE6PfWnS-Y4SBLr",
+   "nome": "F. IGG - Entrevista - Paloma - V.2.mov",
    "tipo": "video",
    "cliente": "IGG",
-   "mes": "2026-10",
-   "pasta": "1mlfv_iT80jdKsH5YKf6YZSwAMhj_AkbM"
+   "mes": "2026-03",
+   "pasta": "1w0_xd2G9RgQeBeZhQGfESVNNpvRO-fGr"
   },
   {
-   "id": "19vxqhmWBIsNgTc1I-ABi0u2WF1k0bQQ_",
-   "nome": "F. Hauzen- Entrevista 01. v1.mov",
+   "id": "1-qsCzQAm7KjXop-pwdiFXDG0X3e85PVW",
+   "nome": "F. Liberty - MedSeek - V.2.mov",
+   "tipo": "video",
+   "cliente": "Liberty",
+   "mes": "2026-03",
+   "pasta": "1KH4xX40wcBHkGyn3UopoPawAFQSLxrQC"
+  },
+  {
+   "id": "1rzk8nBXwhWEMGVHUxu7v38etIMFgJBwp",
+   "nome": "F. Liberty - MedSeek II - V.2.mov",
+   "tipo": "video",
+   "cliente": "Liberty",
+   "mes": "2026-03",
+   "pasta": "1KH4xX40wcBHkGyn3UopoPawAFQSLxrQC"
+  },
+  {
+   "id": "1-Ghi7ZdHvZy5r8MEP73Q9DwLMsPhBvy6",
+   "nome": "F. Scalercio - Vitrinni Shopping - Marcus - V.1.mov",
+   "tipo": "video",
+   "cliente": "Scalercio",
+   "mes": "2026-03",
+   "pasta": "1vX6jDbmRjVQvOjr2aN7LIU1_eyG3x3jj"
+  },
+  {
+   "id": "1SgLwkqc56ApflQc3J8qKOMmJ15XMAYnJ",
+   "nome": "F. Scalercio - Taguatinga Centro - Marcus - V.1.mov",
+   "tipo": "video",
+   "cliente": "Scalercio",
+   "mes": "2026-03",
+   "pasta": "1vX6jDbmRjVQvOjr2aN7LIU1_eyG3x3jj"
+  },
+  {
+   "id": "19_8iQNTWD7QGvxPOayGuto_geq_S7Mr6",
+   "nome": "Valen Fotos_5.JPG",
+   "tipo": "foto",
+   "cliente": "Valen Beauty",
+   "mes": "2026-03",
+   "pasta": "1FBOoP-3usT3RI_lrIBCAHoLYzPzEJxfU"
+  },
+  {
+   "id": "1FUWeapbYDs34desLHuCsNg-khSovpMgp",
+   "nome": "F. Valen Bauty - Fashion Film - V.1.mov",
+   "tipo": "video",
+   "cliente": "Valen Beauty",
+   "mes": "2026-03",
+   "pasta": "1FBOoP-3usT3RI_lrIBCAHoLYzPzEJxfU"
+  },
+  {
+   "id": "1HVFwSm4ZCxH2HoWN3jpuXHkxu-nMH_8Q",
+   "nome": "Valen Fotos_4.JPG",
+   "tipo": "foto",
+   "cliente": "Valen Beauty",
+   "mes": "2026-03",
+   "pasta": "1FBOoP-3usT3RI_lrIBCAHoLYzPzEJxfU"
+  },
+  {
+   "id": "1MoO9bNaVX0s9S42x7QGPzrUjeLUkHG4X",
+   "nome": "Valen Fotos_3.JPG",
+   "tipo": "foto",
+   "cliente": "Valen Beauty",
+   "mes": "2026-03",
+   "pasta": "1FBOoP-3usT3RI_lrIBCAHoLYzPzEJxfU"
+  },
+  {
+   "id": "1TadTD-LDV2eE1goE-S8gc5mbKJUX3QF9",
+   "nome": "Valen Fotos_1.JPG",
+   "tipo": "foto",
+   "cliente": "Valen Beauty",
+   "mes": "2026-03",
+   "pasta": "1FBOoP-3usT3RI_lrIBCAHoLYzPzEJxfU"
+  },
+  {
+   "id": "1XscbKRyFYnRITgnt0IOPL9tO4Ua_W0Ys",
+   "nome": "F. ValenBeauty - Pink x Caramel - Valen - V.2.mov",
+   "tipo": "video",
+   "cliente": "Valen Beauty",
+   "mes": "2026-03",
+   "pasta": "1FBOoP-3usT3RI_lrIBCAHoLYzPzEJxfU"
+  },
+  {
+   "id": "1adQR-abMhnxBoulirO0Ft2i30p4is8hd",
+   "nome": "Valen Fotos_2.JPG",
+   "tipo": "foto",
+   "cliente": "Valen Beauty",
+   "mes": "2026-03",
+   "pasta": "1FBOoP-3usT3RI_lrIBCAHoLYzPzEJxfU"
+  },
+  {
+   "id": "1jhGKr6lvdb68sAXGU_TpJQy13zihkt4z",
+   "nome": "Valen Fotos.JPG",
+   "tipo": "foto",
+   "cliente": "Valen Beauty",
+   "mes": "2026-03",
+   "pasta": "1FBOoP-3usT3RI_lrIBCAHoLYzPzEJxfU"
+  },
+  {
+   "id": "1AEVXPpAYYQUxTw6Zn5FpgNJZmLRxtA3y",
+   "nome": "F. Vitrinni-Pet Friendly- Andressa - V.1.mov",
+   "tipo": "video",
+   "cliente": "Vitrinni",
+   "mes": "2026-03",
+   "pasta": "10DQYYalJ9vtRzeyvmS75s55epL5rHEb-"
+  },
+  {
+   "id": "1QqQCr9LUa5mADE-LE_IRXKFoyY3U9XF0",
+   "nome": "F. Vitrinni - Páscoa Vitrinni - Andressa - V.1.mov",
+   "tipo": "video",
+   "cliente": "Vitrinni",
+   "mes": "2026-03",
+   "pasta": "10DQYYalJ9vtRzeyvmS75s55epL5rHEb-"
+  },
+  {
+   "id": "1j688eGBdHGpkWfRRlSN5LwWtCe0fQ4H-",
+   "nome": "F. Vitrinni - Instituto Vida - Andressa - V.1.mov",
+   "tipo": "video",
+   "cliente": "Vitrinni",
+   "mes": "2026-03",
+   "pasta": "10DQYYalJ9vtRzeyvmS75s55epL5rHEb-"
+  },
+  {
+   "id": "1lPvTCuAOVLB-9vLbF3lAWocinTJboveF",
+   "nome": "F. Vitrinni-Tatto e Piercing- V.1.mov",
+   "tipo": "video",
+   "cliente": "Vitrinni",
+   "mes": "2026-03",
+   "pasta": "10DQYYalJ9vtRzeyvmS75s55epL5rHEb-"
+  },
+  {
+   "id": "13EmvYw9mWobnBAZiOBT1RqXzEqNUelFR",
+   "nome": "A7402216.jpg",
+   "tipo": "foto",
+   "cliente": "Óptica Premium",
+   "mes": "2026-03",
+   "pasta": "1C92hbn0w38a0-0gehhAB72SJd1yZtHmT"
+  },
+  {
+   "id": "14srHIRh0IRbDxxtLvrD4QoBJL8rGBF7b",
+   "nome": "A7402208.jpg",
+   "tipo": "foto",
+   "cliente": "Óptica Premium",
+   "mes": "2026-03",
+   "pasta": "1C92hbn0w38a0-0gehhAB72SJd1yZtHmT"
+  },
+  {
+   "id": "1K3TbfAVOH5yEHVCQpGGihnqlZ75fguOL",
+   "nome": "A7402185.jpg",
+   "tipo": "foto",
+   "cliente": "Óptica Premium",
+   "mes": "2026-03",
+   "pasta": "1C92hbn0w38a0-0gehhAB72SJd1yZtHmT"
+  },
+  {
+   "id": "1KdqlwkE0d47Z1Op4HIjwGZWTeqC1M_et",
+   "nome": "F. 15 anos Óptica Premium- V.1.mov",
+   "tipo": "video",
+   "cliente": "Óptica Premium",
+   "mes": "2026-03",
+   "pasta": "1dCfjk-IwCL10VuJGu9B_OzNt46ZGTYMF"
+  },
+  {
+   "id": "1NKwdaAq1JKrXZwZhrR8-0RHYpwXibyWY",
+   "nome": "A7402217.jpg",
+   "tipo": "foto",
+   "cliente": "Óptica Premium",
+   "mes": "2026-03",
+   "pasta": "1C92hbn0w38a0-0gehhAB72SJd1yZtHmT"
+  },
+  {
+   "id": "1T9uJMRIYLD5cmI1TUb3h9KPeJ6AJVanu",
+   "nome": "A7402200.jpg",
+   "tipo": "foto",
+   "cliente": "Óptica Premium",
+   "mes": "2026-03",
+   "pasta": "1C92hbn0w38a0-0gehhAB72SJd1yZtHmT"
+  },
+  {
+   "id": "1TN1_VSqMnpJbvr_8iFWu__wrXpSUQwje",
+   "nome": "A7402147.jpg",
+   "tipo": "foto",
+   "cliente": "Óptica Premium",
+   "mes": "2026-03",
+   "pasta": "1C92hbn0w38a0-0gehhAB72SJd1yZtHmT"
+  },
+  {
+   "id": "1VGHp-0xyGRaQDhXxjUXticbtn7_6r8py",
+   "nome": "A7402189.jpg",
+   "tipo": "foto",
+   "cliente": "Óptica Premium",
+   "mes": "2026-03",
+   "pasta": "1C92hbn0w38a0-0gehhAB72SJd1yZtHmT"
+  },
+  {
+   "id": "1gCFkW0vfMlxnXcQJEZdIIS7FEMznjJIO",
+   "nome": "A7402187.jpg",
+   "tipo": "foto",
+   "cliente": "Óptica Premium",
+   "mes": "2026-03",
+   "pasta": "1C92hbn0w38a0-0gehhAB72SJd1yZtHmT"
+  },
+  {
+   "id": "1resYsrp7yabRu3-uhlNxQYpby3C29us0",
+   "nome": "A7402180.jpg",
+   "tipo": "foto",
+   "cliente": "Óptica Premium",
+   "mes": "2026-03",
+   "pasta": "1C92hbn0w38a0-0gehhAB72SJd1yZtHmT"
+  },
+  {
+   "id": "1tCtoph54sIfMwdAwh8tGQu23qKxGxiig",
+   "nome": "F. Óptica Conjunto Nacional- V.5.mov",
+   "tipo": "video",
+   "cliente": "Óptica Premium",
+   "mes": "2026-03",
+   "pasta": "1dCfjk-IwCL10VuJGu9B_OzNt46ZGTYMF"
+  },
+  {
+   "id": "1xq2d98d7rWD4sO85A87_P1pmohVybbag",
+   "nome": "A7402211.jpg",
+   "tipo": "foto",
+   "cliente": "Óptica Premium",
+   "mes": "2026-03",
+   "pasta": "1C92hbn0w38a0-0gehhAB72SJd1yZtHmT"
+  },
+  {
+   "id": "1-RblZQfydG8XbPsl1LwuyiB6i2rg-MSh",
+   "nome": "F. Hauzen - Cimento Queimado - V.3.mov",
    "tipo": "video",
    "cliente": "Hauzen",
-   "mes": "2026-10",
-   "pasta": "1dQdBFieFOM7kjLDqtzWFKk4ag0oupNa2"
+   "mes": "2026-04",
+   "pasta": "1wSqRjt5dfH_qNaMjxa8TKmQVQ38PeMq-"
   },
   {
-   "id": "1w-28GAGDEhegBoGtu5VF5-4fnP0y8BJk",
-   "nome": "F. Hauzen. 3w investimentos. v.1.mov",
+   "id": "12xYLrVsf3r6bTxD0g3D71EsuvKNQKz_d",
+   "nome": "F. Hauzen - After Movie Casa - V.1.mov",
    "tipo": "video",
    "cliente": "Hauzen",
-   "mes": "2026-10",
-   "pasta": "1dQdBFieFOM7kjLDqtzWFKk4ag0oupNa2"
+   "mes": "2026-04",
+   "pasta": "1wSqRjt5dfH_qNaMjxa8TKmQVQ38PeMq-"
   },
   {
-   "id": "1AZqMu17ex3f-2kKLus-b5kL3qnAAj5b0",
-   "nome": "F. Hauzen - Paulo e Clarissa. V.6.mov",
+   "id": "1G6QIadoKehrHUsGbgWHYyRAipTgJzCod",
+   "nome": "F. Hauzen - Revestimento em Pedra - V.3.mov",
    "tipo": "video",
    "cliente": "Hauzen",
-   "mes": "2026-07",
-   "pasta": "1AbEP7JlEhSjMdZk3QmzQVNQBktfQq6_c"
-  },
-  {
-   "id": "1xC9SfqeM53lX0Og03MoQZWAnluaBdMq-",
-   "nome": "F. Hauzen - AN Contabilidade - V.3.mov",
-   "tipo": "video",
-   "cliente": "Hauzen",
-   "mes": "2026-07",
-   "pasta": "1AbEP7JlEhSjMdZk3QmzQVNQBktfQq6_c"
-  },
-  {
-   "id": "1mSvuSWZB_zh4AYnqChsGJuXzEmrARD0s",
-   "nome": "F. IGG - Maria Paula Vd 02. V.1.mov",
-   "tipo": "video",
-   "cliente": "IGG",
-   "mes": "2026-06",
-   "pasta": "1HGsyAcFpprONkmvdbOiC2sEDOMMnfoB3"
-  },
-  {
-   "id": "15LLzgQQBEJHvCl35KBzCbaPmLsBIAzrf",
-   "nome": "F. Hauzen - Quina viva - V.1.mov",
-   "tipo": "video",
-   "cliente": "Hauzen",
-   "mes": "2026-05",
-   "pasta": "1qwZzoRWt5DqksZEaYAJLqxhT2gGeijb-"
-  },
-  {
-   "id": "1XthQEQfMgW5zmwVUgc8DE2QqPgodt6g4",
-   "nome": "F. Hauzen - Piscina - V.1.mov",
-   "tipo": "video",
-   "cliente": "Hauzen",
-   "mes": "2026-05",
-   "pasta": "1qwZzoRWt5DqksZEaYAJLqxhT2gGeijb-"
-  },
-  {
-   "id": "17b1Pg44T8zTg7u0xqPLEPAqvsqWYRC_E",
-   "nome": "F. Hauzen - Plano x Desnivelado - V.1.mov",
-   "tipo": "video",
-   "cliente": "Hauzen",
-   "mes": "2026-05",
-   "pasta": "1qwZzoRWt5DqksZEaYAJLqxhT2gGeijb-"
+   "mes": "2026-04",
+   "pasta": "1wSqRjt5dfH_qNaMjxa8TKmQVQ38PeMq-"
   },
   {
    "id": "1ObUMmFjpy883_e3wjMKLsr1jMjmjd2rf",
    "nome": "MADEIRA LEO EDITADA.jpg",
    "tipo": "foto",
+   "cliente": "Hauzen",
+   "mes": "2026-04",
+   "pasta": "1wSqRjt5dfH_qNaMjxa8TKmQVQ38PeMq-"
+  },
+  {
+   "id": "1Tunt1shRdVKITClFMTRQwoAf13mXN5iw",
+   "nome": "F. Hauzen - Piso de Madeira - V.3.mov",
+   "tipo": "video",
    "cliente": "Hauzen",
    "mes": "2026-04",
    "pasta": "1wSqRjt5dfH_qNaMjxa8TKmQVQ38PeMq-"
@@ -336,40 +1104,8 @@
    "pasta": "1wSqRjt5dfH_qNaMjxa8TKmQVQ38PeMq-"
   },
   {
-   "id": "1-RblZQfydG8XbPsl1LwuyiB6i2rg-MSh",
-   "nome": "F. Hauzen - Cimento Queimado - V.3.mov",
-   "tipo": "video",
-   "cliente": "Hauzen",
-   "mes": "2026-04",
-   "pasta": "1wSqRjt5dfH_qNaMjxa8TKmQVQ38PeMq-"
-  },
-  {
    "id": "1vlvJ30z1y10KtMyZ01gIyd0fAj2wovXm",
    "nome": "F. Hauzen - Projeto de iluminação - V.3.mov",
-   "tipo": "video",
-   "cliente": "Hauzen",
-   "mes": "2026-04",
-   "pasta": "1wSqRjt5dfH_qNaMjxa8TKmQVQ38PeMq-"
-  },
-  {
-   "id": "1Tunt1shRdVKITClFMTRQwoAf13mXN5iw",
-   "nome": "F. Hauzen - Piso de Madeira - V.3.mov",
-   "tipo": "video",
-   "cliente": "Hauzen",
-   "mes": "2026-04",
-   "pasta": "1wSqRjt5dfH_qNaMjxa8TKmQVQ38PeMq-"
-  },
-  {
-   "id": "1G6QIadoKehrHUsGbgWHYyRAipTgJzCod",
-   "nome": "F. Hauzen - Revestimento em Pedra - V.3.mov",
-   "tipo": "video",
-   "cliente": "Hauzen",
-   "mes": "2026-04",
-   "pasta": "1wSqRjt5dfH_qNaMjxa8TKmQVQ38PeMq-"
-  },
-  {
-   "id": "12xYLrVsf3r6bTxD0g3D71EsuvKNQKz_d",
-   "nome": "F. Hauzen - After Movie Casa - V.1.mov",
    "tipo": "video",
    "cliente": "Hauzen",
    "mes": "2026-04",
@@ -384,136 +1120,24 @@
    "pasta": "1wSqRjt5dfH_qNaMjxa8TKmQVQ38PeMq-"
   },
   {
-   "id": "1BCKdQ7-WQT_8Ph6AFOBQoidiPpqFyZuG",
-   "nome": "F. Hauzen - Escola de Dragões - Leo - V.2.mov",
-   "tipo": "video",
-   "cliente": "Hauzen",
-   "mes": "2025-11",
-   "pasta": "1yhHwbhu4IjFMgbIAJ_CzojlDgrFZtLqb"
-  },
-  {
-   "id": "12c9WcwJxXZnGUC0aOR_JE1Is84KkRcZC",
-   "nome": "F. Hauzen - Bem-te-vi 3D - Geral - V.1.mov",
-   "tipo": "video",
-   "cliente": "Hauzen",
-   "mes": "2025-11",
-   "pasta": "1yhHwbhu4IjFMgbIAJ_CzojlDgrFZtLqb"
-  },
-  {
-   "id": "1hDOiUsaazLmdQopp2iB0dkYkfFMFofpi",
-   "nome": "F. Hauzen - Sonho - Leonardo - V.3.mp4",
-   "tipo": "video",
-   "cliente": "Hauzen",
-   "mes": "2025-10",
-   "pasta": "1hRyGyFBgi1KeCUwNxs2IWO-aBTGuOsLL"
-  },
-  {
-   "id": "1WZ44o2cYVE2TGYGFtTGfcYYOlUFtR_xa",
-   "nome": "F. Hauzen - Confiaria - Leonardo - V.2.mov",
-   "tipo": "video",
-   "cliente": "Hauzen",
-   "mes": "2025-10",
-   "pasta": "1hRyGyFBgi1KeCUwNxs2IWO-aBTGuOsLL"
-  },
-  {
-   "id": "1LWNu34ifjiHT7s8ynTdYGEWORQW5oxg5",
-   "nome": "F. IGG - Profissionais + Prof + Crianças - V.1.mov",
+   "id": "1PBR_dzu59Y3Fhd5fmuvajv09v1wiUT1a",
+   "nome": "F. AfterMovie - Capacitação Tecnológica - Horizontal - V.1.mov",
    "tipo": "video",
    "cliente": "IGG",
-   "mes": "2026-10",
-   "pasta": "1mlfv_iT80jdKsH5YKf6YZSwAMhj_AkbM"
+   "mes": "2026-04",
+   "pasta": "19D6u_QovqrTUgJ57eKkAdGhVGtf1ncYr"
   },
   {
-   "id": "1u7-w1IA9XldDR0QSa97O-6xry5Hb6o7C",
-   "nome": "F. IGG - Entrevista Pedro e Marcelo. V.1.mov",
+   "id": "1Tub_IjDhPzrYqp4h4AiEOnlq48J0qGRn",
+   "nome": "F. AfterMovie - Capacitação Tecnológica - Geral - V.3.mov",
    "tipo": "video",
    "cliente": "IGG",
-   "mes": "2026-10",
-   "pasta": "1mlfv_iT80jdKsH5YKf6YZSwAMhj_AkbM"
+   "mes": "2026-04",
+   "pasta": "19D6u_QovqrTUgJ57eKkAdGhVGtf1ncYr"
   },
   {
-   "id": "1CHC1V0DgellMfUKrlEp2CWPakKt3ZlJU",
-   "nome": "F. IGG. Entrevista 03. v3.mov",
-   "tipo": "video",
-   "cliente": "IGG",
-   "mes": "2026-10",
-   "pasta": "1mlfv_iT80jdKsH5YKf6YZSwAMhj_AkbM"
-  },
-  {
-   "id": "1CNXr1eXMEoc6jKyS_-OtdHUjkRZnZ2yG",
-   "nome": "F. IGG. Entrevista Crianças 04. V1.mov",
-   "tipo": "video",
-   "cliente": "IGG",
-   "mes": "2026-10",
-   "pasta": "1mlfv_iT80jdKsH5YKf6YZSwAMhj_AkbM"
-  },
-  {
-   "id": "1sm0ZP6EjSB221cpuvuiEfStbOMAzR0OZ",
-   "nome": "F. IGG. Entrevista Crianças 03. V1.mov",
-   "tipo": "video",
-   "cliente": "IGG",
-   "mes": "2026-10",
-   "pasta": "1mlfv_iT80jdKsH5YKf6YZSwAMhj_AkbM"
-  },
-  {
-   "id": "1zfamKpWON1qSr9F4YL4BEZsXRZ0J9OeA",
-   "nome": "F. IGG. Entrevista Crianças 02. V1.mov",
-   "tipo": "video",
-   "cliente": "IGG",
-   "mes": "2026-10",
-   "pasta": "1mlfv_iT80jdKsH5YKf6YZSwAMhj_AkbM"
-  },
-  {
-   "id": "1EsRJ-lfDwMB9hyw5NxHj4xyMJur_GVqc",
-   "nome": "F. IGG. Entrevista Crianças 01. V1.mov",
-   "tipo": "video",
-   "cliente": "IGG",
-   "mes": "2026-10",
-   "pasta": "1mlfv_iT80jdKsH5YKf6YZSwAMhj_AkbM"
-  },
-  {
-   "id": "1a12zt0SOn1TJ8acU74PEVH-_HyUhh01C",
-   "nome": "F. IGG. Entrevista 04. v1.mov",
-   "tipo": "video",
-   "cliente": "IGG",
-   "mes": "2026-10",
-   "pasta": "1mlfv_iT80jdKsH5YKf6YZSwAMhj_AkbM"
-  },
-  {
-   "id": "1BcBrTR6OpqOmXxf9HB0iRTn3w5g64cPA",
-   "nome": "F. IGG. After movie. v.4.mov",
-   "tipo": "video",
-   "cliente": "IGG",
-   "mes": "2026-10",
-   "pasta": "1mlfv_iT80jdKsH5YKf6YZSwAMhj_AkbM"
-  },
-  {
-   "id": "1mRLpvlCwboSKlWYPMI40ncJdkYj-69L-",
-   "nome": "F. IGG - Parceria Qualifica - V.5.mov",
-   "tipo": "video",
-   "cliente": "IGG",
-   "mes": "2026-08",
-   "pasta": "1xkH51iz9eQ5Eq7d018hD9hp_n7mE5oDi"
-  },
-  {
-   "id": "1gOKY1Ni-SoHPhJx5tEgdF58-hNAZgtOH",
-   "nome": "F. IGG . Narrado. V.2.mp4",
-   "tipo": "video",
-   "cliente": "IGG",
-   "mes": "2026-08",
-   "pasta": "1xkH51iz9eQ5Eq7d018hD9hp_n7mE5oDi"
-  },
-  {
-   "id": "1xwcleM1r-HCpJalaOWyQw--9wDvfllma",
-   "nome": "F. IGG - Entrega Computador - V.6.mov",
-   "tipo": "video",
-   "cliente": "IGG",
-   "mes": "2026-07",
-   "pasta": "1Ev3ilG_YLHxDjrxO0lUAY1XMK3h-0rsp"
-  },
-  {
-   "id": "1SeN3ne6m5zDZGIWiZURwPv66eUZ3S-QM",
-   "nome": "F. Liberty - Institucional 30s. V.3.mov",
+   "id": "19vbL661jJFrrBVau8a9aQ3tsRRLdrLE3",
+   "nome": "F. Institucional - MedTrack - Nixon - V.5.mov",
    "tipo": "video",
    "cliente": "Liberty",
    "mes": "2026-04",
@@ -528,176 +1152,8 @@
    "pasta": "1Sjyc3_SERE6pxMmwKrvbD-wOxuCb3qeI"
   },
   {
-   "id": "1j-W_alojtRciMJ3HGQzJdHYV65FWSScC",
-   "nome": "F. IGG - ODS - V.2.mov",
-   "tipo": "video",
-   "cliente": "IGG",
-   "mes": "2026-06",
-   "pasta": "1HGsyAcFpprONkmvdbOiC2sEDOMMnfoB3"
-  },
-  {
-   "id": "1X6VhjxSZZrBxUS7lKDZ1qU6A3BsjZ9Fc",
-   "nome": "F. IGG - Aulão IFB- Vertical - V.1.mov",
-   "tipo": "video",
-   "cliente": "IGG",
-   "mes": "2026-05",
-   "pasta": "1W6jrj-b6OQfLQ91Ue4tE3q7KHEc4nbhd"
-  },
-  {
-   "id": "1vjbS-kT6dXlU7YlgSQ7FJRZmDKxhmn_3",
-   "nome": "F. IGG - ODS - Horizontal - V.1.mov",
-   "tipo": "video",
-   "cliente": "IGG",
-   "mes": "2026-06",
-   "pasta": "1HGsyAcFpprONkmvdbOiC2sEDOMMnfoB3"
-  },
-  {
-   "id": "1Tub_IjDhPzrYqp4h4AiEOnlq48J0qGRn",
-   "nome": "F. AfterMovie - Capacitação Tecnológica - Geral - V.3.mov",
-   "tipo": "video",
-   "cliente": "IGG",
-   "mes": "2026-04",
-   "pasta": "19D6u_QovqrTUgJ57eKkAdGhVGtf1ncYr"
-  },
-  {
-   "id": "1PBR_dzu59Y3Fhd5fmuvajv09v1wiUT1a",
-   "nome": "F. AfterMovie - Capacitação Tecnológica - Horizontal - V.1.mov",
-   "tipo": "video",
-   "cliente": "IGG",
-   "mes": "2026-04",
-   "pasta": "19D6u_QovqrTUgJ57eKkAdGhVGtf1ncYr"
-  },
-  {
-   "id": "1HroCBJf9PXf5Yg1jhvh_4BfaJrqIy7Sb",
-   "nome": "F. IGG - Aulão IFB- Horizontal- V.1.mov",
-   "tipo": "video",
-   "cliente": "IGG",
-   "mes": "2026-05",
-   "pasta": "1W6jrj-b6OQfLQ91Ue4tE3q7KHEc4nbhd"
-  },
-  {
-   "id": "186Lu1ij1gtP-7lUGscrD_PuYbWZH03ug",
-   "nome": "F. ArestAgência - IGG ODS - 13.jpg",
-   "tipo": "foto",
-   "cliente": "IGG",
-   "mes": "2026-06",
-   "pasta": "1HGsyAcFpprONkmvdbOiC2sEDOMMnfoB3"
-  },
-  {
-   "id": "1XsIb-0jPuvKYHnyCs1jdG7r_ND_AanoB",
-   "nome": "F. ArestAgência - IGG ODS - 12.jpg",
-   "tipo": "foto",
-   "cliente": "IGG",
-   "mes": "2026-06",
-   "pasta": "1HGsyAcFpprONkmvdbOiC2sEDOMMnfoB3"
-  },
-  {
-   "id": "1teDMSvR3TUElYqkZwxMOMKexfoCCcHfM",
-   "nome": "F. ArestAgência - IGG ODS - 14.jpg",
-   "tipo": "foto",
-   "cliente": "IGG",
-   "mes": "2026-06",
-   "pasta": "1HGsyAcFpprONkmvdbOiC2sEDOMMnfoB3"
-  },
-  {
-   "id": "1K9UJabKky8Ge8f3opvDL0iNhTEvH5Hxs",
-   "nome": "F. ArestAgência - IGG ODS - 11.jpg",
-   "tipo": "foto",
-   "cliente": "IGG",
-   "mes": "2026-06",
-   "pasta": "1HGsyAcFpprONkmvdbOiC2sEDOMMnfoB3"
-  },
-  {
-   "id": "12BIxm0iqtf3ZLoYbdZpnJkaOwwcMOrC5",
-   "nome": "F. IGG- Depoimentos  -Geral - V.3.mov.mov",
-   "tipo": "video",
-   "cliente": "IGG",
-   "mes": "2026-03",
-   "pasta": "1w0_xd2G9RgQeBeZhQGfESVNNpvRO-fGr"
-  },
-  {
-   "id": "1ZDMyhkoIIQ6RjgqF0U4dTyHYOlM3ySe9",
-   "nome": "F. IGG - AfterMovie Rodoviária - Geral - V.4.mov",
-   "tipo": "video",
-   "cliente": "IGG",
-   "mes": "2026-03",
-   "pasta": "1w0_xd2G9RgQeBeZhQGfESVNNpvRO-fGr"
-  },
-  {
-   "id": "1gpNsYUlZUKp85mnVoUE6PfWnS-Y4SBLr",
-   "nome": "F. IGG - Entrevista - Paloma - V.2.mov",
-   "tipo": "video",
-   "cliente": "IGG",
-   "mes": "2026-03",
-   "pasta": "1w0_xd2G9RgQeBeZhQGfESVNNpvRO-fGr"
-  },
-  {
-   "id": "19vbL661jJFrrBVau8a9aQ3tsRRLdrLE3",
-   "nome": "F. Institucional - MedTrack - Nixon - V.5.mov",
-   "tipo": "video",
-   "cliente": "Liberty",
-   "mes": "2026-04",
-   "pasta": "1Sjyc3_SERE6pxMmwKrvbD-wOxuCb3qeI"
-  },
-  {
-   "id": "1zQNvCro0Q1dRG7bIGx2AVLB7oVQi6yaa",
-   "nome": "F. Liberty - MedTrack Saúde Mental  - V.4.mov",
-   "tipo": "video",
-   "cliente": "Liberty",
-   "mes": "2026-05",
-   "pasta": "1IrC2jA1zIwjZqHNw46JwLOg2z3VzADbu"
-  },
-  {
-   "id": "1Dfco6PERNvcynA5ZL_mq07-aC1HvTJU3",
-   "nome": "F. Liberty - Redução de Glosas - V.4.mov",
-   "tipo": "video",
-   "cliente": "Liberty",
-   "mes": "2026-05",
-   "pasta": "1IrC2jA1zIwjZqHNw46JwLOg2z3VzADbu"
-  },
-  {
-   "id": "1N84wegVVT2rYfRXu7_ZKn8XjnyfTTVlh",
-   "nome": "F. Liberty - Hyland  - V.3.mov",
-   "tipo": "video",
-   "cliente": "Liberty",
-   "mes": "2026-05",
-   "pasta": "1IrC2jA1zIwjZqHNw46JwLOg2z3VzADbu"
-  },
-  {
-   "id": "1LwNgGgiCE0NoX5T7u_kI84P0HIEzMQfL",
-   "nome": "F. Liberty - Cloud - V.3.mov",
-   "tipo": "video",
-   "cliente": "Liberty",
-   "mes": "2026-05",
-   "pasta": "1IrC2jA1zIwjZqHNw46JwLOg2z3VzADbu"
-  },
-  {
-   "id": "1MPLzMoj5z8rflqTWSLQZS9l4iNx6U3WA",
-   "nome": "F. Liberty - Observabilidade AIOPs - V.3.mov",
-   "tipo": "video",
-   "cliente": "Liberty",
-   "mes": "2026-05",
-   "pasta": "1IrC2jA1zIwjZqHNw46JwLOg2z3VzADbu"
-  },
-  {
-   "id": "1zzJy3RFmyxe9y_h0Bj83Vi7P5wMSiW3n",
-   "nome": "F. Liberty - Certificações - V.3.mov",
-   "tipo": "video",
-   "cliente": "Liberty",
-   "mes": "2026-05",
-   "pasta": "1IrC2jA1zIwjZqHNw46JwLOg2z3VzADbu"
-  },
-  {
-   "id": "1vilSQHKvuOYMDlwgtJUmi558ZrLeKy4R",
-   "nome": "F. Liberty - Vídeo 1' HOSPITALAR - V.3.mov",
-   "tipo": "video",
-   "cliente": "Liberty",
-   "mes": "2026-04",
-   "pasta": "1Sjyc3_SERE6pxMmwKrvbD-wOxuCb3qeI"
-  },
-  {
-   "id": "1rAnpx4HXK6VdJcuKrnduidg0nT3rllnk",
-   "nome": "F. Institucional - Liberty Group - V.3.mov",
+   "id": "1SeN3ne6m5zDZGIWiZURwPv66eUZ3S-QM",
+   "nome": "F. Liberty - Institucional 30s. V.3.mov",
    "tipo": "video",
    "cliente": "Liberty",
    "mes": "2026-04",
@@ -712,24 +1168,480 @@
    "pasta": "1Sjyc3_SERE6pxMmwKrvbD-wOxuCb3qeI"
   },
   {
-   "id": "1rzk8nBXwhWEMGVHUxu7v38etIMFgJBwp",
-   "nome": "F. Liberty - MedSeek II - V.2.mov",
+   "id": "1rAnpx4HXK6VdJcuKrnduidg0nT3rllnk",
+   "nome": "F. Institucional - Liberty Group - V.3.mov",
    "tipo": "video",
    "cliente": "Liberty",
-   "mes": "2026-03",
-   "pasta": "1KH4xX40wcBHkGyn3UopoPawAFQSLxrQC"
+   "mes": "2026-04",
+   "pasta": "1Sjyc3_SERE6pxMmwKrvbD-wOxuCb3qeI"
   },
   {
-   "id": "1hcfC9wnyg5eCO6JVfvbueGzaJBSPV-hC",
-   "nome": "Liberty Fotos_1.jpg",
+   "id": "1vilSQHKvuOYMDlwgtJUmi558ZrLeKy4R",
+   "nome": "F. Liberty - Vídeo 1' HOSPITALAR - V.3.mov",
+   "tipo": "video",
+   "cliente": "Liberty",
+   "mes": "2026-04",
+   "pasta": "1Sjyc3_SERE6pxMmwKrvbD-wOxuCb3qeI"
+  },
+  {
+   "id": "19Bg7fKqy2Bz4h9fS61Cj5rBJsASYAbAM",
+   "nome": "F. Scalercio - Res Montparnasse. V.1.mov",
+   "tipo": "video",
+   "cliente": "Scalercio",
+   "mes": "2026-04",
+   "pasta": "1NQ09ChESE5TLyHZBkT4Pu0mHpF5Acew_"
+  },
+  {
+   "id": "1JxPxisTqUk4jxfqC4DLawEO0q441S-R6",
+   "nome": "Valen Fotos_2.JPG",
    "tipo": "foto",
+   "cliente": "Valen Beauty",
+   "mes": "2026-04",
+   "pasta": "11lTGtETq7W1yT3k9Q8CtevWbkHbAKuns"
+  },
+  {
+   "id": "1N493Axb6RjKhHbGIZk-EeX1QZ7j1gaF8",
+   "nome": "Valen Fotos.JPG",
+   "tipo": "foto",
+   "cliente": "Valen Beauty",
+   "mes": "2026-04",
+   "pasta": "11lTGtETq7W1yT3k9Q8CtevWbkHbAKuns"
+  },
+  {
+   "id": "1pYGNQvFwWpL5sGUpcmHCOB2IMRkwoqvm",
+   "nome": "F. Valen Beauty - Dia das Mães - V.2.mov",
+   "tipo": "video",
+   "cliente": "Valen Beauty",
+   "mes": "2026-04",
+   "pasta": "11lTGtETq7W1yT3k9Q8CtevWbkHbAKuns"
+  },
+  {
+   "id": "1s88OfX-l0EENBdN6ZJLpfT83Uw6jdWFV",
+   "nome": "Valen Fotos_1.JPG",
+   "tipo": "foto",
+   "cliente": "Valen Beauty",
+   "mes": "2026-04",
+   "pasta": "11lTGtETq7W1yT3k9Q8CtevWbkHbAKuns"
+  },
+  {
+   "id": "1E0XypBg3qNUE1XgKS47kbM-EhyyMjleE",
+   "nome": "Fotos Vitrinni.jpg",
+   "tipo": "foto",
+   "cliente": "Vitrinni",
+   "mes": "2026-04",
+   "pasta": "1MHrrgUTxRJ8HL2UASxtKONX43W8jl-AS"
+  },
+  {
+   "id": "1Fq8KnPIazsHuWCGUl0bXYE_OM0gRNThm",
+   "nome": "F. 4 Lojas Infantis - Vitrinni - V.2.mov",
+   "tipo": "video",
+   "cliente": "Vitrinni",
+   "mes": "2026-04",
+   "pasta": "1MHrrgUTxRJ8HL2UASxtKONX43W8jl-AS"
+  },
+  {
+   "id": "1HUxAiQCgsYu8LE8iNhXdcl1-H14Ph5BX",
+   "nome": "Fotos Vitrinni.jpg",
+   "tipo": "foto",
+   "cliente": "Vitrinni",
+   "mes": "2026-04",
+   "pasta": "1MHrrgUTxRJ8HL2UASxtKONX43W8jl-AS"
+  },
+  {
+   "id": "1SbNvf9YZLVTV6f0bJOu_NbMZdnn1X6xS",
+   "nome": "Fotos Vitrinni.jpg",
+   "tipo": "foto",
+   "cliente": "Vitrinni",
+   "mes": "2026-04",
+   "pasta": "1MHrrgUTxRJ8HL2UASxtKONX43W8jl-AS"
+  },
+  {
+   "id": "1Y4FLI3S7rkgVq3xht3up77v1gq56eMHb",
+   "nome": "F. Correios - Vitrinni - V.1.mov",
+   "tipo": "video",
+   "cliente": "Vitrinni",
+   "mes": "2026-04",
+   "pasta": "1MHrrgUTxRJ8HL2UASxtKONX43W8jl-AS"
+  },
+  {
+   "id": "1iz6cBpfBfmyM9LK7T5bfmTgJvjt7Q9S1",
+   "nome": "F. 4 Ideias de Presente - Vitrinni - V.2.mov",
+   "tipo": "video",
+   "cliente": "Vitrinni",
+   "mes": "2026-04",
+   "pasta": "1MHrrgUTxRJ8HL2UASxtKONX43W8jl-AS"
+  },
+  {
+   "id": "1l0QgFk6jeKBgTMRRefjuuorxVzlKQyHe",
+   "nome": "F. 4 Dia das Mães - Vitrinni - V.1.mov",
+   "tipo": "video",
+   "cliente": "Vitrinni",
+   "mes": "2026-04",
+   "pasta": "1MHrrgUTxRJ8HL2UASxtKONX43W8jl-AS"
+  },
+  {
+   "id": "1ri784xe7H1bLR8oj7Ho7I6eTReTZ_zfD",
+   "nome": "Fotos Vitrinni.jpg",
+   "tipo": "foto",
+   "cliente": "Vitrinni",
+   "mes": "2026-04",
+   "pasta": "1MHrrgUTxRJ8HL2UASxtKONX43W8jl-AS"
+  },
+  {
+   "id": "15L6GrU5hsRn_j3lEUvmAMAxK7Wuyt4YM",
+   "nome": "P. Óptica Premium - 25 - V.1.jpg",
+   "tipo": "foto",
+   "cliente": "Óptica Premium",
+   "mes": "2026-04",
+   "pasta": "1SFOeRprs8ghafNnQjAOgWNSEV4wMl1g1"
+  },
+  {
+   "id": "16181zKg50pw8Uyl2Zi92l6txKo3rb4_x",
+   "nome": "P. Óptica Premium - 26 - V.1.jpg",
+   "tipo": "foto",
+   "cliente": "Óptica Premium",
+   "mes": "2026-04",
+   "pasta": "1SFOeRprs8ghafNnQjAOgWNSEV4wMl1g1"
+  },
+  {
+   "id": "18xb1J73hduTGBffg-NCNW-Kdh8X2nnRv",
+   "nome": "P. Óptica Premium - 32 - V.1.jpg",
+   "tipo": "foto",
+   "cliente": "Óptica Premium",
+   "mes": "2026-04",
+   "pasta": "1SFOeRprs8ghafNnQjAOgWNSEV4wMl1g1"
+  },
+  {
+   "id": "193MkMwq9dgrzR1stszzDOb73Cx94UrMh",
+   "nome": "P. Óptica Premium - 9 - V.1.jpg",
+   "tipo": "foto",
+   "cliente": "Óptica Premium",
+   "mes": "2026-04",
+   "pasta": "1SFOeRprs8ghafNnQjAOgWNSEV4wMl1g1"
+  },
+  {
+   "id": "1948Askc_Ab7NevAANlm7YuCu0_DQiaQA",
+   "nome": "P. Óptica Premium - 33 - V.1.jpg",
+   "tipo": "foto",
+   "cliente": "Óptica Premium",
+   "mes": "2026-04",
+   "pasta": "1SFOeRprs8ghafNnQjAOgWNSEV4wMl1g1"
+  },
+  {
+   "id": "19vBJXwDZmX3PzmFEWz4vsL4FWI_UBcbw",
+   "nome": "P. Óptica Premium - 19 - V.1.jpg",
+   "tipo": "foto",
+   "cliente": "Óptica Premium",
+   "mes": "2026-04",
+   "pasta": "1SFOeRprs8ghafNnQjAOgWNSEV4wMl1g1"
+  },
+  {
+   "id": "1AtTVNsfNYN4OfimLmG5N7I1Ffgpz4Lw8",
+   "nome": "P. Óptica Premium - 20 - V.1.jpg",
+   "tipo": "foto",
+   "cliente": "Óptica Premium",
+   "mes": "2026-04",
+   "pasta": "1SFOeRprs8ghafNnQjAOgWNSEV4wMl1g1"
+  },
+  {
+   "id": "1C51DDW5PB6wi1XmXhgUE4LkG59CJ3pJY",
+   "nome": "P. Óptica Premium - 16 - V.1.jpg",
+   "tipo": "foto",
+   "cliente": "Óptica Premium",
+   "mes": "2026-04",
+   "pasta": "1SFOeRprs8ghafNnQjAOgWNSEV4wMl1g1"
+  },
+  {
+   "id": "1E16kx60-MU-odcgFT3zTtln8c7181INt",
+   "nome": "P. Óptica Premium - 4 - V.1.jpg",
+   "tipo": "foto",
+   "cliente": "Óptica Premium",
+   "mes": "2026-04",
+   "pasta": "1SFOeRprs8ghafNnQjAOgWNSEV4wMl1g1"
+  },
+  {
+   "id": "1GZxNhSY05hUiKaMIba6QMPQ_k0JQeyRl",
+   "nome": "P. Óptica Premium - 10 - V.1.jpg",
+   "tipo": "foto",
+   "cliente": "Óptica Premium",
+   "mes": "2026-04",
+   "pasta": "1SFOeRprs8ghafNnQjAOgWNSEV4wMl1g1"
+  },
+  {
+   "id": "1GpLrww-Une4fvweGPaaLryPhplURT4A7",
+   "nome": "P. Óptica Premium - 17 - V.1.jpg",
+   "tipo": "foto",
+   "cliente": "Óptica Premium",
+   "mes": "2026-04",
+   "pasta": "1SFOeRprs8ghafNnQjAOgWNSEV4wMl1g1"
+  },
+  {
+   "id": "1H9Ab5Tyj3BUhE4EZ7CcrVbR1f83i2wz6",
+   "nome": "F. Óptica Premium - Dia das Mães - V.2.mov",
+   "tipo": "video",
+   "cliente": "Óptica Premium",
+   "mes": "2026-04",
+   "pasta": "1q9x3B8fklJrhRDnBe8W6zu11wEZicd1U"
+  },
+  {
+   "id": "1ISQ8gT2arLSoCfmQQQjuAYrtd4xFiCaj",
+   "nome": "P. Óptica Premium - 8 - V.1.jpg",
+   "tipo": "foto",
+   "cliente": "Óptica Premium",
+   "mes": "2026-04",
+   "pasta": "1SFOeRprs8ghafNnQjAOgWNSEV4wMl1g1"
+  },
+  {
+   "id": "1IW2DOE9RidX9GvaqdlhrfaaLd3kGp_A2",
+   "nome": "P. Óptica Premium - 2 - V.1.jpg",
+   "tipo": "foto",
+   "cliente": "Óptica Premium",
+   "mes": "2026-04",
+   "pasta": "1SFOeRprs8ghafNnQjAOgWNSEV4wMl1g1"
+  },
+  {
+   "id": "1MEPUdF8l--tDKXmFziTmEErmCzD5tn4V",
+   "nome": "P. Óptica Premium - 29 - V.1.jpg",
+   "tipo": "foto",
+   "cliente": "Óptica Premium",
+   "mes": "2026-04",
+   "pasta": "1SFOeRprs8ghafNnQjAOgWNSEV4wMl1g1"
+  },
+  {
+   "id": "1O2RbPYb4ediAAl5QhAh4TysNOb3AE2xG",
+   "nome": "P. Óptica Premium - 7 - V.1.jpg",
+   "tipo": "foto",
+   "cliente": "Óptica Premium",
+   "mes": "2026-04",
+   "pasta": "1SFOeRprs8ghafNnQjAOgWNSEV4wMl1g1"
+  },
+  {
+   "id": "1QOcZZ5gAW4axnAJpF8Do5-cim9qn1498",
+   "nome": "P. Óptica Premium - 23 - V.1.jpg",
+   "tipo": "foto",
+   "cliente": "Óptica Premium",
+   "mes": "2026-04",
+   "pasta": "1SFOeRprs8ghafNnQjAOgWNSEV4wMl1g1"
+  },
+  {
+   "id": "1SyuFWSia7CdDyCkjs8lkimirFhJZGqxL",
+   "nome": "P. Óptica Premium - 35 - V.1.jpg",
+   "tipo": "foto",
+   "cliente": "Óptica Premium",
+   "mes": "2026-04",
+   "pasta": "1SFOeRprs8ghafNnQjAOgWNSEV4wMl1g1"
+  },
+  {
+   "id": "1Uy78ArZBWlsIYxSISUXVZuXUsQrKnT5y",
+   "nome": "P. Óptica Premium - 14 - V.1.jpg",
+   "tipo": "foto",
+   "cliente": "Óptica Premium",
+   "mes": "2026-04",
+   "pasta": "1SFOeRprs8ghafNnQjAOgWNSEV4wMl1g1"
+  },
+  {
+   "id": "1WPNX_POcbTEViD7_SE6cGMH6CE_WTHEx",
+   "nome": "P. Óptica Premium - 21 - V.1.jpg",
+   "tipo": "foto",
+   "cliente": "Óptica Premium",
+   "mes": "2026-04",
+   "pasta": "1SFOeRprs8ghafNnQjAOgWNSEV4wMl1g1"
+  },
+  {
+   "id": "1YA0e0pxRWCDfaCl-JPAyOA6ZVRjPmAPo",
+   "nome": "P. Óptica Premium - 24 - V.1.jpg",
+   "tipo": "foto",
+   "cliente": "Óptica Premium",
+   "mes": "2026-04",
+   "pasta": "1SFOeRprs8ghafNnQjAOgWNSEV4wMl1g1"
+  },
+  {
+   "id": "1ZUvyOvJ45-SBDZ4dswvZZx6isxJQ4qK9",
+   "nome": "P. Óptica Premium - 27 - V.1.jpg",
+   "tipo": "foto",
+   "cliente": "Óptica Premium",
+   "mes": "2026-04",
+   "pasta": "1SFOeRprs8ghafNnQjAOgWNSEV4wMl1g1"
+  },
+  {
+   "id": "1aB_n1OPhv6M03Wc9_hGDR5KMzaYYXBFa",
+   "nome": "P. Óptica Premium - 11 - V.1.jpg",
+   "tipo": "foto",
+   "cliente": "Óptica Premium",
+   "mes": "2026-04",
+   "pasta": "1SFOeRprs8ghafNnQjAOgWNSEV4wMl1g1"
+  },
+  {
+   "id": "1bsnQ70yg09o2rPjTgy2ug_kqRxYM97o_",
+   "nome": "P. Óptica Premium - 22 - V.1.jpg",
+   "tipo": "foto",
+   "cliente": "Óptica Premium",
+   "mes": "2026-04",
+   "pasta": "1SFOeRprs8ghafNnQjAOgWNSEV4wMl1g1"
+  },
+  {
+   "id": "1chw8x0iEeOiR7DjATTjcV7l9r6Tt12RP",
+   "nome": "P. Óptica Premium - 12 - V.1.jpg",
+   "tipo": "foto",
+   "cliente": "Óptica Premium",
+   "mes": "2026-04",
+   "pasta": "1SFOeRprs8ghafNnQjAOgWNSEV4wMl1g1"
+  },
+  {
+   "id": "1dPCwjj7zKlYhyU2N7qrHp5BK_3fYO3Ql",
+   "nome": "P. Óptica Premium - 1 - V.1.jpg",
+   "tipo": "foto",
+   "cliente": "Óptica Premium",
+   "mes": "2026-04",
+   "pasta": "1SFOeRprs8ghafNnQjAOgWNSEV4wMl1g1"
+  },
+  {
+   "id": "1gj5QE9ijy66BUTpv7QKPY_sJVKw_YhA3",
+   "nome": "F. Óptica Premium. Escolhas do Boss. v.4.mov",
+   "tipo": "video",
+   "cliente": "Óptica Premium",
+   "mes": "2026-04",
+   "pasta": "1q9x3B8fklJrhRDnBe8W6zu11wEZicd1U"
+  },
+  {
+   "id": "1hnqweI7qRN7cXx7fD-1E8TcOoF1XWmbI",
+   "nome": "P. Óptica Premium - 15 - V.1.jpg",
+   "tipo": "foto",
+   "cliente": "Óptica Premium",
+   "mes": "2026-04",
+   "pasta": "1SFOeRprs8ghafNnQjAOgWNSEV4wMl1g1"
+  },
+  {
+   "id": "1jCxmLm-TA9KTnn6770HkFyfhlWYtDVGC",
+   "nome": "P. Óptica Premium - 28 - V.1.jpg",
+   "tipo": "foto",
+   "cliente": "Óptica Premium",
+   "mes": "2026-04",
+   "pasta": "1SFOeRprs8ghafNnQjAOgWNSEV4wMl1g1"
+  },
+  {
+   "id": "1l0OTrYnFgtuac8mN1uOUGzQuA_kmXc8F",
+   "nome": "P. Óptica Premium - 18 - V.1.jpg",
+   "tipo": "foto",
+   "cliente": "Óptica Premium",
+   "mes": "2026-04",
+   "pasta": "1SFOeRprs8ghafNnQjAOgWNSEV4wMl1g1"
+  },
+  {
+   "id": "1m1-9mRSmHvn_AMWdor672Z-0Z4CK9ZZV",
+   "nome": "P. Óptica Premium - 31 - V.1.jpg",
+   "tipo": "foto",
+   "cliente": "Óptica Premium",
+   "mes": "2026-04",
+   "pasta": "1SFOeRprs8ghafNnQjAOgWNSEV4wMl1g1"
+  },
+  {
+   "id": "1oO1q4VpSVa1Qn4dVfuazWsbg0gufEyCI",
+   "nome": "P. Óptica Premium - 6 - V.1.jpg",
+   "tipo": "foto",
+   "cliente": "Óptica Premium",
+   "mes": "2026-04",
+   "pasta": "1SFOeRprs8ghafNnQjAOgWNSEV4wMl1g1"
+  },
+  {
+   "id": "1qbOsBFkvN62Ir-DH8YC4r08zjE160TGR",
+   "nome": "P. Óptica Premium - 3 - V.1.jpg",
+   "tipo": "foto",
+   "cliente": "Óptica Premium",
+   "mes": "2026-04",
+   "pasta": "1SFOeRprs8ghafNnQjAOgWNSEV4wMl1g1"
+  },
+  {
+   "id": "1siUpHJc5u1ed0WUNvqT8qJ2im7EL1x6W",
+   "nome": "P. Óptica Premium - 13 - V.1.jpg",
+   "tipo": "foto",
+   "cliente": "Óptica Premium",
+   "mes": "2026-04",
+   "pasta": "1SFOeRprs8ghafNnQjAOgWNSEV4wMl1g1"
+  },
+  {
+   "id": "1syc1yzmZBHd0HMNyuJVubRJhMiuCAQDQ",
+   "nome": "P. Óptica Premium - 34 - V.1.jpg",
+   "tipo": "foto",
+   "cliente": "Óptica Premium",
+   "mes": "2026-04",
+   "pasta": "1SFOeRprs8ghafNnQjAOgWNSEV4wMl1g1"
+  },
+  {
+   "id": "1ul3Tpvc_vHmdDijqf8lvbGbcZ8SG1NSK",
+   "nome": "F. Óptica - Ray-Ban Meta - V.2.mov",
+   "tipo": "video",
+   "cliente": "Óptica Premium",
+   "mes": "2026-04",
+   "pasta": "1q9x3B8fklJrhRDnBe8W6zu11wEZicd1U"
+  },
+  {
+   "id": "1w5wEqRf9rNIKDPIGDsL4BCtkXXBZQZlY",
+   "nome": "P. Óptica Premium - 30 - V.1.jpg",
+   "tipo": "foto",
+   "cliente": "Óptica Premium",
+   "mes": "2026-04",
+   "pasta": "1SFOeRprs8ghafNnQjAOgWNSEV4wMl1g1"
+  },
+  {
+   "id": "1wVR9Y5S6iCT0CDgQZbJNMJ4z16YsmTB0",
+   "nome": "P. Óptica Premium - 5 - V.1.jpg",
+   "tipo": "foto",
+   "cliente": "Óptica Premium",
+   "mes": "2026-04",
+   "pasta": "1SFOeRprs8ghafNnQjAOgWNSEV4wMl1g1"
+  },
+  {
+   "id": "15LLzgQQBEJHvCl35KBzCbaPmLsBIAzrf",
+   "nome": "F. Hauzen - Quina viva - V.1.mov",
+   "tipo": "video",
+   "cliente": "Hauzen",
+   "mes": "2026-05",
+   "pasta": "1qwZzoRWt5DqksZEaYAJLqxhT2gGeijb-"
+  },
+  {
+   "id": "17b1Pg44T8zTg7u0xqPLEPAqvsqWYRC_E",
+   "nome": "F. Hauzen - Plano x Desnivelado - V.1.mov",
+   "tipo": "video",
+   "cliente": "Hauzen",
+   "mes": "2026-05",
+   "pasta": "1qwZzoRWt5DqksZEaYAJLqxhT2gGeijb-"
+  },
+  {
+   "id": "1XthQEQfMgW5zmwVUgc8DE2QqPgodt6g4",
+   "nome": "F. Hauzen - Piscina - V.1.mov",
+   "tipo": "video",
+   "cliente": "Hauzen",
+   "mes": "2026-05",
+   "pasta": "1qwZzoRWt5DqksZEaYAJLqxhT2gGeijb-"
+  },
+  {
+   "id": "1HroCBJf9PXf5Yg1jhvh_4BfaJrqIy7Sb",
+   "nome": "F. IGG - Aulão IFB- Horizontal- V.1.mov",
+   "tipo": "video",
+   "cliente": "IGG",
+   "mes": "2026-05",
+   "pasta": "1W6jrj-b6OQfLQ91Ue4tE3q7KHEc4nbhd"
+  },
+  {
+   "id": "1X6VhjxSZZrBxUS7lKDZ1qU6A3BsjZ9Fc",
+   "nome": "F. IGG - Aulão IFB- Vertical - V.1.mov",
+   "tipo": "video",
+   "cliente": "IGG",
+   "mes": "2026-05",
+   "pasta": "1W6jrj-b6OQfLQ91Ue4tE3q7KHEc4nbhd"
+  },
+  {
+   "id": "1Dfco6PERNvcynA5ZL_mq07-aC1HvTJU3",
+   "nome": "F. Liberty - Redução de Glosas - V.4.mov",
+   "tipo": "video",
    "cliente": "Liberty",
    "mes": "2026-05",
    "pasta": "1IrC2jA1zIwjZqHNw46JwLOg2z3VzADbu"
   },
   {
-   "id": "1Mrs2eN0iO2UlKSQDOfMdT5QSB1S3JYlZ",
-   "nome": "Liberty Fotos_9.jpg",
+   "id": "1EZ8tglpg1_lneaBbrCqlnBm9htVw7s5u",
+   "nome": "Liberty Fotos_5.jpg",
    "tipo": "foto",
    "cliente": "Liberty",
    "mes": "2026-05",
@@ -752,9 +1664,33 @@
    "pasta": "1IrC2jA1zIwjZqHNw46JwLOg2z3VzADbu"
   },
   {
-   "id": "1EZ8tglpg1_lneaBbrCqlnBm9htVw7s5u",
-   "nome": "Liberty Fotos_5.jpg",
+   "id": "1LwNgGgiCE0NoX5T7u_kI84P0HIEzMQfL",
+   "nome": "F. Liberty - Cloud - V.3.mov",
+   "tipo": "video",
+   "cliente": "Liberty",
+   "mes": "2026-05",
+   "pasta": "1IrC2jA1zIwjZqHNw46JwLOg2z3VzADbu"
+  },
+  {
+   "id": "1MPLzMoj5z8rflqTWSLQZS9l4iNx6U3WA",
+   "nome": "F. Liberty - Observabilidade AIOPs - V.3.mov",
+   "tipo": "video",
+   "cliente": "Liberty",
+   "mes": "2026-05",
+   "pasta": "1IrC2jA1zIwjZqHNw46JwLOg2z3VzADbu"
+  },
+  {
+   "id": "1Mrs2eN0iO2UlKSQDOfMdT5QSB1S3JYlZ",
+   "nome": "Liberty Fotos_9.jpg",
    "tipo": "foto",
+   "cliente": "Liberty",
+   "mes": "2026-05",
+   "pasta": "1IrC2jA1zIwjZqHNw46JwLOg2z3VzADbu"
+  },
+  {
+   "id": "1N84wegVVT2rYfRXu7_ZKn8XjnyfTTVlh",
+   "nome": "F. Liberty - Hyland  - V.3.mov",
+   "tipo": "video",
    "cliente": "Liberty",
    "mes": "2026-05",
    "pasta": "1IrC2jA1zIwjZqHNw46JwLOg2z3VzADbu"
@@ -784,416 +1720,32 @@
    "pasta": "1IrC2jA1zIwjZqHNw46JwLOg2z3VzADbu"
   },
   {
-   "id": "1-qsCzQAm7KjXop-pwdiFXDG0X3e85PVW",
-   "nome": "F. Liberty - MedSeek - V.2.mov",
+   "id": "1hcfC9wnyg5eCO6JVfvbueGzaJBSPV-hC",
+   "nome": "Liberty Fotos_1.jpg",
+   "tipo": "foto",
+   "cliente": "Liberty",
+   "mes": "2026-05",
+   "pasta": "1IrC2jA1zIwjZqHNw46JwLOg2z3VzADbu"
+  },
+  {
+   "id": "1zQNvCro0Q1dRG7bIGx2AVLB7oVQi6yaa",
+   "nome": "F. Liberty - MedTrack Saúde Mental  - V.4.mov",
    "tipo": "video",
    "cliente": "Liberty",
-   "mes": "2026-03",
-   "pasta": "1KH4xX40wcBHkGyn3UopoPawAFQSLxrQC"
-  },
-  {
-   "id": "1jNyKV7xx1iy4QZpeNFedRZhd_P8HmsBj",
-   "nome": "F. IGG - Mulheres - Paloma - V.3.",
-   "tipo": "video",
-   "cliente": "IGG",
-   "mes": "2026-03",
-   "pasta": "1w0_xd2G9RgQeBeZhQGfESVNNpvRO-fGr"
-  },
-  {
-   "id": "1yvPs0gHvWSOy59mGBMC0tvdRWKy3sBg4",
-   "nome": "F. Scalercio - O Valor - V.2.mp4",
-   "tipo": "video",
-   "cliente": "Scalercio",
-   "mes": "2026-10",
-   "pasta": "1_b79NIdiSvp0Oq84Syd7uj4aIO9_Fe26"
-  },
-  {
-   "id": "1grQtM4Xqo3VT9xpKpZVSfH-CPgyW0w51",
-   "nome": "F. Scalercio - Locação em Águas Claras - V.2.mp4",
-   "tipo": "video",
-   "cliente": "Scalercio",
-   "mes": "2026-10",
-   "pasta": "1_b79NIdiSvp0Oq84Syd7uj4aIO9_Fe26"
-  },
-  {
-   "id": "1P7RonnGrqEyd9rMTvADLSL6pIs6N98MF",
-   "nome": "F. Óptica Premium - Fashion Film 2 - Luiz - V.1.mov",
-   "tipo": "video",
-   "cliente": "Óptica Premium",
-   "mes": "2026-01",
-   "pasta": "1pQs7NVp5XaAyeMx8exAF2-JSWjKAzsS8"
-  },
-  {
-   "id": "1nHpta1ngyit7KmqODv6WnPz7xWz8_s0T",
-   "nome": "FX301182.jpg",
-   "tipo": "foto",
-   "cliente": "Óptica Premium",
-   "mes": "2026-07",
-   "pasta": "137oRACG0kmxfqoPK6iE6fkhWhMjqXMhI"
-  },
-  {
-   "id": "1HcaeSudFdT233uuF0xIsvXQlkFCpFb9q",
-   "nome": "FX301184.jpg",
-   "tipo": "foto",
-   "cliente": "Óptica Premium",
-   "mes": "2026-07",
-   "pasta": "137oRACG0kmxfqoPK6iE6fkhWhMjqXMhI"
-  },
-  {
-   "id": "1XkNDD4Q_jxvqtojWCOuRE-ds7yS9CaQV",
-   "nome": "FX301183.jpg",
-   "tipo": "foto",
-   "cliente": "Óptica Premium",
-   "mes": "2026-07",
-   "pasta": "137oRACG0kmxfqoPK6iE6fkhWhMjqXMhI"
-  },
-  {
-   "id": "1rAfzsQEXeysD5Xzsm7aF3D-1WfEamts-",
-   "nome": "FX301190.jpg",
-   "tipo": "foto",
-   "cliente": "Óptica Premium",
-   "mes": "2026-07",
-   "pasta": "137oRACG0kmxfqoPK6iE6fkhWhMjqXMhI"
-  },
-  {
-   "id": "1uIhu9XHSn4h5pcSXlxkm7R6wHVruzn2n",
-   "nome": "F. Optica Premium - Dia dos Pais - V.2.mov",
-   "tipo": "video",
-   "cliente": "Óptica Premium",
-   "mes": "2026-07",
-   "pasta": "137oRACG0kmxfqoPK6iE6fkhWhMjqXMhI"
-  },
-  {
-   "id": "16-TWqJPi4aLM_CG-YToOprZG36m8OnTG",
-   "nome": "F. Óptica Premium - Semana Zeiss - V.3.mov",
-   "tipo": "video",
-   "cliente": "Óptica Premium",
-   "mes": "2026-07",
-   "pasta": "137oRACG0kmxfqoPK6iE6fkhWhMjqXMhI"
-  },
-  {
-   "id": "1z9j6FD5RK1l8kCXAUk-X0-ROu0aa76EY",
-   "nome": "A7409844.jpg",
-   "tipo": "foto",
-   "cliente": "Vitrinni",
-   "mes": "2026-11",
-   "pasta": "1fCQ_eoOoCc9nUeQf0wI1lHOTZhJsLk9A"
-  },
-  {
-   "id": "1UbdFhQ0ZqkBrfaj85hrO9wqB21BygZYz",
-   "nome": "A7409840.jpg",
-   "tipo": "foto",
-   "cliente": "Vitrinni",
-   "mes": "2026-11",
-   "pasta": "1fCQ_eoOoCc9nUeQf0wI1lHOTZhJsLk9A"
-  },
-  {
-   "id": "1fL1yKGINgPT3jXoYNCEko49AMr7DB6M7",
-   "nome": "A7409876.jpg",
-   "tipo": "foto",
-   "cliente": "Vitrinni",
-   "mes": "2026-11",
-   "pasta": "1fCQ_eoOoCc9nUeQf0wI1lHOTZhJsLk9A"
-  },
-  {
-   "id": "1fn03k7G276CWQSc9kzKn6-KpOtT8ctIo",
-   "nome": "A7409881.jpg",
-   "tipo": "foto",
-   "cliente": "Vitrinni",
-   "mes": "2026-11",
-   "pasta": "1fCQ_eoOoCc9nUeQf0wI1lHOTZhJsLk9A"
-  },
-  {
-   "id": "11DhlWP9uVv0u92HfsI6ZmdsuOZR1irnu",
-   "nome": "A7409833.jpg",
-   "tipo": "foto",
-   "cliente": "Vitrinni",
-   "mes": "2026-11",
-   "pasta": "1fCQ_eoOoCc9nUeQf0wI1lHOTZhJsLk9A"
-  },
-  {
-   "id": "1c2Z-LRiaIlBY6-gQvAUvvtwVNSOd8klg",
-   "nome": "A7409879.jpg",
-   "tipo": "foto",
-   "cliente": "Vitrinni",
-   "mes": "2026-11",
-   "pasta": "1fCQ_eoOoCc9nUeQf0wI1lHOTZhJsLk9A"
-  },
-  {
-   "id": "1j3mEsLuAale0DGY3nAy-lo6ooeXX8zDH",
-   "nome": "A7409889.jpg",
-   "tipo": "foto",
-   "cliente": "Vitrinni",
-   "mes": "2026-11",
-   "pasta": "1fCQ_eoOoCc9nUeQf0wI1lHOTZhJsLk9A"
-  },
-  {
-   "id": "1E--u_WQeSbbSYVvxS4lkCnePIqwTC1HD",
-   "nome": "A7409892.jpg",
-   "tipo": "foto",
-   "cliente": "Vitrinni",
-   "mes": "2026-11",
-   "pasta": "1fCQ_eoOoCc9nUeQf0wI1lHOTZhJsLk9A"
-  },
-  {
-   "id": "1aKfLKhxwFOBiPqJgguMo7fNodn6xmW5s",
-   "nome": "F. Vitrinni - Uma coisa leva a outra - V.2.mov",
-   "tipo": "video",
-   "cliente": "Vitrinni",
-   "mes": "2026-08",
-   "pasta": "1CD44Z0LOh0bPifuCsTJrnf00K6ta1qvj"
-  },
-  {
-   "id": "1ySNgfQZnYXQLxl-UCixXuEjwht3jcDd2",
-   "nome": "F. Vitrinni - Setembro Amarelo - V.2.mp4",
-   "tipo": "video",
-   "cliente": "Vitrinni",
-   "mes": "2026-09",
-   "pasta": "1VQJQMn5TRFHmmLHcw-9s5sDiMVWu8oeR"
-  },
-  {
-   "id": "1n0nqXqmao3rCPZqawItxZszboR_oXEDK",
-   "nome": "F. Vitrinni - Vitrinni Kids - V.3.mov",
-   "tipo": "video",
-   "cliente": "Vitrinni",
-   "mes": "2026-08",
-   "pasta": "1CD44Z0LOh0bPifuCsTJrnf00K6ta1qvj"
-  },
-  {
-   "id": "1EWwgvT7z2WWNG5fvhFQnMsV2Lw5-hhPX",
-   "nome": "F. Vitrinni - Dia do Cliente - V.2.mp4",
-   "tipo": "video",
-   "cliente": "Vitrinni",
-   "mes": "2026-08",
-   "pasta": "1CD44Z0LOh0bPifuCsTJrnf00K6ta1qvj"
-  },
-  {
-   "id": "16hgjX-IWelB0tLDealyZBjpzz6X2Qjnl",
-   "nome": "F. Educriarte - Rematrícula 2 - Tia Léia - V.3.mov",
-   "tipo": "video",
-   "cliente": "EduCriarte",
-   "mes": "2025-11",
-   "pasta": "1oFO3So0gVWVuuIm2mp4nWxyIwjBjOTpl"
-  },
-  {
-   "id": "1chVQzRmKAEGcWYaodrh_fetD3cVwObsx",
-   "nome": "F. EduCriarte - Rematrícula - Tia Léia - V.3.mov",
-   "tipo": "video",
-   "cliente": "EduCriarte",
-   "mes": "2025-10",
-   "pasta": "1SvhBfGAJO4xhr560Mg9oF36Bgyh8r1Un"
-  },
-  {
-   "id": "1EAjAMX2zTBE6-t2TzlI523Bx05mQXwag",
-   "nome": "F. Óptica Premium - Destino Final - Luiz - V.1.mp4",
-   "tipo": "video",
-   "cliente": "Óptica Premium",
-   "mes": "2026-01",
-   "pasta": "1pQs7NVp5XaAyeMx8exAF2-JSWjKAzsS8"
-  },
-  {
-   "id": "1KiM8UYJVctf9IYbpGBMOWAXokanm3XS3",
-   "nome": "F.Vitrinni - Papai Noel Descendo. V.1.mov",
-   "tipo": "video",
-   "cliente": "Vitrinni",
-   "mes": "2026-11",
-   "pasta": "1fCQ_eoOoCc9nUeQf0wI1lHOTZhJsLk9A"
-  },
-  {
-   "id": "1UlS-E2XoTXSK_TYJr_ljCEszsi0Ncqg6",
-   "nome": "F. Vitrinni - Green Friday 2 - V.2.mov",
-   "tipo": "video",
-   "cliente": "Vitrinni",
-   "mes": "2026-11",
-   "pasta": "1fCQ_eoOoCc9nUeQf0wI1lHOTZhJsLk9A"
-  },
-  {
-   "id": "1eSAPgk0Nlukok-opfYpW89p3hUltCOCp",
-   "nome": "F. Vitrinni - Doce Natal VTS - V.1.mov",
-   "tipo": "video",
-   "cliente": "Vitrinni",
-   "mes": "2026-11",
-   "pasta": "1fCQ_eoOoCc9nUeQf0wI1lHOTZhJsLk9A"
-  },
-  {
-   "id": "1kQ5_CVodRLF2dnJor2YzdCuoRPB7xPvj",
-   "nome": "F. Vitrinni - Green Friday 1 - V.1.mov",
-   "tipo": "video",
-   "cliente": "Vitrinni",
-   "mes": "2026-11",
-   "pasta": "1fCQ_eoOoCc9nUeQf0wI1lHOTZhJsLk9A"
-  },
-  {
-   "id": "19CJSetLTLr3_qu_GNYi0Wq2wvE0kX3ec",
-   "nome": "F. Vitrinni - Como chegar - V.4.mp4",
-   "tipo": "video",
-   "cliente": "Vitrinni",
-   "mes": "2026-09",
-   "pasta": "1VQJQMn5TRFHmmLHcw-9s5sDiMVWu8oeR"
-  },
-  {
-   "id": "1zCPB0DmpzPNxUZToKVLyWOL9DegbKcXD",
-   "nome": "F. Vitrinni - Algoritmo Vitrinni - V.6.mov",
-   "tipo": "video",
-   "cliente": "Vitrinni",
-   "mes": "2026-09",
-   "pasta": "1VQJQMn5TRFHmmLHcw-9s5sDiMVWu8oeR"
-  },
-  {
-   "id": "1noBsa-WDcrWL5xhwPzTEeEtnj533TT1y",
-   "nome": "F. Vitrinni - Dia das Crianças - V.3.mp4",
-   "tipo": "video",
-   "cliente": "Vitrinni",
-   "mes": "2026-09",
-   "pasta": "1VQJQMn5TRFHmmLHcw-9s5sDiMVWu8oeR"
-  },
-  {
-   "id": "14iPF9wIe6G68HSyGfHjB0PLVJOFV3L9b",
-   "nome": "F. Vitrinni - Dia do Veterinário. V.6.mp4",
-   "tipo": "video",
-   "cliente": "Vitrinni",
-   "mes": "2026-08",
-   "pasta": "1CD44Z0LOh0bPifuCsTJrnf00K6ta1qvj"
-  },
-  {
-   "id": "1jSwR3oPuhqy9hexvOv0io2kK6UCo7eVf",
-   "nome": "F. Scalercio - Cobertura The Prime - V.1.mov",
-   "tipo": "video",
-   "cliente": "Scalercio",
-   "mes": "2026-11",
-   "pasta": "1Knkyhnr-fEvwv3fyC_UFswA2CWzX69wj"
-  },
-  {
-   "id": "1MwlB2k3P2gFy9o8VcWsNaYkrBqlixfch",
-   "nome": "F. Scalercio - Casa Samambaia - V.1.mov",
-   "tipo": "video",
-   "cliente": "Scalercio",
-   "mes": "2026-11",
-   "pasta": "1Knkyhnr-fEvwv3fyC_UFswA2CWzX69wj"
-  },
-  {
-   "id": "1uKhGnc_doC0jUXo-Y_xWuHjuP1gK70Ke",
-   "nome": "Scalercio_2.jpg",
-   "tipo": "foto",
-   "cliente": "Scalercio",
-   "mes": "2026-09",
-   "pasta": "1kzWrH8TwkUzDu4nO2xgmIUkg1AnuW2Qm"
-  },
-  {
-   "id": "1G0ph0ZRAzTz5oTW9P5tv2KHYKruth99B",
-   "nome": "Scalercio.jpg",
-   "tipo": "foto",
-   "cliente": "Scalercio",
-   "mes": "2026-09",
-   "pasta": "1kzWrH8TwkUzDu4nO2xgmIUkg1AnuW2Qm"
-  },
-  {
-   "id": "1BaekLMe3wryv2wrQehoUx-cTdBNhN_CD",
-   "nome": "Scalercio_1.jpg",
-   "tipo": "foto",
-   "cliente": "Scalercio",
-   "mes": "2026-09",
-   "pasta": "1kzWrH8TwkUzDu4nO2xgmIUkg1AnuW2Qm"
-  },
-  {
-   "id": "14YWOA_V3TXYI_rXa3FWZjeNc0C0XjJNA",
-   "nome": "F. Scalercio - Locação em Àguas Claras. V.2.mov",
-   "tipo": "video",
-   "cliente": "Scalercio",
-   "mes": "2026-09",
-   "pasta": "1kzWrH8TwkUzDu4nO2xgmIUkg1AnuW2Qm"
-  },
-  {
-   "id": "1uO7d8TVMEVMlO22Rp2nOZKZnhBQzWlKf",
-   "nome": "F. Scalercio - Quem olha para  Àguas Claras. V.2.mov",
-   "tipo": "video",
-   "cliente": "Scalercio",
-   "mes": "2026-09",
-   "pasta": "1kzWrH8TwkUzDu4nO2xgmIUkg1AnuW2Qm"
-  },
-  {
-   "id": "1gNnRmzVP52Uo20tl3i7hnCrpePbeYhol",
-   "nome": "F. Scalercio - Casa Riacho 1. V.4.mov",
-   "tipo": "video",
-   "cliente": "Scalercio",
-   "mes": "2026-08",
-   "pasta": "1L-A353AdVu0kILyktUZKvbACVuqK73wA"
-  },
-  {
-   "id": "1nraBqy6c-_2h_fOdBfISGdfXzohvoI-D",
-   "nome": "F. Scalercio - 2° Lote ParkWay - V.1.mov",
-   "tipo": "video",
-   "cliente": "Scalercio",
-   "mes": "2026-07",
-   "pasta": "11hXNXpJfhWa00kKOSXrzN5OL9TZPBrSg"
-  },
-  {
-   "id": "1IYPis9tEd-pu2KURI3p5yTSwlx3pjJgI",
-   "nome": "F. Scalercio - 3 Lojas - V.2.mov",
-   "tipo": "video",
-   "cliente": "Scalercio",
-   "mes": "2026-07",
-   "pasta": "11hXNXpJfhWa00kKOSXrzN5OL9TZPBrSg"
-  },
-  {
-   "id": "1cvVlfPuEIwbsFu-KVrIb-ynkURXzswxe",
-   "nome": "F. Cobertura Absoluta - Scalercio - V.1.mov",
-   "tipo": "video",
-   "cliente": "Scalercio",
-   "mes": "2026-08",
-   "pasta": "1L-A353AdVu0kILyktUZKvbACVuqK73wA"
-  },
-  {
-   "id": "1bBTj8x5ku98_iwfCWV9BcBpp84y82V98",
-   "nome": "F. Scalercio - Sobrado Sam - V.2.mov",
-   "tipo": "video",
-   "cliente": "Scalercio",
-   "mes": "2026-06",
-   "pasta": "1bzsPVjsFwgqFvpvTi-67GjqHgNB8cwu_"
-  },
-  {
-   "id": "1mCJSC9hE25kCCOF8kLkGQX0D4tM0uYLy",
-   "nome": "F. Scalercio - Lote ParkWay - V.2.mov",
-   "tipo": "video",
-   "cliente": "Scalercio",
-   "mes": "2026-06",
-   "pasta": "1bzsPVjsFwgqFvpvTi-67GjqHgNB8cwu_"
-  },
-  {
-   "id": "14cNBudsvLVxVBfhlAc4pTDM9cS2ymK43",
-   "nome": "F. Scalercio - Endereço Certo Vitrinni - V.1.mov",
-   "tipo": "video",
-   "cliente": "Scalercio",
-   "mes": "2026-06",
-   "pasta": "1bzsPVjsFwgqFvpvTi-67GjqHgNB8cwu_"
-  },
-  {
-   "id": "1qcpwz8kPRIe4Fdip60wbrMJiwvru6abL",
-   "nome": "F. Scalercio - Le Ville Residence - V.2.mov",
-   "tipo": "video",
-   "cliente": "Scalercio",
    "mes": "2026-05",
-   "pasta": "1FatL25ZFA4ZDYSy7Aj-QGl5hebwbDkAc"
+   "pasta": "1IrC2jA1zIwjZqHNw46JwLOg2z3VzADbu"
   },
   {
-   "id": "1wpcoWR_vhyvcCN8yJhjtLC2Zj0iEfZwz",
-   "nome": "F. Scalercio - Mauá. V.01.mov",
+   "id": "1zzJy3RFmyxe9y_h0Bj83Vi7P5wMSiW3n",
+   "nome": "F. Liberty - Certificações - V.3.mov",
    "tipo": "video",
-   "cliente": "Scalercio",
+   "cliente": "Liberty",
    "mes": "2026-05",
-   "pasta": "1FatL25ZFA4ZDYSy7Aj-QGl5hebwbDkAc"
+   "pasta": "1IrC2jA1zIwjZqHNw46JwLOg2z3VzADbu"
   },
   {
    "id": "1JkvOouq2pqYU5C88SUSoUoUfXKx1LTUw",
    "nome": "Le Ville Residence-24.jpg",
-   "tipo": "foto",
-   "cliente": "Scalercio",
-   "mes": "2026-05",
-   "pasta": "1FatL25ZFA4ZDYSy7Aj-QGl5hebwbDkAc"
-  },
-  {
-   "id": "1tE81gqKyHkIJp_JB3nIni-V5uj4EEa4z",
-   "nome": "Le Ville Residence-21.jpg",
    "tipo": "foto",
    "cliente": "Scalercio",
    "mes": "2026-05",
@@ -1216,176 +1768,352 @@
    "pasta": "1FatL25ZFA4ZDYSy7Aj-QGl5hebwbDkAc"
   },
   {
-   "id": "19Bg7fKqy2Bz4h9fS61Cj5rBJsASYAbAM",
-   "nome": "F. Scalercio - Res Montparnasse. V.1.mov",
+   "id": "1qcpwz8kPRIe4Fdip60wbrMJiwvru6abL",
+   "nome": "F. Scalercio - Le Ville Residence - V.2.mov",
    "tipo": "video",
    "cliente": "Scalercio",
-   "mes": "2026-04",
-   "pasta": "1NQ09ChESE5TLyHZBkT4Pu0mHpF5Acew_"
+   "mes": "2026-05",
+   "pasta": "1FatL25ZFA4ZDYSy7Aj-QGl5hebwbDkAc"
   },
   {
-   "id": "1Fs-Jqx9wKCTvZvvocdV-sBEr43kq8H_F",
-   "nome": "F. Scalercio - Ouro Branco VI - Ap2 - V.2.mov",
+   "id": "1tE81gqKyHkIJp_JB3nIni-V5uj4EEa4z",
+   "nome": "Le Ville Residence-21.jpg",
+   "tipo": "foto",
+   "cliente": "Scalercio",
+   "mes": "2026-05",
+   "pasta": "1FatL25ZFA4ZDYSy7Aj-QGl5hebwbDkAc"
+  },
+  {
+   "id": "1wpcoWR_vhyvcCN8yJhjtLC2Zj0iEfZwz",
+   "nome": "F. Scalercio - Mauá. V.01.mov",
    "tipo": "video",
    "cliente": "Scalercio",
-   "mes": "2026-02",
-   "pasta": "1Ey2mxJHIiIJACP9p8LXXs-jRvELpcW7g"
+   "mes": "2026-05",
+   "pasta": "1FatL25ZFA4ZDYSy7Aj-QGl5hebwbDkAc"
   },
   {
-   "id": "1euZQllbJQAXdWlDPjokhRHse0KL0iLRX",
-   "nome": "F. Scalercio - Apartamento - Meet - V.2.mov",
+   "id": "1OL0ZZ3_RcxgGCZqMBxgF7TRxn7JtaTVr",
+   "nome": "Valen Fotos_1.jpg",
+   "tipo": "foto",
+   "cliente": "Valen Beauty",
+   "mes": "2026-05",
+   "pasta": "1dE-7xxluFRxNbtN1BXlsC2aLKMFWfWlH"
+  },
+  {
+   "id": "1OwdA29Udc1kxaT_XZIC2wvKxGdNBvrQa",
+   "nome": "Q. Valen Bauty - GRWM. v.2.mov",
+   "tipo": "video",
+   "cliente": "Valen Beauty",
+   "mes": "2026-05",
+   "pasta": "1dE-7xxluFRxNbtN1BXlsC2aLKMFWfWlH"
+  },
+  {
+   "id": "1PHg7nEU5p6M950R6QARuK2elhKeREwv1",
+   "nome": "Valen Fotos_2.jpg",
+   "tipo": "foto",
+   "cliente": "Valen Beauty",
+   "mes": "2026-05",
+   "pasta": "1dE-7xxluFRxNbtN1BXlsC2aLKMFWfWlH"
+  },
+  {
+   "id": "1UQghXwT-JEr_5E2jZpHiuvApfOJJ0zUZ",
+   "nome": "Valen Fotos_4.jpg",
+   "tipo": "foto",
+   "cliente": "Valen Beauty",
+   "mes": "2026-05",
+   "pasta": "1dE-7xxluFRxNbtN1BXlsC2aLKMFWfWlH"
+  },
+  {
+   "id": "1Xd9TNTckv47tioGZyeV9NxOsOY351wJy",
+   "nome": "Valen Fotos_5.jpg",
+   "tipo": "foto",
+   "cliente": "Valen Beauty",
+   "mes": "2026-05",
+   "pasta": "1dE-7xxluFRxNbtN1BXlsC2aLKMFWfWlH"
+  },
+  {
+   "id": "1aa0OKuVHrlLvP44mhW1d0aQuW74IDWUj",
+   "nome": "Valen Fotos.jpg",
+   "tipo": "foto",
+   "cliente": "Valen Beauty",
+   "mes": "2026-05",
+   "pasta": "1dE-7xxluFRxNbtN1BXlsC2aLKMFWfWlH"
+  },
+  {
+   "id": "1detXscX8WaTOrGEoJWeSJoAhDn-QojU7",
+   "nome": "Valen Fotos_3.jpg",
+   "tipo": "foto",
+   "cliente": "Valen Beauty",
+   "mes": "2026-05",
+   "pasta": "1dE-7xxluFRxNbtN1BXlsC2aLKMFWfWlH"
+  },
+  {
+   "id": "18pV77CaTF3Ze2uht_uhqBVfsLtogvnbO",
+   "nome": "FX301015.jpg",
+   "tipo": "foto",
+   "cliente": "Vitrinni",
+   "mes": "2026-05",
+   "pasta": "1t9JVvdPN4ykQcesVWkKvXYfhpA0BFfec"
+  },
+  {
+   "id": "1H8wZ-quGz8F0pcVAp09eJpNenrk94V76",
+   "nome": "F. Vitrinni - Cabe Aqui 2. V.1.mov",
+   "tipo": "video",
+   "cliente": "Vitrinni",
+   "mes": "2026-05",
+   "pasta": "1t9JVvdPN4ykQcesVWkKvXYfhpA0BFfec"
+  },
+  {
+   "id": "1HmB3KZdrLXIyFSCJTqONotjELltyp_dl",
+   "nome": "FX300996.jpg",
+   "tipo": "foto",
+   "cliente": "Vitrinni",
+   "mes": "2026-05",
+   "pasta": "1t9JVvdPN4ykQcesVWkKvXYfhpA0BFfec"
+  },
+  {
+   "id": "1KoD8NlkN5P3YKax2k7xCKm5ywY66xIO4",
+   "nome": "FX300997.jpg",
+   "tipo": "foto",
+   "cliente": "Vitrinni",
+   "mes": "2026-05",
+   "pasta": "1t9JVvdPN4ykQcesVWkKvXYfhpA0BFfec"
+  },
+  {
+   "id": "1WBX_5xXkPyhVn0ohxYSvbpeiPhtrmBDu",
+   "nome": "FX301027.jpg",
+   "tipo": "foto",
+   "cliente": "Vitrinni",
+   "mes": "2026-05",
+   "pasta": "1t9JVvdPN4ykQcesVWkKvXYfhpA0BFfec"
+  },
+  {
+   "id": "1Wf2MoGkgsVBzS_llSMbqND6tgcLq7RWy",
+   "nome": "F. Vitrini - Santina. V.1.mov",
+   "tipo": "video",
+   "cliente": "Vitrinni",
+   "mes": "2026-05",
+   "pasta": "1t9JVvdPN4ykQcesVWkKvXYfhpA0BFfec"
+  },
+  {
+   "id": "1Y_m6W5agiLZsQRlLXCt8ryd3yJJ5DAGe",
+   "nome": "F. Vitrini - Rota da Beleza. V.1.mov",
+   "tipo": "video",
+   "cliente": "Vitrinni",
+   "mes": "2026-05",
+   "pasta": "1t9JVvdPN4ykQcesVWkKvXYfhpA0BFfec"
+  },
+  {
+   "id": "1YdU567Z5IISc2alpps1ksK_R63WNuwDM",
+   "nome": "F. Vitrini - Dia dos Namorados. V.1.mov",
+   "tipo": "video",
+   "cliente": "Vitrinni",
+   "mes": "2026-05",
+   "pasta": "1t9JVvdPN4ykQcesVWkKvXYfhpA0BFfec"
+  },
+  {
+   "id": "13doZZhbmKIpygVrqen6Whin7j3FNDm0A",
+   "nome": "A7405452.jpg",
+   "tipo": "foto",
+   "cliente": "Óptica Premium",
+   "mes": "2026-05",
+   "pasta": "18NlwgnbYyanaLX3YXepPTQsCG1eVM9_c"
+  },
+  {
+   "id": "17La9nQP6l-YHDO1lFhpBP__Eg7F2JI7s",
+   "nome": "A7405465.jpg",
+   "tipo": "foto",
+   "cliente": "Óptica Premium",
+   "mes": "2026-05",
+   "pasta": "18NlwgnbYyanaLX3YXepPTQsCG1eVM9_c"
+  },
+  {
+   "id": "1BMXO4V8gmbCFYWER_XLhL-3gaOoiIzLa",
+   "nome": "A7405468.jpg",
+   "tipo": "foto",
+   "cliente": "Óptica Premium",
+   "mes": "2026-05",
+   "pasta": "18NlwgnbYyanaLX3YXepPTQsCG1eVM9_c"
+  },
+  {
+   "id": "1TPl0moKJWHo5OsGhIVFE2ER0put47ExS",
+   "nome": "A7405463.jpg",
+   "tipo": "foto",
+   "cliente": "Óptica Premium",
+   "mes": "2026-05",
+   "pasta": "18NlwgnbYyanaLX3YXepPTQsCG1eVM9_c"
+  },
+  {
+   "id": "1W4LrYlKJYHQ2Ahd84uqBBxLzI4CtZf7P",
+   "nome": "A7405440.jpg",
+   "tipo": "foto",
+   "cliente": "Óptica Premium",
+   "mes": "2026-05",
+   "pasta": "18NlwgnbYyanaLX3YXepPTQsCG1eVM9_c"
+  },
+  {
+   "id": "1dk41PgD8bCzO0sOxnul1VICZQ0w0bVHP",
+   "nome": "A7405467.jpg",
+   "tipo": "foto",
+   "cliente": "Óptica Premium",
+   "mes": "2026-05",
+   "pasta": "18NlwgnbYyanaLX3YXepPTQsCG1eVM9_c"
+  },
+  {
+   "id": "1iWLcGiOnhlMn2tNJUnXlZVBMnVZ3IPm6",
+   "nome": "A7405389.jpg",
+   "tipo": "foto",
+   "cliente": "Óptica Premium",
+   "mes": "2026-05",
+   "pasta": "18NlwgnbYyanaLX3YXepPTQsCG1eVM9_c"
+  },
+  {
+   "id": "1kxaBTcyIjk6n3iQ0tnLhS3VQxpIDxg_q",
+   "nome": "A7405453.jpg",
+   "tipo": "foto",
+   "cliente": "Óptica Premium",
+   "mes": "2026-05",
+   "pasta": "18NlwgnbYyanaLX3YXepPTQsCG1eVM9_c"
+  },
+  {
+   "id": "1nzhmxezpcaRCIain22g_XCZQNvwdmYbs",
+   "nome": "F. Óptica Premium - Dia dos Namorados. V.1.mov",
+   "tipo": "video",
+   "cliente": "Óptica Premium",
+   "mes": "2026-05",
+   "pasta": "18NlwgnbYyanaLX3YXepPTQsCG1eVM9_c"
+  },
+  {
+   "id": "1rdMstLtGM1iaZp82ecc0iXA15uwpATOl",
+   "nome": "A7405435.jpg",
+   "tipo": "foto",
+   "cliente": "Óptica Premium",
+   "mes": "2026-05",
+   "pasta": "18NlwgnbYyanaLX3YXepPTQsCG1eVM9_c"
+  },
+  {
+   "id": "1umAUczfPyeX6VZ4EL9fONtR1EUo8RN74",
+   "nome": "A7405447.jpg",
+   "tipo": "foto",
+   "cliente": "Óptica Premium",
+   "mes": "2026-05",
+   "pasta": "18NlwgnbYyanaLX3YXepPTQsCG1eVM9_c"
+  },
+  {
+   "id": "186Lu1ij1gtP-7lUGscrD_PuYbWZH03ug",
+   "nome": "F. ArestAgência - IGG ODS - 13.jpg",
+   "tipo": "foto",
+   "cliente": "IGG",
+   "mes": "2026-06",
+   "pasta": "1HGsyAcFpprONkmvdbOiC2sEDOMMnfoB3"
+  },
+  {
+   "id": "19zGO--FeajCTRIFaqdVl00sIcwqKl4ZE",
+   "nome": "F. IGG - Maria Paula Vd 02 - Horizontal. V.1.mov",
+   "tipo": "video",
+   "cliente": "IGG",
+   "mes": "2026-06",
+   "pasta": "1HGsyAcFpprONkmvdbOiC2sEDOMMnfoB3"
+  },
+  {
+   "id": "1K9UJabKky8Ge8f3opvDL0iNhTEvH5Hxs",
+   "nome": "F. ArestAgência - IGG ODS - 11.jpg",
+   "tipo": "foto",
+   "cliente": "IGG",
+   "mes": "2026-06",
+   "pasta": "1HGsyAcFpprONkmvdbOiC2sEDOMMnfoB3"
+  },
+  {
+   "id": "1XsIb-0jPuvKYHnyCs1jdG7r_ND_AanoB",
+   "nome": "F. ArestAgência - IGG ODS - 12.jpg",
+   "tipo": "foto",
+   "cliente": "IGG",
+   "mes": "2026-06",
+   "pasta": "1HGsyAcFpprONkmvdbOiC2sEDOMMnfoB3"
+  },
+  {
+   "id": "1j-W_alojtRciMJ3HGQzJdHYV65FWSScC",
+   "nome": "F. IGG - ODS - V.2.mov",
+   "tipo": "video",
+   "cliente": "IGG",
+   "mes": "2026-06",
+   "pasta": "1HGsyAcFpprONkmvdbOiC2sEDOMMnfoB3"
+  },
+  {
+   "id": "1mSvuSWZB_zh4AYnqChsGJuXzEmrARD0s",
+   "nome": "F. IGG - Maria Paula Vd 02. V.1.mov",
+   "tipo": "video",
+   "cliente": "IGG",
+   "mes": "2026-06",
+   "pasta": "1HGsyAcFpprONkmvdbOiC2sEDOMMnfoB3"
+  },
+  {
+   "id": "1teDMSvR3TUElYqkZwxMOMKexfoCCcHfM",
+   "nome": "F. ArestAgência - IGG ODS - 14.jpg",
+   "tipo": "foto",
+   "cliente": "IGG",
+   "mes": "2026-06",
+   "pasta": "1HGsyAcFpprONkmvdbOiC2sEDOMMnfoB3"
+  },
+  {
+   "id": "1vjbS-kT6dXlU7YlgSQ7FJRZmDKxhmn_3",
+   "nome": "F. IGG - ODS - Horizontal - V.1.mov",
+   "tipo": "video",
+   "cliente": "IGG",
+   "mes": "2026-06",
+   "pasta": "1HGsyAcFpprONkmvdbOiC2sEDOMMnfoB3"
+  },
+  {
+   "id": "14cNBudsvLVxVBfhlAc4pTDM9cS2ymK43",
+   "nome": "F. Scalercio - Endereço Certo Vitrinni - V.1.mov",
    "tipo": "video",
    "cliente": "Scalercio",
-   "mes": "2026-02",
-   "pasta": "1Ey2mxJHIiIJACP9p8LXXs-jRvELpcW7g"
+   "mes": "2026-06",
+   "pasta": "1bzsPVjsFwgqFvpvTi-67GjqHgNB8cwu_"
   },
   {
-   "id": "1SgLwkqc56ApflQc3J8qKOMmJ15XMAYnJ",
-   "nome": "F. Scalercio - Taguatinga Centro - Marcus - V.1.mov",
+   "id": "1bBTj8x5ku98_iwfCWV9BcBpp84y82V98",
+   "nome": "F. Scalercio - Sobrado Sam - V.2.mov",
    "tipo": "video",
    "cliente": "Scalercio",
-   "mes": "2026-03",
-   "pasta": "1vX6jDbmRjVQvOjr2aN7LIU1_eyG3x3jj"
+   "mes": "2026-06",
+   "pasta": "1bzsPVjsFwgqFvpvTi-67GjqHgNB8cwu_"
   },
   {
-   "id": "1-Ghi7ZdHvZy5r8MEP73Q9DwLMsPhBvy6",
-   "nome": "F. Scalercio - Vitrinni Shopping - Marcus - V.1.mov",
+   "id": "1mCJSC9hE25kCCOF8kLkGQX0D4tM0uYLy",
+   "nome": "F. Scalercio - Lote ParkWay - V.2.mov",
    "tipo": "video",
    "cliente": "Scalercio",
-   "mes": "2026-03",
-   "pasta": "1vX6jDbmRjVQvOjr2aN7LIU1_eyG3x3jj"
+   "mes": "2026-06",
+   "pasta": "1bzsPVjsFwgqFvpvTi-67GjqHgNB8cwu_"
   },
   {
-   "id": "1x1whJUdFDdRr7F8lA4qAUiDFhkjwYrot",
-   "nome": "F. Scalercio. Compromisso com nome. Marcos. V.2.mov",
-   "tipo": "video",
-   "cliente": "Scalercio",
-   "mes": "2026-01",
-   "pasta": "1AQ1iQ2UAWl10TMflVNfQlrxAnyQmoMkm"
-  },
-  {
-   "id": "16OdJWjSMhsVxZZLyNq-kUHXzw9cs5JHv",
-   "nome": "F. Scalercio. Park Avenue. Geral. V1.mov",
-   "tipo": "video",
-   "cliente": "Scalercio",
-   "mes": "2026-01",
-   "pasta": "1AQ1iQ2UAWl10TMflVNfQlrxAnyQmoMkm"
-  },
-  {
-   "id": "1XA_0mO0IfEKIP_sD125elrH1k722cn-j",
-   "nome": "Dia das Crianças.jpg",
-   "tipo": "foto",
-   "cliente": "Valen Beauty",
-   "mes": "2026-09",
-   "pasta": "1raC56BEvrMF1jpGaO3xAeUHSxRTbWYHK"
-  },
-  {
-   "id": "17ltZWTnwMkl-M6u8zycFmsDKZMMH_yWe",
-   "nome": "F. Valen - Dia das Crianças - V.2.mp4",
+   "id": "19F55b4hR6FRyYXDXH5BTn-AGDv6B201B",
+   "nome": "F. Valen - Site - V.4.mov",
    "tipo": "video",
    "cliente": "Valen Beauty",
-   "mes": "2026-09",
-   "pasta": "1raC56BEvrMF1jpGaO3xAeUHSxRTbWYHK"
-  },
-  {
-   "id": "1lE0xYGORhn9_DXBawVGRWaiEJ_Lh49vB",
-   "nome": "Foto_1.9.1.jpg",
-   "tipo": "foto",
-   "cliente": "Valen Beauty",
-   "mes": "2026-09",
-   "pasta": "1raC56BEvrMF1jpGaO3xAeUHSxRTbWYHK"
-  },
-  {
-   "id": "19pb8tK5MXm0eiZxtd2Q0Cgk6ujJAXTTV",
-   "nome": "FX301220.jpg",
-   "tipo": "foto",
-   "cliente": "Valen Beauty",
-   "mes": "2026-08",
-   "pasta": "1I-SvWrIZ4piOlksMTRBnys8jPc2aCCS7"
-  },
-  {
-   "id": "1YA0bgJ5Ten6-G-J4xI2x0F_Wa2KbKXzm",
-   "nome": "F. Valen - Quando Sua Filha Ama Maquiagem - V.2.mp4",
-   "tipo": "video",
-   "cliente": "Valen Beauty",
-   "mes": "2026-09",
-   "pasta": "1raC56BEvrMF1jpGaO3xAeUHSxRTbWYHK"
-  },
-  {
-   "id": "1CW7PwMAXnbsiBfhOG2nEZljOpeL2y8Ey",
-   "nome": "FX301223.jpg",
-   "tipo": "foto",
-   "cliente": "Valen Beauty",
-   "mes": "2026-08",
-   "pasta": "1I-SvWrIZ4piOlksMTRBnys8jPc2aCCS7"
-  },
-  {
-   "id": "1dL89fBYomvMwgywQlSFdV31aYYiAuZT7",
-   "nome": "FX301221.jpg",
-   "tipo": "foto",
-   "cliente": "Valen Beauty",
-   "mes": "2026-08",
-   "pasta": "1I-SvWrIZ4piOlksMTRBnys8jPc2aCCS7"
-  },
-  {
-   "id": "1IQpJnpjS_lAsmrPBH66rHUweN5TwzdUD",
-   "nome": "FX301219.jpg",
-   "tipo": "foto",
-   "cliente": "Valen Beauty",
-   "mes": "2026-08",
-   "pasta": "1I-SvWrIZ4piOlksMTRBnys8jPc2aCCS7"
-  },
-  {
-   "id": "1-o1b-6ZqTKsX31Z4pTbKG9-6YiTMtjpD",
-   "nome": "FX301229.jpg",
-   "tipo": "foto",
-   "cliente": "Valen Beauty",
-   "mes": "2026-08",
-   "pasta": "1I-SvWrIZ4piOlksMTRBnys8jPc2aCCS7"
-  },
-  {
-   "id": "1whEAHPDrKRzaGN-u6oxVqGc_fQ1WP96H",
-   "nome": "Q. Valen - Tik Tok Shop - V.5.mov",
-   "tipo": "video",
-   "cliente": "Valen Beauty",
-   "mes": "2026-08",
-   "pasta": "1I-SvWrIZ4piOlksMTRBnys8jPc2aCCS7"
-  },
-  {
-   "id": "180BzO8zHsOSyMoaPyp_9HAGuSMk4kA-v",
-   "nome": "Q. Valen Beauty - Pink Pie x Salt Caramel - V.7.mov",
-   "tipo": "video",
-   "cliente": "Valen Beauty",
-   "mes": "2026-08",
-   "pasta": "1I-SvWrIZ4piOlksMTRBnys8jPc2aCCS7"
-  },
-  {
-   "id": "1NAZC0oCXmZE0Dvu01QOkM7GveXLyxde4",
-   "nome": "A7407208.jpg",
-   "tipo": "foto",
-   "cliente": "Valen Beauty",
-   "mes": "2026-07",
-   "pasta": "1d9D9p7A5KyrUEmvk3ZgalDebjnb8NL3m"
-  },
-  {
-   "id": "1rMkYiJdUWlMkhFFUdv39S4HxHsbOdVLG",
-   "nome": "A7407159.jpg",
-   "tipo": "foto",
-   "cliente": "Valen Beauty",
-   "mes": "2026-07",
-   "pasta": "1d9D9p7A5KyrUEmvk3ZgalDebjnb8NL3m"
-  },
-  {
-   "id": "1oI-mhN18w0a55JNunpbdnPS8rA7gt-6o",
-   "nome": "A7407153.jpg",
-   "tipo": "foto",
-   "cliente": "Valen Beauty",
-   "mes": "2026-07",
-   "pasta": "1d9D9p7A5KyrUEmvk3ZgalDebjnb8NL3m"
+   "mes": "2026-06",
+   "pasta": "1PA1-7K9PETlL07D7RXRSzpe5ZKEkXsk2"
   },
   {
    "id": "1I84Ma0nlH7PVFWhG-S8sU4ZVV3w-3gJR",
    "nome": "A7406230.jpg",
+   "tipo": "foto",
+   "cliente": "Valen Beauty",
+   "mes": "2026-06",
+   "pasta": "1PA1-7K9PETlL07D7RXRSzpe5ZKEkXsk2"
+  },
+  {
+   "id": "1MiANePo2GLvyOf0uuoIfJNuwdZk_EuvD",
+   "nome": "Q. ValenBeauty - Pink x Caramel - Valen - V.2.mov",
+   "tipo": "video",
+   "cliente": "Valen Beauty",
+   "mes": "2026-06",
+   "pasta": "1PA1-7K9PETlL07D7RXRSzpe5ZKEkXsk2"
+  },
+  {
+   "id": "1byOxUpf3OD2QtLB4ITCWReTFeHNDmQ7W",
+   "nome": "A7406238.jpg",
    "tipo": "foto",
    "cliente": "Valen Beauty",
    "mes": "2026-06",
@@ -1400,96 +2128,632 @@
    "pasta": "1PA1-7K9PETlL07D7RXRSzpe5ZKEkXsk2"
   },
   {
-   "id": "1byOxUpf3OD2QtLB4ITCWReTFeHNDmQ7W",
-   "nome": "A7406238.jpg",
+   "id": "1GIB0_nRWU3bxl1xopuaheDAL9VcPw3rr",
+   "nome": "F. Vitrinni. Campanha Dia Dos Pais 01. V.8.mp4",
+   "tipo": "video",
+   "cliente": "Vitrinni",
+   "mes": "2026-06",
+   "pasta": "15Vexs9njsuQBoEN0ROcRPR1fgySxr90k"
+  },
+  {
+   "id": "1_iTjwTR-2EhwXhe8RnszZCMMkymnY03h",
+   "nome": "F. Vitrinni. Campanha Dia Dos Pais 02. V.3.mp4",
+   "tipo": "video",
+   "cliente": "Vitrinni",
+   "mes": "2026-06",
+   "pasta": "15Vexs9njsuQBoEN0ROcRPR1fgySxr90k"
+  },
+  {
+   "id": "1aPoStYOIvQHZ3W5sJk2n0KXHK72nY_sQ",
+   "nome": "F. Vitrinni. Jazz Wine Park- v.1.mp4",
+   "tipo": "video",
+   "cliente": "Vitrinni",
+   "mes": "2026-06",
+   "pasta": "15Vexs9njsuQBoEN0ROcRPR1fgySxr90k"
+  },
+  {
+   "id": "1myp9_irYR7aeUS-hbYxShic-uxHDPJJD",
+   "nome": "F. Vitrinni. Olha o Aviãozinho v.1.mp4",
+   "tipo": "video",
+   "cliente": "Vitrinni",
+   "mes": "2026-06",
+   "pasta": "15Vexs9njsuQBoEN0ROcRPR1fgySxr90k"
+  },
+  {
+   "id": "144euKegINfs-1Yp6-UlAgOAVcdLxU-5j",
+   "nome": "A7405990.jpg",
+   "tipo": "foto",
+   "cliente": "Óptica Premium",
+   "mes": "2026-06",
+   "pasta": "1lwTTlpjGaIx5o29x3vzhELlU3JUVWr4T"
+  },
+  {
+   "id": "14A_Nf2Cfyh5DYShLnr0sF7lu5b-bVrj3",
+   "nome": "A7406125.jpg",
+   "tipo": "foto",
+   "cliente": "Óptica Premium",
+   "mes": "2026-06",
+   "pasta": "1lwTTlpjGaIx5o29x3vzhELlU3JUVWr4T"
+  },
+  {
+   "id": "15w0C0Xk_KPl-IefQ1SuroElrrwNquN52",
+   "nome": "A7406019.jpg",
+   "tipo": "foto",
+   "cliente": "Óptica Premium",
+   "mes": "2026-06",
+   "pasta": "1lwTTlpjGaIx5o29x3vzhELlU3JUVWr4T"
+  },
+  {
+   "id": "1DCsMGb5GzM5JbVQU8nKXt22JokWZfsrW",
+   "nome": "F. Optica Premium -  Trend - V.1.mp4",
+   "tipo": "video",
+   "cliente": "Óptica Premium",
+   "mes": "2026-06",
+   "pasta": "1lwTTlpjGaIx5o29x3vzhELlU3JUVWr4T"
+  },
+  {
+   "id": "1EKICleHXmBzH7gvwY7W3IWecT_ffZH4y",
+   "nome": "A7405965.jpg",
+   "tipo": "foto",
+   "cliente": "Óptica Premium",
+   "mes": "2026-06",
+   "pasta": "1lwTTlpjGaIx5o29x3vzhELlU3JUVWr4T"
+  },
+  {
+   "id": "1G6lkNSBtsUzWUkxhJy5WXFfi82ccU9VZ",
+   "nome": "A7406051.jpg",
+   "tipo": "foto",
+   "cliente": "Óptica Premium",
+   "mes": "2026-06",
+   "pasta": "1lwTTlpjGaIx5o29x3vzhELlU3JUVWr4T"
+  },
+  {
+   "id": "1OxZf7lwp9drmigZq1thV24dyxgUNZCml",
+   "nome": "A7406005.jpg",
+   "tipo": "foto",
+   "cliente": "Óptica Premium",
+   "mes": "2026-06",
+   "pasta": "1lwTTlpjGaIx5o29x3vzhELlU3JUVWr4T"
+  },
+  {
+   "id": "1Qms7lq8aq7spxqTYGDbGzzXJg_agHqST",
+   "nome": "A7406026.jpg",
+   "tipo": "foto",
+   "cliente": "Óptica Premium",
+   "mes": "2026-06",
+   "pasta": "1lwTTlpjGaIx5o29x3vzhELlU3JUVWr4T"
+  },
+  {
+   "id": "1_5eFFpO2bA4YIyCyr-GAK9xgGQ_7G72v",
+   "nome": "A7406024.jpg",
+   "tipo": "foto",
+   "cliente": "Óptica Premium",
+   "mes": "2026-06",
+   "pasta": "1lwTTlpjGaIx5o29x3vzhELlU3JUVWr4T"
+  },
+  {
+   "id": "1bgspZeIULjE6npYwOAtpn8ags43Tn27A",
+   "nome": "A7406047.jpg",
+   "tipo": "foto",
+   "cliente": "Óptica Premium",
+   "mes": "2026-06",
+   "pasta": "1lwTTlpjGaIx5o29x3vzhELlU3JUVWr4T"
+  },
+  {
+   "id": "1ehZR0fJBmx6-3kKTFhs9S-ViBcB2lCgG",
+   "nome": "F. Optica Premium - Julho Premium - V.3.mp4",
+   "tipo": "video",
+   "cliente": "Óptica Premium",
+   "mes": "2026-06",
+   "pasta": "1lwTTlpjGaIx5o29x3vzhELlU3JUVWr4T"
+  },
+  {
+   "id": "1rwHDVn2M1KZIOfQ3bm1Vu815IxdG8kMb",
+   "nome": "A7405973.jpg",
+   "tipo": "foto",
+   "cliente": "Óptica Premium",
+   "mes": "2026-06",
+   "pasta": "1lwTTlpjGaIx5o29x3vzhELlU3JUVWr4T"
+  },
+  {
+   "id": "1t_Mk_vtDRZNNuIzb1tkhmnfskVsnstaz",
+   "nome": "A7406038.jpg",
+   "tipo": "foto",
+   "cliente": "Óptica Premium",
+   "mes": "2026-06",
+   "pasta": "1lwTTlpjGaIx5o29x3vzhELlU3JUVWr4T"
+  },
+  {
+   "id": "1vUivIZiWfigLUG7pP21v7yAcuViKQO8-",
+   "nome": "A7406102.jpg",
+   "tipo": "foto",
+   "cliente": "Óptica Premium",
+   "mes": "2026-06",
+   "pasta": "1lwTTlpjGaIx5o29x3vzhELlU3JUVWr4T"
+  },
+  {
+   "id": "1AZqMu17ex3f-2kKLus-b5kL3qnAAj5b0",
+   "nome": "F. Hauzen - Paulo e Clarissa. V.6.mov",
+   "tipo": "video",
+   "cliente": "Hauzen",
+   "mes": "2026-07",
+   "pasta": "1AbEP7JlEhSjMdZk3QmzQVNQBktfQq6_c"
+  },
+  {
+   "id": "1jfRUNRDvVOc4EUqchjYcutODRAyQN6vV",
+   "nome": "A7407579.jpg",
+   "tipo": "foto",
+   "cliente": "Hauzen",
+   "mes": "2026-07",
+   "pasta": "1AbEP7JlEhSjMdZk3QmzQVNQBktfQq6_c"
+  },
+  {
+   "id": "1x1KraQacSaCu9S_QkL-LUlpn00dufG3f",
+   "nome": "A7407590.jpg",
+   "tipo": "foto",
+   "cliente": "Hauzen",
+   "mes": "2026-07",
+   "pasta": "1AbEP7JlEhSjMdZk3QmzQVNQBktfQq6_c"
+  },
+  {
+   "id": "1xC9SfqeM53lX0Og03MoQZWAnluaBdMq-",
+   "nome": "F. Hauzen - AN Contabilidade - V.3.mov",
+   "tipo": "video",
+   "cliente": "Hauzen",
+   "mes": "2026-07",
+   "pasta": "1AbEP7JlEhSjMdZk3QmzQVNQBktfQq6_c"
+  },
+  {
+   "id": "1xLKj-l8rNYR67cwWHWnXG6oKgaAdqpr7",
+   "nome": "A7407586.jpg",
+   "tipo": "foto",
+   "cliente": "Hauzen",
+   "mes": "2026-07",
+   "pasta": "1AbEP7JlEhSjMdZk3QmzQVNQBktfQq6_c"
+  },
+  {
+   "id": "1kFg25gJPRY2gfYt_Go8Axh7xK2nDUVOl",
+   "nome": "A7407572.jpg",
+   "tipo": "foto",
+   "cliente": "IGG",
+   "mes": "2026-07",
+   "pasta": "1Ev3ilG_YLHxDjrxO0lUAY1XMK3h-0rsp"
+  },
+  {
+   "id": "1vfTcaWtX0u0nzYtwVPTXoefeIFN8xLFj",
+   "nome": "A7407578.jpg",
+   "tipo": "foto",
+   "cliente": "IGG",
+   "mes": "2026-07",
+   "pasta": "1Ev3ilG_YLHxDjrxO0lUAY1XMK3h-0rsp"
+  },
+  {
+   "id": "1xwcleM1r-HCpJalaOWyQw--9wDvfllma",
+   "nome": "F. IGG - Entrega Computador - V.6.mov",
+   "tipo": "video",
+   "cliente": "IGG",
+   "mes": "2026-07",
+   "pasta": "1Ev3ilG_YLHxDjrxO0lUAY1XMK3h-0rsp"
+  },
+  {
+   "id": "1IYPis9tEd-pu2KURI3p5yTSwlx3pjJgI",
+   "nome": "F. Scalercio - 3 Lojas - V.2.mov",
+   "tipo": "video",
+   "cliente": "Scalercio",
+   "mes": "2026-07",
+   "pasta": "11hXNXpJfhWa00kKOSXrzN5OL9TZPBrSg"
+  },
+  {
+   "id": "1nraBqy6c-_2h_fOdBfISGdfXzohvoI-D",
+   "nome": "F. Scalercio - 2° Lote ParkWay - V.1.mov",
+   "tipo": "video",
+   "cliente": "Scalercio",
+   "mes": "2026-07",
+   "pasta": "11hXNXpJfhWa00kKOSXrzN5OL9TZPBrSg"
+  },
+  {
+   "id": "1NAZC0oCXmZE0Dvu01QOkM7GveXLyxde4",
+   "nome": "A7407208.jpg",
    "tipo": "foto",
    "cliente": "Valen Beauty",
-   "mes": "2026-06",
-   "pasta": "1PA1-7K9PETlL07D7RXRSzpe5ZKEkXsk2"
+   "mes": "2026-07",
+   "pasta": "1d9D9p7A5KyrUEmvk3ZgalDebjnb8NL3m"
   },
   {
-   "id": "1NOdIvbJtSFxt9q6ocOMNMy482C3Bq6HO",
-   "nome": "F. Óptica Premium. Vid 02. V.1.mov",
+   "id": "1TTaLNNOmpFz5QB30ESTCihRmugUC41Q9",
+   "nome": "F. Valen Beauty - Pink Pie + Salt Caramel - V.2.mov",
+   "tipo": "video",
+   "cliente": "Valen Beauty",
+   "mes": "2026-07",
+   "pasta": "1d9D9p7A5KyrUEmvk3ZgalDebjnb8NL3m"
+  },
+  {
+   "id": "1oI-mhN18w0a55JNunpbdnPS8rA7gt-6o",
+   "nome": "A7407153.jpg",
+   "tipo": "foto",
+   "cliente": "Valen Beauty",
+   "mes": "2026-07",
+   "pasta": "1d9D9p7A5KyrUEmvk3ZgalDebjnb8NL3m"
+  },
+  {
+   "id": "1pwFEoIASilfg3VGa8WO_LFlFgjI3lL_h",
+   "nome": "F. Valen Beauty - Tik Tok Shop - V.2.mov",
+   "tipo": "video",
+   "cliente": "Valen Beauty",
+   "mes": "2026-07",
+   "pasta": "1d9D9p7A5KyrUEmvk3ZgalDebjnb8NL3m"
+  },
+  {
+   "id": "1rMkYiJdUWlMkhFFUdv39S4HxHsbOdVLG",
+   "nome": "A7407159.jpg",
+   "tipo": "foto",
+   "cliente": "Valen Beauty",
+   "mes": "2026-07",
+   "pasta": "1d9D9p7A5KyrUEmvk3ZgalDebjnb8NL3m"
+  },
+  {
+   "id": "18y-202guquo8nV6wwASX9RTbjDcDwgLD",
+   "nome": "F. Vitrinni - POV - V.1.mov",
+   "tipo": "video",
+   "cliente": "Vitrinni",
+   "mes": "2026-07",
+   "pasta": "1MqVUsKFGOuuJftOU_RdrDwcGFpcn7pvl"
+  },
+  {
+   "id": "1BYFwOi7b3RpRhXLdhYEZlDHwM7AiCFbr",
+   "nome": "F. Vitrinni - 3 Lojas - V.2.mov",
+   "tipo": "video",
+   "cliente": "Vitrinni",
+   "mes": "2026-07",
+   "pasta": "1MqVUsKFGOuuJftOU_RdrDwcGFpcn7pvl"
+  },
+  {
+   "id": "1dJ-mSEMLP65irHUDCvYjEgvZ6SMLM6Q9",
+   "nome": "F. Vitrinni - Você Sabia - V.1.mov",
+   "tipo": "video",
+   "cliente": "Vitrinni",
+   "mes": "2026-07",
+   "pasta": "1MqVUsKFGOuuJftOU_RdrDwcGFpcn7pvl"
+  },
+  {
+   "id": "1mTY5v5_IusJi35-Pqz0UJ-s-youTC5B1",
+   "nome": "F. Vitrinni - Pão Dourado - V.1.mov",
+   "tipo": "video",
+   "cliente": "Vitrinni",
+   "mes": "2026-07",
+   "pasta": "1MqVUsKFGOuuJftOU_RdrDwcGFpcn7pvl"
+  },
+  {
+   "id": "16-TWqJPi4aLM_CG-YToOprZG36m8OnTG",
+   "nome": "F. Óptica Premium - Semana Zeiss - V.3.mov",
    "tipo": "video",
    "cliente": "Óptica Premium",
-   "mes": "2026-10",
-   "pasta": "1YgRjht-a_E319-hyB-pDhqvIb5PMAEEA"
+   "mes": "2026-07",
+   "pasta": "137oRACG0kmxfqoPK6iE6fkhWhMjqXMhI"
   },
   {
-   "id": "1xhJKFvwrgnRWyiCd8TF21-Ml3aFHj8ko",
-   "nome": "F. Óptica Premium - Oliver Peoples - V.2.mov",
+   "id": "1HcaeSudFdT233uuF0xIsvXQlkFCpFb9q",
+   "nome": "FX301184.jpg",
+   "tipo": "foto",
+   "cliente": "Óptica Premium",
+   "mes": "2026-07",
+   "pasta": "137oRACG0kmxfqoPK6iE6fkhWhMjqXMhI"
+  },
+  {
+   "id": "1XkNDD4Q_jxvqtojWCOuRE-ds7yS9CaQV",
+   "nome": "FX301183.jpg",
+   "tipo": "foto",
+   "cliente": "Óptica Premium",
+   "mes": "2026-07",
+   "pasta": "137oRACG0kmxfqoPK6iE6fkhWhMjqXMhI"
+  },
+  {
+   "id": "1nHpta1ngyit7KmqODv6WnPz7xWz8_s0T",
+   "nome": "FX301182.jpg",
+   "tipo": "foto",
+   "cliente": "Óptica Premium",
+   "mes": "2026-07",
+   "pasta": "137oRACG0kmxfqoPK6iE6fkhWhMjqXMhI"
+  },
+  {
+   "id": "1rAfzsQEXeysD5Xzsm7aF3D-1WfEamts-",
+   "nome": "FX301190.jpg",
+   "tipo": "foto",
+   "cliente": "Óptica Premium",
+   "mes": "2026-07",
+   "pasta": "137oRACG0kmxfqoPK6iE6fkhWhMjqXMhI"
+  },
+  {
+   "id": "1uIhu9XHSn4h5pcSXlxkm7R6wHVruzn2n",
+   "nome": "F. Optica Premium - Dia dos Pais - V.2.mov",
    "tipo": "video",
    "cliente": "Óptica Premium",
-   "mes": "2026-10",
-   "pasta": "1YgRjht-a_E319-hyB-pDhqvIb5PMAEEA"
+   "mes": "2026-07",
+   "pasta": "137oRACG0kmxfqoPK6iE6fkhWhMjqXMhI"
   },
   {
-   "id": "1umFLr348MJL8F2pVbidVbSBYdP6pJjP5",
-   "nome": "A7408686.jpg",
+   "id": "10i61ZpTpdu4GW0Jpt8gJjf5ZVHZ8cBsi",
+   "nome": "F. Hauzen - Entrevista Alice - V.11.mov",
+   "tipo": "video",
+   "cliente": "Hauzen",
+   "mes": "2026-08",
+   "pasta": "1G_afCzJdwMmQ_8QiUzGss_2LinmzDNLl"
+  },
+  {
+   "id": "1LJ6aWv5jmd_E-yQUbig-npPiUSvisQyS",
+   "nome": "FX301268.jpg",
    "tipo": "foto",
-   "cliente": "Óptica Premium",
-   "mes": "2026-09",
-   "pasta": "1uIdQtHva4GTfpqHNFmHaKFLfwy8-qVeh"
+   "cliente": "Hauzen",
+   "mes": "2026-08",
+   "pasta": "1G_afCzJdwMmQ_8QiUzGss_2LinmzDNLl"
   },
   {
-   "id": "1hf1JD9UL_ezq6qlO2RwcZyT3ABwoMAWB",
-   "nome": "A7408685.jpg",
+   "id": "1ccwSO2bI2ybBYZ1mzAJG3cTOmUESPhuk",
+   "nome": "F. Hauzen - Casa QI - V.3.mp4",
+   "tipo": "video",
+   "cliente": "Hauzen",
+   "mes": "2026-08",
+   "pasta": "1G_afCzJdwMmQ_8QiUzGss_2LinmzDNLl"
+  },
+  {
+   "id": "1iv5g4p5brCylR1l71c40hx2mcDQMK3Ou",
+   "nome": "FX301279.jpg",
    "tipo": "foto",
-   "cliente": "Óptica Premium",
-   "mes": "2026-09",
-   "pasta": "1uIdQtHva4GTfpqHNFmHaKFLfwy8-qVeh"
+   "cliente": "Hauzen",
+   "mes": "2026-08",
+   "pasta": "1G_afCzJdwMmQ_8QiUzGss_2LinmzDNLl"
   },
   {
-   "id": "1SePjbT1kezQSSbhfsQMQ2nMR6W4DBZII",
-   "nome": "A7408691.jpg",
+   "id": "1qahVZSfP3raZXptLzo-LHmhNiaSziiWg",
+   "nome": "FX301274.jpg",
    "tipo": "foto",
-   "cliente": "Óptica Premium",
-   "mes": "2026-09",
-   "pasta": "1uIdQtHva4GTfpqHNFmHaKFLfwy8-qVeh"
+   "cliente": "Hauzen",
+   "mes": "2026-08",
+   "pasta": "1G_afCzJdwMmQ_8QiUzGss_2LinmzDNLl"
   },
   {
-   "id": "1tk2BXlAoYpIvmyzs8Otu9IhKNqdQom0Z",
-   "nome": "A7408657.jpg",
+   "id": "1rusXUS8wOvq4vcMDQ6WSEehpDk_tquyD",
+   "nome": "FX301277.jpg",
    "tipo": "foto",
-   "cliente": "Óptica Premium",
-   "mes": "2026-09",
-   "pasta": "1uIdQtHva4GTfpqHNFmHaKFLfwy8-qVeh"
+   "cliente": "Hauzen",
+   "mes": "2026-08",
+   "pasta": "1G_afCzJdwMmQ_8QiUzGss_2LinmzDNLl"
   },
   {
-   "id": "1ZpB3rI4I2OUE67HsPztkO_FA2SeMJXh8",
-   "nome": "A7408681.jpg",
+   "id": "1vuOhOZJYN9Beqw0ud7dLVr5XT5eYiSvt",
+   "nome": "FX301266.jpg",
    "tipo": "foto",
-   "cliente": "Óptica Premium",
-   "mes": "2026-09",
-   "pasta": "1uIdQtHva4GTfpqHNFmHaKFLfwy8-qVeh"
+   "cliente": "Hauzen",
+   "mes": "2026-08",
+   "pasta": "1G_afCzJdwMmQ_8QiUzGss_2LinmzDNLl"
   },
   {
-   "id": "1VmM2w0eH9N53QrluQrU9TsPqcwsuVE9M",
-   "nome": "A7408670.jpg",
+   "id": "1gOKY1Ni-SoHPhJx5tEgdF58-hNAZgtOH",
+   "nome": "F. IGG . Narrado. V.2.mp4",
+   "tipo": "video",
+   "cliente": "IGG",
+   "mes": "2026-08",
+   "pasta": "1xkH51iz9eQ5Eq7d018hD9hp_n7mE5oDi"
+  },
+  {
+   "id": "1mRLpvlCwboSKlWYPMI40ncJdkYj-69L-",
+   "nome": "F. IGG - Parceria Qualifica - V.5.mov",
+   "tipo": "video",
+   "cliente": "IGG",
+   "mes": "2026-08",
+   "pasta": "1xkH51iz9eQ5Eq7d018hD9hp_n7mE5oDi"
+  },
+  {
+   "id": "1cvVlfPuEIwbsFu-KVrIb-ynkURXzswxe",
+   "nome": "F. Cobertura Absoluta - Scalercio - V.1.mov",
+   "tipo": "video",
+   "cliente": "Scalercio",
+   "mes": "2026-08",
+   "pasta": "1L-A353AdVu0kILyktUZKvbACVuqK73wA"
+  },
+  {
+   "id": "1gNnRmzVP52Uo20tl3i7hnCrpePbeYhol",
+   "nome": "F. Scalercio - Casa Riacho 1. V.4.mov",
+   "tipo": "video",
+   "cliente": "Scalercio",
+   "mes": "2026-08",
+   "pasta": "1L-A353AdVu0kILyktUZKvbACVuqK73wA"
+  },
+  {
+   "id": "1-o1b-6ZqTKsX31Z4pTbKG9-6YiTMtjpD",
+   "nome": "FX301229.jpg",
    "tipo": "foto",
-   "cliente": "Óptica Premium",
-   "mes": "2026-09",
-   "pasta": "1uIdQtHva4GTfpqHNFmHaKFLfwy8-qVeh"
+   "cliente": "Valen Beauty",
+   "mes": "2026-08",
+   "pasta": "1I-SvWrIZ4piOlksMTRBnys8jPc2aCCS7"
   },
   {
-   "id": "1clwl2Yj9fD9H_1AL_DS7sZvRFv1l7MsF",
-   "nome": "A7408660.jpg",
+   "id": "180BzO8zHsOSyMoaPyp_9HAGuSMk4kA-v",
+   "nome": "Q. Valen Beauty - Pink Pie x Salt Caramel - V.7.mov",
+   "tipo": "video",
+   "cliente": "Valen Beauty",
+   "mes": "2026-08",
+   "pasta": "1I-SvWrIZ4piOlksMTRBnys8jPc2aCCS7"
+  },
+  {
+   "id": "19pb8tK5MXm0eiZxtd2Q0Cgk6ujJAXTTV",
+   "nome": "FX301220.jpg",
    "tipo": "foto",
-   "cliente": "Óptica Premium",
-   "mes": "2026-09",
-   "pasta": "1uIdQtHva4GTfpqHNFmHaKFLfwy8-qVeh"
+   "cliente": "Valen Beauty",
+   "mes": "2026-08",
+   "pasta": "1I-SvWrIZ4piOlksMTRBnys8jPc2aCCS7"
   },
   {
-   "id": "1mu5VqJFGzkAI9DQ-93LTPCxiiq0IuuSs",
-   "nome": "A7408663.jpg",
+   "id": "1CW7PwMAXnbsiBfhOG2nEZljOpeL2y8Ey",
+   "nome": "FX301223.jpg",
    "tipo": "foto",
-   "cliente": "Óptica Premium",
-   "mes": "2026-09",
-   "pasta": "1uIdQtHva4GTfpqHNFmHaKFLfwy8-qVeh"
+   "cliente": "Valen Beauty",
+   "mes": "2026-08",
+   "pasta": "1I-SvWrIZ4piOlksMTRBnys8jPc2aCCS7"
   },
   {
-   "id": "1sh3Vs2VZ57ObYukTMZyKZx0Crwmm_T-N",
-   "nome": "A7408653.jpg",
+   "id": "1IQpJnpjS_lAsmrPBH66rHUweN5TwzdUD",
+   "nome": "FX301219.jpg",
+   "tipo": "foto",
+   "cliente": "Valen Beauty",
+   "mes": "2026-08",
+   "pasta": "1I-SvWrIZ4piOlksMTRBnys8jPc2aCCS7"
+  },
+  {
+   "id": "1dL89fBYomvMwgywQlSFdV31aYYiAuZT7",
+   "nome": "FX301221.jpg",
+   "tipo": "foto",
+   "cliente": "Valen Beauty",
+   "mes": "2026-08",
+   "pasta": "1I-SvWrIZ4piOlksMTRBnys8jPc2aCCS7"
+  },
+  {
+   "id": "1whEAHPDrKRzaGN-u6oxVqGc_fQ1WP96H",
+   "nome": "Q. Valen - Tik Tok Shop - V.5.mov",
+   "tipo": "video",
+   "cliente": "Valen Beauty",
+   "mes": "2026-08",
+   "pasta": "1I-SvWrIZ4piOlksMTRBnys8jPc2aCCS7"
+  },
+  {
+   "id": "14iPF9wIe6G68HSyGfHjB0PLVJOFV3L9b",
+   "nome": "F. Vitrinni - Dia do Veterinário. V.6.mp4",
+   "tipo": "video",
+   "cliente": "Vitrinni",
+   "mes": "2026-08",
+   "pasta": "1CD44Z0LOh0bPifuCsTJrnf00K6ta1qvj"
+  },
+  {
+   "id": "1EWwgvT7z2WWNG5fvhFQnMsV2Lw5-hhPX",
+   "nome": "F. Vitrinni - Dia do Cliente - V.2.mp4",
+   "tipo": "video",
+   "cliente": "Vitrinni",
+   "mes": "2026-08",
+   "pasta": "1CD44Z0LOh0bPifuCsTJrnf00K6ta1qvj"
+  },
+  {
+   "id": "1aKfLKhxwFOBiPqJgguMo7fNodn6xmW5s",
+   "nome": "F. Vitrinni - Uma coisa leva a outra - V.2.mov",
+   "tipo": "video",
+   "cliente": "Vitrinni",
+   "mes": "2026-08",
+   "pasta": "1CD44Z0LOh0bPifuCsTJrnf00K6ta1qvj"
+  },
+  {
+   "id": "1n0nqXqmao3rCPZqawItxZszboR_oXEDK",
+   "nome": "F. Vitrinni - Vitrinni Kids - V.3.mov",
+   "tipo": "video",
+   "cliente": "Vitrinni",
+   "mes": "2026-08",
+   "pasta": "1CD44Z0LOh0bPifuCsTJrnf00K6ta1qvj"
+  },
+  {
+   "id": "14YWOA_V3TXYI_rXa3FWZjeNc0C0XjJNA",
+   "nome": "F. Scalercio - Locação em Àguas Claras. V.2.mov",
+   "tipo": "video",
+   "cliente": "Scalercio",
+   "mes": "2026-09",
+   "pasta": "1kzWrH8TwkUzDu4nO2xgmIUkg1AnuW2Qm"
+  },
+  {
+   "id": "1BaekLMe3wryv2wrQehoUx-cTdBNhN_CD",
+   "nome": "Scalercio_1.jpg",
+   "tipo": "foto",
+   "cliente": "Scalercio",
+   "mes": "2026-09",
+   "pasta": "1kzWrH8TwkUzDu4nO2xgmIUkg1AnuW2Qm"
+  },
+  {
+   "id": "1G0ph0ZRAzTz5oTW9P5tv2KHYKruth99B",
+   "nome": "Scalercio.jpg",
+   "tipo": "foto",
+   "cliente": "Scalercio",
+   "mes": "2026-09",
+   "pasta": "1kzWrH8TwkUzDu4nO2xgmIUkg1AnuW2Qm"
+  },
+  {
+   "id": "1uKhGnc_doC0jUXo-Y_xWuHjuP1gK70Ke",
+   "nome": "Scalercio_2.jpg",
+   "tipo": "foto",
+   "cliente": "Scalercio",
+   "mes": "2026-09",
+   "pasta": "1kzWrH8TwkUzDu4nO2xgmIUkg1AnuW2Qm"
+  },
+  {
+   "id": "1uO7d8TVMEVMlO22Rp2nOZKZnhBQzWlKf",
+   "nome": "F. Scalercio - Quem olha para  Àguas Claras. V.2.mov",
+   "tipo": "video",
+   "cliente": "Scalercio",
+   "mes": "2026-09",
+   "pasta": "1kzWrH8TwkUzDu4nO2xgmIUkg1AnuW2Qm"
+  },
+  {
+   "id": "17ltZWTnwMkl-M6u8zycFmsDKZMMH_yWe",
+   "nome": "F. Valen - Dia das Crianças - V.2.mp4",
+   "tipo": "video",
+   "cliente": "Valen Beauty",
+   "mes": "2026-09",
+   "pasta": "1raC56BEvrMF1jpGaO3xAeUHSxRTbWYHK"
+  },
+  {
+   "id": "1XA_0mO0IfEKIP_sD125elrH1k722cn-j",
+   "nome": "Dia das Crianças.jpg",
+   "tipo": "foto",
+   "cliente": "Valen Beauty",
+   "mes": "2026-09",
+   "pasta": "1raC56BEvrMF1jpGaO3xAeUHSxRTbWYHK"
+  },
+  {
+   "id": "1YA0bgJ5Ten6-G-J4xI2x0F_Wa2KbKXzm",
+   "nome": "F. Valen - Quando Sua Filha Ama Maquiagem - V.2.mp4",
+   "tipo": "video",
+   "cliente": "Valen Beauty",
+   "mes": "2026-09",
+   "pasta": "1raC56BEvrMF1jpGaO3xAeUHSxRTbWYHK"
+  },
+  {
+   "id": "1lE0xYGORhn9_DXBawVGRWaiEJ_Lh49vB",
+   "nome": "Foto_1.9.1.jpg",
+   "tipo": "foto",
+   "cliente": "Valen Beauty",
+   "mes": "2026-09",
+   "pasta": "1raC56BEvrMF1jpGaO3xAeUHSxRTbWYHK"
+  },
+  {
+   "id": "19CJSetLTLr3_qu_GNYi0Wq2wvE0kX3ec",
+   "nome": "F. Vitrinni - Como chegar - V.4.mp4",
+   "tipo": "video",
+   "cliente": "Vitrinni",
+   "mes": "2026-09",
+   "pasta": "1VQJQMn5TRFHmmLHcw-9s5sDiMVWu8oeR"
+  },
+  {
+   "id": "1noBsa-WDcrWL5xhwPzTEeEtnj533TT1y",
+   "nome": "F. Vitrinni - Dia das Crianças - V.3.mp4",
+   "tipo": "video",
+   "cliente": "Vitrinni",
+   "mes": "2026-09",
+   "pasta": "1VQJQMn5TRFHmmLHcw-9s5sDiMVWu8oeR"
+  },
+  {
+   "id": "1ySNgfQZnYXQLxl-UCixXuEjwht3jcDd2",
+   "nome": "F. Vitrinni - Setembro Amarelo - V.2.mp4",
+   "tipo": "video",
+   "cliente": "Vitrinni",
+   "mes": "2026-09",
+   "pasta": "1VQJQMn5TRFHmmLHcw-9s5sDiMVWu8oeR"
+  },
+  {
+   "id": "1zCPB0DmpzPNxUZToKVLyWOL9DegbKcXD",
+   "nome": "F. Vitrinni - Algoritmo Vitrinni - V.6.mov",
+   "tipo": "video",
+   "cliente": "Vitrinni",
+   "mes": "2026-09",
+   "pasta": "1VQJQMn5TRFHmmLHcw-9s5sDiMVWu8oeR"
+  },
+  {
+   "id": "13UVZmsPeCgh-y-AGnbl3-8vbAQseOeJc",
+   "nome": "A7408641.jpg",
    "tipo": "foto",
    "cliente": "Óptica Premium",
    "mes": "2026-09",
@@ -1520,40 +2784,296 @@
    "pasta": "1uIdQtHva4GTfpqHNFmHaKFLfwy8-qVeh"
   },
   {
-   "id": "13UVZmsPeCgh-y-AGnbl3-8vbAQseOeJc",
-   "nome": "A7408641.jpg",
+   "id": "1Gj6T7NkBGJnWzQBiN4FakEm0JLS-kTwl",
+   "nome": "F. Óptica Premium - Função de cada lente - V.2.mov",
+   "tipo": "video",
+   "cliente": "Óptica Premium",
+   "mes": "2026-09",
+   "pasta": "1uIdQtHva4GTfpqHNFmHaKFLfwy8-qVeh"
+  },
+  {
+   "id": "1SePjbT1kezQSSbhfsQMQ2nMR6W4DBZII",
+   "nome": "A7408691.jpg",
    "tipo": "foto",
    "cliente": "Óptica Premium",
    "mes": "2026-09",
    "pasta": "1uIdQtHva4GTfpqHNFmHaKFLfwy8-qVeh"
   },
   {
-   "id": "1k2GRfsXUiyhRrhUAt0JUnNHgZJMZM5--",
-   "nome": "FX301354.jpg",
+   "id": "1VmM2w0eH9N53QrluQrU9TsPqcwsuVE9M",
+   "nome": "A7408670.jpg",
    "tipo": "foto",
    "cliente": "Óptica Premium",
-   "mes": "2026-11",
-   "pasta": "14zxzEvFD7gYv30EfvgZMSvglGiWpRnD1"
+   "mes": "2026-09",
+   "pasta": "1uIdQtHva4GTfpqHNFmHaKFLfwy8-qVeh"
   },
   {
-   "id": "1OzUajELQs1R4-EnUwaC5RjPS5MO7HQET",
-   "nome": "FX301353.jpg",
+   "id": "1ZpB3rI4I2OUE67HsPztkO_FA2SeMJXh8",
+   "nome": "A7408681.jpg",
    "tipo": "foto",
    "cliente": "Óptica Premium",
-   "mes": "2026-11",
-   "pasta": "14zxzEvFD7gYv30EfvgZMSvglGiWpRnD1"
+   "mes": "2026-09",
+   "pasta": "1uIdQtHva4GTfpqHNFmHaKFLfwy8-qVeh"
   },
   {
-   "id": "1aYipB-5Bq3gASJeg8kT0EBVdDWHO9xHS",
-   "nome": "Óptica Premium_15.jpg",
+   "id": "1clwl2Yj9fD9H_1AL_DS7sZvRFv1l7MsF",
+   "nome": "A7408660.jpg",
    "tipo": "foto",
    "cliente": "Óptica Premium",
+   "mes": "2026-09",
+   "pasta": "1uIdQtHva4GTfpqHNFmHaKFLfwy8-qVeh"
+  },
+  {
+   "id": "1hf1JD9UL_ezq6qlO2RwcZyT3ABwoMAWB",
+   "nome": "A7408685.jpg",
+   "tipo": "foto",
+   "cliente": "Óptica Premium",
+   "mes": "2026-09",
+   "pasta": "1uIdQtHva4GTfpqHNFmHaKFLfwy8-qVeh"
+  },
+  {
+   "id": "1mu5VqJFGzkAI9DQ-93LTPCxiiq0IuuSs",
+   "nome": "A7408663.jpg",
+   "tipo": "foto",
+   "cliente": "Óptica Premium",
+   "mes": "2026-09",
+   "pasta": "1uIdQtHva4GTfpqHNFmHaKFLfwy8-qVeh"
+  },
+  {
+   "id": "1sh3Vs2VZ57ObYukTMZyKZx0Crwmm_T-N",
+   "nome": "A7408653.jpg",
+   "tipo": "foto",
+   "cliente": "Óptica Premium",
+   "mes": "2026-09",
+   "pasta": "1uIdQtHva4GTfpqHNFmHaKFLfwy8-qVeh"
+  },
+  {
+   "id": "1tPmWS84GNqQ0le3RIbIhC83GKRME3t0W",
+   "nome": "F. Óptica Premium - Zegna - V.2.mp4",
+   "tipo": "video",
+   "cliente": "Óptica Premium",
+   "mes": "2026-09",
+   "pasta": "1uIdQtHva4GTfpqHNFmHaKFLfwy8-qVeh"
+  },
+  {
+   "id": "1tk2BXlAoYpIvmyzs8Otu9IhKNqdQom0Z",
+   "nome": "A7408657.jpg",
+   "tipo": "foto",
+   "cliente": "Óptica Premium",
+   "mes": "2026-09",
+   "pasta": "1uIdQtHva4GTfpqHNFmHaKFLfwy8-qVeh"
+  },
+  {
+   "id": "1umFLr348MJL8F2pVbidVbSBYdP6pJjP5",
+   "nome": "A7408686.jpg",
+   "tipo": "foto",
+   "cliente": "Óptica Premium",
+   "mes": "2026-09",
+   "pasta": "1uIdQtHva4GTfpqHNFmHaKFLfwy8-qVeh"
+  },
+  {
+   "id": "19vxqhmWBIsNgTc1I-ABi0u2WF1k0bQQ_",
+   "nome": "F. Hauzen- Entrevista 01. v1.mov",
+   "tipo": "video",
+   "cliente": "Hauzen",
    "mes": "2026-10",
-   "pasta": "1YgRjht-a_E319-hyB-pDhqvIb5PMAEEA"
+   "pasta": "1dQdBFieFOM7kjLDqtzWFKk4ag0oupNa2"
   },
   {
-   "id": "1q2TAU2paxg5KgQawsQMlqjw3OAdWKRRo",
-   "nome": "Óptica Premium_17.jpg",
+   "id": "1L-fPlK9FxRxGVIVYRaB7bR8_HBZc1u_G",
+   "nome": "F. Hauzen. Duas opções. v.2.mov",
+   "tipo": "video",
+   "cliente": "Hauzen",
+   "mes": "2026-10",
+   "pasta": "1dQdBFieFOM7kjLDqtzWFKk4ag0oupNa2"
+  },
+  {
+   "id": "1LKC98uD46wjV3opvwUOq2U-n81AD4LSw",
+   "nome": "F. Hauzen. Entrevista 02. v.1.mov",
+   "tipo": "video",
+   "cliente": "Hauzen",
+   "mes": "2026-10",
+   "pasta": "1dQdBFieFOM7kjLDqtzWFKk4ag0oupNa2"
+  },
+  {
+   "id": "1MUp9_9iqTLSmmqK0YCvQto-u2dFI3ZI_",
+   "nome": "A7409785.jpg",
+   "tipo": "foto",
+   "cliente": "Hauzen",
+   "mes": "2026-10",
+   "pasta": "1dQdBFieFOM7kjLDqtzWFKk4ag0oupNa2"
+  },
+  {
+   "id": "1w-28GAGDEhegBoGtu5VF5-4fnP0y8BJk",
+   "nome": "F. Hauzen. 3w investimentos. v.1.mov",
+   "tipo": "video",
+   "cliente": "Hauzen",
+   "mes": "2026-10",
+   "pasta": "1dQdBFieFOM7kjLDqtzWFKk4ag0oupNa2"
+  },
+  {
+   "id": "16lBqJ-KLS5MD-RlRd57N0fLQfUKAAY4X",
+   "nome": "2.16.2_2.16.2.jpg",
+   "tipo": "foto",
+   "cliente": "IGG",
+   "mes": "2026-10",
+   "pasta": "1mlfv_iT80jdKsH5YKf6YZSwAMhj_AkbM"
+  },
+  {
+   "id": "1BcBrTR6OpqOmXxf9HB0iRTn3w5g64cPA",
+   "nome": "F. IGG. After movie. v.4.mov",
+   "tipo": "video",
+   "cliente": "IGG",
+   "mes": "2026-10",
+   "pasta": "1mlfv_iT80jdKsH5YKf6YZSwAMhj_AkbM"
+  },
+  {
+   "id": "1BkRHjjM_M7tePXeqa4kiDkbeUxKSnGou",
+   "nome": "1.4.1_1.4.1.jpg",
+   "tipo": "foto",
+   "cliente": "IGG",
+   "mes": "2026-10",
+   "pasta": "1mlfv_iT80jdKsH5YKf6YZSwAMhj_AkbM"
+  },
+  {
+   "id": "1CHC1V0DgellMfUKrlEp2CWPakKt3ZlJU",
+   "nome": "F. IGG. Entrevista 03. v3.mov",
+   "tipo": "video",
+   "cliente": "IGG",
+   "mes": "2026-10",
+   "pasta": "1mlfv_iT80jdKsH5YKf6YZSwAMhj_AkbM"
+  },
+  {
+   "id": "1CNXr1eXMEoc6jKyS_-OtdHUjkRZnZ2yG",
+   "nome": "F. IGG. Entrevista Crianças 04. V1.mov",
+   "tipo": "video",
+   "cliente": "IGG",
+   "mes": "2026-10",
+   "pasta": "1mlfv_iT80jdKsH5YKf6YZSwAMhj_AkbM"
+  },
+  {
+   "id": "1EsRJ-lfDwMB9hyw5NxHj4xyMJur_GVqc",
+   "nome": "F. IGG. Entrevista Crianças 01. V1.mov",
+   "tipo": "video",
+   "cliente": "IGG",
+   "mes": "2026-10",
+   "pasta": "1mlfv_iT80jdKsH5YKf6YZSwAMhj_AkbM"
+  },
+  {
+   "id": "1J-f5pCUzdwQgMUmzRDWvR74iQpwMuj-t",
+   "nome": "F. IGG. Entrevista 02. v3.mov",
+   "tipo": "video",
+   "cliente": "IGG",
+   "mes": "2026-10",
+   "pasta": "1mlfv_iT80jdKsH5YKf6YZSwAMhj_AkbM"
+  },
+  {
+   "id": "1LWNu34ifjiHT7s8ynTdYGEWORQW5oxg5",
+   "nome": "F. IGG - Profissionais + Prof + Crianças - V.1.mov",
+   "tipo": "video",
+   "cliente": "IGG",
+   "mes": "2026-10",
+   "pasta": "1mlfv_iT80jdKsH5YKf6YZSwAMhj_AkbM"
+  },
+  {
+   "id": "1TchaCfYNXN82fTBuzzshi1YsDZqR3d6l",
+   "nome": "2.51.3_2.51.3.jpg",
+   "tipo": "foto",
+   "cliente": "IGG",
+   "mes": "2026-10",
+   "pasta": "1mlfv_iT80jdKsH5YKf6YZSwAMhj_AkbM"
+  },
+  {
+   "id": "1a12zt0SOn1TJ8acU74PEVH-_HyUhh01C",
+   "nome": "F. IGG. Entrevista 04. v1.mov",
+   "tipo": "video",
+   "cliente": "IGG",
+   "mes": "2026-10",
+   "pasta": "1mlfv_iT80jdKsH5YKf6YZSwAMhj_AkbM"
+  },
+  {
+   "id": "1f5f9ka1MqmKgqpkMNd9kbEYXrzyzM0wI",
+   "nome": "F. IGG. Entrevista 01. v3.mov",
+   "tipo": "video",
+   "cliente": "IGG",
+   "mes": "2026-10",
+   "pasta": "1mlfv_iT80jdKsH5YKf6YZSwAMhj_AkbM"
+  },
+  {
+   "id": "1sm0ZP6EjSB221cpuvuiEfStbOMAzR0OZ",
+   "nome": "F. IGG. Entrevista Crianças 03. V1.mov",
+   "tipo": "video",
+   "cliente": "IGG",
+   "mes": "2026-10",
+   "pasta": "1mlfv_iT80jdKsH5YKf6YZSwAMhj_AkbM"
+  },
+  {
+   "id": "1u7-w1IA9XldDR0QSa97O-6xry5Hb6o7C",
+   "nome": "F. IGG - Entrevista Pedro e Marcelo. V.1.mov",
+   "tipo": "video",
+   "cliente": "IGG",
+   "mes": "2026-10",
+   "pasta": "1mlfv_iT80jdKsH5YKf6YZSwAMhj_AkbM"
+  },
+  {
+   "id": "1zfamKpWON1qSr9F4YL4BEZsXRZ0J9OeA",
+   "nome": "F. IGG. Entrevista Crianças 02. V1.mov",
+   "tipo": "video",
+   "cliente": "IGG",
+   "mes": "2026-10",
+   "pasta": "1mlfv_iT80jdKsH5YKf6YZSwAMhj_AkbM"
+  },
+  {
+   "id": "1grQtM4Xqo3VT9xpKpZVSfH-CPgyW0w51",
+   "nome": "F. Scalercio - Locação em Águas Claras - V.2.mp4",
+   "tipo": "video",
+   "cliente": "Scalercio",
+   "mes": "2026-10",
+   "pasta": "1_b79NIdiSvp0Oq84Syd7uj4aIO9_Fe26"
+  },
+  {
+   "id": "1yvPs0gHvWSOy59mGBMC0tvdRWKy3sBg4",
+   "nome": "F. Scalercio - O Valor - V.2.mp4",
+   "tipo": "video",
+   "cliente": "Scalercio",
+   "mes": "2026-10",
+   "pasta": "1_b79NIdiSvp0Oq84Syd7uj4aIO9_Fe26"
+  },
+  {
+   "id": "12eUMFb5hQbuLTg0_4qPaegShgWspf8Gf",
+   "nome": "F. Vitrinni - Natal Doce - V.1.mov",
+   "tipo": "video",
+   "cliente": "Vitrinni",
+   "mes": "2026-10",
+   "pasta": "1JnopFMTjvzQ2SC5RjSIteJFRqer4jObR"
+  },
+  {
+   "id": "1c-OAdg_dLl-91zlsduLSZGwXbxDJNzQd",
+   "nome": "F. Vitrinni - Espaço Laser. V.1.mov",
+   "tipo": "video",
+   "cliente": "Vitrinni",
+   "mes": "2026-10",
+   "pasta": "1JnopFMTjvzQ2SC5RjSIteJFRqer4jObR"
+  },
+  {
+   "id": "1pPNnA0v_7lXRAuF62ZXDNhq4SGAfQK-1",
+   "nome": "F. Vitrinni - Santina - V.2.mp4",
+   "tipo": "video",
+   "cliente": "Vitrinni",
+   "mes": "2026-10",
+   "pasta": "1JnopFMTjvzQ2SC5RjSIteJFRqer4jObR"
+  },
+  {
+   "id": "1rGFXVgPtTIc7Oddx4Gr5-Fl2UJYPxyMQ",
+   "nome": "F. Vitrinni - Fita - V.1.mov",
+   "tipo": "video",
+   "cliente": "Vitrinni",
+   "mes": "2026-10",
+   "pasta": "1JnopFMTjvzQ2SC5RjSIteJFRqer4jObR"
+  },
+  {
+   "id": "10C8PJv6g-JuqucBUGPdOltpEV5OxwfPA",
+   "nome": "Óptica Premium_13.jpg",
    "tipo": "foto",
    "cliente": "Óptica Premium",
    "mes": "2026-10",
@@ -1562,6 +3082,14 @@
   {
    "id": "113mZFcEqEKmBSsUe3jC9efX6R4b26sH0",
    "nome": "Óptica Premium_14.jpg",
+   "tipo": "foto",
+   "cliente": "Óptica Premium",
+   "mes": "2026-10",
+   "pasta": "1YgRjht-a_E319-hyB-pDhqvIb5PMAEEA"
+  },
+  {
+   "id": "15vyWxJVc-VWJdw_YpYwXlnrlyxdGI6eq",
+   "nome": "ÓPTICA PREMIUM_9.jpg",
    "tipo": "foto",
    "cliente": "Óptica Premium",
    "mes": "2026-10",
@@ -1584,14 +3112,6 @@
    "pasta": "1YgRjht-a_E319-hyB-pDhqvIb5PMAEEA"
   },
   {
-   "id": "10C8PJv6g-JuqucBUGPdOltpEV5OxwfPA",
-   "nome": "Óptica Premium_13.jpg",
-   "tipo": "foto",
-   "cliente": "Óptica Premium",
-   "mes": "2026-10",
-   "pasta": "1YgRjht-a_E319-hyB-pDhqvIb5PMAEEA"
-  },
-  {
    "id": "1AitaJP7cj1TnWEDEmNerRQWsmdgY99IK",
    "nome": "ÓPTICA PREMIUM_2.jpg",
    "tipo": "foto",
@@ -1608,30 +3128,6 @@
    "pasta": "1YgRjht-a_E319-hyB-pDhqvIb5PMAEEA"
   },
   {
-   "id": "1u-JJTqPiTAM353aPI0HbKcXg-HQQsarN",
-   "nome": "ÓPTICA PREMIUM_11.jpg",
-   "tipo": "foto",
-   "cliente": "Óptica Premium",
-   "mes": "2026-10",
-   "pasta": "1YgRjht-a_E319-hyB-pDhqvIb5PMAEEA"
-  },
-  {
-   "id": "1rTaYj3NYmButgccg5Vvj-Sa9KikU4cjQ",
-   "nome": "ÓPTICA PREMIUM_7.jpg",
-   "tipo": "foto",
-   "cliente": "Óptica Premium",
-   "mes": "2026-10",
-   "pasta": "1YgRjht-a_E319-hyB-pDhqvIb5PMAEEA"
-  },
-  {
-   "id": "15vyWxJVc-VWJdw_YpYwXlnrlyxdGI6eq",
-   "nome": "ÓPTICA PREMIUM_9.jpg",
-   "tipo": "foto",
-   "cliente": "Óptica Premium",
-   "mes": "2026-10",
-   "pasta": "1YgRjht-a_E319-hyB-pDhqvIb5PMAEEA"
-  },
-  {
    "id": "1IpJlwIFxIRvnPh1a79PSDzcpJMPEWFp1",
    "nome": "ÓPTICA PREMIUM_3.jpg",
    "tipo": "foto",
@@ -1640,8 +3136,32 @@
    "pasta": "1YgRjht-a_E319-hyB-pDhqvIb5PMAEEA"
   },
   {
+   "id": "1NOdIvbJtSFxt9q6ocOMNMy482C3Bq6HO",
+   "nome": "F. Óptica Premium. Vid 02. V.1.mov",
+   "tipo": "video",
+   "cliente": "Óptica Premium",
+   "mes": "2026-10",
+   "pasta": "1YgRjht-a_E319-hyB-pDhqvIb5PMAEEA"
+  },
+  {
+   "id": "1aYipB-5Bq3gASJeg8kT0EBVdDWHO9xHS",
+   "nome": "Óptica Premium_15.jpg",
+   "tipo": "foto",
+   "cliente": "Óptica Premium",
+   "mes": "2026-10",
+   "pasta": "1YgRjht-a_E319-hyB-pDhqvIb5PMAEEA"
+  },
+  {
    "id": "1blDPTvLbF55bTSFDXnakSuxDcerrwwZa",
    "nome": "ÓPTICA PREMIUM_4.jpg",
+   "tipo": "foto",
+   "cliente": "Óptica Premium",
+   "mes": "2026-10",
+   "pasta": "1YgRjht-a_E319-hyB-pDhqvIb5PMAEEA"
+  },
+  {
+   "id": "1hHvmr7itwPWeXw72MYKGbpsC1niYHoJi",
+   "nome": "ÓPTICA PREMIUM.jpg",
    "tipo": "foto",
    "cliente": "Óptica Premium",
    "mes": "2026-10",
@@ -1664,6 +3184,38 @@
    "pasta": "1YgRjht-a_E319-hyB-pDhqvIb5PMAEEA"
   },
   {
+   "id": "1q2TAU2paxg5KgQawsQMlqjw3OAdWKRRo",
+   "nome": "Óptica Premium_17.jpg",
+   "tipo": "foto",
+   "cliente": "Óptica Premium",
+   "mes": "2026-10",
+   "pasta": "1YgRjht-a_E319-hyB-pDhqvIb5PMAEEA"
+  },
+  {
+   "id": "1rTaYj3NYmButgccg5Vvj-Sa9KikU4cjQ",
+   "nome": "ÓPTICA PREMIUM_7.jpg",
+   "tipo": "foto",
+   "cliente": "Óptica Premium",
+   "mes": "2026-10",
+   "pasta": "1YgRjht-a_E319-hyB-pDhqvIb5PMAEEA"
+  },
+  {
+   "id": "1u-JJTqPiTAM353aPI0HbKcXg-HQQsarN",
+   "nome": "ÓPTICA PREMIUM_11.jpg",
+   "tipo": "foto",
+   "cliente": "Óptica Premium",
+   "mes": "2026-10",
+   "pasta": "1YgRjht-a_E319-hyB-pDhqvIb5PMAEEA"
+  },
+  {
+   "id": "1xhJKFvwrgnRWyiCd8TF21-Ml3aFHj8ko",
+   "nome": "F. Óptica Premium - Oliver Peoples - V.2.mov",
+   "tipo": "video",
+   "cliente": "Óptica Premium",
+   "mes": "2026-10",
+   "pasta": "1YgRjht-a_E319-hyB-pDhqvIb5PMAEEA"
+  },
+  {
    "id": "1zKF1siWrBbT9T1Lo2kD2HA2nUOjVixjx",
    "nome": "ÓPTICA PREMIUM_6.jpg",
    "tipo": "foto",
@@ -1672,412 +3224,132 @@
    "pasta": "1YgRjht-a_E319-hyB-pDhqvIb5PMAEEA"
   },
   {
-   "id": "1hHvmr7itwPWeXw72MYKGbpsC1niYHoJi",
-   "nome": "ÓPTICA PREMIUM.jpg",
-   "tipo": "foto",
-   "cliente": "Óptica Premium",
-   "mes": "2026-10",
-   "pasta": "1YgRjht-a_E319-hyB-pDhqvIb5PMAEEA"
-  },
-  {
-   "id": "1Gj6T7NkBGJnWzQBiN4FakEm0JLS-kTwl",
-   "nome": "F. Óptica Premium - Função de cada lente - V.2.mov",
+   "id": "1MwlB2k3P2gFy9o8VcWsNaYkrBqlixfch",
+   "nome": "F. Scalercio - Casa Samambaia - V.1.mov",
    "tipo": "video",
-   "cliente": "Óptica Premium",
-   "mes": "2026-09",
-   "pasta": "1uIdQtHva4GTfpqHNFmHaKFLfwy8-qVeh"
+   "cliente": "Scalercio",
+   "mes": "2026-11",
+   "pasta": "1Knkyhnr-fEvwv3fyC_UFswA2CWzX69wj"
   },
   {
-   "id": "1tPmWS84GNqQ0le3RIbIhC83GKRME3t0W",
-   "nome": "F. Óptica Premium - Zegna - V.2.mp4",
+   "id": "1jSwR3oPuhqy9hexvOv0io2kK6UCo7eVf",
+   "nome": "F. Scalercio - Cobertura The Prime - V.1.mov",
    "tipo": "video",
-   "cliente": "Óptica Premium",
-   "mes": "2026-09",
-   "pasta": "1uIdQtHva4GTfpqHNFmHaKFLfwy8-qVeh"
+   "cliente": "Scalercio",
+   "mes": "2026-11",
+   "pasta": "1Knkyhnr-fEvwv3fyC_UFswA2CWzX69wj"
   },
   {
-   "id": "14A_Nf2Cfyh5DYShLnr0sF7lu5b-bVrj3",
-   "nome": "A7406125.jpg",
+   "id": "11DhlWP9uVv0u92HfsI6ZmdsuOZR1irnu",
+   "nome": "A7409833.jpg",
    "tipo": "foto",
-   "cliente": "Óptica Premium",
-   "mes": "2026-06",
-   "pasta": "1lwTTlpjGaIx5o29x3vzhELlU3JUVWr4T"
+   "cliente": "Vitrinni",
+   "mes": "2026-11",
+   "pasta": "1fCQ_eoOoCc9nUeQf0wI1lHOTZhJsLk9A"
   },
   {
-   "id": "1vUivIZiWfigLUG7pP21v7yAcuViKQO8-",
-   "nome": "A7406102.jpg",
+   "id": "1E--u_WQeSbbSYVvxS4lkCnePIqwTC1HD",
+   "nome": "A7409892.jpg",
    "tipo": "foto",
-   "cliente": "Óptica Premium",
-   "mes": "2026-06",
-   "pasta": "1lwTTlpjGaIx5o29x3vzhELlU3JUVWr4T"
+   "cliente": "Vitrinni",
+   "mes": "2026-11",
+   "pasta": "1fCQ_eoOoCc9nUeQf0wI1lHOTZhJsLk9A"
   },
   {
-   "id": "1EKICleHXmBzH7gvwY7W3IWecT_ffZH4y",
-   "nome": "A7405965.jpg",
-   "tipo": "foto",
-   "cliente": "Óptica Premium",
-   "mes": "2026-06",
-   "pasta": "1lwTTlpjGaIx5o29x3vzhELlU3JUVWr4T"
-  },
-  {
-   "id": "1OxZf7lwp9drmigZq1thV24dyxgUNZCml",
-   "nome": "A7406005.jpg",
-   "tipo": "foto",
-   "cliente": "Óptica Premium",
-   "mes": "2026-06",
-   "pasta": "1lwTTlpjGaIx5o29x3vzhELlU3JUVWr4T"
-  },
-  {
-   "id": "1G6lkNSBtsUzWUkxhJy5WXFfi82ccU9VZ",
-   "nome": "A7406051.jpg",
-   "tipo": "foto",
-   "cliente": "Óptica Premium",
-   "mes": "2026-06",
-   "pasta": "1lwTTlpjGaIx5o29x3vzhELlU3JUVWr4T"
-  },
-  {
-   "id": "1Qms7lq8aq7spxqTYGDbGzzXJg_agHqST",
-   "nome": "A7406026.jpg",
-   "tipo": "foto",
-   "cliente": "Óptica Premium",
-   "mes": "2026-06",
-   "pasta": "1lwTTlpjGaIx5o29x3vzhELlU3JUVWr4T"
-  },
-  {
-   "id": "15w0C0Xk_KPl-IefQ1SuroElrrwNquN52",
-   "nome": "A7406019.jpg",
-   "tipo": "foto",
-   "cliente": "Óptica Premium",
-   "mes": "2026-06",
-   "pasta": "1lwTTlpjGaIx5o29x3vzhELlU3JUVWr4T"
-  },
-  {
-   "id": "144euKegINfs-1Yp6-UlAgOAVcdLxU-5j",
-   "nome": "A7405990.jpg",
-   "tipo": "foto",
-   "cliente": "Óptica Premium",
-   "mes": "2026-06",
-   "pasta": "1lwTTlpjGaIx5o29x3vzhELlU3JUVWr4T"
-  },
-  {
-   "id": "1t_Mk_vtDRZNNuIzb1tkhmnfskVsnstaz",
-   "nome": "A7406038.jpg",
-   "tipo": "foto",
-   "cliente": "Óptica Premium",
-   "mes": "2026-06",
-   "pasta": "1lwTTlpjGaIx5o29x3vzhELlU3JUVWr4T"
-  },
-  {
-   "id": "1bgspZeIULjE6npYwOAtpn8ags43Tn27A",
-   "nome": "A7406047.jpg",
-   "tipo": "foto",
-   "cliente": "Óptica Premium",
-   "mes": "2026-06",
-   "pasta": "1lwTTlpjGaIx5o29x3vzhELlU3JUVWr4T"
-  },
-  {
-   "id": "1rwHDVn2M1KZIOfQ3bm1Vu815IxdG8kMb",
-   "nome": "A7405973.jpg",
-   "tipo": "foto",
-   "cliente": "Óptica Premium",
-   "mes": "2026-06",
-   "pasta": "1lwTTlpjGaIx5o29x3vzhELlU3JUVWr4T"
-  },
-  {
-   "id": "1_5eFFpO2bA4YIyCyr-GAK9xgGQ_7G72v",
-   "nome": "A7406024.jpg",
-   "tipo": "foto",
-   "cliente": "Óptica Premium",
-   "mes": "2026-06",
-   "pasta": "1lwTTlpjGaIx5o29x3vzhELlU3JUVWr4T"
-  },
-  {
-   "id": "1DCsMGb5GzM5JbVQU8nKXt22JokWZfsrW",
-   "nome": "F. Optica Premium -  Trend - V.1.mp4",
+   "id": "1KiM8UYJVctf9IYbpGBMOWAXokanm3XS3",
+   "nome": "F.Vitrinni - Papai Noel Descendo. V.1.mov",
    "tipo": "video",
-   "cliente": "Óptica Premium",
-   "mes": "2026-06",
-   "pasta": "1lwTTlpjGaIx5o29x3vzhELlU3JUVWr4T"
+   "cliente": "Vitrinni",
+   "mes": "2026-11",
+   "pasta": "1fCQ_eoOoCc9nUeQf0wI1lHOTZhJsLk9A"
   },
   {
-   "id": "1ehZR0fJBmx6-3kKTFhs9S-ViBcB2lCgG",
-   "nome": "F. Optica Premium - Julho Premium - V.3.mp4",
+   "id": "1UbdFhQ0ZqkBrfaj85hrO9wqB21BygZYz",
+   "nome": "A7409840.jpg",
+   "tipo": "foto",
+   "cliente": "Vitrinni",
+   "mes": "2026-11",
+   "pasta": "1fCQ_eoOoCc9nUeQf0wI1lHOTZhJsLk9A"
+  },
+  {
+   "id": "1UlS-E2XoTXSK_TYJr_ljCEszsi0Ncqg6",
+   "nome": "F. Vitrinni - Green Friday 2 - V.2.mov",
    "tipo": "video",
-   "cliente": "Óptica Premium",
-   "mes": "2026-06",
-   "pasta": "1lwTTlpjGaIx5o29x3vzhELlU3JUVWr4T"
+   "cliente": "Vitrinni",
+   "mes": "2026-11",
+   "pasta": "1fCQ_eoOoCc9nUeQf0wI1lHOTZhJsLk9A"
   },
   {
-   "id": "1rdMstLtGM1iaZp82ecc0iXA15uwpATOl",
-   "nome": "A7405435.jpg",
+   "id": "1c2Z-LRiaIlBY6-gQvAUvvtwVNSOd8klg",
+   "nome": "A7409879.jpg",
    "tipo": "foto",
-   "cliente": "Óptica Premium",
-   "mes": "2026-05",
-   "pasta": "18NlwgnbYyanaLX3YXepPTQsCG1eVM9_c"
+   "cliente": "Vitrinni",
+   "mes": "2026-11",
+   "pasta": "1fCQ_eoOoCc9nUeQf0wI1lHOTZhJsLk9A"
   },
   {
-   "id": "1BMXO4V8gmbCFYWER_XLhL-3gaOoiIzLa",
-   "nome": "A7405468.jpg",
-   "tipo": "foto",
-   "cliente": "Óptica Premium",
-   "mes": "2026-05",
-   "pasta": "18NlwgnbYyanaLX3YXepPTQsCG1eVM9_c"
-  },
-  {
-   "id": "1TPl0moKJWHo5OsGhIVFE2ER0put47ExS",
-   "nome": "A7405463.jpg",
-   "tipo": "foto",
-   "cliente": "Óptica Premium",
-   "mes": "2026-05",
-   "pasta": "18NlwgnbYyanaLX3YXepPTQsCG1eVM9_c"
-  },
-  {
-   "id": "1umAUczfPyeX6VZ4EL9fONtR1EUo8RN74",
-   "nome": "A7405447.jpg",
-   "tipo": "foto",
-   "cliente": "Óptica Premium",
-   "mes": "2026-05",
-   "pasta": "18NlwgnbYyanaLX3YXepPTQsCG1eVM9_c"
-  },
-  {
-   "id": "17La9nQP6l-YHDO1lFhpBP__Eg7F2JI7s",
-   "nome": "A7405465.jpg",
-   "tipo": "foto",
-   "cliente": "Óptica Premium",
-   "mes": "2026-05",
-   "pasta": "18NlwgnbYyanaLX3YXepPTQsCG1eVM9_c"
-  },
-  {
-   "id": "1W4LrYlKJYHQ2Ahd84uqBBxLzI4CtZf7P",
-   "nome": "A7405440.jpg",
-   "tipo": "foto",
-   "cliente": "Óptica Premium",
-   "mes": "2026-05",
-   "pasta": "18NlwgnbYyanaLX3YXepPTQsCG1eVM9_c"
-  },
-  {
-   "id": "13doZZhbmKIpygVrqen6Whin7j3FNDm0A",
-   "nome": "A7405452.jpg",
-   "tipo": "foto",
-   "cliente": "Óptica Premium",
-   "mes": "2026-05",
-   "pasta": "18NlwgnbYyanaLX3YXepPTQsCG1eVM9_c"
-  },
-  {
-   "id": "1kxaBTcyIjk6n3iQ0tnLhS3VQxpIDxg_q",
-   "nome": "A7405453.jpg",
-   "tipo": "foto",
-   "cliente": "Óptica Premium",
-   "mes": "2026-05",
-   "pasta": "18NlwgnbYyanaLX3YXepPTQsCG1eVM9_c"
-  },
-  {
-   "id": "1dk41PgD8bCzO0sOxnul1VICZQ0w0bVHP",
-   "nome": "A7405467.jpg",
-   "tipo": "foto",
-   "cliente": "Óptica Premium",
-   "mes": "2026-05",
-   "pasta": "18NlwgnbYyanaLX3YXepPTQsCG1eVM9_c"
-  },
-  {
-   "id": "1iWLcGiOnhlMn2tNJUnXlZVBMnVZ3IPm6",
-   "nome": "A7405389.jpg",
-   "tipo": "foto",
-   "cliente": "Óptica Premium",
-   "mes": "2026-05",
-   "pasta": "18NlwgnbYyanaLX3YXepPTQsCG1eVM9_c"
-  },
-  {
-   "id": "1pwFEoIASilfg3VGa8WO_LFlFgjI3lL_h",
-   "nome": "F. Valen Beauty - Tik Tok Shop - V.2.mov",
+   "id": "1eSAPgk0Nlukok-opfYpW89p3hUltCOCp",
+   "nome": "F. Vitrinni - Doce Natal VTS - V.1.mov",
    "tipo": "video",
-   "cliente": "Valen Beauty",
-   "mes": "2026-07",
-   "pasta": "1d9D9p7A5KyrUEmvk3ZgalDebjnb8NL3m"
+   "cliente": "Vitrinni",
+   "mes": "2026-11",
+   "pasta": "1fCQ_eoOoCc9nUeQf0wI1lHOTZhJsLk9A"
   },
   {
-   "id": "1TTaLNNOmpFz5QB30ESTCihRmugUC41Q9",
-   "nome": "F. Valen Beauty - Pink Pie + Salt Caramel - V.2.mov",
-   "tipo": "video",
-   "cliente": "Valen Beauty",
-   "mes": "2026-07",
-   "pasta": "1d9D9p7A5KyrUEmvk3ZgalDebjnb8NL3m"
-  },
-  {
-   "id": "19F55b4hR6FRyYXDXH5BTn-AGDv6B201B",
-   "nome": "F. Valen - Site - V.4.mov",
-   "tipo": "video",
-   "cliente": "Valen Beauty",
-   "mes": "2026-06",
-   "pasta": "1PA1-7K9PETlL07D7RXRSzpe5ZKEkXsk2"
-  },
-  {
-   "id": "1nzhmxezpcaRCIain22g_XCZQNvwdmYbs",
-   "nome": "F. Óptica Premium - Dia dos Namorados. V.1.mov",
-   "tipo": "video",
-   "cliente": "Óptica Premium",
-   "mes": "2026-05",
-   "pasta": "18NlwgnbYyanaLX3YXepPTQsCG1eVM9_c"
-  },
-  {
-   "id": "1PHg7nEU5p6M950R6QARuK2elhKeREwv1",
-   "nome": "Valen Fotos_2.jpg",
+   "id": "1fL1yKGINgPT3jXoYNCEko49AMr7DB6M7",
+   "nome": "A7409876.jpg",
    "tipo": "foto",
-   "cliente": "Valen Beauty",
-   "mes": "2026-05",
-   "pasta": "1dE-7xxluFRxNbtN1BXlsC2aLKMFWfWlH"
+   "cliente": "Vitrinni",
+   "mes": "2026-11",
+   "pasta": "1fCQ_eoOoCc9nUeQf0wI1lHOTZhJsLk9A"
   },
   {
-   "id": "1UQghXwT-JEr_5E2jZpHiuvApfOJJ0zUZ",
-   "nome": "Valen Fotos_4.jpg",
+   "id": "1fn03k7G276CWQSc9kzKn6-KpOtT8ctIo",
+   "nome": "A7409881.jpg",
    "tipo": "foto",
-   "cliente": "Valen Beauty",
-   "mes": "2026-05",
-   "pasta": "1dE-7xxluFRxNbtN1BXlsC2aLKMFWfWlH"
+   "cliente": "Vitrinni",
+   "mes": "2026-11",
+   "pasta": "1fCQ_eoOoCc9nUeQf0wI1lHOTZhJsLk9A"
   },
   {
-   "id": "1OwdA29Udc1kxaT_XZIC2wvKxGdNBvrQa",
-   "nome": "Q. Valen Bauty - GRWM. v.2.mov",
-   "tipo": "video",
-   "cliente": "Valen Beauty",
-   "mes": "2026-05",
-   "pasta": "1dE-7xxluFRxNbtN1BXlsC2aLKMFWfWlH"
-  },
-  {
-   "id": "1aa0OKuVHrlLvP44mhW1d0aQuW74IDWUj",
-   "nome": "Valen Fotos.jpg",
+   "id": "1j3mEsLuAale0DGY3nAy-lo6ooeXX8zDH",
+   "nome": "A7409889.jpg",
    "tipo": "foto",
-   "cliente": "Valen Beauty",
-   "mes": "2026-05",
-   "pasta": "1dE-7xxluFRxNbtN1BXlsC2aLKMFWfWlH"
+   "cliente": "Vitrinni",
+   "mes": "2026-11",
+   "pasta": "1fCQ_eoOoCc9nUeQf0wI1lHOTZhJsLk9A"
   },
   {
-   "id": "1OL0ZZ3_RcxgGCZqMBxgF7TRxn7JtaTVr",
-   "nome": "Valen Fotos_1.jpg",
+   "id": "1kQ5_CVodRLF2dnJor2YzdCuoRPB7xPvj",
+   "nome": "F. Vitrinni - Green Friday 1 - V.1.mov",
+   "tipo": "video",
+   "cliente": "Vitrinni",
+   "mes": "2026-11",
+   "pasta": "1fCQ_eoOoCc9nUeQf0wI1lHOTZhJsLk9A"
+  },
+  {
+   "id": "1z9j6FD5RK1l8kCXAUk-X0-ROu0aa76EY",
+   "nome": "A7409844.jpg",
    "tipo": "foto",
-   "cliente": "Valen Beauty",
-   "mes": "2026-05",
-   "pasta": "1dE-7xxluFRxNbtN1BXlsC2aLKMFWfWlH"
+   "cliente": "Vitrinni",
+   "mes": "2026-11",
+   "pasta": "1fCQ_eoOoCc9nUeQf0wI1lHOTZhJsLk9A"
   },
   {
-   "id": "1Xd9TNTckv47tioGZyeV9NxOsOY351wJy",
-   "nome": "Valen Fotos_5.jpg",
-   "tipo": "foto",
-   "cliente": "Valen Beauty",
-   "mes": "2026-05",
-   "pasta": "1dE-7xxluFRxNbtN1BXlsC2aLKMFWfWlH"
-  },
-  {
-   "id": "1detXscX8WaTOrGEoJWeSJoAhDn-QojU7",
-   "nome": "Valen Fotos_3.jpg",
-   "tipo": "foto",
-   "cliente": "Valen Beauty",
-   "mes": "2026-05",
-   "pasta": "1dE-7xxluFRxNbtN1BXlsC2aLKMFWfWlH"
-  },
-  {
-   "id": "1MiANePo2GLvyOf0uuoIfJNuwdZk_EuvD",
-   "nome": "Q. ValenBeauty - Pink x Caramel - Valen - V.2.mov",
-   "tipo": "video",
-   "cliente": "Valen Beauty",
-   "mes": "2026-06",
-   "pasta": "1PA1-7K9PETlL07D7RXRSzpe5ZKEkXsk2"
-  },
-  {
-   "id": "1OG85ibGO1bVq9WQYXxwRZXo_7NCa82Gp",
-   "nome": "F. Óptica Premium - Fashion Film 2 - Luiz - V.1.mov",
-   "tipo": "video",
-   "cliente": "Óptica Premium",
-   "mes": "2026-02",
-   "pasta": "1omhyRxAlNZPik-otYsh_Qdr_Ey3UPtcq"
-  },
-  {
-   "id": "10E-fcmFBCCRySQR-D9SldB6z1U7JN8PQ",
-   "nome": "F. Óptica Premium - Destino Final - Luiz - V.1.mp4",
-   "tipo": "video",
-   "cliente": "Óptica Premium",
-   "mes": "2025-12",
-   "pasta": "18899Mb5ierQScfz8E5_KNiihz3Q2g1Ql"
-  },
-  {
-   "id": "1Tf6W0ninPNNZW7uBdyM-8cAsev4O3kb8",
-   "nome": "F. Óptica Premiun - Vlog 1 - Luiz - V.1.mov",
-   "tipo": "video",
-   "cliente": "Óptica Premium",
-   "mes": "2025-12",
-   "pasta": "18899Mb5ierQScfz8E5_KNiihz3Q2g1Ql"
-  },
-  {
-   "id": "1uJq19-spJsJNfID_0o-B480zy7SowPeF",
-   "nome": "F. Óptica Premium - Ray Ban Meta - Luiz - V.1.mov",
-   "tipo": "video",
-   "cliente": "Óptica Premium",
-   "mes": "2025-11",
-   "pasta": "11y4pdJ3OLfUA2rYnaYSU9dGK2IGdLeb1"
-  },
-  {
-   "id": "1rOoWMFiJT3mGPX3K1zLdMioPgdmqB6it",
-   "nome": "F. Óptica Premium - Black - Luiz - V.3.mov",
-   "tipo": "video",
-   "cliente": "Óptica Premium",
-   "mes": "2025-11",
-   "pasta": "11y4pdJ3OLfUA2rYnaYSU9dGK2IGdLeb1"
-  },
-  {
-   "id": "1iRccLV1KlqllZbBamtTYzO7S8dm6cKv0",
-   "nome": "A7406768.jpg",
+   "id": "1OzUajELQs1R4-EnUwaC5RjPS5MO7HQET",
+   "nome": "FX301353.jpg",
    "tipo": "foto",
    "cliente": "Óptica Premium",
-   "mes": "2025-11",
-   "pasta": "11y4pdJ3OLfUA2rYnaYSU9dGK2IGdLeb1"
+   "mes": "2026-11",
+   "pasta": "14zxzEvFD7gYv30EfvgZMSvglGiWpRnD1"
   },
   {
-   "id": "1tuQ0DPKq_UDh45a_GCYuy4LY7V5TXMfD",
-   "nome": "A7406798.jpg",
+   "id": "1k2GRfsXUiyhRrhUAt0JUnNHgZJMZM5--",
+   "nome": "FX301354.jpg",
    "tipo": "foto",
    "cliente": "Óptica Premium",
-   "mes": "2025-11",
-   "pasta": "11y4pdJ3OLfUA2rYnaYSU9dGK2IGdLeb1"
-  },
-  {
-   "id": "1nVPpw56vpA_xSFxhp85HgNSaHlsTSEsL",
-   "nome": "A7406790.jpg",
-   "tipo": "foto",
-   "cliente": "Óptica Premium",
-   "mes": "2025-11",
-   "pasta": "11y4pdJ3OLfUA2rYnaYSU9dGK2IGdLeb1"
-  },
-  {
-   "id": "1O43WxNI5uN7yZHiT3uo0Tp_ktOBzJC-j",
-   "nome": "A7406786.jpg",
-   "tipo": "foto",
-   "cliente": "Óptica Premium",
-   "mes": "2025-11",
-   "pasta": "11y4pdJ3OLfUA2rYnaYSU9dGK2IGdLeb1"
-  },
-  {
-   "id": "1DQVXdh3Nc0aleIwgA7WOqlgC3D5u4N0W",
-   "nome": "A7406801.jpg",
-   "tipo": "foto",
-   "cliente": "Óptica Premium",
-   "mes": "2025-11",
-   "pasta": "11y4pdJ3OLfUA2rYnaYSU9dGK2IGdLeb1"
-  },
-  {
-   "id": "1z0rpeu4V1Q4a0m2Bxra--b3vnSNv30US",
-   "nome": "F. Óptica Premium - Ray Ban - Luiz - V.3.mov",
-   "tipo": "video",
-   "cliente": "Óptica Premium",
-   "mes": "2025-10",
-   "pasta": "1WuATaSOgn8k9hjW2uCj3wT2752pQsb1m"
-  },
-  {
-   "id": "1SIQjKX0lpTX3LO3rc2TAOZSYgN5pZ6FB",
-   "nome": "F. Universa - Óptica Premium - Luiz - V.4.mov",
-   "tipo": "video",
-   "cliente": "Óptica Premium",
-   "mes": "2025-10",
-   "pasta": "1WuATaSOgn8k9hjW2uCj3wT2752pQsb1m"
+   "mes": "2026-11",
+   "pasta": "14zxzEvFD7gYv30EfvgZMSvglGiWpRnD1"
   },
   {
    "id": "1uIPaxt5SKUbp3UsBEzeJ--EE2DyZ3SIv",
@@ -2086,1694 +3358,6 @@
    "cliente": "Óptica Premium",
    "mes": "2026-11",
    "pasta": "14zxzEvFD7gYv30EfvgZMSvglGiWpRnD1"
-  },
-  {
-   "id": "1gj5QE9ijy66BUTpv7QKPY_sJVKw_YhA3",
-   "nome": "F. Óptica Premium. Escolhas do Boss. v.4.mov",
-   "tipo": "video",
-   "cliente": "Óptica Premium",
-   "mes": "2026-04",
-   "pasta": "1q9x3B8fklJrhRDnBe8W6zu11wEZicd1U"
-  },
-  {
-   "id": "1ul3Tpvc_vHmdDijqf8lvbGbcZ8SG1NSK",
-   "nome": "F. Óptica - Ray-Ban Meta - V.2.mov",
-   "tipo": "video",
-   "cliente": "Óptica Premium",
-   "mes": "2026-04",
-   "pasta": "1q9x3B8fklJrhRDnBe8W6zu11wEZicd1U"
-  },
-  {
-   "id": "1H9Ab5Tyj3BUhE4EZ7CcrVbR1f83i2wz6",
-   "nome": "F. Óptica Premium - Dia das Mães - V.2.mov",
-   "tipo": "video",
-   "cliente": "Óptica Premium",
-   "mes": "2026-04",
-   "pasta": "1q9x3B8fklJrhRDnBe8W6zu11wEZicd1U"
-  },
-  {
-   "id": "1pYGNQvFwWpL5sGUpcmHCOB2IMRkwoqvm",
-   "nome": "F. Valen Beauty - Dia das Mães - V.2.mov",
-   "tipo": "video",
-   "cliente": "Valen Beauty",
-   "mes": "2026-04",
-   "pasta": "11lTGtETq7W1yT3k9Q8CtevWbkHbAKuns"
-  },
-  {
-   "id": "1bj-TBeZ3h3LTPztOPSPEvEgRl2vraE21",
-   "nome": "F. Óptica Premium - Park Shopping - Luiz. V.2.mov",
-   "tipo": "video",
-   "cliente": "Óptica Premium",
-   "mes": "2026-02",
-   "pasta": "1omhyRxAlNZPik-otYsh_Qdr_Ey3UPtcq"
-  },
-  {
-   "id": "1XscbKRyFYnRITgnt0IOPL9tO4Ua_W0Ys",
-   "nome": "F. ValenBeauty - Pink x Caramel - Valen - V.2.mov",
-   "tipo": "video",
-   "cliente": "Valen Beauty",
-   "mes": "2026-03",
-   "pasta": "1FBOoP-3usT3RI_lrIBCAHoLYzPzEJxfU"
-  },
-  {
-   "id": "1JxPxisTqUk4jxfqC4DLawEO0q441S-R6",
-   "nome": "Valen Fotos_2.JPG",
-   "tipo": "foto",
-   "cliente": "Valen Beauty",
-   "mes": "2026-04",
-   "pasta": "11lTGtETq7W1yT3k9Q8CtevWbkHbAKuns"
-  },
-  {
-   "id": "1s88OfX-l0EENBdN6ZJLpfT83Uw6jdWFV",
-   "nome": "Valen Fotos_1.JPG",
-   "tipo": "foto",
-   "cliente": "Valen Beauty",
-   "mes": "2026-04",
-   "pasta": "11lTGtETq7W1yT3k9Q8CtevWbkHbAKuns"
-  },
-  {
-   "id": "1N493Axb6RjKhHbGIZk-EeX1QZ7j1gaF8",
-   "nome": "Valen Fotos.JPG",
-   "tipo": "foto",
-   "cliente": "Valen Beauty",
-   "mes": "2026-04",
-   "pasta": "11lTGtETq7W1yT3k9Q8CtevWbkHbAKuns"
-  },
-  {
-   "id": "1tCtoph54sIfMwdAwh8tGQu23qKxGxiig",
-   "nome": "F. Óptica Conjunto Nacional- V.5.mov",
-   "tipo": "video",
-   "cliente": "Óptica Premium",
-   "mes": "2026-03",
-   "pasta": "1dCfjk-IwCL10VuJGu9B_OzNt46ZGTYMF"
-  },
-  {
-   "id": "19_8iQNTWD7QGvxPOayGuto_geq_S7Mr6",
-   "nome": "Valen Fotos_5.JPG",
-   "tipo": "foto",
-   "cliente": "Valen Beauty",
-   "mes": "2026-03",
-   "pasta": "1FBOoP-3usT3RI_lrIBCAHoLYzPzEJxfU"
-  },
-  {
-   "id": "1HVFwSm4ZCxH2HoWN3jpuXHkxu-nMH_8Q",
-   "nome": "Valen Fotos_4.JPG",
-   "tipo": "foto",
-   "cliente": "Valen Beauty",
-   "mes": "2026-03",
-   "pasta": "1FBOoP-3usT3RI_lrIBCAHoLYzPzEJxfU"
-  },
-  {
-   "id": "1MoO9bNaVX0s9S42x7QGPzrUjeLUkHG4X",
-   "nome": "Valen Fotos_3.JPG",
-   "tipo": "foto",
-   "cliente": "Valen Beauty",
-   "mes": "2026-03",
-   "pasta": "1FBOoP-3usT3RI_lrIBCAHoLYzPzEJxfU"
-  },
-  {
-   "id": "1adQR-abMhnxBoulirO0Ft2i30p4is8hd",
-   "nome": "Valen Fotos_2.JPG",
-   "tipo": "foto",
-   "cliente": "Valen Beauty",
-   "mes": "2026-03",
-   "pasta": "1FBOoP-3usT3RI_lrIBCAHoLYzPzEJxfU"
-  },
-  {
-   "id": "1TadTD-LDV2eE1goE-S8gc5mbKJUX3QF9",
-   "nome": "Valen Fotos_1.JPG",
-   "tipo": "foto",
-   "cliente": "Valen Beauty",
-   "mes": "2026-03",
-   "pasta": "1FBOoP-3usT3RI_lrIBCAHoLYzPzEJxfU"
-  },
-  {
-   "id": "1jhGKr6lvdb68sAXGU_TpJQy13zihkt4z",
-   "nome": "Valen Fotos.JPG",
-   "tipo": "foto",
-   "cliente": "Valen Beauty",
-   "mes": "2026-03",
-   "pasta": "1FBOoP-3usT3RI_lrIBCAHoLYzPzEJxfU"
-  },
-  {
-   "id": "1KdqlwkE0d47Z1Op4HIjwGZWTeqC1M_et",
-   "nome": "F. 15 anos Óptica Premium- V.1.mov",
-   "tipo": "video",
-   "cliente": "Óptica Premium",
-   "mes": "2026-03",
-   "pasta": "1dCfjk-IwCL10VuJGu9B_OzNt46ZGTYMF"
-  },
-  {
-   "id": "1FUWeapbYDs34desLHuCsNg-khSovpMgp",
-   "nome": "F. Valen Bauty - Fashion Film - V.1.mov",
-   "tipo": "video",
-   "cliente": "Valen Beauty",
-   "mes": "2026-03",
-   "pasta": "1FBOoP-3usT3RI_lrIBCAHoLYzPzEJxfU"
-  },
-  {
-   "id": "1pPNnA0v_7lXRAuF62ZXDNhq4SGAfQK-1",
-   "nome": "F. Vitrinni - Santina - V.2.mp4",
-   "tipo": "video",
-   "cliente": "Vitrinni",
-   "mes": "2026-10",
-   "pasta": "1JnopFMTjvzQ2SC5RjSIteJFRqer4jObR"
-  },
-  {
-   "id": "12eUMFb5hQbuLTg0_4qPaegShgWspf8Gf",
-   "nome": "F. Vitrinni - Natal Doce - V.1.mov",
-   "tipo": "video",
-   "cliente": "Vitrinni",
-   "mes": "2026-10",
-   "pasta": "1JnopFMTjvzQ2SC5RjSIteJFRqer4jObR"
-  },
-  {
-   "id": "18pV77CaTF3Ze2uht_uhqBVfsLtogvnbO",
-   "nome": "FX301015.jpg",
-   "tipo": "foto",
-   "cliente": "Vitrinni",
-   "mes": "2026-05",
-   "pasta": "1t9JVvdPN4ykQcesVWkKvXYfhpA0BFfec"
-  },
-  {
-   "id": "1KoD8NlkN5P3YKax2k7xCKm5ywY66xIO4",
-   "nome": "FX300997.jpg",
-   "tipo": "foto",
-   "cliente": "Vitrinni",
-   "mes": "2026-05",
-   "pasta": "1t9JVvdPN4ykQcesVWkKvXYfhpA0BFfec"
-  },
-  {
-   "id": "1_iTjwTR-2EhwXhe8RnszZCMMkymnY03h",
-   "nome": "F. Vitrinni. Campanha Dia Dos Pais 02. V.3.mp4",
-   "tipo": "video",
-   "cliente": "Vitrinni",
-   "mes": "2026-06",
-   "pasta": "15Vexs9njsuQBoEN0ROcRPR1fgySxr90k"
-  },
-  {
-   "id": "1HmB3KZdrLXIyFSCJTqONotjELltyp_dl",
-   "nome": "FX300996.jpg",
-   "tipo": "foto",
-   "cliente": "Vitrinni",
-   "mes": "2026-05",
-   "pasta": "1t9JVvdPN4ykQcesVWkKvXYfhpA0BFfec"
-  },
-  {
-   "id": "1GIB0_nRWU3bxl1xopuaheDAL9VcPw3rr",
-   "nome": "F. Vitrinni. Campanha Dia Dos Pais 01. V.8.mp4",
-   "tipo": "video",
-   "cliente": "Vitrinni",
-   "mes": "2026-06",
-   "pasta": "15Vexs9njsuQBoEN0ROcRPR1fgySxr90k"
-  },
-  {
-   "id": "1myp9_irYR7aeUS-hbYxShic-uxHDPJJD",
-   "nome": "F. Vitrinni. Olha o Aviãozinho v.1.mp4",
-   "tipo": "video",
-   "cliente": "Vitrinni",
-   "mes": "2026-06",
-   "pasta": "15Vexs9njsuQBoEN0ROcRPR1fgySxr90k"
-  },
-  {
-   "id": "1aPoStYOIvQHZ3W5sJk2n0KXHK72nY_sQ",
-   "nome": "F. Vitrinni. Jazz Wine Park- v.1.mp4",
-   "tipo": "video",
-   "cliente": "Vitrinni",
-   "mes": "2026-06",
-   "pasta": "15Vexs9njsuQBoEN0ROcRPR1fgySxr90k"
-  },
-  {
-   "id": "1WBX_5xXkPyhVn0ohxYSvbpeiPhtrmBDu",
-   "nome": "FX301027.jpg",
-   "tipo": "foto",
-   "cliente": "Vitrinni",
-   "mes": "2026-05",
-   "pasta": "1t9JVvdPN4ykQcesVWkKvXYfhpA0BFfec"
-  },
-  {
-   "id": "12dkdp5RMqsCe1B7qp7YESW1Rnyf3MxCm",
-   "nome": "FX300712.jpg",
-   "tipo": "foto",
-   "cliente": "Vitrinni",
-   "mes": "2026-02",
-   "pasta": "1JdTn1_iDsopEqEaYqNd1iCzvqpWzhLvA"
-  },
-  {
-   "id": "1V8EkAEdDklFeDRkHsbzTMAMA2S_UKZAu",
-   "nome": "FX300711.jpg",
-   "tipo": "foto",
-   "cliente": "Vitrinni",
-   "mes": "2026-02",
-   "pasta": "1JdTn1_iDsopEqEaYqNd1iCzvqpWzhLvA"
-  },
-  {
-   "id": "1H8wZ-quGz8F0pcVAp09eJpNenrk94V76",
-   "nome": "F. Vitrinni - Cabe Aqui 2. V.1.mov",
-   "tipo": "video",
-   "cliente": "Vitrinni",
-   "mes": "2026-05",
-   "pasta": "1t9JVvdPN4ykQcesVWkKvXYfhpA0BFfec"
-  },
-  {
-   "id": "1c-OAdg_dLl-91zlsduLSZGwXbxDJNzQd",
-   "nome": "F. Vitrinni - Espaço Laser. V.1.mov",
-   "tipo": "video",
-   "cliente": "Vitrinni",
-   "mes": "2026-10",
-   "pasta": "1JnopFMTjvzQ2SC5RjSIteJFRqer4jObR"
-  },
-  {
-   "id": "1rGFXVgPtTIc7Oddx4Gr5-Fl2UJYPxyMQ",
-   "nome": "F. Vitrinni - Fita - V.1.mov",
-   "tipo": "video",
-   "cliente": "Vitrinni",
-   "mes": "2026-10",
-   "pasta": "1JnopFMTjvzQ2SC5RjSIteJFRqer4jObR"
-  },
-  {
-   "id": "18y-202guquo8nV6wwASX9RTbjDcDwgLD",
-   "nome": "F. Vitrinni - POV - V.1.mov",
-   "tipo": "video",
-   "cliente": "Vitrinni",
-   "mes": "2026-07",
-   "pasta": "1MqVUsKFGOuuJftOU_RdrDwcGFpcn7pvl"
-  },
-  {
-   "id": "1mTY5v5_IusJi35-Pqz0UJ-s-youTC5B1",
-   "nome": "F. Vitrinni - Pão Dourado - V.1.mov",
-   "tipo": "video",
-   "cliente": "Vitrinni",
-   "mes": "2026-07",
-   "pasta": "1MqVUsKFGOuuJftOU_RdrDwcGFpcn7pvl"
-  },
-  {
-   "id": "1BYFwOi7b3RpRhXLdhYEZlDHwM7AiCFbr",
-   "nome": "F. Vitrinni - 3 Lojas - V.2.mov",
-   "tipo": "video",
-   "cliente": "Vitrinni",
-   "mes": "2026-07",
-   "pasta": "1MqVUsKFGOuuJftOU_RdrDwcGFpcn7pvl"
-  },
-  {
-   "id": "1dJ-mSEMLP65irHUDCvYjEgvZ6SMLM6Q9",
-   "nome": "F. Vitrinni - Você Sabia - V.1.mov",
-   "tipo": "video",
-   "cliente": "Vitrinni",
-   "mes": "2026-07",
-   "pasta": "1MqVUsKFGOuuJftOU_RdrDwcGFpcn7pvl"
-  },
-  {
-   "id": "1vh848q_-pkppRSgEM9gsEYfxckHVU5Re",
-   "nome": "F. Universa - ChatGPT X Claude - V.2.mov",
-   "tipo": "video",
-   "cliente": "Universa Digital",
-   "mes": "2026-01",
-   "pasta": "1lu2wQJqLbkjwmN8_ly4A11KQkWztVJoO"
-  },
-  {
-   "id": "1ZQ07pK4mlRza7czqFnrwnsgzRKe5px7v",
-   "nome": "F. Universa - TikTok Shop - Gabi - V.1.mov",
-   "tipo": "video",
-   "cliente": "Universa Digital",
-   "mes": "2026-01",
-   "pasta": "1lu2wQJqLbkjwmN8_ly4A11KQkWztVJoO"
-  },
-  {
-   "id": "1GJJTZaWCMWrMm7OFsEkOc54ORchTCvAs",
-   "nome": "F. Universa - Será - Gabi - V.1.mov",
-   "tipo": "video",
-   "cliente": "Universa Digital",
-   "mes": "2026-01",
-   "pasta": "1lu2wQJqLbkjwmN8_ly4A11KQkWztVJoO"
-  },
-  {
-   "id": "1rM3yeso6EySTP82K9rRmHrgmki_4cThi",
-   "nome": "F. Universa - 7 Erros - Gabi - V.2.mov",
-   "tipo": "video",
-   "cliente": "Universa Digital",
-   "mes": "2026-01",
-   "pasta": "1lu2wQJqLbkjwmN8_ly4A11KQkWztVJoO"
-  },
-  {
-   "id": "1XJ2QIpAE-Weoioyk880sbFOXBBE8FYGi",
-   "nome": "Universa Fotos.jpg",
-   "tipo": "foto",
-   "cliente": "Universa Digital",
-   "mes": "2026-01",
-   "pasta": "1lu2wQJqLbkjwmN8_ly4A11KQkWztVJoO"
-  },
-  {
-   "id": "15_HZGHkEurkrtTEB66gZ2DhhjdGUV79g",
-   "nome": "Universa Fotos_1.jpg",
-   "tipo": "foto",
-   "cliente": "Universa Digital",
-   "mes": "2026-01",
-   "pasta": "1lu2wQJqLbkjwmN8_ly4A11KQkWztVJoO"
-  },
-  {
-   "id": "1kDLjjPgluKSdRp8hp-kyZeBgFApdLanp",
-   "nome": "Universa Fotos_7.jpg",
-   "tipo": "foto",
-   "cliente": "Universa Digital",
-   "mes": "2026-01",
-   "pasta": "1lu2wQJqLbkjwmN8_ly4A11KQkWztVJoO"
-  },
-  {
-   "id": "1j4NeMTo_7JEggjT2b0EE4P7Ub-Fvs_pS",
-   "nome": "Universa Fotos_6.jpg",
-   "tipo": "foto",
-   "cliente": "Universa Digital",
-   "mes": "2026-01",
-   "pasta": "1lu2wQJqLbkjwmN8_ly4A11KQkWztVJoO"
-  },
-  {
-   "id": "1XdwS-VWR8axnWHazA0vNYAs_vGohzB5B",
-   "nome": "Universa Fotos_5.jpg",
-   "tipo": "foto",
-   "cliente": "Universa Digital",
-   "mes": "2026-01",
-   "pasta": "1lu2wQJqLbkjwmN8_ly4A11KQkWztVJoO"
-  },
-  {
-   "id": "1qVIYHI5oQL1lgolI8SNrTF5YfiAqTve8",
-   "nome": "Universa Fotos_2.jpg",
-   "tipo": "foto",
-   "cliente": "Universa Digital",
-   "mes": "2026-01",
-   "pasta": "1lu2wQJqLbkjwmN8_ly4A11KQkWztVJoO"
-  },
-  {
-   "id": "1hyq2QvMMkksbr4c-Z6zsH48OpjASlymx",
-   "nome": "Universa Fotos_10.jpg",
-   "tipo": "foto",
-   "cliente": "Universa Digital",
-   "mes": "2026-01",
-   "pasta": "1lu2wQJqLbkjwmN8_ly4A11KQkWztVJoO"
-  },
-  {
-   "id": "185RjlVrudKBO-gDpwYQxOj47_uLSlBPr",
-   "nome": "Universa Fotos_9.jpg",
-   "tipo": "foto",
-   "cliente": "Universa Digital",
-   "mes": "2026-01",
-   "pasta": "1lu2wQJqLbkjwmN8_ly4A11KQkWztVJoO"
-  },
-  {
-   "id": "1xV9oF0babwz19lnfXsqsA-_isCVSD2au",
-   "nome": "Universa Fotos_8.jpg",
-   "tipo": "foto",
-   "cliente": "Universa Digital",
-   "mes": "2026-01",
-   "pasta": "1lu2wQJqLbkjwmN8_ly4A11KQkWztVJoO"
-  },
-  {
-   "id": "1tpB0MMs6pWdvGaHKw2UdV8Jy-q6A0to_",
-   "nome": "Universa Fotos_11.png",
-   "tipo": "foto",
-   "cliente": "Universa Digital",
-   "mes": "2026-01",
-   "pasta": "1lu2wQJqLbkjwmN8_ly4A11KQkWztVJoO"
-  },
-  {
-   "id": "1mIcIJNvwkwsoyCQJ1KvbhikUZqim1liY",
-   "nome": "Universa Fotos_4.jpg",
-   "tipo": "foto",
-   "cliente": "Universa Digital",
-   "mes": "2026-01",
-   "pasta": "1lu2wQJqLbkjwmN8_ly4A11KQkWztVJoO"
-  },
-  {
-   "id": "1EbxddB6s5Xjz96KWJGOMzQ7mW9nrRZue",
-   "nome": "Universa Fotos_3.jpg",
-   "tipo": "foto",
-   "cliente": "Universa Digital",
-   "mes": "2026-01",
-   "pasta": "1lu2wQJqLbkjwmN8_ly4A11KQkWztVJoO"
-  },
-  {
-   "id": "16KJFba6zEzEA-V8KIETIeP7GL2w_y_fY",
-   "nome": "F. Universa - Coca x Pepsi - Gabi - V.2.mov",
-   "tipo": "video",
-   "cliente": "Universa Digital",
-   "mes": "2025-12",
-   "pasta": "1MgXO4Ze8RnqzOKrXAZ40b_GLrPfrwkUp"
-  },
-  {
-   "id": "1dFUk8E4j_nkqUXioYN3TO6g1LPPuDECI",
-   "nome": "F. Universa - Khaby Lame - V.3.mov",
-   "tipo": "video",
-   "cliente": "Universa Digital",
-   "mes": "2025-12",
-   "pasta": "1MgXO4Ze8RnqzOKrXAZ40b_GLrPfrwkUp"
-  },
-  {
-   "id": "1JwQES17GqgvDyZo75GU4lr54Wwk1w9h3",
-   "nome": "F. Universa - BrasilCore - Gabi - V.2.mov",
-   "tipo": "video",
-   "cliente": "Universa Digital",
-   "mes": "2025-12",
-   "pasta": "1MgXO4Ze8RnqzOKrXAZ40b_GLrPfrwkUp"
-  },
-  {
-   "id": "1QK0PNK3wKos7hY2I9lFy2jayx4Hsm7Ff",
-   "nome": "F. Universa - Carvão e IA - Gabi V.2.mov",
-   "tipo": "video",
-   "cliente": "Universa Digital",
-   "mes": "2025-12",
-   "pasta": "1MgXO4Ze8RnqzOKrXAZ40b_GLrPfrwkUp"
-  },
-  {
-   "id": "1Ox6apkvdYVeLPaQZHLvuBrfK5n40Ejtl",
-   "nome": "F. Universa - BIC - Gabi - V.4.mov",
-   "tipo": "video",
-   "cliente": "Universa Digital",
-   "mes": "2025-11",
-   "pasta": "1R6KIhzevwSNJtUCSQ4DmsMLk83sb-KMw"
-  },
-  {
-   "id": "18qtT4EjXI7mIvbkM3-l6GIURmFfNkNhK",
-   "nome": "F. Universa - Disney - Gabi - V.4.mov",
-   "tipo": "video",
-   "cliente": "Universa Digital",
-   "mes": "2025-11",
-   "pasta": "1R6KIhzevwSNJtUCSQ4DmsMLk83sb-KMw"
-  },
-  {
-   "id": "1mr6J44HD75hDfSxIaF4_4A24Ws48o5OB",
-   "nome": "F. Gabi 02.jpg",
-   "tipo": "foto",
-   "cliente": "Universa Digital",
-   "mes": "2025-12",
-   "pasta": "1MgXO4Ze8RnqzOKrXAZ40b_GLrPfrwkUp"
-  },
-  {
-   "id": "1RD9zDLxYy0ILkFQ4_VIAVk-kEMbG6mmf",
-   "nome": "F. Gabi 01.jpg",
-   "tipo": "foto",
-   "cliente": "Universa Digital",
-   "mes": "2025-12",
-   "pasta": "1MgXO4Ze8RnqzOKrXAZ40b_GLrPfrwkUp"
-  },
-  {
-   "id": "1X78JKQ6d0VlUX78zp-fJSQ4H5x_75BDN",
-   "nome": "F. Gabi 03.jpg",
-   "tipo": "foto",
-   "cliente": "Universa Digital",
-   "mes": "2025-12",
-   "pasta": "1MgXO4Ze8RnqzOKrXAZ40b_GLrPfrwkUp"
-  },
-  {
-   "id": "1J4u5lI757XgAMrOTfrTputDwjG9iiHr1",
-   "nome": "F. Gabi 04.jpg",
-   "tipo": "foto",
-   "cliente": "Universa Digital",
-   "mes": "2025-12",
-   "pasta": "1MgXO4Ze8RnqzOKrXAZ40b_GLrPfrwkUp"
-  },
-  {
-   "id": "1lZh8PTO75WCVtWMXWYJfBqdfAKhNStGq",
-   "nome": "F. Universa - OpenAI Atendimento- Gabriela -V.4.mp4",
-   "tipo": "video",
-   "cliente": "Universa Digital",
-   "mes": "2025-10",
-   "pasta": "1qT-CjuJSRVSgnpbWU8o0xj7JgoDd1-Jo"
-  },
-  {
-   "id": "1zknZhMvnfRThTcYQO5VEqDIa6F10uNUR",
-   "nome": "F. Universa - Marcas Ignoram - Gabi - V.3.mov",
-   "tipo": "video",
-   "cliente": "Universa Digital",
-   "mes": "2025-11",
-   "pasta": "1R6KIhzevwSNJtUCSQ4DmsMLk83sb-KMw"
-  },
-  {
-   "id": "1_AX92wfulRC1DAeVv-wUplKKP24LeUP6",
-   "nome": "F. Universa -  Nostalgia - Gabi V.3.mov",
-   "tipo": "video",
-   "cliente": "Universa Digital",
-   "mes": "2025-11",
-   "pasta": "1R6KIhzevwSNJtUCSQ4DmsMLk83sb-KMw"
-  },
-  {
-   "id": "1AyokxDN3RwaSzW6u1P8E1NAieaFOqyP8",
-   "nome": "F. Universa - ChatGPT Mkt - Gabriela- V.4.mp4",
-   "tipo": "video",
-   "cliente": "Universa Digital",
-   "mes": "2025-10",
-   "pasta": "1qT-CjuJSRVSgnpbWU8o0xj7JgoDd1-Jo"
-  },
-  {
-   "id": "1YdU567Z5IISc2alpps1ksK_R63WNuwDM",
-   "nome": "F. Vitrini - Dia dos Namorados. V.1.mov",
-   "tipo": "video",
-   "cliente": "Vitrinni",
-   "mes": "2026-05",
-   "pasta": "1t9JVvdPN4ykQcesVWkKvXYfhpA0BFfec"
-  },
-  {
-   "id": "1Y_m6W5agiLZsQRlLXCt8ryd3yJJ5DAGe",
-   "nome": "F. Vitrini - Rota da Beleza. V.1.mov",
-   "tipo": "video",
-   "cliente": "Vitrinni",
-   "mes": "2026-05",
-   "pasta": "1t9JVvdPN4ykQcesVWkKvXYfhpA0BFfec"
-  },
-  {
-   "id": "1Wf2MoGkgsVBzS_llSMbqND6tgcLq7RWy",
-   "nome": "F. Vitrini - Santina. V.1.mov",
-   "tipo": "video",
-   "cliente": "Vitrinni",
-   "mes": "2026-05",
-   "pasta": "1t9JVvdPN4ykQcesVWkKvXYfhpA0BFfec"
-  },
-  {
-   "id": "1KFeaTfaTaRKU48jqqh88WYz9zBjBwX7G",
-   "nome": "FX300261.jpg",
-   "tipo": "foto",
-   "cliente": "Universa Digital",
-   "mes": "2025-11",
-   "pasta": "1R6KIhzevwSNJtUCSQ4DmsMLk83sb-KMw"
-  },
-  {
-   "id": "1BEwGhqTnhmdWabMloe4XqJqibnGf22AU",
-   "nome": "FX300269.jpg",
-   "tipo": "foto",
-   "cliente": "Universa Digital",
-   "mes": "2025-11",
-   "pasta": "1R6KIhzevwSNJtUCSQ4DmsMLk83sb-KMw"
-  },
-  {
-   "id": "1CbVd1eGvUQ5sZk53ufD0coWSMowHpnr9",
-   "nome": "FX300266.jpg",
-   "tipo": "foto",
-   "cliente": "Universa Digital",
-   "mes": "2025-11",
-   "pasta": "1R6KIhzevwSNJtUCSQ4DmsMLk83sb-KMw"
-  },
-  {
-   "id": "1leJen4q-wlg05GXljipTpr_iRo_GYVFZ",
-   "nome": "FX300259.jpg",
-   "tipo": "foto",
-   "cliente": "Universa Digital",
-   "mes": "2025-11",
-   "pasta": "1R6KIhzevwSNJtUCSQ4DmsMLk83sb-KMw"
-  },
-  {
-   "id": "1DXXnnroZaZ-JMwBcRIM_wSAD0tWlXFlP",
-   "nome": "FX300272.jpg",
-   "tipo": "foto",
-   "cliente": "Universa Digital",
-   "mes": "2025-11",
-   "pasta": "1R6KIhzevwSNJtUCSQ4DmsMLk83sb-KMw"
-  },
-  {
-   "id": "1Nqo_aVEJVlLMtZfgYYLd-B4NKSHAiDOZ",
-   "nome": "FX300268.jpg",
-   "tipo": "foto",
-   "cliente": "Universa Digital",
-   "mes": "2025-11",
-   "pasta": "1R6KIhzevwSNJtUCSQ4DmsMLk83sb-KMw"
-  },
-  {
-   "id": "1uCfISp8eBXr_CJTH8Fu0Awc54VIl5KmY",
-   "nome": "F. Universa -Não Resolve problema - Gabriela V.3.mov",
-   "tipo": "video",
-   "cliente": "Universa Digital",
-   "mes": "2025-10",
-   "pasta": "1qT-CjuJSRVSgnpbWU8o0xj7JgoDd1-Jo"
-  },
-  {
-   "id": "18v3YR078g8CmUdU3c3_fEXx8ZqDccf0m",
-   "nome": "F. Vitrinni - Cabe Aqui - Andressa - V.1.mp4",
-   "tipo": "video",
-   "cliente": "Vitrinni",
-   "mes": "2025-12",
-   "pasta": "1UyjKepQOAIXlCN3FLLbS_qvjn2HmlaYu"
-  },
-  {
-   "id": "1FQS5XJ1g7gZ6eFp8I8gEvN7InRXWhAF4",
-   "nome": "A7405727.jpg",
-   "tipo": "foto",
-   "cliente": "Universa Digital",
-   "mes": "2025-10",
-   "pasta": "1qT-CjuJSRVSgnpbWU8o0xj7JgoDd1-Jo"
-  },
-  {
-   "id": "1HZ3HA-J1CPUMt69SG90O5tZRh63qqDEU",
-   "nome": "A7405761.jpg",
-   "tipo": "foto",
-   "cliente": "Universa Digital",
-   "mes": "2025-10",
-   "pasta": "1qT-CjuJSRVSgnpbWU8o0xj7JgoDd1-Jo"
-  },
-  {
-   "id": "1FyCV6wtIit4mfvU0wOW2WTLOO2SAnEmc",
-   "nome": "A7405747.jpg",
-   "tipo": "foto",
-   "cliente": "Universa Digital",
-   "mes": "2025-10",
-   "pasta": "1qT-CjuJSRVSgnpbWU8o0xj7JgoDd1-Jo"
-  },
-  {
-   "id": "1z7Firk9Fhu4ufhra2fHADf1UGjngJa7d",
-   "nome": "A7405748.jpg",
-   "tipo": "foto",
-   "cliente": "Universa Digital",
-   "mes": "2025-10",
-   "pasta": "1qT-CjuJSRVSgnpbWU8o0xj7JgoDd1-Jo"
-  },
-  {
-   "id": "1ttmJsDyAxjYkPqSnJhld_DoY3Xv77Xkc",
-   "nome": "A7405757.jpg",
-   "tipo": "foto",
-   "cliente": "Universa Digital",
-   "mes": "2025-10",
-   "pasta": "1qT-CjuJSRVSgnpbWU8o0xj7JgoDd1-Jo"
-  },
-  {
-   "id": "1EHjNja3zUF1YncgAjUUxeom7sRArBWuQ",
-   "nome": "F.Vitrinni.Se Arrume.Andressa.V1.mp4",
-   "tipo": "video",
-   "cliente": "Vitrinni",
-   "mes": "2026-02",
-   "pasta": "1JdTn1_iDsopEqEaYqNd1iCzvqpWzhLvA"
-  },
-  {
-   "id": "1q78HCQYTGX6KbdRsCvUipwKtyJwzGmlu",
-   "nome": "F.Vitrinni.Cada Vitrine.Andressa.V1(6).mp4",
-   "tipo": "video",
-   "cliente": "Vitrinni",
-   "mes": "2026-02",
-   "pasta": "1JdTn1_iDsopEqEaYqNd1iCzvqpWzhLvA"
-  },
-  {
-   "id": "1Z-0acCweeDKioDl5A7a3mjG2G9Y2b3O5",
-   "nome": "F.Vitrinni.Dia das Mulhres.Andressa.V1.mp4",
-   "tipo": "video",
-   "cliente": "Vitrinni",
-   "mes": "2026-02",
-   "pasta": "1JdTn1_iDsopEqEaYqNd1iCzvqpWzhLvA"
-  },
-  {
-   "id": "1JQ_AlijssNIYtiReh4Ys6OqCaqBn_yZs",
-   "nome": "F.Vitrinni.Mês da Mulher.Andressa.V1.mp4",
-   "tipo": "video",
-   "cliente": "Vitrinni",
-   "mes": "2026-02",
-   "pasta": "1JdTn1_iDsopEqEaYqNd1iCzvqpWzhLvA"
-  },
-  {
-   "id": "1s8u0OFITwjnJsqhHoa5QOP7NnhW6yVNS",
-   "nome": "F. Vitrinni. Restaurantes. Andressa. V2.mov",
-   "tipo": "video",
-   "cliente": "Vitrinni",
-   "mes": "2026-01",
-   "pasta": "16H3hb6wArW81PS885uUuyPab2U6ZWGZh"
-  },
-  {
-   "id": "1FUxyTkwsLbDbXQkqZCuWn6gTN9EqcU0E",
-   "nome": "F. Vitrinni - Entrega do Carro - Andressa - V.1.mov",
-   "tipo": "video",
-   "cliente": "Vitrinni",
-   "mes": "2026-01",
-   "pasta": "16H3hb6wArW81PS885uUuyPab2U6ZWGZh"
-  },
-  {
-   "id": "1qVhLUwSil3tDXx_cch2iJgWm905miEsI",
-   "nome": "F. Vitrinni. Carnaval. Andressa. V2.mov",
-   "tipo": "video",
-   "cliente": "Vitrinni",
-   "mes": "2026-01",
-   "pasta": "16H3hb6wArW81PS885uUuyPab2U6ZWGZh"
-  },
-  {
-   "id": "1SO4vKbRSapaAvZtgLiWH_OZbnR2SXJ8d",
-   "nome": "F. Vitrinni. Auto cuidado. Andressa. V.2.mov",
-   "tipo": "video",
-   "cliente": "Vitrinni",
-   "mes": "2026-01",
-   "pasta": "16H3hb6wArW81PS885uUuyPab2U6ZWGZh"
-  },
-  {
-   "id": "1wIEfWHnY1iM7hxYuDRgzWCfn9rZLsFGN",
-   "nome": "F. Vitrinni - 6 Ideias - Andressa - V.3.mov",
-   "tipo": "video",
-   "cliente": "Vitrinni",
-   "mes": "2025-11",
-   "pasta": "1wA_9Ky2bH6LFclZj0F7-oGQ7rM9EkWDJ"
-  },
-  {
-   "id": "1gLEU8KvcuFQ0JtDs0o9JkD8k1MkPBahf",
-   "nome": "F. Vitrinni - Avenida das Óticas - Andressa - V.1.mov",
-   "tipo": "video",
-   "cliente": "Vitrinni",
-   "mes": "2025-11",
-   "pasta": "1wA_9Ky2bH6LFclZj0F7-oGQ7rM9EkWDJ"
-  },
-  {
-   "id": "1knGpTkf1Qjls-GoShqvBYgx7zUFmPQMG",
-   "nome": "F. Vitrinni - Doações - Andressa - V.3.mov",
-   "tipo": "video",
-   "cliente": "Vitrinni",
-   "mes": "2025-11",
-   "pasta": "1wA_9Ky2bH6LFclZj0F7-oGQ7rM9EkWDJ"
-  },
-  {
-   "id": "16uVbtKm3Ffd0YQpY2t6T82v8ALVppfw6",
-   "nome": "F. Vitrinni - Natal no Vitrinni - Andressa - V.3.mov",
-   "tipo": "video",
-   "cliente": "Vitrinni",
-   "mes": "2025-11",
-   "pasta": "1wA_9Ky2bH6LFclZj0F7-oGQ7rM9EkWDJ"
-  },
-  {
-   "id": "10tZwMs62JK28bpGZR8XpNCzD5QIXNzO5",
-   "nome": "F. Vitrinni - Moda Praia - Andressa - V.1.mp4",
-   "tipo": "video",
-   "cliente": "Vitrinni",
-   "mes": "2025-12",
-   "pasta": "1UyjKepQOAIXlCN3FLLbS_qvjn2HmlaYu"
-  },
-  {
-   "id": "1L42h2mFCWzNAe48XLuxx_JqlorlxLc2z",
-   "nome": "F. Vitrinni - Volta as aulas - Andressa - V.1.mp4",
-   "tipo": "video",
-   "cliente": "Vitrinni",
-   "mes": "2025-12",
-   "pasta": "1UyjKepQOAIXlCN3FLLbS_qvjn2HmlaYu"
-  },
-  {
-   "id": "1SVCG2twUogNeY04hTIAfwVcl6ASG4CFS",
-   "nome": "F. Vitrinni - Casa Vup - Andressa - V.1.mp4",
-   "tipo": "video",
-   "cliente": "Vitrinni",
-   "mes": "2025-12",
-   "pasta": "1UyjKepQOAIXlCN3FLLbS_qvjn2HmlaYu"
-  },
-  {
-   "id": "1KFjw0cNyW7Qg9wgSOLK-BkinHJ3c05AN",
-   "nome": "F. Vitrinni - Black Friday - Andressa - V.2.mov",
-   "tipo": "video",
-   "cliente": "Vitrinni",
-   "mes": "2025-10",
-   "pasta": "1gEH9y-SSX1gwPCHcEcwS365NLu7RGVrP"
-  },
-  {
-   "id": "11uiHr2G5BPz9yb56xxCJXtvBWSlkiXfE",
-   "nome": "F. Vitrinni - Abrir seu negócio - Andressa - V.1.mov",
-   "tipo": "video",
-   "cliente": "Vitrinni",
-   "mes": "2025-10",
-   "pasta": "1gEH9y-SSX1gwPCHcEcwS365NLu7RGVrP"
-  },
-  {
-   "id": "1KaarkumJOy_Ns_A8coxXk5cZf4S6hK_V",
-   "nome": "F. Vitrinni - Tendência Alfaiataria - Andressa V.1.mov",
-   "tipo": "video",
-   "cliente": "Vitrinni",
-   "mes": "2025-10",
-   "pasta": "1gEH9y-SSX1gwPCHcEcwS365NLu7RGVrP"
-  },
-  {
-   "id": "1xpIHcwly-mqG8PwBrowmItQMBpWKiAi_",
-   "nome": "F. Vitrinni - Erro Fashion - Andressa - V.1.mov",
-   "tipo": "video",
-   "cliente": "Vitrinni",
-   "mes": "2025-10",
-   "pasta": "1gEH9y-SSX1gwPCHcEcwS365NLu7RGVrP"
-  },
-  {
-   "id": "1Fq8KnPIazsHuWCGUl0bXYE_OM0gRNThm",
-   "nome": "F. 4 Lojas Infantis - Vitrinni - V.2.mov",
-   "tipo": "video",
-   "cliente": "Vitrinni",
-   "mes": "2026-04",
-   "pasta": "1MHrrgUTxRJ8HL2UASxtKONX43W8jl-AS"
-  },
-  {
-   "id": "1iz6cBpfBfmyM9LK7T5bfmTgJvjt7Q9S1",
-   "nome": "F. 4 Ideias de Presente - Vitrinni - V.2.mov",
-   "tipo": "video",
-   "cliente": "Vitrinni",
-   "mes": "2026-04",
-   "pasta": "1MHrrgUTxRJ8HL2UASxtKONX43W8jl-AS"
-  },
-  {
-   "id": "1Y4FLI3S7rkgVq3xht3up77v1gq56eMHb",
-   "nome": "F. Correios - Vitrinni - V.1.mov",
-   "tipo": "video",
-   "cliente": "Vitrinni",
-   "mes": "2026-04",
-   "pasta": "1MHrrgUTxRJ8HL2UASxtKONX43W8jl-AS"
-  },
-  {
-   "id": "1l0QgFk6jeKBgTMRRefjuuorxVzlKQyHe",
-   "nome": "F. 4 Dia das Mães - Vitrinni - V.1.mov",
-   "tipo": "video",
-   "cliente": "Vitrinni",
-   "mes": "2026-04",
-   "pasta": "1MHrrgUTxRJ8HL2UASxtKONX43W8jl-AS"
-  },
-  {
-   "id": "1SbNvf9YZLVTV6f0bJOu_NbMZdnn1X6xS",
-   "nome": "Fotos Vitrinni.jpg",
-   "tipo": "foto",
-   "cliente": "Vitrinni",
-   "mes": "2026-04",
-   "pasta": "1MHrrgUTxRJ8HL2UASxtKONX43W8jl-AS"
-  },
-  {
-   "id": "1ri784xe7H1bLR8oj7Ho7I6eTReTZ_zfD",
-   "nome": "Fotos Vitrinni.jpg",
-   "tipo": "foto",
-   "cliente": "Vitrinni",
-   "mes": "2026-04",
-   "pasta": "1MHrrgUTxRJ8HL2UASxtKONX43W8jl-AS"
-  },
-  {
-   "id": "1HUxAiQCgsYu8LE8iNhXdcl1-H14Ph5BX",
-   "nome": "Fotos Vitrinni.jpg",
-   "tipo": "foto",
-   "cliente": "Vitrinni",
-   "mes": "2026-04",
-   "pasta": "1MHrrgUTxRJ8HL2UASxtKONX43W8jl-AS"
-  },
-  {
-   "id": "1E0XypBg3qNUE1XgKS47kbM-EhyyMjleE",
-   "nome": "Fotos Vitrinni.jpg",
-   "tipo": "foto",
-   "cliente": "Vitrinni",
-   "mes": "2026-04",
-   "pasta": "1MHrrgUTxRJ8HL2UASxtKONX43W8jl-AS"
-  },
-  {
-   "id": "1L-XntznnWD2SwrEYhWATXoSpb7qMwKNT",
-   "nome": "FX300710.jpg",
-   "tipo": "foto",
-   "cliente": "Vitrinni",
-   "mes": "2026-02",
-   "pasta": "1JdTn1_iDsopEqEaYqNd1iCzvqpWzhLvA"
-  },
-  {
-   "id": "1QqQCr9LUa5mADE-LE_IRXKFoyY3U9XF0",
-   "nome": "F. Vitrinni - Páscoa Vitrinni - Andressa - V.1.mov",
-   "tipo": "video",
-   "cliente": "Vitrinni",
-   "mes": "2026-03",
-   "pasta": "10DQYYalJ9vtRzeyvmS75s55epL5rHEb-"
-  },
-  {
-   "id": "1AEVXPpAYYQUxTw6Zn5FpgNJZmLRxtA3y",
-   "nome": "F. Vitrinni-Pet Friendly- Andressa - V.1.mov",
-   "tipo": "video",
-   "cliente": "Vitrinni",
-   "mes": "2026-03",
-   "pasta": "10DQYYalJ9vtRzeyvmS75s55epL5rHEb-"
-  },
-  {
-   "id": "1lPvTCuAOVLB-9vLbF3lAWocinTJboveF",
-   "nome": "F. Vitrinni-Tatto e Piercing- V.1.mov",
-   "tipo": "video",
-   "cliente": "Vitrinni",
-   "mes": "2026-03",
-   "pasta": "10DQYYalJ9vtRzeyvmS75s55epL5rHEb-"
-  },
-  {
-   "id": "1j688eGBdHGpkWfRRlSN5LwWtCe0fQ4H-",
-   "nome": "F. Vitrinni - Instituto Vida - Andressa - V.1.mov",
-   "tipo": "video",
-   "cliente": "Vitrinni",
-   "mes": "2026-03",
-   "pasta": "10DQYYalJ9vtRzeyvmS75s55epL5rHEb-"
-  },
-  {
-   "id": "1oO1q4VpSVa1Qn4dVfuazWsbg0gufEyCI",
-   "nome": "P. Óptica Premium - 6 - V.1.jpg",
-   "tipo": "foto",
-   "cliente": "Óptica Premium",
-   "mes": "2026-04",
-   "pasta": "1SFOeRprs8ghafNnQjAOgWNSEV4wMl1g1"
-  },
-  {
-   "id": "1wVR9Y5S6iCT0CDgQZbJNMJ4z16YsmTB0",
-   "nome": "P. Óptica Premium - 5 - V.1.jpg",
-   "tipo": "foto",
-   "cliente": "Óptica Premium",
-   "mes": "2026-04",
-   "pasta": "1SFOeRprs8ghafNnQjAOgWNSEV4wMl1g1"
-  },
-  {
-   "id": "1E16kx60-MU-odcgFT3zTtln8c7181INt",
-   "nome": "P. Óptica Premium - 4 - V.1.jpg",
-   "tipo": "foto",
-   "cliente": "Óptica Premium",
-   "mes": "2026-04",
-   "pasta": "1SFOeRprs8ghafNnQjAOgWNSEV4wMl1g1"
-  },
-  {
-   "id": "1IW2DOE9RidX9GvaqdlhrfaaLd3kGp_A2",
-   "nome": "P. Óptica Premium - 2 - V.1.jpg",
-   "tipo": "foto",
-   "cliente": "Óptica Premium",
-   "mes": "2026-04",
-   "pasta": "1SFOeRprs8ghafNnQjAOgWNSEV4wMl1g1"
-  },
-  {
-   "id": "1qbOsBFkvN62Ir-DH8YC4r08zjE160TGR",
-   "nome": "P. Óptica Premium - 3 - V.1.jpg",
-   "tipo": "foto",
-   "cliente": "Óptica Premium",
-   "mes": "2026-04",
-   "pasta": "1SFOeRprs8ghafNnQjAOgWNSEV4wMl1g1"
-  },
-  {
-   "id": "1dPCwjj7zKlYhyU2N7qrHp5BK_3fYO3Ql",
-   "nome": "P. Óptica Premium - 1 - V.1.jpg",
-   "tipo": "foto",
-   "cliente": "Óptica Premium",
-   "mes": "2026-04",
-   "pasta": "1SFOeRprs8ghafNnQjAOgWNSEV4wMl1g1"
-  },
-  {
-   "id": "1SyuFWSia7CdDyCkjs8lkimirFhJZGqxL",
-   "nome": "P. Óptica Premium - 35 - V.1.jpg",
-   "tipo": "foto",
-   "cliente": "Óptica Premium",
-   "mes": "2026-04",
-   "pasta": "1SFOeRprs8ghafNnQjAOgWNSEV4wMl1g1"
-  },
-  {
-   "id": "1syc1yzmZBHd0HMNyuJVubRJhMiuCAQDQ",
-   "nome": "P. Óptica Premium - 34 - V.1.jpg",
-   "tipo": "foto",
-   "cliente": "Óptica Premium",
-   "mes": "2026-04",
-   "pasta": "1SFOeRprs8ghafNnQjAOgWNSEV4wMl1g1"
-  },
-  {
-   "id": "1948Askc_Ab7NevAANlm7YuCu0_DQiaQA",
-   "nome": "P. Óptica Premium - 33 - V.1.jpg",
-   "tipo": "foto",
-   "cliente": "Óptica Premium",
-   "mes": "2026-04",
-   "pasta": "1SFOeRprs8ghafNnQjAOgWNSEV4wMl1g1"
-  },
-  {
-   "id": "18xb1J73hduTGBffg-NCNW-Kdh8X2nnRv",
-   "nome": "P. Óptica Premium - 32 - V.1.jpg",
-   "tipo": "foto",
-   "cliente": "Óptica Premium",
-   "mes": "2026-04",
-   "pasta": "1SFOeRprs8ghafNnQjAOgWNSEV4wMl1g1"
-  },
-  {
-   "id": "1m1-9mRSmHvn_AMWdor672Z-0Z4CK9ZZV",
-   "nome": "P. Óptica Premium - 31 - V.1.jpg",
-   "tipo": "foto",
-   "cliente": "Óptica Premium",
-   "mes": "2026-04",
-   "pasta": "1SFOeRprs8ghafNnQjAOgWNSEV4wMl1g1"
-  },
-  {
-   "id": "1w5wEqRf9rNIKDPIGDsL4BCtkXXBZQZlY",
-   "nome": "P. Óptica Premium - 30 - V.1.jpg",
-   "tipo": "foto",
-   "cliente": "Óptica Premium",
-   "mes": "2026-04",
-   "pasta": "1SFOeRprs8ghafNnQjAOgWNSEV4wMl1g1"
-  },
-  {
-   "id": "1MEPUdF8l--tDKXmFziTmEErmCzD5tn4V",
-   "nome": "P. Óptica Premium - 29 - V.1.jpg",
-   "tipo": "foto",
-   "cliente": "Óptica Premium",
-   "mes": "2026-04",
-   "pasta": "1SFOeRprs8ghafNnQjAOgWNSEV4wMl1g1"
-  },
-  {
-   "id": "1jCxmLm-TA9KTnn6770HkFyfhlWYtDVGC",
-   "nome": "P. Óptica Premium - 28 - V.1.jpg",
-   "tipo": "foto",
-   "cliente": "Óptica Premium",
-   "mes": "2026-04",
-   "pasta": "1SFOeRprs8ghafNnQjAOgWNSEV4wMl1g1"
-  },
-  {
-   "id": "1ZUvyOvJ45-SBDZ4dswvZZx6isxJQ4qK9",
-   "nome": "P. Óptica Premium - 27 - V.1.jpg",
-   "tipo": "foto",
-   "cliente": "Óptica Premium",
-   "mes": "2026-04",
-   "pasta": "1SFOeRprs8ghafNnQjAOgWNSEV4wMl1g1"
-  },
-  {
-   "id": "16181zKg50pw8Uyl2Zi92l6txKo3rb4_x",
-   "nome": "P. Óptica Premium - 26 - V.1.jpg",
-   "tipo": "foto",
-   "cliente": "Óptica Premium",
-   "mes": "2026-04",
-   "pasta": "1SFOeRprs8ghafNnQjAOgWNSEV4wMl1g1"
-  },
-  {
-   "id": "15L6GrU5hsRn_j3lEUvmAMAxK7Wuyt4YM",
-   "nome": "P. Óptica Premium - 25 - V.1.jpg",
-   "tipo": "foto",
-   "cliente": "Óptica Premium",
-   "mes": "2026-04",
-   "pasta": "1SFOeRprs8ghafNnQjAOgWNSEV4wMl1g1"
-  },
-  {
-   "id": "1YA0e0pxRWCDfaCl-JPAyOA6ZVRjPmAPo",
-   "nome": "P. Óptica Premium - 24 - V.1.jpg",
-   "tipo": "foto",
-   "cliente": "Óptica Premium",
-   "mes": "2026-04",
-   "pasta": "1SFOeRprs8ghafNnQjAOgWNSEV4wMl1g1"
-  },
-  {
-   "id": "1QOcZZ5gAW4axnAJpF8Do5-cim9qn1498",
-   "nome": "P. Óptica Premium - 23 - V.1.jpg",
-   "tipo": "foto",
-   "cliente": "Óptica Premium",
-   "mes": "2026-04",
-   "pasta": "1SFOeRprs8ghafNnQjAOgWNSEV4wMl1g1"
-  },
-  {
-   "id": "1bsnQ70yg09o2rPjTgy2ug_kqRxYM97o_",
-   "nome": "P. Óptica Premium - 22 - V.1.jpg",
-   "tipo": "foto",
-   "cliente": "Óptica Premium",
-   "mes": "2026-04",
-   "pasta": "1SFOeRprs8ghafNnQjAOgWNSEV4wMl1g1"
-  },
-  {
-   "id": "1WPNX_POcbTEViD7_SE6cGMH6CE_WTHEx",
-   "nome": "P. Óptica Premium - 21 - V.1.jpg",
-   "tipo": "foto",
-   "cliente": "Óptica Premium",
-   "mes": "2026-04",
-   "pasta": "1SFOeRprs8ghafNnQjAOgWNSEV4wMl1g1"
-  },
-  {
-   "id": "1AtTVNsfNYN4OfimLmG5N7I1Ffgpz4Lw8",
-   "nome": "P. Óptica Premium - 20 - V.1.jpg",
-   "tipo": "foto",
-   "cliente": "Óptica Premium",
-   "mes": "2026-04",
-   "pasta": "1SFOeRprs8ghafNnQjAOgWNSEV4wMl1g1"
-  },
-  {
-   "id": "19vBJXwDZmX3PzmFEWz4vsL4FWI_UBcbw",
-   "nome": "P. Óptica Premium - 19 - V.1.jpg",
-   "tipo": "foto",
-   "cliente": "Óptica Premium",
-   "mes": "2026-04",
-   "pasta": "1SFOeRprs8ghafNnQjAOgWNSEV4wMl1g1"
-  },
-  {
-   "id": "1l0OTrYnFgtuac8mN1uOUGzQuA_kmXc8F",
-   "nome": "P. Óptica Premium - 18 - V.1.jpg",
-   "tipo": "foto",
-   "cliente": "Óptica Premium",
-   "mes": "2026-04",
-   "pasta": "1SFOeRprs8ghafNnQjAOgWNSEV4wMl1g1"
-  },
-  {
-   "id": "1GpLrww-Une4fvweGPaaLryPhplURT4A7",
-   "nome": "P. Óptica Premium - 17 - V.1.jpg",
-   "tipo": "foto",
-   "cliente": "Óptica Premium",
-   "mes": "2026-04",
-   "pasta": "1SFOeRprs8ghafNnQjAOgWNSEV4wMl1g1"
-  },
-  {
-   "id": "1C51DDW5PB6wi1XmXhgUE4LkG59CJ3pJY",
-   "nome": "P. Óptica Premium - 16 - V.1.jpg",
-   "tipo": "foto",
-   "cliente": "Óptica Premium",
-   "mes": "2026-04",
-   "pasta": "1SFOeRprs8ghafNnQjAOgWNSEV4wMl1g1"
-  },
-  {
-   "id": "1hnqweI7qRN7cXx7fD-1E8TcOoF1XWmbI",
-   "nome": "P. Óptica Premium - 15 - V.1.jpg",
-   "tipo": "foto",
-   "cliente": "Óptica Premium",
-   "mes": "2026-04",
-   "pasta": "1SFOeRprs8ghafNnQjAOgWNSEV4wMl1g1"
-  },
-  {
-   "id": "1Uy78ArZBWlsIYxSISUXVZuXUsQrKnT5y",
-   "nome": "P. Óptica Premium - 14 - V.1.jpg",
-   "tipo": "foto",
-   "cliente": "Óptica Premium",
-   "mes": "2026-04",
-   "pasta": "1SFOeRprs8ghafNnQjAOgWNSEV4wMl1g1"
-  },
-  {
-   "id": "1siUpHJc5u1ed0WUNvqT8qJ2im7EL1x6W",
-   "nome": "P. Óptica Premium - 13 - V.1.jpg",
-   "tipo": "foto",
-   "cliente": "Óptica Premium",
-   "mes": "2026-04",
-   "pasta": "1SFOeRprs8ghafNnQjAOgWNSEV4wMl1g1"
-  },
-  {
-   "id": "1chw8x0iEeOiR7DjATTjcV7l9r6Tt12RP",
-   "nome": "P. Óptica Premium - 12 - V.1.jpg",
-   "tipo": "foto",
-   "cliente": "Óptica Premium",
-   "mes": "2026-04",
-   "pasta": "1SFOeRprs8ghafNnQjAOgWNSEV4wMl1g1"
-  },
-  {
-   "id": "1aB_n1OPhv6M03Wc9_hGDR5KMzaYYXBFa",
-   "nome": "P. Óptica Premium - 11 - V.1.jpg",
-   "tipo": "foto",
-   "cliente": "Óptica Premium",
-   "mes": "2026-04",
-   "pasta": "1SFOeRprs8ghafNnQjAOgWNSEV4wMl1g1"
-  },
-  {
-   "id": "1GZxNhSY05hUiKaMIba6QMPQ_k0JQeyRl",
-   "nome": "P. Óptica Premium - 10 - V.1.jpg",
-   "tipo": "foto",
-   "cliente": "Óptica Premium",
-   "mes": "2026-04",
-   "pasta": "1SFOeRprs8ghafNnQjAOgWNSEV4wMl1g1"
-  },
-  {
-   "id": "193MkMwq9dgrzR1stszzDOb73Cx94UrMh",
-   "nome": "P. Óptica Premium - 9 - V.1.jpg",
-   "tipo": "foto",
-   "cliente": "Óptica Premium",
-   "mes": "2026-04",
-   "pasta": "1SFOeRprs8ghafNnQjAOgWNSEV4wMl1g1"
-  },
-  {
-   "id": "1ISQ8gT2arLSoCfmQQQjuAYrtd4xFiCaj",
-   "nome": "P. Óptica Premium - 8 - V.1.jpg",
-   "tipo": "foto",
-   "cliente": "Óptica Premium",
-   "mes": "2026-04",
-   "pasta": "1SFOeRprs8ghafNnQjAOgWNSEV4wMl1g1"
-  },
-  {
-   "id": "1O2RbPYb4ediAAl5QhAh4TysNOb3AE2xG",
-   "nome": "P. Óptica Premium - 7 - V.1.jpg",
-   "tipo": "foto",
-   "cliente": "Óptica Premium",
-   "mes": "2026-04",
-   "pasta": "1SFOeRprs8ghafNnQjAOgWNSEV4wMl1g1"
-  },
-  {
-   "id": "1oFn9HRficHcr8X52OH5XC2znOWLq3TZS",
-   "nome": "FX300821.arw",
-   "tipo": "foto",
-   "cliente": "Óptica Premium",
-   "mes": "2026-04",
-   "pasta": "1qVpas95uSeOD29s2AsYcz3AfR_ZMJjh7"
-  },
-  {
-   "id": "1TA7fKglJaEsuaNqP6T8jDB0nHATbbRAO",
-   "nome": "FX300773.arw",
-   "tipo": "foto",
-   "cliente": "Óptica Premium",
-   "mes": "2026-04",
-   "pasta": "1qVpas95uSeOD29s2AsYcz3AfR_ZMJjh7"
-  },
-  {
-   "id": "1F7lQ7ogEnq6aoCoOEtXNpb24Q0XmhArN",
-   "nome": "FX300822.arw",
-   "tipo": "foto",
-   "cliente": "Óptica Premium",
-   "mes": "2026-04",
-   "pasta": "1qVpas95uSeOD29s2AsYcz3AfR_ZMJjh7"
-  },
-  {
-   "id": "1Juw6Nv6-rQXYyNkoVavoe7ODSfLc-OLF",
-   "nome": "FX300774.arw",
-   "tipo": "foto",
-   "cliente": "Óptica Premium",
-   "mes": "2026-04",
-   "pasta": "1qVpas95uSeOD29s2AsYcz3AfR_ZMJjh7"
-  },
-  {
-   "id": "1Dr-ZCKFkR8vapY8j9U6ZBEiKBgsZ_Dct",
-   "nome": "FX300775.arw",
-   "tipo": "foto",
-   "cliente": "Óptica Premium",
-   "mes": "2026-04",
-   "pasta": "1qVpas95uSeOD29s2AsYcz3AfR_ZMJjh7"
-  },
-  {
-   "id": "1mJmdA1kNB2V8kIPcS1UapJtx3N4gkbA0",
-   "nome": "FX300776.arw",
-   "tipo": "foto",
-   "cliente": "Óptica Premium",
-   "mes": "2026-04",
-   "pasta": "1qVpas95uSeOD29s2AsYcz3AfR_ZMJjh7"
-  },
-  {
-   "id": "1MLgLwwYky9fnNs0i1EyYwzBlNNi8lUE5",
-   "nome": "FX300777.arw",
-   "tipo": "foto",
-   "cliente": "Óptica Premium",
-   "mes": "2026-04",
-   "pasta": "1qVpas95uSeOD29s2AsYcz3AfR_ZMJjh7"
-  },
-  {
-   "id": "1Yp_fGriW9DSZkKvyJsteBGDyEFzNsu3V",
-   "nome": "FX300778.arw",
-   "tipo": "foto",
-   "cliente": "Óptica Premium",
-   "mes": "2026-04",
-   "pasta": "1qVpas95uSeOD29s2AsYcz3AfR_ZMJjh7"
-  },
-  {
-   "id": "1tZfUWYk6tlMDFinC5sDe_SCEtZaZcaUe",
-   "nome": "FX300779.arw",
-   "tipo": "foto",
-   "cliente": "Óptica Premium",
-   "mes": "2026-04",
-   "pasta": "1qVpas95uSeOD29s2AsYcz3AfR_ZMJjh7"
-  },
-  {
-   "id": "1meb-4-1PQs9nIlbSIlA8Wjl9V-iJBXu1",
-   "nome": "FX300780.arw",
-   "tipo": "foto",
-   "cliente": "Óptica Premium",
-   "mes": "2026-04",
-   "pasta": "1qVpas95uSeOD29s2AsYcz3AfR_ZMJjh7"
-  },
-  {
-   "id": "1URXa97Rq3HD-pO-nohk5et_gHKnyIoQz",
-   "nome": "FX300781.arw",
-   "tipo": "foto",
-   "cliente": "Óptica Premium",
-   "mes": "2026-04",
-   "pasta": "1qVpas95uSeOD29s2AsYcz3AfR_ZMJjh7"
-  },
-  {
-   "id": "1kfMmTxwYfG1Rk8X91CAPRo4v1gqX7KdC",
-   "nome": "FX300782.arw",
-   "tipo": "foto",
-   "cliente": "Óptica Premium",
-   "mes": "2026-04",
-   "pasta": "1qVpas95uSeOD29s2AsYcz3AfR_ZMJjh7"
-  },
-  {
-   "id": "1-G3RC-92M7szqKQkdOUN7hKM4f4cS5eQ",
-   "nome": "FX300783.arw",
-   "tipo": "foto",
-   "cliente": "Óptica Premium",
-   "mes": "2026-04",
-   "pasta": "1qVpas95uSeOD29s2AsYcz3AfR_ZMJjh7"
-  },
-  {
-   "id": "1N8upNkt2mezYCsbd8vV80cnILiVdpYi9",
-   "nome": "FX300784.arw",
-   "tipo": "foto",
-   "cliente": "Óptica Premium",
-   "mes": "2026-04",
-   "pasta": "1qVpas95uSeOD29s2AsYcz3AfR_ZMJjh7"
-  },
-  {
-   "id": "1hhvFYunTMISP4udzSSPAbR1x5SkCe4Li",
-   "nome": "FX300795.arw",
-   "tipo": "foto",
-   "cliente": "Óptica Premium",
-   "mes": "2026-04",
-   "pasta": "1qVpas95uSeOD29s2AsYcz3AfR_ZMJjh7"
-  },
-  {
-   "id": "1DboITIm4ZHgmZXLKmuFB9uJKK2WPp1co",
-   "nome": "FX300785.arw",
-   "tipo": "foto",
-   "cliente": "Óptica Premium",
-   "mes": "2026-04",
-   "pasta": "1qVpas95uSeOD29s2AsYcz3AfR_ZMJjh7"
-  },
-  {
-   "id": "13iRFb9naMmmCuwW9oeNmeGq5xXuaXk6x",
-   "nome": "FX300796.arw",
-   "tipo": "foto",
-   "cliente": "Óptica Premium",
-   "mes": "2026-04",
-   "pasta": "1qVpas95uSeOD29s2AsYcz3AfR_ZMJjh7"
-  },
-  {
-   "id": "1fGCOadpCpom63FdQyCL5ElvxJH1NIy1i",
-   "nome": "FX300786.arw",
-   "tipo": "foto",
-   "cliente": "Óptica Premium",
-   "mes": "2026-04",
-   "pasta": "1qVpas95uSeOD29s2AsYcz3AfR_ZMJjh7"
-  },
-  {
-   "id": "1TUTzl9Cw4_Sy6QldUsQ2ZXzeklWgPcAq",
-   "nome": "FX300797.arw",
-   "tipo": "foto",
-   "cliente": "Óptica Premium",
-   "mes": "2026-04",
-   "pasta": "1qVpas95uSeOD29s2AsYcz3AfR_ZMJjh7"
-  },
-  {
-   "id": "1V9ywRvc96EKcIxkjysb0aGgx_axq4IcW",
-   "nome": "FX300787.arw",
-   "tipo": "foto",
-   "cliente": "Óptica Premium",
-   "mes": "2026-04",
-   "pasta": "1qVpas95uSeOD29s2AsYcz3AfR_ZMJjh7"
-  },
-  {
-   "id": "1Xj5MQtiZ5znELOP3XPj1U2oVivFItsYB",
-   "nome": "FX300798.arw",
-   "tipo": "foto",
-   "cliente": "Óptica Premium",
-   "mes": "2026-04",
-   "pasta": "1qVpas95uSeOD29s2AsYcz3AfR_ZMJjh7"
-  },
-  {
-   "id": "1m2aoQzy-GxKM9Oj68keqPJaZNdSFYsPR",
-   "nome": "FX300788.arw",
-   "tipo": "foto",
-   "cliente": "Óptica Premium",
-   "mes": "2026-04",
-   "pasta": "1qVpas95uSeOD29s2AsYcz3AfR_ZMJjh7"
-  },
-  {
-   "id": "1S0ACJP6BLgxxtw1rnX_omHQjwxLPzQss",
-   "nome": "FX300799.arw",
-   "tipo": "foto",
-   "cliente": "Óptica Premium",
-   "mes": "2026-04",
-   "pasta": "1qVpas95uSeOD29s2AsYcz3AfR_ZMJjh7"
-  },
-  {
-   "id": "1TCs9mR1juKwW55Cf1_AbFWCs3X4kwd7s",
-   "nome": "FX300789.arw",
-   "tipo": "foto",
-   "cliente": "Óptica Premium",
-   "mes": "2026-04",
-   "pasta": "1qVpas95uSeOD29s2AsYcz3AfR_ZMJjh7"
-  },
-  {
-   "id": "1sSg3SyvW0hquLPBKpUNuISKT0S_MQ4J6",
-   "nome": "FX300800.arw",
-   "tipo": "foto",
-   "cliente": "Óptica Premium",
-   "mes": "2026-04",
-   "pasta": "1qVpas95uSeOD29s2AsYcz3AfR_ZMJjh7"
-  },
-  {
-   "id": "15zIQ1D3apsre8XCKTtUXnmzH9QEurFx0",
-   "nome": "FX300790.arw",
-   "tipo": "foto",
-   "cliente": "Óptica Premium",
-   "mes": "2026-04",
-   "pasta": "1qVpas95uSeOD29s2AsYcz3AfR_ZMJjh7"
-  },
-  {
-   "id": "1ge6rSI8VgRf-DkG9BBvFv2wlIshVDmIB",
-   "nome": "FX300801.arw",
-   "tipo": "foto",
-   "cliente": "Óptica Premium",
-   "mes": "2026-04",
-   "pasta": "1qVpas95uSeOD29s2AsYcz3AfR_ZMJjh7"
-  },
-  {
-   "id": "1O865JVL9NMY6ayRNIYbC2_zRkUZhwkQm",
-   "nome": "FX300791.arw",
-   "tipo": "foto",
-   "cliente": "Óptica Premium",
-   "mes": "2026-04",
-   "pasta": "1qVpas95uSeOD29s2AsYcz3AfR_ZMJjh7"
-  },
-  {
-   "id": "1hSYzV0JZe5ilEAKONCW6wYA1IRmlieVN",
-   "nome": "FX300802.arw",
-   "tipo": "foto",
-   "cliente": "Óptica Premium",
-   "mes": "2026-04",
-   "pasta": "1qVpas95uSeOD29s2AsYcz3AfR_ZMJjh7"
-  },
-  {
-   "id": "1Pwc4Tl59tsHEaVd7daaXmxPYNx-8jzA2",
-   "nome": "FX300792.arw",
-   "tipo": "foto",
-   "cliente": "Óptica Premium",
-   "mes": "2026-04",
-   "pasta": "1qVpas95uSeOD29s2AsYcz3AfR_ZMJjh7"
-  },
-  {
-   "id": "1oEPhmVweghhzpukJgdquGxHcbw1Uc1Cx",
-   "nome": "FX300803.arw",
-   "tipo": "foto",
-   "cliente": "Óptica Premium",
-   "mes": "2026-04",
-   "pasta": "1qVpas95uSeOD29s2AsYcz3AfR_ZMJjh7"
-  },
-  {
-   "id": "1--Ab5Y9EC7VlgxWgVFCiF8OlCd1RjrIv",
-   "nome": "FX300793.arw",
-   "tipo": "foto",
-   "cliente": "Óptica Premium",
-   "mes": "2026-04",
-   "pasta": "1qVpas95uSeOD29s2AsYcz3AfR_ZMJjh7"
-  },
-  {
-   "id": "1x1RCypEA1EVHMIkSOnK2SxVqwLgbiv4J",
-   "nome": "FX300804.arw",
-   "tipo": "foto",
-   "cliente": "Óptica Premium",
-   "mes": "2026-04",
-   "pasta": "1qVpas95uSeOD29s2AsYcz3AfR_ZMJjh7"
-  },
-  {
-   "id": "1OccqHcqZnQWmd6r9eRuy_FHmkT3Q1SGi",
-   "nome": "FX300805.arw",
-   "tipo": "foto",
-   "cliente": "Óptica Premium",
-   "mes": "2026-04",
-   "pasta": "1qVpas95uSeOD29s2AsYcz3AfR_ZMJjh7"
-  },
-  {
-   "id": "1tB4gdQYjaG9ioptSUA0hZlPJt24AdWbk",
-   "nome": "FX300806.arw",
-   "tipo": "foto",
-   "cliente": "Óptica Premium",
-   "mes": "2026-04",
-   "pasta": "1qVpas95uSeOD29s2AsYcz3AfR_ZMJjh7"
-  },
-  {
-   "id": "1qBfEzG2NobDM60uctZtBSzoG908hKaVh",
-   "nome": "FX300807.arw",
-   "tipo": "foto",
-   "cliente": "Óptica Premium",
-   "mes": "2026-04",
-   "pasta": "1qVpas95uSeOD29s2AsYcz3AfR_ZMJjh7"
-  },
-  {
-   "id": "1BJ1J5Htg4PZGkrWA05cRobGz35Ey19WR",
-   "nome": "FX300808.arw",
-   "tipo": "foto",
-   "cliente": "Óptica Premium",
-   "mes": "2026-04",
-   "pasta": "1qVpas95uSeOD29s2AsYcz3AfR_ZMJjh7"
-  },
-  {
-   "id": "1dwzN9Bu2kSElPPnKezHm7Sxff8qLR-Pa",
-   "nome": "FX300809.arw",
-   "tipo": "foto",
-   "cliente": "Óptica Premium",
-   "mes": "2026-04",
-   "pasta": "1qVpas95uSeOD29s2AsYcz3AfR_ZMJjh7"
-  },
-  {
-   "id": "1JKcW0KzkwDgDXGXreWWfvomDXyFW06A1",
-   "nome": "FX300810.arw",
-   "tipo": "foto",
-   "cliente": "Óptica Premium",
-   "mes": "2026-04",
-   "pasta": "1qVpas95uSeOD29s2AsYcz3AfR_ZMJjh7"
-  },
-  {
-   "id": "1cmSU1FX-0vwstb5Ehkb3BJyG2FbeTLu7",
-   "nome": "FX300811.arw",
-   "tipo": "foto",
-   "cliente": "Óptica Premium",
-   "mes": "2026-04",
-   "pasta": "1qVpas95uSeOD29s2AsYcz3AfR_ZMJjh7"
-  },
-  {
-   "id": "1IuApdoJnIjFNQlVcldxq3puKnlCe4zQV",
-   "nome": "FX300812.arw",
-   "tipo": "foto",
-   "cliente": "Óptica Premium",
-   "mes": "2026-04",
-   "pasta": "1qVpas95uSeOD29s2AsYcz3AfR_ZMJjh7"
-  },
-  {
-   "id": "1YbyY6uRQ6n5_N9_tQ592xGPFD_Pr4XMt",
-   "nome": "FX300813.arw",
-   "tipo": "foto",
-   "cliente": "Óptica Premium",
-   "mes": "2026-04",
-   "pasta": "1qVpas95uSeOD29s2AsYcz3AfR_ZMJjh7"
-  },
-  {
-   "id": "18G1YkDFHvHLT-kyaoR5iK3Vg01KjwpYt",
-   "nome": "FX300814.arw",
-   "tipo": "foto",
-   "cliente": "Óptica Premium",
-   "mes": "2026-04",
-   "pasta": "1qVpas95uSeOD29s2AsYcz3AfR_ZMJjh7"
-  },
-  {
-   "id": "1ePjv7lJMKgETyeN_yrLxtXOgRv3iBxkE",
-   "nome": "FX300815.arw",
-   "tipo": "foto",
-   "cliente": "Óptica Premium",
-   "mes": "2026-04",
-   "pasta": "1qVpas95uSeOD29s2AsYcz3AfR_ZMJjh7"
-  },
-  {
-   "id": "1roMtij_935H9LI0tncpjBPn0S_X8ZDrn",
-   "nome": "FX300816.arw",
-   "tipo": "foto",
-   "cliente": "Óptica Premium",
-   "mes": "2026-04",
-   "pasta": "1qVpas95uSeOD29s2AsYcz3AfR_ZMJjh7"
-  },
-  {
-   "id": "1Z18N1D0CuzMSvxFziMlwodAHdVSSvA94",
-   "nome": "FX300817.arw",
-   "tipo": "foto",
-   "cliente": "Óptica Premium",
-   "mes": "2026-04",
-   "pasta": "1qVpas95uSeOD29s2AsYcz3AfR_ZMJjh7"
-  },
-  {
-   "id": "1uhljr8zpD5Ke1FJ0svtaEsOJ3s3zHkqV",
-   "nome": "FX300818.arw",
-   "tipo": "foto",
-   "cliente": "Óptica Premium",
-   "mes": "2026-04",
-   "pasta": "1qVpas95uSeOD29s2AsYcz3AfR_ZMJjh7"
-  },
-  {
-   "id": "1CWc33LTMYtX7Fn4zcukwD3yBKjv3KzfK",
-   "nome": "FX300819.arw",
-   "tipo": "foto",
-   "cliente": "Óptica Premium",
-   "mes": "2026-04",
-   "pasta": "1qVpas95uSeOD29s2AsYcz3AfR_ZMJjh7"
-  },
-  {
-   "id": "1ASsLFNma6-jgrMmyu4oFdVLh1N002Qb8",
-   "nome": "FX300820.arw",
-   "tipo": "foto",
-   "cliente": "Óptica Premium",
-   "mes": "2026-04",
-   "pasta": "1qVpas95uSeOD29s2AsYcz3AfR_ZMJjh7"
-  },
-  {
-   "id": "1P1efpyeridFHoXwh2T_vOoZt_DRbIM0l",
-   "nome": "FX300823.arw",
-   "tipo": "foto",
-   "cliente": "Óptica Premium",
-   "mes": "2026-04",
-   "pasta": "1qVpas95uSeOD29s2AsYcz3AfR_ZMJjh7"
-  },
-  {
-   "id": "1YLPazZZIpWZ-A3H-fguXQ7JF9gn8a5Sv",
-   "nome": "FX300824.arw",
-   "tipo": "foto",
-   "cliente": "Óptica Premium",
-   "mes": "2026-04",
-   "pasta": "1qVpas95uSeOD29s2AsYcz3AfR_ZMJjh7"
-  },
-  {
-   "id": "1NKwdaAq1JKrXZwZhrR8-0RHYpwXibyWY",
-   "nome": "A7402217.jpg",
-   "tipo": "foto",
-   "cliente": "Óptica Premium",
-   "mes": "2026-03",
-   "pasta": "1C92hbn0w38a0-0gehhAB72SJd1yZtHmT"
-  },
-  {
-   "id": "13EmvYw9mWobnBAZiOBT1RqXzEqNUelFR",
-   "nome": "A7402216.jpg",
-   "tipo": "foto",
-   "cliente": "Óptica Premium",
-   "mes": "2026-03",
-   "pasta": "1C92hbn0w38a0-0gehhAB72SJd1yZtHmT"
-  },
-  {
-   "id": "1xq2d98d7rWD4sO85A87_P1pmohVybbag",
-   "nome": "A7402211.jpg",
-   "tipo": "foto",
-   "cliente": "Óptica Premium",
-   "mes": "2026-03",
-   "pasta": "1C92hbn0w38a0-0gehhAB72SJd1yZtHmT"
-  },
-  {
-   "id": "14srHIRh0IRbDxxtLvrD4QoBJL8rGBF7b",
-   "nome": "A7402208.jpg",
-   "tipo": "foto",
-   "cliente": "Óptica Premium",
-   "mes": "2026-03",
-   "pasta": "1C92hbn0w38a0-0gehhAB72SJd1yZtHmT"
-  },
-  {
-   "id": "1T9uJMRIYLD5cmI1TUb3h9KPeJ6AJVanu",
-   "nome": "A7402200.jpg",
-   "tipo": "foto",
-   "cliente": "Óptica Premium",
-   "mes": "2026-03",
-   "pasta": "1C92hbn0w38a0-0gehhAB72SJd1yZtHmT"
-  },
-  {
-   "id": "1VGHp-0xyGRaQDhXxjUXticbtn7_6r8py",
-   "nome": "A7402189.jpg",
-   "tipo": "foto",
-   "cliente": "Óptica Premium",
-   "mes": "2026-03",
-   "pasta": "1C92hbn0w38a0-0gehhAB72SJd1yZtHmT"
-  },
-  {
-   "id": "1gCFkW0vfMlxnXcQJEZdIIS7FEMznjJIO",
-   "nome": "A7402187.jpg",
-   "tipo": "foto",
-   "cliente": "Óptica Premium",
-   "mes": "2026-03",
-   "pasta": "1C92hbn0w38a0-0gehhAB72SJd1yZtHmT"
-  },
-  {
-   "id": "1K3TbfAVOH5yEHVCQpGGihnqlZ75fguOL",
-   "nome": "A7402185.jpg",
-   "tipo": "foto",
-   "cliente": "Óptica Premium",
-   "mes": "2026-03",
-   "pasta": "1C92hbn0w38a0-0gehhAB72SJd1yZtHmT"
-  },
-  {
-   "id": "1resYsrp7yabRu3-uhlNxQYpby3C29us0",
-   "nome": "A7402180.jpg",
-   "tipo": "foto",
-   "cliente": "Óptica Premium",
-   "mes": "2026-03",
-   "pasta": "1C92hbn0w38a0-0gehhAB72SJd1yZtHmT"
-  },
-  {
-   "id": "1TN1_VSqMnpJbvr_8iFWu__wrXpSUQwje",
-   "nome": "A7402147.jpg",
-   "tipo": "foto",
-   "cliente": "Óptica Premium",
-   "mes": "2026-03",
-   "pasta": "1C92hbn0w38a0-0gehhAB72SJd1yZtHmT"
   }
  ]
 }
