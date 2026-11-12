@@ -66,6 +66,12 @@ def main():
     servicos = {s["id"]: titulo_de(s) for s in todas(DB["servicos"])}
     pers = capas_personalizadas()
     print(f"{len(paginas)} páginas em Conteúdos")
+    from collections import Counter
+    def url_capa(p):
+        c = p.get("cover") or {}
+        return (c.get(c.get("type"), {}) or {}).get("url", "")
+    cont = Counter(re.sub(r"\?.*", "", url_capa(p))[:90] for p in paginas if p.get("cover"))
+    print("CAPAS EXISTENTES:", sum(cont.values()), cont.most_common(6))
 
     def avaliar(p):
         link = prop(p, "Link") or ""
