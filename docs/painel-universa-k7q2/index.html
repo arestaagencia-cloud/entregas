@@ -93,12 +93,14 @@
   .lb-box{display:flex;gap:28px;align-items:center;max-width:1100px;width:100%;max-height:92vh}
   .lb-media{flex:none;height:min(86vh,820px);aspect-ratio:9/16;background:#000;border-radius:12px;overflow:hidden}
   .lb-media.photo{aspect-ratio:auto;max-width:62vw}
+  .lb-media{position:relative}
   .lb-media iframe,.lb-media img{width:100%;height:100%;border:0;object-fit:contain}
-  .lb-info{flex:1;min-width:0}
+  .lb-media.scaled iframe{position:absolute;top:0;left:0;width:540px;height:960px;transform-origin:0 0}
+  .lb-info{flex:1;min-width:0;text-align:center}
   .lb-info .k{font-size:12px;letter-spacing:.2em;text-transform:uppercase;color:var(--muted)}
   .lb-info h3{font-family:var(--serif);font-weight:400;font-size:clamp(26px,3vw,38px);line-height:1.1;margin:10px 0 14px}
   .lb-info p{color:var(--ink-2);font-size:14px}
-  .btns{display:flex;gap:10px;margin-top:22px;flex-wrap:wrap}
+  .btns{display:flex;gap:10px;margin-top:22px;flex-wrap:wrap;justify-content:center}
   .btn{display:inline-flex;align-items:center;gap:8px;border-radius:999px;padding:11px 18px;font-size:14px;font-weight:500}
   .btn.pri{background:var(--ink);color:#0b0b0b}
   .btn.sec{border:1px solid #333;color:#fff}
@@ -108,7 +110,7 @@
   .lb-prev{left:8px}.lb-next{right:8px}
   @media (max-width:760px){
     .lb-box{flex-direction:column;gap:16px;overflow:auto}
-    .lb-media{height:62vh}.lb-media.photo{max-width:100%;height:auto;max-height:62vh}
+    .lb-media{height:auto;width:min(88vw,calc(64vh * 9 / 16))}.lb-media.photo{max-width:100%;height:auto;max-height:62vh}
     .lb-info{text-align:center}.btns{justify-content:center}
     .grid{grid-template-columns:repeat(2,1fr);gap:6px}
     .lbl{min-width:auto}
@@ -149,7 +151,7 @@
 </div>
 
 <main class="wrap" id="lista"></main>
-<footer>Atualizado em 12/11/2026 às 13:31 a partir das pastas do Google Drive · ArestAgência</footer>
+<footer>Atualizado em 12/11/2026 às 13:40 a partir das pastas do Google Drive · ArestAgência</footer>
 
 <div class="lb" id="lb" role="dialog" aria-modal="true">
   <button class="lb-x" id="lbX" aria-label="Fechar">✕</button>
@@ -163,8 +165,6 @@
       <p id="lbF"></p>
       <div class="btns">
         <a class="btn pri" id="lbD" target="_blank" rel="noopener">Baixar</a>
-        <a class="btn sec" id="lbO" target="_blank" rel="noopener">Abrir no Drive</a>
-        <a class="btn sec" id="lbPasta" target="_blank" rel="noopener">Pasta do mês</a>
       </div>
     </div>
   </div>
@@ -259,9 +259,20 @@ function openLb(i){
   $('#lbK').textContent=`${x.cliente} · ${mesLabel(x.mes)}`;
   $('#lbT').textContent=x.titulo;
   $('#lbF').textContent=x.arquivo;
-  $('#lbD').href=dl(x.id);$('#lbO').href=`https://drive.google.com/file/d/${x.id}/view`;$('#lbPasta').href=`https://drive.google.com/drive/folders/${x.pasta}`;
+  $('#lbD').href=dl(x.id);
   $('#lb').classList.add('open');document.body.style.overflow='hidden';
+  fitPlayer();
 }
+// No celular o player do Drive desenha controles enormes em telas estreitas.
+// Renderizamos o iframe em 540x960 e reduzimos com escala para caber na caixa.
+function fitPlayer(){
+  const box=$('#lbM'), f=box.querySelector('iframe');
+  if(!f)return;
+  const small=window.innerWidth<760;
+  box.classList.toggle('scaled',small);
+  f.style.transform=small?`scale(${box.clientWidth/540})`:'';
+}
+window.addEventListener('resize',fitPlayer);
 function closeLb(){$('#lb').classList.remove('open');$('#lbM').innerHTML='';document.body.style.overflow=''}
 const step=d=>{if(cur<0)return;openLb((cur+d+visiveis.length)%visiveis.length)};
 $('#lbX').onclick=closeLb;$('#lbP').onclick=()=>step(-1);$('#lbN').onclick=()=>step(1);
