@@ -1,1 +1,22 @@
-{"id":"teste-tuiuti-leva2","cliente":"Tuiuti","periodo":"Segunda leva de conteúdos","pastas":["1gaw_RTkT_5V2COJhqbnlRidb4hJRdhIb"],"diarias":[],"obs":"","arquivo":"teste-tuiuti-leva2"}
+{
+ "id": "teste-tuiuti-leva2",
+ "cliente": "Tuiuti",
+ "periodo": "Segunda leva de conteúdos",
+ "pastas": [
+  "1gaw_RTkT_5V2COJhqbnlRidb4hJRdhIb"
+ ],
+ "diarias": [],
+ "obs": "",
+ "arquivo": "teste-tuiuti-leva2",
+ "pdf": "docs/relatorios/teste-tuiuti-leva2.pdf",
+ "link_pdf": "https://entregas.arestagencia.com.br/relatorios/teste-tuiuti-leva2.pdf",
+ "resumo": {
+  "videos": 5,
+  "fotos": 0,
+  "diarias": 0,
+  "minutos": 0,
+  "paginas": 4,
+  "sem_capa": 0
+ },
+ "gerado_em": "2026-11-12T17:31:30Z"
+}
