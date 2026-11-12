@@ -1,7 +1,9 @@
 """Gera o painel de conteúdos da Universa e parceiros.
 
 Uso: python3 gerar_painel.py paineis/universa.json
-O JSON traz: slug, titulo, clientes (ordem), itens[{id, nome, tipo, cliente, mes, pasta}].
+O JSON traz: slug, titulo, marca (nome grande da capa), eyebrow (opcional),
+clientes (ordem dos filtros), itens[{id, nome, tipo, cliente, mes, pasta}].
+Serve para qualquer cliente: com um só cliente o filtro de Cliente mostra só ele.
 """
 import base64, json, random, re, sys, unicodedata
 from datetime import datetime, timezone, timedelta
@@ -43,6 +45,8 @@ def main(caminho):
     logo = (RAIZ / "assets/logo-mark.b64").read_text().strip()
     agora = datetime.now(timezone(timedelta(hours=-3))).strftime("%d/%m/%Y às %H:%M")
     html = (html.replace("{{TITLE}}", cfg["titulo"]).replace("{{LOGO}}", logo)
+                .replace("{{MARCA}}", cfg.get("marca", cfg["clientes"][0]).upper())
+                .replace("{{EYEBROW}}", cfg.get("eyebrow", "Painel de conteúdos"))
                 .replace("{{ATUALIZADO}}", agora)
                 .replace("/*__DATA__*/null", json.dumps(dados, ensure_ascii=False, separators=(",", ":"))))
     destino = RAIZ / "docs" / cfg["slug"] / "index.html"

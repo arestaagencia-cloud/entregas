@@ -136,7 +136,7 @@
 
 <div class="bar">
   <div class="wrap">
-    <div class="row"><span class="lbl">Cliente</span><div class="chips grow" id="fCli"></div></div>
+    <div class="row" id="rowCli"><span class="lbl">Cliente</span><div class="chips grow" id="fCli"></div></div>
     <div class="row">
       <span class="lbl">Mês</span>
       <select class="sel" id="fMes" aria-label="Filtrar por mês"></select>
@@ -151,7 +151,7 @@
 </div>
 
 <main class="wrap" id="lista"></main>
-<footer>Atualizado em 12/11/2026 às 13:40 a partir das pastas do Google Drive · ArestAgência</footer>
+<footer>Atualizado em 12/11/2026 às 13:47 a partir das pastas do Google Drive · ArestAgência</footer>
 
 <div class="lb" id="lb" role="dialog" aria-modal="true">
   <button class="lb-x" id="lbX" aria-label="Fechar">✕</button>
@@ -279,6 +279,7 @@ $('#lbX').onclick=closeLb;$('#lbP').onclick=()=>step(-1);$('#lbN').onclick=()=>s
 $('#lb').addEventListener('click',e=>{if(e.target.id==='lb')closeLb()});
 document.addEventListener('keydown',e=>{if(!$('#lb').classList.contains('open'))return;if(e.key==='Escape')closeLb();if(e.key==='ArrowRight')step(1);if(e.key==='ArrowLeft')step(-1)});
 
+if(DATA.clientes.length<2)$('#fCli').closest('.row').hidden=true;
 readHash();update();
 </script>
 </body>

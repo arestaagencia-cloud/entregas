@@ -126,8 +126,8 @@
 <section class="hero">
   <div class="mosaic" id="mosaic"></div>
   <div class="hero-inner">
-    <div class="eyebrow">Painel de conteúdos</div>
-    <h1>UNIVERSA</h1>
+    <div class="eyebrow">{{EYEBROW}}</div>
+    <h1>{{MARCA}}</h1>
     <h2 class="sub">Tudo o que <em>já criamos</em> juntos</h2>
     <p id="periodo"></p>
     <div class="stats" id="stats"></div>
@@ -136,7 +136,7 @@
 
 <div class="bar">
   <div class="wrap">
-    <div class="row"><span class="lbl">Cliente</span><div class="chips grow" id="fCli"></div></div>
+    <div class="row" id="rowCli"><span class="lbl">Cliente</span><div class="chips grow" id="fCli"></div></div>
     <div class="row">
       <span class="lbl">Mês</span>
       <select class="sel" id="fMes" aria-label="Filtrar por mês"></select>
@@ -279,6 +279,7 @@ $('#lbX').onclick=closeLb;$('#lbP').onclick=()=>step(-1);$('#lbN').onclick=()=>s
 $('#lb').addEventListener('click',e=>{if(e.target.id==='lb')closeLb()});
 document.addEventListener('keydown',e=>{if(!$('#lb').classList.contains('open'))return;if(e.key==='Escape')closeLb();if(e.key==='ArrowRight')step(1);if(e.key==='ArrowLeft')step(-1)});
 
+if(DATA.clientes.length<2)$('#fCli').closest('.row').hidden=true;
 readHash();update();
 </script>
 </body>
