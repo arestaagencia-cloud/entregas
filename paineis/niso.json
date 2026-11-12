@@ -82,44 +82,34 @@
    "pasta": "1aa94dXwQUBRwEIaRAXCtCEwRaI-tkaQV"
   },
   {
-   "id": "19kgv_SEwE-XmQUXi55RNYZ8VqgefFugN",
-   "nome": "4.png",
-   "tipo": "foto",
+   "id": "1eEJpcJzlda99HoNLrE9mB7yu-crcytas",
+   "nome": "Carrossel - Nem Imaginam",
+   "tipo": "carrossel",
    "cliente": "Niso Engenharia",
    "mes": "2026-05",
-   "pasta": "1eEJpcJzlda99HoNLrE9mB7yu-crcytas"
-  },
-  {
-   "id": "1CKqa429jH_0A1mZBGBR0rfEl7VAKVURF",
-   "nome": "3.png",
-   "tipo": "foto",
-   "cliente": "Niso Engenharia",
-   "mes": "2026-05",
-   "pasta": "1eEJpcJzlda99HoNLrE9mB7yu-crcytas"
-  },
-  {
-   "id": "1SVVR7QdgIyUaSHtkjG8ebH-rL2uUONu9",
-   "nome": "5.png",
-   "tipo": "foto",
-   "cliente": "Niso Engenharia",
-   "mes": "2026-05",
-   "pasta": "1eEJpcJzlda99HoNLrE9mB7yu-crcytas"
-  },
-  {
-   "id": "1qa3Aqq-Ka3K8Q961vn4ktcNtr90m4nMo",
-   "nome": "2.png",
-   "tipo": "foto",
-   "cliente": "Niso Engenharia",
-   "mes": "2026-05",
-   "pasta": "1eEJpcJzlda99HoNLrE9mB7yu-crcytas"
-  },
-  {
-   "id": "1qik3r3K4LW3BiAq2Lo3-4ivH0_hMkky_",
-   "nome": "1.png",
-   "tipo": "foto",
-   "cliente": "Niso Engenharia",
-   "mes": "2026-05",
-   "pasta": "1eEJpcJzlda99HoNLrE9mB7yu-crcytas"
+   "pasta": "1aa94dXwQUBRwEIaRAXCtCEwRaI-tkaQV",
+   "slides": [
+    {
+     "id": "1qik3r3K4LW3BiAq2Lo3-4ivH0_hMkky_",
+     "tipo": "foto"
+    },
+    {
+     "id": "1qa3Aqq-Ka3K8Q961vn4ktcNtr90m4nMo",
+     "tipo": "foto"
+    },
+    {
+     "id": "1CKqa429jH_0A1mZBGBR0rfEl7VAKVURF",
+     "tipo": "foto"
+    },
+    {
+     "id": "19kgv_SEwE-XmQUXi55RNYZ8VqgefFugN",
+     "tipo": "foto"
+    },
+    {
+     "id": "1SVVR7QdgIyUaSHtkjG8ebH-rL2uUONu9",
+     "tipo": "foto"
+    }
+   ]
   },
   {
    "id": "1wR8jyRm2rJ5VLJbeqD6s87Fld11-GA0y",
@@ -138,14 +128,6 @@
    "pasta": "1MZQydznIASxRAdHTdZdf5IsCqQoJ0vMo"
   },
   {
-   "id": "18uoKYlYlmaJqwuk2pfHfzUsbcZocppYc",
-   "nome": "3",
-   "tipo": "video",
-   "cliente": "Niso Engenharia",
-   "mes": "2026-06",
-   "pasta": "1eaSjceLEgZ7hQI97YlmX5T7ZolfYST3T"
-  },
-  {
    "id": "1bTlhCGZPtYXdH-umhGsWUFRtNPPnFFRQ",
    "nome": "F. Niso - Para Alguns - v.1.mov",
    "tipo": "video",
@@ -154,36 +136,38 @@
    "pasta": "1MZQydznIASxRAdHTdZdf5IsCqQoJ0vMo"
   },
   {
+   "id": "1eaSjceLEgZ7hQI97YlmX5T7ZolfYST3T",
+   "nome": "Carrossel - Obra é só perrengue",
+   "tipo": "carrossel",
+   "cliente": "Niso Engenharia",
+   "mes": "2026-06",
+   "pasta": "1MZQydznIASxRAdHTdZdf5IsCqQoJ0vMo",
+   "slides": [
+    {
+     "id": "1wmf8QJvlISbShgS4FANsu_dsgXYK1OBx",
+     "tipo": "video"
+    },
+    {
+     "id": "1wH-a4YmiD4z3iMFDWo5W0Uj_lP1c7Of6",
+     "tipo": "foto"
+    },
+    {
+     "id": "18uoKYlYlmaJqwuk2pfHfzUsbcZocppYc",
+     "tipo": "video"
+    },
+    {
+     "id": "1qgfcTIG9ki4HgdM6SgYjzTQSs5vBplvR",
+     "tipo": "foto"
+    }
+   ]
+  },
+  {
    "id": "1gl8kREohiQSkq4XT6m1CZYV_gM02HObH",
    "nome": "F. Niso - Quanto custa - v.2.mov",
    "tipo": "video",
    "cliente": "Niso Engenharia",
    "mes": "2026-06",
    "pasta": "1MZQydznIASxRAdHTdZdf5IsCqQoJ0vMo"
-  },
-  {
-   "id": "1qgfcTIG9ki4HgdM6SgYjzTQSs5vBplvR",
-   "nome": "4",
-   "tipo": "foto",
-   "cliente": "Niso Engenharia",
-   "mes": "2026-06",
-   "pasta": "1eaSjceLEgZ7hQI97YlmX5T7ZolfYST3T"
-  },
-  {
-   "id": "1wH-a4YmiD4z3iMFDWo5W0Uj_lP1c7Of6",
-   "nome": "2",
-   "tipo": "foto",
-   "cliente": "Niso Engenharia",
-   "mes": "2026-06",
-   "pasta": "1eaSjceLEgZ7hQI97YlmX5T7ZolfYST3T"
-  },
-  {
-   "id": "1wmf8QJvlISbShgS4FANsu_dsgXYK1OBx",
-   "nome": "1",
-   "tipo": "video",
-   "cliente": "Niso Engenharia",
-   "mes": "2026-06",
-   "pasta": "1eaSjceLEgZ7hQI97YlmX5T7ZolfYST3T"
   },
   {
    "id": "12TuDRczn9s9eqrXTA1V-EfCiT8r6jOKG",
