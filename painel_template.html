@@ -41,6 +41,7 @@
   .hero-inner{position:relative;z-index:2;color:#fff;padding:0 24px clamp(48px,8vh,88px);max-width:960px}
   .eyebrow{font-size:13px;letter-spacing:.42em;text-transform:uppercase;opacity:.85;margin-bottom:18px}
   .hero h1{font-family:var(--sans);font-weight:700;font-size:clamp(54px,12vw,164px);line-height:.85;letter-spacing:.03em;margin-right:-.03em}
+  .hero h1.longo{font-size:clamp(40px,8vw,112px);line-height:.95}
   .hero h2.sub{font-family:var(--serif);font-weight:400;font-size:clamp(24px,3.2vw,40px);line-height:1.1;margin-top:18px;color:var(--ink-2)}
   .hero h2.sub em{color:var(--gold);font-style:italic}
   .hero p{margin-top:18px;color:var(--ink-2);font-size:clamp(15px,1.6vw,18px)}
@@ -140,7 +141,7 @@
   <div class="mosaic" id="mosaic"></div>
   <div class="hero-inner">
     <div class="eyebrow">{{EYEBROW}}</div>
-    <h1>{{MARCA}}</h1>
+    <h1 class="{{MARCA_CLASSE}}">{{MARCA}}</h1>
     <h2 class="sub">Tudo o que <em>já criamos</em> juntos</h2>
     <p id="periodo"></p>
     <div class="stats" id="stats"></div>

@@ -64,6 +64,7 @@ def main(caminho):
     agora = datetime.now(timezone(timedelta(hours=-3))).strftime("%d/%m/%Y às %H:%M")
     html = (html.replace("{{TITLE}}", cfg["titulo"]).replace("{{LOGO}}", logo)
                 .replace("{{MARCA}}", cfg.get("marca", cfg["clientes"][0]).upper())
+                .replace("{{MARCA_CLASSE}}", "longo" if len(cfg.get("marca", cfg["clientes"][0])) > 9 else "")
                 .replace("{{EYEBROW}}", cfg.get("eyebrow", "Painel de conteúdos"))
                 .replace("{{ATUALIZADO}}", agora)
                 .replace("/*__DATA__*/null", json.dumps(dados, ensure_ascii=False, separators=(",", ":"))))
