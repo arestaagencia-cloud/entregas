@@ -53,6 +53,7 @@
   .bar .wrap{display:flex;flex-direction:column;gap:12px;padding-top:14px;padding-bottom:14px}
   .row{display:flex;align-items:center;gap:10px;flex-wrap:wrap}
   .lbl{font-size:11px;letter-spacing:.2em;text-transform:uppercase;color:var(--muted);min-width:64px}
+  [hidden]{display:none!important}
   .chips{display:flex;gap:8px;overflow-x:auto;scrollbar-width:none;padding-bottom:2px}
   .chips::-webkit-scrollbar{display:none}
   .chip{white-space:nowrap;border:1px solid var(--line);background:var(--card);border-radius:999px;padding:7px 14px;font-size:14px;color:var(--ink-2);transition:.15s}
@@ -82,6 +83,7 @@
   .play i::after{content:"";border-left:13px solid #fff;border-top:8px solid transparent;border-bottom:8px solid transparent;margin-left:4px}
   .meta{padding:8px 10px 9px}
   .meta b{display:block;font-weight:500;font-size:14px;line-height:1.25;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+  .uni .meta>span{display:none!important}
   .meta>span{display:flex;align-items:center;margin-top:3px;font-size:12px;color:var(--muted)}
   .dot{display:inline-block;width:7px;height:7px;border-radius:50%;margin-right:6px;vertical-align:1px}
   .empty{padding:80px 0;text-align:center;color:var(--muted)}
@@ -151,7 +153,7 @@
 </div>
 
 <main class="wrap" id="lista"></main>
-<footer>Atualizado em 12/11/2026 às 14:38 a partir das pastas do Google Drive · ArestAgência</footer>
+<footer>Atualizado em 12/11/2026 às 14:39 a partir das pastas do Google Drive · ArestAgência</footer>
 
 <div class="lb" id="lb" role="dialog" aria-modal="true">
   <button class="lb-x" id="lbX" aria-label="Fechar">✕</button>
@@ -194,7 +196,7 @@ const I=DATA.itens;
     m.appendChild(col);
   }
   const ms=[...new Set(I.map(x=>x.mes))].sort();
-  $('#periodo').textContent=`${DATA.clientes.length} marcas · de ${mesLabel(ms[0])} a ${mesLabel(ms[ms.length-1])}`;
+  $('#periodo').textContent=`${DATA.clientes.length>1?DATA.clientes.length+' marcas · ':''}de ${mesLabel(ms[0])} a ${mesLabel(ms[ms.length-1])}`;
   const nV=I.filter(x=>x.tipo==='video').length;
   $('#stats').innerHTML=[[I.length,'conteúdos'],[nV,'vídeos'],[I.length-nV,'fotos'],[ms.length,'meses']].map(([n,l])=>`<div class="stat"><b>${n}</b><span>${l}</span></div>`).join('');
 })();
@@ -279,7 +281,7 @@ $('#lbX').onclick=closeLb;$('#lbP').onclick=()=>step(-1);$('#lbN').onclick=()=>s
 $('#lb').addEventListener('click',e=>{if(e.target.id==='lb')closeLb()});
 document.addEventListener('keydown',e=>{if(!$('#lb').classList.contains('open'))return;if(e.key==='Escape')closeLb();if(e.key==='ArrowRight')step(1);if(e.key==='ArrowLeft')step(-1)});
 
-if(DATA.clientes.length<2)$('#fCli').closest('.row').hidden=true;
+if(DATA.clientes.length<2){$('#fCli').closest('.row').hidden=true;document.body.classList.add('uni')}
 readHash();update();
 </script>
 </body>
