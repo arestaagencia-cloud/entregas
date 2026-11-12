@@ -109,12 +109,15 @@ Estrutura esperada no Drive: `raiz / [NN. ]Marca / N. Marca - Mês.AA / arquivos
 são lidas). Pastas de mês fora do padrão são ignoradas e aparecem como AVISO no log.
 
 **Robô:** `.github/workflows/atualizar-paineis.yml` roda de hora em hora (minuto 17) e também sob demanda
-(`gh workflow run atualizar-paineis.yml`). Ele executa `atualizar_painel.py` para cada `paineis/*.json` e só
+(REST: `gh api -X POST repos/arestaagencia-cloud/entregas/actions/workflows/atualizar-paineis.yml/dispatches -f ref=main -f 'inputs[forcar]=true'`). Ele executa `atualizar_painel.py` para cada `paineis/*.json` e só
 faz commit se o Drive mudou. Lê o Drive pela API oficial se o segredo `GDRIVE_API_KEY` existir no repositório;
 sem ele, usa a listagem pública das pastas (precisam estar como "qualquer pessoa com o link").
 
 **Novo cliente:** criar `paineis/<cliente>.json` com slug, titulo, marca e drive_raiz, rodar
 `python3 atualizar_painel.py paineis/<cliente>.json --forcar` (ou o workflow com "forcar"), conferir e publicar.
+
+Dashboards no ar: `universa` (9 marcas, raiz = pasta Universa) e `niso` (Niso Engenharia, `cliente_unico`,
+raiz = pasta do cliente). Ao criar um novo, atualize também `relatorios/clientes.json` (campo `painel`).
 
 Layout: `painel_template.html` + `gerar_painel.py`. Endereço antigo `/painel-universa-k7q2/` redireciona para `/universa/`.
 
