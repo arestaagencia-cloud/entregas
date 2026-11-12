@@ -124,9 +124,18 @@ Fluxo **manual**, feito no chat no fim de cada mês (sem robô nem fila). A equi
 "gera o PDF da Vitrinni de outubro, 2 diárias: 03/10 das 8h às 12h30 no Lago Sul, 17/10 das 14h às 17h45.
 Obs: …". Se faltar cliente, mês ou as diárias, pergunte antes de gerar.
 
-1. Confira que o cliente existe em `paineis/<painel>.json` (`clientes`).
-2. Escreva `relatorios/pedidos/<cliente-slug>-<AAAA-MM>.json` com `id, painel, cliente, mes` (`AAAA-MM`),
-   `diarias[{data, entrada, saida, local}]` e `obs`. Commit + push.
+Vale para **todos os clientes da pasta "Clientes Ativos"** do Drive (`1Xr_yQthvOFYcNoVwMxeBOHLC5VrKoZH2`,
+com "1. Clientes Recorrentes" e "2. Clientes Freelancers"). A lista com as pastas de cada um fica em
+`relatorios/clientes.json`; se o cliente pedido não estiver lá, procure-o em Clientes Ativos e adicione.
+
+1. Ache o cliente em `relatorios/clientes.json`:
+   - com `painel` (ex.: clientes da Universa): o pedido leva `painel` e `mes`;
+   - sem painel: ache no Drive (search_files com parentId) a pasta do mês dentro de `entregas`
+     (padrão "N. Cliente - Mês.AA") e passe o ID em `pastas: [...]`. Clientes por projeto (sem meses, ex.:
+     Tuiuti "Segunda Leva de Conteúdos"): passe a pasta do projeto em `pastas` e o nome em `periodo`
+     (`mes` pode faltar). Se não ficar claro qual pasta usar, pergunte.
+2. Escreva `relatorios/pedidos/<cliente-slug>-<AAAA-MM ou projeto>.json` com `id, cliente, mes/periodo,
+   painel ou pastas, diarias[{data, entrada, saida, local}]` e `obs`. Commit + push.
 3. O push dispara `.github/workflows/gerar-pdf.yml`: atualiza o painel com o Drive, baixa as capas e imprime
    o PDF (`gerar_pdf.py` + `relatorio_template.html`) em `docs/relatorios/<cliente>-<mes>-<4 hex>.pdf`.
    Acompanhe: `gh api "repos/arestaagencia-cloud/entregas/actions/workflows/gerar-pdf.yml/runs?per_page=1"`
@@ -135,5 +144,5 @@ Obs: …". Se faltar cliente, mês ou as diárias, pergunte antes de gerar.
    e o link `link_pdf`.
 
 O PDF: capa (mosaico + cliente + mês), resumo (números, diárias, observações), vídeos (15 por página),
-fotos (até 20, "+N no seu painel"), página final com QR code para o dashboard. Cada miniatura é um link
+fotos (até 20, "+N no seu painel"), página final com QR code para o dashboard (ou, sem dashboard, para a pasta da entrega no Drive). Cada miniatura é um link
 invisível que abre o arquivo no player do Drive (`/file/d/<id>/view`).

@@ -142,7 +142,7 @@ def main(caminho):
         tabela = (f'<div class="kick">Captação</div><table><tr><th>Diária</th><th>Entrada</th><th>Saída</th>'
                   f'<th>Tempo</th></tr>{linhas}</table>')
     obs = f'<div class="kick">Observações</div><div class="obs">{esc(ped["obs"].strip())}</div>' if ped.get("obs", "").strip() else ""
-    paginas.append(f'''<section class="page">{brand}<div class="kick">Resumo do mês</div>
+    paginas.append(f'''<section class="page">{brand}<div class="kick">{"Resumo do mês" if mes else "Resumo da entrega"}</div>
       <div class="h">{mes_txt}</div><div class="nums">{nums_html}</div>{tabela}{obs}{{FOOT}}</section>''')
 
     # produção: vídeos (15 por página) e fotos (até 20)
