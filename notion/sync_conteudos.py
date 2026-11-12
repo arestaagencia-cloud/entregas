@@ -259,7 +259,7 @@ def main():
     atual = [p for p in plano if p["acao"] == "atualizar"]
     ok = len(drive) - len(criar) - len(atual)
     fmt = lambda v: ", ".join(nome_cli.get(x) or nome_serv.get(x) or x for x in v) if isinstance(v, list) else (v or "vazio")
-    L = [f"# Sincronização Drive → Notion ({'APLICADA' if APLICAR else 'PRÉVIA, nada foi alterado'})", "",
+    L = [f"# Sincronização Drive → Notion ({'APLICADA' if (APLICAR or AUTO) else 'PRÉVIA, nada foi alterado'})", "",
          f"- Conteúdos no Drive (vídeos e carrosséis dos painéis): **{len(drive)}**",
          f"- Já corretos no Notion: **{ok}**", f"- Páginas a corrigir: **{len(atual)}**",
          f"- Páginas a criar: **{len(criar)}**", f"- Duplicatas para a lixeira: **{len(arquivar)}**",
