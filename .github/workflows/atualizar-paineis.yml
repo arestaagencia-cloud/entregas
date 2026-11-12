@@ -50,6 +50,7 @@ jobs:
           if [ -z "$NOTION_TOKEN" ]; then echo "Sem NOTION_TOKEN: Notion não sincronizado."; exit 0; fi
           if [ "${{ inputs.forcar }}" = "true" ] || [ -n "$(git status --porcelain paineis)" ]; then
             python3 notion/sync_conteudos.py --auto || echo "::warning::Sincronização com o Notion falhou (veja o log)"
+            python3 notion/capas.py --auto || echo "::warning::Capas do Notion falharam (veja o log)"
           else
             echo "Drive sem mudanças: Notion já está em dia."
           fi

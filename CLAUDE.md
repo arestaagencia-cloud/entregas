@@ -176,3 +176,10 @@ Nunca mexe em Formato, Data de Publicação e Desenvolveu. Rode sempre a prévia
 cria/corrige páginas sozinho, mas nunca manda duplicatas para a lixeira e não aplica nada se houver mais de 60
 mudanças de uma vez (fica um aviso no log; aí rode a prévia à mão).
 Primeira sincronização (12/11/2026): 154 criadas, 169 corrigidas, 8 duplicatas na lixeira; 392/392 corretos.
+
+**Capas e lista do que falta no Drive:** `notion/capas.py` (workflow "Notion · capas dos conteúdos", `notion-capas.yml`)
+põe como capa de cada página de Conteúdos a miniatura do arquivo do Link (pasta/carrossel: 1º arquivo; imagem com
+o mesmo nome do vídeo na pasta tem prioridade), publicada em `docs/capas/<id do Drive>.jpg`. Troca só capas
+genéricas (vazia, placeholder "Novo_Conteúdo" do modelo, galeria do Notion); capas enviadas à mão ficam.
+Páginas cujo arquivo não abre no Drive vão para a lista "sem Drive" (CSV no log, entre `=====CSV=====`).
+O robô roda `capas.py --auto` junto com a sincronização. 12/11/2026: 174 capas; 274 páginas fora do Drive.
