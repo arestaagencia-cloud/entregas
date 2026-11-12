@@ -91,3 +91,15 @@ Sempre atualize `atualizado_em` (ISO, UTC).
 - Apagar páginas publicadas ou arquivos do Drive.
 - Mudar o slug de uma entrega já publicada (o cliente já tem o link).
 - Marcar "Página no Ar" sem confirmar que o deploy terminou com sucesso.
+
+## Painel de conteúdos (Universa e parceiros)
+
+`https://entregas.arestagencia.com.br/painel-universa-k7q2/` — todos os vídeos e fotos dos clientes da pasta
+"Universa" do Drive (`12KS_6Ad31MhLNQ--ZhQLBU_Yc32AFmcp`), com filtros por Cliente, Mês e tipo.
+
+Para atualizar ("atualiza o painel da Universa"):
+1. Liste as subpastas de cliente da pasta acima, depois as pastas de mês de cada cliente e os arquivos de cada mês
+   (incluindo subpastas como `Fotos`). O mês vem do nome da pasta (`N. Cliente - Mês.AA`).
+2. Reescreva `paineis/universa.json` (`itens[{id, nome, tipo: video|foto, cliente, mes: "AAAA-MM", pasta}]`;
+   cliente novo entra no fim de `clientes`).
+3. `python3 gerar_painel.py paineis/universa.json`, commit, push e confirme o deploy.
