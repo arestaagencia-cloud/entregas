@@ -13,13 +13,25 @@ RAIZ = Path(__file__).parent
 CORES = ["#F6AD03", "#C8463F", "#7FB7A4", "#B79CE0", "#E7895A", "#6FA8DC", "#D6C27A", "#E58FB2", "#9BC46B", "#A3A3A3"]
 
 
+ACENTOS = {"a": "aáàâã", "e": "eéê", "i": "ií", "o": "oóôõ", "u": "uúü", "c": "cç"}
+
+
+def sem_acento(palavra):
+    """Regex que casa a palavra com ou sem acento."""
+    base = unicodedata.normalize("NFKD", palavra).encode("ascii", "ignore").decode()
+    return "".join(f"[{ACENTOS[ch.lower()]}{ACENTOS[ch.lower()].upper()}]" if ch.lower() in ACENTOS else re.escape(ch)
+                   for ch in base)
+
+
 def titulo(nome, cliente):
     t = unicodedata.normalize("NFC", nome)
     t = re.sub(r"\.(mov|mp4|m4v|jpe?g|png|heic|webp)$", "", t, flags=re.I)
     t = re.sub(r"^[FP]\.\s*", "", t)
     # tira o nome do cliente do começo ("Vitrinni - ", "Vitrinni. ", "Universa - ")
-    for alvo in [cliente, cliente.split()[0], "Vitrini"]:
-        t = re.sub(rf"^{re.escape(alvo)}\s*[-.]\s*", "", t, flags=re.I)
+    alvos = [cliente] + [w for w in cliente.split() if len(w) >= 4] + [cliente.split()[0], "Vitrini"]
+    for _ in range(3):  # "Clinica Faber - Dr Jorge", "Faber - Alinhador": tira mesmo sem acento
+        for alvo in alvos:
+            t = re.sub(rf"^{sem_acento(alvo)}\s*[-.]\s*", "", t, flags=re.I)
     for _ in range(3):
         t = re.sub(r"[\s.\-]*[Vv]\.?\s?\d+(\(\d+\))?\s*$", "", t)  # versão no fim
         t = re.sub(r"[\s.\-]+(Andressa|Gabi|Gabriela|Marcus|Luiz)\s*$", "", t, flags=re.I)  # apresentador

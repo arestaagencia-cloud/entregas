@@ -79,7 +79,7 @@ def main(caminho):
         chamada = f"em {MESES[int(m) - 1].lower()}"
     else:
         mes_txt = ped.get("periodo") or "Entrega"
-        chamada = f"em {esc(mes_txt)}" if ped.get("periodo") else "para você"
+        chamada = f"<br>{esc(mes_txt.lower())}" if ped.get("periodo") else "para você"
     if ped.get("periodo") and mes:
         mes_txt = f"{ped['periodo']} · {mes_txt}"
     painel = None
