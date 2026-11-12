@@ -52,6 +52,10 @@ def main(caminho):
             "id": x["id"], "tipo": x["tipo"], "cliente": x["cliente"], "mes": x["mes"], "pasta": x["pasta"],
             "arquivo": x["nome"], "titulo": titulo(x["nome"], x["cliente"]), "r": rnd.random(),
         })
+        if x["tipo"] == "carrossel":
+            itens[-1]["slides"] = x["slides"]
+            itens[-1]["capa"] = x["slides"][0]["id"]
+            itens[-1]["titulo"] = re.sub(r"^carross[eé]l\s*\d*\s*[-.:]?\s*", "", x["nome"], flags=re.I).strip() or "Carrossel"
     dados = {"clientes": cfg["clientes"], "cores": cores, "itens": itens}
     html = (RAIZ / "painel_template.html").read_text()
     logo = (RAIZ / "assets/logo-mark.b64").read_text().strip()

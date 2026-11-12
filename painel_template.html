@@ -95,6 +95,17 @@
   .lb-box{display:flex;gap:28px;align-items:center;max-width:1100px;width:100%;max-height:92vh}
   .lb-media{flex:none;height:min(86vh,820px);aspect-ratio:9/16;background:#000;border-radius:12px;overflow:hidden}
   .lb-media.photo{aspect-ratio:auto;max-width:62vw}
+  .lb-media.carr{aspect-ratio:4/5;height:min(80vh,760px)}
+  .trk{display:flex;width:100%;height:100%;overflow-x:auto;scroll-snap-type:x mandatory;scrollbar-width:none;overscroll-behavior-x:contain}
+  .trk::-webkit-scrollbar{display:none}
+  .sl{flex:0 0 100%;height:100%;scroll-snap-align:center;position:relative;overflow:hidden}
+  .sl img,.sl iframe{width:100%;height:100%;border:0;object-fit:contain;display:block}
+  .cv{position:absolute;top:50%;transform:translateY(-50%);width:38px;height:38px;border-radius:50%;background:rgba(0,0,0,.55);color:#fff;font-size:22px;line-height:1;z-index:2}
+  .cv.p{left:10px}.cv.n{right:10px}.cv[disabled]{opacity:0;pointer-events:none}
+  .dots{position:absolute;left:0;right:0;bottom:12px;display:flex;justify-content:center;gap:6px;z-index:2;pointer-events:none}
+  .dots i{width:7px;height:7px;border-radius:50%;background:rgba(255,255,255,.4);transition:all .2s}
+  .dots i.on{background:#fff;width:18px;border-radius:4px}
+  .stack{position:absolute;top:8px;right:8px;width:22px;height:22px;opacity:.95}
   .lb-media{position:relative}
   .lb-media iframe,.lb-media img{width:100%;height:100%;border:0;object-fit:contain}
   .lb-media.scaled iframe{position:absolute;top:0;left:0;width:540px;height:960px;transform-origin:0 0}
@@ -112,7 +123,7 @@
   .lb-prev{left:8px}.lb-next{right:8px}
   @media (max-width:760px){
     .lb-box{flex-direction:column;gap:16px;overflow:auto}
-    .lb-media{height:auto;width:min(88vw,calc(64vh * 9 / 16))}.lb-media.photo{max-width:100%;height:auto;max-height:62vh}
+    .lb-media{height:auto;width:min(88vw,calc(64vh * 9 / 16))}.lb-media.carr{width:min(92vw,calc(66vh * 4 / 5));height:auto}.lb-media.photo{max-width:100%;height:auto;max-height:62vh}
     .lb-info{text-align:center}.btns{justify-content:center}
     .grid{grid-template-columns:repeat(2,1fr);gap:6px}
     .lbl{min-width:auto}
@@ -143,7 +154,7 @@
       <span class="lbl">Mês</span>
       <select class="sel" id="fMes" aria-label="Filtrar por mês"></select>
       <div class="seg" id="fTipo">
-        <button data-t="" class="on">Tudo</button><button data-t="video">Vídeos</button><button data-t="foto">Fotos</button>
+        <button data-t="" class="on">Tudo</button><button data-t="video">Vídeos</button><button data-t="foto">Fotos</button><button data-t="carrossel" id="tCarr" hidden>Carrosséis</button>
       </div>
       <span class="grow"></span>
       <span class="count" id="count"></span>
@@ -182,6 +193,9 @@ const mesLabel=ym=>{const[a,m]=ym.split('-');return `${MESES[+m-1]} ${a}`};
 const $=s=>document.querySelector(s);
 const esc=s=>s.replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
 const I=DATA.itens;
+const capa=x=>x.capa||x.id;
+const nCarr=I.filter(x=>x.tipo==='carrossel').length;
+const conta=arr=>{const v=arr.filter(x=>x.tipo==='video').length,c=arr.filter(x=>x.tipo==='carrossel').length;return [`${v} vídeos`,`${arr.length-v-c} fotos`].concat(c?[`${c} ${c>1?'carrosséis':'carrossel'}`]:[]).join(' · ')};
 
 // ---------- hero ----------
 (function(){
@@ -191,14 +205,14 @@ const I=DATA.itens;
     const col=document.createElement('div');col.className='mcol';
     pick.filter((_,i)=>i%cols===c).forEach(x=>{
       const t=document.createElement('div');t.className='mtile '+(x.tipo==='video'?'v':'p');
-      t.style.backgroundImage=`url("${thumb(x.id,400)}")`;col.appendChild(t);
+      t.style.backgroundImage=`url("${thumb(capa(x),400)}")`;col.appendChild(t);
     });
     m.appendChild(col);
   }
   const ms=[...new Set(I.map(x=>x.mes))].sort();
   $('#periodo').textContent=`${DATA.clientes.length>1?DATA.clientes.length+' marcas · ':''}de ${mesLabel(ms[0])} a ${mesLabel(ms[ms.length-1])}`;
   const nV=I.filter(x=>x.tipo==='video').length;
-  $('#stats').innerHTML=[[I.length,'conteúdos'],[nV,'vídeos'],[I.length-nV,'fotos'],[ms.length,'meses']].map(([n,l])=>`<div class="stat"><b>${n}</b><span>${l}</span></div>`).join('');
+  $('#stats').innerHTML=[[I.length,'conteúdos'],[nV,'vídeos'],[I.length-nV-nCarr,'fotos']].concat(nCarr?[[nCarr,nCarr>1?'carrosséis':'carrossel']]:[]).concat([[ms.length,'meses']]).map(([n,l])=>`<div class="stat"><b>${n}</b><span>${l}</span></div>`).join('');
 })();
 
 // ---------- filtros ----------
@@ -226,20 +240,19 @@ $('#reset').addEventListener('click',()=>{st.cli=st.mes=st.tipo='';update()});
 let visiveis=[];const LIM=24;const abertos=new Set();
 function card(x,i){
   return `<button class="card" data-i="${i}">
-    <div class="thumb"><img loading="lazy" src="${thumb(x.id,480)}" alt="" onerror="this.style.display='none'">
-      <span class="badge">${x.tipo==='video'?'Vídeo':'Foto'}</span>${x.tipo==='video'?'<span class="play"><i></i></span>':''}</div>
+    <div class="thumb"><img loading="lazy" src="${thumb(capa(x),480)}" alt="" onerror="this.style.display='none'">
+      <span class="badge">${x.tipo==='video'?'Vídeo':x.tipo==='carrossel'?`Carrossel · ${x.slides.length}`:'Foto'}</span>${x.tipo==='video'?'<span class="play"><i></i></span>':''}${x.tipo==='carrossel'?'<svg class="stack" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2"><rect x="3" y="7" width="13" height="14" rx="2" fill="rgba(0,0,0,.45)"/><path d="M8 3h11a2 2 0 0 1 2 2v12"/></svg>':''}</div>
     <div class="meta"><b>${esc(x.titulo)}</b><span><span class="dot" style="background:${CORES[x.cliente]}"></span>${esc(x.cliente)}</span></div>
   </button>`;
 }
 function renderLista(){
-  visiveis=I.filter(x=>match(x)).sort((a,b)=>b.mes.localeCompare(a.mes)||DATA.clientes.indexOf(a.cliente)-DATA.clientes.indexOf(b.cliente)||(a.tipo===b.tipo?a.titulo.localeCompare(b.titulo):a.tipo==='video'?-1:1));
+  visiveis=I.filter(x=>match(x)).sort((a,b)=>b.mes.localeCompare(a.mes)||DATA.clientes.indexOf(a.cliente)-DATA.clientes.indexOf(b.cliente)||(a.tipo===b.tipo?a.titulo.localeCompare(b.titulo):({video:0,carrossel:1,foto:2}[a.tipo]-{video:0,carrossel:1,foto:2}[b.tipo])));
   $('#count').textContent=`${visiveis.length} ${visiveis.length===1?'conteúdo':'conteúdos'}`;
   if(!visiveis.length){$('#lista').innerHTML='<div class="empty">Nenhum conteúdo com esses filtros.</div>';return}
   const g={};visiveis.forEach((x,i)=>(g[x.mes]=g[x.mes]||[]).push([x,i]));
   $('#lista').innerHTML=Object.keys(g).map(m=>{
     const arr=g[m], all=abertos.has(m)||st.mes||arr.length<=LIM;
-    const nv=arr.filter(([x])=>x.tipo==='video').length;
-    return `<section class="month"><h2>${mesLabel(m)}<span>${nv} vídeos · ${arr.length-nv} fotos</span></h2>
+    return `<section class="month"><h2>${mesLabel(m)}<span>${conta(arr.map(([x])=>x))}</span></h2>
       <div class="grid">${(all?arr:arr.slice(0,LIM)).map(([x,i])=>card(x,i)).join('')}</div>
       ${all?'':`<button class="more" data-m="${m}">Ver todos os ${arr.length}</button>`}</section>`;
   }).join('');
@@ -254,17 +267,44 @@ function update(){writeHash();renderFiltros();renderLista()}
 let cur=-1;
 function openLb(i){
   cur=i;const x=visiveis[i];
-  $('#lbM').className='lb-media'+(x.tipo==='foto'?' photo':'');
+  $('#lbM').className='lb-media'+(x.tipo==='foto'?' photo':x.tipo==='carrossel'?' carr':'');
+  if(x.tipo==='carrossel'){abrirCarrossel(x);return}
   $('#lbM').innerHTML=x.tipo==='video'
     ?`<iframe src="https://drive.google.com/file/d/${x.id}/preview" allow="autoplay; fullscreen" allowfullscreen></iframe>`
     :`<img src="${thumb(x.id,1600)}" alt="">`;
   $('#lbK').textContent=`${x.cliente} · ${mesLabel(x.mes)}`;
   $('#lbT').textContent=x.titulo;
   $('#lbF').textContent=x.arquivo;
-  $('#lbD').href=dl(x.id);
+  $('#lbD').href=dl(x.id);$('#lbD').textContent='Baixar';
   $('#lb').classList.add('open');document.body.style.overflow='hidden';
   fitPlayer();
 }
+// Carrossel: slides lado a lado, arrasta com o dedo (scroll-snap) ou pelas setas; ordem = nome dos arquivos
+let slide=0;
+function abrirCarrossel(x){
+  const n=x.slides.length;
+  $('#lbM').innerHTML=`<div class="trk" id="trk">${x.slides.map((s,k)=>`<div class="sl">${s.tipo==='video'
+      ?`<iframe data-src="https://drive.google.com/file/d/${s.id}/preview" allow="autoplay; fullscreen" allowfullscreen></iframe>`
+      :`<img src="${thumb(s.id,1600)}" alt="Slide ${k+1}" ${k>1?'loading="lazy"':''}>`}</div>`).join('')}</div>
+    <button class="cv p" id="cvP" aria-label="Slide anterior">‹</button><button class="cv n" id="cvN" aria-label="Próximo slide">›</button>
+    <div class="dots">${x.slides.map(()=>'<i></i>').join('')}</div>`;
+  $('#lbK').textContent=`Carrossel · ${n} slides · ${mesLabel(x.mes)}`;
+  $('#lbT').textContent=x.titulo;
+  const trk=$('#trk');
+  const marcar=()=>{
+    slide=Math.round(trk.scrollLeft/trk.clientWidth);
+    document.querySelectorAll('.dots i').forEach((d,k)=>d.classList.toggle('on',k===slide));
+    $('#cvP').disabled=slide===0;$('#cvN').disabled=slide===n-1;
+    $('#lbF').textContent=`Slide ${slide+1} de ${n}`;
+    $('#lbD').href=dl(x.slides[slide].id);$('#lbD').textContent=`Baixar slide ${slide+1}`;
+    const f=trk.children[slide].querySelector('iframe[data-src]');if(f){f.src=f.dataset.src;f.removeAttribute('data-src')}
+  };
+  trk.addEventListener('scroll',()=>{clearTimeout(trk._t);trk._t=setTimeout(marcar,60)});
+  $('#cvP').onclick=()=>irSlide(-1);$('#cvN').onclick=()=>irSlide(1);
+  $('#lb').classList.add('open');document.body.style.overflow='hidden';
+  slide=0;marcar();
+}
+function irSlide(d){const trk=$('#trk');if(!trk)return false;const k=slide+d;if(k<0||k>=trk.children.length)return false;trk.scrollTo({left:k*trk.clientWidth,behavior:'smooth'});return true}
 // No celular o player do Drive desenha controles enormes em telas estreitas.
 // Renderizamos o iframe em 540x960 e reduzimos com escala para caber na caixa.
 function fitPlayer(){
@@ -279,8 +319,9 @@ function closeLb(){$('#lb').classList.remove('open');$('#lbM').innerHTML='';docu
 const step=d=>{if(cur<0)return;openLb((cur+d+visiveis.length)%visiveis.length)};
 $('#lbX').onclick=closeLb;$('#lbP').onclick=()=>step(-1);$('#lbN').onclick=()=>step(1);
 $('#lb').addEventListener('click',e=>{if(e.target.id==='lb')closeLb()});
-document.addEventListener('keydown',e=>{if(!$('#lb').classList.contains('open'))return;if(e.key==='Escape')closeLb();if(e.key==='ArrowRight')step(1);if(e.key==='ArrowLeft')step(-1)});
+document.addEventListener('keydown',e=>{if(!$('#lb').classList.contains('open'))return;if(e.key==='Escape')closeLb();if(e.key==='ArrowRight'&&!irSlide(1))step(1);if(e.key==='ArrowLeft'&&!irSlide(-1))step(-1)});
 
+if(nCarr)$('#tCarr').hidden=false;
 if(DATA.clientes.length<2){$('#fCli').closest('.row').hidden=true;document.body.classList.add('uni')}
 readHash();update();
 </script>

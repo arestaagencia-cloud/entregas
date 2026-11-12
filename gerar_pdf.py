@@ -93,11 +93,15 @@ def main(caminho):
             coletar(pasta, cli, mes or "", itens)
     videos = sorted([i for i in itens if i["tipo"] == "video"], key=lambda i: titulo(i["nome"], cli).lower())
     fotos = sorted([i for i in itens if i["tipo"] == "foto"], key=lambda i: i["nome"])
+    carrs = sorted([i for i in itens if i["tipo"] == "carrossel"], key=lambda i: i["nome"].lower())
+    for c in carrs:
+        c["capa"] = c.get("capa") or c["slides"][0]["id"]
     if not itens:
         raise SystemExit(f"Nenhum conteúdo de {cli} em {mes_txt}.")
 
     fotos_pdf = fotos[:MAX_FOTOS]
-    pedidos_thumb = [(v["id"], 600) for v in videos] + [(f["id"], 500) for f in fotos_pdf]
+    pedidos_thumb = ([(v["id"], 600) for v in videos] + [(c["capa"], 500) for c in carrs]
+                     + [(f["id"], 500) for f in fotos_pdf])
     with ThreadPoolExecutor(8) as ex:
         imgs = dict(zip([p[0] for p in pedidos_thumb], ex.map(lambda p: thumb(*p), pedidos_thumb)))
     sem_capa = [i for i, v in imgs.items() if not v]
@@ -110,7 +114,7 @@ def main(caminho):
     paginas = []
 
     # capa
-    mos_ids = ([v["id"] for v in videos] + [f["id"] for f in fotos_pdf])
+    mos_ids = ([v["id"] for v in videos] + [c["capa"] for c in carrs] + [f["id"] for f in fotos_pdf])
     mos_ids = [i for i in mos_ids if imgs.get(i)] or [None]
     mos = "".join(f'<div style="{bg(mos_ids[k % len(mos_ids)]) if mos_ids[0] else ""}"></div>' for k in range(25))
     tam = 120 if len(cli) <= 9 else 96 if len(cli) <= 13 else 74
@@ -121,7 +125,8 @@ def main(caminho):
     # resumo
     diarias = [d for d in ped.get("diarias", []) if d.get("entrada") and d.get("saida")]
     total = sum(dur(d["entrada"], d["saida"]) for d in diarias)
-    nums = [(len(videos), "vídeos entregues" if len(videos) != 1 else "vídeo entregue", "gold"), (len(fotos), "fotos entregues" if len(fotos) != 1 else "foto entregue", "")]
+    nums = [(len(videos), "vídeos entregues" if len(videos) != 1 else "vídeo entregue", "gold"), (len(carrs), "carrosséis" if len(carrs) != 1 else "carrossel", ""),
+            (len(fotos), "fotos entregues" if len(fotos) != 1 else "foto entregue", "")]
     if diarias:
         nums += [(len(diarias), "diárias de captação" if len(diarias) > 1 else "diária de captação", ""),
                  (fmt_dur(total), "em captação", "")]
@@ -155,6 +160,13 @@ def main(caminho):
 
     for k in range(0, len(videos), 15):
         paginas.append(bloco_videos(videos[k:k + 15], k == 0))
+    if carrs:
+        cards = "".join(f'<a class="it" href="https://drive.google.com/drive/folders/{c["id"]}"><div class="th" style="{bg(c["capa"])}">'
+                        f'<span class="nsl">{len(c["slides"])} slides</span></div>'
+                        f'<p>{esc(re.sub(r"^carross[eé]l\s*\d*\s*[-.:]?\s*", "", c["nome"], flags=re.I).strip() or "Carrossel")}</p></a>'
+                        for c in carrs[:15])
+        paginas.append(f'''<section class="page">{brand}<div class="kick">Produção</div>
+          <div class="h">Carrosséis <em>({len(carrs)})</em></div><div class="grid f">{cards}</div>{{FOOT}}</section>''')
     if fotos_pdf:
         cards = "".join(f'<a class="it" href="{link(f["id"])}"><div class="th" style="{bg(f["id"])}"></div></a>' for f in fotos_pdf)
         resto = len(fotos) - len(fotos_pdf)
@@ -207,11 +219,11 @@ def main(caminho):
     ped["arquivo"] = nome
     ped["pdf"] = f"docs/relatorios/{nome}.pdf"
     ped["link_pdf"] = f"{SITE}/relatorios/{nome}.pdf"
-    ped["resumo"] = {"videos": len(videos), "fotos": len(fotos), "diarias": len(diarias), "minutos": total,
+    ped["resumo"] = {"videos": len(videos), "fotos": len(fotos), "carrosseis": len(carrs), "diarias": len(diarias), "minutos": total,
                      "paginas": total_pag, "sem_capa": len(sem_capa)}
     ped["gerado_em"] = datetime.now(timezone.utc).strftime("%Y-%m-%dT%H:%M:%SZ")
     ped_path.write_text(json.dumps(ped, ensure_ascii=False, indent=1))
-    print(f"PDF: {saida} — {len(videos)} vídeos, {len(fotos)} fotos, {len(diarias)} diárias, {total_pag} páginas,"
+    print(f"PDF: {saida} — {len(videos)} vídeos, {len(fotos)} fotos, {len(carrs)} carrosséis, {len(diarias)} diárias, {total_pag} páginas,"
           f" {len(sem_capa)} sem capa")
 
 

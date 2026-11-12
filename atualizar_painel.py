@@ -107,8 +107,26 @@ def nome_cliente(nome):
     return re.sub(r"^\s*\d+\s*[.\-]\s*", "", nfc(nome)).strip()
 
 
+def ordem_natural(nome):
+    return [int(p) if p.isdigit() else p.lower() for p in re.split(r"(\d+)", nome)]
+
+
+def eh_carrossel(nome):
+    return bool(re.match(r"\s*carross[eé]is?\b|\s*carrossel", unicodedata.normalize("NFC", nome), re.I))
+
+
 def coletar(pasta, cliente, mes, destino, prof=0):
     for x in listar(pasta):
+        if x["pasta"] and eh_carrossel(x["nome"]):  # pasta "Carrossel ..." vira um item só, slides na ordem do nome
+            slides = []
+            for f in sorted(listar(x["id"]), key=lambda f: ordem_natural(f["nome"])):
+                t = None if f["pasta"] else tipo(f["nome"], f.get("mime", ""))
+                if t:
+                    slides.append({"id": f["id"], "tipo": t})
+            if slides:
+                destino.append({"id": x["id"], "nome": x["nome"], "tipo": "carrossel", "cliente": cliente, "mes": mes,
+                                "pasta": pasta, "slides": slides})
+            continue
         if x["pasta"]:
             if prof < 2:
                 coletar(x["id"], cliente, mes, destino, prof + 1)
