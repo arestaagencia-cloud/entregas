@@ -1,0 +1,51 @@
+name: Gerar PDFs
+
+on:
+  push:
+    paths: ["relatorios/pedidos/**.json"]
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: atualizar-paineis
+  cancel-in-progress: false
+
+jobs:
+  pdf:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Dependências
+        run: |
+          pip install -q playwright qrcode
+          python -m playwright install --with-deps chromium
+      - name: Gerar PDFs pendentes
+        env:
+          GDRIVE_API_KEY: ${{ secrets.GDRIVE_API_KEY }}
+          TZ: America/Sao_Paulo
+        run: |
+          set -e
+          for ped in relatorios/pedidos/*.json; do
+            [ -e "$ped" ] || continue
+            if python3 -c "import json,sys; sys.exit(0 if json.load(open('$ped')).get('pdf') else 1)"; then continue; fi
+            painel=$(python3 -c "import json; print(json.load(open('$ped'))['painel'])")
+            echo "::group::$ped"
+            python3 atualizar_painel.py "paineis/$painel.json"   # dados frescos do Drive
+            python3 gerar_pdf.py "$ped" || echo "FALHOU: $ped"
+            echo "::endgroup::"
+          done
+      - name: Publicar
+        run: |
+          if [ -n "$(git status --porcelain relatorios paineis docs)" ]; then
+            git config user.name "ArestAgência (robô)"
+            git config user.email "aresta.agencia@gmail.com"
+            git add relatorios paineis docs
+            git commit -m "PDFs gerados"
+            git pull --rebase
+            git push
+          fi
