@@ -1,4 +1,9 @@
-# Procedimento: páginas de entrega ArestAgência
+# Procedimento: ArestAgência · dashboards e relatórios mensais
+
+> **Fluxo atual (nov/2026):** cada cliente tem um **dashboard** fixo atualizado pelo robô (seção "Dashboards")
+> e, no fim do mês, recebe um **PDF** gerado manualmente no chat (seção "Relatórios mensais em PDF").
+> As páginas mensais de entrega (seções seguintes) são o fluxo antigo: as já publicadas continuam no ar,
+> mas não se criam novas, e o painel de pedidos/tarefa agendada não são mais usados.
 
 Este repositório publica as páginas de entrega de vídeos e fotos dos clientes em
 `https://entregas.arestagencia.com.br/<slug>/` (GitHub Pages, pasta `docs/`, branch `main`).
@@ -112,3 +117,23 @@ sem ele, usa a listagem pública das pastas (precisam estar como "qualquer pesso
 `python3 atualizar_painel.py paineis/<cliente>.json --forcar` (ou o workflow com "forcar"), conferir e publicar.
 
 Layout: `painel_template.html` + `gerar_painel.py`. Endereço antigo `/painel-universa-k7q2/` redireciona para `/universa/`.
+
+## Relatórios mensais em PDF
+
+Fluxo **manual**, feito no chat no fim de cada mês (sem robô nem fila). A equipe pede no chat, por exemplo:
+"gera o PDF da Vitrinni de outubro, 2 diárias: 03/10 das 8h às 12h30 no Lago Sul, 17/10 das 14h às 17h45.
+Obs: …". Se faltar cliente, mês ou as diárias, pergunte antes de gerar.
+
+1. Confira que o cliente existe em `paineis/<painel>.json` (`clientes`).
+2. Escreva `relatorios/pedidos/<cliente-slug>-<AAAA-MM>.json` com `id, painel, cliente, mes` (`AAAA-MM`),
+   `diarias[{data, entrada, saida, local}]` e `obs`. Commit + push.
+3. O push dispara `.github/workflows/gerar-pdf.yml`: atualiza o painel com o Drive, baixa as capas e imprime
+   o PDF (`gerar_pdf.py` + `relatorio_template.html`) em `docs/relatorios/<cliente>-<mes>-<4 hex>.pdf`.
+   Acompanhe: `gh api "repos/arestaagencia-cloud/entregas/actions/workflows/gerar-pdf.yml/runs?per_page=1"`
+   (API REST; GraphQL não funciona). No log, "PDF: …" = ok; "FALHOU" = mês sem conteúdo ou erro.
+4. `git pull` e leia o pedido: agora tem `link_pdf`, `pdf` e `resumo`. Envie o arquivo no chat (SendUserFile)
+   e o link `link_pdf`.
+
+O PDF: capa (mosaico + cliente + mês), resumo (números, diárias, observações), vídeos (15 por página),
+fotos (até 20, "+N no seu painel"), página final com QR code para o dashboard. Cada miniatura é um link
+invisível que abre o arquivo no player do Drive (`/file/d/<id>/view`).

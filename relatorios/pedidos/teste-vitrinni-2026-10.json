@@ -1,0 +1,21 @@
+{
+ "id": "teste",
+ "painel": "universa",
+ "cliente": "Vitrinni",
+ "mes": "2026-10",
+ "diarias": [
+  {
+   "data": "2026-10-07",
+   "entrada": "08:30",
+   "saida": "12:00",
+   "local": "Vitrinni Shopping"
+  },
+  {
+   "data": "2026-10-21",
+   "entrada": "14:00",
+   "saida": "18:45"
+  }
+ ],
+ "obs": "Mês com foco nas campanhas de Natal e no lançamento do Espaço Laser.",
+ "arquivo": "teste-vitrinni-2026-10-links"
+}
