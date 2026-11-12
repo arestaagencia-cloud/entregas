@@ -92,14 +92,23 @@ Sempre atualize `atualizado_em` (ISO, UTC).
 - Mudar o slug de uma entrega já publicada (o cliente já tem o link).
 - Marcar "Página no Ar" sem confirmar que o deploy terminou com sucesso.
 
-## Painel de conteúdos (Universa e parceiros)
+## Dashboards de clientes (atualização automática)
 
-`https://entregas.arestagencia.com.br/painel-universa-k7q2/` — todos os vídeos e fotos dos clientes da pasta
-"Universa" do Drive (`12KS_6Ad31MhLNQ--ZhQLBU_Yc32AFmcp`), com filtros por Cliente, Mês e tipo.
+Cada cliente tem um dashboard fixo em `https://entregas.arestagencia.com.br/<cliente>/` com todos os vídeos e
+fotos do Drive, filtros por Cliente, Mês e tipo. Config em `paineis/<cliente>.json`:
+`slug` (ex.: `universa`), `titulo`, `marca` (nome grande da capa), `drive_raiz` (id da pasta raiz no Drive),
+`cliente_unico` (opcional: use quando a raiz já contém as pastas de mês, sem subpastas de marca),
+`clientes` (ordem dos filtros) e `itens` (preenchido pelo robô).
 
-Para atualizar ("atualiza o painel da Universa"):
-1. Liste as subpastas de cliente da pasta acima, depois as pastas de mês de cada cliente e os arquivos de cada mês
-   (incluindo subpastas como `Fotos`). O mês vem do nome da pasta (`N. Cliente - Mês.AA`).
-2. Reescreva `paineis/universa.json` (`itens[{id, nome, tipo: video|foto, cliente, mes: "AAAA-MM", pasta}]`;
-   cliente novo entra no fim de `clientes`).
-3. `python3 gerar_painel.py paineis/universa.json`, commit, push e confirme o deploy.
+Estrutura esperada no Drive: `raiz / [NN. ]Marca / N. Marca - Mês.AA / arquivos` (subpastas como `Fotos`
+são lidas). Pastas de mês fora do padrão são ignoradas e aparecem como AVISO no log.
+
+**Robô:** `.github/workflows/atualizar-paineis.yml` roda de hora em hora (minuto 17) e também sob demanda
+(`gh workflow run atualizar-paineis.yml`). Ele executa `atualizar_painel.py` para cada `paineis/*.json` e só
+faz commit se o Drive mudou. Lê o Drive pela API oficial se o segredo `GDRIVE_API_KEY` existir no repositório;
+sem ele, usa a listagem pública das pastas (precisam estar como "qualquer pessoa com o link").
+
+**Novo cliente:** criar `paineis/<cliente>.json` com slug, titulo, marca e drive_raiz, rodar
+`python3 atualizar_painel.py paineis/<cliente>.json --forcar` (ou o workflow com "forcar"), conferir e publicar.
+
+Layout: `painel_template.html` + `gerar_painel.py`. Endereço antigo `/painel-universa-k7q2/` redireciona para `/universa/`.

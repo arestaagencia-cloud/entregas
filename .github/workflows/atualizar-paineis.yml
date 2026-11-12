@@ -1,0 +1,48 @@
+name: Atualizar dashboards
+
+on:
+  schedule:
+    - cron: "17 * * * *"   # de hora em hora (UTC), no minuto 17
+  workflow_dispatch:
+    inputs:
+      forcar:
+        description: "Regerar mesmo sem mudanças no Drive"
+        type: boolean
+        default: false
+
+permissions:
+  contents: write
+
+concurrency:
+  group: atualizar-paineis
+  cancel-in-progress: false
+
+jobs:
+  atualizar:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Ler o Drive e regerar
+        env:
+          GDRIVE_API_KEY: ${{ secrets.GDRIVE_API_KEY }}
+          TZ: America/Sao_Paulo
+        run: |
+          for cfg in paineis/*.json; do
+            echo "::group::$cfg"
+            python3 atualizar_painel.py "$cfg" ${{ inputs.forcar && '--forcar' || '' }}
+            echo "::endgroup::"
+          done
+      - name: Publicar se mudou
+        run: |
+          if [ -n "$(git status --porcelain paineis docs)" ]; then
+            git config user.name "ArestAgência (robô)"
+            git config user.email "aresta.agencia@gmail.com"
+            git add paineis docs
+            git commit -m "Dashboards atualizados pelo Drive"
+            git push
+          else
+            echo "Nada mudou no Drive."
+          fi

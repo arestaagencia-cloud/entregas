@@ -1,6 +1,8 @@
 {
- "slug": "painel-universa-k7q2",
+ "slug": "universa",
  "titulo": "Universa · Painel de Conteúdos · ArestAgência",
+ "marca": "Universa",
+ "drive_raiz": "12KS_6Ad31MhLNQ--ZhQLBU_Yc32AFmcp",
  "clientes": [
   "Universa Digital",
   "Vitrinni",
@@ -3773,6 +3775,5 @@
    "mes": "2026-03",
    "pasta": "1C92hbn0w38a0-0gehhAB72SJd1yZtHmT"
   }
- ],
- "marca": "Universa"
+ ]
 }
