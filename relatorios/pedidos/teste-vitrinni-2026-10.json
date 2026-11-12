@@ -17,5 +17,16 @@
   }
  ],
  "obs": "Mês com foco nas campanhas de Natal e no lançamento do Espaço Laser.",
- "arquivo": "teste-vitrinni-2026-10-links"
+ "arquivo": "teste-vitrinni-2026-10-links",
+ "pdf": "docs/relatorios/teste-vitrinni-2026-10-links.pdf",
+ "link_pdf": "https://entregas.arestagencia.com.br/relatorios/teste-vitrinni-2026-10-links.pdf",
+ "resumo": {
+  "videos": 4,
+  "fotos": 0,
+  "diarias": 2,
+  "minutos": 495,
+  "paginas": 4,
+  "sem_capa": 0
+ },
+ "gerado_em": "2026-11-12T17:20:29Z"
 }
