@@ -169,25 +169,52 @@ def main():
         orient = dict(zip(vids, ex.map(proporcao, vids)))
 
     usados, plano, avisos, sem_cliente, sem_servico = set(), [], [], set(), set()
+    arquivar = {}
+    criado = lambda c: c["created_time"]
+
+    # 1ª passada: casa pelo ID do arquivo no Link (vale para todos os itens antes de olhar nomes)
+    casamento = {}
+    for it in drive:
+        nome_arq = EXT.sub("", it["nome"]).strip()
+        cands = [c for c in por_id.get(it["id"], []) if c["id"] not in usados]
+        if cands:
+            cands.sort(key=lambda c: (norm(titulo_de(c)) != norm(nome_arq), criado(c)))
+            casamento[it["id"]] = (cands[0], "link")
+            usados.add(cands[0]["id"])
+            if len(cands) > 1:
+                avisos.append(f"{len(cands)} páginas apontam para o mesmo arquivo **{nome_arq}** "
+                              f"({it['cliente']} · {mes_titulo(it['mes'])}); atualizei \"{titulo_de(cands[0])}\" e "
+                              "deixei as outras sem mexer (confira à mão): "
+                              + ", ".join(f"[{titulo_de(c)}]({c['url']})" for c in cands[1:]))
+    # 2ª passada: casa pelo nome; com duplicatas, atualiza a mais antiga e manda as outras para a lixeira
+    for it in drive:
+        if it["id"] in casamento:
+            continue
+        nome_arq = EXT.sub("", it["nome"]).strip()
+        cands = sorted([c for c in por_nome.get(norm(nome_arq), []) if c["id"] not in usados], key=criado)
+        if cands:
+            casamento[it["id"]] = (cands[0], "nome")
+            usados.add(cands[0]["id"])
+            for c in cands[1:]:
+                arquivar[c["id"]] = (c, nome_arq)
+
     for it in drive:
         cli = it["cliente"]
         nome_arq = EXT.sub("", it["nome"]).strip()
-        # relações desejadas
         alvo_cli, alvo_serv, sub = [], [], []
         nomes_cli = (["Universa", cli] if it["universa"] else [cli])
         for n in nomes_cli:
             cid = cli_por_nome.get(norm(n))
             if cid:
                 alvo_cli.append(cid)
-            elif not (it["universa"] and n == cli):  # marca da Universa sem página própria é normal
+            elif not (it["universa"] and n == cli):
                 sem_cliente.add(n)
             nserv = f"{n} - {mes_titulo(it['mes'])}"
             sids = serv_por_nome.get(norm(nserv), [])
-            if len(sids) == 1:
+            if sids:
                 alvo_serv.append(sids[0])
-            elif len(sids) > 1:
-                avisos.append(f"Serviço duplicado no Notion: **{nserv}** ({len(sids)} páginas). Usei a primeira.")
-                alvo_serv.append(sids[0])
+                if len(sids) > 1:
+                    avisos.append(f"Serviço duplicado no Notion: **{nserv}** ({len(sids)} páginas). Usei a primeira.")
             else:
                 sem_servico.add(nserv)
         if it["universa"]:
@@ -195,41 +222,18 @@ def main():
         if it["tipo"] == "carrossel":
             formato, link = "Carrossel", f"https://drive.google.com/drive/folders/{it['id']}"
         else:
-            o = orient.get(it["id"])
-            formato = "Vídeo Horizontal" if o == "h" else "Reels"
+            formato = "Vídeo Horizontal" if orient.get(it["id"]) == "h" else "Reels"
             link = f"https://drive.google.com/file/d/{it['id']}/view"
-
-        # casar com página existente
-        pag, como = None, ""
-        cands = [c for c in por_id.get(it["id"], []) if c["id"] not in usados]
-        if cands:
-            cands.sort(key=lambda c: norm(titulo_de(c)) != norm(nome_arq))
-            pag, como = cands[0], "link"
-            if len(cands) > 1:
-                avisos.append(f"{len(cands)} páginas apontam para o mesmo arquivo **{nome_arq}**; atualizei "
-                              f"\"{titulo_de(cands[0])}\" e deixei as outras como estão: "
-                              + ", ".join(f"[{titulo_de(c)}]({c['url']})" for c in cands[1:]))
-        else:
-            cands = [c for c in por_nome.get(norm(nome_arq), []) if c["id"] not in usados]
-            if len(cands) == 1:
-                pag, como = cands[0], "nome"
-            elif len(cands) > 1:
-                avisos.append(f"Ambíguo: {len(cands)} páginas chamadas **{nome_arq}** e nenhuma com o link certo. "
-                              "Nada foi criado nem alterado para esse arquivo: "
-                              + ", ".join(f"[{titulo_de(c)}]({c['url']})" for c in cands))
-                continue
 
         desejado = {"Nome": nome_arq, "Link": link, "Clientes": sorted(alvo_cli), "Serviços": sorted(alvo_serv),
                     "SubCategorias Universa": sub}
+        pag, como = casamento.get(it["id"], (None, ""))
         if pag is None:
             desejado["Tipo de Conteúdo"] = [formato]
             desejado["Status Conteúdo"] = "Entregue e Aprovado"
             plano.append({"acao": "criar", "item": it, "props": desejado})
             continue
-        usados.add(pag["id"])
-        mud = {}
-        if titulo_de(pag) != nome_arq:
-            mud["Nome"] = (titulo_de(pag), nome_arq)
+        mud = {}  # o Nome das páginas existentes não é alterado (a equipe padroniza no Notion)
         if id_drive(prop(pag, "Link")) != it["id"] or not (prop(pag, "Link") or "").startswith(link):
             mud["Link"] = (prop(pag, "Link"), link)
         for k in ("Clientes", "Serviços"):
@@ -251,12 +255,13 @@ def main():
     # ---------------- relatório
     criar = [p for p in plano if p["acao"] == "criar"]
     atual = [p for p in plano if p["acao"] == "atualizar"]
-    ok = len(drive) - len(criar) - len(atual) - sum(1 for a in avisos if a.startswith("Ambíguo"))
+    ok = len(drive) - len(criar) - len(atual)
     fmt = lambda v: ", ".join(nome_cli.get(x) or nome_serv.get(x) or x for x in v) if isinstance(v, list) else (v or "vazio")
     L = [f"# Sincronização Drive → Notion ({'APLICADA' if APLICAR else 'PRÉVIA, nada foi alterado'})", "",
          f"- Conteúdos no Drive (vídeos e carrosséis dos painéis): **{len(drive)}**",
          f"- Já corretos no Notion: **{ok}**", f"- Páginas a corrigir: **{len(atual)}**",
-         f"- Páginas a criar: **{len(criar)}**", f"- Avisos: **{len(avisos)}**",
+         f"- Páginas a criar: **{len(criar)}**", f"- Duplicatas para a lixeira: **{len(arquivar)}**",
+         f"- Avisos: **{len(avisos)}**",
          f"- Vídeos horizontais detectados: **{sum(1 for v in orient.values() if v == 'h')}**"
          f" (não medidos: {sum(1 for v in orient.values() if v is None)}, ficam como Reels)", ""]
     if sem_cliente:
@@ -265,6 +270,9 @@ def main():
         L += ["## Serviços (Cliente - Mês.AA) que não existem no Notion",
               "Os conteúdos desses meses ficam sem a relação com o Serviço até a página ser criada.", "",
               *[f"- {n}" for n in sorted(sem_servico)], ""]
+    if arquivar:
+        L += ["## Duplicatas que vão para a lixeira do Notion (fica a mais antiga)", "",
+              *[f"- [{titulo_de(c)}]({c['url']}) · criada em {c['created_time'][:10]}" for c, _ in arquivar.values()], ""]
     if avisos:
         L += ["## Avisos", "", *[f"- {a}" for a in avisos], ""]
     resumo = {}
@@ -324,7 +332,14 @@ def main():
         except Exception as e:  # noqa: BLE001
             erros.append(f"{p['item']['nome']}: {e}")
         time.sleep(0.35)  # limite da API do Notion (~3 req/s)
-    print(f"APLICADO: {feitos} de {len(plano)}; erros: {len(erros)}")
+    for c, _ in arquivar.values():
+        try:
+            api("PATCH", f"pages/{c['id']}", {"archived": True})  # vai para a lixeira (recuperável por 30 dias)
+            feitos += 1
+        except Exception as e:  # noqa: BLE001
+            erros.append(f"lixeira {titulo_de(c)}: {e}")
+        time.sleep(0.35)
+    print(f"APLICADO: {feitos} de {len(plano) + len(arquivar)}; erros: {len(erros)}")
     for e in erros[:30]:
         print("ERRO", e)
     with open(RAIZ / "notion" / "relatorio-sync.md", "a") as f:
