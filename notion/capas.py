@@ -7,7 +7,8 @@ Uso: python3 notion/capas.py            -> PRÉVIA: só verifica e gera a lista 
 Capa = miniatura do arquivo do Link (vídeo: quadro do Google; pasta/carrossel: 1º arquivo da pasta).
 Se na mesma pasta existir uma imagem com o mesmo nome do vídeo (ex.: "Tema - V.2.jpg"), ela vira a capa.
 A imagem fica em https://entregas.arestagencia.com.br/capas/<id>.jpg (não depende do Drive depois).
-Só põe capa em página SEM capa (não sobrescreve capa escolhida à mão).
+Troca só capas genéricas (vazia, placeholder "Novo Conteúdo" do modelo, galeria do Notion);
+capas enviadas à mão (prints/thumbs da equipe) são mantidas.
 """
 import csv, io, json, os, re, sys, time, urllib.request
 from concurrent.futures import ThreadPoolExecutor
@@ -75,7 +76,10 @@ def main():
 
     def avaliar(p):
         link = prop(p, "Link") or ""
-        tem_capa = bool(p.get("cover"))
+        u = url_capa(p)
+        # capa genérica (vazia, placeholder "Novo Conteúdo" do modelo ou imagem de galeria do Notion) pode ser trocada;
+        # capa enviada à mão pela equipe (print/thumb) é mantida
+        tem_capa = bool(u) and "Novo_Cont" not in u and "/images/page-cover/" not in u
         if AUTO and tem_capa:
             return p, "ok_com_capa", None, None
         fid = id_drive(link)
