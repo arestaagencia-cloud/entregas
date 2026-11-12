@@ -1,0 +1,18 @@
+name: Notion · sincronizar conteúdos
+on:
+  workflow_dispatch:
+    inputs:
+      aplicar:
+        description: "Aplicar as mudanças (desmarcado = só prévia)"
+        type: boolean
+        default: false
+concurrency: notion-sync
+jobs:
+  sync:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Sincronizar
+        env:
+          NOTION_TOKEN: ${{ secrets.NOTION_TOKEN }}
+        run: python3 notion/sync_conteudos.py ${{ inputs.aplicar && '--aplicar' || '' }}
