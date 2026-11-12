@@ -1,0 +1,31 @@
+name: Notion · capas dos conteúdos
+on:
+  workflow_dispatch:
+    inputs:
+      aplicar:
+        description: "Aplicar (desmarcado = só verificar e gerar a lista)"
+        type: boolean
+        default: false
+concurrency: atualizar-paineis
+jobs:
+  capas:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    steps:
+      - uses: actions/checkout@v4
+      - name: Capas
+        env:
+          NOTION_TOKEN: ${{ secrets.NOTION_TOKEN }}
+        run: python3 notion/capas.py ${{ inputs.aplicar && '--aplicar' || '' }}
+      - name: Publicar imagens
+        if: ${{ inputs.aplicar }}
+        run: |
+          if [ -n "$(git status --porcelain docs/capas)" ]; then
+            git config user.name "ArestAgência (robô)"
+            git config user.email "aresta.agencia@gmail.com"
+            git add docs/capas
+            git commit -m "Capas dos conteúdos do Notion"
+            git pull --rebase
+            git push
+          fi
