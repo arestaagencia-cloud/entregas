@@ -121,6 +121,13 @@ sem ele, usa a listagem pública das pastas (precisam estar como "qualquer pesso
 Dashboards no ar: `universa` (9 marcas, raiz = pasta Universa) `niso` (Niso Engenharia), `faber` (Clínica Faber) e `equipe-prime`, todos com
 `cliente_unico` e raiz = pasta do cliente. Ao criar um novo, atualize também `relatorios/clientes.json` (campo `painel`).
 
+**Painel interno** (raiz `https://entregas.arestagencia.com.br/`): lista todos os dashboards, com busca e
+"Copiar link". Gerado por `gerar_hub.py` + `hub_template.html` a partir de `paineis/*.json` (caminho em `hub.json`).
+Protegido por senha da equipe: os dados vão criptografados (AES-GCM/PBKDF2) e só abrem com a senha, que fica
+no segredo `HUB_SENHA` do repositório. O robô regera o painel quando algum dashboard muda; sem o segredo, ele
+não regera (mantém a versão publicada). Para regerar à mão: `HUB_SENHA=... python3 gerar_hub.py`.
+Novo dashboard aparece sozinho no painel interno. Nunca publique o painel interno sem senha.
+
 Layout: `painel_template.html` + `gerar_painel.py`. Endereço antigo `/painel-universa-k7q2/` redireciona para `/universa/`.
 
 ## Relatórios mensais em PDF
