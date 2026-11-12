@@ -172,4 +172,7 @@ páginas existentes; ajusta Link, Clientes, Serviços ("Cliente - Mês.AA", marc
 SubCategorias Universa, Tipo de Conteúdo (Reels | Vídeo Horizontal pela proporção da capa | Carrossel) e Status
 ("Entregue e Aprovado" se vazio/em produção). Duplicatas pelo nome: fica a mais antiga, as outras vão para a lixeira.
 Nunca mexe em Formato, Data de Publicação e Desenvolveu. Rode sempre a prévia antes de aplicar.
+**Automático:** o robô dos painéis roda `sync_conteudos.py --auto` toda vez que o Drive muda (de hora em hora):
+cria/corrige páginas sozinho, mas nunca manda duplicatas para a lixeira e não aplica nada se houver mais de 60
+mudanças de uma vez (fica um aviso no log; aí rode a prévia à mão).
 Primeira sincronização (12/11/2026): 154 criadas, 169 corrigidas, 8 duplicatas na lixeira; 392/392 corretos.

@@ -43,6 +43,16 @@ jobs:
         run: |
           pip install -q cryptography
           if [ "${{ inputs.forcar }}" = "true" ] || [ -n "$(git status --porcelain paineis)" ]; then python3 gerar_hub.py; else echo "Painéis sem mudança: painel interno mantido."; fi
+      - name: Notion (conteúdos novos do Drive)
+        env:
+          NOTION_TOKEN: ${{ secrets.NOTION_TOKEN }}
+        run: |
+          if [ -z "$NOTION_TOKEN" ]; then echo "Sem NOTION_TOKEN: Notion não sincronizado."; exit 0; fi
+          if [ "${{ inputs.forcar }}" = "true" ] || [ -n "$(git status --porcelain paineis)" ]; then
+            python3 notion/sync_conteudos.py --auto || echo "::warning::Sincronização com o Notion falhou (veja o log)"
+          else
+            echo "Drive sem mudanças: Notion já está em dia."
+          fi
       - name: Publicar se mudou
         run: |
           if [ -n "$(git status --porcelain paineis docs)" ]; then

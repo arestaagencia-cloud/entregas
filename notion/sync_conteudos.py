@@ -20,6 +20,8 @@ from pathlib import Path
 RAIZ = Path(__file__).resolve().parent.parent
 TOKEN = os.environ.get("NOTION_TOKEN", "").strip()
 APLICAR = "--aplicar" in sys.argv
+AUTO = "--auto" in sys.argv  # modo do robô: aplica sozinho, sem lixeira e com limite de segurança
+LIMITE_AUTO = 60
 DB = {"conteudos": "2f274a51-c09f-8017-9d90-d6e858355881",
       "servicos": "2f074a51-c09f-80f3-9064-de717b8d4f27",
       "clientes": "2f074a51-c09f-80dc-9bdb-d78b219f934b"}
@@ -301,7 +303,15 @@ def main():
     print("\n".join(L))
     print("=====FIM=====")
 
-    if not APLICAR:
+    if AUTO:
+        if arquivar:
+            print(f"AUTO: {len(arquivar)} duplicatas encontradas; o robô não manda nada para a lixeira (rode à mão).")
+            arquivar.clear()
+        if len(plano) > LIMITE_AUTO:
+            print(f"::warning::AUTO: {len(plano)} mudanças de uma vez (limite {LIMITE_AUTO}). Nada aplicado; "
+                  "rode a prévia à mão e confira antes.")
+            return
+    if not (APLICAR or AUTO):
         return
     # ---------------- aplicar
     def props_api(d):
