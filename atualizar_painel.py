@@ -49,29 +49,47 @@ def listar_api(pasta):
             "fields": "nextPageToken,files(id,name,mimeType)", "pageToken": token,
             "supportsAllDrives": "true", "includeItemsFromAllDrives": "true"})
         d = json.loads(get(f"https://www.googleapis.com/drive/v3/files?{q}"))
-        itens += [{"id": f["id"], "nome": nfc(f["name"]), "pasta": f["mimeType"] == FOLDER} for f in d.get("files", [])]
+        itens += [{"id": f["id"], "nome": nfc(f["name"]), "pasta": f["mimeType"] == FOLDER, "mime": f["mimeType"]}
+                  for f in d.get("files", [])]
         token = d.get("nextPageToken")
         if not token:
             return itens
 
 
-ENTRY = re.compile(r'<div class="flip-entry" id="entry-([\w-]+)".*?<a href="([^"]+)".*?<div class="flip-entry-title">(.*?)</div>', re.S)
+ENTRY = re.compile(r'<div class="flip-entry" id="entry-([\w-]+)"(.*?)<div class="flip-entry-title">(.*?)</div>', re.S)
 
 
 def listar_publico(pasta):
     pagina = get(f"https://drive.google.com/embeddedfolderview?id={pasta}")
     itens = []
-    for fid, href, nome in ENTRY.findall(pagina):
-        itens.append({"id": fid, "nome": nfc(html.unescape(nome).strip()), "pasta": "/folders/" in href})
+    for fid, bloco, nome in ENTRY.findall(pagina):
+        href = re.search(r'<a href="([^"]+)"', bloco)
+        mime = re.search(r'/type/([\w.+-]+/[\w.+-]+)', bloco)  # ícone do Drive traz o tipo do arquivo
+        itens.append({"id": fid, "nome": nfc(html.unescape(nome).strip()),
+                      "pasta": bool(href and "/folders/" in href.group(1)),
+                      "mime": mime.group(1) if mime else ""})
     return itens
 
 
 listar = listar_api if KEY else listar_publico
 
 
-def tipo(nome):
+RAW = {"arw", "cr2", "cr3", "nef", "dng", "raf", "orf", "rw2"}  # brutos de câmera ficam fora do dashboard
+
+
+def tipo(nome, mime=""):
     ext = nome.rsplit(".", 1)[-1].lower() if "." in nome else ""
-    return "video" if ext in VIDEO else "foto" if ext in FOTO else None
+    if ext in RAW:
+        return None
+    if ext in VIDEO:
+        return "video"
+    if ext in FOTO:
+        return "foto"
+    if mime.startswith("video/"):
+        return "video"
+    if mime.startswith("image/") and "raw" not in mime and "sony" not in mime:
+        return "foto"
+    return None
 
 
 def mes_da_pasta(nome):
@@ -95,7 +113,7 @@ def coletar(pasta, cliente, mes, destino, prof=0):
             if prof < 2:
                 coletar(x["id"], cliente, mes, destino, prof + 1)
             continue
-        t = tipo(x["nome"])
+        t = tipo(x["nome"], x.get("mime", ""))
         if t:
             destino.append({"id": x["id"], "nome": x["nome"], "tipo": t, "cliente": cliente, "mes": mes, "pasta": pasta})
 
