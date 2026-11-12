@@ -1,1 +1,29 @@
-{"id":"teste-faber-2026-10","cliente":"Clínica Faber","mes":"2026-10","pastas":["1rhEklyDDcVArjwqMKoCqZgpwga6YNZi0"],"diarias":[{"data":"2026-10-08","entrada":"09:00","saida":"13:00","local":"Clínica"}],"obs":"","arquivo":"teste-faber-2026-10"}
+{
+ "id": "teste-faber-2026-10",
+ "cliente": "Clínica Faber",
+ "mes": "2026-10",
+ "pastas": [
+  "1rhEklyDDcVArjwqMKoCqZgpwga6YNZi0"
+ ],
+ "diarias": [
+  {
+   "data": "2026-10-08",
+   "entrada": "09:00",
+   "saida": "13:00",
+   "local": "Clínica"
+  }
+ ],
+ "obs": "",
+ "arquivo": "teste-faber-2026-10",
+ "pdf": "docs/relatorios/teste-faber-2026-10.pdf",
+ "link_pdf": "https://entregas.arestagencia.com.br/relatorios/teste-faber-2026-10.pdf",
+ "resumo": {
+  "videos": 5,
+  "fotos": 4,
+  "diarias": 1,
+  "minutos": 240,
+  "paginas": 5,
+  "sem_capa": 0
+ },
+ "gerado_em": "2026-11-12T17:32:41Z"
+}
