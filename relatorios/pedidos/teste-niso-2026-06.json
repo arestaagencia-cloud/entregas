@@ -1,1 +1,21 @@
-{"id":"teste-niso-2026-06","painel":"niso","cliente":"Niso Engenharia","mes":"2026-06","diarias":[],"obs":"","arquivo":"teste-niso-2026-06"}
+{
+ "id": "teste-niso-2026-06",
+ "painel": "niso",
+ "cliente": "Niso Engenharia",
+ "mes": "2026-06",
+ "diarias": [],
+ "obs": "",
+ "arquivo": "teste-niso-2026-06",
+ "pdf": "docs/relatorios/teste-niso-2026-06.pdf",
+ "link_pdf": "https://entregas.arestagencia.com.br/relatorios/teste-niso-2026-06.pdf",
+ "resumo": {
+  "videos": 3,
+  "fotos": 0,
+  "carrosseis": 1,
+  "diarias": 0,
+  "minutos": 0,
+  "paginas": 5,
+  "sem_capa": 0
+ },
+ "gerado_em": "2026-11-12T17:47:26Z"
+}
