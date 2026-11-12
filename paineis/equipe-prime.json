@@ -5,6 +5,991 @@
  "eyebrow": "Painel de conteúdos",
  "drive_raiz": "1iTIFekbv1pZZ3-jepsv-wKnUUddHttPS",
  "cliente_unico": "Equipe Prime",
- "clientes": ["Equipe Prime"],
- "itens": []
+ "clientes": [
+  "Equipe Prime"
+ ],
+ "itens": [
+  {
+   "id": "19y3QIZe0POHSlL6aC3VpBZSOgpx99TgU",
+   "nome": "F. Geral - Segredo - Marjorie - V.1.mp4",
+   "tipo": "video",
+   "cliente": "Equipe Prime",
+   "mes": "2026-01",
+   "pasta": "1-MdO3IlLAnkAOF9FaAsUHjW7luz1GjFv"
+  },
+  {
+   "id": "1GSO6xprOJD5wiWJyZd7-qeienftjHL9g",
+   "nome": "F. Cedros - Arrasta - Álvaro - V.1.mp4",
+   "tipo": "video",
+   "cliente": "Equipe Prime",
+   "mes": "2026-01",
+   "pasta": "1-MdO3IlLAnkAOF9FaAsUHjW7luz1GjFv"
+  },
+  {
+   "id": "1KOuxDZ_DW_tMDW1Tmd_btNkEx2r115Rk",
+   "nome": "F. Cedros - Alto Padrão Noroeste - Ben Hur. v1.mp4",
+   "tipo": "video",
+   "cliente": "Equipe Prime",
+   "mes": "2026-01",
+   "pasta": "1-MdO3IlLAnkAOF9FaAsUHjW7luz1GjFv"
+  },
+  {
+   "id": "1KXpZtyjaC2AFJvD6D4bsmI0AZPFqXpJ1",
+   "nome": "F. Diamante - Novo Patamar - Poliane. v1.mp4",
+   "tipo": "video",
+   "cliente": "Equipe Prime",
+   "mes": "2026-01",
+   "pasta": "1-MdO3IlLAnkAOF9FaAsUHjW7luz1GjFv"
+  },
+  {
+   "id": "1OjXn7Egeqj0rV92MQRKcxB63oietT-Rs",
+   "nome": "F. Buritis - Você quer - Marjorie. v1.mp4",
+   "tipo": "video",
+   "cliente": "Equipe Prime",
+   "mes": "2026-01",
+   "pasta": "1-MdO3IlLAnkAOF9FaAsUHjW7luz1GjFv"
+  },
+  {
+   "id": "1_zNmrrMlvPDnrg18p-fktuz-igM7v59B",
+   "nome": "F. Oliveiras - Trabalha no canto - Denise - V.1.mp4",
+   "tipo": "video",
+   "cliente": "Equipe Prime",
+   "mes": "2026-01",
+   "pasta": "1-MdO3IlLAnkAOF9FaAsUHjW7luz1GjFv"
+  },
+  {
+   "id": "1nNRjpzEnreqZl7mQusN7rzpHPgK8yPe_",
+   "nome": "F. Diamante - Realmente exclusivo - Ben Hur. v1.mp4",
+   "tipo": "video",
+   "cliente": "Equipe Prime",
+   "mes": "2026-01",
+   "pasta": "1-MdO3IlLAnkAOF9FaAsUHjW7luz1GjFv"
+  },
+  {
+   "id": "1w7x8iXpoEh1bm0OoEprErC5uFdVjG27g",
+   "nome": "F. Safira - Esse é - Poliane - V.1.mp4",
+   "tipo": "video",
+   "cliente": "Equipe Prime",
+   "mes": "2026-01",
+   "pasta": "1-MdO3IlLAnkAOF9FaAsUHjW7luz1GjFv"
+  },
+  {
+   "id": "1zkR-lwS4Z3ZediLq_y9W-sgbyTaKdHG8",
+   "nome": "F. Buritis - Morar e Viver - Álvaro. v1.mp4",
+   "tipo": "video",
+   "cliente": "Equipe Prime",
+   "mes": "2026-01",
+   "pasta": "1-MdO3IlLAnkAOF9FaAsUHjW7luz1GjFv"
+  },
+  {
+   "id": "16M24_2xXYmoE8Tp1LgIUOFnrGve9i0jp",
+   "nome": "F. Oliveiras - Mais que um Empreendimento - Fábio V.3.mov",
+   "tipo": "video",
+   "cliente": "Equipe Prime",
+   "mes": "2026-02",
+   "pasta": "10xDXOH2kyLgIWM90i_h7-pvcsqcBXo6E"
+  },
+  {
+   "id": "18ZPgG2w8bduOAFIvHvJlM_6c06FT6Xo4",
+   "nome": "F. EPrime - Projeção nascente - Paula - V.3.mov",
+   "tipo": "video",
+   "cliente": "Equipe Prime",
+   "mes": "2026-02",
+   "pasta": "10xDXOH2kyLgIWM90i_h7-pvcsqcBXo6E"
+  },
+  {
+   "id": "1A1R4TD2VN01M-VIvtM3f00Ai9VlFDpdq",
+   "nome": "F. Geral - Só isso - Raquel - V.2.mov",
+   "tipo": "video",
+   "cliente": "Equipe Prime",
+   "mes": "2026-02",
+   "pasta": "10xDXOH2kyLgIWM90i_h7-pvcsqcBXo6E"
+  },
+  {
+   "id": "1CrI6JprVovRE6B1wrDuyIWzcCnNHrbWL",
+   "nome": "F. Oliveiras - 4 Quartos para Comprar - Escobar- V.2.mov",
+   "tipo": "video",
+   "cliente": "Equipe Prime",
+   "mes": "2026-02",
+   "pasta": "10xDXOH2kyLgIWM90i_h7-pvcsqcBXo6E"
+  },
+  {
+   "id": "1OqWTdO3Ic0Gsm4URt-3LliauzjLoosBz",
+   "nome": "F. Geral - Estrutura - Marjorie - V.1.mov",
+   "tipo": "video",
+   "cliente": "Equipe Prime",
+   "mes": "2026-02",
+   "pasta": "10xDXOH2kyLgIWM90i_h7-pvcsqcBXo6E"
+  },
+  {
+   "id": "1WWX1_f13slAnn0uR4A03pAh8wdaB4hmO",
+   "nome": "F. Geral - Casou - Marjorie - V.1.mov",
+   "tipo": "video",
+   "cliente": "Equipe Prime",
+   "mes": "2026-02",
+   "pasta": "10xDXOH2kyLgIWM90i_h7-pvcsqcBXo6E"
+  },
+  {
+   "id": "1eJIrYc7AuDyIEuARX9gnvPG-w_VGYZ-V",
+   "nome": "F. EPrime - Amigas Café - Paula - V.2.mov",
+   "tipo": "video",
+   "cliente": "Equipe Prime",
+   "mes": "2026-02",
+   "pasta": "10xDXOH2kyLgIWM90i_h7-pvcsqcBXo6E"
+  },
+  {
+   "id": "1gIdb8YHRW9cFTAJkHcW-jycL4ZGI8NMS",
+   "nome": "F. Buritis - Reforma - Denise - V.1.mov",
+   "tipo": "video",
+   "cliente": "Equipe Prime",
+   "mes": "2026-02",
+   "pasta": "10xDXOH2kyLgIWM90i_h7-pvcsqcBXo6E"
+  },
+  {
+   "id": "1hgzSix7dbo_pbXK8XNz7NB8CYbLmgbMJ",
+   "nome": "F. Castanheiras - 3 Suítes - Raquel - V.2.mov",
+   "tipo": "video",
+   "cliente": "Equipe Prime",
+   "mes": "2026-02",
+   "pasta": "10xDXOH2kyLgIWM90i_h7-pvcsqcBXo6E"
+  },
+  {
+   "id": "1rovqtgi9ko65TbKZXXazWM4bHW5GVv6g",
+   "nome": "F. Buritis - Exclusivo 4 Quartos - Poli - V.3.mov",
+   "tipo": "video",
+   "cliente": "Equipe Prime",
+   "mes": "2026-02",
+   "pasta": "10xDXOH2kyLgIWM90i_h7-pvcsqcBXo6E"
+  },
+  {
+   "id": "11GpFEWx5Gev6tRcRK8Oep4DbvlW_8LNR",
+   "nome": "F. - Cada Detalhe - Rubi - Fábio - V.2.mov",
+   "tipo": "video",
+   "cliente": "Equipe Prime",
+   "mes": "2026-03",
+   "pasta": "1JHsS9IpxQVkGzngRKuHrjrbNFvipXV7X"
+  },
+  {
+   "id": "17sI4RJaxrJxkMDWTHaUHBC1w9H4Mg3uQ",
+   "nome": "F. Geral - Achei - Marjorie - V.2.mov",
+   "tipo": "video",
+   "cliente": "Equipe Prime",
+   "mes": "2026-03",
+   "pasta": "1JHsS9IpxQVkGzngRKuHrjrbNFvipXV7X"
+  },
+  {
+   "id": "18hAPRe_G5MifCqYIoCoe4f0TGUiQiapo",
+   "nome": "F. Lançamentos - Por si só - Raquel - V.2.mov",
+   "tipo": "video",
+   "cliente": "Equipe Prime",
+   "mes": "2026-03",
+   "pasta": "1JHsS9IpxQVkGzngRKuHrjrbNFvipXV7X"
+  },
+  {
+   "id": "1CaA1qOCLv4GPp0qmg4lu8_PPH2VPawls",
+   "nome": "F. - Lançamento - P. Oliveiras - V.2.mov",
+   "tipo": "video",
+   "cliente": "Equipe Prime",
+   "mes": "2026-03",
+   "pasta": "1JHsS9IpxQVkGzngRKuHrjrbNFvipXV7X"
+  },
+  {
+   "id": "1FEyQ_tbnO7jnRK15RdD6AbN0B-RbkA5g",
+   "nome": "F. - Noroeste - Acha que é caro - Denise - V.1.mov",
+   "tipo": "video",
+   "cliente": "Equipe Prime",
+   "mes": "2026-03",
+   "pasta": "1JHsS9IpxQVkGzngRKuHrjrbNFvipXV7X"
+  },
+  {
+   "id": "1NExurdqfLYdtc5WOGJIeEAhS3DuLo_FW",
+   "nome": "F. Noroeste - Família Crescendo - Denise - V.2.mov",
+   "tipo": "video",
+   "cliente": "Equipe Prime",
+   "mes": "2026-03",
+   "pasta": "1JHsS9IpxQVkGzngRKuHrjrbNFvipXV7X"
+  },
+  {
+   "id": "1NY9HjMl2qZ2OC3NX-kJcAeBQMA3ECV9l",
+   "nome": "F. - Espanhol - Marjorie - V.2.mov",
+   "tipo": "video",
+   "cliente": "Equipe Prime",
+   "mes": "2026-03",
+   "pasta": "1JHsS9IpxQVkGzngRKuHrjrbNFvipXV7X"
+  },
+  {
+   "id": "1OoooDFkwvLSZK8CSOAU8ckI-UjEtobfB",
+   "nome": "F. Castanheiras - Vou te Surpreender - Poli - V.2.mov",
+   "tipo": "video",
+   "cliente": "Equipe Prime",
+   "mes": "2026-03",
+   "pasta": "1JHsS9IpxQVkGzngRKuHrjrbNFvipXV7X"
+  },
+  {
+   "id": "1PPXTuR0BlAwZbxutsHYVD5faU5r2ujlJ",
+   "nome": "F. Geral - Dia da Mulher - Raquel - V.2.mov",
+   "tipo": "video",
+   "cliente": "Equipe Prime",
+   "mes": "2026-03",
+   "pasta": "1JHsS9IpxQVkGzngRKuHrjrbNFvipXV7X"
+  },
+  {
+   "id": "1YqOaKAdcYSvs-fQhYOlHeXmh_HQhWETD",
+   "nome": "F. Oliveiras - Estou na Quadra - Ben Hur - V.2.mov",
+   "tipo": "video",
+   "cliente": "Equipe Prime",
+   "mes": "2026-03",
+   "pasta": "1JHsS9IpxQVkGzngRKuHrjrbNFvipXV7X"
+  },
+  {
+   "id": "1ZVrlf23AIlXRqKfvcItfBzezoPIOyAyb",
+   "nome": "F. Geral - Sabor - Paula - V.2.mov",
+   "tipo": "video",
+   "cliente": "Equipe Prime",
+   "mes": "2026-03",
+   "pasta": "1JHsS9IpxQVkGzngRKuHrjrbNFvipXV7X"
+  },
+  {
+   "id": "1cq7zgQ8nvizE3_iSxx2xxRsg7F6_0wDY",
+   "nome": "F. Prestige - Apto Guará - Poli - V.2.mov",
+   "tipo": "video",
+   "cliente": "Equipe Prime",
+   "mes": "2026-03",
+   "pasta": "1JHsS9IpxQVkGzngRKuHrjrbNFvipXV7X"
+  },
+  {
+   "id": "1mAEByPILmt1R11BSMC9an0cgB63xE_Tf",
+   "nome": "F. Primeira Vista - Poli- V.2.mov",
+   "tipo": "video",
+   "cliente": "Equipe Prime",
+   "mes": "2026-03",
+   "pasta": "1JHsS9IpxQVkGzngRKuHrjrbNFvipXV7X"
+  },
+  {
+   "id": "1tvAABNgMxT1Q0nAxUWgaiPxEnmNDUfIt",
+   "nome": "F. - Inglês - Marjorie - V.2.mov",
+   "tipo": "video",
+   "cliente": "Equipe Prime",
+   "mes": "2026-03",
+   "pasta": "1JHsS9IpxQVkGzngRKuHrjrbNFvipXV7X"
+  },
+  {
+   "id": "18MiBczrUDRZd_TPY_qlbAD3tb5610eWH",
+   "nome": "F. Equipe Prime - Premiação Abril. V.3.mov",
+   "tipo": "video",
+   "cliente": "Equipe Prime",
+   "mes": "2026-04",
+   "pasta": "1GdxBMCiQ9QiBChr0_qAXglB9ApJaqiM_"
+  },
+  {
+   "id": "1GvNd6Ta3OflCXyUaEIvVlZ9KOLV4DaYV",
+   "nome": "F. Poli - Se quiser comprar - Geral - V.2.mov",
+   "tipo": "video",
+   "cliente": "Equipe Prime",
+   "mes": "2026-04",
+   "pasta": "1GdxBMCiQ9QiBChr0_qAXglB9ApJaqiM_"
+  },
+  {
+   "id": "1JEKpFka79QAKk2bGvXCWXWwEp4VfLHdm",
+   "nome": "F. Marjorie. Rentabilidade. P.mall - v.1.mov",
+   "tipo": "video",
+   "cliente": "Equipe Prime",
+   "mes": "2026-04",
+   "pasta": "1GdxBMCiQ9QiBChr0_qAXglB9ApJaqiM_"
+  },
+  {
+   "id": "1MhvUxnNcgvpekenZyvgekzEvT7L34zLp",
+   "nome": "F. Poli. Não é para todo mundo - v.1.mov",
+   "tipo": "video",
+   "cliente": "Equipe Prime",
+   "mes": "2026-04",
+   "pasta": "1GdxBMCiQ9QiBChr0_qAXglB9ApJaqiM_"
+  },
+  {
+   "id": "1QRpTFdwc9nK8guxomUHybkUqbzM9uJly",
+   "nome": "Carrossel - Premiação",
+   "tipo": "carrossel",
+   "cliente": "Equipe Prime",
+   "mes": "2026-04",
+   "pasta": "1GdxBMCiQ9QiBChr0_qAXglB9ApJaqiM_",
+   "slides": [
+    {
+     "id": "10HgdzsBETNeTWYoeMYiTJCbicrw0Ljde",
+     "tipo": "foto"
+    },
+    {
+     "id": "1WJsztAcGdsPhI5ExuMgjBZFyN-jMCsqW",
+     "tipo": "foto"
+    },
+    {
+     "id": "19vDsS0SbChM7D91G4yKhbYviO3cqBghe",
+     "tipo": "foto"
+    },
+    {
+     "id": "15FqsubavNA0Me0-7nrzlfMJIK0K0dPF2",
+     "tipo": "foto"
+    },
+    {
+     "id": "1Ofw0a1I40M8BsHct5Oi6rr2rQjp9LVRc",
+     "tipo": "foto"
+    },
+    {
+     "id": "1-y2IYg7CCm_foq_NwnR4JlWGiJPx_jOt",
+     "tipo": "foto"
+    },
+    {
+     "id": "1viqNyMuyT7k8Ce6k-v-BKvSOOf1UQr1V",
+     "tipo": "foto"
+    },
+    {
+     "id": "1lnWZKUAnAGwddIuXF36akfHdo-8nj1o4",
+     "tipo": "foto"
+    },
+    {
+     "id": "1g90WP13UDf4kRf8LIxtyPZEKYQFAujvM",
+     "tipo": "foto"
+    },
+    {
+     "id": "1UhTWqmOUQtdhyPltlDZlaRR1FuoIXEGK",
+     "tipo": "foto"
+    },
+    {
+     "id": "10PJRo2yhnGTBQypTwoyI7_4UuhI7jJm5",
+     "tipo": "foto"
+    },
+    {
+     "id": "1lMAcUQ3qGqtGdiTqdKXTUNj6iyiJqAyd",
+     "tipo": "foto"
+    }
+   ]
+  },
+  {
+   "id": "1RKw-a5hf_DTZ6Niod0BBPGzoHW1DFPeA",
+   "nome": "F. Reunião de Time - Equipe Prime - V.3.mov",
+   "tipo": "video",
+   "cliente": "Equipe Prime",
+   "mes": "2026-04",
+   "pasta": "1GdxBMCiQ9QiBChr0_qAXglB9ApJaqiM_"
+  },
+  {
+   "id": "1ZGXderzmnwvW8ieq11fSA8SGDkuvXzHi",
+   "nome": "F. Poli. Eu acho chique - v.1.mov",
+   "tipo": "video",
+   "cliente": "Equipe Prime",
+   "mes": "2026-04",
+   "pasta": "1GdxBMCiQ9QiBChr0_qAXglB9ApJaqiM_"
+  },
+  {
+   "id": "1iegRycHNbBliUo-RivSRra2MSELMjgma",
+   "nome": "Brasília onde arquitetura, planejamento e grandes oportunidades se encontram. 🏙️✨.png",
+   "tipo": "foto",
+   "cliente": "Equipe Prime",
+   "mes": "2026-04",
+   "pasta": "1GdxBMCiQ9QiBChr0_qAXglB9ApJaqiM_"
+  },
+  {
+   "id": "1pP_66jML5W--zJ8cvMo_eP4mkoKMnaBw",
+   "nome": "F. Platinum Mall - Lojista - Marjorie - V.3.mov",
+   "tipo": "video",
+   "cliente": "Equipe Prime",
+   "mes": "2026-04",
+   "pasta": "1GdxBMCiQ9QiBChr0_qAXglB9ApJaqiM_"
+  },
+  {
+   "id": "1qlS7_Qhv5Elois_xi2v4VYiXnynKQCoc",
+   "nome": "F. Exclusvidade Noroeste - Poli - V.1.mov",
+   "tipo": "video",
+   "cliente": "Equipe Prime",
+   "mes": "2026-04",
+   "pasta": "1GdxBMCiQ9QiBChr0_qAXglB9ApJaqiM_"
+  },
+  {
+   "id": "16Yq3Vo9vy_RmbsEVmPUhgF9J21BXZsda",
+   "nome": "F. Equipe Prime. Marjorie - Eis a Questão- v.1 .mov",
+   "tipo": "video",
+   "cliente": "Equipe Prime",
+   "mes": "2026-05",
+   "pasta": "1L-Ky0PODkNplCoJ_FybKJlMXPNCxz-JJ"
+  },
+  {
+   "id": "19gD4gb7vUvpMgUN1MWvfvMs40jJt1edT",
+   "nome": "F. Equipe Prime -Ei, Siri- Poli - V.2.mov",
+   "tipo": "video",
+   "cliente": "Equipe Prime",
+   "mes": "2026-05",
+   "pasta": "1L-Ky0PODkNplCoJ_FybKJlMXPNCxz-JJ"
+  },
+  {
+   "id": "1eTI8gjzrl30xyOCkiakiM8RB6pjkFEvh",
+   "nome": "F. Equipe Prime -Se seu marido- Raquel - V.3.mov",
+   "tipo": "video",
+   "cliente": "Equipe Prime",
+   "mes": "2026-05",
+   "pasta": "1L-Ky0PODkNplCoJ_FybKJlMXPNCxz-JJ"
+  },
+  {
+   "id": "1h2QXOQ1V2hIwEcvQ5zcldZjv3oEFhUiC",
+   "nome": "F. Equipe Prime - Melhor momento- Escobar - V.1.mov",
+   "tipo": "video",
+   "cliente": "Equipe Prime",
+   "mes": "2026-05",
+   "pasta": "1L-Ky0PODkNplCoJ_FybKJlMXPNCxz-JJ"
+  },
+  {
+   "id": "1hrhAK81T3F_-9zx-2jmxpNVye9Y7TeV8",
+   "nome": "F. Equipe Prime - Oliveiras- Fábio - V.1.mov",
+   "tipo": "video",
+   "cliente": "Equipe Prime",
+   "mes": "2026-05",
+   "pasta": "1L-Ky0PODkNplCoJ_FybKJlMXPNCxz-JJ"
+  },
+  {
+   "id": "10Fg9Sq5CCDozIvw9Ky5ykg_SKvBCLD43",
+   "nome": "F. Ambar - Imaginou 500 - Rodrigo - V.2.mov",
+   "tipo": "video",
+   "cliente": "Equipe Prime",
+   "mes": "2026-06",
+   "pasta": "1LlGypq-hxky1etqlIsjiO_WtTzVf9NyO"
+  },
+  {
+   "id": "12iW_QFpwrnwINDRb9r4CjP00T6QWJ0-1",
+   "nome": "F. Ambar - Treinar - Álvaro - V.3.mov",
+   "tipo": "video",
+   "cliente": "Equipe Prime",
+   "mes": "2026-06",
+   "pasta": "1LlGypq-hxky1etqlIsjiO_WtTzVf9NyO"
+  },
+  {
+   "id": "1JvgG_QcNeTxfrF1wpGBnYQesETmjycc_",
+   "nome": "F. Ambar - Helicóptero - Poli - V.2.mov",
+   "tipo": "video",
+   "cliente": "Equipe Prime",
+   "mes": "2026-06",
+   "pasta": "1LlGypq-hxky1etqlIsjiO_WtTzVf9NyO"
+  },
+  {
+   "id": "1LFgTPYx_gOBmynYicbTwqpSnglq6QidW",
+   "nome": "F. Ambar - Excelente Negócio - Paula - V.1.mov",
+   "tipo": "video",
+   "cliente": "Equipe Prime",
+   "mes": "2026-06",
+   "pasta": "1LlGypq-hxky1etqlIsjiO_WtTzVf9NyO"
+  },
+  {
+   "id": "1LgUzVqnmHxEbGrRjNffQeuWMpNaK61II",
+   "nome": "F. Geral - Marjorie - Dançando - V.1.mov",
+   "tipo": "video",
+   "cliente": "Equipe Prime",
+   "mes": "2026-06",
+   "pasta": "1LlGypq-hxky1etqlIsjiO_WtTzVf9NyO"
+  },
+  {
+   "id": "1MZ3lzono4NWHh4vkYgtBoFGyNY1xU11h",
+   "nome": "F. Ambar - Áudio - Paula - V.1.mov",
+   "tipo": "video",
+   "cliente": "Equipe Prime",
+   "mes": "2026-06",
+   "pasta": "1LlGypq-hxky1etqlIsjiO_WtTzVf9NyO"
+  },
+  {
+   "id": "1OScVdz6cCpCcgTjuLmiw75IjN793hDxa",
+   "nome": "F. Ambar - Misterio 2 - Poli e Marjorie - V.2.mov",
+   "tipo": "video",
+   "cliente": "Equipe Prime",
+   "mes": "2026-06",
+   "pasta": "1LlGypq-hxky1etqlIsjiO_WtTzVf9NyO"
+  },
+  {
+   "id": "1bxTvfESNCMLMZAnuNDVu0Ct11DF72FZE",
+   "nome": "Carrossel 2 - Entrevistas",
+   "tipo": "carrossel",
+   "cliente": "Equipe Prime",
+   "mes": "2026-06",
+   "pasta": "1LlGypq-hxky1etqlIsjiO_WtTzVf9NyO",
+   "slides": [
+    {
+     "id": "1IwkPgkDbnqX14JHyFgO3VZYfJMR9kDNn",
+     "tipo": "video"
+    },
+    {
+     "id": "1TrJoEMYE9iohzs-vl-sw5NoioldVXGJq",
+     "tipo": "video"
+    },
+    {
+     "id": "1scY7Kn1x3JE_R1ibiNRCHgkX-1JpEynt",
+     "tipo": "video"
+    },
+    {
+     "id": "1gdfjDr1Wrn0zijZVo48ZHKfM6hHLcqIO",
+     "tipo": "video"
+    },
+    {
+     "id": "1xlPCpewndrh4jhzsyrePNadg1OGNUitL",
+     "tipo": "video"
+    },
+    {
+     "id": "1DIwAUloyLiqOIvTQlKCvkXJIXjY1qxgs",
+     "tipo": "video"
+    },
+    {
+     "id": "15LFZKrSVLuXoK9G9PTZtMBJ8xgcLl88W",
+     "tipo": "video"
+    }
+   ]
+  },
+  {
+   "id": "1cJncRjiwSTlb5AUgtW4nMdV9zQxxdOBq",
+   "nome": "Carrossel 1 - Entrevistas",
+   "tipo": "carrossel",
+   "cliente": "Equipe Prime",
+   "mes": "2026-06",
+   "pasta": "1LlGypq-hxky1etqlIsjiO_WtTzVf9NyO",
+   "slides": [
+    {
+     "id": "1hw1HfjahMmPoQq2pGC6h-S4h7W-Loqtm",
+     "tipo": "video"
+    },
+    {
+     "id": "156z7ohrRlzzo4LM_sn0wsJAAIgETa_Wj",
+     "tipo": "video"
+    },
+    {
+     "id": "122DuhlPrjT34Y1ptqBHwMk0KUPIJTSil",
+     "tipo": "video"
+    },
+    {
+     "id": "1f3vwhsbSOiUKAEJm57ET2qzhZVtRULFj",
+     "tipo": "video"
+    },
+    {
+     "id": "1A8x8fIOQLZJ3Hq1Xlgdwod6qVptKWsos",
+     "tipo": "video"
+    },
+    {
+     "id": "1aDKwUB-3252Wm0w4tPQVi-fModrvKzOt",
+     "tipo": "video"
+    },
+    {
+     "id": "1nPA6PpO2N7QwMyCSEGEQiXmzCnnEUOnJ",
+     "tipo": "foto"
+    }
+   ]
+  },
+  {
+   "id": "1gZ8Zq5PX8jaBZipa7hufpQoWq7_4bzOz",
+   "nome": "F. Ambar - Notícia Extraordinária - Marjorie - V.3.mov",
+   "tipo": "video",
+   "cliente": "Equipe Prime",
+   "mes": "2026-06",
+   "pasta": "1LlGypq-hxky1etqlIsjiO_WtTzVf9NyO"
+  },
+  {
+   "id": "1gnF83HPjDnu46_yGdpGbaPYxzQoFbMKN",
+   "nome": "F. Ambar - Também Vieram - Raquel - V.1.mov",
+   "tipo": "video",
+   "cliente": "Equipe Prime",
+   "mes": "2026-06",
+   "pasta": "1LlGypq-hxky1etqlIsjiO_WtTzVf9NyO"
+  },
+  {
+   "id": "1ibO1U4Q7lUOFhbmgdN9uR5fz4knBVK-T",
+   "nome": "F. Ambar - Misterio 1 - Raquel e Escobar - V.2.mov",
+   "tipo": "video",
+   "cliente": "Equipe Prime",
+   "mes": "2026-06",
+   "pasta": "1LlGypq-hxky1etqlIsjiO_WtTzVf9NyO"
+  },
+  {
+   "id": "1no2TF303Qra9Yo1tFXp3p6qYFt3ikAFE",
+   "nome": "F. Ambar - Unboxing - Paula - V.2.mov",
+   "tipo": "video",
+   "cliente": "Equipe Prime",
+   "mes": "2026-06",
+   "pasta": "1LlGypq-hxky1etqlIsjiO_WtTzVf9NyO"
+  },
+  {
+   "id": "1silSvi9h3yjtcY3acAAXcMD0MFHDSzWZ",
+   "nome": "F. Ambar - Lançamento - Escobar - V.1.mov",
+   "tipo": "video",
+   "cliente": "Equipe Prime",
+   "mes": "2026-06",
+   "pasta": "1LlGypq-hxky1etqlIsjiO_WtTzVf9NyO"
+  },
+  {
+   "id": "1ySPJUF4SZUhlZzY8Jy9bkKOlwAZfaomF",
+   "nome": "5525262d-c49f-4a99-8de9-496eddea5143.jpg",
+   "tipo": "foto",
+   "cliente": "Equipe Prime",
+   "mes": "2026-06",
+   "pasta": "1qC4N_KyzJZtD_OTIbSWerSh9MDPP5RH-"
+  },
+  {
+   "id": "1z1w7sX5FzeD-biSPFOXZIK0mCOfR-FRk",
+   "nome": "F. Ambar - Procura Oportunidade - Fábio - V.3.mov",
+   "tipo": "video",
+   "cliente": "Equipe Prime",
+   "mes": "2026-06",
+   "pasta": "1LlGypq-hxky1etqlIsjiO_WtTzVf9NyO"
+  },
+  {
+   "id": "10jCJH-GADlcyqy-uRQYocdFAHenDUkUN",
+   "nome": "T. Âmbar - Te contar algo - Poliane - V.1.png",
+   "tipo": "foto",
+   "cliente": "Equipe Prime",
+   "mes": "2026-07",
+   "pasta": "1HmSc1lQutDohasNNsc91sbVHB0zTGoco"
+  },
+  {
+   "id": "13LHeFsoOOozirSUnDiYIe2bK18mk6Ybb",
+   "nome": "F. Ambar - Imóvel na Planta - Andréia - V.6.mov",
+   "tipo": "video",
+   "cliente": "Equipe Prime",
+   "mes": "2026-07",
+   "pasta": "1HmSc1lQutDohasNNsc91sbVHB0zTGoco"
+  },
+  {
+   "id": "1AgJda0KhIBa0ehUq5mG3uFM0DSW0cvHD",
+   "nome": "F. Paula - Você já parou para pensar . V.1.mov",
+   "tipo": "video",
+   "cliente": "Equipe Prime",
+   "mes": "2026-07",
+   "pasta": "1HmSc1lQutDohasNNsc91sbVHB0zTGoco"
+  },
+  {
+   "id": "1J6zR_365k67ZnCo0TQJ1_stRTzR6ofHv",
+   "nome": "F. Ambar - Escolhas que Impressionam - Andreia - V.4.mov",
+   "tipo": "video",
+   "cliente": "Equipe Prime",
+   "mes": "2026-07",
+   "pasta": "1HmSc1lQutDohasNNsc91sbVHB0zTGoco"
+  },
+  {
+   "id": "1hYv_KHa2ZM0YMR9s_RehCv5lgwW0NOyA",
+   "nome": "F. Âmbar - Te contar algo - Poliane - V.1.mov",
+   "tipo": "video",
+   "cliente": "Equipe Prime",
+   "mes": "2026-07",
+   "pasta": "1HmSc1lQutDohasNNsc91sbVHB0zTGoco"
+  },
+  {
+   "id": "1lhNZyqRRwQ0lQ28Q_yTLsjUplAHvTpZ4",
+   "nome": "T. Ambar - Acabou o Suspense - Marjorie - V.1.png",
+   "tipo": "foto",
+   "cliente": "Equipe Prime",
+   "mes": "2026-07",
+   "pasta": "1HmSc1lQutDohasNNsc91sbVHB0zTGoco"
+  },
+  {
+   "id": "1p9ZmOLFbZXMcUwk68fTflxHUUb5F6pXy",
+   "nome": "T. Ambar - Imóvel na Planta - Andréia - V.6.png",
+   "tipo": "foto",
+   "cliente": "Equipe Prime",
+   "mes": "2026-07",
+   "pasta": "1HmSc1lQutDohasNNsc91sbVHB0zTGoco"
+  },
+  {
+   "id": "1scWUzHi1U70Qme5TTwFLqeiGRvKnoIyA",
+   "nome": "T. Paula - Você já parou para pensar . V.1.png",
+   "tipo": "foto",
+   "cliente": "Equipe Prime",
+   "mes": "2026-07",
+   "pasta": "1HmSc1lQutDohasNNsc91sbVHB0zTGoco"
+  },
+  {
+   "id": "1yKXg8lBX5qMwP62E9RkK0H3fgnR089aY",
+   "nome": "F. Ambar - Acabou o Suspense - Marjorie - V.1.mov",
+   "tipo": "video",
+   "cliente": "Equipe Prime",
+   "mes": "2026-07",
+   "pasta": "1HmSc1lQutDohasNNsc91sbVHB0zTGoco"
+  },
+  {
+   "id": "1-cbLYBvr-YBWTbxXRXJEa63Fjk_xYxIH",
+   "nome": "Paula Foto 02Raul&Paola-2026.08-V1.JPG",
+   "tipo": "foto",
+   "cliente": "Equipe Prime",
+   "mes": "2026-09",
+   "pasta": "1qgcMnoOpG6IgqaLnUiH9b0oL82B6Fj7j"
+  },
+  {
+   "id": "1-fsfHp8_bc1UBqxOSKjmo6wZflcxbSbM",
+   "nome": "F. Geral - Maior Oferta - Rodrigo - V.1.mp4",
+   "tipo": "video",
+   "cliente": "Equipe Prime",
+   "mes": "2026-09",
+   "pasta": "19ZJlqMp6sjJ4ochKaus0atDtTbg83GBH"
+  },
+  {
+   "id": "1-zA4iEldUq5xgUBiAfOgcnY6quZB1c8o",
+   "nome": "F. Rubi - Desafio Você - Paula - V.2.mp4",
+   "tipo": "video",
+   "cliente": "Equipe Prime",
+   "mes": "2026-09",
+   "pasta": "19ZJlqMp6sjJ4ochKaus0atDtTbg83GBH"
+  },
+  {
+   "id": "11QQqUZsld3KKUjIn5SGFKuKyWEolR3E2",
+   "nome": "11.png",
+   "tipo": "foto",
+   "cliente": "Equipe Prime",
+   "mes": "2026-09",
+   "pasta": "19ZJlqMp6sjJ4ochKaus0atDtTbg83GBH"
+  },
+  {
+   "id": "121xYCNquDrxRvm2mqJ-wXThTuTGj0aMj",
+   "nome": "F. Diamante - Único 5 Suítes - Poli - V.2.mp4",
+   "tipo": "video",
+   "cliente": "Equipe Prime",
+   "mes": "2026-09",
+   "pasta": "19ZJlqMp6sjJ4ochKaus0atDtTbg83GBH"
+  },
+  {
+   "id": "18N3wVqazVNqUeAFoV3y9BE8HGTbNO7hm",
+   "nome": "F. Ambar - Ultima 3 Quartos - Paula - V.3.mp4",
+   "tipo": "video",
+   "cliente": "Equipe Prime",
+   "mes": "2026-09",
+   "pasta": "19ZJlqMp6sjJ4ochKaus0atDtTbg83GBH"
+  },
+  {
+   "id": "197mR3bN0Mj-f0AY96F1l0XvA874p7Lya",
+   "nome": "2.png",
+   "tipo": "foto",
+   "cliente": "Equipe Prime",
+   "mes": "2026-09",
+   "pasta": "19ZJlqMp6sjJ4ochKaus0atDtTbg83GBH"
+  },
+  {
+   "id": "1D9UypTUEV0xB2jiMjn21DAe9GN_Mbzxa",
+   "nome": "8.png",
+   "tipo": "foto",
+   "cliente": "Equipe Prime",
+   "mes": "2026-09",
+   "pasta": "19ZJlqMp6sjJ4ochKaus0atDtTbg83GBH"
+  },
+  {
+   "id": "1FrHGFUb4P9R8M0ivZ56R7oT99gXcdFeI",
+   "nome": "1.png",
+   "tipo": "foto",
+   "cliente": "Equipe Prime",
+   "mes": "2026-09",
+   "pasta": "19ZJlqMp6sjJ4ochKaus0atDtTbg83GBH"
+  },
+  {
+   "id": "1MNxSNn8H47YCSefPSjai2qDMjX1CjBQu",
+   "nome": "7.png",
+   "tipo": "foto",
+   "cliente": "Equipe Prime",
+   "mes": "2026-09",
+   "pasta": "19ZJlqMp6sjJ4ochKaus0atDtTbg83GBH"
+  },
+  {
+   "id": "1PGx1knSDYMSBGoSCOIMI3NRLDB-2XpsT",
+   "nome": "10.png",
+   "tipo": "foto",
+   "cliente": "Equipe Prime",
+   "mes": "2026-09",
+   "pasta": "19ZJlqMp6sjJ4ochKaus0atDtTbg83GBH"
+  },
+  {
+   "id": "1PKFTy5djbSyRLJZ8CZc2ZEl35poo9Gkr",
+   "nome": "F. Geral - Sales Center - Marjorie - V.1.mp4",
+   "tipo": "video",
+   "cliente": "Equipe Prime",
+   "mes": "2026-09",
+   "pasta": "19ZJlqMp6sjJ4ochKaus0atDtTbg83GBH"
+  },
+  {
+   "id": "1UZQygmGumToPADSGPhH10_gYBl6swUe7",
+   "nome": "F. Horizon - Cansado - Marjorie - V.2.mp4",
+   "tipo": "video",
+   "cliente": "Equipe Prime",
+   "mes": "2026-09",
+   "pasta": "19ZJlqMp6sjJ4ochKaus0atDtTbg83GBH"
+  },
+  {
+   "id": "1XKX7BP3IDsVD-4lxB3d8o-V4nmHkkd5m",
+   "nome": "12.png",
+   "tipo": "foto",
+   "cliente": "Equipe Prime",
+   "mes": "2026-09",
+   "pasta": "19ZJlqMp6sjJ4ochKaus0atDtTbg83GBH"
+  },
+  {
+   "id": "1YoZxJiLXU0YzqnNYzKLxty0xasQhJUFX",
+   "nome": "FX301283.jpg",
+   "tipo": "foto",
+   "cliente": "Equipe Prime",
+   "mes": "2026-09",
+   "pasta": "1qgcMnoOpG6IgqaLnUiH9b0oL82B6Fj7j"
+  },
+  {
+   "id": "1aluw_rlStChyC2uqa-lta3dRESol8U-p",
+   "nome": "F. Ametista - Primeiro 2 Quartos - Poli - V.3.mp4",
+   "tipo": "video",
+   "cliente": "Equipe Prime",
+   "mes": "2026-09",
+   "pasta": "19ZJlqMp6sjJ4ochKaus0atDtTbg83GBH"
+  },
+  {
+   "id": "1aqW-qbfCQbFNz0GcwrPluGsfknEE-hGW",
+   "nome": "3.png",
+   "tipo": "foto",
+   "cliente": "Equipe Prime",
+   "mes": "2026-09",
+   "pasta": "19ZJlqMp6sjJ4ochKaus0atDtTbg83GBH"
+  },
+  {
+   "id": "1b-thpMGF0wtwdpXM_E46O_-KYk_LTXSb",
+   "nome": "5.png",
+   "tipo": "foto",
+   "cliente": "Equipe Prime",
+   "mes": "2026-09",
+   "pasta": "19ZJlqMp6sjJ4ochKaus0atDtTbg83GBH"
+  },
+  {
+   "id": "1cMP2WuSIxzM3wqmnwzW5X4Z80eo-nCVm",
+   "nome": "9.png",
+   "tipo": "foto",
+   "cliente": "Equipe Prime",
+   "mes": "2026-09",
+   "pasta": "19ZJlqMp6sjJ4ochKaus0atDtTbg83GBH"
+  },
+  {
+   "id": "1g4hC1I2mh_UnrluyJVsJqxCA-T0VZD7b",
+   "nome": "F. Geral - Proteger Patrimônio - Thiago - V.1.mp4",
+   "tipo": "video",
+   "cliente": "Equipe Prime",
+   "mes": "2026-09",
+   "pasta": "19ZJlqMp6sjJ4ochKaus0atDtTbg83GBH"
+  },
+  {
+   "id": "1hcOn_PQLX0veZRAlIeEJ434iJe5WY8yJ",
+   "nome": "6.png",
+   "tipo": "foto",
+   "cliente": "Equipe Prime",
+   "mes": "2026-09",
+   "pasta": "19ZJlqMp6sjJ4ochKaus0atDtTbg83GBH"
+  },
+  {
+   "id": "1iYV_TugrWrWopyhobJ0BTXnMk31kKUDT",
+   "nome": "F. 500 - Mais Valoriza - Paula - V.1.mp4",
+   "tipo": "video",
+   "cliente": "Equipe Prime",
+   "mes": "2026-09",
+   "pasta": "19ZJlqMp6sjJ4ochKaus0atDtTbg83GBH"
+  },
+  {
+   "id": "1jx7mhzZx7OPndbZvh-2iqvbXfGgR0pVg",
+   "nome": "Paula Foto 01Raul&Paola-2026.08-V1.JPG",
+   "tipo": "foto",
+   "cliente": "Equipe Prime",
+   "mes": "2026-09",
+   "pasta": "1qgcMnoOpG6IgqaLnUiH9b0oL82B6Fj7j"
+  },
+  {
+   "id": "1n-X4DM9iUpGesj-6naEzdoA1UnKAyjI5",
+   "nome": "F. Geral - Planta ou Construção - Alvaro - V.2.mp4",
+   "tipo": "video",
+   "cliente": "Equipe Prime",
+   "mes": "2026-09",
+   "pasta": "19ZJlqMp6sjJ4ochKaus0atDtTbg83GBH"
+  },
+  {
+   "id": "1oGSVeKCWCel6A6uccA6BRGcSaDwnaCkx",
+   "nome": "F. 2 Quartos - Sucesso Absoluto - Marjorie - V.1.mp4",
+   "tipo": "video",
+   "cliente": "Equipe Prime",
+   "mes": "2026-09",
+   "pasta": "19ZJlqMp6sjJ4ochKaus0atDtTbg83GBH"
+  },
+  {
+   "id": "1qhMbYkfu8CfJRR0o_BeODpLCLHU_5hIL",
+   "nome": "F. Esmeralda - 4 Suítes - Poli - V.2.mp4",
+   "tipo": "video",
+   "cliente": "Equipe Prime",
+   "mes": "2026-09",
+   "pasta": "19ZJlqMp6sjJ4ochKaus0atDtTbg83GBH"
+  },
+  {
+   "id": "1qqLKnSP7X4gSAsPAkfI90EUesG9uMLd-",
+   "nome": "4.png",
+   "tipo": "foto",
+   "cliente": "Equipe Prime",
+   "mes": "2026-09",
+   "pasta": "19ZJlqMp6sjJ4ochKaus0atDtTbg83GBH"
+  },
+  {
+   "id": "1vWgGVyCAM7EAlZ3DWf1jzksd4Ic6801n",
+   "nome": "F. Geral - Oportunidade - Marjorie - V.2.mp4",
+   "tipo": "video",
+   "cliente": "Equipe Prime",
+   "mes": "2026-09",
+   "pasta": "19ZJlqMp6sjJ4ochKaus0atDtTbg83GBH"
+  },
+  {
+   "id": "1vy44tNStmD5H6hJ-rCueS_0aDj4E9O16",
+   "nome": "F. Geral - Momento Certo - Alvaro - V.3.mp4",
+   "tipo": "video",
+   "cliente": "Equipe Prime",
+   "mes": "2026-09",
+   "pasta": "19ZJlqMp6sjJ4ochKaus0atDtTbg83GBH"
+  },
+  {
+   "id": "1117YLpA45JUTyB59XtfjFvEDPeGjUSOf",
+   "nome": "F. Ágata - Já foi perfeita - Rodrigo - V.1.mov",
+   "tipo": "video",
+   "cliente": "Equipe Prime",
+   "mes": "2026-11",
+   "pasta": "1aqvH6LGp4eNmnvQI10QGMIa89cJ2qgnY"
+  },
+  {
+   "id": "16X-SjfIa9cFVZptaepZqBTmNAcE_LSlZ",
+   "nome": "F. Ágata - Problema Infraestrutura - Marjorie - V.1.mov",
+   "tipo": "video",
+   "cliente": "Equipe Prime",
+   "mes": "2026-11",
+   "pasta": "1aqvH6LGp4eNmnvQI10QGMIa89cJ2qgnY"
+  },
+  {
+   "id": "1GEUelACs5q-oCfe1FEtesKlePXXDJQPY",
+   "nome": "F. Poliane. Conquiste sua Liberdade. v.1.mov",
+   "tipo": "video",
+   "cliente": "Equipe Prime",
+   "mes": "2026-11",
+   "pasta": "1aqvH6LGp4eNmnvQI10QGMIa89cJ2qgnY"
+  },
+  {
+   "id": "1P3PKkyLi0uI_7zRoYj-V-ejlVi1de3rZ",
+   "nome": "F. Ágata - Morar e Investir 2 - Thiago - V.1.mov",
+   "tipo": "video",
+   "cliente": "Equipe Prime",
+   "mes": "2026-11",
+   "pasta": "1aqvH6LGp4eNmnvQI10QGMIa89cJ2qgnY"
+  },
+  {
+   "id": "1S0oMdUugAulJu1iK-O1-jWuiXdFWMvLU",
+   "nome": "F. Ágata - Procurando 2 Quartos - Paula - V.2.mov",
+   "tipo": "video",
+   "cliente": "Equipe Prime",
+   "mes": "2026-11",
+   "pasta": "1aqvH6LGp4eNmnvQI10QGMIa89cJ2qgnY"
+  },
+  {
+   "id": "1Xd4ACk-3dej_YXv8VBBaux1MhlIqCXUh",
+   "nome": "F. Equipe Prime - Ágata - Laís - V.1.mov",
+   "tipo": "video",
+   "cliente": "Equipe Prime",
+   "mes": "2026-11",
+   "pasta": "1aqvH6LGp4eNmnvQI10QGMIa89cJ2qgnY"
+  },
+  {
+   "id": "1toYtnOKSdjcosu-ADGcmECFg_3WFc9nM",
+   "nome": "F. Equipe Prime - 2 Quartos sem Sair - Cleo - V.2.mov",
+   "tipo": "video",
+   "cliente": "Equipe Prime",
+   "mes": "2026-11",
+   "pasta": "1aqvH6LGp4eNmnvQI10QGMIa89cJ2qgnY"
+  }
+ ]
 }
