@@ -89,6 +89,7 @@ def main(caminho):
     brand = f'<div class="brand"><img src="data:image/png;base64,{logo}" alt=""><span>ARESTAGÊNCIA</span></div>'
     foot = lambda n: f'<div class="foot"><span>{esc(cli)} · {mes_txt}</span><span>{n}</span></div>'
     bg = lambda fid: f"background-image:url('{imgs[fid]}')" if imgs.get(fid) else ""
+    link = lambda fid: f"https://drive.google.com/file/d/{fid}/view"  # abre direto no player do Drive
     paginas = []
 
     # capa
@@ -131,14 +132,14 @@ def main(caminho):
     def bloco_videos(lote, primeiro):
         cab = (f'<div class="kick">Produção</div><div class="h">Vídeos <em>({len(videos)})</em></div>' if primeiro
                else '<div class="kick">Vídeos · continuação</div>')
-        cards = "".join(f'<div class="it"><div class="th" style="{bg(v["id"])}"><i></i></div>'
-                        f'<p>{esc(titulo(v["nome"], cli))}</p></div>' for v in lote)
+        cards = "".join(f'<a class="it" href="{link(v["id"])}"><div class="th" style="{bg(v["id"])}"><i></i></div>'
+                        f'<p>{esc(titulo(v["nome"], cli))}</p></a>' for v in lote)
         return f'<section class="page">{brand}{cab}<div class="grid v">{cards}</div>{{FOOT}}</section>'
 
     for k in range(0, len(videos), 15):
         paginas.append(bloco_videos(videos[k:k + 15], k == 0))
     if fotos_pdf:
-        cards = "".join(f'<div class="it"><div class="th" style="{bg(f["id"])}"></div></div>' for f in fotos_pdf)
+        cards = "".join(f'<a class="it" href="{link(f["id"])}"><div class="th" style="{bg(f["id"])}"></div></a>' for f in fotos_pdf)
         resto = len(fotos) - len(fotos_pdf)
         mais = f'<div class="more">+ {resto} fotos no seu painel.</div>' if resto > 0 else ""
         paginas.append(f'''<section class="page">{brand}<div class="kick">Produção</div>
@@ -163,6 +164,7 @@ def main(caminho):
     saida = RAIZ / "docs" / "relatorios" / f"{nome}.pdf"
     saida.parent.mkdir(parents=True, exist_ok=True)
     tmp_html = RAIZ / "relatorios" / "tmp.html"
+    tmp_html.parent.mkdir(parents=True, exist_ok=True)
     tmp_html.write_text(doc)
     from playwright.sync_api import sync_playwright
     with sync_playwright() as p:
