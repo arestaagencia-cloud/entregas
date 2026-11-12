@@ -132,6 +132,9 @@ Layout: `painel_template.html` + `gerar_painel.py`. Endereço antigo `/painel-un
 
 ## Relatórios mensais em PDF
 
+> Os PDFs são feitos em chats próprios, com a skill "relatorio-mensal-pdf". O chat de gestão da plataforma
+> (painéis, robô, painel interno, Notion) não gera PDFs. Mudanças no fluxo do PDF: atualize esta seção E a skill.
+
 Fluxo **manual**, feito no chat no fim de cada mês (sem robô nem fila). A equipe pede no chat, por exemplo:
 "gera o PDF da Vitrinni de outubro, 2 diárias: 03/10 das 8h às 12h30 no Lago Sul, 17/10 das 14h às 17h45.
 Obs: …". Se faltar cliente, mês ou as diárias, pergunte antes de gerar.
