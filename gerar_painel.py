@@ -26,14 +26,16 @@ def sem_acento(palavra):
 def titulo(nome, cliente):
     t = unicodedata.normalize("NFC", nome)
     t = re.sub(r"\.(mov|mp4|m4v|jpe?g|png|heic|webp)$", "", t, flags=re.I)
-    t = re.sub(r"^[FP](\.\s*|\s+)", "", t)
+    t = re.sub(r"^[FPQ](\.\s*|\s+|-\s*)(?=\S)", "", t)
+    t = re.sub(r"\s*-\s*C\.\s*Faber\s*-\s*", " - ", t)  # "Dra. Laís - C. Faber - Tema"
     # tira o nome do cliente do começo ("Vitrinni - ", "Vitrinni. ", "Universa - ")
     alvos = [cliente] + [w for w in cliente.split() if len(w) >= 4] + [cliente.split()[0], "Vitrini"]
     for _ in range(3):  # "Clinica Faber - Dr Jorge", "Faber - Alinhador": tira mesmo sem acento
         for alvo in alvos:
-            t = re.sub(rf"^{sem_acento(alvo)}(\s+Eng(enharia)?\.?)?\s*[-.]\s*", "", t, flags=re.I)  # "Niso Eng - "
+            t = re.sub(rf"^(\w{{1,2}}\.\s*)?{sem_acento(alvo)}(\s+Eng(enharia)?\.?)?\s*[-.]\s*", "", t, flags=re.I)  # "Niso Eng - "
     for _ in range(3):
-        t = re.sub(r"[\s.\-]*[Vv]\.?\s?\d+(\(\d+\))?\s*$", "", t)  # versão no fim
+        t = re.sub(r"[\s.\-]*[Vv]\.?\s?\d+(\.\d+)?(\(\d+\))?\s*$", "", t)  # versão no fim
+        t = re.sub(r"\s+-\s*[Vv]\.?\s*$", "", t)  # "- V" sem número
         t = re.sub(r"[\s.\-]+(Andressa|Gabi|Gabriela|Marcus|Luiz)\s*$", "", t, flags=re.I)  # apresentador
         t = re.sub(rf"\s*-\s*{re.escape(cliente)}\s*$", "", t, flags=re.I)  # cliente no fim
         t = t.strip(" -.")
