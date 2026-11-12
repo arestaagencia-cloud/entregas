@@ -1,9 +1,11 @@
 """Gera o relatório mensal em PDF de um cliente.
 
 Uso: python3 gerar_pdf.py relatorios/pedidos/<id>.json
-Pedido: {id, painel: "universa", cliente: "Vitrinni", mes: "2026-10",
-         diarias: [{data: "2026-10-05", entrada: "08:00", saida: "12:30"}], obs: ""}
-Lê os conteúdos do mês em paineis/<painel>.json (mantido pelo robô do dashboard), baixa as capas do Drive,
+Pedido: {id, cliente: "Vitrinni", mes: "2026-10", diarias: [{data, entrada, saida, local}], obs: "",
+         painel: "universa"          -> cliente com dashboard: lê paineis/<painel>.json
+         ou pastas: ["<id Drive>"]   -> cliente sem dashboard: lê direto as pastas da entrega
+         periodo: "Segunda leva"     -> opcional; clientes por projeto podem vir sem "mes"}
+Baixa as capas do Drive,
 monta o HTML (relatorio_template.html) e imprime em PDF com o Chromium (playwright).
 Saída: docs/relatorios/<arquivo>.pdf e o pedido atualizado com "pdf" (caminho) e "resumo".
 """
@@ -69,15 +71,30 @@ def qr_svg(texto):
 def main(caminho):
     ped_path = RAIZ / caminho
     ped = json.loads(ped_path.read_text())
-    painel = json.loads((RAIZ / "paineis" / f"{ped['painel']}.json").read_text())
-    cli, mes = ped["cliente"], ped["mes"]
-    ano, m = mes.split("-")
-    mes_txt = f"{MESES[int(m) - 1]} {ano}"
-    itens = [i for i in painel["itens"] if i["cliente"] == cli and i["mes"] == mes]
+    cli = ped["cliente"]
+    mes = ped.get("mes")  # "AAAA-MM"; clientes por projeto podem vir sem mês, com "periodo"
+    if mes:
+        ano, m = mes.split("-")
+        mes_txt = f"{MESES[int(m) - 1]} {ano}"
+        chamada = f"em {MESES[int(m) - 1].lower()}"
+    else:
+        mes_txt = ped.get("periodo") or "Entrega"
+        chamada = f"em {esc(mes_txt)}" if ped.get("periodo") else "para você"
+    if ped.get("periodo") and mes:
+        mes_txt = f"{ped['periodo']} · {mes_txt}"
+    painel = None
+    if ped.get("painel"):  # cliente com dashboard: lê o que o robô mantém em paineis/<painel>.json
+        painel = json.loads((RAIZ / "paineis" / f"{ped['painel']}.json").read_text())
+        itens = [i for i in painel["itens"] if i["cliente"] == cli and i["mes"] == mes]
+    else:  # cliente sem dashboard: lê direto a(s) pasta(s) da entrega no Drive
+        from atualizar_painel import coletar
+        itens = []
+        for pasta in ped["pastas"]:
+            coletar(pasta, cli, mes or "", itens)
     videos = sorted([i for i in itens if i["tipo"] == "video"], key=lambda i: titulo(i["nome"], cli).lower())
     fotos = sorted([i for i in itens if i["tipo"] == "foto"], key=lambda i: i["nome"])
     if not itens:
-        raise SystemExit(f"Nenhum conteúdo de {cli} em {mes_txt} no painel {ped['painel']}.")
+        raise SystemExit(f"Nenhum conteúdo de {cli} em {mes_txt}.")
 
     fotos_pdf = fotos[:MAX_FOTOS]
     pedidos_thumb = [(v["id"], 600) for v in videos] + [(f["id"], 500) for f in fotos_pdf]
@@ -99,7 +116,7 @@ def main(caminho):
     tam = 120 if len(cli) <= 9 else 96 if len(cli) <= 13 else 74
     paginas.append(f'''<section class="page cover"><div class="mos">{mos}</div><div class="in">{brand}
       <div><div class="eyebrow">Relatório de produção</div><h1>{esc(cli)}</h1>
-      <h2>Tudo o que <em>criamos</em> em {MESES[int(m) - 1].lower()}</h2></div></div></section>''')
+      <h2>Tudo o que <em>criamos</em> {chamada}</h2></div></div></section>''')
 
     # resumo
     diarias = [d for d in ped.get("diarias", []) if d.get("entrada") and d.get("saida")]
@@ -146,12 +163,21 @@ def main(caminho):
           <div class="h">Fotos <em>({len(fotos)})</em></div><div class="grid f">{cards}</div>{mais}{{FOOT}}</section>''')
 
     # final
-    link = f"{SITE}/{painel['slug']}/" + (f"#cliente={cli}" if len(painel["clientes"]) > 1 else "")
-    link_vis = link.replace("https://", "").replace(" ", "%20")
-    paginas.append(f'''<section class="page end">{brand}<div class="kick" style="margin-top:20mm">Seu painel</div>
-      <div class="h">Tudo em <em>um só lugar</em></div>
-      <p>Assista, filtre por mês e baixe todos os conteúdos que produzimos para você, sempre atualizados.</p>
-      <div class="qr">{qr_svg(link.replace(" ", "%20"))}</div><div class="link">{esc(link_vis)}</div>
+    if painel:
+        link = f"{SITE}/{painel['slug']}/" + (f"#cliente={cli}" if len(painel["clientes"]) > 1 else "")
+        link = link.replace(" ", "%20")
+        link_vis = link.replace("https://", "")
+        kick, h, txt = ("Seu painel", "Tudo em <em>um só lugar</em>",
+                        "Assista, filtre por mês e baixe todos os conteúdos que produzimos para você, sempre atualizados.")
+    else:  # sem dashboard: o QR leva à pasta da entrega no Drive
+        link = f"https://drive.google.com/drive/folders/{ped['pastas'][0]}"
+        link_vis = "Pasta da entrega no Google Drive"
+        kick, h, txt = ("Seus arquivos", "Tudo em <em>um só lugar</em>",
+                        "Assista e baixe em alta qualidade todos os conteúdos desta entrega.")
+    paginas.append(f'''<section class="page end">{brand}<div class="kick" style="margin-top:20mm">{kick}</div>
+      <div class="h">{h}</div>
+      <p>{txt}</p>
+      <a href="{link}" class="qr">{qr_svg(link)}</a><div class="link"><a href="{link}" style="color:inherit;text-decoration:none">{esc(link_vis)}</a></div>
       <div class="contato">ArestAgência · (61) 99128-3546 · arestagencia.com.br</div></section>''')
 
     total_pag = len(paginas)
@@ -160,7 +186,7 @@ def main(caminho):
     doc = (doc.replace("{{TITLE}}", f"{cli} · {mes_txt} · ArestAgência").replace("{{TAM_MARCA}}", str(tam))
               .replace("{{PAGINAS}}", "\n".join(paginas)))
 
-    nome = ped.get("arquivo") or f"{slugify(cli)}-{mes}-{secrets.token_hex(2)}"
+    nome = ped.get("arquivo") or f"{slugify(cli)}-{mes or slugify(mes_txt)}-{secrets.token_hex(2)}"
     saida = RAIZ / "docs" / "relatorios" / f"{nome}.pdf"
     saida.parent.mkdir(parents=True, exist_ok=True)
     tmp_html = RAIZ / "relatorios" / "tmp.html"

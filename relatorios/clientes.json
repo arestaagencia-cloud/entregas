@@ -1,0 +1,24 @@
+{
+ "_sobre": "Clientes ativos para os relatórios em PDF (pasta 'Clientes Ativos' do Drive: 1Xr_yQthvOFYcNoVwMxeBOHLC5VrKoZH2). Com 'painel': os conteúdos vêm do dashboard. Sem painel: procure a pasta do mês dentro de 'entregas' (padrão 'N. Cliente - Mês.AA') ou, nos clientes por projeto, a pasta do projeto; passe o ID em 'pastas' no pedido. Cliente novo em Clientes Ativos: adicione aqui.",
+ "recorrentes": {
+  "Universa Digital": {"painel": "universa"},
+  "Vitrinni": {"painel": "universa"},
+  "EduCriarte": {"painel": "universa"},
+  "Valen Beauty": {"painel": "universa"},
+  "IGG": {"painel": "universa"},
+  "Liberty": {"painel": "universa"},
+  "Hauzen": {"painel": "universa"},
+  "Scalercio": {"painel": "universa"},
+  "Óptica Premium": {"painel": "universa"},
+  "Equipe Prime": {"pasta": "1iTIFekbv1pZZ3-jepsv-wKnUUddHttPS", "entregas": "1rMfwYNc9se22uNyYW4YmD2wcycoKdzfP"},
+  "Clínica Faber": {"pasta": "1FQqUfaNkUFLBZAaGE-_t0wYm3g8dDGj2", "entregas": "1gYl-YiBxmHTR4Mqx9uLqZpzw0azpRJaM"},
+  "Niso Engenharia": {"pasta": "1lqx77BLCYR7K65_llIREE3eujbNlzVfd", "entregas": "1Qm2elOPxAkpLSf60EZ3H4pPR5Rxq9bL_"}
+ },
+ "freelancers": {
+  "Sarau Secreto": {"pasta": "1OjG7k6OCghjJ5Yta0TUsZPqKFjR5FK6z", "entregas": "1wNvd62mlMe3B1AbYEQnZpRsw4HEcoO5k"},
+  "Tuiuti": {"pasta": "1Fv2bmR4oWCY2CacrdCS3fD8u0KNbGKs3"},
+  "Samba ao Quadrado": {"pasta": "1GIVvQsgWyiD0_J7nqO57DQbQZ5IFbjC6"},
+  "Samba no Parque": {"pasta": "1YD-vPEAZzzpFHTNtPqM_NlZwDabqBAq3"},
+  "Educriate - JEPP": {"pasta": "1IZJYq3crVqDs1InRAse5FIApXIn0UsP0"}
+ }
+}

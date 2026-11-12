@@ -33,9 +33,9 @@ jobs:
           for ped in relatorios/pedidos/*.json; do
             [ -e "$ped" ] || continue
             if python3 -c "import json,sys; sys.exit(0 if json.load(open('$ped')).get('pdf') else 1)"; then continue; fi
-            painel=$(python3 -c "import json; print(json.load(open('$ped'))['painel'])")
+            painel=$(python3 -c "import json; print(json.load(open('$ped')).get('painel') or '')")
             echo "::group::$ped"
-            python3 atualizar_painel.py "paineis/$painel.json"   # dados frescos do Drive
+            if [ -n "$painel" ]; then python3 atualizar_painel.py "paineis/$painel.json"; fi   # dados frescos do Drive
             python3 gerar_pdf.py "$ped" || echo "FALHOU: $ped"
             echo "::endgroup::"
           done
