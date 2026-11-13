@@ -227,7 +227,13 @@ def main():
         if it["tipo"] == "carrossel":
             formato, link = "Carrossel", f"https://drive.google.com/drive/folders/{it['id']}"
         else:
-            formato = "Vídeo Horizontal" if orient.get(it["id"]) == "h" else "Reels"
+            nn = norm(it["nome"])
+            if re.search(r"\bhorizontal\b|\b16 ?x ?9\b", nn):
+                formato = "Vídeo Horizontal"
+            elif re.search(r"\bvertical\b|\b9 ?x ?16\b", nn):
+                formato = "Reels"
+            else:
+                formato = "Vídeo Horizontal" if orient.get(it["id"]) == "h" else "Reels"
             link = f"https://drive.google.com/file/d/{it['id']}/view"
 
         desejado = {"Nome": nome_arq, "Link": link, "Clientes": sorted(alvo_cli), "Serviços": sorted(alvo_serv),
