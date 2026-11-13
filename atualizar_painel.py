@@ -92,13 +92,22 @@ def tipo(nome, mime=""):
     return None
 
 
-def mes_da_pasta(nome):
+ABREV = ["jan", "fev", "mar", "abr", "mai", "jun", "jul", "ago|agos", "set", "out", "nov", "dez"]
+
+
+def mes_da_pasta(nome, ano_padrao=None):
+    """'N. Cliente - Março.26' -> '2026-03'. Aceita abreviação ('Agos.24') e, sem ano no nome, o da pasta do ano."""
     t = nfc(nome).lower()
-    a = re.search(r"\.(\d{2})\s*$", t) or re.search(r"(20\d{2})\s*$", t)
+    a = re.search(r"\.(\d{2})\s*$", t) or re.search(r"(20\d{2})\s*$", t) or re.search(r"\b[a-zç]+\.(\d{2})\b", t)
+    ano = (a.group(1) if a else None) or ano_padrao
+    if not ano:
+        return None
+    ano = ano if len(ano) == 4 else "20" + ano
     for i, m in enumerate(MESES):
-        if re.search(rf"\b{m}\b", t) and a:
-            ano = a.group(1)
-            ano = ano if len(ano) == 4 else "20" + ano
+        if re.search(rf"\b{m}\b", t):
+            return f"{ano}-{i + 1:02d}"
+    for i, m in enumerate(ABREV):
+        if re.search(rf"\b(?:{m})\b\.?", t):
             return f"{ano}-{i + 1:02d}"
     return None
 
@@ -151,10 +160,17 @@ def main(caminho, forcar=False):
     for c in pastas_cli:
         cliente = nome_cliente(c["nome"])
         n0 = len(itens)
+        meses = []
         for m in listar(c["id"]):
             if not m["pasta"]:
                 continue
-            mes = mes_da_pasta(m["nome"])
+            ano = re.fullmatch(r"\D*?(20\d{2})\s*", nfc(m["nome"]))  # pasta de ano, ex.: "Sarau 2026"
+            if ano and not mes_da_pasta(m["nome"]):
+                meses += [(mm, ano.group(1)) for mm in listar(m["id"]) if mm["pasta"]]
+            else:
+                meses.append((m, None))
+        for m, ano in meses:
+            mes = mes_da_pasta(m["nome"], ano)
             if not mes:
                 avisos.append(f"Pasta fora do padrão ignorada: {cliente} / {m['nome']}")
                 continue
