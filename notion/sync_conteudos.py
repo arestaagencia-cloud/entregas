@@ -213,6 +213,9 @@ def main():
                 sem_cliente.add(n)
             nserv = f"{n} - {mes_titulo(it['mes'])}"
             sids = serv_por_nome.get(norm(nserv), [])
+            pasta_serv = it.get("servico")  # nome da pasta do mês, ex.: "Sarau Convida - Letícia Fialho - Abril.26"
+            if n == cli and pasta_serv and serv_por_nome.get(norm(pasta_serv)):
+                nserv, sids = pasta_serv, serv_por_nome[norm(pasta_serv)]
             if sids:
                 alvo_serv.append(sids[0])
                 if len(sids) > 1:

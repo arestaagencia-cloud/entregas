@@ -24,6 +24,7 @@ def sem_acento(palavra):
 
 
 def titulo(nome, cliente):
+    nome = re.sub(r"[\u2028\u2029\u200b\ufeff]", "", nome)
     t = unicodedata.normalize("NFC", nome)
     t = re.sub(r"\.(mov|mp4|m4v|jpe?g|png|heic|webp)$", "", t, flags=re.I)
     t = re.sub(r"^[FPQ](\.\s*|\s+|-\s*)(?=\S)", "", t)

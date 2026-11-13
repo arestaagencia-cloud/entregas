@@ -115,7 +115,7 @@ def eh_carrossel(nome):
     return bool(re.match(r"\s*carross[eé]is?\b|\s*carrossel", unicodedata.normalize("NFC", nome), re.I))
 
 
-def coletar(pasta, cliente, mes, destino, prof=0):
+def coletar(pasta, cliente, mes, destino, prof=0, servico=None):
     for x in listar(pasta):
         if x["pasta"] and eh_carrossel(x["nome"]):  # pasta "Carrossel ..." vira um item só, slides na ordem do nome
             slides = []
@@ -125,15 +125,16 @@ def coletar(pasta, cliente, mes, destino, prof=0):
                     slides.append({"id": f["id"], "tipo": t})
             if slides:
                 destino.append({"id": x["id"], "nome": x["nome"], "tipo": "carrossel", "cliente": cliente, "mes": mes,
-                                "pasta": pasta, "slides": slides})
+                                "servico": servico, "pasta": pasta, "slides": slides})
             continue
         if x["pasta"]:
             if prof < 2:
-                coletar(x["id"], cliente, mes, destino, prof + 1)
+                coletar(x["id"], cliente, mes, destino, prof + 1, servico)
             continue
         t = tipo(x["nome"], x.get("mime", ""))
         if t:
-            destino.append({"id": x["id"], "nome": x["nome"], "tipo": t, "cliente": cliente, "mes": mes, "pasta": pasta})
+            destino.append({"id": x["id"], "nome": x["nome"], "tipo": t, "cliente": cliente, "mes": mes,
+                            "servico": servico, "pasta": pasta})
 
 
 def main(caminho, forcar=False):
@@ -156,7 +157,7 @@ def main(caminho, forcar=False):
             if not mes:
                 avisos.append(f"Pasta fora do padrão ignorada: {cliente} / {m['nome']}")
                 continue
-            coletar(m["id"], cliente, mes, itens)
+            coletar(m["id"], cliente, mes, itens, servico=nome_cliente(m["nome"]))  # nome da pasta = página do Notion
         if len(itens) > n0:
             clientes.append(cliente)
         print(f"  {cliente:20} {len(itens) - n0} arquivos")
