@@ -66,6 +66,7 @@ def main():
     clientes = {c["id"]: titulo_de(c) for c in todas(DB["clientes"])}
     servicos = {s["id"]: titulo_de(s) for s in todas(DB["servicos"])}
     pers = capas_personalizadas()
+    no_painel = {i["id"] for p in (RAIZ / "paineis").glob("*.json") for i in json.loads(p.read_text()).get("itens", [])}
     print(f"{len(paginas)} páginas em Conteúdos")
     from collections import Counter
     def url_capa(p):
@@ -94,6 +95,8 @@ def main():
             img = baixar_thumb(primeiro) if primeiro else None
             if img is None:
                 return p, "pasta_vazia_ou_sem_acesso", None, None
+        if img is None and fid in no_painel:  # está no Drive; a miniatura ainda não ficou pronta (tenta de novo depois)
+            return p, "no_drive_sem_miniatura", None, None
         if img is None:
             return p, "arquivo_sem_acesso_ou_apagado", None, None
         return p, ("ok_com_capa" if tem_capa else "ok"), fid, img
@@ -101,8 +104,9 @@ def main():
     with ThreadPoolExecutor(10) as ex:
         res = list(ex.map(avaliar, paginas))
 
-    no_drive = [r for r in res if r[1] in ("ok", "ok_com_capa")]
-    faltam = [r for r in res if r[1] not in ("ok", "ok_com_capa")]
+    no_drive = [r for r in res if r[1] in ("ok", "ok_com_capa", "no_drive_sem_miniatura")]
+    faltam = [r for r in res if r[1] not in ("ok", "ok_com_capa", "no_drive_sem_miniatura")]
+    print("Aguardando miniatura do Google:", sum(1 for r in res if r[1] == "no_drive_sem_miniatura"))
     por_capa = [r for r in res if r[1] == "ok"]
     motivos = {}
     for r in faltam:
