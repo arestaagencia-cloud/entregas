@@ -129,7 +129,8 @@ def coletar(pasta, cliente, mes, destino, prof=0, servico=None):
             continue
         if x["pasta"]:
             if prof < 2:
-                coletar(x["id"], cliente, mes, destino, prof + 1, servico)
+                coletar(x["id"], cliente, mes, destino, prof + 1,
+                        nome_cliente(x["nome"]) if mes_da_pasta(x["nome"]) else servico)  # subpasta de evento
             continue
         t = tipo(x["nome"], x.get("mime", ""))
         if t:
