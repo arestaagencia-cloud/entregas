@@ -1248,5 +1248,33 @@
    "Geral",
    "Gerais"
   ]
+ },
+ "corretores": {
+  "rotulo": "Corretor",
+  "lista": [
+   "Álvaro",
+   "Andréia",
+   "Ben Hur",
+   "Cleo",
+   "Denise",
+   "Escobar",
+   "Fábio",
+   "Laís",
+   "Marjorie",
+   "Paula",
+   "Poliane",
+   "Raquel",
+   "Rodrigo",
+   "Thiago"
+  ],
+  "apelidos": {
+   "Poli": "Poliane",
+   "Andreia": "Andréia",
+   "Alvaro": "Álvaro",
+   "Fabio": "Fábio",
+   "Lais": "Laís",
+   "Benhur": "Ben Hur",
+   "Ben-Hur": "Ben Hur"
+  }
  }
 }

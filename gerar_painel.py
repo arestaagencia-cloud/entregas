@@ -69,6 +69,18 @@ def categoria(titulo_item, cat):
     return cat["geral"], "nenhum"
 
 
+def corretores(titulo_item, cfg_cor):
+    """Lista de corretores citados no título (pode ter mais de um: "Raquel e Escobar")."""
+    t = " " + re.sub(r"[^a-z0-9]+", " ", norm_l(titulo_item)) + " "
+    nomes = {norm_l(n): n for n in cfg_cor["lista"]}
+    nomes.update({norm_l(a): n for a, n in cfg_cor.get("apelidos", {}).items()})
+    achados = []
+    for k, n in nomes.items():
+        if " " + re.sub(r"[^a-z0-9]+", " ", k).strip() + " " in t and n not in achados:
+            achados.append(n)
+    return [n for n in cfg_cor["lista"] if n in achados]
+
+
 def main(caminho):
     cfg = json.loads(Path(caminho).read_text())
     rnd = random.Random(7)
@@ -107,6 +119,14 @@ def main(caminho):
         ordem = [l for l in cat["lista"] if l in presentes] + ([cat["geral"]] if cat["geral"] in presentes else [])
         dados.update({"clientes": ordem, "cores": {c: CORES[i % len(CORES)] for i, c in enumerate(ordem)},
                       "modo": "categoria", "rotulo_clientes": cat.get("rotulo", "Categoria")})
+    if cfg.get("corretores"):  # filtro extra por corretor, lido do nome do arquivo
+        for it in itens:
+            cs = corretores(it["titulo"], cfg["corretores"])
+            if cs:
+                it["cor"] = cs
+        presentes = {c for it in itens for c in it.get("cor", [])}
+        dados.update({"corretores": [c for c in cfg["corretores"]["lista"] if c in presentes],
+                      "rotulo_corretores": cfg["corretores"].get("rotulo", "Corretor")})
     for k in ("destaque", "destaque_titulo", "zip"):  # vídeo(s) em destaque acima da grade
         if cfg.get(k):
             dados[k] = cfg[k]

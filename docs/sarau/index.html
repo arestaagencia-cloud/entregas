@@ -84,6 +84,7 @@
   [hidden]{display:none!important}
   .chips{display:flex;gap:8px;overflow-x:auto;scrollbar-width:none;padding-bottom:2px}
   .chips::-webkit-scrollbar{display:none}
+  .chip.off{opacity:.35}
   .chip{white-space:nowrap;border:1px solid var(--line);background:var(--card);border-radius:999px;padding:7px 14px;font-size:14px;color:var(--ink-2);transition:.15s}
   .chip:hover{border-color:#3a3a3a;color:#fff}
   .chip.on{background:var(--ink);color:#0b0b0b;border-color:var(--ink)}
@@ -188,6 +189,7 @@
 <div class="bar">
   <div class="wrap">
     <div class="row" id="rowCli"><span class="lbl">Cliente</span><div class="chips grow" id="fCli"></div></div>
+    <div class="row" id="rowCor" hidden><span class="lbl" id="lblCor">Corretor</span><div class="chips grow" id="fCor"></div></div>
     <div class="row">
       <span class="lbl" id="lblMes">Mês</span>
       <select class="sel" id="fMes" aria-label="Filtrar por mês"></select>
@@ -202,7 +204,7 @@
 </div>
 
 <main class="wrap" id="lista"></main>
-<footer>Atualizado em 17/11/2026 às 10:00 a partir das pastas do Google Drive · ArestAgência</footer>
+<footer>Atualizado em 17/11/2026 às 10:48 a partir das pastas do Google Drive · ArestAgência</footer>
 
 <div class="lb" id="lb" role="dialog" aria-modal="true">
   <button class="lb-x" id="lbX" aria-label="Fechar">✕</button>
@@ -269,25 +271,30 @@ const conta=arr=>{const v=arr.filter(x=>x.tipo==='video').length,c=arr.filter(x=
 })();
 
 // ---------- filtros ----------
-const st={cli:'',mes:'',tipo:''};
-function readHash(){const p=new URLSearchParams(location.hash.slice(1));st.cli=p.get('cliente')||'';st.mes=p.get('mes')||'';st.tipo=p.get('tipo')||''}
-function writeHash(){const p=new URLSearchParams();if(st.cli)p.set('cliente',st.cli);if(st.mes)p.set('mes',st.mes);if(st.tipo)p.set('tipo',st.tipo);history.replaceState(null,'',p.toString()?'#'+p:location.pathname)}
-const match=(x,ign)=>(ign==='cli'||!st.cli||x.cliente===st.cli)&&(ign==='mes'||!st.mes||x.mes===st.mes)&&(!st.tipo||x.tipo===st.tipo);
+const st={cli:'',mes:'',tipo:'',cor:''};
+function readHash(){const p=new URLSearchParams(location.hash.slice(1));st.cli=p.get('cliente')||'';st.mes=p.get('mes')||'';st.tipo=p.get('tipo')||'';st.cor=p.get('corretor')||''}
+function writeHash(){const p=new URLSearchParams();if(st.cli)p.set('cliente',st.cli);if(st.mes)p.set('mes',st.mes);if(st.tipo)p.set('tipo',st.tipo);if(st.cor)p.set('corretor',st.cor);history.replaceState(null,'',p.toString()?'#'+p:location.pathname)}
+const match=(x,ign)=>(ign==='cli'||!st.cli||x.cliente===st.cli)&&(ign==='mes'||!st.mes||x.mes===st.mes)&&(!st.tipo||x.tipo===st.tipo)&&(ign==='cor'||!st.cor||(x.cor||[]).includes(st.cor));
 
 function renderFiltros(){
   const base=I.filter(x=>match(x,'cli'));
   $('#fCli').innerHTML=[['','Todos',base.length],...DATA.clientes.map(c=>[c,c,base.filter(x=>x.cliente===c).length])]
     .map(([v,l,n])=>`<button class="chip${st.cli===v?' on':''}" data-v="${esc(v)}">${v?`<span class="dot" style="background:${CORES[v]}"></span>`:''}${esc(l)}<small>${n}</small></button>`).join('');
+  if(DATA.corretores&&DATA.corretores.length){const bc=I.filter(x=>match(x,'cor'));
+    $('#fCor').innerHTML=[['','Todos',bc.length],...DATA.corretores.map(c=>[c,c,bc.filter(x=>(x.cor||[]).includes(c)).length])]
+      .map(([v,l,n])=>`<button class="chip${st.cor===v?' on':''}${n||st.cor===v?'':' off'}" data-v="${esc(v)}">${esc(l)}<small>${n}</small></button>`).join('');}
   const bm=I.filter(x=>match(x,'mes'));
   const ms=[...new Set(I.map(x=>x.mes))].sort().reverse();
   $('#fMes').innerHTML=`<option value="">${EDICAO?'Todas as edições':'Todos os meses'} (${bm.length})</option>`+ms.map(m=>{const n=bm.filter(x=>x.mes===m).length;return `<option value="${m}"${st.mes===m?' selected':''}${n?'':' disabled'}>${mesLabel(m)} (${n})</option>`}).join('');
   document.querySelectorAll('#fTipo button').forEach(b=>b.classList.toggle('on',b.dataset.t===st.tipo));
-  $('#reset').hidden=!(st.cli||st.mes||st.tipo);
+  $('#reset').hidden=!(st.cli||st.mes||st.tipo||st.cor);
 }
 $('#fCli').addEventListener('click',e=>{const b=e.target.closest('.chip');if(!b)return;st.cli=b.dataset.v;update()});
 $('#fMes').addEventListener('change',e=>{st.mes=e.target.value;update()});
 $('#fTipo').addEventListener('click',e=>{const b=e.target.closest('button');if(!b)return;st.tipo=b.dataset.t;update()});
-$('#reset').addEventListener('click',()=>{st.cli=st.mes=st.tipo='';update()});
+$('#reset').addEventListener('click',()=>{st.cli=st.mes=st.tipo=st.cor='';update()});
+$('#fCor').addEventListener('click',e=>{const b=e.target.closest('.chip');if(!b)return;st.cor=b.dataset.v;update()});
+if(DATA.corretores&&DATA.corretores.length){$('#rowCor').hidden=false;$('#lblCor').textContent=DATA.rotulo_corretores||'Corretor'}
 
 // ---------- lista ----------
 let visiveis=[];const LIM=24;const abertos=new Set();
@@ -295,7 +302,7 @@ function card(x,i){
   return `<button class="card" data-i="${i}">
     <div class="thumb"><img loading="lazy" src="${thumb(capa(x),480)}" alt="" onerror="this.style.display='none'">
       <span class="badge">${x.tipo==='video'?'Vídeo':x.tipo==='carrossel'?`Carrossel · ${x.slides.length}`:'Foto'}</span>${x.tipo==='video'?'<span class="play"><i></i></span>':''}${x.tipo==='carrossel'?'<svg class="stack" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2"><rect x="3" y="7" width="13" height="14" rx="2" fill="rgba(0,0,0,.45)"/><path d="M8 3h11a2 2 0 0 1 2 2v12"/></svg>':''}</div>
-    <div class="meta"><b>${esc(x.titulo)}</b><span><span class="dot" style="background:${CORES[x.cliente]}"></span>${esc(x.cliente)}</span></div>
+    <div class="meta"><b>${esc(x.titulo)}</b><span><span class="dot" style="background:${CORES[x.cliente]}"></span>${esc(x.cliente)}${x.cor?` · ${esc(x.cor.join(', '))}`:''}</span></div>
   </button>`;
 }
 function renderLista(){

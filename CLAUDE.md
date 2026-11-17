@@ -197,3 +197,6 @@ O robô mede a miniatura de cada vídeo/foto no Drive e grava `"fmt": "h"` ou `"
 
 ## Filtro por categoria (ex.: Equipe Prime por empreendimento)
 `"categorias": {"rotulo","lista","apelidos","geral","geral_apelidos"}` no JSON do painel. A categoria vem do 1º trecho do título (antes do " - "), sem acento; "Geral" vai para `geral` ("Gerais"). Se o nome aparecer no meio do título (ex.: "Cada Detalhe - Rubi - Fábio"), classifica mesmo assim; sem nenhum nome, vai para Gerais. Só muda a exibição (DATA); o JSON, o Notion e os PDFs continuam com o cliente original. Para listar os fora do padrão: `categoria(titulo, cfg["categorias"])` em gerar_painel.py retorna (categoria, "inicio"|"meio"|"nenhum").
+
+## Filtro por corretor (Equipe Prime)
+`"corretores": {"rotulo","lista","apelidos"}` no JSON. Procura cada nome/apelido (sem acento, palavra inteira) em qualquer parte do título; um vídeo pode ter mais de um corretor ("Raquel e Escobar") e aparece nos dois. Item ganha `cor: [...]` no DATA; o card mostra "Empreendimento · Corretor". Corretor novo = acrescentar na `lista` (apelido curto, ex.: "Poli", em `apelidos`). Funções: `corretores(titulo, cfg["corretores"])` em gerar_painel.py.
