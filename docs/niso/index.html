@@ -205,7 +205,7 @@
 </div>
 
 <main class="wrap" id="lista"></main>
-<footer>Atualizado em 17/11/2026 às 11:22 a partir das pastas do Google Drive · ArestAgência</footer>
+<footer>Atualizado em 17/11/2026 às 11:36 a partir das pastas do Google Drive · ArestAgência</footer>
 
 <div class="lb" id="lb" role="dialog" aria-modal="true">
   <button class="lb-x" id="lbX" aria-label="Fechar">✕</button>
@@ -268,7 +268,7 @@ const conta=arr=>{const v=arr.filter(x=>x.tipo==='video').length,c=arr.filter(x=
   else if(EDICAO){const an=ms.map(m=>m.slice(0,4));$('#periodo').textContent=`${ms.length} edições · de ${an[0]} a ${an[an.length-1]}`}
   else $('#periodo').textContent=`${DATA.clientes.length>1&&!DATA.modo?DATA.clientes.length+' marcas · ':''}de ${mesLabel(ms[0])} a ${mesLabel(ms[ms.length-1])}`;
   const T=DATA.itens, nV=T.filter(x=>x.tipo==='video').length;  // totais contam também o destaque
-  $('#stats').innerHTML=[[T.length,T.length===1?'conteúdo':'conteúdos'],[nV,nV===1?'vídeo':'vídeos'],[T.length-nV-nCarr,T.length-nV-nCarr===1?'foto':'fotos']].concat(nCarr?[[nCarr,nCarr>1?'carrosséis':'carrossel']]:[]).concat(unico?[]:[[ms.length,EDICAO?'edições':'meses']]).map(([n,l])=>`<div class="stat"><b>${n}</b><span>${l}</span></div>`).join('');
+  $('#stats').innerHTML=[[T.length,T.length===1?'conteúdo':'conteúdos'],[nV,nV===1?'vídeo':'vídeos'],[T.length-nV-nCarr,T.length-nV-nCarr===1?'foto':'fotos']].concat(nCarr?[[nCarr,nCarr>1?'carrosséis':'carrossel']]:[]).concat(unico?[]:[[ms.length,EDICAO?'edições':'meses']]).filter(([n],k)=>k===0||n>0).map(([n,l])=>`<div class="stat"><b>${n}</b><span>${l}</span></div>`).join('');
 })();
 
 // ---------- filtros ----------

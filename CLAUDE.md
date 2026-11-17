@@ -208,3 +208,6 @@ Mesmo mecanismo (`categorias` com rotulo "Tópico" e `corretores` com rotulo "Qu
 ## Painel interno: subcategorias
 `gerar_hub.grupos(cfg)` usa `gerar_painel.montar(cfg)` (o mesmo DATA do painel) e mostra no card de cada cliente as subcategorias com link já filtrado: Marcas (Universa), Tipo de Sarau, Região/Empreendimento/Corretor (Equipe Prime), Tópico/Quem grava (Faber). Qualquer filtro novo num painel aparece aqui sozinho.
 Painel interno dividido em duas áreas: "Clientes Recorrentes" e "Clientes Freelancers". Padrão = recorrente; para freelancer, `"tipo_cliente": "freelancer"` no JSON do painel (ex.: raul-paola). Busca e ordenação valem para as duas áreas.
+
+## Universidade Tuiuti
+Drive: "Contrato N" (pasta-contêiner, o robô entra nela) > "NN. Tuiuti - Contrato N - Primeira Leva - Mês.AA" > (Verticais/Horizontais opcionais). Painel `tuiuti`: `filtro_pasta` {"rotulo":"Contrato","regex":"contrato\\s*\\d+"} lê o contrato do nome da pasta; `remover_titulo` tira "Tuiuti 2.2 - " do título. No Notion o cliente é "Universidade Tuiuti" e cada leva é um Serviço com o nome da pasta.
