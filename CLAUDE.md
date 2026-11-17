@@ -106,7 +106,9 @@ fotos do Drive, filtros por Cliente, Mês e tipo. Config em `paineis/<cliente>.j
 `clientes` (ordem dos filtros), `capa` (opcional: id de foto do Drive ou caminho no site, ex. `/capas/raul-paola-capa.jpg`; substitui o mosaico,
 mostrada inteira, sem corte, com o nome logo abaixo), `destaque` (opcional: lista de ids de vídeos 16:9 mostrados grandes, com player, acima da grade e fora
 dela) com `destaque_titulo` opcional (sem ele, só o vídeo) e
-`itens` (preenchido pelo robô). Painel com um mês só (freelancer) esconde sozinho o período, o filtro e o título de mês.
+`itens` (preenchido pelo robô). `agrupar_por: "edicao"` (Sarau): agrupa pela pasta da edição em vez do mês e troca o filtro de cliente
+pelo de linha (`linhas`, rótulo em `rotulo_clientes`), tirando a linha do começo do nome da pasta
+("After Secreto - Tonhão - Janeiro.24"). Painel com um mês só (freelancer) esconde sozinho o período, o filtro e o título de mês.
 
 Estrutura esperada no Drive: `raiz / [NN. ]Marca / N. Marca - Mês.AA / arquivos` (subpastas como `Fotos`
 são lidas). **Carrosséis:** uma subpasta cujo nome começa com "Carrossel" vira UM item `tipo: "carrossel"` com

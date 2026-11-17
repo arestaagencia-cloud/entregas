@@ -189,7 +189,7 @@
 </div>
 
 <main class="wrap" id="lista"></main>
-<footer>Atualizado em 17/11/2026 às 08:11 a partir das pastas do Google Drive · ArestAgência</footer>
+<footer>Atualizado em 17/11/2026 às 08:18 a partir das pastas do Google Drive · ArestAgência</footer>
 
 <div class="lb" id="lb" role="dialog" aria-modal="true">
   <button class="lb-x" id="lbX" aria-label="Fechar">✕</button>
@@ -214,14 +214,16 @@ const MESES=['Janeiro','Fevereiro','Março','Abril','Maio','Junho','Julho','Agos
 const CORES=DATA.cores;
 const thumb=(id,w)=>`https://drive.google.com/thumbnail?id=${id}&sz=w${w}`;
 const dl=id=>`https://drive.usercontent.google.com/download?id=${id}&export=download&confirm=t`;
-const mesLabel=ym=>{const[a,m]=ym.split('-');return `${MESES[+m-1]} ${a}`};
+const EDICAO=DATA.modo==='edicao';
+// no modo edição a chave é "AAAA-MM|Linha · Detalhe": mostra "Linha · Detalhe · Mês Ano"
+const mesLabel=ym=>{const[k,ed]=ym.split('|');const[a,m]=k.split('-');const d=`${MESES[+m-1]} ${a}`;return ed?`${ed} · ${d}`:d};
 const $=s=>document.querySelector(s);
 const esc=s=>s.replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
 const DESTAQUE=(DATA.destaque||[]).map(id=>DATA.itens.find(x=>x.id===id)).filter(Boolean);
 const I=DATA.itens.filter(x=>!DESTAQUE.includes(x));  // o vídeo em destaque fica fora da grade
 const capa=x=>x.capa||x.id;
 const nCarr=I.filter(x=>x.tipo==='carrossel').length;
-const conta=arr=>{const v=arr.filter(x=>x.tipo==='video').length,c=arr.filter(x=>x.tipo==='carrossel').length;return [`${v} vídeos`,`${arr.length-v-c} fotos`].concat(c?[`${c} ${c>1?'carrosséis':'carrossel'}`]:[]).join(' · ')};
+const conta=arr=>{const v=arr.filter(x=>x.tipo==='video').length,c=arr.filter(x=>x.tipo==='carrossel').length;const f=arr.length-v-c;return [v?`${v} ${v===1?'vídeo':'vídeos'}`:'',f?`${f} ${f===1?'foto':'fotos'}`:'',c?`${c} ${c>1?'carrosséis':'carrossel'}`:''].filter(Boolean).join(' · ')};
 
 // ---------- hero ----------
 (function(){
@@ -244,9 +246,10 @@ const conta=arr=>{const v=arr.filter(x=>x.tipo==='video').length,c=arr.filter(x=
   }
   // entrega de um mês só (ex.: freelancer): sem período, sem filtro de mês e sem título de mês
   if(unico){$('#periodo').hidden=true;$('#fMes').hidden=true;$('#lblMes').hidden=true;document.body.classList.add('mes-unico')}
+  else if(EDICAO){const an=ms.map(m=>m.slice(0,4));$('#periodo').textContent=`${ms.length} edições · de ${an[0]} a ${an[an.length-1]}`}
   else $('#periodo').textContent=`${DATA.clientes.length>1?DATA.clientes.length+' marcas · ':''}de ${mesLabel(ms[0])} a ${mesLabel(ms[ms.length-1])}`;
   const T=DATA.itens, nV=T.filter(x=>x.tipo==='video').length;  // totais contam também o destaque
-  $('#stats').innerHTML=[[T.length,T.length===1?'conteúdo':'conteúdos'],[nV,nV===1?'vídeo':'vídeos'],[T.length-nV-nCarr,T.length-nV-nCarr===1?'foto':'fotos']].concat(nCarr?[[nCarr,nCarr>1?'carrosséis':'carrossel']]:[]).concat(unico?[]:[[ms.length,'meses']]).map(([n,l])=>`<div class="stat"><b>${n}</b><span>${l}</span></div>`).join('');
+  $('#stats').innerHTML=[[T.length,T.length===1?'conteúdo':'conteúdos'],[nV,nV===1?'vídeo':'vídeos'],[T.length-nV-nCarr,T.length-nV-nCarr===1?'foto':'fotos']].concat(nCarr?[[nCarr,nCarr>1?'carrosséis':'carrossel']]:[]).concat(unico?[]:[[ms.length,EDICAO?'edições':'meses']]).map(([n,l])=>`<div class="stat"><b>${n}</b><span>${l}</span></div>`).join('');
 })();
 
 // ---------- filtros ----------
@@ -261,7 +264,7 @@ function renderFiltros(){
     .map(([v,l,n])=>`<button class="chip${st.cli===v?' on':''}" data-v="${esc(v)}">${v?`<span class="dot" style="background:${CORES[v]}"></span>`:''}${esc(l)}<small>${n}</small></button>`).join('');
   const bm=I.filter(x=>match(x,'mes'));
   const ms=[...new Set(I.map(x=>x.mes))].sort().reverse();
-  $('#fMes').innerHTML=`<option value="">Todos os meses (${bm.length})</option>`+ms.map(m=>{const n=bm.filter(x=>x.mes===m).length;return `<option value="${m}"${st.mes===m?' selected':''}${n?'':' disabled'}>${mesLabel(m)} (${n})</option>`}).join('');
+  $('#fMes').innerHTML=`<option value="">${EDICAO?'Todas as edições':'Todos os meses'} (${bm.length})</option>`+ms.map(m=>{const n=bm.filter(x=>x.mes===m).length;return `<option value="${m}"${st.mes===m?' selected':''}${n?'':' disabled'}>${mesLabel(m)} (${n})</option>`}).join('');
   document.querySelectorAll('#fTipo button').forEach(b=>b.classList.toggle('on',b.dataset.t===st.tipo));
   $('#reset').hidden=!(st.cli||st.mes||st.tipo);
 }
@@ -366,6 +369,7 @@ $('#lb').addEventListener('click',e=>{if(e.target.id==='lb')closeLb()});
 document.addEventListener('keydown',e=>{if(!$('#lb').classList.contains('open'))return;if(e.key==='Escape')closeLb();if(e.key==='ArrowRight'&&!irSlide(1))step(1);if(e.key==='ArrowLeft'&&!irSlide(-1))step(-1)});
 
 if(nCarr)$('#tCarr').hidden=false;
+if(EDICAO){$('#lblMes').textContent='Edição';const l=$('#fCli').closest('.row').querySelector('.lbl');if(l)l.textContent=DATA.rotulo_clientes||'Tipo'}
 if(DATA.clientes.length<2){$('#fCli').closest('.row').hidden=true;document.body.classList.add('uni')}
 readHash();update();
 </script>

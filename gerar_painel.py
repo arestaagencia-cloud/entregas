@@ -47,6 +47,10 @@ def titulo(nome, cliente):
     return t
 
 
+def norm_l(t):
+    return unicodedata.normalize("NFKD", t).encode("ascii", "ignore").decode().lower().strip()
+
+
 def main(caminho):
     cfg = json.loads(Path(caminho).read_text())
     rnd = random.Random(7)
@@ -62,6 +66,19 @@ def main(caminho):
             itens[-1]["capa"] = x["slides"][0]["id"]
             itens[-1]["titulo"] = re.sub(r"^carross[eé]l\s*\d*\s*[-.:]?\s*", "", x["nome"], flags=re.I).strip() or "Carrossel"
     dados = {"clientes": cfg["clientes"], "cores": cores, "itens": itens}
+    if cfg.get("agrupar_por") == "edicao":  # ex.: Sarau: agrupa por edição (pasta) e filtra por linha do evento
+        linhas_cfg = cfg.get("linhas", [])
+        for it, x in zip(itens, cfg["itens"]):
+            ed = re.sub(r"\s*\(.*?\)\s*$", "", x.get("servico") or x["cliente"])  # "… - Janeiro.26 (Não participamos)"
+            linha = ed.split(" - ")[0].strip()
+            linha = next((l for l in linhas_cfg if norm_l(l) == norm_l(linha)), linha)
+            detalhe = " - ".join(ed.split(" - ")[1:-1]) if ed.count(" - ") >= 2 else ""
+            it["cliente"] = linha
+            it["mes"] = f"{x['mes']}|{linha + (' · ' + detalhe if detalhe else '')}"  # chave ordena por data
+        presentes = {it["cliente"] for it in itens}
+        ordem = [l for l in linhas_cfg if l in presentes] + sorted(presentes - set(linhas_cfg))
+        dados.update({"clientes": ordem, "cores": {c: CORES[i % len(CORES)] for i, c in enumerate(ordem)},
+                      "modo": "edicao", "rotulo_clientes": cfg.get("rotulo_clientes", "Tipo")})
     for k in ("destaque", "destaque_titulo"):  # vídeo(s) em destaque acima da grade
         if cfg.get(k):
             dados[k] = cfg[k]

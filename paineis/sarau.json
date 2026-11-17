@@ -21807,5 +21807,14 @@
    "servico": "Sarau Secreto - Novembro.26",
    "pasta": "1UBEbu_LWvwX79zgvtPa6wMYmqQ5_RzqG"
   }
+ ],
+ "agrupar_por": "edicao",
+ "rotulo_clientes": "Tipo de Sarau",
+ "linhas": [
+  "Sarau Secreto",
+  "After Secreto",
+  "Sala Secreta",
+  "Sarau Original",
+  "Sarau Convida"
  ]
 }
