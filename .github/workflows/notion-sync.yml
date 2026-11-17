@@ -6,10 +6,6 @@ on:
         description: "Aplicar as mudanças (desmarcado = só prévia)"
         type: boolean
         default: false
-      renomear:
-        description: "Atualizar o Nome das páginas para o nome do arquivo no Drive"
-        type: boolean
-        default: false
 concurrency: notion-sync
 jobs:
   sync:
@@ -19,4 +15,4 @@ jobs:
       - name: Sincronizar
         env:
           NOTION_TOKEN: ${{ secrets.NOTION_TOKEN }}
-        run: python3 notion/sync_conteudos.py ${{ inputs.aplicar && '--aplicar' || '' }} ${{ inputs.renomear && '--renomear' || '' }}
+        run: python3 notion/sync_conteudos.py ${{ inputs.aplicar && '--aplicar' || '' }}
