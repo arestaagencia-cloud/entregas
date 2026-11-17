@@ -166,9 +166,11 @@ def main():
         por_nome.setdefault(norm(titulo_de(c)), []).append(c)
 
     # proporção dos vídeos (Reels x Vídeo Horizontal)
-    vids = [i["id"] for i in drive if i["tipo"] == "video"]
+    # usa o formato que o robô dos painéis já mediu (fmt); só mede o que faltar
+    orient = {i["id"]: i.get("fmt") for i in drive if i["tipo"] == "video"}
+    falta = [k for k, v in orient.items() if not v]
     with ThreadPoolExecutor(12) as ex:
-        orient = dict(zip(vids, ex.map(proporcao, vids)))
+        orient.update(zip(falta, ex.map(proporcao, falta)))
 
     usados, plano, avisos, sem_cliente, sem_servico = set(), [], [], set(), set()
     arquivar = {}
