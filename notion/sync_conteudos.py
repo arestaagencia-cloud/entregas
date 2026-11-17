@@ -20,7 +20,7 @@ from pathlib import Path
 RAIZ = Path(__file__).resolve().parent.parent
 TOKEN = os.environ.get("NOTION_TOKEN", "").strip()
 APLICAR = "--aplicar" in sys.argv
-RENOMEAR = "--renomear" in sys.argv  # uso pontual: o Nome das páginas casadas pelo Link passa a ser o nome do arquivo no Drive
+RENOMEAR = "--renomear" in sys.argv  # uso pontual e manual: renomeia TODAS as páginas casadas pelo Link para o nome do arquivo (cuidado: sobrescreve nomes padronizados no Notion)
 AUTO = "--auto" in sys.argv  # modo do robô: aplica sozinho, sem lixeira e com limite de segurança
 LIMITE_AUTO = 60
 DB = {"conteudos": "2f274a51-c09f-8017-9d90-d6e858355881",
