@@ -11,7 +11,7 @@
  "itens": [
   {
    "id": "1VVecoifNtAlDT0gwtr_CvF1SGr3GEwqv",
-   "nome": "Parque das Gardênia - Todos juntos apresentando.mov",
+   "nome": "F. Gardênias - Parque das Gardênia - Todos juntos apresentando - Equipe.mov",
    "tipo": "video",
    "cliente": "Equipe Prime",
    "mes": "2024-08",
@@ -31,7 +31,7 @@
   },
   {
    "id": "1mjvU3q10vcc_-FwCbSRi2WXQuirrB7ZP",
-   "nome": "F. Decorado 4 quartos - Convite - Roger.mp4",
+   "nome": "F. Noroeste · Geral - Decorado 4 quartos - Roger.mp4",
    "tipo": "video",
    "cliente": "Equipe Prime",
    "mes": "2024-08",
@@ -111,7 +111,7 @@
   },
   {
    "id": "1qTqb9L-c7VWBz5NotHYOeJ99XptkVUWo",
-   "nome": "F. Res. Turmalina 02 v.3.mp4",
+   "nome": "F. Turmalina - Ultimas Unidades - V.3 - Selma Moreira.mp4",
    "tipo": "video",
    "cliente": "Equipe Prime",
    "mes": "2024-09",
@@ -211,7 +211,7 @@
   },
   {
    "id": "1dsHzSCi1To_Ps5l2XZY4HR1-1c5sGqA0",
-   "nome": "F. Não tenho paciência para comprar na planta - Raquel.mov",
+   "nome": "F. Geral - Não tenho paciência para comprar na planta - Raquel.mov",
    "tipo": "video",
    "cliente": "Equipe Prime",
    "mes": "2024-11",
@@ -281,7 +281,7 @@
   },
   {
    "id": "12GeCr87aSbzc09nd5Yj-R06ljTjAO9O0",
-   "nome": "F. Opções para Comprar e Investir - Andréia v.3.mov",
+   "nome": "F. Geral - Opções para Comprar e Investir v.3 - Andréia.mov",
    "tipo": "video",
    "cliente": "Equipe Prime",
    "mes": "2025-04",
@@ -341,7 +341,17 @@
   },
   {
    "id": "1Hod47X6xi4n5kwVhBSCZFGEqTNb0aaHE",
-   "nome": "Apartamentos no Noroeste - Geral - Poliane.mov",
+   "nome": "F. Noroeste · Geral - Apartamentos no Noroeste - Poliane.mov",
+   "tipo": "video",
+   "cliente": "Equipe Prime",
+   "mes": "2025-04",
+   "servico": "Equipe Prime - Abril.25",
+   "pasta": "1RDApDSpT7jeLHN67_rwZLB8TVrM8m-LN",
+   "fmt": "v"
+  },
+  {
+   "id": "1KNkic6VExA7p3uA2VXVOPaLjU8F5bLen",
+   "nome": "F. Parque das Palmeiras e Figueiras - Regressiva - Chárina v.2.3.mov",
    "tipo": "video",
    "cliente": "Equipe Prime",
    "mes": "2025-04",
@@ -401,7 +411,7 @@
   },
   {
    "id": "1VzmR3CzxGinxAl2u823oRFzvcFqa_bFP",
-   "nome": "F. Anúncio Emplavi - Chárina.mov",
+   "nome": "F. Noroeste · Geral - Anúncio Emplavi - Chárina.mov",
    "tipo": "video",
    "cliente": "Equipe Prime",
    "mes": "2025-04",
@@ -451,7 +461,7 @@
   },
   {
    "id": "1xf-Gq-BLShw8rM6foVCfZ0pXo14W4-Is",
-   "nome": "F. Conversa de Corretor v.2.mov",
+   "nome": "F. Prestige - Conversa de Corretor v.2 - Equipe.mov",
    "tipo": "video",
    "cliente": "Equipe Prime",
    "mes": "2025-04",
@@ -471,7 +481,7 @@
   },
   {
    "id": "104misJNZJ9ldKOKP2gijOlpS3kvlp6Xk",
-   "nome": "F. Lançamento - Quadra 5050 Centro das Atenções - Francineide v.2.mov",
+   "nome": "F. Sudoeste · Geral - Lançamento - Quadra 5050 Centro das Atenções v.2 - Francineide.mov",
    "tipo": "video",
    "cliente": "Equipe Prime",
    "mes": "2025-05",
@@ -561,7 +571,7 @@
   },
   {
    "id": "1WGbJ2nJRdkQEMm-9XX_WqNb_4QdI9NsL",
-   "nome": "F. Quadra 500 - Você sempre soube o que queria - Poli v.3.mov",
+   "nome": "F. Sudoeste · Geral - Quadra 500 - Você sempre soube o que queria v.3 - Poliane.mov",
    "tipo": "video",
    "cliente": "Equipe Prime",
    "mes": "2025-05",
@@ -661,7 +671,7 @@
   },
   {
    "id": "1b60zbYELE1W8bDQWOht8qtU7qGLov_-r",
-   "nome": "F. Geral - Comemoração 1 Ano de Equipe Prime v.4.mov",
+   "nome": "F. Geral - Comemoração 1 Ano de Equipe Prime v.4 - Equipe.mov",
    "tipo": "video",
    "cliente": "Equipe Prime",
    "mes": "2025-06",
@@ -851,7 +861,7 @@
   },
   {
    "id": "1G_tqgMgRUpI6ROV0WOSVPMr_fiHEn9UR",
-   "nome": "F. Dia do Corretor v.7.mov",
+   "nome": "F. Geral - Dia do Corretor v.7 - Equipe.mov",
    "tipo": "video",
    "cliente": "Equipe Prime",
    "mes": "2025-08",
@@ -891,7 +901,7 @@
   },
   {
    "id": "1-w4sbFFATrz4DrhyKHCH0FZHgU2haPCB",
-   "nome": "F. Cedros - Consultoria Imobiliária.mov",
+   "nome": "F. Cedros - Consultoria Imobiliária - Equipe.mov",
    "tipo": "video",
    "cliente": "Equipe Prime",
    "mes": "2025-09",
@@ -941,7 +951,7 @@
   },
   {
    "id": "1191d6c43ymbDCFAOEQ2NpwsxdA7466IY",
-   "nome": "F. Planta ou Pronto - 1- Paula - V.1.mov",
+   "nome": "F. Geral - Planta ou Pronto - 1 - V.1 - Paula.mov",
    "tipo": "video",
    "cliente": "Equipe Prime",
    "mes": "2025-10",
@@ -961,7 +971,7 @@
   },
   {
    "id": "17RccFuk_gGFrZk9rNKzTo67_XCqHPGcn",
-   "nome": "F. Valorização - História Cliente - Paula V.1.mov",
+   "nome": "F. Guará · Geral - Valorização - História Cliente V.1 - Paula.mov",
    "tipo": "video",
    "cliente": "Equipe Prime",
    "mes": "2025-10",
@@ -1011,7 +1021,7 @@
   },
   {
    "id": "1fF8ou7GVwXg3ihpEEKVxk3Lk-9fxAKqv",
-   "nome": "F. Decorado - Tour Lifestyle - Alvaro V.1.mov",
+   "nome": "F. Geral - Decorado - Tour Lifestyle V.1 - Álvaro.mov",
    "tipo": "video",
    "cliente": "Equipe Prime",
    "mes": "2025-10",
@@ -1191,7 +1201,7 @@
   },
   {
    "id": "18ZPgG2w8bduOAFIvHvJlM_6c06FT6Xo4",
-   "nome": "F. EPrime - Projeção nascente - Paula - V.3.mov",
+   "nome": "F. Oliveiras - EPrime - Projeção nascente - V.3 - Paula.mov",
    "tipo": "video",
    "cliente": "Equipe Prime",
    "mes": "2026-02",
@@ -1241,7 +1251,7 @@
   },
   {
    "id": "1eJIrYc7AuDyIEuARX9gnvPG-w_VGYZ-V",
-   "nome": "F. EPrime - Amigas Café - Paula - V.2.mov",
+   "nome": "F. Oliveiras - EPrime - Amigas Café - V.2 - Paula.mov",
    "tipo": "video",
    "cliente": "Equipe Prime",
    "mes": "2026-02",
@@ -1301,7 +1311,7 @@
   },
   {
    "id": "18hAPRe_G5MifCqYIoCoe4f0TGUiQiapo",
-   "nome": "F. Lançamentos - Por si só - Raquel - V.2.mov",
+   "nome": "F. Sudoeste · Geral - Lançamentos - Por si só - V.2 - Raquel.mov",
    "tipo": "video",
    "cliente": "Equipe Prime",
    "mes": "2026-03",
@@ -1311,7 +1321,7 @@
   },
   {
    "id": "1CaA1qOCLv4GPp0qmg4lu8_PPH2VPawls",
-   "nome": "F. - Lançamento - P. Oliveiras - V.2.mov",
+   "nome": "F. Oliveiras - Lançamento - P. Oliveiras - V.2 - Marjorie.mov",
    "tipo": "video",
    "cliente": "Equipe Prime",
    "mes": "2026-03",
@@ -1401,7 +1411,7 @@
   },
   {
    "id": "1mAEByPILmt1R11BSMC9an0cgB63xE_Tf",
-   "nome": "F. Primeira Vista - Poli- V.2.mov",
+   "nome": "F. Geral - Primeira Vista - V.2 - Poliane.mov",
    "tipo": "video",
    "cliente": "Equipe Prime",
    "mes": "2026-03",
@@ -1411,7 +1421,7 @@
   },
   {
    "id": "1tvAABNgMxT1Q0nAxUWgaiPxEnmNDUfIt",
-   "nome": "F. - Inglês - Marjorie - V.2.mov",
+   "nome": "F. Geral - Inglês - V.2 - Marjorie.mov",
    "tipo": "video",
    "cliente": "Equipe Prime",
    "mes": "2026-03",
@@ -1421,7 +1431,7 @@
   },
   {
    "id": "18MiBczrUDRZd_TPY_qlbAD3tb5610eWH",
-   "nome": "F. Equipe Prime - Premiação Abril. Geral - V.3.mov",
+   "nome": "F. Geral - Equipe Prime - Premiação Abril. Geral - V.3 - Equipe.mov",
    "tipo": "video",
    "cliente": "Equipe Prime",
    "mes": "2026-04",
@@ -1461,7 +1471,7 @@
   },
   {
    "id": "1QRpTFdwc9nK8guxomUHybkUqbzM9uJly",
-   "nome": "Carrossel - Premiação",
+   "nome": "C. Geral - Premiação - Equipe",
    "tipo": "carrossel",
    "cliente": "Equipe Prime",
    "mes": "2026-04",
@@ -1520,7 +1530,7 @@
   },
   {
    "id": "1RKw-a5hf_DTZ6Niod0BBPGzoHW1DFPeA",
-   "nome": "F. Reunião de Time - Equipe Prime - Geral - V.3.mov",
+   "nome": "F. Geral - Reunião de Time - Equipe Prime - Geral - V.3 - Equipe.mov",
    "tipo": "video",
    "cliente": "Equipe Prime",
    "mes": "2026-04",
@@ -1530,7 +1540,7 @@
   },
   {
    "id": "1ZGXderzmnwvW8ieq11fSA8SGDkuvXzHi",
-   "nome": "F. Poli. Eu acho chique - v.1.mov",
+   "nome": "F. Geral - Poli. Eu acho chique - v.1 - Poliane.mov",
    "tipo": "video",
    "cliente": "Equipe Prime",
    "mes": "2026-04",
@@ -1540,7 +1550,7 @@
   },
   {
    "id": "1iegRycHNbBliUo-RivSRra2MSELMjgma",
-   "nome": "Brasília onde arquitetura, planejamento e grandes oportunidades se encontram. 🏙️✨.png",
+   "nome": "F. Geral - Brasília onde arquitetura, planejamento e grandes oportunidades se encontram. 🏙️✨ - Equipe.png",
    "tipo": "foto",
    "cliente": "Equipe Prime",
    "mes": "2026-04",
@@ -1690,7 +1700,7 @@
   },
   {
    "id": "1bxTvfESNCMLMZAnuNDVu0Ct11DF72FZE",
-   "nome": "Carrossel 2 - Entrevistas",
+   "nome": "C. Âmbar - Carrossel 2 - Entrevistas - Equipe",
    "tipo": "carrossel",
    "cliente": "Equipe Prime",
    "mes": "2026-06",
@@ -1729,7 +1739,7 @@
   },
   {
    "id": "1cJncRjiwSTlb5AUgtW4nMdV9zQxxdOBq",
-   "nome": "Carrossel 1 - Entrevistas",
+   "nome": "C. Âmbar - Carrossel 1 - Entrevistas - Equipe",
    "tipo": "carrossel",
    "cliente": "Equipe Prime",
    "mes": "2026-06",
@@ -1818,7 +1828,7 @@
   },
   {
    "id": "1ySPJUF4SZUhlZzY8Jy9bkKOlwAZfaomF",
-   "nome": "5525262d-c49f-4a99-8de9-496eddea5143.jpg",
+   "nome": "F. Geral - 5525262d-c49f-4a99-8de9-496eddea5143 - Andréia.jpg",
    "tipo": "foto",
    "cliente": "Equipe Prime",
    "mes": "2026-06",
@@ -1908,7 +1918,7 @@
   },
   {
    "id": "1scWUzHi1U70Qme5TTwFLqeiGRvKnoIyA",
-   "nome": "T. Paula - Você já parou para pensar . V.1.png",
+   "nome": "T. Âmbar - Você já parou para pensar . V.1 - Paula.png",
    "tipo": "foto",
    "cliente": "Equipe Prime",
    "mes": "2026-07",
@@ -1928,7 +1938,7 @@
   },
   {
    "id": "1-cbLYBvr-YBWTbxXRXJEa63Fjk_xYxIH",
-   "nome": "Paula 2.JPG",
+   "nome": "F. Geral - Paula 2 - Paula.JPG",
    "tipo": "foto",
    "cliente": "Equipe Prime",
    "mes": "2026-09",
@@ -1958,7 +1968,7 @@
   },
   {
    "id": "11QQqUZsld3KKUjIn5SGFKuKyWEolR3E2",
-   "nome": "11.png",
+   "nome": "F. Ametista - 11 - Rodrigo.png",
    "tipo": "foto",
    "cliente": "Equipe Prime",
    "mes": "2026-09",
@@ -1988,7 +1998,7 @@
   },
   {
    "id": "197mR3bN0Mj-f0AY96F1l0XvA874p7Lya",
-   "nome": "2.png",
+   "nome": "F. Geral - 2 - Marjorie.png",
    "tipo": "foto",
    "cliente": "Equipe Prime",
    "mes": "2026-09",
@@ -1998,7 +2008,7 @@
   },
   {
    "id": "1D9UypTUEV0xB2jiMjn21DAe9GN_Mbzxa",
-   "nome": "8.png",
+   "nome": "F. Geral - 8 - Thiago.png",
    "tipo": "foto",
    "cliente": "Equipe Prime",
    "mes": "2026-09",
@@ -2008,7 +2018,7 @@
   },
   {
    "id": "1FrHGFUb4P9R8M0ivZ56R7oT99gXcdFeI",
-   "nome": "1.png",
+   "nome": "F. Geral - 1 - Álvaro.png",
    "tipo": "foto",
    "cliente": "Equipe Prime",
    "mes": "2026-09",
@@ -2018,7 +2028,7 @@
   },
   {
    "id": "1MNxSNn8H47YCSefPSjai2qDMjX1CjBQu",
-   "nome": "7.png",
+   "nome": "F. Sudoeste · Geral - 7 - Paula.png",
    "tipo": "foto",
    "cliente": "Equipe Prime",
    "mes": "2026-09",
@@ -2028,7 +2038,7 @@
   },
   {
    "id": "1PGx1knSDYMSBGoSCOIMI3NRLDB-2XpsT",
-   "nome": "10.png",
+   "nome": "F. Ágata - 10 - Marjorie.png",
    "tipo": "foto",
    "cliente": "Equipe Prime",
    "mes": "2026-09",
@@ -2058,7 +2068,7 @@
   },
   {
    "id": "1XKX7BP3IDsVD-4lxB3d8o-V4nmHkkd5m",
-   "nome": "12.png",
+   "nome": "F. Ametista - 12 - Poliane.png",
    "tipo": "foto",
    "cliente": "Equipe Prime",
    "mes": "2026-09",
@@ -2068,7 +2078,7 @@
   },
   {
    "id": "1YoZxJiLXU0YzqnNYzKLxty0xasQhJUFX",
-   "nome": "FX301283.jpg",
+   "nome": "F. Geral - FX301283 - Paula.jpg",
    "tipo": "foto",
    "cliente": "Equipe Prime",
    "mes": "2026-09",
@@ -2088,7 +2098,7 @@
   },
   {
    "id": "1aqW-qbfCQbFNz0GcwrPluGsfknEE-hGW",
-   "nome": "3.png",
+   "nome": "F. Rubi - 3 - Paula.png",
    "tipo": "foto",
    "cliente": "Equipe Prime",
    "mes": "2026-09",
@@ -2098,7 +2108,7 @@
   },
   {
    "id": "1b-thpMGF0wtwdpXM_E46O_-KYk_LTXSb",
-   "nome": "5.png",
+   "nome": "F. Esmeralda - 5 - Poliane.png",
    "tipo": "foto",
    "cliente": "Equipe Prime",
    "mes": "2026-09",
@@ -2108,7 +2118,7 @@
   },
   {
    "id": "1cMP2WuSIxzM3wqmnwzW5X4Z80eo-nCVm",
-   "nome": "9.png",
+   "nome": "F. Geral - 9 - Marjorie.png",
    "tipo": "foto",
    "cliente": "Equipe Prime",
    "mes": "2026-09",
@@ -2128,7 +2138,7 @@
   },
   {
    "id": "1hcOn_PQLX0veZRAlIeEJ434iJe5WY8yJ",
-   "nome": "6.png",
+   "nome": "F. Diamante - 6 - Poliane.png",
    "tipo": "foto",
    "cliente": "Equipe Prime",
    "mes": "2026-09",
@@ -2148,7 +2158,7 @@
   },
   {
    "id": "1jx7mhzZx7OPndbZvh-2iqvbXfGgR0pVg",
-   "nome": "Paula 1.JPG",
+   "nome": "F. Geral - Paula 1 - Paula.JPG",
    "tipo": "foto",
    "cliente": "Equipe Prime",
    "mes": "2026-09",
@@ -2188,7 +2198,7 @@
   },
   {
    "id": "1qqLKnSP7X4gSAsPAkfI90EUesG9uMLd-",
-   "nome": "4.png",
+   "nome": "F. Geral - 4 - Álvaro.png",
    "tipo": "foto",
    "cliente": "Equipe Prime",
    "mes": "2026-09",
@@ -2238,7 +2248,7 @@
   },
   {
    "id": "16ueG7VMc__lj2X5E9q5xSH9M7Z33v69R",
-   "nome": "F. Poliane 03.mov",
+   "nome": "F. Ilha Bela - Poliane 03 - Poliane.mov",
    "tipo": "video",
    "cliente": "Equipe Prime",
    "mes": "2026-11",
@@ -2298,7 +2308,7 @@
   },
   {
    "id": "1zOwF6M4ROWuM-r_qw9nwKry_0v3AasJO",
-   "nome": "F. Poliane 02.mov",
+   "nome": "F. Ilha Bela - Poliane 02 - Poliane.mov",
    "tipo": "video",
    "cliente": "Equipe Prime",
    "mes": "2026-11",

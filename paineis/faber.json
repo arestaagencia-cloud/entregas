@@ -11,7 +11,7 @@
  "itens": [
   {
    "id": "12C7W29Vr-aVGAwf9WcphEF0CisG3lQr-",
-   "nome": "F. Benefício Antecipado.mov",
+   "nome": "F. Ortodontia - Benefício Antecipado - Dr. Jorge.mov",
    "tipo": "video",
    "cliente": "Clínica Faber",
    "mes": "2023-12",
@@ -21,7 +21,7 @@
   },
   {
    "id": "15LU9wYz7JJXZz9z0_ExdFr3QJqL5V4fP",
-   "nome": "F. Existe Limite de Idade para Odontologia.mov",
+   "nome": "F. Ortodontia - Existe Limite de Idade para Odontologia - Dr. Jorge.mov",
    "tipo": "video",
    "cliente": "Clínica Faber",
    "mes": "2023-12",
@@ -31,7 +31,7 @@
   },
   {
    "id": "15UfA6Etc_hcR9BMRnsIuuGFfarItPONC",
-   "nome": "F. Apresentando a Vânia.mov",
+   "nome": "F. Geral - Apresentando a Vânia - Dra. Vânia.mov",
    "tipo": "video",
    "cliente": "Clínica Faber",
    "mes": "2023-12",
@@ -41,7 +41,7 @@
   },
   {
    "id": "19qNF0lNRdL-ugdOG2ypQZRMqG06fEO3I",
-   "nome": "F. Renovação.mov",
+   "nome": "F. Geral - Renovação - Dr. Jorge.mov",
    "tipo": "video",
    "cliente": "Clínica Faber",
    "mes": "2023-12",
@@ -51,7 +51,7 @@
   },
   {
    "id": "19s4XN7vJtMFwrkBcCEzuIKuMyZxyCzUc",
-   "nome": "F. Natal!.mov",
+   "nome": "F. Geral - Natal! - Dr. Jorge.mov",
    "tipo": "video",
    "cliente": "Clínica Faber",
    "mes": "2023-12",
@@ -61,7 +61,7 @@
   },
   {
    "id": "1BiqDE4Db5jVBnCQxti62IU-HaIdJucjr",
-   "nome": "F. O que é o Invisalign.mov",
+   "nome": "F. Alinhadores - O que é o Invisalign - Dr. Jorge.mov",
    "tipo": "video",
    "cliente": "Clínica Faber",
    "mes": "2023-12",
@@ -71,7 +71,7 @@
   },
   {
    "id": "1D9rd5AfZNODQdFpXo9ESAZCeu5_9y9Dy",
-   "nome": "F. Paz 2024.mov",
+   "nome": "F. Geral - Paz 2024 - Dr. Jorge.mov",
    "tipo": "video",
    "cliente": "Clínica Faber",
    "mes": "2023-12",
@@ -81,7 +81,7 @@
   },
   {
    "id": "1DsFYxWSeSP6Nsdgpn_2jNTDiDM6m3lit",
-   "nome": "F. Importancia da Arte na Odontologia.mov",
+   "nome": "F. Geral - Importancia da Arte na Odontologia - Dr. Jorge.mov",
    "tipo": "video",
    "cliente": "Clínica Faber",
    "mes": "2023-12",
@@ -91,7 +91,7 @@
   },
   {
    "id": "1KldzsxrEHhh6TPU4CMai15dhp5ODME63",
-   "nome": "F. Porque Apneia.mov",
+   "nome": "F. Apneia do Sono - Porque Apneia - Dr. Jorge.mov",
    "tipo": "video",
    "cliente": "Clínica Faber",
    "mes": "2023-12",
@@ -101,7 +101,7 @@
   },
   {
    "id": "1RqFjvHGH3jjryBTEIA3WNjD-mMfTPCwq",
-   "nome": "F. Viver melhor e sorrir.mov",
+   "nome": "F. Estética - Viver melhor e sorrir - Dr. Jorge.mov",
    "tipo": "video",
    "cliente": "Clínica Faber",
    "mes": "2023-12",
@@ -111,7 +111,7 @@
   },
   {
    "id": "1T_A05duvti-6UevLbtkmtYLeP4_YrGuw",
-   "nome": "F. Alinhadores Funcionam como Aparelho Fixo.mov",
+   "nome": "F. Alinhadores - Alinhadores Funcionam como Aparelho Fixo - Dr. Jorge.mov",
    "tipo": "video",
    "cliente": "Clínica Faber",
    "mes": "2023-12",
@@ -121,7 +121,7 @@
   },
   {
    "id": "1UX5mzan7JYz7EqiCxuL_8evpJjlUpZiX",
-   "nome": "F. Sul Africano.mp4",
+   "nome": "F. Na Mídia - Sul Africano - Dr. Jorge.mp4",
    "tipo": "video",
    "cliente": "Clínica Faber",
    "mes": "2023-12",
@@ -131,7 +131,7 @@
   },
   {
    "id": "1Uz94AegUhILhO70RSu_L5qEzIbrVeIZ9",
-   "nome": "F. Sul Africano.mov",
+   "nome": "F. Na Mídia - Sul Africano - Dr. Jorge.mov",
    "tipo": "video",
    "cliente": "Clínica Faber",
    "mes": "2023-12",
@@ -141,7 +141,7 @@
   },
   {
    "id": "1fmLp4yUht8bVJ7ZRnXOkhcVPfITfESTh",
-   "nome": "F. Laser Duda.mov",
+   "nome": "F. Ortodontia - Laser Duda - Dra. Duda.mov",
    "tipo": "video",
    "cliente": "Clínica Faber",
    "mes": "2023-12",
@@ -151,7 +151,7 @@
   },
   {
    "id": "1odoixhBrSn4ePEHg_XiKjtYv5-OjeQTJ",
-   "nome": "F. Caso da Clarice.mov",
+   "nome": "F. Ortodontia - Caso da Clarice - Dra. Clarisse.mov",
    "tipo": "video",
    "cliente": "Clínica Faber",
    "mes": "2023-12",
@@ -161,7 +161,7 @@
   },
   {
    "id": "1sIvB-g3xUo8t_Nf2kFdxtUIiToi3E5kp",
-   "nome": "F. Dentes Fora do Lugar.mov",
+   "nome": "F. Alinhadores - Dentes Fora do Lugar - Dr. Jorge.mov",
    "tipo": "video",
    "cliente": "Clínica Faber",
    "mes": "2023-12",
@@ -171,7 +171,7 @@
   },
   {
    "id": "10ZvHSCZVTg_kRmaxYuaNRvcrCGQPUAHu",
-   "nome": "F. Zen Appliance.mov",
+   "nome": "F. Alinhadores - Zen Appliance - Dr. Jorge.mov",
    "tipo": "video",
    "cliente": "Clínica Faber",
    "mes": "2024-01",
@@ -181,7 +181,7 @@
   },
   {
    "id": "12BLv1tYPRZRYSIgJZ9EfMC3ybKI5ncIq",
-   "nome": "F. Você prefere Invisalign ou Aparelho Fixo.mov",
+   "nome": "F. Alinhadores - Você prefere Invisalign ou Aparelho Fixo - Dr. Jorge.mov",
    "tipo": "video",
    "cliente": "Clínica Faber",
    "mes": "2024-01",
@@ -191,7 +191,7 @@
   },
   {
    "id": "12WtmnrW6xsshf_UeH0O6tWBV5sGaPyY-",
-   "nome": "F. A perda Óssea.mov",
+   "nome": "F. Ortodontia - A perda Óssea - Dr. Jorge.mov",
    "tipo": "video",
    "cliente": "Clínica Faber",
    "mes": "2024-01",
@@ -201,7 +201,7 @@
   },
   {
    "id": "13Eh5lR6st3V_Lgq95jCCMW6w_2D-sJpn",
-   "nome": "F. O que é o bruxismo 2.mov",
+   "nome": "F. Bruxismo - O que é o bruxismo 2 - Dr. Jorge.mov",
    "tipo": "video",
    "cliente": "Clínica Faber",
    "mes": "2024-01",
@@ -211,7 +211,7 @@
   },
   {
    "id": "14SBatNehkREg8SyZhimJ8bx76XC3u5NE",
-   "nome": "F. Tempo ideal para tratar.mov",
+   "nome": "F. Ortodontia - Tempo ideal para tratar - Dr. Jorge.mov",
    "tipo": "video",
    "cliente": "Clínica Faber",
    "mes": "2024-01",
@@ -221,7 +221,7 @@
   },
   {
    "id": "19_pj0wLk5e0qtMo9Ch6IAv2-Pkhywtue",
-   "nome": "F. Depoimento 01.mov",
+   "nome": "F. Ortodontia - Depoimento 01 - Paciente.mov",
    "tipo": "video",
    "cliente": "Clínica Faber",
    "mes": "2024-01",
@@ -231,7 +231,7 @@
   },
   {
    "id": "1CLJnr_nZKZscWN24xSIl1HxvcZIWXbGy",
-   "nome": "F. Perigos do Bruxismo.mov",
+   "nome": "F. Bruxismo - Perigos do Bruxismo - Dr. Jorge.mov",
    "tipo": "video",
    "cliente": "Clínica Faber",
    "mes": "2024-01",
@@ -241,7 +241,7 @@
   },
   {
    "id": "1DkiMEwGycD1FAkUF3TK5y8Gkx4w_fdi-",
-   "nome": "F. Depoimento Silvana Paixão.mov",
+   "nome": "F. Geral - Depoimento Silvana Paixão - Paciente.mov",
    "tipo": "video",
    "cliente": "Clínica Faber",
    "mes": "2024-01",
@@ -251,7 +251,7 @@
   },
   {
    "id": "1F5eczAYrXQeAp7PSEdSW4rFWU1Eircep",
-   "nome": "F. Depoimento Pedro Farias.mov",
+   "nome": "F. Geral - Depoimento Pedro Farias - Paciente.mov",
    "tipo": "video",
    "cliente": "Clínica Faber",
    "mes": "2024-01",
@@ -261,7 +261,7 @@
   },
   {
    "id": "1IVmxxiZs0YZlGMJGJOUFNm8j9DxnDsr0",
-   "nome": "F. Qual a melhor hora de tratar a apneia do sono.mov",
+   "nome": "F. Apneia do Sono - Qual a melhor hora de tratar a apneia do sono - Dr. Jorge.mov",
    "tipo": "video",
    "cliente": "Clínica Faber",
    "mes": "2024-01",
@@ -271,7 +271,7 @@
   },
   {
    "id": "1LR29ZrkfWWjwH22pEqsbQv60r7Yzr1zb",
-   "nome": "F. Passarinho cai do ninho.mov",
+   "nome": "F. Apneia do Sono - Passarinho cai do ninho - Dr. Jorge.mov",
    "tipo": "video",
    "cliente": "Clínica Faber",
    "mes": "2024-01",
@@ -281,7 +281,7 @@
   },
   {
    "id": "1LbuFizuKXPlcectNTkf2u2p89ew8I-B9",
-   "nome": "F. Premiação 02.mov",
+   "nome": "F. Na Mídia - Premiação 02 - Dr. Jorge.mov",
    "tipo": "video",
    "cliente": "Clínica Faber",
    "mes": "2024-01",
@@ -291,7 +291,7 @@
   },
   {
    "id": "1MT_Puy5t1M5KspxrngWLadcFji8MNXa1",
-   "nome": "F. Você dorme mal, deveria consultar um dentista.mov",
+   "nome": "F. Apneia do Sono - Você dorme mal, deveria consultar um dentista - Dra. Patrícia.mov",
    "tipo": "video",
    "cliente": "Clínica Faber",
    "mes": "2024-01",
@@ -301,7 +301,7 @@
   },
   {
    "id": "1PyJrmZUzVeHrP0S0Lh9Zgha3ZVZNfW7t",
-   "nome": "F. Passarinho cai do ninho - 62.56.jpg",
+   "nome": "F. Apneia do Sono - Passarinho cai do ninho - Dr. Jorge.jpg",
    "tipo": "foto",
    "cliente": "Clínica Faber",
    "mes": "2024-01",
@@ -311,7 +311,7 @@
   },
   {
    "id": "1QxzvB4l4m7C70bHinRMmYlyLF3yjpKlj",
-   "nome": "F. Qual a hora certa de trocar as escovas de dentes.mov",
+   "nome": "F. Geral - Qual a hora certa de trocar as escovas de dentes - Dra. Marília.mov",
    "tipo": "video",
    "cliente": "Clínica Faber",
    "mes": "2024-01",
@@ -321,7 +321,7 @@
   },
   {
    "id": "1RGANRMKjH2H6NY4nFj6S_IiOrrILcWCy",
-   "nome": "F. Diastema.mov",
+   "nome": "F. Ortodontia - Diastema - Dr. Jorge.mov",
    "tipo": "video",
    "cliente": "Clínica Faber",
    "mes": "2024-01",
@@ -331,7 +331,7 @@
   },
   {
    "id": "1RSTfN6sawfpbIPdZX5SxNrZol09E283r",
-   "nome": "F. Usos do Invisalign.mov",
+   "nome": "F. Alinhadores - Usos do Invisalign - Dr. Jorge.mov",
    "tipo": "video",
    "cliente": "Clínica Faber",
    "mes": "2024-01",
@@ -341,7 +341,7 @@
   },
   {
    "id": "1RWyr2ew9GHZO_IwhPXpJC4F_ZD0KmCi8",
-   "nome": "F. Depoimento Duda Reta Final.mov",
+   "nome": "F. Geral - Depoimento Duda Reta Final - Dra. Duda.mov",
    "tipo": "video",
    "cliente": "Clínica Faber",
    "mes": "2024-01",
@@ -351,7 +351,7 @@
   },
   {
    "id": "1T14JGOT7h5lVX2ptA58VTOhbCK3_X2xQ",
-   "nome": "F. Depoimento 02.mov",
+   "nome": "F. Apneia do Sono - Depoimento 02 - Paciente.mov",
    "tipo": "video",
    "cliente": "Clínica Faber",
    "mes": "2024-01",
@@ -361,7 +361,7 @@
   },
   {
    "id": "1T_pUMadbf_clJboPr3GvGEgtb5DUpoN5",
-   "nome": "F. Qual o clareamento certo.mov",
+   "nome": "F. Clareamento - Qual o clareamento certo - Dra. Marília.mov",
    "tipo": "video",
    "cliente": "Clínica Faber",
    "mes": "2024-01",
@@ -371,7 +371,7 @@
   },
   {
    "id": "1UjB801XVXXKVBuVueC041636ARmmtSqw",
-   "nome": "F. Depoimento Joyce Camila.mov",
+   "nome": "F. Geral - Depoimento Joyce Camila - Paciente.mov",
    "tipo": "video",
    "cliente": "Clínica Faber",
    "mes": "2024-01",
@@ -381,7 +381,7 @@
   },
   {
    "id": "1VaZblmCLG1lgaOUqc1vxT42uMpP0P-ei",
-   "nome": "F. Bruxismo e DTM são a mesma coisa.mov",
+   "nome": "F. Bruxismo - Bruxismo e DTM são a mesma coisa - Dr. Jorge.mov",
    "tipo": "video",
    "cliente": "Clínica Faber",
    "mes": "2024-01",
@@ -391,7 +391,7 @@
   },
   {
    "id": "1Wdb1fJrVoCBBOLp2LNIvB9bGxvAjBWIo",
-   "nome": "F. Depoimento Lucas Ianagi.mov",
+   "nome": "F. Geral - Depoimento Lucas Ianagi - Paciente.mov",
    "tipo": "video",
    "cliente": "Clínica Faber",
    "mes": "2024-01",
@@ -401,7 +401,7 @@
   },
   {
    "id": "1cRx-VnwtK8Z36X1DlQfoOpYEYt3dAY5v",
-   "nome": "F. Você ou alguém da sua família ronca.mov",
+   "nome": "F. Apneia do Sono - Você ou alguém da sua família ronca - Dra. Patrícia.mov",
    "tipo": "video",
    "cliente": "Clínica Faber",
    "mes": "2024-01",
@@ -411,7 +411,7 @@
   },
   {
    "id": "1koH86MprClxQCpHzaYCAG5FF0k4K0CGG",
-   "nome": "F. Aula na Califórnia em 3 Semanas.mov",
+   "nome": "F. Na Mídia - Aula na Califórnia em 3 Semanas - Dr. Jorge.mov",
    "tipo": "video",
    "cliente": "Clínica Faber",
    "mes": "2024-01",
@@ -421,7 +421,7 @@
   },
   {
    "id": "1lEHgAn5O66_aU1hg6Nx2g6i6cIay40by",
-   "nome": "F. Uma das Consequências da Apneia do Sono.mov",
+   "nome": "F. Apneia do Sono - Uma das Consequências da Apneia do Sono - Dr. Jorge.mov",
    "tipo": "video",
    "cliente": "Clínica Faber",
    "mes": "2024-01",
@@ -431,7 +431,7 @@
   },
   {
    "id": "1oRWUmL4l3PbwfWn6awOOGtUYOhCMNYib",
-   "nome": "F. A cadeira é a mesma.mov",
+   "nome": "F. Geral - A cadeira é a mesma - Dr. Jorge.mov",
    "tipo": "video",
    "cliente": "Clínica Faber",
    "mes": "2024-01",
@@ -441,7 +441,7 @@
   },
   {
    "id": "1rk9euR2PAf5EmaLDgDtMWTbaoWmv3l10",
-   "nome": "F. Ortodontia Infantil.mov",
+   "nome": "F. Ortodontia Infantil - Ortodontia Infantil - Dr. Jorge.mov",
    "tipo": "video",
    "cliente": "Clínica Faber",
    "mes": "2024-01",
@@ -451,7 +451,7 @@
   },
   {
    "id": "1sY0Cko25U25_FGqn5GvLRc-Ya8oKsxR5",
-   "nome": "F. É mesmo preciso escovar os dentes após cada refeição.mov",
+   "nome": "F. Ortodontia - É mesmo preciso escovar os dentes após cada refeição - Dra. Marília.mov",
    "tipo": "video",
    "cliente": "Clínica Faber",
    "mes": "2024-01",
@@ -461,7 +461,7 @@
   },
   {
    "id": "1uKdPQOLb6nf8hDWASK8IlwFQmDD8087U",
-   "nome": "F. Tailândia (1).mov",
+   "nome": "F. Na Mídia - Tailândia (1) - Dr. Jorge.mov",
    "tipo": "video",
    "cliente": "Clínica Faber",
    "mes": "2024-01",
@@ -501,7 +501,7 @@
   },
   {
    "id": "15Hp841dV-BRHaezaWwj5VEjm-a28So8-",
-   "nome": "F. A minha gengiva sangra, porque isso acontece.mov",
+   "nome": "F. Periodontia - A minha gengiva sangra, porque isso acontece - Dra. Patrícia.mov",
    "tipo": "video",
    "cliente": "Clínica Faber",
    "mes": "2024-02",
@@ -521,7 +521,7 @@
   },
   {
    "id": "182P293UrrFfNGw4AZ2TpZeMqsepGUgV9",
-   "nome": "F. Anúncio da Duda v3.mov",
+   "nome": "F. Apneia do Sono - Anúncio da Duda v3 - Dra. Duda.mov",
    "tipo": "video",
    "cliente": "Clínica Faber",
    "mes": "2024-02",
@@ -571,7 +571,7 @@
   },
   {
    "id": "1GPPewewARl48b8Uw8k1aeUjgNNCXE5kB",
-   "nome": "F. Anúncio da Duda v2.mov",
+   "nome": "F. Apneia do Sono - Anúncio da Duda v2 - Dra. Duda.mov",
    "tipo": "video",
    "cliente": "Clínica Faber",
    "mes": "2024-02",
@@ -641,7 +641,7 @@
   },
   {
    "id": "1aEayklezoyNrUvrpbqJRf03BPhFHAYMs",
-   "nome": "F. Afta, como tratar.mov",
+   "nome": "F. Geral - Afta, como tratar - Dra. Sarah.mov",
    "tipo": "video",
    "cliente": "Clínica Faber",
    "mes": "2024-02",
@@ -661,7 +661,7 @@
   },
   {
    "id": "1o5qs88ASyflziyBgYzNDpG6HxIjFA2fj",
-   "nome": "F. Anúncio da Duda.mov",
+   "nome": "F. Apneia do Sono - Anúncio da Duda - Dra. Duda.mov",
    "tipo": "video",
    "cliente": "Clínica Faber",
    "mes": "2024-02",
@@ -951,7 +951,7 @@
   },
   {
    "id": "1ohnn1EvCC2vGqz1tCpgRVDsSLkzD5XHI",
-   "nome": "F. Qual nível de excelencia deveos buscar em um s.mov",
+   "nome": "F. Qual nível de excelencia devemos buscar.mov",
    "tipo": "video",
    "cliente": "Clínica Faber",
    "mes": "2024-04",
