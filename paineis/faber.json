@@ -10,6 +10,162 @@
  ],
  "itens": [
   {
+   "id": "17EaGHEL6-01U9GKubObBIMqC8Xfz306u",
+   "nome": "(L) (Bl) Filhote de Passarinho.mp4",
+   "tipo": "video",
+   "cliente": "Clínica Faber",
+   "mes": "2024-10",
+   "servico": "Outubro",
+   "pasta": "1-OSLNrLqCDb4U9s0XwPWAwqrSsEfom52"
+  },
+  {
+   "id": "17qgKgmfy8YNY7B-uPfZlLDaNio6kowwM",
+   "nome": "(L) Passarinho cai do ninho - 62.56.jpg",
+   "tipo": "foto",
+   "cliente": "Clínica Faber",
+   "mes": "2024-10",
+   "servico": "Outubro",
+   "pasta": "1-OSLNrLqCDb4U9s0XwPWAwqrSsEfom52",
+   "fmt": "v"
+  },
+  {
+   "id": "18g6aU_RmNG7x4bOwVew8rO0u_Az9cMhE",
+   "nome": "(L) Pov Clareamento.mp4",
+   "tipo": "video",
+   "cliente": "Clínica Faber",
+   "mes": "2024-10",
+   "servico": "Outubro",
+   "pasta": "1-OSLNrLqCDb4U9s0XwPWAwqrSsEfom52"
+  },
+  {
+   "id": "1BmQRqT4rHWmObEQulrMlmplfsMlnVdHP",
+   "nome": "(L) Ronco não é Brincadeira v.2.mp4",
+   "tipo": "video",
+   "cliente": "Clínica Faber",
+   "mes": "2024-10",
+   "servico": "Outubro",
+   "pasta": "1-OSLNrLqCDb4U9s0XwPWAwqrSsEfom52"
+  },
+  {
+   "id": "1Cboqc6qRK5P75lAXecsQFOdKOH458vBJ",
+   "nome": "(L) Loop Apneia do Sono.mp4",
+   "tipo": "video",
+   "cliente": "Clínica Faber",
+   "mes": "2024-10",
+   "servico": "Outubro",
+   "pasta": "1-OSLNrLqCDb4U9s0XwPWAwqrSsEfom52"
+  },
+  {
+   "id": "1Igw2Oij6HZNgrd17OReVCSNVETVqKU1F",
+   "nome": "(L) Usar o Aparelho para Dormir v.2.mp4",
+   "tipo": "video",
+   "cliente": "Clínica Faber",
+   "mes": "2024-10",
+   "servico": "Outubro",
+   "pasta": "1-OSLNrLqCDb4U9s0XwPWAwqrSsEfom52"
+  },
+  {
+   "id": "1QFRnzj5KS894e22-Kqi_Yq92-8mcP5w0",
+   "nome": "(L) Pov Clareamento - 1.20.jpg",
+   "tipo": "foto",
+   "cliente": "Clínica Faber",
+   "mes": "2024-10",
+   "servico": "Outubro",
+   "pasta": "1-OSLNrLqCDb4U9s0XwPWAwqrSsEfom52",
+   "fmt": "v"
+  },
+  {
+   "id": "1QbWAaTF5qtOti62vo-1TBOpKtNMw_YEW",
+   "nome": "(L) Papel do Fluor v.3.mp4",
+   "tipo": "video",
+   "cliente": "Clínica Faber",
+   "mes": "2024-10",
+   "servico": "Outubro",
+   "pasta": "1-OSLNrLqCDb4U9s0XwPWAwqrSsEfom52"
+  },
+  {
+   "id": "1RgG1zZJWW09FU7pCkOKni0vjIxMBLn8n",
+   "nome": "(L) (BI) Ronco não é brincadeira.mp4",
+   "tipo": "video",
+   "cliente": "Clínica Faber",
+   "mes": "2024-10",
+   "servico": "Outubro",
+   "pasta": "1-OSLNrLqCDb4U9s0XwPWAwqrSsEfom52"
+  },
+  {
+   "id": "1T_bJ4eRFDL12LEdKi9Mf18sxAoB8CmnR",
+   "nome": "(L) Ronco não é Brincadeira v.2 - 0.00.jpg",
+   "tipo": "foto",
+   "cliente": "Clínica Faber",
+   "mes": "2024-10",
+   "servico": "Outubro",
+   "pasta": "1-OSLNrLqCDb4U9s0XwPWAwqrSsEfom52",
+   "fmt": "v"
+  },
+  {
+   "id": "1WpfeNBkzpyL1TwZHKOWWTTR10azjiL4i",
+   "nome": "(L) Usar o Aparelho Para Dormir.mp4",
+   "tipo": "video",
+   "cliente": "Clínica Faber",
+   "mes": "2024-10",
+   "servico": "Outubro",
+   "pasta": "1-OSLNrLqCDb4U9s0XwPWAwqrSsEfom52"
+  },
+  {
+   "id": "1iIYdO_CezWs6gsMbtR0NaCmMObRsKOLj",
+   "nome": "(L) (BI) A importância da amamentação.mp4",
+   "tipo": "video",
+   "cliente": "Clínica Faber",
+   "mes": "2024-10",
+   "servico": "Outubro",
+   "pasta": "1-OSLNrLqCDb4U9s0XwPWAwqrSsEfom52"
+  },
+  {
+   "id": "1kXNy5Ef9C8eJMi5F5JfCRU2CLu9SeCFs",
+   "nome": "(L) Loop Clareamento Dental.mp4",
+   "tipo": "video",
+   "cliente": "Clínica Faber",
+   "mes": "2024-10",
+   "servico": "Outubro",
+   "pasta": "1-OSLNrLqCDb4U9s0XwPWAwqrSsEfom52"
+  },
+  {
+   "id": "1nr7MBHQAlz5_CHlPKV_2Z1lOyKnjZHcb",
+   "nome": "(L) Como é feito um Clareamento Caseiro com a Clín.mp4",
+   "tipo": "video",
+   "cliente": "Clínica Faber",
+   "mes": "2024-10",
+   "servico": "Outubro",
+   "pasta": "1-OSLNrLqCDb4U9s0XwPWAwqrSsEfom52"
+  },
+  {
+   "id": "1osoBnLrONrIMMXExoQqig6OtMyE3ks4_",
+   "nome": "(L) (BI) O paciente mais experiente que já tratei.mov",
+   "tipo": "video",
+   "cliente": "Clínica Faber",
+   "mes": "2024-10",
+   "servico": "Outubro",
+   "pasta": "1-OSLNrLqCDb4U9s0XwPWAwqrSsEfom52"
+  },
+  {
+   "id": "1p5L6XY7Kzrish3lBQaR7GV8_e7jbsmOR",
+   "nome": "(L) (Bl) Bruxismo e DTM são a mesma coisa.mp4",
+   "tipo": "video",
+   "cliente": "Clínica Faber",
+   "mes": "2024-10",
+   "servico": "Outubro",
+   "pasta": "1-OSLNrLqCDb4U9s0XwPWAwqrSsEfom52"
+  },
+  {
+   "id": "1vhXCcCl8MP6qS73cY0-GrdWntoHY1Bec",
+   "nome": "(L) Dr Jorge na Clínica Final de Ano.mp4",
+   "tipo": "video",
+   "cliente": "Clínica Faber",
+   "mes": "2024-10",
+   "servico": "Outubro",
+   "pasta": "1-OSLNrLqCDb4U9s0XwPWAwqrSsEfom52"
+  },
+  {
    "id": "1-N5o3Yn78EF0cfyLkzQyhrRQmTNjfuVl",
    "nome": "C.POLÔNIA 5.png",
    "tipo": "foto",
