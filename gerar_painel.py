@@ -76,11 +76,11 @@ def categoria(titulo_item, cat):
     achados = {n for k, n in nomes.items() if f" {k} " in t}
     if len(achados) == 1:
         return achados.pop(), "meio"
+    regs = {r for k, r in regioes.items() if k in partes or f" {k} " in t}
+    if len(regs) == 1:  # "Exclusividade Noroeste", "Apartamentos no Noroeste - Geral"
+        return f"{regs.pop()} · Geral", "meio"
     if any(p in gerais for p in partes):  # "Espanhol - Geral - Marjorie"
         return cat["geral"], "inicio"
-    regs = {r for k, r in regioes.items() if k in partes or f" {k} " in t}
-    if len(regs) == 1:  # "Exclusividade Noroeste"
-        return f"{regs.pop()} · Geral", "meio"
     t2 = " " + re.sub(r"[^a-z0-9%]+", " ", norm_l(titulo_item)) + " "
     for nome, chaves in cat.get("palavras", {}).items():  # por palavra-chave, na ordem de prioridade
         if any(re.search(r"\s" + re.escape(norm_l(k)), t2) for k in chaves):
