@@ -31,12 +31,15 @@
 
   .hero{position:relative;min-height:min(88vh,780px);display:flex;align-items:flex-end;justify-content:center;text-align:center;overflow:hidden}
   .mosaic{position:absolute;inset:-60px -20px;display:flex;gap:8px}
-  /* capa com uma foto inteira, sem corte, na proporção original; o nome fica logo abaixo dela */
+  /* capa com uma foto inteira, sem corte e sem barras: sempre na largura total, na proporção original.
+     Degradê preto no topo (logo) e embaixo, levando a foto até o nome, que sobe um pouco sobre o degradê. */
   .hero.foto{display:block;min-height:0}
-  .mosaic.foto{position:relative;inset:auto;display:flex;justify-content:center;background:#040404}
-  .mosaic.foto img{display:block;width:100%;height:auto;max-height:84vh;object-fit:contain}
-  .hero.foto::after{background:linear-gradient(180deg,rgba(4,4,4,.5) 0%,rgba(4,4,4,0) 12%)}
-  .hero.foto .hero-inner{position:relative;margin:0 auto;padding-top:clamp(24px,4vh,44px)}
+  .mosaic.foto{position:relative;inset:auto;display:block;background:#040404}
+  .mosaic.foto img{display:block;width:100%;height:auto}
+  .hero.foto::after{background:linear-gradient(180deg,rgba(4,4,4,.55) 0%,rgba(4,4,4,0) 16%)}
+  .mosaic.foto::after{content:"";position:absolute;left:0;right:0;bottom:0;height:42%;
+    background:linear-gradient(180deg,rgba(4,4,4,0) 0%,rgba(4,4,4,.55) 45%,rgba(4,4,4,.9) 78%,#040404 100%)}
+  .hero.foto .hero-inner{position:relative;margin:calc(-1 * clamp(24px,11vw,230px)) auto 0;padding-top:0}
   .destaque{margin-top:clamp(28px,5vh,56px)}
   .destaque .kick{font-size:12px;letter-spacing:.42em;text-transform:uppercase;color:var(--muted);text-align:center}
   .destaque h3{font-family:var(--serif);font-weight:400;font-size:clamp(30px,4vw,48px);text-align:center;margin:10px 0 22px}
