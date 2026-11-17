@@ -115,6 +115,17 @@ def montar(cfg):
         ordem = [l for l in linhas_cfg if l in presentes] + sorted(presentes - set(linhas_cfg))
         dados.update({"clientes": ordem, "cores": {c: CORES[i % len(CORES)] for i, c in enumerate(ordem)},
                       "modo": "edicao", "rotulo_clientes": cfg.get("rotulo_clientes", "Tipo")})
+    for rx in cfg.get("remover_titulo", []):  # prefixos extras a tirar do título, ex.: "Tuiuti 2.2 - "
+        for it in itens:
+            it["titulo"] = re.sub(rx, "", it["titulo"], flags=re.I).strip() or it["titulo"]
+    if cfg.get("filtro_pasta"):  # filtro a partir do nome da pasta, ex.: "Contrato 2"
+        fp = cfg["filtro_pasta"]
+        for it, x in zip(itens, cfg["itens"]):
+            m = re.search(fp["regex"], x.get("servico") or "", re.I)
+            it["cliente"] = m.group(0).title() if m else fp.get("outros", "Outros")
+        ordem = sorted({it["cliente"] for it in itens}, key=lambda c: [int(n) if n.isdigit() else n for n in re.split(r"(\d+)", c)])
+        dados.update({"clientes": ordem, "cores": {c: CORES[i % len(CORES)] for i, c in enumerate(ordem)},
+                      "modo": "categoria", "rotulo_clientes": fp.get("rotulo", "Grupo")})
     if cfg.get("categorias"):  # ex.: Equipe Prime: filtro por empreendimento, lido do começo do nome do arquivo
         cat = cfg["categorias"]
         for it in itens:

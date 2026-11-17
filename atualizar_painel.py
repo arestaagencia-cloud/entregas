@@ -224,6 +224,8 @@ def main(caminho, forcar=False):
             ano = re.fullmatch(r"\D*?(20\d{2})\s*", nfc(m["nome"]))  # pasta de ano, ex.: "Sarau 2026"
             if ano and not mes_da_pasta(m["nome"]):
                 meses += [(mm, ano.group(1)) for mm in listar(m["id"]) if mm["pasta"]]
+            elif re.search(r"\bcontrato\s*\d+", nfc(m["nome"]), re.I) and not mes_da_pasta(m["nome"]):
+                meses += [(mm, None) for mm in listar(m["id"]) if mm["pasta"]]  # pasta de contrato, ex.: Tuiuti
             else:
                 meses.append((m, None))
         for m, ano in meses:

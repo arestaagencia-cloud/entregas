@@ -1,0 +1,19 @@
+{
+ "slug": "tuiuti",
+ "titulo": "Universidade Tuiuti · Painel de Conteúdos · ArestAgência",
+ "marca": "Tuiuti",
+ "eyebrow": "Painel de conteúdos · Universidade Tuiuti do Paraná",
+ "drive_raiz": "1Fv2bmR4oWCY2CacrdCS3fD8u0KNbGKs3",
+ "cliente_unico": "Universidade Tuiuti",
+ "clientes": [
+  "Universidade Tuiuti"
+ ],
+ "remover_titulo": [
+  "^(Universidade\\s+)?Tuiuti(\\s*[\\d.]+)?\\s*-\\s*"
+ ],
+ "filtro_pasta": {
+  "rotulo": "Contrato",
+  "regex": "contrato\\s*\\d+"
+ },
+ "itens": []
+}
