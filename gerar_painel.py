@@ -40,7 +40,9 @@ def titulo(nome, cliente):
         t = re.sub(r"[\s.\-]+(Andressa|Gabi|Gabriela|Marcus|Luiz)\s*$", "", t, flags=re.I)  # apresentador
         t = re.sub(rf"\s*-\s*{re.escape(cliente)}\s*$", "", t, flags=re.I)  # cliente no fim
         t = t.strip(" -.")
-    if re.fullmatch(r"[A-Z]{1,3}\d{4,}|IMG_\d+|DSC\d+|[\d._]+|.*\bFotos?(_\d+)?|Gabi \d+", t) or not t:
+    if not t:  # o nome era só o cliente (ex.: "F. Raul & Paola - V.3")
+        return cliente
+    if re.fullmatch(r"[A-Z]{1,3}\d{4,}|IMG_\d+|DSC\d+|[\d._]+|.*\bFotos?(_\d+)?|Gabi \d+", t):
         t = "Foto"
     return t
 
