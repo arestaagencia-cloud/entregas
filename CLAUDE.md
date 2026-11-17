@@ -194,3 +194,6 @@ Se a pasta do mês tiver UM arquivo .zip (direto na pasta, não em subpasta), o 
 
 ## Formato de cada conteúdo (vertical x horizontal)
 O robô mede a miniatura de cada vídeo/foto no Drive e grava `"fmt": "h"` ou `"v"` no item (só mede arquivos novos; reaproveita o resto). Sem miniatura ainda, usa "horizontal"/"vertical" no nome como pista, senão tenta na próxima rodada. No painel, dentro de cada mês/edição os verticais aparecem primeiro e depois os horizontais numa grade própria em 16:9 (padrão de todo o sistema: vertical antes de horizontal); o player do lightbox abre em 16:9 para os horizontais. Carrosséis ficam sempre na grade vertical.
+
+## Filtro por categoria (ex.: Equipe Prime por empreendimento)
+`"categorias": {"rotulo","lista","apelidos","geral","geral_apelidos"}` no JSON do painel. A categoria vem do 1º trecho do título (antes do " - "), sem acento; "Geral" vai para `geral` ("Gerais"). Se o nome aparecer no meio do título (ex.: "Cada Detalhe - Rubi - Fábio"), classifica mesmo assim; sem nenhum nome, vai para Gerais. Só muda a exibição (DATA); o JSON, o Notion e os PDFs continuam com o cliente original. Para listar os fora do padrão: `categoria(titulo, cfg["categorias"])` em gerar_painel.py retorna (categoria, "inicio"|"meio"|"nenhum").

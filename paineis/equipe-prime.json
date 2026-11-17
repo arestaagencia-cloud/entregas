@@ -1206,5 +1206,47 @@
    "pasta": "1aqvH6LGp4eNmnvQI10QGMIa89cJ2qgnY",
    "fmt": "v"
   }
- ]
+ ],
+ "categorias": {
+  "rotulo": "Empreendimento",
+  "lista": [
+   "Jequitibás",
+   "Azaleias",
+   "Buritis",
+   "Castanheiras",
+   "Cedros",
+   "Figueiras",
+   "Gardênias",
+   "Jasmins",
+   "Oliveiras",
+   "Palmeiras",
+   "Bouganvilles",
+   "Montana",
+   "Ilha Bela",
+   "Prestige",
+   "Residencial Horizon",
+   "Diamante",
+   "Rubi",
+   "Ametista",
+   "Esmeralda",
+   "Safira",
+   "Topázio",
+   "Turmalina",
+   "Âmbar",
+   "Ágata",
+   "Platinum Mall"
+  ],
+  "apelidos": {
+   "Horizon": "Residencial Horizon",
+   "Ambar": "Âmbar",
+   "Agata": "Ágata",
+   "P.mall": "Platinum Mall",
+   "Bougainvilles": "Bouganvilles"
+  },
+  "geral": "Gerais",
+  "geral_apelidos": [
+   "Geral",
+   "Gerais"
+  ]
+ }
 }

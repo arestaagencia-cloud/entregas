@@ -51,6 +51,24 @@ def norm_l(t):
     return unicodedata.normalize("NFKD", t).encode("ascii", "ignore").decode().lower().strip()
 
 
+def categoria(titulo_item, cat):
+    """(categoria, como): como = 'inicio' (padrão), 'meio' (achou o nome fora do começo), 'nenhum' (foi para Gerais)."""
+    nomes = {norm_l(n): n for n in cat["lista"]}
+    nomes.update({norm_l(a): n for a, n in cat.get("apelidos", {}).items()})
+    gerais = {norm_l(g) for g in cat.get("geral_apelidos", ["Geral"])}
+    titulo_item = re.sub(r"^\s*T\.\s*", "", titulo_item)  # "T. ..." = thumbnail do vídeo
+    partes = [norm_l(p) for p in re.split(r"\s*-\s*|\.\s+", titulo_item) if p.strip()]
+    if partes and partes[0] in nomes:
+        return nomes[partes[0]], "inicio"
+    if partes and partes[0] in gerais:
+        return cat["geral"], "inicio"
+    t = " " + re.sub(r"[^a-z0-9.]+", " ", norm_l(titulo_item)) + " "
+    achados = {n for k, n in nomes.items() if f" {k} " in t}
+    if len(achados) == 1:
+        return achados.pop(), "meio"
+    return cat["geral"], "nenhum"
+
+
 def main(caminho):
     cfg = json.loads(Path(caminho).read_text())
     rnd = random.Random(7)
@@ -81,6 +99,14 @@ def main(caminho):
         ordem = [l for l in linhas_cfg if l in presentes] + sorted(presentes - set(linhas_cfg))
         dados.update({"clientes": ordem, "cores": {c: CORES[i % len(CORES)] for i, c in enumerate(ordem)},
                       "modo": "edicao", "rotulo_clientes": cfg.get("rotulo_clientes", "Tipo")})
+    if cfg.get("categorias"):  # ex.: Equipe Prime: filtro por empreendimento, lido do começo do nome do arquivo
+        cat = cfg["categorias"]
+        for it in itens:
+            it["cliente"] = categoria(it["titulo"], cat)[0]
+        presentes = {it["cliente"] for it in itens}
+        ordem = [l for l in cat["lista"] if l in presentes] + ([cat["geral"]] if cat["geral"] in presentes else [])
+        dados.update({"clientes": ordem, "cores": {c: CORES[i % len(CORES)] for i, c in enumerate(ordem)},
+                      "modo": "categoria", "rotulo_clientes": cat.get("rotulo", "Categoria")})
     for k in ("destaque", "destaque_titulo", "zip"):  # vídeo(s) em destaque acima da grade
         if cfg.get(k):
             dados[k] = cfg[k]
