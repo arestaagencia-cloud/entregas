@@ -1241,7 +1241,12 @@
    "Ambar": "Âmbar",
    "Agata": "Ágata",
    "P.mall": "Platinum Mall",
-   "Bougainvilles": "Bouganvilles"
+   "Bougainvilles": "Bouganvilles",
+   "Gardênia": "Gardênias",
+   "Gardenias": "Gardênias",
+   "Gardenia": "Gardênias",
+   "Boungainvilles": "Bouganvilles",
+   "Azaleias": "Azaleias"
   },
   "geral": "Gerais",
   "geral_apelidos": [
@@ -1282,24 +1287,31 @@
    "Águas Claras": [
     "Montana"
    ]
-  }
+  },
+  "prefixos": "^(parque\\s+d[aeo]s?|jardi?ns?(\\s+d[aeo]s?)?|residencial|res\\.?)\\s+"
  },
  "corretores": {
   "rotulo": "Corretor",
   "lista": [
-   "Álvaro",
    "Andréia",
+   "Álvaro",
    "Ben Hur",
+   "Canton",
+   "Chárina",
    "Cleo",
    "Denise",
    "Escobar",
    "Fábio",
+   "Francineide",
    "Laís",
+   "Luiz Arthur",
    "Marjorie",
    "Paula",
    "Poliane",
    "Raquel",
    "Rodrigo",
+   "Roger",
+   "Selma Moreira",
    "Thiago"
   ],
   "apelidos": {
@@ -1309,7 +1321,13 @@
    "Fabio": "Fábio",
    "Lais": "Laís",
    "Benhur": "Ben Hur",
-   "Ben-Hur": "Ben Hur"
+   "Ben-Hur": "Ben Hur",
+   "Luis Arthur": "Luiz Arthur",
+   "Charina": "Chárina",
+   "Selma": "Selma Moreira"
   }
- }
+ },
+ "remover_titulo": [
+  "^\\(L\\)\\s*"
+ ]
 }

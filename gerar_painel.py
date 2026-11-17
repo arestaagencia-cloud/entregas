@@ -60,6 +60,13 @@ def categoria(titulo_item, cat):
     partes = [norm_l(p) for p in re.split(r"\s*-\s*|\.\s+", titulo_item) if p.strip()]
     if partes and partes[0] in nomes:
         return nomes[partes[0]], "inicio"
+    pref = cat.get("prefixos")  # ex.: "Parque das Figueiras", "Residencial Turmalina", "Diamante e Rubi"
+    if partes and pref:
+        p0 = re.sub(pref, "", partes[0]).strip()
+        for pedaco in re.split(r"\s*,\s*|\s+e\s+", p0):
+            pedaco = re.sub(pref, "", pedaco).strip()
+            if pedaco in nomes:
+                return nomes[pedaco], "inicio"
     if partes and partes[0] in gerais:
         return cat["geral"], "inicio"
     regioes = {norm_l(r): r for r in cat.get("regioes", {})}
