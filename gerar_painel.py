@@ -62,6 +62,9 @@ def main(caminho):
             itens[-1]["capa"] = x["slides"][0]["id"]
             itens[-1]["titulo"] = re.sub(r"^carross[eé]l\s*\d*\s*[-.:]?\s*", "", x["nome"], flags=re.I).strip() or "Carrossel"
     dados = {"clientes": cfg["clientes"], "cores": cores, "itens": itens}
+    for k in ("destaque", "destaque_titulo"):  # vídeo(s) em destaque acima da grade
+        if cfg.get(k):
+            dados[k] = cfg[k]
     if cfg.get("capa"):  # id de uma foto do Drive para usar como capa no lugar do mosaico
         dados["capa"] = cfg["capa"]
     html = (RAIZ / "painel_template.html").read_text()
