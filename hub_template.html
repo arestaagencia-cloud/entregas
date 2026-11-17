@@ -58,6 +58,9 @@
   .marcas{display:flex;flex-wrap:wrap;gap:6px}
   .marcas a{font-size:12px;border:1px solid var(--line);border-radius:999px;padding:4px 10px;color:var(--ink-2)}
   .marcas a:hover{border-color:#444;color:#fff}
+  .marcas a small{margin-left:5px;opacity:.5}
+  .grp+.grp{margin-top:10px}
+  .glbl{display:block;font-size:10px;letter-spacing:.18em;text-transform:uppercase;color:var(--muted,#888);margin-bottom:6px}
   .acoes{display:flex;gap:8px;margin-top:auto;padding-top:4px}
   .btn{flex:1;text-align:center;border-radius:999px;padding:10px 14px;font-size:14px;font-weight:500}
   .btn.pri{background:var(--ink);color:#0b0b0b}
@@ -122,13 +125,13 @@ let ordem='recente';
 function render(){
   const q=$('#busca').value.trim().toLowerCase().normalize('NFD').replace(/[̀-ͯ]/g,'');
   const norm=s=>s.toLowerCase().normalize('NFD').replace(/[̀-ͯ]/g,'');
-  let l=P.filter(p=>!q||norm(p.nome).includes(q)||p.marcas.some(m=>norm(m.nome).includes(q)));
+  let l=P.filter(p=>!q||norm(p.nome).includes(q)||(p.grupos||[]).some(g=>g.itens.some(m=>norm(m.nome).includes(q))));
   l.sort(ordem==='nome'?(a,b)=>a.nome.localeCompare(b.nome):ordem==='volume'?(a,b)=>b.total-a.total:(a,b)=>b.ultimo.localeCompare(a.ultimo)||b.total-a.total);
   if(!l.length){$('#grid').innerHTML='<div class="vazio">Nenhum cliente encontrado.</div>';return}
   $('#grid').innerHTML=l.map(p=>{
-    const nums=[[p.total,'conteúdos'],[p.videos,'vídeos'],[p.fotos,'fotos']].concat([[p.carrosseis,'carrosséis']]).filter(([n],k)=>k===0||n>0)
+    const pl=(n,a,b)=>n===1?a:b;const nums=[[p.total,pl(p.total,'conteúdo','conteúdos')],[p.videos,pl(p.videos,'vídeo','vídeos')],[p.fotos,pl(p.fotos,'foto','fotos')]].concat([[p.carrosseis,pl(p.carrosseis,'carrossel','carrosséis')]]).filter(([n],k)=>k===0||n>0)
       .map(([n,t])=>`<span><b>${n}</b> ${t}</span>`).join('');
-    const marcas=p.marcas.length>1?`<div class="marcas">${p.marcas.map(m=>`<a href="${p.url}#cliente=${encodeURIComponent(m.nome)}" title="${m.total} conteúdos">${esc(m.nome)}</a>`).join('')}</div>`:'';
+    const marcas=(p.grupos||[]).map(g=>`<div class="grp"><span class="glbl">${esc(g.rotulo)}</span><div class="marcas">${g.itens.map(m=>`<a href="${p.url}${m.link}" title="${m.total} conteúdos">${esc(m.nome)}<small>${m.total}</small></a>`).join('')}</div></div>`).join('');
     return `<article class="card">
       <a class="mos" href="${p.url}">${p.capas.map(id=>`<i style="background-image:url('${thumb(id)}')"></i>`).join('')}<span class="nome">${esc(p.nome)}</span></a>
       <div class="info">

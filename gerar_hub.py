@@ -9,10 +9,39 @@ código da página mostra quem são os clientes. Senha na variável de ambiente 
 Sem senha, o painel não é gerado (para nunca publicar a lista aberta por engano).
 """
 import base64, json, os, secrets
+from urllib.parse import quote
 from datetime import datetime, timedelta, timezone
 from pathlib import Path
 
 RAIZ = Path(__file__).parent
+
+
+def grupos(cfg):
+    """Subcategorias do painel, com link que já abre filtrado: marcas, tipos de Sarau, regiões, tópicos, corretores."""
+    import gerar_painel
+    d = gerar_painel.montar(json.loads(json.dumps(cfg)))
+    it = d["itens"]
+    conta = lambda f: sum(1 for x in it if f(x))
+    lk = lambda **kw: "#" + "&".join(f"{k}={quote(v)}" for k, v in kw.items())
+    out = []
+    if len(d["clientes"]) > 1:
+        rot = {"edicao": d.get("rotulo_clientes", "Tipo"), "categoria": d.get("rotulo_clientes", "Categoria")}.get(d.get("modo"), "Marcas")
+        if d.get("regioes"):
+            out.append({"rotulo": "Região", "itens": [{"nome": r["nome"], "total": conta(lambda x, r=r: x.get("reg") == r["nome"]),
+                                                       "link": lk(regiao=r["nome"])} for r in d["regioes"]]})
+            out.append({"rotulo": rot, "itens": [{"nome": e, "total": conta(lambda x, e=e: x["cliente"] == e),
+                                                  "link": lk(regiao=r["nome"], cliente=e)}
+                                                 for r in d["regioes"] for e in r["emps"]]})
+        else:
+            out.append({"rotulo": rot, "itens": [{"nome": c, "total": conta(lambda x, c=c: x["cliente"] == c),
+                                                  "link": lk(cliente=c)} for c in d["clientes"]]})
+    if d.get("corretores"):
+        out.append({"rotulo": d.get("rotulo_corretores", "Corretor"),
+                    "itens": [{"nome": c, "total": conta(lambda x, c=c: c in x.get("cor", [])), "link": lk(corretor=c)}
+                              for c in d["corretores"]]})
+    for g in out:
+        g["itens"] = [i for i in g["itens"] if i["total"]]
+    return [g for g in out if g["itens"]]
 
 
 def resumo(cfg):
@@ -35,7 +64,7 @@ def resumo(cfg):
         "nome": cfg.get("nome_hub") or (cfg["marca"] if len(cfg["clientes"]) > 1 else cfg["clientes"][0]),
         "url": f"/{cfg['slug']}/", "total": len(itens), "videos": conta("video"), "fotos": conta("foto"),
         "carrosseis": conta("carrossel"), "primeiro": meses[0], "ultimo": meses[-1], "meses": len(meses),
-        "capas": capas, "marcas": [m for m in marcas if m["total"]],
+        "capas": capas, "marcas": [m for m in marcas if m["total"]], "grupos": grupos(cfg),
     }
 
 

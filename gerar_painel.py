@@ -85,8 +85,8 @@ def corretores(titulo_item, cfg_cor):
     return [n for n in cfg_cor["lista"] if n in achados]
 
 
-def main(caminho):
-    cfg = json.loads(Path(caminho).read_text())
+def montar(cfg):
+    """DATA do painel (itens já com título, categoria, corretor...). Usado também pelo painel interno."""
     rnd = random.Random(7)
     cores = {c: CORES[i % len(CORES)] for i, c in enumerate(cfg["clientes"])}
     itens = []
@@ -145,6 +145,13 @@ def main(caminho):
             dados[k] = cfg[k]
     if cfg.get("capa"):  # id de uma foto do Drive para usar como capa no lugar do mosaico
         dados["capa"] = cfg["capa"]
+    return dados
+
+
+def main(caminho):
+    cfg = json.loads(Path(caminho).read_text())
+    dados = montar(cfg)
+    itens = dados["itens"]
     html = (RAIZ / "painel_template.html").read_text()
     logo = (RAIZ / "assets/logo-mark.b64").read_text().strip()
     agora = datetime.now(timezone(timedelta(hours=-3))).strftime("%d/%m/%Y às %H:%M")
