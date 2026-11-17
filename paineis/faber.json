@@ -1229,5 +1229,121 @@
    "pasta": "1hBKI8ZuhmQBT_VFMjd3WT19Je1V7AwH_",
    "fmt": "v"
   }
- ]
+ ],
+ "categorias": {
+  "rotulo": "Tópico",
+  "lista": [
+   "Alinhadores",
+   "Apneia do Sono",
+   "Bruxismo",
+   "Ortodontia",
+   "Ortodontia Infantil",
+   "Estética",
+   "Clínica",
+   "Na Mídia"
+  ],
+  "apelidos": {
+   "Invisalign": "Alinhadores",
+   "Alinhador": "Alinhadores",
+   "AOS": "Apneia do Sono",
+   "AOS Infantil": "Apneia do Sono",
+   "Apneia": "Apneia do Sono",
+   "Orto": "Ortodontia",
+   "Ortodôntico": "Ortodontia",
+   "Ortodontico": "Ortodontia",
+   "Diastema": "Ortodontia",
+   "Orto Infantil": "Ortodontia Infantil",
+   "Ortodontia Infantil": "Ortodontia Infantil",
+   "Crianças": "Ortodontia Infantil",
+   "Ambiente": "Clínica",
+   "Ambiente-Decoração": "Clínica",
+   "DFTV": "Na Mídia",
+   "Band": "Na Mídia",
+   "DF. Tv": "Na Mídia"
+  },
+  "palavras": {
+   "Alinhadores": [
+    "invisalign",
+    "alinhador",
+    "itero",
+    "aparelho fixo"
+   ],
+   "Apneia do Sono": [
+    "apneia",
+    "aos ",
+    "sono",
+    "ronc",
+    "acordar cansado",
+    "respiração bucal",
+    "respiracao bocal",
+    "pijama"
+   ],
+   "Bruxismo": [
+    "bruxismo",
+    "ranger"
+   ],
+   "Ortodontia Infantil": [
+    "infantil",
+    "criança",
+    "crianca",
+    "adolescente",
+    "filhos",
+    "troca de dentes",
+    "trocas de dentes"
+   ],
+   "Ortodontia": [
+    "orto",
+    "diastema",
+    "canino",
+    "marpe",
+    "expansão",
+    "arco dentário",
+    "previsibilidade",
+    "supranumer",
+    "suprenumer",
+    "falta de dentes"
+   ],
+   "Estética": [
+    "estética",
+    "sorriso",
+    "sorrir"
+   ],
+   "Na Mídia": [
+    "dftv",
+    "df tv",
+    "band ",
+    "entrevista",
+    "corte dr"
+   ],
+   "Clínica": [
+    "ambiente",
+    "fachada",
+    "aftermovie",
+    "after movie",
+    "congresso",
+    "clínica",
+    "app de monitoramento",
+    "renderização"
+   ]
+  },
+  "geral": "Gerais",
+  "geral_apelidos": [
+   "Geral",
+   "Gerais"
+  ]
+ },
+ "corretores": {
+  "rotulo": "Quem grava",
+  "lista": [
+   "Dr. Jorge",
+   "Dra. Carol",
+   "Dra. Laís"
+  ],
+  "apelidos": {
+   "Jorge": "Dr. Jorge",
+   "Carol": "Dra. Carol",
+   "Laís": "Dra. Laís",
+   "Lais": "Dra. Laís"
+  }
+ }
 }

@@ -42,7 +42,7 @@ def titulo(nome, cliente):
         t = t.strip(" -.")
     if not t:  # o nome era só o cliente (ex.: "F. Raul & Paola - V.3")
         return cliente
-    if re.fullmatch(r"[A-Z]{1,3}\d{4,}|IMG_\d+|DSC\d+|[\d._]+|.*\bFotos?(_\d+)?|Gabi \d+|[\d.\-_ ]*[Vv]?[\d.\-_ ]*", t):
+    if re.fullmatch(r"[A-Z]{1,3}\d{4,}|IMG_\d+|DSC\d+|[\d._]+|(?:\S+\s)?Fotos?(?:[_\s]*\d+)?|(?:.*[\s_-])?(?:[A-Z]{1,3}\d{4,}|IMG_\d+|DSC\d+)|Gabi \d+|[\d.\-_ ]*[Vv]?[\d.\-_ ]*", t):
         t = "Foto"
     return t
 
@@ -66,6 +66,10 @@ def categoria(titulo_item, cat):
     achados = {n for k, n in nomes.items() if f" {k} " in t}
     if len(achados) == 1:
         return achados.pop(), "meio"
+    t2 = " " + re.sub(r"[^a-z0-9%]+", " ", norm_l(titulo_item)) + " "
+    for nome, chaves in cat.get("palavras", {}).items():  # por palavra-chave, na ordem de prioridade
+        if any(re.search(r"\s" + re.escape(norm_l(k)), t2) for k in chaves):
+            return nome, "palavra"
     return cat["geral"], "nenhum"
 
 

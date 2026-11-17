@@ -201,3 +201,6 @@ O robô mede a miniatura de cada vídeo/foto no Drive e grava `"fmt": "h"` ou `"
 ## Filtro por corretor (Equipe Prime)
 `"corretores": {"rotulo","lista","apelidos"}` no JSON. Procura cada nome/apelido (sem acento, palavra inteira) em qualquer parte do título; um vídeo pode ter mais de um corretor ("Raquel e Escobar") e aparece nos dois. Item ganha `cor: [...]` no DATA; o card mostra "Empreendimento · Corretor". Corretor novo = acrescentar na `lista` (apelido curto, ex.: "Poli", em `apelidos`). Funções: `corretores(titulo, cfg["corretores"])` em gerar_painel.py.
 Com `categorias.regioes` ({"Sudoeste":[...], ...}) o filtro vira dois níveis: linha "Região" (Todos, regiões com conteúdo, Gerais) e, ao escolher uma região, a linha "Empreendimento" só com os dela. Região sem conteúdo não aparece (ex.: Águas Claras até sair vídeo do Montana). Empreendimento novo = colocar na `lista` e na região certa.
+
+## Clínica Faber: Tópico + Quem grava
+Mesmo mecanismo (`categorias` com rotulo "Tópico" e `corretores` com rotulo "Quem grava"). Faber tem também `categorias.palavras`: {tópico: [palavras-chave]} em ordem de prioridade, usado quando o 1º trecho do nome não é um tópico (ex.: "Ranger dos dentes" → Bruxismo). Sem nada → Gerais.
