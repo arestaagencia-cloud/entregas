@@ -104,12 +104,11 @@ def mes_da_pasta(nome, ano_padrao=None):
     if not ano:
         return None
     ano = ano if len(ano) == 4 else "20" + ano
-    for i, m in enumerate(MESES):
-        if re.search(rf"\b{m}\b", t):
-            return f"{ano}-{i + 1:02d}"
-    for i, m in enumerate(ABREV):
-        if re.search(rf"\b(?:{m})\b\.?", t):
-            return f"{ano}-{i + 1:02d}"
+    # vale o mês mais à direita: "Sarau Secreto - Rio de Janeiro - Outubro.25" é outubro
+    for lista, padrao in ((MESES, r"\b{}\b"), (ABREV, r"\b(?:{})\b")):
+        achados = [(x.start(), i) for i, m in enumerate(lista) for x in re.finditer(padrao.format(m), t)]
+        if achados:
+            return f"{ano}-{max(achados)[1] + 1:02d}"
     return None
 
 
