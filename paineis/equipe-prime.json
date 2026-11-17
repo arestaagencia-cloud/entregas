@@ -1247,7 +1247,42 @@
   "geral_apelidos": [
    "Geral",
    "Gerais"
-  ]
+  ],
+  "regioes": {
+   "Sudoeste": [
+    "Diamante",
+    "Rubi",
+    "Ametista",
+    "Esmeralda",
+    "Safira",
+    "Topázio",
+    "Turmalina",
+    "Âmbar",
+    "Ágata"
+   ],
+   "Noroeste": [
+    "Jequitibás",
+    "Azaleias",
+    "Buritis",
+    "Castanheiras",
+    "Cedros",
+    "Figueiras",
+    "Gardênias",
+    "Jasmins",
+    "Oliveiras",
+    "Palmeiras",
+    "Bouganvilles",
+    "Platinum Mall"
+   ],
+   "Guará": [
+    "Ilha Bela",
+    "Prestige",
+    "Residencial Horizon"
+   ],
+   "Águas Claras": [
+    "Montana"
+   ]
+  }
  },
  "corretores": {
   "rotulo": "Corretor",

@@ -119,6 +119,15 @@ def main(caminho):
         ordem = [l for l in cat["lista"] if l in presentes] + ([cat["geral"]] if cat["geral"] in presentes else [])
         dados.update({"clientes": ordem, "cores": {c: CORES[i % len(CORES)] for i, c in enumerate(ordem)},
                       "modo": "categoria", "rotulo_clientes": cat.get("rotulo", "Categoria")})
+        if cat.get("regioes"):  # 1º escolhe a região, depois aparecem os empreendimentos dela
+            reg_de = {e: r for r, es in cat["regioes"].items() for e in es}
+            for it in itens:
+                it["reg"] = reg_de.get(it["cliente"], cat["geral"])
+            regs = [{"nome": r, "emps": [e for e in es if e in presentes]} for r, es in cat["regioes"].items()]
+            regs = [r for r in regs if r["emps"]]
+            if cat["geral"] in presentes:
+                regs.append({"nome": cat["geral"], "emps": []})
+            dados["regioes"] = regs
     if cfg.get("corretores"):  # filtro extra por corretor, lido do nome do arquivo
         for it in itens:
             cs = corretores(it["titulo"], cfg["corretores"])

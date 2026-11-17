@@ -189,6 +189,7 @@
 <div class="bar">
   <div class="wrap">
     <div class="row" id="rowCli"><span class="lbl">Cliente</span><div class="chips grow" id="fCli"></div></div>
+    <div class="row" id="rowEmp" hidden><span class="lbl">Empreendimento</span><div class="chips grow" id="fEmp"></div></div>
     <div class="row" id="rowCor" hidden><span class="lbl" id="lblCor">Corretor</span><div class="chips grow" id="fCor"></div></div>
     <div class="row">
       <span class="lbl" id="lblMes">Mês</span>
@@ -271,13 +272,21 @@ const conta=arr=>{const v=arr.filter(x=>x.tipo==='video').length,c=arr.filter(x=
 })();
 
 // ---------- filtros ----------
-const st={cli:'',mes:'',tipo:'',cor:''};
-function readHash(){const p=new URLSearchParams(location.hash.slice(1));st.cli=p.get('cliente')||'';st.mes=p.get('mes')||'';st.tipo=p.get('tipo')||'';st.cor=p.get('corretor')||''}
-function writeHash(){const p=new URLSearchParams();if(st.cli)p.set('cliente',st.cli);if(st.mes)p.set('mes',st.mes);if(st.tipo)p.set('tipo',st.tipo);if(st.cor)p.set('corretor',st.cor);history.replaceState(null,'',p.toString()?'#'+p:location.pathname)}
-const match=(x,ign)=>(ign==='cli'||!st.cli||x.cliente===st.cli)&&(ign==='mes'||!st.mes||x.mes===st.mes)&&(!st.tipo||x.tipo===st.tipo)&&(ign==='cor'||!st.cor||(x.cor||[]).includes(st.cor));
+const st={cli:'',mes:'',tipo:'',cor:'',reg:''};const REG=DATA.regioes&&DATA.regioes.length?DATA.regioes:null;
+function readHash(){const p=new URLSearchParams(location.hash.slice(1));st.cli=p.get('cliente')||'';st.mes=p.get('mes')||'';st.tipo=p.get('tipo')||'';st.cor=p.get('corretor')||'';st.reg=p.get('regiao')||''}
+function writeHash(){const p=new URLSearchParams();if(st.cli)p.set('cliente',st.cli);if(st.mes)p.set('mes',st.mes);if(st.tipo)p.set('tipo',st.tipo);if(st.cor)p.set('corretor',st.cor);if(st.reg)p.set('regiao',st.reg);history.replaceState(null,'',p.toString()?'#'+p:location.pathname)}
+const match=(x,ign)=>(ign==='cli'||ign==='reg'||!st.reg||x.reg===st.reg)&&(ign==='cli'||!st.cli||x.cliente===st.cli)&&(ign==='mes'||!st.mes||x.mes===st.mes)&&(!st.tipo||x.tipo===st.tipo)&&(ign==='cor'||!st.cor||(x.cor||[]).includes(st.cor));
 
 function renderFiltros(){
   const base=I.filter(x=>match(x,'cli'));
+  if(REG){
+    $('#fCli').innerHTML=[['','Todos',base.length],...REG.map(r=>[r.nome,r.nome,base.filter(x=>x.reg===r.nome).length])]
+      .map(([v,l,n])=>`<button class="chip${st.reg===v?' on':''}${n||st.reg===v?'':' off'}" data-v="${esc(v)}">${esc(l)}<small>${n}</small></button>`).join('');
+    const r=REG.find(r=>r.nome===st.reg), be=base.filter(x=>x.reg===st.reg);
+    $('#rowEmp').hidden=!(r&&r.emps.length);
+    if(r&&r.emps.length)$('#fEmp').innerHTML=[['','Todos',be.length],...r.emps.map(c=>[c,c,be.filter(x=>x.cliente===c).length])]
+      .map(([v,l,n])=>`<button class="chip${st.cli===v?' on':''}${n||st.cli===v?'':' off'}" data-v="${esc(v)}">${v?`<span class="dot" style="background:${CORES[v]}"></span>`:''}${esc(l)}<small>${n}</small></button>`).join('');
+  } else
   $('#fCli').innerHTML=[['','Todos',base.length],...DATA.clientes.map(c=>[c,c,base.filter(x=>x.cliente===c).length])]
     .map(([v,l,n])=>`<button class="chip${st.cli===v?' on':''}" data-v="${esc(v)}">${v?`<span class="dot" style="background:${CORES[v]}"></span>`:''}${esc(l)}<small>${n}</small></button>`).join('');
   if(DATA.corretores&&DATA.corretores.length){const bc=I.filter(x=>match(x,'cor'));
@@ -287,12 +296,13 @@ function renderFiltros(){
   const ms=[...new Set(I.map(x=>x.mes))].sort().reverse();
   $('#fMes').innerHTML=`<option value="">${EDICAO?'Todas as edições':'Todos os meses'} (${bm.length})</option>`+ms.map(m=>{const n=bm.filter(x=>x.mes===m).length;return `<option value="${m}"${st.mes===m?' selected':''}${n?'':' disabled'}>${mesLabel(m)} (${n})</option>`}).join('');
   document.querySelectorAll('#fTipo button').forEach(b=>b.classList.toggle('on',b.dataset.t===st.tipo));
-  $('#reset').hidden=!(st.cli||st.mes||st.tipo||st.cor);
+  $('#reset').hidden=!(st.cli||st.mes||st.tipo||st.cor||st.reg);
 }
-$('#fCli').addEventListener('click',e=>{const b=e.target.closest('.chip');if(!b)return;st.cli=b.dataset.v;update()});
+$('#fCli').addEventListener('click',e=>{const b=e.target.closest('.chip');if(!b)return;if(REG){st.reg=b.dataset.v;st.cli=''}else st.cli=b.dataset.v;update()});
+$('#fEmp').addEventListener('click',e=>{const b=e.target.closest('.chip');if(!b)return;st.cli=b.dataset.v;update()});
 $('#fMes').addEventListener('change',e=>{st.mes=e.target.value;update()});
 $('#fTipo').addEventListener('click',e=>{const b=e.target.closest('button');if(!b)return;st.tipo=b.dataset.t;update()});
-$('#reset').addEventListener('click',()=>{st.cli=st.mes=st.tipo=st.cor='';update()});
+$('#reset').addEventListener('click',()=>{st.cli=st.mes=st.tipo=st.cor=st.reg='';update()});
 $('#fCor').addEventListener('click',e=>{const b=e.target.closest('.chip');if(!b)return;st.cor=b.dataset.v;update()});
 if(DATA.corretores&&DATA.corretores.length){$('#rowCor').hidden=false;$('#lblCor').textContent=DATA.rotulo_corretores||'Corretor'}
 
@@ -394,7 +404,8 @@ document.addEventListener('keydown',e=>{if(!$('#lb').classList.contains('open'))
 
 if(nCarr)$('#tCarr').hidden=false;
 if(EDICAO)$('#lblMes').textContent='Edição';
-if(DATA.rotulo_clientes){const l=$('#fCli').closest('.row').querySelector('.lbl');if(l)l.textContent=DATA.rotulo_clientes}
+if(REG){const l=$('#fCli').closest('.row').querySelector('.lbl');if(l)l.textContent='Região'}
+else if(DATA.rotulo_clientes){const l=$('#fCli').closest('.row').querySelector('.lbl');if(l)l.textContent=DATA.rotulo_clientes}
 if(DATA.clientes.length<2){$('#fCli').closest('.row').hidden=true;document.body.classList.add('uni')}
 readHash();update();
 </script>
