@@ -121,7 +121,8 @@ def ordem_natural(nome):
 
 
 def eh_carrossel(nome):
-    return bool(re.match(r"\s*carross[eé]is?\b|\s*carrossel", unicodedata.normalize("NFC", nome), re.I))
+    # "Carrossel - X", "Carrosséis" ou "C. Bruxismo" (padrão da Faber para pastas de carrossel)
+    return bool(re.match(r"\s*carross[eé]is?\b|\s*carrossel|\s*c\.\s", unicodedata.normalize("NFC", nome), re.I))
 
 
 ZIPS = []
@@ -189,9 +190,10 @@ def coletar(pasta, cliente, mes, destino, prof=0, servico=None):
             if slides:
                 destino.append({"id": x["id"], "nome": x["nome"], "tipo": "carrossel", "cliente": cliente, "mes": mes,
                                 "servico": servico, "pasta": pasta, "slides": slides})
-            continue
+                continue
+            # pasta "Carrosséis" sem imagens soltas: é só um agrupador, entra nas subpastas
         if x["pasta"]:
-            if prof < 2:
+            if prof < 3:
                 coletar(x["id"], cliente, mes, destino, prof + 1,
                         nome_cliente(x["nome"]) if mes_da_pasta(x["nome"]) else servico)  # subpasta de evento
             continue
