@@ -12,7 +12,8 @@ Como lê o Drive:
   pastas estão como "qualquer pessoa com o link".
 Sai com código 0 e imprime "SEM MUDANÇAS" ou "ATUALIZADO".
 """
-import html, json, os, re, sys, time, unicodedata, urllib.parse, urllib.request
+import html, json, os, re, struct, sys, time, unicodedata, urllib.parse, urllib.request
+from concurrent.futures import ThreadPoolExecutor
 from pathlib import Path
 
 RAIZ = Path(__file__).parent
@@ -127,6 +128,57 @@ def eh_carrossel(nome):
 ZIPS = []
 
 
+def medir(fid):
+    """'h' se a miniatura do Drive for horizontal (mais perto de 16:9), 'v' se vertical (mais perto de 9:16).
+    None se o Drive ainda não gerou miniatura: tenta de novo na próxima rodada."""
+    try:
+        req = urllib.request.Request(f"https://drive.google.com/thumbnail?id={fid}&sz=w200",
+                                     headers={"User-Agent": "Mozilla/5.0"})
+        with urllib.request.urlopen(req, timeout=40) as r:
+            d = r.read()
+        if d[:8] == b"\x89PNG\r\n\x1a\n":
+            w, h = struct.unpack(">II", d[16:24])
+        elif d[:2] == b"\xff\xd8":
+            i = 2
+            while i + 9 < len(d):
+                if d[i] != 0xFF:
+                    i += 1
+                    continue
+                if d[i + 1] in (0xC0, 0xC1, 0xC2):
+                    h, w = struct.unpack(">HH", d[i + 5:i + 9])
+                    break
+                i += 2 + struct.unpack(">H", d[i + 2:i + 4])[0]
+            else:
+                return None
+        else:
+            return None
+        return "h" if w > h else "v"
+    except Exception:  # noqa: BLE001
+        return None
+
+
+def formatos(itens, antigos):
+    """Grava it["fmt"] em cada vídeo/foto. Reaproveita o que já foi medido; só mede arquivos novos."""
+    ja = {a["id"]: a["fmt"] for a in antigos if a.get("fmt")}
+    falta = []
+    for it in itens:
+        if it["tipo"] == "carrossel":
+            continue
+        if it["id"] in ja:
+            it["fmt"] = ja[it["id"]]
+        else:
+            falta.append(it)
+    if falta:
+        with ThreadPoolExecutor(16) as ex:
+            for it, f in zip(falta, ex.map(lambda x: medir(x["id"]), falta)):
+                if not f:  # sem miniatura ainda: usa o nome do arquivo como pista
+                    n = it["nome"].lower()
+                    f = "h" if "horizontal" in n else "v" if "vertical" in n else None
+                if f:
+                    it["fmt"] = f
+        print(f"  formatos medidos: {sum(1 for x in falta if x.get('fmt'))}/{len(falta)} novos")
+
+
 def coletar(pasta, cliente, mes, destino, prof=0, servico=None):
     for x in listar(pasta):
         if x["pasta"] and eh_carrossel(x["nome"]):  # pasta "Carrossel ..." vira um item só, slides na ordem do nome
@@ -191,6 +243,7 @@ def main(caminho, forcar=False):
     chave = lambda i: (i["mes"], i["cliente"], i["id"])
     itens.sort(key=chave)
     antigos = sorted(cfg.get("itens", []), key=chave)
+    formatos(itens, antigos)
     zip_novo = None
     if len(ZIPS) == 1:  # só faz sentido com uma entrega; vários zips = ignora
         zip_novo = dict(ZIPS[0])

@@ -61,6 +61,8 @@ def main(caminho):
             "id": x["id"], "tipo": x["tipo"], "cliente": x["cliente"], "mes": x["mes"], "pasta": x["pasta"],
             "arquivo": x["nome"], "titulo": titulo(x["nome"], x["cliente"]), "r": rnd.random(),
         })
+        if x.get("fmt") == "h":  # horizontal (16:9); sem a chave = vertical (9:16)
+            itens[-1]["fmt"] = "h"
         if x["tipo"] == "carrossel":
             itens[-1]["slides"] = x["slides"]
             itens[-1]["capa"] = x["slides"][0]["id"]
