@@ -288,7 +288,7 @@ function renderFiltros(){
       .map(([v,l,n])=>`<button class="chip${st.cli===v?' on':''}${n||st.cli===v?'':' off'}" data-v="${esc(v)}">${v?`<span class="dot" style="background:${CORES[v]}"></span>`:''}${esc(l)}<small>${n}</small></button>`).join('');
   } else
   $('#fCli').innerHTML=[['','Todos',base.length],...DATA.clientes.map(c=>[c,c,base.filter(x=>x.cliente===c).length])]
-    .map(([v,l,n])=>`<button class="chip${st.cli===v?' on':''}" data-v="${esc(v)}">${v?`<span class="dot" style="background:${CORES[v]}"></span>`:''}${esc(l)}<small>${n}</small></button>`).join('');
+    .map(([v,l,n])=>`<button class="chip${st.cli===v?' on':''}${n||st.cli===v?'':' off'}" data-v="${esc(v)}">${v?`<span class="dot" style="background:${CORES[v]}"></span>`:''}${esc(l)}<small>${n}</small></button>`).join('');
   if(DATA.corretores&&DATA.corretores.length){const bc=I.filter(x=>match(x,'cor'));
     $('#fCor').innerHTML=[['','Todos',bc.length],...DATA.corretores.map(c=>[c,c,bc.filter(x=>(x.cor||[]).includes(c)).length])]
       .map(([v,l,n])=>`<button class="chip${st.cor===v?' on':''}${n||st.cor===v?'':' off'}" data-v="${esc(v)}">${esc(l)}<small>${n}</small></button>`).join('');}
