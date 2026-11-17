@@ -1238,6 +1238,7 @@
    "Bruxismo",
    "Ortodontia",
    "Ortodontia Infantil",
+   "Periodontia",
    "Estética",
    "Clínica",
    "Na Mídia"
@@ -1302,6 +1303,11 @@
     "supranumer",
     "suprenumer",
     "falta de dentes"
+   ],
+   "Periodontia": [
+    "periodontia",
+    "gengiva",
+    "periodont"
    ],
    "Estética": [
     "estética",

@@ -62,10 +62,18 @@ def categoria(titulo_item, cat):
         return nomes[partes[0]], "inicio"
     if partes and partes[0] in gerais:
         return cat["geral"], "inicio"
+    regioes = {norm_l(r): r for r in cat.get("regioes", {})}
+    if partes and partes[0] in regioes:  # "Sudoeste - ..." = conteúdo da região, sem empreendimento
+        return f"{regioes[partes[0]]} · Geral", "inicio"
     t = " " + re.sub(r"[^a-z0-9.]+", " ", norm_l(titulo_item)) + " "
     achados = {n for k, n in nomes.items() if f" {k} " in t}
     if len(achados) == 1:
         return achados.pop(), "meio"
+    if any(p in gerais for p in partes):  # "Espanhol - Geral - Marjorie"
+        return cat["geral"], "inicio"
+    regs = {r for k, r in regioes.items() if k in partes or f" {k} " in t}
+    if len(regs) == 1:  # "Exclusividade Noroeste"
+        return f"{regs.pop()} · Geral", "meio"
     t2 = " " + re.sub(r"[^a-z0-9%]+", " ", norm_l(titulo_item)) + " "
     for nome, chaves in cat.get("palavras", {}).items():  # por palavra-chave, na ordem de prioridade
         if any(re.search(r"\s" + re.escape(norm_l(k)), t2) for k in chaves):
@@ -131,14 +139,15 @@ def montar(cfg):
         for it in itens:
             it["cliente"] = categoria(it["titulo"], cat)[0]
         presentes = {it["cliente"] for it in itens}
-        ordem = [l for l in cat["lista"] if l in presentes] + ([cat["geral"]] if cat["geral"] in presentes else [])
+        ordem = [l for l in cat["lista"] if l in presentes]
+        ordem += sorted(c for c in presentes if c.endswith(" · Geral")) + ([cat["geral"]] if cat["geral"] in presentes else [])
         dados.update({"clientes": ordem, "cores": {c: CORES[i % len(CORES)] for i, c in enumerate(ordem)},
                       "modo": "categoria", "rotulo_clientes": cat.get("rotulo", "Categoria")})
         if cat.get("regioes"):  # 1º escolhe a região, depois aparecem os empreendimentos dela
-            reg_de = {e: r for r, es in cat["regioes"].items() for e in es}
+            reg_de = {e: r for r, es in cat["regioes"].items() for e in es + [f"{r} · Geral"]}
             for it in itens:
                 it["reg"] = reg_de.get(it["cliente"], cat["geral"])
-            regs = [{"nome": r, "emps": [e for e in es if e in presentes]} for r, es in cat["regioes"].items()]
+            regs = [{"nome": r, "emps": [e for e in es + [f"{r} · Geral"] if e in presentes]} for r, es in cat["regioes"].items()]
             regs = [r for r in regs if r["emps"]]
             if cat["geral"] in presentes:
                 regs.append({"nome": cat["geral"], "emps": []})
