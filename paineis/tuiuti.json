@@ -15,5 +15,356 @@
   "rotulo": "Contrato",
   "regex": "contrato\\s*\\d+"
  },
- "itens": []
+ "itens": [
+  {
+   "id": "1-T20mkXaMNuInTQmI-X-9YqUW0HR_LoA",
+   "nome": "F. Inst - Direito - Gabi - v.2.mov",
+   "tipo": "video",
+   "cliente": "Universidade Tuiuti",
+   "mes": "2026-03",
+   "servico": "Tuiuti - Contrato 1 - Segunda Leva - Março.26",
+   "pasta": "1X7jqA9_yLr-9crA4YjCzLggsUrl1cR7K",
+   "fmt": "v"
+  },
+  {
+   "id": "10pDyouqLPqNarRHCLJHprescKZCKowY7",
+   "nome": "Q. Inst - 70 Anos - Gabi - V.3.mov",
+   "tipo": "video",
+   "cliente": "Universidade Tuiuti",
+   "mes": "2026-03",
+   "servico": "Tuiuti - Contrato 1 - Segunda Leva - Março.26",
+   "pasta": "1X7jqA9_yLr-9crA4YjCzLggsUrl1cR7K",
+   "fmt": "v"
+  },
+  {
+   "id": "11W-B0YFC3ivyL88rlKEmMGtoSmWYL1f5",
+   "nome": "F. Inst - Carreiras e Futuro - Gabi - V.2.mov",
+   "tipo": "video",
+   "cliente": "Universidade Tuiuti",
+   "mes": "2026-03",
+   "servico": "Tuiuti - Contrato 1 - Segunda Leva - Março.26",
+   "pasta": "1X7jqA9_yLr-9crA4YjCzLggsUrl1cR7K",
+   "fmt": "v"
+  },
+  {
+   "id": "1AOMrBoiOoWUHOiJADU1KzXHuk4sAFu2P",
+   "nome": "F. Inst - Biomedicina e Farmácia - Gabi - V.2.mov",
+   "tipo": "video",
+   "cliente": "Universidade Tuiuti",
+   "mes": "2026-03",
+   "servico": "Tuiuti - Contrato 1 - Segunda Leva - Março.26",
+   "pasta": "1X7jqA9_yLr-9crA4YjCzLggsUrl1cR7K",
+   "fmt": "v"
+  },
+  {
+   "id": "1BCTc_LlCn43uy2eQaOEz7GvUt-jRy4a7",
+   "nome": "F. Inst - EAD - Gabi - V.4.mov",
+   "tipo": "video",
+   "cliente": "Universidade Tuiuti",
+   "mes": "2026-03",
+   "servico": "Tuiuti - Contrato 1 - Primeira Leva - Março.26",
+   "pasta": "1Yntb1Qme3O8xA89BG8dhxLV4OVPQcFgm",
+   "fmt": "v"
+  },
+  {
+   "id": "1EcwpU42dlzza2qBkg_3m-p7Teyjauhd3",
+   "nome": "F - Inst. Modalidades UTP - Gabi - V.5.mp4",
+   "tipo": "video",
+   "cliente": "Universidade Tuiuti",
+   "mes": "2026-03",
+   "servico": "Tuiuti - Contrato 1 - Primeira Leva - Março.26",
+   "pasta": "1Yntb1Qme3O8xA89BG8dhxLV4OVPQcFgm",
+   "fmt": "v"
+  },
+  {
+   "id": "1XIgKYpVji0wj2v1Ln3dNrQvd4hp5d42K",
+   "nome": "F. Inst - Odontologia - Gabi - V.2.mov",
+   "tipo": "video",
+   "cliente": "Universidade Tuiuti",
+   "mes": "2026-03",
+   "servico": "Tuiuti - Contrato 1 - Segunda Leva - Março.26",
+   "pasta": "1X7jqA9_yLr-9crA4YjCzLggsUrl1cR7K",
+   "fmt": "v"
+  },
+  {
+   "id": "1XiDDY-WdyLUGRn2BOifRzwXmzGm9Qh92",
+   "nome": "F. Inst - Tecnologia - Gabi - V.5.mov",
+   "tipo": "video",
+   "cliente": "Universidade Tuiuti",
+   "mes": "2026-03",
+   "servico": "Tuiuti - Contrato 1 - Primeira Leva - Março.26",
+   "pasta": "1Yntb1Qme3O8xA89BG8dhxLV4OVPQcFgm",
+   "fmt": "v"
+  },
+  {
+   "id": "1kRAqC9zm82TfNRA7C23dvZkAuCuRRyWY",
+   "nome": "F. Inst - Presencial e Presencial com EAD - Gabi - V.5",
+   "tipo": "video",
+   "cliente": "Universidade Tuiuti",
+   "mes": "2026-03",
+   "servico": "Tuiuti - Contrato 1 - Primeira Leva - Março.26",
+   "pasta": "1Yntb1Qme3O8xA89BG8dhxLV4OVPQcFgm",
+   "fmt": "v"
+  },
+  {
+   "id": "1yJohRpK_N03Tmb3xNlKHhiMstVVSQeBS",
+   "nome": "F. Inst - Semipresencial - Gabi - V.4.mov",
+   "tipo": "video",
+   "cliente": "Universidade Tuiuti",
+   "mes": "2026-03",
+   "servico": "Tuiuti - Contrato 1 - Primeira Leva - Março.26",
+   "pasta": "1Yntb1Qme3O8xA89BG8dhxLV4OVPQcFgm",
+   "fmt": "v"
+  },
+  {
+   "id": "12xIX7TB9_FhvrHR6wDWWeXp2Cz8GRPZk",
+   "nome": "F. Tuiuti 3 - SemiPresencial - V.3.mov",
+   "tipo": "video",
+   "cliente": "Universidade Tuiuti",
+   "mes": "2026-08",
+   "servico": "Tuiuti - Contrato 2 - Primeira Leva - Agosto.26",
+   "pasta": "1qXJHg7pdpcoHuGksNdincKOeOOTgTqsq",
+   "fmt": "h"
+  },
+  {
+   "id": "18QzW4yIDGhhkrxZlfbriAGkrDusMGmMs",
+   "nome": "F. Tuiuti 3 - Semipresencial - V.5.mov",
+   "tipo": "video",
+   "cliente": "Universidade Tuiuti",
+   "mes": "2026-08",
+   "servico": "Tuiuti - Contrato 2 - Primeira Leva - Agosto.26",
+   "pasta": "1gy_U6hCiMo-OGNKwBCwNS_grNGgj-AjQ",
+   "fmt": "v"
+  },
+  {
+   "id": "19kCznPM7DldZ4MKYjj4g7bSlvaEE3k8E",
+   "nome": "F. Tuiuti 3 - EAD - Horizontais - V.2.mov",
+   "tipo": "video",
+   "cliente": "Universidade Tuiuti",
+   "mes": "2026-08",
+   "servico": "Tuiuti - Contrato 2 - Primeira Leva - Agosto.26",
+   "pasta": "1qXJHg7pdpcoHuGksNdincKOeOOTgTqsq",
+   "fmt": "h"
+  },
+  {
+   "id": "1HL80wzhZRZ64WRY6OOFeFIbKw5D80BRL",
+   "nome": "F. Tuiuti 3 - Área da Saúde - V.6.mov",
+   "tipo": "video",
+   "cliente": "Universidade Tuiuti",
+   "mes": "2026-08",
+   "servico": "Tuiuti - Contrato 2 - Primeira Leva - Agosto.26",
+   "pasta": "1gy_U6hCiMo-OGNKwBCwNS_grNGgj-AjQ",
+   "fmt": "v"
+  },
+  {
+   "id": "1NrVKJJUFqfBneH5aLZeqs72qWzv93QF6",
+   "nome": "F. Tuiuti 2.2 - Farmácia  V - V.3.mp4",
+   "tipo": "video",
+   "cliente": "Universidade Tuiuti",
+   "mes": "2026-08",
+   "servico": "Tuiuti - Contrato 2 - Segunda Leva - Agosto.26",
+   "pasta": "1gaw_RTkT_5V2COJhqbnlRidb4hJRdhIb",
+   "fmt": "v"
+  },
+  {
+   "id": "1ZWWKxL1392-8CKk9QoXpGEgCxkipSHW-",
+   "nome": "F. Tuiuti 2.2 - Modalidades Horizontal - V.2.mov",
+   "tipo": "video",
+   "cliente": "Universidade Tuiuti",
+   "mes": "2026-08",
+   "servico": "Tuiuti - Contrato 2 - Segunda Leva - Agosto.26",
+   "pasta": "1Ly7JDWca9DLlBDfoYZ3fZVsSZapSXTfd",
+   "fmt": "h"
+  },
+  {
+   "id": "1eIA0O90ennMhpjaO8fysDwlXokUa2OG0",
+   "nome": "F. Tuiuti 3 - Agrocomputação - V.5.mov",
+   "tipo": "video",
+   "cliente": "Universidade Tuiuti",
+   "mes": "2026-08",
+   "servico": "Tuiuti - Contrato 2 - Primeira Leva - Agosto.26",
+   "pasta": "1gy_U6hCiMo-OGNKwBCwNS_grNGgj-AjQ",
+   "fmt": "v"
+  },
+  {
+   "id": "1fwKCD7KuPpPT8kBiXfQQM30hWr3Ftsg2",
+   "nome": "F. Tuiuti 2.2 - Eng Software V - V.2.mp4",
+   "tipo": "video",
+   "cliente": "Universidade Tuiuti",
+   "mes": "2026-08",
+   "servico": "Tuiuti - Contrato 2 - Segunda Leva - Agosto.26",
+   "pasta": "1gaw_RTkT_5V2COJhqbnlRidb4hJRdhIb",
+   "fmt": "v"
+  },
+  {
+   "id": "1ggvYD9-03_HhOvjrifwxHJNGs2cuyGfr",
+   "nome": "F. Tuiuti 4 - Biomedicina - V.3.mp4",
+   "tipo": "video",
+   "cliente": "Universidade Tuiuti",
+   "mes": "2026-08",
+   "servico": "Tuiuti - Contrato 2 - Segunda Leva - Agosto.26",
+   "pasta": "1gaw_RTkT_5V2COJhqbnlRidb4hJRdhIb",
+   "fmt": "v"
+  },
+  {
+   "id": "1oXeSmz2wEtff9t3c5aSb-aBZH1jE-gay",
+   "nome": "F. Tuiuti 3 - Transferência - V.5.mov",
+   "tipo": "video",
+   "cliente": "Universidade Tuiuti",
+   "mes": "2026-08",
+   "servico": "Tuiuti - Contrato 2 - Primeira Leva - Agosto.26",
+   "pasta": "1gy_U6hCiMo-OGNKwBCwNS_grNGgj-AjQ",
+   "fmt": "v"
+  },
+  {
+   "id": "1tfjj-VQoz2gW7MCdur7SxhFjqF22abyY",
+   "nome": "F. Tuiuti 3 - Institucional - V.5.mov",
+   "tipo": "video",
+   "cliente": "Universidade Tuiuti",
+   "mes": "2026-08",
+   "servico": "Tuiuti - Contrato 2 - Primeira Leva - Agosto.26",
+   "pasta": "1gy_U6hCiMo-OGNKwBCwNS_grNGgj-AjQ",
+   "fmt": "v"
+  },
+  {
+   "id": "1zo4M-rRwNs1RFCjuXAq9Q6xucrowPtip",
+   "nome": "F. Tuiuti 2.2 - Modalidades V - V.5.mp4",
+   "tipo": "video",
+   "cliente": "Universidade Tuiuti",
+   "mes": "2026-08",
+   "servico": "Tuiuti - Contrato 2 - Segunda Leva - Agosto.26",
+   "pasta": "1gaw_RTkT_5V2COJhqbnlRidb4hJRdhIb",
+   "fmt": "v"
+  },
+  {
+   "id": "1-FWdanwQueXTYCzBbyzlNgpXhJfoWg_w",
+   "nome": "F. Tuiuti - Diagnóstico por Imagem - V.1.mp4",
+   "tipo": "video",
+   "cliente": "Universidade Tuiuti",
+   "mes": "2026-09",
+   "servico": "Tuiuti - Contrato 3 - Primeira Leva - Setembro.26",
+   "pasta": "1lBH7Kuw60rKbxmf028qt95LOYhhUmdrd",
+   "fmt": "v"
+  },
+  {
+   "id": "15Ffo5hGYZt18kgKUJ-rrm0-CYrDQf18x",
+   "nome": "F. Rotina. Vertical. v.1.mp4",
+   "tipo": "video",
+   "cliente": "Universidade Tuiuti",
+   "mes": "2026-09",
+   "servico": "Tuiuti - Contrato 3 - Primeira Leva - Setembro.26",
+   "pasta": "1lBH7Kuw60rKbxmf028qt95LOYhhUmdrd",
+   "fmt": "v"
+  },
+  {
+   "id": "16mEkoGfW8mk_jVbU-_brG1MUBag5Il9A",
+   "nome": "F. Tuiuti - Rotina Horizontal -  V.1.mov",
+   "tipo": "video",
+   "cliente": "Universidade Tuiuti",
+   "mes": "2026-09",
+   "servico": "Tuiuti - Contrato 3 - Primeira Leva - Setembro.26",
+   "pasta": "1lBH7Kuw60rKbxmf028qt95LOYhhUmdrd",
+   "fmt": "h"
+  },
+  {
+   "id": "1FjXXOdS3raG7e2xa0stqAntX-zIJbpyp",
+   "nome": "F. Tuiuti - CINEX - V.1.mp4",
+   "tipo": "video",
+   "cliente": "Universidade Tuiuti",
+   "mes": "2026-09",
+   "servico": "Tuiuti - Contrato 3 - Primeira Leva - Setembro.26",
+   "pasta": "1lBH7Kuw60rKbxmf028qt95LOYhhUmdrd",
+   "fmt": "v"
+  },
+  {
+   "id": "1QYDr2wC52yIKAIdzv4jxll8YaQHkJsVh",
+   "nome": "F. Tuiuti - Veterinária - V.1.mp4",
+   "tipo": "video",
+   "cliente": "Universidade Tuiuti",
+   "mes": "2026-09",
+   "servico": "Tuiuti - Contrato 3 - Primeira Leva - Setembro.26",
+   "pasta": "1lBH7Kuw60rKbxmf028qt95LOYhhUmdrd",
+   "fmt": "v"
+  },
+  {
+   "id": "1U-La-eAFR2cxaS1pDvKVvrgoGDUUcx9i",
+   "nome": "F. Tuiuti - Psicologia Forense - V.1.mp4",
+   "tipo": "video",
+   "cliente": "Universidade Tuiuti",
+   "mes": "2026-09",
+   "servico": "Tuiuti - Contrato 3 - Primeira Leva - Setembro.26",
+   "pasta": "1lBH7Kuw60rKbxmf028qt95LOYhhUmdrd",
+   "fmt": "v"
+  },
+  {
+   "id": "1UVg1mhrYCX7ahKjBna-92uMYbZc2ZYaX",
+   "nome": "F. Tuiuti - Estética - V.1.mp4",
+   "tipo": "video",
+   "cliente": "Universidade Tuiuti",
+   "mes": "2026-09",
+   "servico": "Tuiuti - Contrato 3 - Primeira Leva - Setembro.26",
+   "pasta": "1lBH7Kuw60rKbxmf028qt95LOYhhUmdrd",
+   "fmt": "v"
+  },
+  {
+   "id": "1V_4OBj3HEUOez5_FNZpSJMRd2p0XxlMg",
+   "nome": "F. Tuiuti - Egressos Vertical - V.1.mp4",
+   "tipo": "video",
+   "cliente": "Universidade Tuiuti",
+   "mes": "2026-09",
+   "servico": "Tuiuti - Contrato 3 - Primeira Leva - Setembro.26",
+   "pasta": "1lBH7Kuw60rKbxmf028qt95LOYhhUmdrd",
+   "fmt": "v"
+  },
+  {
+   "id": "1_tIMLLDN17AZoR89jFlRZj36_EIuS3Pr",
+   "nome": "F. Tuiuti - Educação e Clínica Infantil - V.1.mp4",
+   "tipo": "video",
+   "cliente": "Universidade Tuiuti",
+   "mes": "2026-09",
+   "servico": "Tuiuti - Contrato 3 - Primeira Leva - Setembro.26",
+   "pasta": "1lBH7Kuw60rKbxmf028qt95LOYhhUmdrd",
+   "fmt": "v"
+  },
+  {
+   "id": "1eG8xQ_cnfLsk1RJ3qgdqjadAdIU-071s",
+   "nome": "F. Tuiuti - Egressos Horizontal -  V.2.mov",
+   "tipo": "video",
+   "cliente": "Universidade Tuiuti",
+   "mes": "2026-09",
+   "servico": "Tuiuti - Contrato 3 - Primeira Leva - Setembro.26",
+   "pasta": "1lBH7Kuw60rKbxmf028qt95LOYhhUmdrd",
+   "fmt": "h"
+  },
+  {
+   "id": "1rTGdLO4x0dgSdZJDfalbnvbGBT_kTzyE",
+   "nome": "F. Tuiuti - Endodontia - V.1.mp4",
+   "tipo": "video",
+   "cliente": "Universidade Tuiuti",
+   "mes": "2026-09",
+   "servico": "Tuiuti - Contrato 3 - Primeira Leva - Setembro.26",
+   "pasta": "1lBH7Kuw60rKbxmf028qt95LOYhhUmdrd",
+   "fmt": "v"
+  },
+  {
+   "id": "1uar6-fPmhEfeVEDbhYF7ofjdjZP5e9RU",
+   "nome": "F. Tuiuti - Odontologia DTM - V.1.mp4",
+   "tipo": "video",
+   "cliente": "Universidade Tuiuti",
+   "mes": "2026-09",
+   "servico": "Tuiuti - Contrato 3 - Primeira Leva - Setembro.26",
+   "pasta": "1lBH7Kuw60rKbxmf028qt95LOYhhUmdrd",
+   "fmt": "v"
+  },
+  {
+   "id": "1yzWoSo8dvv9Yb9h0OM9drdKzHNZuXB9v",
+   "nome": "F. Tuiuti - Danças e Ginásticas - V.1.mp4",
+   "tipo": "video",
+   "cliente": "Universidade Tuiuti",
+   "mes": "2026-09",
+   "servico": "Tuiuti - Contrato 3 - Primeira Leva - Setembro.26",
+   "pasta": "1lBH7Kuw60rKbxmf028qt95LOYhhUmdrd",
+   "fmt": "v"
+  }
+ ]
 }
