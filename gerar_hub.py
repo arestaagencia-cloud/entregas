@@ -16,6 +16,14 @@ from pathlib import Path
 RAIZ = Path(__file__).parent
 
 
+def capa_unica(cfg):
+    """Freelancers: uma imagem só no card (a mesma capa do painel)."""
+    if cfg.get("tipo_cliente") != "freelancer":
+        return None
+    import gerar_painel
+    return gerar_painel.montar(json.loads(json.dumps(cfg))).get("capa")
+
+
 def grupos(cfg):
     """Subcategorias do painel, com link que já abre filtrado: marcas, tipos de Sarau, regiões, tópicos, corretores."""
     import gerar_painel
@@ -65,6 +73,7 @@ def resumo(cfg):
         "url": f"/{cfg['slug']}/", "total": len(itens), "videos": conta("video"), "fotos": conta("foto"),
         "carrosseis": conta("carrossel"), "primeiro": meses[0], "ultimo": meses[-1], "meses": len(meses),
         "capas": capas, "marcas": [m for m in marcas if m["total"]], "grupos": grupos(cfg),
+        "capa": capa_unica(cfg),
         "tipo": "freelancer" if cfg.get("tipo_cliente") == "freelancer" else "recorrente",
     }
 

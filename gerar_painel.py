@@ -165,6 +165,9 @@ def montar(cfg):
             dados[k] = cfg[k]
     if cfg.get("capa"):  # id de uma foto do Drive para usar como capa no lugar do mosaico
         dados["capa"] = cfg["capa"]
+    elif cfg.get("tipo_cliente") == "freelancer" and itens:  # freelancer sem capa definida: miniatura de um vídeo horizontal
+        cand = sorted(itens, key=lambda i: (i.get("fmt") == "h" and i["tipo"] == "video", i["tipo"] == "video", i["mes"]))
+        dados["capa"] = cand[-1].get("capa") or cand[-1]["id"]
     return dados
 
 

@@ -212,3 +212,4 @@ Painel interno dividido em duas áreas: "Clientes Recorrentes" e "Clientes Freel
 ## Universidade Tuiuti
 Drive: "Contrato N" (pasta-contêiner, o robô entra nela) > "NN. Tuiuti - Contrato N - Primeira Leva - Mês.AA" > (Verticais/Horizontais opcionais). Painel `tuiuti`: `filtro_pasta` {"rotulo":"Contrato","regex":"contrato\\s*\\d+"} lê o contrato do nome da pasta; `remover_titulo` tira "Tuiuti 2.2 - " do título. No Notion o cliente é "Universidade Tuiuti" e cada leva é um Serviço com o nome da pasta.
 Equipe Prime: nome começando pela região ("Sudoeste - ...") vira "Sudoeste · Geral" (aparece dentro da região); "Geral" em qualquer trecho do nome = Gerais. Faber ganhou o tópico Periodontia.
+Freelancers (`tipo_cliente: freelancer`): capa do painel com uma imagem só (`capa`; sem ela, usa a miniatura do vídeo horizontal mais recente) e o card no painel interno mostra essa mesma imagem em vez do mosaico.
