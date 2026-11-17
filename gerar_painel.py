@@ -30,7 +30,7 @@ def titulo(nome, cliente):
     t = re.sub(r"^[FPQ](\.\s*|\s+|-\s*)(?=\S)", "", t)
     t = re.sub(r"\s*-\s*C\.\s*Faber\s*-\s*", " - ", t)  # "Dra. Laís - C. Faber - Tema"
     # tira o nome do cliente do começo ("Vitrinni - ", "Vitrinni. ", "Universa - ")
-    alvos = [cliente] + [w for w in cliente.split() if len(w) >= 4] + [cliente.split()[0], "Vitrini"]
+    alvos = [cliente, cliente.replace(" ", "")] + [w for w in cliente.split() if len(w) >= 4] + [cliente.split()[0], "Vitrini"]
     for _ in range(3):  # "Clinica Faber - Dr Jorge", "Faber - Alinhador": tira mesmo sem acento
         for alvo in alvos:
             t = re.sub(rf"^(\w{{1,2}}\.\s*)?{sem_acento(alvo)}(\s+Eng(enharia)?\.?)?\s*[-.]\s*", "", t, flags=re.I)  # "Niso Eng - "
@@ -42,7 +42,7 @@ def titulo(nome, cliente):
         t = t.strip(" -.")
     if not t:  # o nome era só o cliente (ex.: "F. Raul & Paola - V.3")
         return cliente
-    if re.fullmatch(r"[A-Z]{1,3}\d{4,}|IMG_\d+|DSC\d+|[\d._]+|.*\bFotos?(_\d+)?|Gabi \d+", t):
+    if re.fullmatch(r"[A-Z]{1,3}\d{4,}|IMG_\d+|DSC\d+|[\d._]+|.*\bFotos?(_\d+)?|Gabi \d+|[\d.\-_ ]*[Vv]?[\d.\-_ ]*", t):
         t = "Foto"
     return t
 
@@ -62,6 +62,8 @@ def main(caminho):
             itens[-1]["capa"] = x["slides"][0]["id"]
             itens[-1]["titulo"] = re.sub(r"^carross[eé]l\s*\d*\s*[-.:]?\s*", "", x["nome"], flags=re.I).strip() or "Carrossel"
     dados = {"clientes": cfg["clientes"], "cores": cores, "itens": itens}
+    if cfg.get("capa"):  # id de uma foto do Drive para usar como capa no lugar do mosaico
+        dados["capa"] = cfg["capa"]
     html = (RAIZ / "painel_template.html").read_text()
     logo = (RAIZ / "assets/logo-mark.b64").read_text().strip()
     agora = datetime.now(timezone(timedelta(hours=-3))).strftime("%d/%m/%Y às %H:%M")

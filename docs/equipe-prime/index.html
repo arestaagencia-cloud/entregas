@@ -31,6 +31,9 @@
 
   .hero{position:relative;min-height:min(88vh,780px);display:flex;align-items:flex-end;justify-content:center;text-align:center;overflow:hidden}
   .mosaic{position:absolute;inset:-60px -20px;display:flex;gap:8px}
+  .mosaic.foto{inset:0;background:#111 center 35%/cover no-repeat}
+  .mes-unico .month h2{display:none}
+  .mes-unico .month{margin-top:24px}
   .mcol{flex:1;display:flex;flex-direction:column;gap:8px;animation:drift 70s ease-in-out infinite alternate}
   .mcol:nth-child(even){animation-direction:alternate-reverse;margin-top:-110px}
   .mtile{width:100%;border-radius:6px;background:var(--accent-dark) center/cover no-repeat;flex:none}
@@ -152,7 +155,7 @@
   <div class="wrap">
     <div class="row" id="rowCli"><span class="lbl">Cliente</span><div class="chips grow" id="fCli"></div></div>
     <div class="row">
-      <span class="lbl">Mês</span>
+      <span class="lbl" id="lblMes">Mês</span>
       <select class="sel" id="fMes" aria-label="Filtrar por mês"></select>
       <div class="seg" id="fTipo">
         <button data-t="" class="on">Tudo</button><button data-t="video">Vídeos</button><button data-t="foto">Fotos</button><button data-t="carrossel" id="tCarr" hidden>Carrosséis</button>
@@ -165,7 +168,7 @@
 </div>
 
 <main class="wrap" id="lista"></main>
-<footer>Atualizado em 17/11/2026 às 07:54 a partir das pastas do Google Drive · ArestAgência</footer>
+<footer>Atualizado em 17/11/2026 às 07:59 a partir das pastas do Google Drive · ArestAgência</footer>
 
 <div class="lb" id="lb" role="dialog" aria-modal="true">
   <button class="lb-x" id="lbX" aria-label="Fechar">✕</button>
@@ -200,6 +203,10 @@ const conta=arr=>{const v=arr.filter(x=>x.tipo==='video').length,c=arr.filter(x=
 
 // ---------- hero ----------
 (function(){
+  const ms=[...new Set(I.map(x=>x.mes))].sort(), unico=ms.length===1;
+  if(DATA.capa){  // capa com uma foto só, em vez do mosaico
+    const m=$('#mosaic');m.classList.add('foto');m.style.backgroundImage=`url("${thumb(DATA.capa,2000)}")`;
+  }else{
   const pick=[...I].filter((x,i)=>x.tipo==='video'||i%3===0).sort((a,b)=>a.r-b.r).slice(0,56);
   const cols=window.innerWidth<700?4:8, m=$('#mosaic');
   for(let c=0;c<cols;c++){
@@ -210,10 +217,12 @@ const conta=arr=>{const v=arr.filter(x=>x.tipo==='video').length,c=arr.filter(x=
     });
     m.appendChild(col);
   }
-  const ms=[...new Set(I.map(x=>x.mes))].sort();
-  $('#periodo').textContent=`${DATA.clientes.length>1?DATA.clientes.length+' marcas · ':''}de ${mesLabel(ms[0])} a ${mesLabel(ms[ms.length-1])}`;
+  }
+  // entrega de um mês só (ex.: freelancer): sem período, sem filtro de mês e sem título de mês
+  if(unico){$('#periodo').hidden=true;$('#fMes').hidden=true;$('#lblMes').hidden=true;document.body.classList.add('mes-unico')}
+  else $('#periodo').textContent=`${DATA.clientes.length>1?DATA.clientes.length+' marcas · ':''}de ${mesLabel(ms[0])} a ${mesLabel(ms[ms.length-1])}`;
   const nV=I.filter(x=>x.tipo==='video').length;
-  $('#stats').innerHTML=[[I.length,'conteúdos'],[nV,'vídeos'],[I.length-nV-nCarr,'fotos']].concat(nCarr?[[nCarr,nCarr>1?'carrosséis':'carrossel']]:[]).concat([[ms.length,'meses']]).map(([n,l])=>`<div class="stat"><b>${n}</b><span>${l}</span></div>`).join('');
+  $('#stats').innerHTML=[[I.length,I.length===1?'conteúdo':'conteúdos'],[nV,nV===1?'vídeo':'vídeos'],[I.length-nV-nCarr,I.length-nV-nCarr===1?'foto':'fotos']].concat(nCarr?[[nCarr,nCarr>1?'carrosséis':'carrossel']]:[]).concat(unico?[]:[[ms.length,'meses']]).map(([n,l])=>`<div class="stat"><b>${n}</b><span>${l}</span></div>`).join('');
 })();
 
 // ---------- filtros ----------
@@ -252,7 +261,7 @@ function renderLista(){
   if(!visiveis.length){$('#lista').innerHTML='<div class="empty">Nenhum conteúdo com esses filtros.</div>';return}
   const g={};visiveis.forEach((x,i)=>(g[x.mes]=g[x.mes]||[]).push([x,i]));
   $('#lista').innerHTML=Object.keys(g).map(m=>{
-    const arr=g[m], all=abertos.has(m)||st.mes||arr.length<=LIM;
+    const arr=g[m], all=abertos.has(m)||st.mes||arr.length<=LIM||Object.keys(g).length===1&&document.body.classList.contains('mes-unico');
     return `<section class="month"><h2>${mesLabel(m)}<span>${conta(arr.map(([x])=>x))}</span></h2>
       <div class="grid">${(all?arr:arr.slice(0,LIM)).map(([x,i])=>card(x,i)).join('')}</div>
       ${all?'':`<button class="more" data-m="${m}">Ver todos os ${arr.length}</button>`}</section>`;
