@@ -20,6 +20,7 @@ from pathlib import Path
 RAIZ = Path(__file__).resolve().parent.parent
 TOKEN = os.environ.get("NOTION_TOKEN", "").strip()
 APLICAR = "--aplicar" in sys.argv
+RENOMEAR = "--renomear" in sys.argv  # uso pontual: o Nome das páginas casadas pelo Link passa a ser o nome do arquivo no Drive
 AUTO = "--auto" in sys.argv  # modo do robô: aplica sozinho, sem lixeira e com limite de segurança
 LIMITE_AUTO = 60
 DB = {"conteudos": "2f274a51-c09f-8017-9d90-d6e858355881",
@@ -246,7 +247,9 @@ def main():
             desejado["Status Conteúdo"] = "Entregue e Aprovado"
             plano.append({"acao": "criar", "item": it, "props": desejado})
             continue
-        mud = {}  # o Nome das páginas existentes não é alterado (a equipe padroniza no Notion)
+        mud = {}  # o Nome das páginas existentes não é alterado (a equipe padroniza no Notion), exceto com --renomear
+        if RENOMEAR and como == "link" and (titulo_de(pag) or "").strip() != nome_arq:
+            mud["Nome"] = (titulo_de(pag), nome_arq)
         if id_drive(prop(pag, "Link")) != it["id"] or not (prop(pag, "Link") or "").startswith(link):
             mud["Link"] = (prop(pag, "Link"), link)
         for k in ("Clientes", "Serviços"):

@@ -3808,6 +3808,8 @@
    "Ortodontia Infantil",
    "Periodontia",
    "Estética",
+   "Clareamento",
+   "Benefício Antecipado",
    "Clínica",
    "Na Mídia"
   ],
@@ -3898,6 +3900,15 @@
     "clínica",
     "app de monitoramento",
     "renderização"
+   ],
+   "Clareamento": [
+    "clareamento",
+    "manchas nos dentes",
+    "cor do dente"
+   ],
+   "Benefício Antecipado": [
+    "benefício antecipado",
+    "beneficio antecipado"
    ]
   },
   "geral": "Gerais",
@@ -3911,13 +3922,27 @@
   "lista": [
    "Dr. Jorge",
    "Dra. Carol",
-   "Dra. Laís"
+   "Dra. Laís",
+   "Dra. Vânia",
+   "Dra. Marília",
+   "Dra. Clarisse",
+   "Dra. Duda",
+   "Dra. Patrícia",
+   "Dra. Sarah",
+   "Paciente"
   ],
   "apelidos": {
    "Jorge": "Dr. Jorge",
    "Carol": "Dra. Carol",
    "Laís": "Dra. Laís",
-   "Lais": "Dra. Laís"
+   "Lais": "Dra. Laís",
+   "Dra Marília": "Dra. Marília",
+   "Marília": "Dra. Marília",
+   "Duda": "Dra. Duda",
+   "Sarah": "Dra. Sarah",
+   "Patrícia": "Dra. Patrícia",
+   "Clarisse": "Dra. Clarisse",
+   "Vânia": "Dra. Vânia"
   }
  }
 }
