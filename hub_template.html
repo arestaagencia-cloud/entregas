@@ -65,6 +65,11 @@
   .btn{flex:1;text-align:center;border-radius:999px;padding:10px 14px;font-size:14px;font-weight:500}
   .btn.pri{background:var(--ink);color:#0b0b0b}
   .btn.sec{border:1px solid #333;color:#fff;cursor:pointer;flex:none}
+  .area+.area{margin-top:56px}
+  .area-h{display:flex;align-items:baseline;gap:12px;margin:0 0 18px;padding-bottom:12px;border-bottom:1px solid var(--line)}
+  .area-h h2{font-family:var(--serif,Georgia,serif);font-weight:400;font-size:clamp(26px,3vw,34px);margin:0}
+  .area-h h2 em{color:var(--accent,#f5a400)}
+  .area-h span{font-size:12px;letter-spacing:.18em;text-transform:uppercase;color:var(--muted)}
   .vazio{padding:60px 0;text-align:center;color:var(--muted)}
   footer{margin:72px 0 40px;text-align:center;color:var(--muted);font-size:13px}
   .toast{position:fixed;left:50%;bottom:24px;transform:translateX(-50%) translateY(20px);background:#fff;color:#000;padding:10px 16px;border-radius:999px;font-size:14px;opacity:0;transition:all .25s;pointer-events:none}
@@ -106,7 +111,7 @@
     <input class="busca" id="busca" type="search" placeholder="Buscar cliente ou marca…" aria-label="Buscar cliente">
     <div class="ord" id="ord"><button data-o="recente" class="on">Mais recentes</button><button data-o="nome">A–Z</button><button data-o="volume">Mais conteúdos</button></div>
   </div>
-  <div class="grid" id="grid"></div>
+  <div id="grid"></div>
 </main>
 <footer>Atualizado em {{ATUALIZADO}} · os painéis se atualizam sozinhos de hora em hora a partir do Google Drive</footer>
 <div class="toast" id="toast">Link copiado</div>
@@ -128,7 +133,12 @@ function render(){
   let l=P.filter(p=>!q||norm(p.nome).includes(q)||(p.grupos||[]).some(g=>g.itens.some(m=>norm(m.nome).includes(q))));
   l.sort(ordem==='nome'?(a,b)=>a.nome.localeCompare(b.nome):ordem==='volume'?(a,b)=>b.total-a.total:(a,b)=>b.ultimo.localeCompare(a.ultimo)||b.total-a.total);
   if(!l.length){$('#grid').innerHTML='<div class="vazio">Nenhum cliente encontrado.</div>';return}
-  $('#grid').innerHTML=l.map(p=>{
+  const AREAS=[['recorrente','Clientes <em>Recorrentes</em>'],['freelancer','Clientes <em>Freelancers</em>']];
+  $('#grid').innerHTML=AREAS.map(([t,h])=>{const la=l.filter(p=>p.tipo===t);if(!la.length)return '';
+    return `<section class="area" id="area-${t}"><div class="area-h"><h2>${h}</h2><span>${la.length} ${la.length===1?'cliente':'clientes'}</span></div><div class="grid">${cards(la)}</div></section>`}).join('');
+}
+function cards(l){
+  return l.map(p=>{
     const pl=(n,a,b)=>n===1?a:b;const nums=[[p.total,pl(p.total,'conteúdo','conteúdos')],[p.videos,pl(p.videos,'vídeo','vídeos')],[p.fotos,pl(p.fotos,'foto','fotos')]].concat([[p.carrosseis,pl(p.carrosseis,'carrossel','carrosséis')]]).filter(([n],k)=>k===0||n>0)
       .map(([n,t])=>`<span><b>${n}</b> ${t}</span>`).join('');
     const marcas=(p.grupos||[]).map(g=>`<div class="grp"><span class="glbl">${esc(g.rotulo)}</span><div class="marcas">${g.itens.map(m=>`<a href="${p.url}${m.link}" title="${m.total} conteúdos">${esc(m.nome)}<small>${m.total}</small></a>`).join('')}</div></div>`).join('');
@@ -143,7 +153,8 @@ function render(){
 }
 function iniciar(){
 const tot=k=>P.reduce((s,p)=>s+p[k],0);
-$('#stats').innerHTML=[[P.length,'painéis'],[P.reduce((s,p)=>s+p.marcas.length,0),'marcas'],[tot('total'),'conteúdos'],[tot('videos'),'vídeos']]
+const nR=P.filter(p=>p.tipo==='recorrente').length,nF=P.length-nR;
+$('#stats').innerHTML=[[nR,nR===1?'recorrente':'recorrentes'],[nF,nF===1?'freelancer':'freelancers'],[P.reduce((s,p)=>s+p.marcas.length,0),'marcas'],[tot('total'),'conteúdos'],[tot('videos'),'vídeos']]
   .map(([n,l])=>`<div class="stat"><b>${n}</b><span>${l}</span></div>`).join('');
 
 render();

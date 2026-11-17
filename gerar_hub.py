@@ -65,6 +65,7 @@ def resumo(cfg):
         "url": f"/{cfg['slug']}/", "total": len(itens), "videos": conta("video"), "fotos": conta("foto"),
         "carrosseis": conta("carrossel"), "primeiro": meses[0], "ultimo": meses[-1], "meses": len(meses),
         "capas": capas, "marcas": [m for m in marcas if m["total"]], "grupos": grupos(cfg),
+        "tipo": "freelancer" if cfg.get("tipo_cliente") == "freelancer" else "recorrente",
     }
 
 

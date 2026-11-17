@@ -207,3 +207,4 @@ Mesmo mecanismo (`categorias` com rotulo "Tópico" e `corretores` com rotulo "Qu
 
 ## Painel interno: subcategorias
 `gerar_hub.grupos(cfg)` usa `gerar_painel.montar(cfg)` (o mesmo DATA do painel) e mostra no card de cada cliente as subcategorias com link já filtrado: Marcas (Universa), Tipo de Sarau, Região/Empreendimento/Corretor (Equipe Prime), Tópico/Quem grava (Faber). Qualquer filtro novo num painel aparece aqui sozinho.
+Painel interno dividido em duas áreas: "Clientes Recorrentes" e "Clientes Freelancers". Padrão = recorrente; para freelancer, `"tipo_cliente": "freelancer"` no JSON do painel (ex.: raul-paola). Busca e ordenação valem para as duas áreas.
