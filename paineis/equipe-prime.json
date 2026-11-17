@@ -466,7 +466,8 @@
    "cliente": "Equipe Prime",
    "mes": "2025-04",
    "servico": "Equipe Prime - Abril.25",
-   "pasta": "1RDApDSpT7jeLHN67_rwZLB8TVrM8m-LN"
+   "pasta": "1RDApDSpT7jeLHN67_rwZLB8TVrM8m-LN",
+   "fmt": "v"
   },
   {
    "id": "104misJNZJ9ldKOKP2gijOlpS3kvlp6Xk",
@@ -855,7 +856,8 @@
    "cliente": "Equipe Prime",
    "mes": "2025-08",
    "servico": "Equipe Prime - Agosto.25",
-   "pasta": "1ZL0VTydbKH1EOKofc9mU8Tc4KijilWO7"
+   "pasta": "1ZL0VTydbKH1EOKofc9mU8Tc4KijilWO7",
+   "fmt": "v"
   },
   {
    "id": "1Jlpf_58OaU2D4cBs12EWQSJ3B-3bZBhK",
@@ -964,7 +966,8 @@
    "cliente": "Equipe Prime",
    "mes": "2025-10",
    "servico": "Equipe Prime - Outubro.25",
-   "pasta": "1siUz_DNWMseo5qok1oAANdD6f22RT_b-"
+   "pasta": "1siUz_DNWMseo5qok1oAANdD6f22RT_b-",
+   "fmt": "v"
   },
   {
    "id": "1Egu4OEGyIYyCrMlJWWNOaQbjfpe2V4sQ",
@@ -1059,6 +1062,16 @@
   {
    "id": "15Kq85JECiNnXiod0dpZE6Ir7uKiXa1sF",
    "nome": "F. Jequitibás - Seu sonho - Poli - V.2.mov",
+   "tipo": "video",
+   "cliente": "Equipe Prime",
+   "mes": "2025-11",
+   "servico": "Equipe Prime - Novembro.25",
+   "pasta": "17rOp5vDdrxR7Y4UhndjAt8fWsq8anOR2",
+   "fmt": "v"
+  },
+  {
+   "id": "1BU1a3wvokXTcc8jzg989H52Y-mFS_Su5",
+   "nome": "F. Topázio - Apaixonada - Paula V.2.mp4",
    "tipo": "video",
    "cliente": "Equipe Prime",
    "mes": "2025-11",
@@ -2224,6 +2237,16 @@
    "fmt": "v"
   },
   {
+   "id": "16ueG7VMc__lj2X5E9q5xSH9M7Z33v69R",
+   "nome": "F. Poliane 03.mov",
+   "tipo": "video",
+   "cliente": "Equipe Prime",
+   "mes": "2026-11",
+   "servico": "Equipe Prime - Novembro.26",
+   "pasta": "1aqvH6LGp4eNmnvQI10QGMIa89cJ2qgnY",
+   "fmt": "v"
+  },
+  {
    "id": "1GEUelACs5q-oCfe1FEtesKlePXXDJQPY",
    "nome": "F. Ágata - Conquiste sua Liberdade - Poli - v.1.mov",
    "tipo": "video",
@@ -2266,6 +2289,16 @@
   {
    "id": "1toYtnOKSdjcosu-ADGcmECFg_3WFc9nM",
    "nome": "F. Sudoeste - 2 Quartos sem Sair - Cleo - V.2.mov",
+   "tipo": "video",
+   "cliente": "Equipe Prime",
+   "mes": "2026-11",
+   "servico": "Equipe Prime - Novembro.26",
+   "pasta": "1aqvH6LGp4eNmnvQI10QGMIa89cJ2qgnY",
+   "fmt": "v"
+  },
+  {
+   "id": "1zOwF6M4ROWuM-r_qw9nwKry_0v3AasJO",
+   "nome": "F. Poliane 02.mov",
    "tipo": "video",
    "cliente": "Equipe Prime",
    "mes": "2026-11",
