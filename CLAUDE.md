@@ -103,9 +103,9 @@ Cada cliente tem um dashboard fixo em `https://entregas.arestagencia.com.br/<cli
 fotos do Drive, filtros por Cliente, Mês e tipo. Config em `paineis/<cliente>.json`:
 `slug` (ex.: `universa`), `titulo`, `marca` (nome grande da capa), `drive_raiz` (id da pasta raiz no Drive),
 `cliente_unico` (opcional: use quando a raiz já contém as pastas de mês, sem subpastas de marca),
-`clientes` (ordem dos filtros), `capa` (opcional: id de uma foto do Drive que substitui o mosaico da capa, mostrada inteira sobre um fundo
-desfocado), `destaque` (opcional: lista de ids de vídeos 16:9 mostrados grandes, com player, acima da grade e fora
-dela) com `destaque_titulo` (ex.: "O <em>pedido</em>") e
+`clientes` (ordem dos filtros), `capa` (opcional: id de foto do Drive ou caminho no site, ex. `/capas/raul-paola-capa.jpg`; substitui o mosaico,
+mostrada inteira, sem corte, com o nome logo abaixo), `destaque` (opcional: lista de ids de vídeos 16:9 mostrados grandes, com player, acima da grade e fora
+dela) com `destaque_titulo` opcional (sem ele, só o vídeo) e
 `itens` (preenchido pelo robô). Painel com um mês só (freelancer) esconde sozinho o período, o filtro e o título de mês.
 
 Estrutura esperada no Drive: `raiz / [NN. ]Marca / N. Marca - Mês.AA / arquivos` (subpastas como `Fotos`
