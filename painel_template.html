@@ -61,6 +61,10 @@
   @keyframes drift{from{transform:translateY(0)}to{transform:translateY(-160px)}}
   @media (prefers-reduced-motion:reduce){.mcol{animation:none}}
   .hero::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(4,4,4,.75) 0%,rgba(4,4,4,.45) 30%,rgba(4,4,4,.65) 60%,rgba(4,4,4,1) 100%)}
+  .tudo{display:inline-flex;align-items:center;gap:12px;margin-top:26px;padding:13px 24px 13px 14px;border-radius:999px;background:#fff;color:#111;text-decoration:none;font-weight:600;font-size:15px;letter-spacing:.01em;box-shadow:0 8px 30px rgba(0,0,0,.35);transition:transform .15s,box-shadow .15s}
+  .tudo:hover{transform:translateY(-1px);box-shadow:0 12px 36px rgba(0,0,0,.45)}
+  .tudo-ic{display:grid;place-items:center;width:30px;height:30px;border-radius:50%;background:#111;color:#fff;font-size:16px}
+  .tudo small{display:block;font-weight:400;font-size:12px;opacity:.6;margin-top:1px}
   .hero-inner{position:relative;z-index:2;color:#fff;padding:0 24px clamp(48px,8vh,88px);max-width:960px}
   .eyebrow{font-size:13px;letter-spacing:.42em;text-transform:uppercase;opacity:.85;margin-bottom:18px}
   .hero h1{font-family:var(--sans);font-weight:700;font-size:clamp(54px,12vw,164px);line-height:.85;letter-spacing:.03em;margin-right:-.03em}
@@ -168,6 +172,7 @@
     <h2 class="sub">Tudo o que <em>já criamos</em> juntos</h2>
     <p id="periodo"></p>
     <div class="stats" id="stats"></div>
+    <a class="tudo" id="tudo" hidden><span class="tudo-ic">↓</span><span>Baixar tudo<small id="tudoTam"></small></span></a>
   </div>
 </section>
 
@@ -218,6 +223,9 @@ const EDICAO=DATA.modo==='edicao';
 // no modo edição a chave é "AAAA-MM|Linha · Detalhe": mostra "Linha · Detalhe · Mês Ano"
 const mesLabel=ym=>{const[k,ed]=ym.split('|');const[a,m]=k.split('-');const d=`${MESES[+m-1]} ${a}`;return ed?`${ed} · ${d}`:d};
 const $=s=>document.querySelector(s);
+if(DATA.zip){const z=$('#tudo');z.href=dl(DATA.zip.id);z.hidden=false;
+  if(DATA.zip.bytes){const mb=DATA.zip.bytes/1048576;$('#tudoTam').textContent=(mb>=1024?(mb/1024).toFixed(1).replace('.',',')+' GB':Math.round(mb)+' MB')+' · arquivo .zip';}
+  else $('#tudoTam').textContent='arquivo .zip';}
 const esc=s=>s.replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
 const DESTAQUE=(DATA.destaque||[]).map(id=>DATA.itens.find(x=>x.id===id)).filter(Boolean);
 const I=DATA.itens.filter(x=>!DESTAQUE.includes(x));  // o vídeo em destaque fica fora da grade

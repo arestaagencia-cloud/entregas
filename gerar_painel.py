@@ -79,7 +79,7 @@ def main(caminho):
         ordem = [l for l in linhas_cfg if l in presentes] + sorted(presentes - set(linhas_cfg))
         dados.update({"clientes": ordem, "cores": {c: CORES[i % len(CORES)] for i, c in enumerate(ordem)},
                       "modo": "edicao", "rotulo_clientes": cfg.get("rotulo_clientes", "Tipo")})
-    for k in ("destaque", "destaque_titulo"):  # vídeo(s) em destaque acima da grade
+    for k in ("destaque", "destaque_titulo", "zip"):  # vídeo(s) em destaque acima da grade
         if cfg.get(k):
             dados[k] = cfg[k]
     if cfg.get("capa"):  # id de uma foto do Drive para usar como capa no lugar do mosaico

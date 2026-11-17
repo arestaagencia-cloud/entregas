@@ -124,6 +124,9 @@ def eh_carrossel(nome):
     return bool(re.match(r"\s*carross[eé]is?\b|\s*carrossel", unicodedata.normalize("NFC", nome), re.I))
 
 
+ZIPS = []
+
+
 def coletar(pasta, cliente, mes, destino, prof=0, servico=None):
     for x in listar(pasta):
         if x["pasta"] and eh_carrossel(x["nome"]):  # pasta "Carrossel ..." vira um item só, slides na ordem do nome
@@ -140,6 +143,9 @@ def coletar(pasta, cliente, mes, destino, prof=0, servico=None):
             if prof < 2:
                 coletar(x["id"], cliente, mes, destino, prof + 1,
                         nome_cliente(x["nome"]) if mes_da_pasta(x["nome"]) else servico)  # subpasta de evento
+            continue
+        if prof == 0 and x["nome"].lower().endswith(".zip"):  # zip na pasta do mês = botão "Baixar tudo"
+            ZIPS.append({"id": x["id"], "nome": x["nome"]})
             continue
         t = tipo(x["nome"], x.get("mime", ""))
         if t:
@@ -185,7 +191,14 @@ def main(caminho, forcar=False):
     chave = lambda i: (i["mes"], i["cliente"], i["id"])
     itens.sort(key=chave)
     antigos = sorted(cfg.get("itens", []), key=chave)
-    mudou = forcar or ordem != cfg.get("clientes") or itens != antigos
+    zip_novo = None
+    if len(ZIPS) == 1:  # só faz sentido com uma entrega; vários zips = ignora
+        zip_novo = dict(ZIPS[0])
+        if (cfg.get("zip") or {}).get("id") == zip_novo["id"] and cfg["zip"].get("bytes"):
+            zip_novo["bytes"] = cfg["zip"]["bytes"]
+    elif len(ZIPS) > 1:
+        avisos.append(f"{len(ZIPS)} arquivos .zip encontrados; botão Baixar tudo só aparece com um")
+    mudou = forcar or ordem != cfg.get("clientes") or itens != antigos or zip_novo != cfg.get("zip")
     for a in avisos:
         print("AVISO:", a)
     if not mudou:
@@ -194,6 +207,10 @@ def main(caminho, forcar=False):
     novos = len({i["id"] for i in itens} - {i["id"] for i in antigos})
     removidos = len({i["id"] for i in antigos} - {i["id"] for i in itens})
     cfg["clientes"], cfg["itens"] = ordem, itens
+    if zip_novo:
+        cfg["zip"] = zip_novo
+    else:
+        cfg.pop("zip", None)
     cfg_path.write_text(json.dumps(cfg, ensure_ascii=False, indent=1))
     sys.path.insert(0, str(RAIZ))
     import gerar_painel

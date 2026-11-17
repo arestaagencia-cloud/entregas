@@ -188,3 +188,6 @@ o mesmo nome do vídeo na pasta tem prioridade), publicada em `docs/capas/<id do
 genéricas (vazia, placeholder "Novo_Conteúdo" do modelo, galeria do Notion); capas enviadas à mão ficam.
 Páginas cujo arquivo não abre no Drive vão para a lista "sem Drive" (CSV no log, entre `=====CSV=====`).
 O robô roda `capas.py --auto` junto com a sincronização. 12/11/2026: 174 capas; 274 páginas fora do Drive.
+
+## Botão "Baixar tudo" (zip)
+Se a pasta do mês tiver UM arquivo .zip (direto na pasta, não em subpasta), o robô grava `"zip": {"id","nome"}` no JSON do painel e o painel mostra o botão "Baixar tudo" no topo (link direto de download do Drive). `bytes` é opcional (mostra o tamanho) e é preservado enquanto o id for o mesmo. Zips nunca entram na grade. Mais de um zip = aviso, sem botão.
