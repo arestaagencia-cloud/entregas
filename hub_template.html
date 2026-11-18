@@ -286,7 +286,7 @@
   .gate .g-btn{display:flex;align-items:center;justify-content:center;gap:10px;background:#fff;color:#1f1f1f}
   .gate .g-alt{width:auto;background:none;color:var(--muted);padding:0;margin-top:6px;font-weight:400}
   .gate .lnk{text-decoration:underline;text-underline-offset:3px;font-size:13px}
-  .gate .gmsg{color:var(--gold);font-size:14px;margin:-12px 0 20px}
+  .gate .gmsg{color:var(--gold);font-size:14px;margin:-12px 0 20px;white-space:pre-line;line-height:1.5}
   .gate .gmsg:empty{display:none}
   .gate #porSenha{margin-top:14px;display:flex;flex-direction:column;gap:10px}
   .gate #porSenha[hidden]{display:none}
@@ -1000,10 +1000,10 @@ function sair(){
 // vigia: token do Google vence em 1 h; sem ele o HUB fecha (só depois de terminar um envio em andamento)
 setInterval(()=>{
   if(!INI||!$('#gate').hidden||(typeof enviando!=='undefined'&&enviando))return;
-  if(VIA==='google'&&!logado())bloquear('Sua conexão com o Google terminou. Entre de novo para continuar.');
-  if(VIA==='senha'&&Date.now()>EXP_SENHA)bloquear('A sessão com a senha de emergência terminou. Entre de novo.');
+  if(VIA==='google'&&!logado())bloquear('Sua conexão com o Google terminou\nEntre de novo para continuar');
+  if(VIA==='senha'&&Date.now()>EXP_SENHA)bloquear('A sessão com a senha de emergência terminou\nEntre de novo para continuar');
 },15000);
-document.addEventListener('visibilitychange',()=>{if(!document.hidden&&INI&&VIA==='google'&&!logado()&&!(typeof enviando!=='undefined'&&enviando))bloquear('Sua conexão com o Google terminou. Entre de novo para continuar.')});
+document.addEventListener('visibilitychange',()=>{if(!document.hidden&&INI&&VIA==='google'&&!logado()&&!(typeof enviando!=='undefined'&&enviando))bloquear('Sua conexão com o Google terminou\nEntre de novo para continuar')});
 
 function perfilUI(){
   const b=$('#perfil'),m=$('#menuPerfil');
@@ -1059,7 +1059,7 @@ if(PUB.google&&PUB.chave){
 (()=>{const s=SESS.get();if(!s)return;
   if(s.via==='google'&&s.tok&&Date.now()<s.exp){G.tok=s.tok;G.exp=s.exp;entrar(s.k,'google').catch(()=>SESS.set(null))}
   else if(s.via==='senha'&&Date.now()<s.exp){entrar(s.k,'senha').then(()=>{EXP_SENHA=s.exp}).catch(()=>SESS.set(null))}
-  else{SESS.set(null);$('#gMsg').textContent='Sua conexão com o Google terminou. Entre de novo para continuar.'}})();
+  else{SESS.set(null);$('#gMsg').textContent='Sua conexão com o Google terminou\nEntre de novo para continuar'}})();
 </script>
 </body>
 </html>
