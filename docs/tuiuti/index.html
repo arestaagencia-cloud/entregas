@@ -116,6 +116,20 @@
   .btn-filtros b{min-width:20px;height:20px;border-radius:999px;background:var(--gold);color:#0b0b0b;font-size:12px;display:inline-flex;align-items:center;justify-content:center;padding:0 6px}
   .btn-filtros b:empty{display:none}
 
+  /* exceções por painel: abertura mais alta e texto menor; conteúdos separados por tipo (vídeos | fotos) */
+  .hero.compacto h1{font-size:clamp(30px,min(6.4vw,9vh),88px)}
+  .hero.compacto h1.longo{font-size:clamp(26px,min(5vw,7.5vh),68px)}
+  .hero.compacto .eyebrow{font-size:11px}
+  .hero.compacto .sub{font-size:clamp(18px,2vw,24px)}
+  .hero.compacto .stat b{font-size:clamp(22px,2.4vw,30px)}
+  .hero.compacto .stat span{font-size:10px}
+  .hero.compacto .stats{margin-top:clamp(14px,2.5vh,24px)}
+  .tipos{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:clamp(20px,3vw,40px);margin-top:44px;align-items:start}
+  .tipos.so-um{grid-template-columns:1fr}
+  .tipos h2{font-weight:700;font-size:clamp(22px,2.4vw,30px);letter-spacing:-.01em;display:flex;align-items:baseline;gap:12px;margin-bottom:18px}
+  .tipos h2 span{font-size:13px;letter-spacing:.14em;text-transform:uppercase;color:var(--muted);font-weight:500}
+  .tipos .grid{grid-template-columns:repeat(auto-fill,minmax(150px,1fr))}
+  @media (max-width:760px){.tipos{grid-template-columns:1fr}.tipos .grid{grid-template-columns:repeat(2,minmax(0,1fr))}}
   .month{margin-top:44px}
   .month h2{font-weight:700;font-size:clamp(22px,2.4vw,30px);letter-spacing:-.01em;display:flex;align-items:baseline;gap:6px 14px;flex-wrap:wrap;margin-bottom:18px}
   .month h2 span{font-family:var(--sans);font-size:13px;letter-spacing:.14em;text-transform:uppercase;color:var(--muted)}
@@ -305,6 +319,7 @@ const conta=arr=>{const v=arr.filter(x=>x.tipo==='video').length,c=arr.filter(x=
 
 // ---------- hero ----------
 (function(){
+  if(DATA.hero){const h=document.querySelector('.hero');if(DATA.hero.altura){h.style.height=DATA.hero.altura+'vh';h.style.height=DATA.hero.altura+'svh'}if(DATA.hero.compacto)h.classList.add('compacto')}
   const ms=[...new Set(I.map(x=>x.mes))].sort(), unico=ms.length===1;
   if(DATA.capa){  // capa com uma foto só, em vez do mosaico
     const m=$('#mosaic');m.classList.add('foto');document.querySelector('.hero').classList.add('foto');
@@ -395,14 +410,15 @@ function tituloCurto(x){
 function card(x,i){
   return `<button class="card" data-i="${i}" aria-label="${esc(tituloCurto(x))}">
     <div class="thumb"><img loading="lazy" src="${mini(capa(x))}" alt="" onerror="if(!this.dataset.d){this.dataset.d=1;this.src='${thumb(capa(x),480)}'}else this.style.display='none'">
-      ${x.tipo==='video'?'':`<span class="badge">${x.tipo==='carrossel'?`Carrossel · ${x.slides.length}`:'Foto'}</span>`}${x.tipo==='video'?'<span class="play"><i></i></span>':''}${x.tipo==='carrossel'?'<svg class="stack" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2"><rect x="3" y="7" width="13" height="14" rx="2" fill="rgba(0,0,0,.45)"/><path d="M8 3h11a2 2 0 0 1 2 2v12"/></svg>':''}</div>
-    <div class="meta"><b>${esc(tituloCurto(x))}</b><span><span class="dot" style="background:${CORES[x.cliente]}"></span>${esc(x.cliente)}${x.cor?` · ${esc(x.cor.join(', '))}`:''}</span></div>
+      ${x.tipo==='video'||DATA.layout==='tipo'&&x.tipo==='foto'?'':`<span class="badge">${x.tipo==='carrossel'?`Carrossel · ${x.slides.length}`:'Foto'}</span>`}${x.tipo==='video'?'<span class="play"><i></i></span>':''}${x.tipo==='carrossel'?'<svg class="stack" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2"><rect x="3" y="7" width="13" height="14" rx="2" fill="rgba(0,0,0,.45)"/><path d="M8 3h11a2 2 0 0 1 2 2v12"/></svg>':''}</div>
+    <div class="meta">${DATA.layout==='tipo'&&/^(foto|video|vídeo)$/i.test(x.titulo.trim())?'':`<b>${esc(tituloCurto(x))}</b>`}<span>${DATA.layout==='tipo'?esc(mesLabel(x.mes)):`<span class="dot" style="background:${CORES[x.cliente]}"></span>${esc(x.cliente)}${x.cor?` · ${esc(x.cor.join(', '))}`:''}`}</span></div>
   </button>`;
 }
 function renderLista(){
   visiveis=I.filter(x=>match(x)).sort((a,b)=>b.mes.localeCompare(a.mes)||(a.fmt==='h'?1:0)-(b.fmt==='h'?1:0)||DATA.clientes.indexOf(a.cliente)-DATA.clientes.indexOf(b.cliente)||(a.tipo===b.tipo?a.titulo.localeCompare(b.titulo):({video:0,carrossel:1,foto:2}[a.tipo]-{video:0,carrossel:1,foto:2}[b.tipo])));
   $('#count').textContent=`${visiveis.length} ${visiveis.length===1?'conteúdo':'conteúdos'}`;
   if(!visiveis.length){$('#lista').innerHTML='<div class="empty">Nenhum conteúdo com esses filtros.</div>';return}
+  if(DATA.layout==='tipo'){renderPorTipo();return}
   const g={};visiveis.forEach((x,i)=>(g[x.mes]=g[x.mes]||[]).push([x,i]));
   $('#lista').innerHTML=Object.keys(g).map(m=>{
     const arr=g[m], all=abertos.has(m)||st.mes||arr.length<=LIM||Object.keys(g).length===1&&document.body.classList.contains('mes-unico');
@@ -411,6 +427,15 @@ function renderLista(){
       ${vt.length?`<div class="grid">${vt.map(([x,i])=>card(x,i)).join('')}</div>`:''}${hz.length?`<div class="grid wide">${hz.map(([x,i])=>card(x,i)).join('')}</div>`:''}
       ${all?'':`<button class="more" data-m="${m}">Ver todos os ${arr.length}</button>`}</section>`;
   }).join('');
+}
+// painel por tipo: vídeos à esquerda, fotos à direita, mais recentes primeiro (o mês vira filtro e ordem)
+function renderPorTipo(){
+  const cols=[['video','Vídeos','vídeo','vídeos'],['foto','Fotos','foto','fotos'],['carrossel','Carrosséis','carrossel','carrosséis']]
+    .map(([t,nome,s1,sn])=>{const arr=visiveis.map((x,i)=>[x,i]).filter(([x])=>x.tipo===t);return {t,nome,arr,lbl:`${arr.length} ${arr.length===1?s1:sn}`}}).filter(c=>c.arr.length);
+  $('#lista').innerHTML=`<div class="tipos${cols.length===1?' so-um':''}">`+cols.map(c=>{
+    const all=abertos.has(c.t)||c.arr.length<=LIM, mostra=all?c.arr:c.arr.slice(0,LIM);
+    return `<section class="col-tipo"><h2>${c.nome}<span>${c.lbl}</span></h2><div class="grid">${mostra.map(([x,i])=>card(x,i)).join('')}</div>
+      ${all?'':`<button class="more" data-m="${c.t}">Ver todos os ${c.arr.length}</button>`}</section>`}).join('')+'</div>';
 }
 $('#lista').addEventListener('click',e=>{
   const mo=e.target.closest('.more');if(mo){abertos.add(mo.dataset.m);renderLista();return}
