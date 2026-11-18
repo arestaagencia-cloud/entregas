@@ -121,6 +121,18 @@
   .hero h1{font-weight:700;font-size:clamp(48px,9vw,128px);line-height:.9;letter-spacing:.02em;text-transform:uppercase;margin-top:14px}
   .hero h2{font-family:var(--serif);font-style:italic;font-weight:400;color:var(--gold);font-size:clamp(28px,4vw,48px);margin-top:10px}
   .hero p{margin-top:18px;color:var(--ink-2);font-size:clamp(15px,1.5vw,18px)}
+  .hero{min-height:min(92vh,880px)}
+  .hero-in{padding-top:clamp(120px,22vh,220px)}
+  .hstats{display:flex;justify-content:center;gap:clamp(28px,6vw,72px);margin-top:clamp(28px,5vh,48px)}
+  .hs{display:flex;flex-direction:column;align-items:center;gap:4px}
+  .hs b{font-family:var(--mono);font-weight:500;font-size:clamp(28px,3.4vw,40px);color:var(--ink)}
+  .hs:first-child b{color:var(--gold)}
+  .hs span{font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:var(--ink-2)}
+  .hmix{width:min(420px,80vw);margin:26px auto 0;display:flex;flex-direction:column;gap:10px}
+  .hmix .mix{height:6px}
+  .hmix .leg{justify-content:center}
+  .hmix .leg b{font-family:var(--mono);font-weight:500;color:var(--ink);display:inline-block}
+  .pulso{animation:pulso 1.2s ease}
   /* upload */
   .up-g{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.15fr);gap:40px;align-items:start}
   .up-f{min-width:0;display:flex;flex-direction:column;gap:16px}
@@ -303,16 +315,11 @@
     <div class="hero-in">
       <div class="kick">ArestAgência</div>
       <h1>Hub de entregas</h1>
-      <h2>Equipe</h2>
-      <p id="heroTxt"></p>
+      <div class="hstats" id="hstats"></div>
+      <div class="hmix"><div class="mix" id="mix"></div><div class="leg" id="mixLeg"></div></div>
     </div>
   </section>
   <section class="sec" id="upload"><div class="wrap sec-in">
-    <div class="prod">
-      <div class="prod-h"><span class="bl">Produção da casa</span><span class="nota" id="mNota"></span></div>
-      <div class="kpis" id="kpis"></div>
-      <div class="prod-mix"><div class="mix" id="mix"></div><div class="leg" id="mixLeg"></div></div>
-    </div>
     <div class="up-g">
       <div class="up-f"><h3 class="sub">Enviar nova entrega</h3>
         <div class="campos">
@@ -469,13 +476,15 @@ function mesesUpload(){
   if(!u.indef){
     // meses que ainda não têm pasta: do mês passado até 2 meses à frente
     const novos=[];for(let k=2;k>=-1;k--){const d=new Date(hoje.getFullYear(),hoje.getMonth()+k,1),ym=`${d.getFullYear()}-${String(d.getMonth()+1).padStart(2,'0')}`;
-      if(!ex.some(m=>m.mes===ym))novos.push({v:'novo:'+ym,t:`${MESES[d.getMonth()]} ${d.getFullYear()} · criar pasta`,ym})}
+      if(!ex.some(m=>m.mes===ym))novos.push({v:'novo:'+ym,t:`${MESES[d.getMonth()]} ${d.getFullYear()} · + criar pasta`,ym})}
     const todos=novos.map(n=>({...n,ord:n.ym})).concat(ex.map((m,i)=>({v:'id:'+i,t:`${MESES[+m.mes.slice(5)-1]} ${m.mes.slice(0,4)} · ${m.nome}`,ord:m.mes})));
     todos.sort((a,b)=>b.ord.localeCompare(a.ord)).forEach(o=>opts.push(o));
   }
   const ant=$('#uMes').value;
   $('#uMes').innerHTML=opts.map(o=>`<option value="${o.v}">${esc(o.t)}</option>`).join('');
-  if(ant&&[...$('#uMes').options].some(o=>o.value===ant)&&u.lido===true)$('#uMes').value=ant;
+  const atual=u.indef?'indef':(ex.findIndex(m=>m.mes===YM)>=0?'id:'+ex.findIndex(m=>m.mes===YM):'novo:'+YM);
+  $('#uMes').value=(u===mesesUpload.u&&ant&&[...$('#uMes').options].some(o=>o.value===ant))?ant:atual;  // cliente escolhido: mês atual
+  mesesUpload.u=u;
   $('#uMes').sync&&$('#uMes').sync();
   renderDrop();
   lerMeses(u);
@@ -744,14 +753,11 @@ $('#enviar').onclick=async()=>{
 
 // ---------- 03 · métricas ----------
 function renderMetricas(pulso){
-  const M=D.metricas;
-  $('#mNota').textContent=`Somando os ${M.paineis} painéis · até ${hoje.toLocaleDateString('pt-BR',{day:'2-digit',month:'2-digit'})}`;
-  $('#kpis').innerHTML=[['Conteúdos',M.total,'var(--gold)'],['Painéis ativos',M.paineis],['Vídeos',M.videos],['Fotos',M.fotos]]
-    .map(([l,v,c])=>`<div class="kpi"><div class="bl">${l}</div><b class="${pulso&&l!=='Painéis ativos'?'pulso':''}" style="color:${c||'var(--ink)'}">${v.toLocaleString('pt-BR')}</b></div>`).join('');
-  const mix=[['Fotos',M.fotos,'#F8F4F2'],['Vídeos',M.videos,'#F6AD03'],['Carrosséis',M.carrosseis,'#8f8784']].filter(x=>x[1]);
-  const pc=n=>(n/M.total*100);
-  $('#mix').innerHTML=mix.map(([,n,c])=>`<div style="width:${pc(n)}%;min-width:4px;background:${c}"></div>`).join('');
-  $('#mixLeg').innerHTML=mix.map(([l,n,c])=>`<span><i style="background:${c}"></i>${l} ${pc(n).toLocaleString('pt-BR',{maximumFractionDigits:1})}%</span>`).join('');
+  const M=D.metricas,f=n=>n.toLocaleString('pt-BR');
+  $('#hstats').innerHTML=`<div class="hs"><b class="${pulso?'pulso':''}">${f(M.total)}</b><span>conteúdos entregues</span></div><div class="hs"><b>${f(M.paineis)}</b><span>${M.paineis===1?'painel ativo':'painéis ativos'}</span></div>`;
+  const mix=[['fotos',M.fotos,'#F8F4F2'],['vídeos',M.videos,'#F6AD03'],['carrosséis',M.carrosseis,'#8f8784']].filter(x=>x[1]);
+  $('#mix').innerHTML=mix.map(([,n,c])=>`<div style="flex:${n} 1 0;min-width:4px;background:${c}"></div>`).join('');
+  $('#mixLeg').innerHTML=mix.map(([l,n,c])=>`<span><i style="background:${c}"></i><b class="${pulso&&l!=='carrosséis'?'pulso':''}">${f(n)}</b> ${l}</span>`).join('');
 }
 
 // ---------- 04 · calendário ----------
@@ -849,7 +855,7 @@ function abertura(){
       t.style.backgroundImage=`url("${img(id)}")`;col.appendChild(t)}
     m.appendChild(col)}
   const M=D.metricas,nc=P.length;
-  $('#heroTxt').textContent=`${M.total.toLocaleString('pt-BR')} conteúdos entregues para ${nc} ${nc===1?'cliente':'clientes'}`;
+  
 }
 function iniciar(){
   P=D.paineis;UP=D.metricas.uploads||[];
