@@ -90,6 +90,22 @@ def norm(s):
     return re.sub(r"[^a-z0-9]+", " ", s).strip()
 
 
+RXV = re.compile(r"[\s.\-]+v\.?\s?\d+(?:\.\d+)?(?:\(\d+\))?\s*(?=$|\s-\s[^-]+$)", re.I)
+
+
+def sem_versao(nome, cliente=""):
+    """'F. Niso - Entrega BRB. V.1' e 'F. Niso Engenharia - Entrega BRB - V.2' -> 'entrega brb' (mesmo vídeo, outra versão)."""
+    n = EXT.sub("", nome or "").strip()
+    ms = list(RXV.finditer(n))
+    if ms:
+        n = n[:ms[-1].start()] + n[ms[-1].end():]
+    fora = {w for w in norm(cliente).split() if len(w) > 2}
+    ws = norm(n).split()
+    if ws[:1] == ["f"]:
+        ws = ws[1:]
+    return " ".join(w for w in ws if w not in fora)
+
+
 def id_drive(link):
     m = re.search(r"/(?:file/d|folders)/([\w-]{20,})", link or "") or re.search(r"[?&]id=([\w-]{20,})", link or "")
     return m.group(1) if m else None
@@ -202,6 +218,26 @@ def main():
             usados.add(cands[0]["id"])
             for c in cands[1:]:
                 arquivar[c["id"]] = (c, nome_arq)
+
+    # 3ª passada: nova versão de um vídeo (a anterior saiu do Drive): a página que apontava para o arquivo antigo
+    # passa a apontar para o novo, em vez de criar outra página
+    ids_drive = {i["id"] for i in drive}
+    orfas = {}
+    for c in conteudos:
+        fid = id_drive(prop(c, "Link"))
+        if fid and fid not in ids_drive and c["id"] not in usados and not c.get("archived"):
+            orfas.setdefault(norm(titulo_de(c)), []).append(c)
+    for it in drive:
+        if it["id"] in casamento or it["tipo"] != "video":
+            continue
+        base = sem_versao(it["nome"], it["cliente"])
+        if not base:
+            continue
+        cands = sorted([c for lst in orfas.values() for c in lst if c["id"] not in usados
+                        and sem_versao(titulo_de(c), it["cliente"]) == base], key=criado)
+        if len(cands) == 1:
+            casamento[it["id"]] = (cands[0], "versão")
+            usados.add(cands[0]["id"])
 
     for it in drive:
         cli = it["cliente"]
