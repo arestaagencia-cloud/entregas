@@ -373,6 +373,8 @@ const $=s=>document.querySelector(s);
 const nrm=s=>String(s||'').toLowerCase().normalize('NFD').replace(/[̀-ͯ]/g,'');
 const pl=(n,a,b)=>`${n.toLocaleString('pt-BR')} ${n===1?a:b}`;
 const img=x=>!x?'':x.includes('/')?x:`https://drive.google.com/thumbnail?id=${x}&sz=w640`;
+let MINI=new Set();  // miniaturas já servidas pelo próprio site (docs/m)
+const mini=id=>MINI.has(id)?`/m/${id}.jpg`:`https://drive.google.com/thumbnail?id=${id}&sz=w240`;
 const hoje=new Date(),YM=`${hoje.getFullYear()}-${String(hoje.getMonth()+1).padStart(2,'0')}`;
 const iso=d=>`${d.getFullYear()}-${String(d.getMonth()+1).padStart(2,'0')}-${String(d.getDate()).padStart(2,'0')}`;
 function toast(t){const e=$('#toast');e.textContent=t;e.classList.add('on');clearTimeout(toast.t);toast.t=setTimeout(()=>e.classList.remove('on'),2200)}
@@ -391,8 +393,8 @@ function renderPaineis(){
 function card(p){
   const fr=p.tipo==='freelancer';
   const mos=!fr&&!p.capa&&(p.capas||[]).length;  // recorrentes: o mesmo mosaico da capa do painel
-  const capa=mos?`<span class="mos">${p.capas.slice(0,8).map(id=>`<i style="background-image:url('${img(id)}')"></i>`).join('')}</span>`
-    :(p.img?`<img src="${img(p.img)}" alt="" loading="lazy" onerror="this.remove()">`:'');
+  const capa=mos?`<span class="mos">${p.capas.slice(0,8).map(id=>`<i style="background-image:url('${mini(id)}')"></i>`).join('')}</span>`
+    :(p.img?`<img src="${p.imgLocal?`/m/c/${p.img}.jpg`:img(p.img)}" alt="" loading="lazy" onerror="this.remove()">`:'');
   return `<article class="card${fr?' free':''}">
     <a class="cv" href="${p.url}" target="_blank" rel="noopener" aria-label="Abrir painel ${esc(p.nome)}">${capa}</a>
     <div class="cb"><div class="nm">${esc(p.nome)}</div><div class="rs">${resumoTxt(p)}</div>
@@ -849,13 +851,14 @@ document.querySelectorAll('section.sec,section.hero').forEach(s=>obs.observe(s))
 
 // ---------- abertura: mosaico com um pouco das entregas de todos os clientes ----------
 function abertura(){
-  const fila=P.map(p=>(p.mosaico||p.capas||[]).slice());const ids=[];let k=0;
+  MINI=new Set(P.flatMap(p=>p.mini||[]));
+  const temMini=P.some(p=>(p.mini||[]).length);const fila=P.map(p=>(temMini?(p.mini||[]):(p.capas||[])).slice());const ids=[];let k=0;
   while(fila.some(f=>f.length)){const f=fila[k++%fila.length];if(f.length)ids.push(f.shift())}  // intercala os clientes
   const cols=window.innerWidth<700?6:window.innerWidth<1100?10:14,m=$('#mosaic');m.innerHTML='';
-  const total=Math.max(ids.length,cols*6);
+  const total=Math.min(Math.max(ids.length,cols*6),cols*7);
   for(let c=0;c<cols;c++){const col=document.createElement('div');col.className='mcol';
     for(let i=c;i<total;i+=cols){const id=ids[i%ids.length];if(!id)continue;const t=document.createElement('div');t.className='mtile';
-      t.style.backgroundImage=`url("https://drive.google.com/thumbnail?id=${id}&sz=w240")`;col.appendChild(t)}
+      t.style.backgroundImage=`url("${mini(id)}")`;col.appendChild(t)}
     m.appendChild(col)}
   const M=D.metricas,nc=P.length;
   

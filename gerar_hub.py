@@ -8,7 +8,7 @@ Os dados vão criptografados (AES-GCM, chave derivada da senha com PBKDF2-SHA256
 código da página mostra quem são os clientes. Senha na variável de ambiente HUB_SENHA (segredo no GitHub).
 Sem senha, o painel não é gerado (para nunca publicar a lista aberta por engano).
 """
-import base64, json, os, secrets
+import base64, io, json, os, secrets, time, urllib.error, urllib.request
 from urllib.parse import quote
 from datetime import datetime, timedelta, timezone
 from pathlib import Path
@@ -147,6 +147,71 @@ def cifrar(dados, senha):
     return {"sal": b(sal), "iv": b(iv), "it": ITER, "ct": b(ct)}
 
 
+MINI = RAIZ / "docs" / "m"   # miniaturas do HUB servidas pelo próprio site (o Drive bloqueia muitas de uma vez)
+LARG = {"m": 240, "c": 640}
+
+
+def _thumb_drive(fid, w):
+    for tent in range(3):
+        try:
+            req = urllib.request.Request(f"https://drive.google.com/thumbnail?id={fid}&sz=w{w}", headers={"User-Agent": "Mozilla/5.0"})
+            with urllib.request.urlopen(req, timeout=40) as r:
+                d, t = r.read(), r.headers.get_content_type()
+            return d if t.startswith("image/") and len(d) > 800 else None
+        except urllib.error.HTTPError as e:
+            if e.code != 429:
+                return None
+            time.sleep(5 * (tent + 1))
+        except Exception:  # noqa: BLE001
+            return None
+    return None
+
+
+def miniaturas(paineis, limite=400):
+    """Garante docs/m/<id>.jpg (240px, mosaicos) e docs/m/c/<id>.jpg (640px, capa do card de freelancer).
+    Usa a capa já baixada em docs/capas quando existe; senão baixa do Drive, devagar. Apaga as que não são mais usadas."""
+    try:
+        from PIL import Image
+    except ImportError:
+        print("Pillow ausente: miniaturas do HUB não geradas (o HUB usa o Drive direto).")
+        return set()
+    quer = {}
+    for p in paineis:
+        for fid in p.get("mosaico") or p.get("capas") or []:
+            quer[("m", fid)] = 1
+        if p.get("img") and "/" not in p["img"]:
+            quer[("c", p["img"])] = 1
+    feitos, novos = set(), 0
+    for (tam, fid) in quer:
+        dest = MINI / (f"c/{fid}.jpg" if tam == "c" else f"{fid}.jpg")
+        if dest.exists():
+            feitos.add((tam, fid)); continue
+        if novos >= limite:
+            continue
+        local = RAIZ / "docs" / "capas" / f"{fid}.jpg"
+        dado = local.read_bytes() if local.exists() else None
+        if dado is None:
+            dado = _thumb_drive(fid, LARG[tam]); novos += 1; time.sleep(0.3)
+        if not dado:
+            continue
+        try:
+            im = Image.open(io.BytesIO(dado)).convert("RGB")
+            w = LARG[tam]
+            if im.width > w:
+                im = im.resize((w, round(im.height * w / im.width)), Image.LANCZOS)
+            dest.parent.mkdir(parents=True, exist_ok=True)
+            im.save(dest, "JPEG", quality=72, optimize=True, progressive=True)
+            feitos.add((tam, fid))
+        except Exception:  # noqa: BLE001
+            pass
+    usados = {MINI / (f"c/{f}.jpg" if t == "c" else f"{f}.jpg") for (t, f) in quer}
+    for velho in MINI.rglob("*.jpg") if MINI.exists() else []:
+        if velho not in usados:
+            velho.unlink()
+    print(f"Miniaturas do HUB: {len(feitos)} de {len(quer)} prontas ({novos} baixadas do Drive agora).")
+    return feitos
+
+
 def main():
     senha = os.environ.get("HUB_SENHA", "").strip()
     if not senha:
@@ -159,6 +224,10 @@ def main():
         if (r := resumo(c)):
             cfgs.append(c)
             paineis.append(r)
+    prontas = miniaturas(paineis)
+    for p in paineis:  # o HUB sabe quais miniaturas já existem no site
+        p["mini"] = [f for f in (p.get("mosaico") or []) if ("m", f) in prontas]
+        p["imgLocal"] = bool(p.get("img") and ("c", p["img"]) in prontas)
     dados = {"paineis": paineis, "metricas": metricas(cfgs, paineis),
              "gh": {"repo": "arestaagencia-cloud/entregas", "workflow": "atualizar-paineis.yml",
                     "token": os.environ.get("HUB_GH_TOKEN", "").strip() or None},
