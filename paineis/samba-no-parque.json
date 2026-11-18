@@ -8,6 +8,304 @@
  "clientes": [
   "Samba no Parque"
  ],
- "itens": [],
+ "itens": [
+  {
+   "id": "1033K2AFCCL4md5aaFz3ZJG82zAmTzE5J",
+   "nome": "Carrossel 2",
+   "tipo": "carrossel",
+   "cliente": "Samba no Parque",
+   "mes": "2026-08",
+   "servico": "Samba no Parque - Agosto.26",
+   "pasta": "11j7asmK-JYLUkILOSXId2fCaffdm7ZhM",
+   "slides": [
+    {
+     "id": "1cZSqAoRYzaWAuaW6zgUAPkSGtMw1Aw3w",
+     "tipo": "foto"
+    },
+    {
+     "id": "1yW0kGr57EJQahqAX4uFjHgTWz88UupBx",
+     "tipo": "foto"
+    },
+    {
+     "id": "1N_TNUzbLewtJP5-jCCfoK1Pgz2xG5yGj",
+     "tipo": "foto"
+    },
+    {
+     "id": "16bCU31fllcSjfI_MqmQOykVWJfoupS89",
+     "tipo": "foto"
+    },
+    {
+     "id": "1jEgbFrzQka2kgMe2ShQp31Fm7EssdgMV",
+     "tipo": "foto"
+    }
+   ]
+  },
+  {
+   "id": "10xW1QznJoQ1ieYc770eXlzWRYtaoqZQj",
+   "nome": "F. SnP Agosto - After Movie - V.1.mov",
+   "tipo": "video",
+   "cliente": "Samba no Parque",
+   "mes": "2026-08",
+   "servico": "Samba no Parque - Agosto.26",
+   "pasta": "11j7asmK-JYLUkILOSXId2fCaffdm7ZhM",
+   "fmt": "v"
+  },
+  {
+   "id": "145UGOIwt7hsKX5bPggR3xmMsLPeIpdwz",
+   "nome": "F. Samba no Parque - Pílula 12. V.1",
+   "tipo": "video",
+   "cliente": "Samba no Parque",
+   "mes": "2026-08",
+   "servico": "Samba no Parque - Agosto.26",
+   "pasta": "11j7asmK-JYLUkILOSXId2fCaffdm7ZhM",
+   "fmt": "v"
+  },
+  {
+   "id": "17q3wFPHMZ_j2yOJiBLvBoof2GpymGtC6",
+   "nome": "F. Samba no Parque - Pílula 11. V.1",
+   "tipo": "video",
+   "cliente": "Samba no Parque",
+   "mes": "2026-08",
+   "servico": "Samba no Parque - Agosto.26",
+   "pasta": "11j7asmK-JYLUkILOSXId2fCaffdm7ZhM",
+   "fmt": "v"
+  },
+  {
+   "id": "18cUmQnWVteuA3miPrhoReja2Hui-fHpg",
+   "nome": "VIRADA DE LOTE.mov",
+   "tipo": "video",
+   "cliente": "Samba no Parque",
+   "mes": "2026-08",
+   "servico": "Samba no Parque - Agosto.26",
+   "pasta": "11j7asmK-JYLUkILOSXId2fCaffdm7ZhM",
+   "fmt": "v"
+  },
+  {
+   "id": "1ABZNMS6k_Bs4w1-JTcJa3Hta6JDw8cUZ",
+   "nome": "F. Samba no Parque - Aniversariantes - V.3.mp4",
+   "tipo": "video",
+   "cliente": "Samba no Parque",
+   "mes": "2026-08",
+   "servico": "Samba no Parque - Agosto.26",
+   "pasta": "11j7asmK-JYLUkILOSXId2fCaffdm7ZhM",
+   "fmt": "v"
+  },
+  {
+   "id": "1PVQf_z9dAnPac0FZWpWF85iJb3ucNuHe",
+   "nome": "2 V.2.mov",
+   "tipo": "video",
+   "cliente": "Samba no Parque",
+   "mes": "2026-08",
+   "servico": "Samba no Parque - Agosto.26",
+   "pasta": "11j7asmK-JYLUkILOSXId2fCaffdm7ZhM",
+   "fmt": "v"
+  },
+  {
+   "id": "1RNCtLGPiX0xY5H7vCueY6xl-QnkNtY2v",
+   "nome": "F. Samba no Parque - Informativo - V.6.mp4",
+   "tipo": "video",
+   "cliente": "Samba no Parque",
+   "mes": "2026-08",
+   "servico": "Samba no Parque - Agosto.26",
+   "pasta": "11j7asmK-JYLUkILOSXId2fCaffdm7ZhM",
+   "fmt": "v"
+  },
+  {
+   "id": "1SGU5xwhqrT4rNxYmbPfN-8zRcsxWyVBA",
+   "nome": "F. Samba no parque - O Diferencial dessa Edição. V.3.mp4",
+   "tipo": "video",
+   "cliente": "Samba no Parque",
+   "mes": "2026-08",
+   "servico": "Samba no Parque - Agosto.26",
+   "pasta": "11j7asmK-JYLUkILOSXId2fCaffdm7ZhM",
+   "fmt": "v"
+  },
+  {
+   "id": "1c-kr38j9Ai08H3gJ4W79HY_p1vEu5vB8",
+   "nome": "1 V.2.mov",
+   "tipo": "video",
+   "cliente": "Samba no Parque",
+   "mes": "2026-08",
+   "servico": "Samba no Parque - Agosto.26",
+   "pasta": "11j7asmK-JYLUkILOSXId2fCaffdm7ZhM",
+   "fmt": "v"
+  },
+  {
+   "id": "1e-FITKIHvdQtHYn15UCo0UnB7iF5P75j",
+   "nome": "F. Samba no Parque - Collab Resenha. V.1.mp4",
+   "tipo": "video",
+   "cliente": "Samba no Parque",
+   "mes": "2026-08",
+   "servico": "Samba no Parque - Agosto.26",
+   "pasta": "11j7asmK-JYLUkILOSXId2fCaffdm7ZhM",
+   "fmt": "v"
+  },
+  {
+   "id": "1gpyGP9ltTzlqItikmUHx2s65XtfU1aC3",
+   "nome": "Carrossel 3 - Informativo",
+   "tipo": "carrossel",
+   "cliente": "Samba no Parque",
+   "mes": "2026-08",
+   "servico": "Samba no Parque - Agosto.26",
+   "pasta": "11j7asmK-JYLUkILOSXId2fCaffdm7ZhM",
+   "slides": [
+    {
+     "id": "11Y5C529oL2FTTXA_KT3GrUEPhMuz3PtH",
+     "tipo": "foto"
+    },
+    {
+     "id": "1mvnbSOfYhJlZdk_ptpD6lAcq_yfke5pp",
+     "tipo": "foto"
+    },
+    {
+     "id": "1bLCJ_W0TeJ0qEkuWBZIYe2Lt4gMM68dS",
+     "tipo": "foto"
+    },
+    {
+     "id": "1GSLPomph3K4Wi7ggp56lFScIzIOV3Jh_",
+     "tipo": "foto"
+    },
+    {
+     "id": "1c2q5uzycSz7YhFsc8XeekQ7DphDOpr0C",
+     "tipo": "foto"
+    },
+    {
+     "id": "1gbgU39xUDmQk6zcsp7cxTng_-CN_N4i-",
+     "tipo": "foto"
+    },
+    {
+     "id": "1DmUjQ7lbiYQ8zJiERMig6XCrq3Z1t3xn",
+     "tipo": "foto"
+    }
+   ]
+  },
+  {
+   "id": "1hQ1gSkXmyIhFusvJNcOiZ8L_6-vacJCD",
+   "nome": "CHAMADA SnP. V.3.mov",
+   "tipo": "video",
+   "cliente": "Samba no Parque",
+   "mes": "2026-08",
+   "servico": "Samba no Parque - Agosto.26",
+   "pasta": "11j7asmK-JYLUkILOSXId2fCaffdm7ZhM",
+   "fmt": "v"
+  },
+  {
+   "id": "1iaQ0IxPQaKMh1oD94rn-PGOkjFwR0csc",
+   "nome": "F. Samba no Parque - Pílula 10. V.1",
+   "tipo": "video",
+   "cliente": "Samba no Parque",
+   "mes": "2026-08",
+   "servico": "Samba no Parque - Agosto.26",
+   "pasta": "11j7asmK-JYLUkILOSXId2fCaffdm7ZhM",
+   "fmt": "v"
+  },
+  {
+   "id": "1jGYoNSS8SSiFPnvL8yvBhm8qLACeEsQJ",
+   "nome": "F. Samba no Parque - Virada de Lote. V.1.mp4",
+   "tipo": "video",
+   "cliente": "Samba no Parque",
+   "mes": "2026-08",
+   "servico": "Samba no Parque - Agosto.26",
+   "pasta": "11j7asmK-JYLUkILOSXId2fCaffdm7ZhM",
+   "fmt": "v"
+  },
+  {
+   "id": "1lo9QiRWCy9-rxdGk64DDPfuKz7x1YlkU",
+   "nome": "F. Samba no parque - É amanhã. V.2.mp4",
+   "tipo": "video",
+   "cliente": "Samba no Parque",
+   "mes": "2026-08",
+   "servico": "Samba no Parque - Agosto.26",
+   "pasta": "11j7asmK-JYLUkILOSXId2fCaffdm7ZhM",
+   "fmt": "v"
+  },
+  {
+   "id": "1qruwlGDM8MSHGGu25qygr2PrTlK4KYJJ",
+   "nome": "Carrossel",
+   "tipo": "carrossel",
+   "cliente": "Samba no Parque",
+   "mes": "2026-08",
+   "servico": "Samba no Parque - Agosto.26",
+   "pasta": "11j7asmK-JYLUkILOSXId2fCaffdm7ZhM",
+   "slides": [
+    {
+     "id": "1SmxNoKUt71hx3nvMgZC6-Xmh_p9gn6VN",
+     "tipo": "foto"
+    },
+    {
+     "id": "1BuwhYaDSVVOMd43MtUH4oSGmTHSNWUcb",
+     "tipo": "foto"
+    },
+    {
+     "id": "12GFv5c5rOoLLz0A4aF-jqtEzSOLiOUgI",
+     "tipo": "foto"
+    },
+    {
+     "id": "1FSMzIccyWw7mmBsvLFpoJMDR33D22OsO",
+     "tipo": "foto"
+    },
+    {
+     "id": "1OlWk8Nw3h5yd44TxoLiqPFymVwb0ULIc",
+     "tipo": "foto"
+    },
+    {
+     "id": "1V5AUfOOqOqlLpOif6JP3ymSlgXrY7iDm",
+     "tipo": "foto"
+    },
+    {
+     "id": "1EpVosoY2VWledLEMFLPqvlgqkijgRjE9",
+     "tipo": "foto"
+    },
+    {
+     "id": "1TSrzq8LbPzkqUlw903-Ka5VHNxcWVpuR",
+     "tipo": "foto"
+    },
+    {
+     "id": "1MmCAMBp7X99POXbSa5Nd7PC3GWfVE4Lv",
+     "tipo": "foto"
+    },
+    {
+     "id": "1r9bOxzZspqy6TBKqMFfydkGUc2yB6YIL",
+     "tipo": "foto"
+    },
+    {
+     "id": "1n6svU7vqa_oWQNqe4ptaEgKYTH6aCG52",
+     "tipo": "foto"
+    },
+    {
+     "id": "1k-mWXWAWWAcEC1BKDPiD5uUfiJndpGCc",
+     "tipo": "foto"
+    },
+    {
+     "id": "1-kmsK2WGvNUgjH7QymfgVqF_lINDYduH",
+     "tipo": "foto"
+    },
+    {
+     "id": "1k2nmqV_TulnbdquDWS2Dt0eGyzc99Edp",
+     "tipo": "foto"
+    }
+   ]
+  },
+  {
+   "id": "1riH8WSwBQskfaxU56tBb85l-qbZj3xDQ",
+   "nome": "F. Snp Pílula 16.mp4",
+   "tipo": "video",
+   "cliente": "Samba no Parque",
+   "mes": "2026-08",
+   "servico": "Samba no Parque - Agosto.26",
+   "pasta": "11j7asmK-JYLUkILOSXId2fCaffdm7ZhM",
+   "fmt": "v"
+  },
+  {
+   "id": "1ua7BUqHLrUfQdf1LR1YAzOrBUyRCSaoa",
+   "nome": "After movie 1",
+   "tipo": "video",
+   "cliente": "Samba no Parque",
+   "mes": "2026-08",
+   "servico": "Samba no Parque - Agosto.26",
+   "pasta": "11j7asmK-JYLUkILOSXId2fCaffdm7ZhM",
+   "fmt": "v"
+  }
+ ],
  "tipo_cliente": "freelancer"
 }
