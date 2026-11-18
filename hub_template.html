@@ -143,14 +143,14 @@ function cards(l){
   return l.map(p=>{
     const pl=(n,a,b)=>n===1?a:b;const nums=[[p.total,pl(p.total,'conteúdo','conteúdos')],[p.videos,pl(p.videos,'vídeo','vídeos')],[p.fotos,pl(p.fotos,'foto','fotos')]].concat([[p.carrosseis,pl(p.carrosseis,'carrossel','carrosséis')]]).filter(([n],k)=>k===0||n>0)
       .map(([n,t])=>`<span><b>${n}</b> ${t}</span>`).join('');
-    const marcas=(p.grupos||[]).map(g=>`<div class="grp"><span class="glbl">${esc(g.rotulo)}</span><div class="marcas">${g.itens.map(m=>`<a href="${p.url}${m.link}" title="${m.total} conteúdos">${esc(m.nome)}<small>${m.total}</small></a>`).join('')}</div></div>`).join('');
+    const marcas=(p.grupos||[]).map(g=>`<div class="grp"><span class="glbl">${esc(g.rotulo)}</span><div class="marcas">${g.itens.map(m=>`<a href="${p.url}${m.link}" target="_blank" rel="noopener" title="${m.total} conteúdos">${esc(m.nome)}<small>${m.total}</small></a>`).join('')}</div></div>`).join('');
     return `<article class="card">
-      <a class="mos${p.capa?' solo':''}" href="${p.url}">${p.capa?`<img src="${p.capa.includes('/')?p.capa:`https://drive.google.com/thumbnail?id=${p.capa}&sz=w900`}" alt="" loading="lazy" onerror="this.style.visibility='hidden'">`:p.capas.map(id=>`<i style="background-image:url('${thumb(id)}')"></i>`).join('')}<span class="nome">${esc(p.nome)}</span></a>
+      <a class="mos${p.capa?' solo':''}" href="${p.url}" target="_blank" rel="noopener">${p.capa?`<img src="${p.capa.includes('/')?p.capa:`https://drive.google.com/thumbnail?id=${p.capa}&sz=w900`}" alt="" loading="lazy" onerror="this.style.visibility='hidden'">`:p.capas.map(id=>`<i style="background-image:url('${thumb(id)}')"></i>`).join('')}<span class="nome">${esc(p.nome)}</span></a>
       <div class="info">
         <div class="nums">${nums}</div>
         <div class="meta">${mes(p.primeiro)} a ${mes(p.ultimo)} · ${p.meses} ${p.meses>1?'meses':'mês'}${p.ultimo===atual?' · <span class="novo">entregas este mês</span>':''}</div>
         ${marcas}
-        <div class="acoes"><a class="btn pri" href="${p.url}">Abrir painel</a><button class="btn sec" data-copiar="${p.url}">Copiar link</button></div>
+        <div class="acoes"><a class="btn pri" href="${p.url}" target="_blank" rel="noopener">Abrir painel</a><button class="btn sec" data-copiar="${p.url}">Copiar link</button></div>
       </div></article>`}).join('');
 }
 function iniciar(){
