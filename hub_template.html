@@ -213,6 +213,9 @@
   .gate input:focus{outline:none;border-color:#444}
   .gate label{display:flex;gap:8px;justify-content:center;align-items:center;font-size:13px;color:var(--ink-2);margin:14px 0}
   .gate button{width:100%;background:var(--ink);color:#0b0b0b;border-radius:999px;padding:12px;font-weight:600}
+  .gate .g-btn{display:flex;align-items:center;justify-content:center;gap:10px;background:#fff;color:#1f1f1f}
+  .gate .g-alt{width:auto;background:none;color:var(--muted);padding:0;margin-top:6px;font-weight:400}
+  .gate .lnk{text-decoration:underline;text-underline-offset:3px;font-size:13px}
   .gate .erro{color:#ff8b7b;font-size:13px;min-height:20px;margin-top:10px}
 
   @media (max-width:760px){
@@ -231,10 +234,15 @@
 <body>
 <div class="gate" id="gate"><form id="fGate">
   <div class="brand"><img src="data:image/png;base64,{{LOGO}}" alt=""><span>ARESTAGÊNCIA</span></div>
-  <h2>Área da equipe</h2><p>Digite a senha para abrir o HUB de entregas.</p>
-  <input type="password" id="senha" placeholder="Senha" autocomplete="current-password" autofocus aria-label="Senha">
-  <label><input type="checkbox" id="lembrar" checked> Lembrar neste aparelho</label>
-  <button type="submit">Entrar</button><div class="erro" id="erro"></div>
+  <h2>Área da equipe</h2><p id="gTxt">Entre com o Google da agência ou o seu, se ele tiver acesso ao HUB.</p>
+  <button type="button" class="g-btn" id="gGate" hidden><svg width="18" height="18" viewBox="0 0 48 48" aria-hidden="true"><path fill="#FFC107" d="M43.6 20.5H42V20H24v8h11.3C33.7 32.7 29.2 36 24 36c-6.6 0-12-5.4-12-12s5.4-12 12-12c3.1 0 5.8 1.2 7.9 3.1l5.7-5.7C34 6.1 29.3 4 24 4 12.9 4 4 12.9 4 24s8.9 20 20 20 20-8.9 20-20c0-1.3-.1-2.4-.4-3.5z"/><path fill="#FF3D00" d="m6.3 14.7 6.6 4.8C14.7 15.1 19 12 24 12c3.1 0 5.8 1.2 7.9 3.1l5.7-5.7C34 6.1 29.3 4 24 4 16.3 4 9.7 8.3 6.3 14.7z"/><path fill="#4CAF50" d="M24 44c5.2 0 9.9-2 13.4-5.2l-6.2-5.2C29.2 35.1 26.7 36 24 36c-5.2 0-9.6-3.3-11.3-8l-6.5 5C9.5 39.6 16.2 44 24 44z"/><path fill="#1976D2" d="M43.6 20.5H42V20H24v8h11.3c-.8 2.2-2.2 4.2-4.1 5.6l6.2 5.2C37 39.2 44 34 44 24c0-1.3-.1-2.4-.4-3.5z"/></svg>Entrar com Google</button>
+  <div id="porSenha">
+    <input type="password" id="senha" placeholder="Senha de emergência" autocomplete="current-password" aria-label="Senha">
+    <button type="submit">Entrar com senha</button>
+  </div>
+  <label><input type="checkbox" id="lembrar" checked> Manter conectado neste aparelho</label>
+  <button type="button" class="lnk g-alt" id="mostraSenha" hidden>Entrar com a senha de emergência</button>
+  <div class="erro" id="erro"></div>
 </form></div>
 
 <header class="top">
@@ -336,6 +344,7 @@
 
 <script>
 const CIFRA = /*__DATA__*/null;
+const PUB = /*__PUB__*/null || {};
 let D=null,P=[];
 const MESES=['Janeiro','Fevereiro','Março','Abril','Maio','Junho','Julho','Agosto','Setembro','Outubro','Novembro','Dezembro'];
 const MC=['Jan','Fev','Mar','Abr','Mai','Jun','Jul','Ago','Set','Out','Nov','Dez'];
@@ -420,7 +429,7 @@ function carregarGIS(){return new Promise((ok,nok)=>{if(window.google&&google.ac
 function pedirToken(prompt){
   return new Promise(async(ok,nok)=>{
     try{await carregarGIS()}catch(e){return nok(new Error('Não consegui carregar o login do Google.'))}
-    if(!G.cli)G.cli=google.accounts.oauth2.initTokenClient({client_id:D.google,scope:'https://www.googleapis.com/auth/drive',
+    if(!G.cli)G.cli=google.accounts.oauth2.initTokenClient({client_id:PUB.google,scope:'https://www.googleapis.com/auth/drive',
       callback:r=>{const p=G.pend;G.pend=null;if(!p)return;if(r.error)return p.nok(new Error(r.error));
         G.tok=r.access_token;G.exp=Date.now()+(r.expires_in-120)*1000;contaUI();p.ok(G.tok)},
       error_callback:e=>{const p=G.pend;G.pend=null;p&&p.nok(new Error(e.type||'login cancelado'))}});
@@ -442,7 +451,7 @@ async function listar(q,campos='files(id,name)'){
   return out;
 }
 function contaUI(){
-  if(!D.google){$('#conta').innerHTML='';return}
+  if(!PUB.google){$('#conta').innerHTML='';return}
   $('#conta').innerHTML=logado()
     ?`<span class="ok"><i></i>Conectado ao Google Drive</span><button type="button" class="lnk" id="gSair">Trocar de conta</button>`
     :`<button type="button" class="btn-sec" id="gEntrar"><svg width="16" height="16" viewBox="0 0 48 48" aria-hidden="true"><path fill="#FFC107" d="M43.6 20.5H42V20H24v8h11.3C33.7 32.7 29.2 36 24 36c-6.6 0-12-5.4-12-12s5.4-12 12-12c3.1 0 5.8 1.2 7.9 3.1l5.7-5.7C34 6.1 29.3 4 24 4 12.9 4 4 12.9 4 24s8.9 20 20 20 20-8.9 20-20c0-1.3-.1-2.4-.4-3.5z"/><path fill="#FF3D00" d="m6.3 14.7 6.6 4.8C14.7 15.1 19 12 24 12c3.1 0 5.8 1.2 7.9 3.1l5.7-5.7C34 6.1 29.3 4 24 4 16.3 4 9.7 8.3 6.3 14.7z"/><path fill="#4CAF50" d="M24 44c5.2 0 9.9-2 13.4-5.2l-6.2-5.2C29.2 35.1 26.7 36 24 36c-5.2 0-9.6-3.3-11.3-8l-6.5 5C9.5 39.6 16.2 44 24 44z"/><path fill="#1976D2" d="M43.6 20.5H42V20H24v8h11.3c-.8 2.2-2.2 4.2-4.1 5.6l6.2 5.2C37 39.2 44 34 44 24c0-1.3-.1-2.4-.4-3.5z"/></svg>Entrar com Google</button><span class="nota" style="font-size:13px">para enviar direto pelo Hub</span>`;
@@ -459,13 +468,13 @@ function alvo(){const u=UC[+$('#uCli').value];const v=$('#uMes').value;
 function renderDrop(){
   const u=UC[+$('#uCli').value];if(!u)return;const a=alvo();
   const abrir=a.id?`https://drive.google.com/drive/folders/${a.id}`:`https://drive.google.com/drive/folders/${u.c.id}`;
-  if(D.google&&logado()){
+  if(PUB.google){
     $('#drop').innerHTML=`${seta}<span class="gr">Arraste os arquivos aqui</span>
       <span class="pq">Vão para <b>${esc(a.nome)}</b>${a.id?'':' (pasta nova, criada no envio)'}. Vídeos, fotos ou o .zip do mês.</span>
       <span class="ab2" style="display:flex;gap:18px;align-items:center;flex-wrap:wrap;justify-content:center"><button type="button" class="btn-pri" id="escolher">Escolher arquivos</button>
       <a class="lnk" href="${abrir}" target="_blank" rel="noopener">Abrir pasta no Drive</a></span>`;
     $('#escolher').onclick=()=>$('#uArq').click();
-  }else if(D.google){
+  }else if(false){
     $('#drop').innerHTML=`${seta}<span class="gr">Entre com Google para enviar</span>
       <span class="pq">Destino: <b>${esc(a.nome)}</b>${a.id?'':' (pasta nova, criada no envio)'}. Se preferir, abra a pasta e envie pelo próprio Drive.</span>
       <a class="lnk" href="${abrir}" target="_blank" rel="noopener">Abrir pasta no Drive</a>`;
@@ -477,7 +486,6 @@ function renderDrop(){
   renderFila();
 }
 function addArquivos(lista){
-  if(!logado()){toast('Entre com Google primeiro');return}
   [...lista].forEach(f=>{
     if(FILA.some(x=>x.f.name===f.name&&x.f.size===f.size&&x.st!=='feito'))return;
     const video=VID.test(f.name),foto=IMG.test(f.name),ext=(f.name.match(/\.[^.]+$/)||[''])[0];
@@ -554,7 +562,7 @@ $('#fl').addEventListener('change',e=>{if(e.target.tagName==='SELECT')renderFila
 $('#fl').addEventListener('click',e=>{const b=e.target.closest('[data-rm]');if(!b)return;const x=FILA.splice(+b.dataset.rm,1)[0];if(x.url)URL.revokeObjectURL(x.url);renderFila()});
 $('#limpaFila').onclick=()=>{FILA.forEach(x=>x.url&&URL.revokeObjectURL(x.url));FILA=[];renderFila()};
 $('#uArq').onchange=e=>{addArquivos(e.target.files);e.target.value=''};
-['dragenter','dragover'].forEach(t=>$('#drop').addEventListener(t,e=>{e.preventDefault();if(logado())$('#drop').classList.add('on')}));
+['dragenter','dragover'].forEach(t=>$('#drop').addEventListener(t,e=>{e.preventDefault();if(PUB.google)$('#drop').classList.add('on')}));
 ['dragleave','drop'].forEach(t=>$('#drop').addEventListener(t,e=>{e.preventDefault();$('#drop').classList.remove('on')}));
 $('#drop').addEventListener('drop',e=>{const fs=[...e.dataTransfer.files].filter(f=>f.size>0||/\.[a-z0-9]+$/i.test(f.name));addArquivos(fs)});
 window.addEventListener('beforeunload',e=>{if(enviando){e.preventDefault();e.returnValue=''}});
@@ -742,7 +750,30 @@ $('#fGate').addEventListener('submit',async e=>{
   e.preventDefault();$('#erro').textContent='';
   try{await entrar($('#senha').value,$('#lembrar').checked)}catch(err){$('#erro').textContent='Senha incorreta.';$('#senha').select()}
 });
-$('#sair').onclick=()=>{guardar.set(null);location.reload()};
+// login Google: a chave do HUB fica num documento do Drive compartilhado só com a equipe
+async function entrarGoogle(){
+  $('#erro').textContent='';const b=$('#gGate');b.disabled=true;
+  try{
+    await pedirToken('select_account');
+    const r=await fetch(`${DRV}/${PUB.chave}/export?mimeType=text/plain`,{headers:{Authorization:`Bearer ${G.tok}`}});
+    if(r.status===403||r.status===404)throw new Error('sem acesso');
+    if(!r.ok)throw new Error('erro '+r.status);
+    const chave=(await r.text()).replace(/^\uFEFF/,'').trim();
+    try{await entrar(chave,$('#lembrar').checked)}catch(e){throw new Error('chave')}
+  }catch(e){
+    G.tok=null;
+    $('#erro').textContent=e.message==='sem acesso'?'Este e-mail não tem acesso ao HUB. Peça para compartilharem a "Chave do Hub" com você.'
+      :e.message==='chave'?'A "Chave do Hub" no Drive não confere com o HUB. Avise quem administra.'
+      :'Login não concluído. Tente de novo ou use a senha de emergência.';
+  }finally{b.disabled=false}
+}
+if(PUB.google&&PUB.chave){
+  $('#gGate').hidden=false;$('#mostraSenha').hidden=false;$('#porSenha').hidden=true;
+  $('#gGate').onclick=entrarGoogle;
+  $('#mostraSenha').onclick=()=>{$('#porSenha').hidden=false;$('#mostraSenha').hidden=true;$('#senha').focus()};
+  carregarGIS().catch(()=>{});  // já carrega o login para o clique abrir na hora
+}else{$('#gTxt').textContent='Digite a senha para abrir o HUB de entregas.';$('#senha').placeholder='Senha'}
+$('#sair').onclick=()=>{guardar.set(null);G.tok=null;location.reload()};
 const salva=guardar.get();
 if(salva)entrar(salva,true).catch(()=>guardar.set(null));
 </script>

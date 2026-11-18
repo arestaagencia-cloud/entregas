@@ -168,7 +168,8 @@ def main():
     logo = (RAIZ / "assets/logo-mark.b64").read_text().strip()
     agora = datetime.now(timezone(timedelta(hours=-3))).strftime("%d/%m/%Y às %H:%M")
     html = (html.replace("{{LOGO}}", logo).replace("{{ATUALIZADO}}", agora)
-                .replace("/*__DATA__*/null", json.dumps(cifrar(dados, senha), separators=(",", ":"))))
+                .replace("/*__DATA__*/null", json.dumps(cifrar(dados, senha), separators=(",", ":")))
+                .replace("/*__PUB__*/null", json.dumps({"google": hub.get("google_client_id"), "chave": hub.get("chave_drive")})))
     destino = RAIZ / "docs" / hub.get("caminho", "") / "index.html"
     destino.parent.mkdir(parents=True, exist_ok=True)
     destino.write_text(html)
