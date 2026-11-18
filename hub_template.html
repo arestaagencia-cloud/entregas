@@ -268,9 +268,8 @@
       </div>
       <div class="box"><div class="bl">Conteúdos por mês de entrega · últimos 12</div>
         <div class="barsv" id="barsv"></div><div class="labs" id="labs"></div><div class="nota" id="mesNota" style="font-size:12px"></div></div>
-      <div class="box"><div class="bl">Conteúdos por cliente</div>
-        <div class="barsh" id="barsh"></div>
-        <div class="leg"><span><i style="background:var(--gold)"></i>Recorrente</span><span><i style="background:#c9c3bf"></i>Freelancer</span></div></div>
+      <div class="box"><div class="bl">Conteúdos por cliente recorrente</div>
+        <div class="barsh" id="barsh"></div></div>
     </div>
   </div></section>
 
@@ -401,9 +400,9 @@ function renderMetricas(){
   $('#barsv').innerHTML=M.meses.map(m=>`<div class="${m.ym===YM?'cur':''}" title="${MESES[+m.ym.slice(5)-1]} ${m.ym.slice(0,4)}: ${m.n} conteúdos"><span>${m.n}</span><i style="height:${Math.max(2,Math.round(m.n/mx*130))}px"></i></div>`).join('');
   $('#labs').innerHTML=M.meses.map(m=>`<span>${MC[+m.ym.slice(5)-1][0]}</span>`).join('');
   $('#mesNota').textContent=`Pelo mês da pasta de entrega no Drive.${M.meses.at(-1).ym===YM?' '+MESES[hoje.getMonth()]+' parcial.':''}`;
-  const top=Math.max(...M.clientes.map(c=>c.n),1);
+  const CR=M.clientes.filter(c=>c.tipo==='recorrente'), top=Math.max(...CR.map(c=>c.n),1);
   const url=Object.fromEntries(P.map(p=>[p.nome,p.url]));
-  $('#barsh').innerHTML=M.clientes.map(c=>`<a href="${url[c.nome]||'#'}" target="_blank" rel="noopener"><span>${esc(c.nome)}</span><span class="tr"><i style="width:${Math.max(1.5,c.n/top*100)}%;background:${c.tipo==='recorrente'?'#F6AD03':'#c9c3bf'}"></i></span><span>${c.n.toLocaleString('pt-BR')}</span></a>`).join('');
+  $('#barsh').innerHTML=CR.map(c=>`<a href="${url[c.nome]||'#'}" target="_blank" rel="noopener"><span>${esc(c.nome)}</span><span class="tr"><i style="width:${Math.max(1.5,c.n/top*100)}%;background:#F6AD03"></i></span><span>${c.n.toLocaleString('pt-BR')}</span></a>`).join('');
 }
 
 // ---------- 04 · calendário ----------
