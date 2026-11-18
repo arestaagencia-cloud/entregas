@@ -153,8 +153,20 @@
   .stack{position:absolute;top:8px;right:8px;width:22px;height:22px;opacity:.95}
   .lb-media{position:relative}
   .lb-media iframe,.lb-media img{width:100%;height:100%;border:0;object-fit:contain}
-  .lb-media.scaled iframe{position:absolute;top:0;left:0;width:540px;height:960px;transform-origin:0 0}
-  .lb-media.wide.scaled iframe{width:960px;height:540px}
+  .lb-media.scaled iframe{position:absolute;top:0;left:0;width:420px;height:747px;transform-origin:0 0}
+  .lb-media.wide.scaled iframe{width:747px;height:420px}
+  /* tela cheia no celular: botão grande; no iPhone (sem tela cheia de verdade) a caixa ocupa a tela toda,
+     e vídeo horizontal com o celular em pé gira 90° para usar a tela inteira */
+  .cheia-btn{display:none;min-height:48px;padding:12px 20px;font-size:15px}
+  .lb-sair{display:none;position:absolute;top:14px;left:14px;z-index:5;width:48px;height:48px;border-radius:50%;background:rgba(0,0,0,.55);color:#fff;align-items:center;justify-content:center}
+  .lb.cheia{padding:0;background:#000}
+  .lb.cheia .lb-info,.lb.cheia .lb-nav{display:none}
+  .lb.cheia .lb-box{max-height:none;height:100%}
+  .lb.cheia .lb-media,.lb-media:fullscreen{position:fixed;inset:0;width:100vw!important;height:100dvh!important;max-width:none!important;max-height:none!important;border-radius:0;aspect-ratio:auto!important}
+  .lb.cheia .lb-media iframe,.lb-media:fullscreen iframe{position:absolute;inset:0;width:100%!important;height:100%!important;transform:none!important}
+  .lb.cheia .lb-media.girar{inset:auto;top:50%;left:50%;width:100dvh!important;height:100vw!important;transform:translate(-50%,-50%) rotate(90deg)}
+  .lb.cheia .lb-sair{display:flex}
+  .lb.cheia .lb-x{z-index:5;background:rgba(0,0,0,.55);border-radius:50%}
   .lb-info{flex:1;min-width:0;text-align:center}
   .lb-info .k{font-size:12px;letter-spacing:.2em;text-transform:uppercase;color:var(--muted)}
   .lb-info h3{font-family:var(--serif);font-weight:400;font-size:clamp(26px,3vw,38px);line-height:1.1;margin:10px 0 14px}
@@ -168,6 +180,8 @@
   .lb-nav:hover,.lb-x:hover{opacity:1}
   .lb-prev{left:8px}.lb-next{right:8px}
   @media (max-width:760px){
+    .cheia-btn{display:inline-flex}
+    .lb-x{top:10px;right:10px;width:48px;height:48px}
     .lb-box{flex-direction:column;gap:16px;overflow:auto}
     .lb-media{height:auto;width:min(88vw,calc(64vh * 9 / 16))}.lb-media.carr{width:min(92vw,calc(66vh * 4 / 5));height:auto}.lb-media.photo{max-width:100%;height:auto;max-height:62vh}
     .lb-info{text-align:center}.btns{justify-content:center}
@@ -217,10 +231,11 @@
 </div>
 
 <main class="wrap" id="lista"></main>
-<footer>Atualizado em 18/11/2026 às 15:55 a partir das pastas do Google Drive · ArestAgência</footer>
+<footer>Atualizado em 18/11/2026 às 16:10 a partir das pastas do Google Drive · ArestAgência</footer>
 
 <div class="lb" id="lb" role="dialog" aria-modal="true">
   <button class="lb-x" id="lbX" aria-label="Fechar">✕</button>
+  <button class="lb-sair" id="lbSair" type="button" aria-label="Sair da tela cheia"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 4v5H4M15 4v5h5M9 20v-5H4M15 20v-5h5"/></svg></button>
   <button class="lb-nav lb-prev" id="lbP" aria-label="Anterior">‹</button>
   <button class="lb-nav lb-next" id="lbN" aria-label="Próximo">›</button>
   <div class="lb-box">
@@ -230,6 +245,7 @@
       <h3 id="lbT"></h3>
       <p id="lbF"></p>
       <div class="btns">
+        <button type="button" class="btn sec cheia-btn" id="lbFS" aria-label="Ver em tela cheia"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 9V4h5M20 9V4h-5M4 15v5h5M20 15v5h-5"/></svg>Tela cheia</button>
         <a class="btn pri" id="lbD" target="_blank" rel="noopener">Baixar</a>
       </div>
     </div>
@@ -376,6 +392,7 @@ let cur=-1;
 function openLb(i){
   cur=i;const x=visiveis[i];
   $('#lbM').className='lb-media'+(x.tipo==='foto'?' photo':x.tipo==='carrossel'?' carr':'')+(x.fmt==='h'&&x.tipo!=='carrossel'?' wide':'');
+  $('#lbFS').hidden=x.tipo==='carrossel';
   if(x.tipo==='carrossel'){abrirCarrossel(x);return}
   $('#lbM').innerHTML=x.tipo==='video'
     ?`<iframe src="https://drive.google.com/file/d/${x.id}/preview" allow="autoplay; fullscreen" allowfullscreen></iframe>`
@@ -418,12 +435,25 @@ function irSlide(d){const trk=$('#trk');if(!trk)return false;const k=slide+d;if(
 function fitPlayer(){
   const box=$('#lbM'), f=box.querySelector('iframe');
   if(!f)return;
-  const small=window.innerWidth<760;
+  const cheia=$('#lb').classList.contains('cheia')||document.fullscreenElement===box;
+  const small=window.innerWidth<760&&!cheia;
   box.classList.toggle('scaled',small);
-  f.style.transform=small?`scale(${box.clientWidth/(box.classList.contains('wide')?960:540)})`:'';
+  f.style.transform=small?`scale(${box.clientWidth/(box.classList.contains('wide')?747:420)})`:'';
+  box.classList.toggle('girar',$('#lb').classList.contains('cheia')&&box.classList.contains('wide')&&window.innerHeight>window.innerWidth);
 }
+function telaCheia(){
+  const box=$('#lbM'),req=box.requestFullscreen||box.webkitRequestFullscreen;
+  if(req&&!/iPhone|iPod/.test(navigator.userAgent)){
+    Promise.resolve(req.call(box)).then(()=>{try{screen.orientation&&box.classList.contains('wide')&&screen.orientation.lock('landscape').catch(()=>{})}catch(e){}})
+      .catch(()=>{$('#lb').classList.add('cheia');fitPlayer()});
+  }else{$('#lb').classList.add('cheia')}
+  fitPlayer();
+}
+function sairCheia(){$('#lb').classList.remove('cheia');if(document.fullscreenElement)document.exitFullscreen().catch(()=>{});fitPlayer()}
+$('#lbFS').onclick=telaCheia;$('#lbSair').onclick=sairCheia;
+document.addEventListener('fullscreenchange',fitPlayer);
 window.addEventListener('resize',fitPlayer);
-function closeLb(){$('#lb').classList.remove('open');$('#lbM').innerHTML='';document.body.style.overflow=''}
+function closeLb(){if($('#lb').classList.contains('cheia')||document.fullscreenElement){sairCheia();return}$('#lb').classList.remove('open');$('#lbM').innerHTML='';document.body.style.overflow=''}
 const step=d=>{if(cur<0)return;openLb((cur+d+visiveis.length)%visiveis.length)};
 $('#lbX').onclick=closeLb;$('#lbP').onclick=()=>step(-1);$('#lbN').onclick=()=>step(1);
 $('#lb').addEventListener('click',e=>{if(e.target.id==='lb')closeLb()});
