@@ -80,9 +80,24 @@ def resumo(cfg):
         "url": f"/{cfg['slug']}/", "total": len(itens), "videos": conta("video"), "fotos": conta("foto"),
         "carrosseis": conta("carrossel"), "primeiro": meses[0], "ultimo": meses[-1], "meses": len(meses),
         "capas": capas, "marcas": [m for m in marcas if m["total"]], "grupos": grupos(cfg),
-        "capa": capa_unica(cfg),
+        "capa": capa_unica(cfg), "nomes": nomes_upload(cfg),
         "tipo": "freelancer" if cfg.get("tipo_cliente") == "freelancer" else "recorrente",
     }
+
+
+def nomes_upload(cfg):
+    """Opções do upload para montar o nome do arquivo: 'F. Tópico - Título - Pessoa - V.1'."""
+    out = {}
+    cat = cfg.get("categorias")
+    if cat and cat.get("lista"):
+        ops = [{"r": c, "v": c} for c in cat["lista"]]
+        ops += [{"r": f"{r} · Geral", "v": r} for r in cat.get("regioes", {})]  # "F. Sudoeste - ..." = geral da região
+        ops.append({"r": "Geral", "v": "Geral"})
+        out["cat"] = {"rotulo": cat.get("rotulo", "Tópico"), "ops": ops}
+    pes = cfg.get("corretores")
+    if pes and pes.get("lista"):
+        out["pes"] = {"rotulo": pes.get("rotulo", "Pessoa"), "lista": pes["lista"]}
+    return out
 
 
 def sigla(nome):
@@ -147,6 +162,7 @@ def main():
     dados = {"paineis": paineis, "metricas": metricas(cfgs, paineis),
              "gh": {"repo": "arestaagencia-cloud/entregas", "workflow": "atualizar-paineis.yml",
                     "token": os.environ.get("HUB_GH_TOKEN", "").strip() or None},
+             "google": hub.get("google_client_id"),
              "gerado": datetime.now(timezone(timedelta(hours=-3))).isoformat(timespec="minutes")}
     html = (RAIZ / "hub_template.html").read_text()
     logo = (RAIZ / "assets/logo-mark.b64").read_text().strip()

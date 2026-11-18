@@ -110,6 +110,38 @@
   .pasta button{font-size:13px;color:var(--gold);text-decoration:underline;text-underline-offset:3px}
   .btn-pri{display:inline-flex;align-items:center;justify-content:center;height:48px;padding:0 28px;border-radius:999px;background:var(--gold);color:#040404;font-size:15px;font-weight:700}
   .btn-pri:hover{background:#ffc93d}
+  .conta{display:flex;align-items:center;gap:12px;flex-wrap:wrap;font-size:14px;color:var(--ink-2)}
+  .conta .ok{display:inline-flex;align-items:center;gap:8px}
+  .conta .ok i{width:8px;height:8px;border-radius:50%;background:#4fbf73}
+  .btn-sec{display:inline-flex;align-items:center;gap:10px;height:42px;padding:0 18px;border-radius:999px;border:1px solid #3a3a3a;color:var(--ink);font-size:14px;font-weight:600;background:#111}
+  .btn-sec:hover{border-color:#666}
+  .lnk{font-size:13px;color:var(--muted);text-decoration:underline;text-underline-offset:3px}
+  .lnk:hover{color:var(--ink)}
+  .drop.on{border-color:var(--gold);background:#141008}
+  .fila{display:flex;flex-direction:column;gap:14px}
+  .lote{display:flex;flex-wrap:wrap;gap:10px;align-items:flex-end;background:var(--card);border:1px solid var(--line);border-radius:12px;padding:14px}
+  .lote .bl{width:100%}
+  .lote label,.arq label{display:flex;flex-direction:column;gap:5px;font-size:11px;color:var(--muted);letter-spacing:.04em}
+  .fila input[type=text],.fila input[type=number],.fila select{height:38px;background:#0f0f0f;border:1px solid var(--line);border-radius:8px;color:var(--ink);padding:0 10px;font-size:14px;min-width:0}
+  .fila input:focus,.fila select:focus{outline:none;border-color:var(--gold)}
+  .fila input.vazio{border-color:#7a3b2a}
+  .fl{display:flex;flex-direction:column;gap:10px}
+  .arq{display:grid;grid-template-columns:44px minmax(0,1fr) 28px;gap:12px;align-items:start;background:#0d0d0d;border:1px solid var(--line);border-radius:12px;padding:12px}
+  .arq .ic{width:44px;height:44px;border-radius:8px;background:#1a1a1a center/cover no-repeat;display:flex;align-items:center;justify-content:center;font-size:10px;color:var(--muted);text-transform:uppercase;letter-spacing:.06em}
+  .arq .cp2{display:flex;flex-wrap:wrap;gap:8px}
+  .arq .cp2 .t{flex:2 1 220px}.arq .cp2 .c{flex:1 1 150px}.arq .cp2 .v{flex:0 0 70px}
+  .arq .orig{font-size:12px;color:var(--muted);margin-bottom:8px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+  .arq .fin{margin-top:8px;font-family:var(--mono);font-size:12px;color:var(--gold);word-break:break-all}
+  .arq .fin.err{color:#e0805f}
+  .arq .x{color:var(--muted);font-size:20px;line-height:1}
+  .arq .x:hover{color:#fff}
+  .arq .pg{margin-top:8px;height:4px;border-radius:999px;background:#222;overflow:hidden}
+  .arq .pg i{display:block;height:100%;width:0;background:var(--gold);transition:width .3s}
+  .arq.feito{opacity:.6}.arq.feito .pg i{background:#4fbf73}
+  .arq.erro .pg i{background:#e0805f}
+  .fila-f{display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap}
+  .fila-f .ab2{display:flex;align-items:center;gap:18px}
+  .btn-pri:disabled{opacity:.45;cursor:not-allowed}
   .up-a{flex:1 1 320px;min-width:0;background:var(--card);border:1px solid var(--line);border-radius:16px;padding:24px}
   .up-a h3{font-size:15px;font-weight:600;margin-bottom:18px}
   .passos{list-style:none;display:flex;flex-direction:column;gap:16px;counter-reset:p}
@@ -242,16 +274,26 @@
           <label>Cliente<select id="uCli"></select></label>
           <label>Mês da entrega<select id="uMes"></select></label>
         </div>
+        <div class="conta" id="conta"></div>
         <div class="drop" id="drop"></div>
+        <input type="file" id="uArq" multiple hidden>
+        <div class="fila" id="fila" hidden>
+          <div class="lote" id="lote"></div>
+          <div class="fl" id="fl"></div>
+          <div class="fila-f"><span class="nota" id="filaNota"></span>
+            <span class="ab2"><button type="button" class="lnk" id="limpaFila">Limpar lista</button>
+            <button type="button" class="btn-pri" id="enviar">Enviar</button></span></div>
+        </div>
       </div>
       <aside class="up-a">
         <h3>Como enviar</h3>
         <ol class="passos">
-          <li><span>Escolha o <b>cliente</b> e o <b>mês</b> ao lado.</span></li>
-          <li><span>Abra a pasta no Drive e <b>arraste os arquivos</b> para dentro dela. Se o mês ainda não existir, crie a pasta com o nome sugerido.</span></li>
-          <li><span>Nomeie no padrão <b>F. Tópico - Título - Pessoa - V.1</b>. Carrossel é uma subpasta começando com <b>C.</b></span></li>
-          <li><span>Clique em <b>Atualizar sistema</b> no topo. Em uns 3 minutos o painel do cliente e o Notion já mostram os arquivos.</span></li>
+          <li><span>Escolha o <b>cliente</b> e o <b>mês</b>. Se o mês ainda não tem pasta, o Hub cria no padrão <b>NN. Cliente - Mês.AA</b>.</span></li>
+          <li><span>Clique em <b>Entrar com Google</b> (conta da agência ou a sua, com acesso de edição às pastas).</span></li>
+          <li><span><b>Arraste os arquivos</b> e preencha o título. O nome final sai no padrão <b>F. Tópico - Título - Pessoa - V.1</b>, já pronto no Drive.</span></li>
+          <li><span>Clique em <b>Enviar</b>. Ao terminar, o Hub aciona o <b>Atualizar sistema</b> sozinho e em uns 3 minutos o painel e o Notion mostram os arquivos.</span></li>
         </ol>
+        <p class="nota" style="margin-top:18px;font-size:12px">Carrosséis: envie as imagens pelo Drive, numa subpasta começando com <b>C.</b> ou <b>Carrossel</b>.</p>
       </aside>
     </div>
   </div></section>
@@ -346,7 +388,7 @@ function iniciarUpload(){
     cl.forEach(c=>UC.push({p,c,rot:cl.length>1?`${p.nome} · ${c.nome}`:p.nome,meses:(p.pastas.meses||[]).filter(m=>m.cliente===c.nome)}));
   });
   $('#uCli').innerHTML=UC.map((u,i)=>`<option value="${i}">${esc(u.rot)}</option>`).join('');
-  $('#uCli').onchange=mesesUpload;$('#uMes').onchange=renderDrop;mesesUpload();
+  $('#uCli').onchange=()=>{if(enviando)return;mesesUpload()};$('#uMes').onchange=()=>{if(!enviando)renderDrop()};mesesUpload();contaUI();
 }
 function mesesUpload(){
   const u=UC[+$('#uCli').value];if(!u)return;
@@ -370,21 +412,225 @@ function nomeSugerido(u,ym){
   const zero=!u.ex.length||u.ex.some(x=>/^\s*0\d/.test(x.nome));
   return `${num!=null?(zero?String(num).padStart(2,'0'):String(num))+'. ':''}${base} - ${mesTxt}`;
 }
+// ---------- upload direto para o Drive (login Google no navegador) ----------
+const G={tok:null,exp:0,cli:null,pend:null};
+const VID=/\.(mov|mp4|m4v|avi|mkv|webm|mxf)$/i, IMG=/\.(jpe?g|png|heic|heif|webp|tiff?|gif)$/i;
+function carregarGIS(){return new Promise((ok,nok)=>{if(window.google&&google.accounts)return ok();
+  const sc=document.createElement('script');sc.src='https://accounts.google.com/gsi/client';sc.async=true;sc.onload=ok;sc.onerror=nok;document.head.appendChild(sc)})}
+function pedirToken(prompt){
+  return new Promise(async(ok,nok)=>{
+    try{await carregarGIS()}catch(e){return nok(new Error('Não consegui carregar o login do Google.'))}
+    if(!G.cli)G.cli=google.accounts.oauth2.initTokenClient({client_id:D.google,scope:'https://www.googleapis.com/auth/drive',
+      callback:r=>{const p=G.pend;G.pend=null;if(!p)return;if(r.error)return p.nok(new Error(r.error));
+        G.tok=r.access_token;G.exp=Date.now()+(r.expires_in-120)*1000;contaUI();p.ok(G.tok)},
+      error_callback:e=>{const p=G.pend;G.pend=null;p&&p.nok(new Error(e.type||'login cancelado'))}});
+    G.pend={ok,nok};G.cli.requestAccessToken({prompt:prompt??''});
+  });
+}
+const logado=()=>G.tok&&Date.now()<G.exp;
+async function api(url,opt={}){
+  const r=await fetch(url,{...opt,headers:{Authorization:`Bearer ${G.tok}`,...(opt.headers||{})}});
+  if(r.status===401){G.tok=null;contaUI();throw Object.assign(new Error('Sessão do Google expirou'),{auth:true})}
+  if(!r.ok){let m='';try{m=(await r.json()).error.message}catch(e){}throw new Error(m||('Erro '+r.status))}
+  return r;
+}
+const DRV='https://www.googleapis.com/drive/v3/files', qs=o=>new URLSearchParams({supportsAllDrives:'true',includeItemsFromAllDrives:'true',...o});
+async function listar(q,campos='files(id,name)'){
+  let out=[],pt='';
+  do{const r=await(await api(`${DRV}?${qs({q,fields:'nextPageToken,'+campos,pageSize:'1000',...(pt?{pageToken:pt}:{})})}`)).json();
+    out=out.concat(r.files||[]);pt=r.nextPageToken||''}while(pt);
+  return out;
+}
+function contaUI(){
+  if(!D.google){$('#conta').innerHTML='';return}
+  $('#conta').innerHTML=logado()
+    ?`<span class="ok"><i></i>Conectado ao Google Drive</span><button type="button" class="lnk" id="gSair">Trocar de conta</button>`
+    :`<button type="button" class="btn-sec" id="gEntrar"><svg width="16" height="16" viewBox="0 0 48 48" aria-hidden="true"><path fill="#FFC107" d="M43.6 20.5H42V20H24v8h11.3C33.7 32.7 29.2 36 24 36c-6.6 0-12-5.4-12-12s5.4-12 12-12c3.1 0 5.8 1.2 7.9 3.1l5.7-5.7C34 6.1 29.3 4 24 4 12.9 4 4 12.9 4 24s8.9 20 20 20 20-8.9 20-20c0-1.3-.1-2.4-.4-3.5z"/><path fill="#FF3D00" d="m6.3 14.7 6.6 4.8C14.7 15.1 19 12 24 12c3.1 0 5.8 1.2 7.9 3.1l5.7-5.7C34 6.1 29.3 4 24 4 16.3 4 9.7 8.3 6.3 14.7z"/><path fill="#4CAF50" d="M24 44c5.2 0 9.9-2 13.4-5.2l-6.2-5.2C29.2 35.1 26.7 36 24 36c-5.2 0-9.6-3.3-11.3-8l-6.5 5C9.5 39.6 16.2 44 24 44z"/><path fill="#1976D2" d="M43.6 20.5H42V20H24v8h11.3c-.8 2.2-2.2 4.2-4.1 5.6l6.2 5.2C37 39.2 44 34 44 24c0-1.3-.1-2.4-.4-3.5z"/></svg>Entrar com Google</button><span class="nota" style="font-size:13px">para enviar direto pelo Hub</span>`;
+  const e=$('#gEntrar');if(e)e.onclick=()=>pedirToken('select_account').then(()=>toast('Conectado')).catch(err=>toast('Login não concluído: '+err.message));
+  const s=$('#gSair');if(s)s.onclick=()=>{G.tok=null;pedirToken('select_account').catch(()=>contaUI())};
+  renderDrop();
+}
+
+// fila de arquivos
+let FILA=[],enviando=false;
+const seta=`<svg viewBox="0 0 24 24" fill="none" stroke="#F6AD03" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 16V4"/><path d="m6 10 6-6 6 6"/><path d="M4 20h16"/></svg>`;
+function alvo(){const u=UC[+$('#uCli').value];const v=$('#uMes').value;
+  return v.startsWith('id:')?{u,id:u.ex[+v.slice(3)].id,nome:u.ex[+v.slice(3)].nome}:{u,id:null,nome:nomeSugerido(u,v.slice(5)),ym:v.slice(5)}}
 function renderDrop(){
-  const u=UC[+$('#uCli').value];if(!u)return;const v=$('#uMes').value;
-  const seta=`<svg viewBox="0 0 24 24" fill="none" stroke="#F6AD03" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 16V4"/><path d="m6 10 6-6 6 6"/><path d="M4 20h16"/></svg>`;
-  if(v.startsWith('id:')){const m=u.ex[+v.slice(3)];
-    $('#drop').innerHTML=`${seta}<span class="gr">Arraste os arquivos na pasta do Drive</span>
-      <span class="pq">Vídeos, fotos ou o .zip do mês vão na pasta <b>${esc(m.nome)}</b>. Ela abre em uma nova aba.</span>
-      <a class="btn-pri" href="https://drive.google.com/drive/folders/${m.id}" target="_blank" rel="noopener">Abrir pasta no Drive</a>`;
-  }else{const nome=nomeSugerido(u,v.slice(5));
-    $('#drop').innerHTML=`${seta}<span class="gr">Crie a pasta do mês e arraste os arquivos</span>
-      <span class="pq">Na pasta de <b>${esc(u.c.nome)}</b>, crie uma pasta com este nome (é ele que define o mês no painel):</span>
-      <span class="pasta"><code id="nomePasta">${esc(nome)}</code><button type="button" id="copiaNome">Copiar nome</button></span>
-      <a class="btn-pri" href="https://drive.google.com/drive/folders/${u.c.id}" target="_blank" rel="noopener">Abrir pasta do cliente no Drive</a>`;
-    $('#copiaNome').onclick=()=>(navigator.clipboard?navigator.clipboard.writeText(nome):Promise.reject()).then(()=>toast('Nome copiado')).catch(()=>prompt('Copie o nome:',nome));
+  const u=UC[+$('#uCli').value];if(!u)return;const a=alvo();
+  const abrir=a.id?`https://drive.google.com/drive/folders/${a.id}`:`https://drive.google.com/drive/folders/${u.c.id}`;
+  if(D.google&&logado()){
+    $('#drop').innerHTML=`${seta}<span class="gr">Arraste os arquivos aqui</span>
+      <span class="pq">Vão para <b>${esc(a.nome)}</b>${a.id?'':' (pasta nova, criada no envio)'}. Vídeos, fotos ou o .zip do mês.</span>
+      <span class="ab2" style="display:flex;gap:18px;align-items:center;flex-wrap:wrap;justify-content:center"><button type="button" class="btn-pri" id="escolher">Escolher arquivos</button>
+      <a class="lnk" href="${abrir}" target="_blank" rel="noopener">Abrir pasta no Drive</a></span>`;
+    $('#escolher').onclick=()=>$('#uArq').click();
+  }else if(D.google){
+    $('#drop').innerHTML=`${seta}<span class="gr">Entre com Google para enviar</span>
+      <span class="pq">Destino: <b>${esc(a.nome)}</b>${a.id?'':' (pasta nova, criada no envio)'}. Se preferir, abra a pasta e envie pelo próprio Drive.</span>
+      <a class="lnk" href="${abrir}" target="_blank" rel="noopener">Abrir pasta no Drive</a>`;
+  }else{
+    $('#drop').innerHTML=`${seta}<span class="gr">Envie pela pasta do Drive</span>
+      <span class="pq">Destino: <b>${esc(a.nome)}</b>.</span>
+      <a class="btn-pri" href="${abrir}" target="_blank" rel="noopener">Abrir pasta no Drive</a>`;
+  }
+  renderFila();
+}
+function addArquivos(lista){
+  if(!logado()){toast('Entre com Google primeiro');return}
+  [...lista].forEach(f=>{
+    if(FILA.some(x=>x.f.name===f.name&&x.f.size===f.size&&x.st!=='feito'))return;
+    const video=VID.test(f.name),foto=IMG.test(f.name),ext=(f.name.match(/\.[^.]+$/)||[''])[0];
+    let t=f.name.replace(/\.[^.]+$/,'').replace(/^[FPQ](\.\s*|\s+-\s*)/,'').replace(/[\s.\-]*[Vv]\.?\s?\d+\s*$/,'').trim();
+    if(foto&&/^(IMG|DSC|DSCF|FX|_MG|P\d|DJI|GOPR|MVI|C\d{4})[_\-]?\d+/i.test(t))t='';  // nome de câmera não vira título
+    FILA.push({f,video,foto,ext,outro:!video&&!foto,t,cat:'',pes:'',v:1,st:'',p:0,url:video||foto?'':null});
+  });
+  renderFila();
+}
+function nomeFinal(x,u,idx){
+  if(x.outro)return x.f.name;  // .zip e outros: nome original
+  const N=u.p.nomes||{};const t=(x.t||'').trim().replace(/[\\/:*?"<>|]/g,'');if(!t)return '';
+  const pre=N.cat?(x.cat||''):u.c.nome;if(N.cat&&!pre)return '';
+  let n=`F. ${pre} - ${t}`;
+  if(x.foto&&idx)n+=` ${idx}`;
+  if(N.pes&&x.pes)n+=` - ${x.pes}`;
+  if(x.video)n+=` - V.${Math.max(1,+x.v||1)}`;
+  return n+x.ext.toLowerCase();
+}
+function nomesFila(){  // fotos com o mesmo título ganham número (1, 2, 3...)
+  const u=UC[+$('#uCli').value];const grupos={};
+  FILA.forEach(x=>{if(x.foto){const k=[x.t.trim(),x.cat,x.pes].join('|');(grupos[k]=grupos[k]||[]).push(x)}});
+  FILA.forEach(x=>{const g=x.foto?grupos[[x.t.trim(),x.cat,x.pes].join('|')]:null;
+    x.nome=nomeFinal(x,u,g&&g.length>1?g.indexOf(x)+1:0)});
+  const vistos={};FILA.forEach(x=>{x.dup=!!x.nome&&!!vistos[x.nome];if(x.nome)vistos[x.nome]=1});
+}
+function opcoes(lista,sel,vazio){return `<option value="">${vazio}</option>`+lista.map(o=>`<option value="${esc(o.v)}"${o.v===sel?' selected':''}>${esc(o.r)}</option>`).join('')}
+function renderFila(){
+  if(!FILA.length){$('#fila').hidden=true;return}
+  $('#fila').hidden=false;const u=UC[+$('#uCli').value];const N=u.p.nomes||{};nomesFila();
+  const cats=N.cat?N.cat.ops:[],pess=N.pes?N.pes.lista.map(p=>({r:p,v:p})):[];
+  const editaveis=FILA.filter(x=>!x.outro&&x.st!=='feito').length;
+  $('#lote').hidden=!editaveis||enviando;
+  $('#lote').innerHTML=`<div class="bl">Aplicar a todos os arquivos</div>
+    ${N.cat?`<label>${esc(N.cat.rotulo)}<select id="lCat">${opcoes(cats,'','—')}</select></label>`:''}
+    ${N.pes?`<label>${esc(N.pes.rotulo)}<select id="lPes">${opcoes(pess,'','—')}</select></label>`:''}
+    <label style="flex:1 1 200px">Título<input type="text" id="lTit" placeholder="ex.: Bastidores da gravação"></label>
+    <button type="button" class="btn-sec" id="lAplicar">Aplicar</button>`;
+  $('#lAplicar').onclick=()=>{const c=$('#lCat')?.value,p=$('#lPes')?.value,t=$('#lTit').value.trim();
+    FILA.forEach(x=>{if(x.outro||x.st==='feito')return;if(c)x.cat=c;if(p)x.pes=p;if(t)x.t=t});renderFila()};
+  $('#fl').innerHTML=FILA.map((x,i)=>{
+    const trava=enviando||x.st==='feito';const prob=!x.outro&&(!x.nome||x.dup||x.existe);
+    const msg=x.st==='erro'?x.erro:x.dup?'Nome repetido na lista: mude o título ou a versão.':x.existe?'Já existe um arquivo com esse nome na pasta.':!x.outro&&!x.nome?(N.cat&&!x.cat?`Escolha o ${N.cat.rotulo.toLowerCase()} e o título.`:'Preencha o título.'):'';
+    const ic=x.foto&&x.f.size<25e6?`style="background-image:url('${x.url||(x.url=URL.createObjectURL(x.f))}')"`:'';
+    return `<div class="arq${x.st==='feito'?' feito':''}${x.st==='erro'?' erro':''}" data-i="${i}">
+      <div class="ic" ${ic}>${ic?'':(x.video?'vídeo':x.ext.slice(1))}</div>
+      <div><div class="orig" title="${esc(x.f.name)}">${esc(x.f.name)} · ${tam(x.f.size)}</div>
+      ${x.outro?'':`<div class="cp2">
+        <label class="t">Título<input type="text" data-k="t" value="${esc(x.t)}" ${trava?'disabled':''} class="${x.t.trim()?'':'vazio'}"></label>
+        ${N.cat?`<label class="c">${esc(N.cat.rotulo)}<select data-k="cat" ${trava?'disabled':''}>${opcoes(cats,x.cat,'Escolher…')}</select></label>`:''}
+        ${N.pes?`<label class="c">${esc(N.pes.rotulo)}<select data-k="pes" ${trava?'disabled':''}>${opcoes(pess,x.pes,'—')}</select></label>`:''}
+        ${x.video?`<label class="v">Versão<input type="number" min="1" data-k="v" value="${x.v}" ${trava?'disabled':''}></label>`:''}
+      </div>`}
+      <div class="fin${prob||x.st==='erro'?' err':''}">${x.nome?esc(x.nome):''}${msg?`<br><span style="font-family:var(--sans)">${esc(msg)}</span>`:''}</div>
+      ${x.st?`<div class="pg"><i style="width:${x.p}%"></i></div>`:''}</div>
+      <button type="button" class="x" data-rm="${i}" ${enviando?'hidden':''} aria-label="Remover">×</button></div>`}).join('');
+  const prontos=FILA.filter(x=>x.st!=='feito');
+  const ok=prontos.length&&prontos.every(x=>x.outro||(x.nome&&!x.dup&&!x.existe));
+  const total=prontos.reduce((s,x)=>s+x.f.size,0);
+  $('#enviar').disabled=enviando||!ok;
+  $('#enviar').textContent=enviando?'Enviando…':!prontos.length?'Enviado':`Enviar ${prontos.length} ${prontos.length===1?'arquivo':'arquivos'}`;
+  $('#filaNota').textContent=prontos.length?`${tam(total)} no total`:'Tudo enviado.';
+  $('#limpaFila').hidden=enviando;
+}
+const tam=b=>b>=1e9?(b/1e9).toLocaleString('pt-BR',{maximumFractionDigits:1})+' GB':b>=1e6?Math.round(b/1e6)+' MB':Math.max(1,Math.round(b/1e3))+' KB';
+$('#fl').addEventListener('input',e=>{const k=e.target.dataset.k;if(!k)return;const x=FILA[+e.target.closest('.arq').dataset.i];
+  x[k]=k==='v'?(+e.target.value||1):e.target.value;x.existe=false;
+  nomesFila();  // atualiza só os textos, sem perder o foco do campo
+  document.querySelectorAll('#fl .arq').forEach(el=>{const y=FILA[+el.dataset.i];const f=el.querySelector('.fin');if(f&&y.nome)f.firstChild&&(f.innerHTML=esc(y.nome))});
+  e.target.classList.toggle('vazio',k==='t'&&!e.target.value.trim());
+  clearTimeout(renderFila.t);renderFila.t=setTimeout(()=>{const a=document.activeElement,i=a&&a.closest('.arq')?.dataset.i,k2=a&&a.dataset.k,pos=a&&a.selectionStart;
+    renderFila();if(i!=null&&k2){const n=document.querySelector(`#fl .arq[data-i="${i}"] [data-k="${k2}"]`);if(n){n.focus();try{n.setSelectionRange(pos,pos)}catch(_){}}}},500)});
+$('#fl').addEventListener('change',e=>{if(e.target.tagName==='SELECT')renderFila()});
+$('#fl').addEventListener('click',e=>{const b=e.target.closest('[data-rm]');if(!b)return;const x=FILA.splice(+b.dataset.rm,1)[0];if(x.url)URL.revokeObjectURL(x.url);renderFila()});
+$('#limpaFila').onclick=()=>{FILA.forEach(x=>x.url&&URL.revokeObjectURL(x.url));FILA=[];renderFila()};
+$('#uArq').onchange=e=>{addArquivos(e.target.files);e.target.value=''};
+['dragenter','dragover'].forEach(t=>$('#drop').addEventListener(t,e=>{e.preventDefault();if(logado())$('#drop').classList.add('on')}));
+['dragleave','drop'].forEach(t=>$('#drop').addEventListener(t,e=>{e.preventDefault();$('#drop').classList.remove('on')}));
+$('#drop').addEventListener('drop',e=>{const fs=[...e.dataTransfer.files].filter(f=>f.size>0||/\.[a-z0-9]+$/i.test(f.name));addArquivos(fs)});
+window.addEventListener('beforeunload',e=>{if(enviando){e.preventDefault();e.returnValue=''}});
+
+async function pastaDestino(a){
+  if(a.id)return a.id;
+  const esc2=t=>t.replace(/\\/g,'\\\\').replace(/'/g,"\\'");
+  const [y,m]=a.ym.split('-');const mesTxt=`${MESES[+m-1]}.${y.slice(2)}`;
+  const ex=await listar(`'${a.u.c.id}' in parents and mimeType='application/vnd.google-apps.folder' and trashed=false`);
+  const achou=ex.find(f=>f.name.trim()===a.nome)||ex.find(f=>f.name.normalize('NFC').toLowerCase().includes(mesTxt.toLowerCase()));
+  if(achou)return achou.id;  // alguém já criou a pasta do mês depois da última leitura do robô
+  const r=await(await api(`${DRV}?${qs({fields:'id'})}`,{method:'POST',headers:{'Content-Type':'application/json'},
+    body:JSON.stringify({name:a.nome,mimeType:'application/vnd.google-apps.folder',parents:[a.u.c.id]})})).json();
+  toast('Pasta criada: '+a.nome);return r.id;
+}
+function putChunk(url,blob,ini,total,onp){
+  return new Promise((ok,nok)=>{const x=new XMLHttpRequest();x.open('PUT',url);
+    x.setRequestHeader('Content-Range',`bytes ${ini}-${ini+blob.size-1}/${total}`);
+    x.upload.onprogress=e=>onp(ini+e.loaded);
+    x.onload=()=>ok(x);x.onerror=()=>nok(new Error('rede'));x.send(blob)});
+}
+function statusUpload(url,total){
+  return new Promise((ok,nok)=>{const x=new XMLHttpRequest();x.open('PUT',url);x.setRequestHeader('Content-Range',`bytes */${total}`);
+    x.onload=()=>ok(x);x.onerror=()=>nok(new Error('rede'));x.send()});
+}
+async function subir(x,pasta){
+  const f=x.f,CH=16*1024*1024;
+  const r=await api(`https://www.googleapis.com/upload/drive/v3/files?${qs({uploadType:'resumable',fields:'id'})}`,{method:'POST',
+    headers:{'Content-Type':'application/json; charset=UTF-8','X-Upload-Content-Type':f.type||'application/octet-stream','X-Upload-Content-Length':String(f.size)},
+    body:JSON.stringify({name:x.nome,parents:[pasta]})});
+  const url=r.headers.get('Location');if(!url)throw new Error('O Google não abriu o envio.');
+  let ini=0,falhas=0;
+  const pinta=n=>{x.p=Math.min(99,Math.round(n/f.size*100));const el=document.querySelector(`#fl .arq[data-i="${FILA.indexOf(x)}"] .pg i`);if(el)el.style.width=x.p+'%'};
+  while(true){
+    try{
+      const res=f.size?await putChunk(url,f.slice(ini,ini+CH),ini,f.size,pinta):await statusUpload(url,0);
+      if(res.status===200||res.status===201)return;
+      if(res.status===308){const rg=res.getResponseHeader('Range');ini=rg?+rg.split('-')[1]+1:Math.min(f.size,ini+CH);falhas=0;pinta(ini);continue}
+      if(res.status===404||res.status===410)throw Object.assign(new Error('O envio expirou. Tente de novo.'),{fatal:true});
+      throw new Error('Erro '+res.status);
+    }catch(e){
+      if(e.fatal||++falhas>6)throw e;
+      await new Promise(s=>setTimeout(s,Math.min(30000,1000*2**falhas)));
+      try{const st=await statusUpload(url,f.size);if(st.status===200||st.status===201)return;
+        if(st.status===308){const rg=st.getResponseHeader('Range');ini=rg?+rg.split('-')[1]+1:0}}catch(_){}
+    }
   }
 }
+$('#enviar').onclick=async()=>{
+  if(enviando)return;
+  try{if(!logado())await pedirToken('')}catch(e){toast('Entre com Google para enviar');return}
+  const a=alvo();enviando=true;renderFila();
+  let pasta;
+  try{
+    pasta=await pastaDestino(a);
+    const nomes=new Set((await listar(`'${pasta}' in parents and trashed=false`)).map(f=>f.name.normalize('NFC')));
+    let conflito=false;FILA.forEach(x=>{if(x.st!=='feito'&&!x.outro&&nomes.has(x.nome.normalize('NFC'))){x.existe=true;conflito=true}
+      if(x.st!=='feito'&&x.outro&&nomes.has(x.f.name.normalize('NFC'))){x.existe=true;conflito=true}});
+    if(conflito){enviando=false;renderFila();toast('Alguns nomes já existem na pasta. Ajuste e envie de novo.');return}
+  }catch(e){enviando=false;renderFila();toast(e.auth?'Sessão expirou. Entre com Google de novo.':'Não consegui acessar a pasta: '+e.message);return}
+  let ok=0,erro=0;
+  for(const x of FILA){
+    if(x.st==='feito')continue;
+    x.st='env';x.p=0;x.erro='';renderFila();
+    try{
+      if(!logado())await pedirToken('');
+      await subir(x,pasta);x.st='feito';x.p=100;ok++;
+    }catch(e){x.st='erro';x.erro=e.auth?'Sessão do Google expirou. Clique em Enviar de novo.':('Falhou: '+e.message);erro++;if(e.auth)break}
+    renderFila();
+  }
+  enviando=false;renderFila();
+  if(ok&&!erro){toast(`${ok} ${ok===1?'arquivo enviado':'arquivos enviados'}. Atualizando o sistema…`);
+    setTimeout(()=>refresh(),1500)}
+  else if(ok)toast(`${ok} enviados, ${erro} com erro. Tente de novo os que falharam.`);
+  else toast('Nenhum arquivo foi enviado.');
+};
 
 // ---------- 03 · métricas ----------
 function renderMetricas(){
