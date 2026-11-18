@@ -105,6 +105,8 @@ def sigla(nome):
     if nome.lower().startswith("universidade tuiuti"):
         return "UTP"
     ps = [p for p in nome.replace("&", " & ").split() if p == "&" or (len(p) > 2 and p.lower() not in ("das", "dos", "ao"))]
+    if len(ps) == 1:  # uma palavra só: as 3 primeiras letras ("Universa" -> "UNI")
+        return ps[0][:3].upper()
     return "".join("&" if p == "&" else p[0].upper() for p in ps)[:3] or nome[:2].upper()
 
 
