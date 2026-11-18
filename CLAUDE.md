@@ -101,6 +101,8 @@ Sempre atualize `atualizado_em` (ISO, UTC).
 
 ## Dashboards
 
+**Rodapé e WhatsApp:** rodapé de todas as páginas (HUB, painéis, páginas de entrega antigas) = "ArestAgência - Produção de Conteúdo". Painéis e páginas de entrega têm botão flutuante do WhatsApp (canto inferior direito, wa.me/5561991283546 com mensagem pronta); o HUB interno não tem.
+
 **Abertura dos painéis:** sempre 80% da altura da tela (`height:80svh`), mosaico ou foto (foto em `object-fit:cover` com degradê para o texto). Título e números se ajustam à altura. No lightbox aparecem só o título e o nome do arquivo (a linha cliente · mês fica escondida).
 
 **Player no celular (painel_template.html):** o iframe do Drive é desenhado em 540x960 (vertical) ou 960x540 (horizontal) e reduzido para caber. Botão grande "Tela cheia" (só no celular, vídeo e foto): usa a tela cheia do navegador (Android, gira para paisagem em vídeo horizontal); no iPhone, que não tem tela cheia para isso, a caixa ocupa a tela inteira e o vídeo horizontal com o celular em pé gira 90°. Botão de sair no canto e o X também sai da tela cheia antes de fechar. de clientes (atualização automática)

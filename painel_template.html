@@ -191,6 +191,14 @@
     .lbl{min-width:auto}
   }
   footer{margin:80px 0 40px;text-align:center;color:var(--muted);font-size:13px}
+  /* WhatsApp flutuante */
+  .wa-fab{position:fixed;right:max(18px,env(safe-area-inset-right));bottom:max(18px,env(safe-area-inset-bottom));z-index:40;width:56px;height:56px;border-radius:50%;background:#25D366;color:#fff;display:flex;align-items:center;justify-content:center;box-shadow:0 6px 22px rgba(0,0,0,.45);transition:transform .2s,box-shadow .2s}
+  .wa-fab:hover{transform:translateY(-2px) scale(1.04);box-shadow:0 10px 28px rgba(0,0,0,.5)}
+  .wa-fab:active{transform:scale(.96)}
+  .wa-fab:focus-visible{outline:2px solid #fff;outline-offset:3px}
+  .wa-fab svg{width:30px;height:30px}
+  @media (max-width:760px){.wa-fab{width:52px;height:52px}.wa-fab svg{width:28px;height:28px}}
+
 </style>
 </head>
 <body>
@@ -231,7 +239,8 @@
 </div>
 
 <main class="wrap" id="lista"></main>
-<footer>Atualizado em {{ATUALIZADO}} a partir das pastas do Google Drive · ArestAgência</footer>
+<footer>ArestAgência - Produção de Conteúdo</footer>
+<a class="wa-fab" href="https://wa.me/5561991283546?text=Ol%C3%A1!%20Vim%20pelo%20painel%20de%20conte%C3%BAdos%20da%20ArestAg%C3%AAncia." target="_blank" rel="noopener" aria-label="Falar com a ArestAgência no WhatsApp" title="Falar no WhatsApp"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2zm0 18.2c-1.5 0-3-.4-4.3-1.2l-.3-.2-3 .8.8-2.9-.2-.3A8.2 8.2 0 1 1 12 20.2zm4.5-6.1c-.2-.1-1.5-.7-1.7-.8-.2-.1-.4-.1-.6.1l-.8 1c-.1.2-.3.2-.5.1-1.4-.6-2.3-1.2-3.2-2.7-.2-.4.2-.4.7-1.3.1-.2 0-.3 0-.4l-.8-1.8c-.2-.5-.4-.4-.6-.4h-.5c-.2 0-.4.1-.7.3-.2.3-.9.9-.9 2.2s.9 2.5 1 2.7c.1.2 1.8 2.8 4.4 3.9 1.6.7 2.3.8 3.1.6.5-.1 1.5-.6 1.7-1.2.2-.6.2-1.1.2-1.2-.1-.1-.3-.2-.5-.3z"/></svg></a>
 
 <div class="lb" id="lb" role="dialog" aria-modal="true">
   <button class="lb-x" id="lbX" aria-label="Fechar">✕</button>
