@@ -255,6 +255,7 @@
 <section class="wrap destaque" id="destaque" hidden></section>
 <div class="bar" id="bar">
   <div class="wrap">
+    <div class="row" id="rowAno" hidden><span class="lbl" id="lblAno">Edição</span><div class="chips grow" id="fAno"></div></div>
     <div class="row" id="rowCli"><span class="lbl">Cliente</span><div class="chips grow" id="fCli"></div></div>
     <div class="row" id="rowEmp" hidden><span class="lbl">Empreendimento</span><div class="chips grow" id="fEmp"></div></div>
     <div class="row" id="rowCor" hidden><span class="lbl" id="lblCor">Corretor</span><div class="chips grow" id="fCor"></div></div>
@@ -324,7 +325,7 @@ const conta=arr=>{const v=arr.filter(x=>x.tipo==='video').length,c=arr.filter(x=
   if(DATA.capa){  // capa com uma foto só, em vez do mosaico
     const m=$('#mosaic');m.classList.add('foto');document.querySelector('.hero').classList.add('foto');
     const src=DATA.capa.includes('/')?DATA.capa:thumb(DATA.capa,2400);  // caminho no site ou id do Drive
-    m.innerHTML=`<img src="${src}" alt="">`;
+    m.innerHTML=`<img src="${src}" alt=""${DATA.capa_pos?` style="object-position:${DATA.capa_pos}"`:''}>`;
   }else{
   const pick=[...I].filter((x,i)=>x.tipo==='video'||i%3===0).sort((a,b)=>a.r-b.r).slice(0,56);
   const cols=window.innerWidth<700?4:8, m=$('#mosaic');
@@ -346,10 +347,10 @@ const conta=arr=>{const v=arr.filter(x=>x.tipo==='video').length,c=arr.filter(x=
 })();
 
 // ---------- filtros ----------
-const st={cli:'',mes:'',tipo:'',cor:'',reg:'',q:''};const nrm=t=>(t||'').normalize('NFD').replace(/[\u0300-\u036f]/g,'').toLowerCase();const REG=DATA.regioes&&DATA.regioes.length?DATA.regioes:null;
-function readHash(){const p=new URLSearchParams(location.hash.slice(1));st.cli=p.get('cliente')||'';st.mes=p.get('mes')||'';st.tipo=p.get('tipo')||'';st.cor=p.get('corretor')||'';st.reg=p.get('regiao')||'';st.q=p.get('busca')||''}
-function writeHash(){const p=new URLSearchParams();if(st.cli)p.set('cliente',st.cli);if(st.mes)p.set('mes',st.mes);if(st.tipo)p.set('tipo',st.tipo);if(st.cor)p.set('corretor',st.cor);if(st.reg)p.set('regiao',st.reg);if(st.q)p.set('busca',st.q);history.replaceState(null,'',p.toString()?'#'+p:location.pathname)}
-const match=(x,ign)=>(ign==='cli'||ign==='reg'||!st.reg||x.reg===st.reg)&&(ign==='cli'||!st.cli||x.cliente===st.cli)&&(ign==='mes'||!st.mes||x.mes===st.mes)&&(!st.tipo||x.tipo===st.tipo)&&(ign==='cor'||!st.cor||(x.cor||[]).includes(st.cor))&&(!st.q||nrm([x.titulo,x.arquivo,x.cliente,(x.cor||[]).join(' ')].join(' ')).includes(nrm(st.q).trim()));
+const st={cli:'',mes:'',tipo:'',cor:'',reg:'',q:'',ano:''};const nrm=t=>(t||'').normalize('NFD').replace(/[\u0300-\u036f]/g,'').toLowerCase();const REG=DATA.regioes&&DATA.regioes.length?DATA.regioes:null;
+function readHash(){const p=new URLSearchParams(location.hash.slice(1));st.cli=p.get('cliente')||'';st.mes=p.get('mes')||'';st.tipo=p.get('tipo')||'';st.cor=p.get('corretor')||'';st.reg=p.get('regiao')||'';st.q=p.get('busca')||'';st.ano=p.get('edicao')||''}
+function writeHash(){const p=new URLSearchParams();if(st.cli)p.set('cliente',st.cli);if(st.mes)p.set('mes',st.mes);if(st.tipo)p.set('tipo',st.tipo);if(st.cor)p.set('corretor',st.cor);if(st.reg)p.set('regiao',st.reg);if(st.q)p.set('busca',st.q);if(st.ano)p.set('edicao',st.ano);history.replaceState(null,'',p.toString()?'#'+p:location.pathname)}
+const match=(x,ign)=>(ign==='ano'||!st.ano||x.mes.slice(0,4)===st.ano)&&(ign==='cli'||ign==='reg'||!st.reg||x.reg===st.reg)&&(ign==='cli'||!st.cli||x.cliente===st.cli)&&(ign==='mes'||!st.mes||x.mes===st.mes)&&(!st.tipo||x.tipo===st.tipo)&&(ign==='cor'||!st.cor||(x.cor||[]).includes(st.cor))&&(!st.q||nrm([x.titulo,x.arquivo,x.cliente,(x.cor||[]).join(' ')].join(' ')).includes(nrm(st.q).trim()));
 
 function renderFiltros(){
   const base=I.filter(x=>match(x,'cli'));
@@ -366,18 +367,24 @@ function renderFiltros(){
   if(DATA.corretores&&DATA.corretores.length){const bc=I.filter(x=>match(x,'cor'));
     $('#fCor').innerHTML=[['','Todos',bc.length],...DATA.corretores.map(c=>[c,c,bc.filter(x=>(x.cor||[]).includes(c)).length])]
       .map(([v,l,n])=>`<button class="chip${st.cor===v?' on':''}${n||st.cor===v?'':' off'}" data-v="${esc(v)}">${esc(l)}<small>${n}</small></button>`).join('');}
+  if(DATA.edicoes){const ba=I.filter(x=>match(x,'ano'));
+    const anos=[...new Set((DATA.edicoes.anos||[]).concat(I.map(x=>x.mes.slice(0,4))))].sort().reverse();  // ano novo entra sozinho
+    $('#fAno').innerHTML=[['','Todas',ba.length],...anos.map(a=>[a,a,ba.filter(x=>x.mes.startsWith(a)).length])]
+      .map(([v,l,n])=>`<button class="chip${st.ano===v?' on':''}${n||st.ano===v?'':' off'}" data-v="${v}">${l}<small>${n}</small></button>`).join('')}
   const bm=I.filter(x=>match(x,'mes'));
   const ms=[...new Set(I.map(x=>x.mes))].sort().reverse();
   $('#fMes').innerHTML=`<option value="">${EDICAO?'Todas as edições':'Todos os meses'} (${bm.length})</option>`+ms.map(m=>{const n=bm.filter(x=>x.mes===m).length;return `<option value="${m}"${st.mes===m?' selected':''}${n?'':' disabled'}>${mesLabel(m)} (${n})</option>`}).join('');
   document.querySelectorAll('#fTipo button').forEach(b=>b.classList.toggle('on',b.dataset.t===st.tipo));
-  $('#reset').hidden=!(st.cli||st.mes||st.tipo||st.cor||st.reg||st.q);
-  const nf=[st.cli,st.reg,st.cor,st.mes,st.tipo].filter(Boolean).length;$('#nFiltros').textContent=nf||'';if($('#fBusca').value!==st.q)$('#fBusca').value=st.q;$('#limpaBusca').hidden=!st.q;requestAnimationFrame(setas);
+  $('#reset').hidden=!(st.cli||st.mes||st.tipo||st.cor||st.reg||st.q||st.ano);
+  const nf=[st.cli,st.reg,st.cor,st.mes,st.tipo,st.ano].filter(Boolean).length;$('#nFiltros').textContent=nf||'';if($('#fBusca').value!==st.q)$('#fBusca').value=st.q;$('#limpaBusca').hidden=!st.q;requestAnimationFrame(setas);
 }
 $('#fCli').addEventListener('click',e=>{const b=e.target.closest('.chip');if(!b)return;if(REG){st.reg=b.dataset.v;st.cli=''}else st.cli=b.dataset.v;update()});
 $('#fEmp').addEventListener('click',e=>{const b=e.target.closest('.chip');if(!b)return;st.cli=b.dataset.v;update()});
 $('#fMes').addEventListener('change',e=>{st.mes=e.target.value;update()});
 $('#fTipo').addEventListener('click',e=>{const b=e.target.closest('button');if(!b)return;st.tipo=b.dataset.t;update()});
-$('#reset').addEventListener('click',()=>{st.cli=st.mes=st.tipo=st.cor=st.reg=st.q='';update()});
+$('#reset').addEventListener('click',()=>{st.cli=st.mes=st.tipo=st.cor=st.reg=st.q=st.ano='';update()});
+$('#fAno').addEventListener('click',e=>{const b=e.target.closest('.chip');if(!b)return;st.ano=b.dataset.v;st.mes='';update()});
+if(DATA.edicoes){$('#rowAno').hidden=false;$('#lblAno').textContent=DATA.edicoes.rotulo||'Edição'}
 let tBusca;$('#fBusca').addEventListener('input',e=>{clearTimeout(tBusca);tBusca=setTimeout(()=>{st.q=e.target.value;update()},180)});
 $('#limpaBusca').addEventListener('click',()=>{st.q='';update();$('#fBusca').focus()});
 // setas para navegar nos filtros que não cabem na tela
