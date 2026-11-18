@@ -24728,5 +24728,255 @@
   "Sala Secreta",
   "Sarau Original",
   "Sarau Convida"
- ]
+ ],
+ "pastas": {
+  "clientes": [
+   {
+    "nome": "Sarau Secreto",
+    "id": "1OjG7k6OCghjJ5Yta0TUsZPqKFjR5FK6z"
+   }
+  ],
+  "meses": [
+   {
+    "cliente": "Sarau Secreto",
+    "mes": "2024-01",
+    "id": "1_XhGEMqjv4foR47H9OAuD1RfXKMBKflv",
+    "nome": "1. Sarau Secreto - Casa de Jorge - Janeiro.24"
+   },
+   {
+    "cliente": "Sarau Secreto",
+    "mes": "2024-08",
+    "id": "1J5cYrmUgIfvOC1YULI_up8kYnL7rifzb",
+    "nome": "10. After Secreto - Magrão - Agosto.24"
+   },
+   {
+    "cliente": "Sarau Secreto",
+    "mes": "2024-09",
+    "id": "1JxiS5RgrxxdxJxbJWP1eYEfGVgdscdUX",
+    "nome": "11. Sarau Secreto - 2 Anos - Setembro.24"
+   },
+   {
+    "cliente": "Sarau Secreto",
+    "mes": "2024-10",
+    "id": "1jceR8rzRq8_m9td6Q2b5zCYDbSEtanxb",
+    "nome": "12. Sarau Convida - Theodoro Nago - Outubro.24"
+   },
+   {
+    "cliente": "Sarau Secreto",
+    "mes": "2024-10",
+    "id": "1lblvnoVoa0xWlpO48XxkaNp9tWUXLIzO",
+    "nome": "13. After Secreto - Black Ipê Jazz - Outubro.24"
+   },
+   {
+    "cliente": "Sarau Secreto",
+    "mes": "2024-11",
+    "id": "1R9Y0S6s5lib1WlpDFNDEU6za0QfZ561-",
+    "nome": "14. Sarau Convida - Imba - Novembro.24"
+   },
+   {
+    "cliente": "Sarau Secreto",
+    "mes": "2024-12",
+    "id": "1_2iw1067LyxJ7XkQ6o9M0NRUDOAVN7z6",
+    "nome": "15. Sarau Convida - GAIDAA x Jamelão - Dezembro.24"
+   },
+   {
+    "cliente": "Sarau Secreto",
+    "mes": "2024-01",
+    "id": "15a4ELjsWhxWDAjV5wcQ3ewx9QI_Fx9AE",
+    "nome": "2. After Secreto - Tonhão - Janeiro.24"
+   },
+   {
+    "cliente": "Sarau Secreto",
+    "mes": "2024-03",
+    "id": "1-1q_Mr95eCgmr2kLvPwiC71BBniLPFED",
+    "nome": "3. Sarau Convida - Youn - Março.24"
+   },
+   {
+    "cliente": "Sarau Secreto",
+    "mes": "2024-03",
+    "id": "1Z6BZhBBPBpSCLv0QqubGZzBhTmguVfq6",
+    "nome": "4. After Secreto - Antonela - Março.24"
+   },
+   {
+    "cliente": "Sarau Secreto",
+    "mes": "2024-04",
+    "id": "1qaeCiXFQk7q3oEaqFEhhyRuzwU7GOU9v",
+    "nome": "5. Sarau Convida - Joyce Alane - Abril.24"
+   },
+   {
+    "cliente": "Sarau Secreto",
+    "mes": "2024-05",
+    "id": "1KGcD7qb0QKCHqGo-FhI2L6AsKLycgLf6",
+    "nome": "6. Sarau Secreto - Casa Dejanira - Maio.24"
+   },
+   {
+    "cliente": "Sarau Secreto",
+    "mes": "2024-06",
+    "id": "1tFD1T3FWkTTN6_arRHwtRyj9GITy8p9c",
+    "nome": "7. Sarau Secreto - Bom e Velho - Junho.24"
+   },
+   {
+    "cliente": "Sarau Secreto",
+    "mes": "2024-07",
+    "id": "1l_L4wAeCbrQ5nNqOC5lJc6n99zsSRtmL",
+    "nome": "8. Sarau Secreto - Lake Deck - Julho.24"
+   },
+   {
+    "cliente": "Sarau Secreto",
+    "mes": "2024-08",
+    "id": "1CLq5BlF7PkuuFd1eJqjxBn0nIIcJ_Vie",
+    "nome": "9. Sarau Convida - Fat Family - Agosto.24"
+   },
+   {
+    "cliente": "Sarau Secreto",
+    "mes": "2025-01",
+    "id": "1gtT1snlU2e1qYm4XcJ5u27H7BfWS80DK",
+    "nome": "1. Sarau Secreto - Taguatinga - Janeiro.25"
+   },
+   {
+    "cliente": "Sarau Secreto",
+    "mes": "2025-09",
+    "id": "1tLMkTo0q63aHKxnR6aAxVhpmZ0Qeywst",
+    "nome": "10. Sarau Convida - Ellen Oléria - Setembro.25"
+   },
+   {
+    "cliente": "Sarau Secreto",
+    "mes": "2025-10",
+    "id": "1kxOWJEgWctMGbdN-GvC3uknHv77YrNKx",
+    "nome": "11. Sarau Secreto - Rio de Janeiro - Outubro.25"
+   },
+   {
+    "cliente": "Sarau Secreto",
+    "mes": "2025-11",
+    "id": "1HXGK_wdHIjRkSU0aRK7CuTrV5CJJm9Sy",
+    "nome": "12. Sarau Secreto - Lake Deck - Novembro.25"
+   },
+   {
+    "cliente": "Sarau Secreto",
+    "mes": "2025-12",
+    "id": "1iKyS-wUYH6HcQGCEFrIgZg7McvWvVsAM",
+    "nome": "13. Sarau Convida - Melly e JP - Dezembro.25"
+   },
+   {
+    "cliente": "Sarau Secreto",
+    "mes": "2025-02",
+    "id": "1e10CgT1uELnvTrdSlJpADXpyJo3z2Eqq",
+    "nome": "2. Sarau Secreto - ASBAC - Fevereiro.25"
+   },
+   {
+    "cliente": "Sarau Secreto",
+    "mes": "2025-03",
+    "id": "1SY-8ME1rxEYSWnEE0yTAHTD1P_0COHSF",
+    "nome": "3. Sala Secreta - Jezzrel - Março.25"
+   },
+   {
+    "cliente": "Sarau Secreto",
+    "mes": "2025-04",
+    "id": "1GzMOFfwAAxQIHlbSMDfiydJ7navOemyi",
+    "nome": "4. Sarau Secreto - Jean Tassy - Abril.25"
+   },
+   {
+    "cliente": "Sarau Secreto",
+    "mes": "2025-05",
+    "id": "1mP60mT9X_zu4i0TJc7KY8R1eScpLFubq",
+    "nome": "5. Sarau Original - Maio.25"
+   },
+   {
+    "cliente": "Sarau Secreto",
+    "mes": "2025-06",
+    "id": "1ptfaJc8lGtfOatQV4s4PH8qvrR-49mcw",
+    "nome": "6. Sarau Secreto - Bom e Velho - Junho.25"
+   },
+   {
+    "cliente": "Sarau Secreto",
+    "mes": "2025-07",
+    "id": "1NYmS7oZfu4wecfamlIhgO0LCTGlJpYVx",
+    "nome": "7. Sarau Convida - Tali - Julho.25"
+   },
+   {
+    "cliente": "Sarau Secreto",
+    "mes": "2025-08",
+    "id": "1P8euT8vQTuZcVGhmZuD-f6wxCzkEQ81w",
+    "nome": "8. Sarau Secreto - Ceilândia - Agosto.25"
+   },
+   {
+    "cliente": "Sarau Secreto",
+    "mes": "2025-08",
+    "id": "1nDIgJwB30_jrkHuP5x_o_xwFNL1CYDV3",
+    "nome": "9. Sala Secreta - Vitu Voz - Agosto.25"
+   },
+   {
+    "cliente": "Sarau Secreto",
+    "mes": "2026-01",
+    "id": "1lz0_rpLktwY2xUuzXJFPv6ad8RQ6poAE",
+    "nome": "01. Sarau Secreto - Janeiro.26 (Não participamos)"
+   },
+   {
+    "cliente": "Sarau Secreto",
+    "mes": "2026-02",
+    "id": "1QBm3ALP6j45k0je_dMK_aTDQEB_SVN8b",
+    "nome": "02. Sarau Secreto - Fevereiro.26"
+   },
+   {
+    "cliente": "Sarau Secreto",
+    "mes": "2026-03",
+    "id": "1n3F5iENHPtpI1m9IVHe7aXQO8veLZjMX",
+    "nome": "03. Sarau Secreto - Março.26"
+   },
+   {
+    "cliente": "Sarau Secreto",
+    "mes": "2026-04",
+    "id": "1j9VpAHEzWsvKRSMaOj3Pbp3N-7AaEFJe",
+    "nome": "04. Sarau Convida - Letícia Fialho - Abril.26"
+   },
+   {
+    "cliente": "Sarau Secreto",
+    "mes": "2026-05",
+    "id": "1ymhEbEnATaYEVu-99tq-vZAKX_-prj5m",
+    "nome": "05. Sarau Original - Maio.26"
+   },
+   {
+    "cliente": "Sarau Secreto",
+    "mes": "2026-06",
+    "id": "1BGFPkaEoSMpPJw-4lGdAitVfRxZChwmr",
+    "nome": "06. Sarau Convida - Magrão - Junho.26"
+   },
+   {
+    "cliente": "Sarau Secreto",
+    "mes": "2026-06",
+    "id": "11ryDyvLuiPCsNbr6m7lrFRVQPE6ftnhI",
+    "nome": "07. Sala Secreta - Jenni Rocha - Junho.26"
+   },
+   {
+    "cliente": "Sarau Secreto",
+    "mes": "2026-07",
+    "id": "18pBnF2vaZ1ijLFWWTiarkjXT5wvH2mrT",
+    "nome": "08. Sarau Convida - Sotam - Julho.26"
+   },
+   {
+    "cliente": "Sarau Secreto",
+    "mes": "2026-07",
+    "id": "1-aCj5bhBFSz_K1VZiRPg5AaqXSwkXWib",
+    "nome": "09. Sala Secreta - Ellen Oléria - Julho.26"
+   },
+   {
+    "cliente": "Sarau Secreto",
+    "mes": "2026-08",
+    "id": "1_Y40_tl6Xh0M2A2QaOkjaIjuYO8Jpc_d",
+    "nome": "10. Sarau Secreto - Agosto.26"
+   },
+   {
+    "cliente": "Sarau Secreto",
+    "mes": "2026-09",
+    "id": "1s9UAA67feHVYobd1BQjytE3GAcRtbqig",
+    "nome": "11. Sarau Secreto - Setembro.26"
+   },
+   {
+    "cliente": "Sarau Secreto",
+    "mes": "2026-11",
+    "id": "1zezklMr4jqAqDIMkUt0W9_4JWK0r0qly",
+    "nome": "12. Sarau Secreto - Novembro.26"
+   }
+  ]
+ }
 }

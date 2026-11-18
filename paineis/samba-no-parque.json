@@ -327,5 +327,21 @@
   }
  ],
  "tipo_cliente": "freelancer",
- "capa": "/capas/samba-no-parque-capa-v2.jpg"
+ "capa": "/capas/samba-no-parque-capa-v2.jpg",
+ "pastas": {
+  "clientes": [
+   {
+    "nome": "Samba no Parque",
+    "id": "1YD-vPEAZzzpFHTNtPqM_NlZwDabqBAq3"
+   }
+  ],
+  "meses": [
+   {
+    "cliente": "Samba no Parque",
+    "mes": "2026-08",
+    "id": "11j7asmK-JYLUkILOSXId2fCaffdm7ZhM",
+    "nome": "01. Samba no Parque - Agosto.26"
+   }
+  ]
+ }
 }

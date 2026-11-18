@@ -1461,5 +1461,51 @@
   }
  ],
  "tipo_cliente": "freelancer",
- "capa": "1NwiumXtJtss0yl0IzCliootLiASz_T1z"
+ "capa": "1NwiumXtJtss0yl0IzCliootLiASz_T1z",
+ "pastas": {
+  "clientes": [
+   {
+    "nome": "Samba ao Quadrado",
+    "id": "1GIVvQsgWyiD0_J7nqO57DQbQZ5IFbjC6"
+   }
+  ],
+  "meses": [
+   {
+    "cliente": "Samba ao Quadrado",
+    "mes": "2026-02",
+    "id": "1GyVHsxEJQOojVDBfD7szr17KrEvLtqym",
+    "nome": "01. Samba ao Quadrado - Fevereiro.26"
+   },
+   {
+    "cliente": "Samba ao Quadrado",
+    "mes": "2026-03",
+    "id": "1zCN_C-mvZvTkBaP6N4ECvVZSaHY4s03w",
+    "nome": "02. Samba ao Quadrado - Março.26"
+   },
+   {
+    "cliente": "Samba ao Quadrado",
+    "mes": "2026-04",
+    "id": "1HpVbhnhp8-4fF_JaYer6e2WfTRprCgDZ",
+    "nome": "03. Samba ao Quadrado - Abril.26"
+   },
+   {
+    "cliente": "Samba ao Quadrado",
+    "mes": "2026-05",
+    "id": "1NXRM_H0b_CCeVROZU9aD_sXrHTYPYCIF",
+    "nome": "04. Samba ao Quadrado - Maio.26"
+   },
+   {
+    "cliente": "Samba ao Quadrado",
+    "mes": "2026-08",
+    "id": "1N1tJePv338QzoaoLjFtzSiI8Xjg4ySay",
+    "nome": "05. Samba ao Quadrado - Agosto.26"
+   },
+   {
+    "cliente": "Samba ao Quadrado",
+    "mes": "2026-09",
+    "id": "1bCW1hdlZEea6Dmo5lxfHAml-kHE7iVem",
+    "nome": "06. Samba ao Quadrado - Setembro.26"
+   }
+  ]
+ }
 }

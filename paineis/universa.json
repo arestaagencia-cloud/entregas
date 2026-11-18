@@ -4492,5 +4492,479 @@
    "fmt": "v",
    "up": "2026-10-29"
   }
- ]
+ ],
+ "pastas": {
+  "clientes": [
+   {
+    "nome": "EduCriarte",
+    "id": "1MkcJSsIkeuDNhpW458pKSBVc0yeSTl0E"
+   },
+   {
+    "nome": "Hauzen",
+    "id": "1idSG8DealFOXCTMb7s2DotnKHMXRxxSD"
+   },
+   {
+    "nome": "IGG",
+    "id": "1Aglljf5r7M-v0kcF-wRkysYwMFfmD1Gt"
+   },
+   {
+    "nome": "Liberty",
+    "id": "1iaekoKorS79iB5jpmfkTMP8KLIjDvfR2"
+   },
+   {
+    "nome": "Scalercio",
+    "id": "1NgZYsUyNcff9xMVWui4sY19TCB-Vwm1c"
+   },
+   {
+    "nome": "Universa Digital",
+    "id": "1qId54V7ieXDmwWMhlmrD9xffzyyN-OU-"
+   },
+   {
+    "nome": "Valen Beauty",
+    "id": "1v-g09VYblWD7E9G8Htrs1VRHnHPsumyv"
+   },
+   {
+    "nome": "Vitrinni",
+    "id": "1SmCsLo3ur0ooL4M322ChxrbDhCO7urWb"
+   },
+   {
+    "nome": "Óptica Premium",
+    "id": "1QZQXzWADAJm1gu_K8KIV14tlqQi_ZtMo"
+   }
+  ],
+  "meses": [
+   {
+    "cliente": "EduCriarte",
+    "mes": "2025-10",
+    "id": "1SvhBfGAJO4xhr560Mg9oF36Bgyh8r1Un",
+    "nome": "1. EduCriarte - Outubro.25"
+   },
+   {
+    "cliente": "EduCriarte",
+    "mes": "2025-11",
+    "id": "1oFO3So0gVWVuuIm2mp4nWxyIwjBjOTpl",
+    "nome": "2. EduCriarte - Novembro.25"
+   },
+   {
+    "cliente": "Hauzen",
+    "mes": "2025-10",
+    "id": "1hRyGyFBgi1KeCUwNxs2IWO-aBTGuOsLL",
+    "nome": "1. Hauzen - Outubro.25"
+   },
+   {
+    "cliente": "Hauzen",
+    "mes": "2025-11",
+    "id": "1yhHwbhu4IjFMgbIAJ_CzojlDgrFZtLqb",
+    "nome": "2. Hauzen - Novembro.25"
+   },
+   {
+    "cliente": "Hauzen",
+    "mes": "2025-12",
+    "id": "1QW8HWARe4L4m0X4H8_37wdrfh_a4kF1r",
+    "nome": "3. Hauzen - Dezembro.25"
+   },
+   {
+    "cliente": "Hauzen",
+    "mes": "2026-04",
+    "id": "1wSqRjt5dfH_qNaMjxa8TKmQVQ38PeMq-",
+    "nome": "4. Hauzen - Abril.26"
+   },
+   {
+    "cliente": "Hauzen",
+    "mes": "2026-05",
+    "id": "1qwZzoRWt5DqksZEaYAJLqxhT2gGeijb-",
+    "nome": "5. Hauzen - Maio.26"
+   },
+   {
+    "cliente": "Hauzen",
+    "mes": "2026-07",
+    "id": "1AbEP7JlEhSjMdZk3QmzQVNQBktfQq6_c",
+    "nome": "6. Hauzen - Julho.26"
+   },
+   {
+    "cliente": "Hauzen",
+    "mes": "2026-08",
+    "id": "1G_afCzJdwMmQ_8QiUzGss_2LinmzDNLl",
+    "nome": "7. Hauzen - Agosto.26"
+   },
+   {
+    "cliente": "Hauzen",
+    "mes": "2026-10",
+    "id": "1dQdBFieFOM7kjLDqtzWFKk4ag0oupNa2",
+    "nome": "8. Hauzen - Outubro.26"
+   },
+   {
+    "cliente": "IGG",
+    "mes": "2026-03",
+    "id": "1w0_xd2G9RgQeBeZhQGfESVNNpvRO-fGr",
+    "nome": "1. IGG - Março.26"
+   },
+   {
+    "cliente": "IGG",
+    "mes": "2026-04",
+    "id": "19D6u_QovqrTUgJ57eKkAdGhVGtf1ncYr",
+    "nome": "2. IGG - Abril.26"
+   },
+   {
+    "cliente": "IGG",
+    "mes": "2026-05",
+    "id": "1W6jrj-b6OQfLQ91Ue4tE3q7KHEc4nbhd",
+    "nome": "3. IGG - Maio.26"
+   },
+   {
+    "cliente": "IGG",
+    "mes": "2026-06",
+    "id": "1HGsyAcFpprONkmvdbOiC2sEDOMMnfoB3",
+    "nome": "4. IGG - Junho.26"
+   },
+   {
+    "cliente": "IGG",
+    "mes": "2026-07",
+    "id": "1Ev3ilG_YLHxDjrxO0lUAY1XMK3h-0rsp",
+    "nome": "5. IGG - Julho.26"
+   },
+   {
+    "cliente": "IGG",
+    "mes": "2026-08",
+    "id": "1xkH51iz9eQ5Eq7d018hD9hp_n7mE5oDi",
+    "nome": "6. IGG - Agosto.26"
+   },
+   {
+    "cliente": "IGG",
+    "mes": "2026-10",
+    "id": "1mlfv_iT80jdKsH5YKf6YZSwAMhj_AkbM",
+    "nome": "7. IGG - Outubro.26"
+   },
+   {
+    "cliente": "Liberty",
+    "mes": "2026-03",
+    "id": "1KH4xX40wcBHkGyn3UopoPawAFQSLxrQC",
+    "nome": "03. Liberty - Março.26"
+   },
+   {
+    "cliente": "Liberty",
+    "mes": "2026-04",
+    "id": "1Sjyc3_SERE6pxMmwKrvbD-wOxuCb3qeI",
+    "nome": "04. Liberty - Abril.26"
+   },
+   {
+    "cliente": "Liberty",
+    "mes": "2026-05",
+    "id": "1IrC2jA1zIwjZqHNw46JwLOg2z3VzADbu",
+    "nome": "05. Liberty - Maio.26"
+   },
+   {
+    "cliente": "Scalercio",
+    "mes": "2025-10",
+    "id": "18LoD_0ynh5A2PUfpEzK3LqhXPKLGs3Vz",
+    "nome": "1. Scalercio - Outubro.25"
+   },
+   {
+    "cliente": "Scalercio",
+    "mes": "2026-07",
+    "id": "11hXNXpJfhWa00kKOSXrzN5OL9TZPBrSg",
+    "nome": "10. Scalercio - Julho.26"
+   },
+   {
+    "cliente": "Scalercio",
+    "mes": "2026-08",
+    "id": "1L-A353AdVu0kILyktUZKvbACVuqK73wA",
+    "nome": "11. Scalercio - Agosto.26"
+   },
+   {
+    "cliente": "Scalercio",
+    "mes": "2026-09",
+    "id": "1kzWrH8TwkUzDu4nO2xgmIUkg1AnuW2Qm",
+    "nome": "12. Scalercio - Setembro.26"
+   },
+   {
+    "cliente": "Scalercio",
+    "mes": "2026-10",
+    "id": "1_b79NIdiSvp0Oq84Syd7uj4aIO9_Fe26",
+    "nome": "13. Scalercio - Outubro.26"
+   },
+   {
+    "cliente": "Scalercio",
+    "mes": "2026-11",
+    "id": "1Knkyhnr-fEvwv3fyC_UFswA2CWzX69wj",
+    "nome": "14. Scalercio - Novembro.26"
+   },
+   {
+    "cliente": "Scalercio",
+    "mes": "2025-11",
+    "id": "14_msWIaY-YqnmtHiJWlVK_lz4zkYmmIQ",
+    "nome": "2. Scalercio - Novembro.25"
+   },
+   {
+    "cliente": "Scalercio",
+    "mes": "2025-12",
+    "id": "1LeQZcgCRKwR4yMxNnOt4y2VSHAd29Aug",
+    "nome": "3. Scalercio - Dezembro.25"
+   },
+   {
+    "cliente": "Scalercio",
+    "mes": "2026-01",
+    "id": "1AQ1iQ2UAWl10TMflVNfQlrxAnyQmoMkm",
+    "nome": "4. Scalercio - Janeiro.26"
+   },
+   {
+    "cliente": "Scalercio",
+    "mes": "2026-02",
+    "id": "1Ey2mxJHIiIJACP9p8LXXs-jRvELpcW7g",
+    "nome": "5. Scalercio - Fevereiro.26"
+   },
+   {
+    "cliente": "Scalercio",
+    "mes": "2026-03",
+    "id": "1vX6jDbmRjVQvOjr2aN7LIU1_eyG3x3jj",
+    "nome": "6. Scalercio - Março.26"
+   },
+   {
+    "cliente": "Scalercio",
+    "mes": "2026-04",
+    "id": "1NQ09ChESE5TLyHZBkT4Pu0mHpF5Acew_",
+    "nome": "7. Scalercio - Abril.26"
+   },
+   {
+    "cliente": "Scalercio",
+    "mes": "2026-05",
+    "id": "1FatL25ZFA4ZDYSy7Aj-QGl5hebwbDkAc",
+    "nome": "8. Scalercio - Maio.26"
+   },
+   {
+    "cliente": "Scalercio",
+    "mes": "2026-06",
+    "id": "1bzsPVjsFwgqFvpvTi-67GjqHgNB8cwu_",
+    "nome": "9. Scalercio - Junho.26"
+   },
+   {
+    "cliente": "Universa Digital",
+    "mes": "2025-10",
+    "id": "1qT-CjuJSRVSgnpbWU8o0xj7JgoDd1-Jo",
+    "nome": "1. Universa - Outubro.25"
+   },
+   {
+    "cliente": "Universa Digital",
+    "mes": "2025-11",
+    "id": "1R6KIhzevwSNJtUCSQ4DmsMLk83sb-KMw",
+    "nome": "2. Universa - Novembro.25"
+   },
+   {
+    "cliente": "Universa Digital",
+    "mes": "2025-12",
+    "id": "1MgXO4Ze8RnqzOKrXAZ40b_GLrPfrwkUp",
+    "nome": "3. Universa - Dezembro.25"
+   },
+   {
+    "cliente": "Universa Digital",
+    "mes": "2026-01",
+    "id": "1lu2wQJqLbkjwmN8_ly4A11KQkWztVJoO",
+    "nome": "4. Universa - Janeiro.26"
+   },
+   {
+    "cliente": "Valen Beauty",
+    "mes": "2026-03",
+    "id": "1FBOoP-3usT3RI_lrIBCAHoLYzPzEJxfU",
+    "nome": "1. Valen Beauty - Março.26"
+   },
+   {
+    "cliente": "Valen Beauty",
+    "mes": "2026-04",
+    "id": "11lTGtETq7W1yT3k9Q8CtevWbkHbAKuns",
+    "nome": "2. Valen Beauty - Abril.26"
+   },
+   {
+    "cliente": "Valen Beauty",
+    "mes": "2026-05",
+    "id": "1dE-7xxluFRxNbtN1BXlsC2aLKMFWfWlH",
+    "nome": "3. Valen Beauty - Maio.26"
+   },
+   {
+    "cliente": "Valen Beauty",
+    "mes": "2026-06",
+    "id": "1PA1-7K9PETlL07D7RXRSzpe5ZKEkXsk2",
+    "nome": "4. Valen Beauty - Junho.26"
+   },
+   {
+    "cliente": "Valen Beauty",
+    "mes": "2026-07",
+    "id": "1d9D9p7A5KyrUEmvk3ZgalDebjnb8NL3m",
+    "nome": "5. Valen Beauty - Julho.26"
+   },
+   {
+    "cliente": "Valen Beauty",
+    "mes": "2026-08",
+    "id": "1I-SvWrIZ4piOlksMTRBnys8jPc2aCCS7",
+    "nome": "6. Valen Beauty - Agosto.26"
+   },
+   {
+    "cliente": "Valen Beauty",
+    "mes": "2026-09",
+    "id": "1raC56BEvrMF1jpGaO3xAeUHSxRTbWYHK",
+    "nome": "7. Valen Beauty - Setembro.26"
+   },
+   {
+    "cliente": "Vitrinni",
+    "mes": "2025-10",
+    "id": "1gEH9y-SSX1gwPCHcEcwS365NLu7RGVrP",
+    "nome": "01. Vitrinni - Outubro.25"
+   },
+   {
+    "cliente": "Vitrinni",
+    "mes": "2025-11",
+    "id": "1wA_9Ky2bH6LFclZj0F7-oGQ7rM9EkWDJ",
+    "nome": "02. Vitrinni - Novembro.25"
+   },
+   {
+    "cliente": "Vitrinni",
+    "mes": "2025-12",
+    "id": "1UyjKepQOAIXlCN3FLLbS_qvjn2HmlaYu",
+    "nome": "03. Vitrinni - Dezembro.25"
+   },
+   {
+    "cliente": "Vitrinni",
+    "mes": "2026-01",
+    "id": "16H3hb6wArW81PS885uUuyPab2U6ZWGZh",
+    "nome": "04. Vitrinni - Janeiro.26"
+   },
+   {
+    "cliente": "Vitrinni",
+    "mes": "2026-02",
+    "id": "1JdTn1_iDsopEqEaYqNd1iCzvqpWzhLvA",
+    "nome": "05. Vitrinni - Fevereiro.26"
+   },
+   {
+    "cliente": "Vitrinni",
+    "mes": "2026-03",
+    "id": "10DQYYalJ9vtRzeyvmS75s55epL5rHEb-",
+    "nome": "06. Vitrinni - Março.26"
+   },
+   {
+    "cliente": "Vitrinni",
+    "mes": "2026-04",
+    "id": "1MHrrgUTxRJ8HL2UASxtKONX43W8jl-AS",
+    "nome": "07. Vitrinni - Abril.26"
+   },
+   {
+    "cliente": "Vitrinni",
+    "mes": "2026-05",
+    "id": "1t9JVvdPN4ykQcesVWkKvXYfhpA0BFfec",
+    "nome": "08. Vitrinni - Maio.26"
+   },
+   {
+    "cliente": "Vitrinni",
+    "mes": "2026-06",
+    "id": "15Vexs9njsuQBoEN0ROcRPR1fgySxr90k",
+    "nome": "09. Vitrinni - Junho.26"
+   },
+   {
+    "cliente": "Vitrinni",
+    "mes": "2026-07",
+    "id": "1MqVUsKFGOuuJftOU_RdrDwcGFpcn7pvl",
+    "nome": "10. Vitrinni - Julho.26"
+   },
+   {
+    "cliente": "Vitrinni",
+    "mes": "2026-08",
+    "id": "1CD44Z0LOh0bPifuCsTJrnf00K6ta1qvj",
+    "nome": "11. Vitrinni - Agosto.26"
+   },
+   {
+    "cliente": "Vitrinni",
+    "mes": "2026-09",
+    "id": "1VQJQMn5TRFHmmLHcw-9s5sDiMVWu8oeR",
+    "nome": "12. Vitrinni - Setembro.26"
+   },
+   {
+    "cliente": "Vitrinni",
+    "mes": "2026-10",
+    "id": "1JnopFMTjvzQ2SC5RjSIteJFRqer4jObR",
+    "nome": "13. Vitrinni - Outubro.26"
+   },
+   {
+    "cliente": "Vitrinni",
+    "mes": "2026-11",
+    "id": "1fCQ_eoOoCc9nUeQf0wI1lHOTZhJsLk9A",
+    "nome": "14. Vitrinni - Novembro.26"
+   },
+   {
+    "cliente": "Óptica Premium",
+    "mes": "2025-10",
+    "id": "1WuATaSOgn8k9hjW2uCj3wT2752pQsb1m",
+    "nome": "1. Óptica Premium - Outubro.25"
+   },
+   {
+    "cliente": "Óptica Premium",
+    "mes": "2026-07",
+    "id": "137oRACG0kmxfqoPK6iE6fkhWhMjqXMhI",
+    "nome": "10. Óptica Premium - Julho.26"
+   },
+   {
+    "cliente": "Óptica Premium",
+    "mes": "2026-09",
+    "id": "1uIdQtHva4GTfpqHNFmHaKFLfwy8-qVeh",
+    "nome": "12. Óptica Premium - Setembro.26"
+   },
+   {
+    "cliente": "Óptica Premium",
+    "mes": "2026-10",
+    "id": "1YgRjht-a_E319-hyB-pDhqvIb5PMAEEA",
+    "nome": "13. Óptica Premium - Outubro.26"
+   },
+   {
+    "cliente": "Óptica Premium",
+    "mes": "2026-11",
+    "id": "14zxzEvFD7gYv30EfvgZMSvglGiWpRnD1",
+    "nome": "14. Óptica Premium - Novembro.26"
+   },
+   {
+    "cliente": "Óptica Premium",
+    "mes": "2025-11",
+    "id": "11y4pdJ3OLfUA2rYnaYSU9dGK2IGdLeb1",
+    "nome": "2. Óptica Premium - Novembro.25"
+   },
+   {
+    "cliente": "Óptica Premium",
+    "mes": "2025-12",
+    "id": "18899Mb5ierQScfz8E5_KNiihz3Q2g1Ql",
+    "nome": "3. Óptica Premium - Dezembro.25"
+   },
+   {
+    "cliente": "Óptica Premium",
+    "mes": "2026-01",
+    "id": "1pQs7NVp5XaAyeMx8exAF2-JSWjKAzsS8",
+    "nome": "4. Óptica Premium - Janeiro.26"
+   },
+   {
+    "cliente": "Óptica Premium",
+    "mes": "2026-02",
+    "id": "1omhyRxAlNZPik-otYsh_Qdr_Ey3UPtcq",
+    "nome": "5. Óptica Premium - Fevereiro.26"
+   },
+   {
+    "cliente": "Óptica Premium",
+    "mes": "2026-03",
+    "id": "1dCfjk-IwCL10VuJGu9B_OzNt46ZGTYMF",
+    "nome": "6. Óptica Premium - Março.26"
+   },
+   {
+    "cliente": "Óptica Premium",
+    "mes": "2026-04",
+    "id": "1q9x3B8fklJrhRDnBe8W6zu11wEZicd1U",
+    "nome": "7. Óptica Premium - Abril.26"
+   },
+   {
+    "cliente": "Óptica Premium",
+    "mes": "2026-05",
+    "id": "18NlwgnbYyanaLX3YXepPTQsCG1eVM9_c",
+    "nome": "8. Óptica Premium - Maio.26"
+   },
+   {
+    "cliente": "Óptica Premium",
+    "mes": "2026-06",
+    "id": "1lwTTlpjGaIx5o29x3vzhELlU3JUVWr4T",
+    "nome": "9. Óptica Premium - Junho.26"
+   }
+  ]
+ }
 }

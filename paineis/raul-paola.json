@@ -789,5 +789,21 @@
   "nome": "01. Raul & Paola - Agosto.26.zip",
   "bytes": 330163486
  },
- "tipo_cliente": "freelancer"
+ "tipo_cliente": "freelancer",
+ "pastas": {
+  "clientes": [
+   {
+    "nome": "Raul & Paola",
+    "id": "116HYUjy5rZ9XbRHIOTVti2X_M017PHu1"
+   }
+  ],
+  "meses": [
+   {
+    "cliente": "Raul & Paola",
+    "mes": "2026-08",
+    "id": "1iLSP2F8WUQWxMLJi1G_oOIHKtwO6o5Ps",
+    "nome": "01. Raul & Paola - Agosto.26"
+   }
+  ]
+ }
 }

@@ -4218,5 +4218,207 @@
  },
  "hub_grupos": [
   "Tópico"
- ]
+ ],
+ "pastas": {
+  "clientes": [
+   {
+    "nome": "Clínica Faber",
+    "id": "1FQqUfaNkUFLBZAaGE-_t0wYm3g8dDGj2"
+   }
+  ],
+  "meses": [
+   {
+    "cliente": "Clínica Faber",
+    "mes": "2023-12",
+    "id": "1uYGsjF3yM8XD6JATywqaYZpW2vSz3B7p",
+    "nome": "12. Clínica Faber - Dezembro.23"
+   },
+   {
+    "cliente": "Clínica Faber",
+    "mes": "2024-01",
+    "id": "1gM1a0xZQQ46K3jZRxJH87Ha0gP6_0AEA",
+    "nome": "01. Clínica Faber - Janeiro.24"
+   },
+   {
+    "cliente": "Clínica Faber",
+    "mes": "2024-02",
+    "id": "1zIMrz8AZmCO1rP00NqDcYrON6EPfm81K",
+    "nome": "02. Clínica Faber - Fevereiro.24"
+   },
+   {
+    "cliente": "Clínica Faber",
+    "mes": "2024-03",
+    "id": "1Ev0iFY8pecQLXDg-hNw6T0iZMHtfPHbM",
+    "nome": "03. Clínica Faber - Março.24"
+   },
+   {
+    "cliente": "Clínica Faber",
+    "mes": "2024-04",
+    "id": "14n4Sa0i1_3-F3FQisjtU3Q0ntpY9w6qu",
+    "nome": "04. Clínica Faber - Abril.24"
+   },
+   {
+    "cliente": "Clínica Faber",
+    "mes": "2024-05",
+    "id": "1TSzjXybArTPr-U1Hov0PM5sHgzA20FS_",
+    "nome": "05. Clínica Faber - Maio.24"
+   },
+   {
+    "cliente": "Clínica Faber",
+    "mes": "2024-06",
+    "id": "1dGfI1eUPc_-Uo5iMvHN_FBSQ0rQqi79U",
+    "nome": "06. Clínica Faber - Junho.24"
+   },
+   {
+    "cliente": "Clínica Faber",
+    "mes": "2024-07",
+    "id": "1Poyn1GtN0xYH87PHU0qTPX3GiXGNguIO",
+    "nome": "07. Clínica Faber - Julho.24"
+   },
+   {
+    "cliente": "Clínica Faber",
+    "mes": "2024-08",
+    "id": "18XTU8eC_Sq_MiRHqqrArTWGK8Sy5tIHP",
+    "nome": "08. Clínica Faber - Agosto.24"
+   },
+   {
+    "cliente": "Clínica Faber",
+    "mes": "2024-09",
+    "id": "1e0QURXtoBmJ_W3N-RBQKuvV20WvSvjk0",
+    "nome": "09. Clínica Faber - Setembro.24"
+   },
+   {
+    "cliente": "Clínica Faber",
+    "mes": "2024-10",
+    "id": "1-OSLNrLqCDb4U9s0XwPWAwqrSsEfom52",
+    "nome": "10. Clínica Faber - Outubro.24"
+   },
+   {
+    "cliente": "Clínica Faber",
+    "mes": "2024-11",
+    "id": "1lno8yeqMWkepChpjLlrobbg-eXI-hglx",
+    "nome": "11. Clínica Faber - Novembro.24"
+   },
+   {
+    "cliente": "Clínica Faber",
+    "mes": "2024-12",
+    "id": "15UNC9ExUBPRK5a_3OcW68YCOPVeYJ-U5",
+    "nome": "12. Clínica Faber - Dezembro.24"
+   },
+   {
+    "cliente": "Clínica Faber",
+    "mes": "2025-01",
+    "id": "1r9I6xnynFKmE4j_bfi5HqxGZHJzfcitX",
+    "nome": "01. Clínica Faber - Janeiro.25"
+   },
+   {
+    "cliente": "Clínica Faber",
+    "mes": "2025-02",
+    "id": "1tMPKW7b4TNAaEV7HJXcjK8AIHQlXbIRk",
+    "nome": "02. Clínica Faber - Fevereiro.25"
+   },
+   {
+    "cliente": "Clínica Faber",
+    "mes": "2025-03",
+    "id": "1s6WuJ-Khf0zlBy5mYQQ-uTY19b8GneKq",
+    "nome": "03. Clínica Faber - Março.25"
+   },
+   {
+    "cliente": "Clínica Faber",
+    "mes": "2025-04",
+    "id": "1tD8snXAKmCHeVDyBPD3ljcnGu0RAGBYe",
+    "nome": "04. Clínica Faber - Abril.25"
+   },
+   {
+    "cliente": "Clínica Faber",
+    "mes": "2025-05",
+    "id": "19voATjWVnz9MZiVkNve4_wlf-wPlcZ4G",
+    "nome": "05. Clínica Faber - Maio.25"
+   },
+   {
+    "cliente": "Clínica Faber",
+    "mes": "2025-06",
+    "id": "1xH0khbT8169FobRP8ciB_L4QfB1q6hZP",
+    "nome": "06. Clínica Faber - Junho.25"
+   },
+   {
+    "cliente": "Clínica Faber",
+    "mes": "2025-07",
+    "id": "1m_Xzyi9ZSLtMKLb6psHZDdIgJicGnfE6",
+    "nome": "07. Clínica Faber - Julho.25"
+   },
+   {
+    "cliente": "Clínica Faber",
+    "mes": "2025-12",
+    "id": "1HUVV1NhzP8d0vnDvsY_VcqvFFxPjVvOa",
+    "nome": "1. Clínica Faber - Dezembro.25"
+   },
+   {
+    "cliente": "Clínica Faber",
+    "mes": "2026-01",
+    "id": "1fT9oCyylPDcBu9C-LlMNqiEDHcKuJ_uj",
+    "nome": "1. Clínica Faber - Janeiro.26"
+   },
+   {
+    "cliente": "Clínica Faber",
+    "mes": "2026-10",
+    "id": "1rhEklyDDcVArjwqMKoCqZgpwga6YNZi0",
+    "nome": "10. Clínica Faber - Outubro.26"
+   },
+   {
+    "cliente": "Clínica Faber",
+    "mes": "2026-11",
+    "id": "1hBKI8ZuhmQBT_VFMjd3WT19Je1V7AwH_",
+    "nome": "11. Clínica Faber - Novembro.26"
+   },
+   {
+    "cliente": "Clínica Faber",
+    "mes": "2026-02",
+    "id": "1CpDOUjJNM7tkdmEY4rzrywDyhQwy3oic",
+    "nome": "2. Clínica Faber - Fevereiro.26"
+   },
+   {
+    "cliente": "Clínica Faber",
+    "mes": "2026-03",
+    "id": "1wdms-qJNcpjSour_ELA1ff-JvnESRQVt",
+    "nome": "3. Clínica Faber - Março.26"
+   },
+   {
+    "cliente": "Clínica Faber",
+    "mes": "2026-04",
+    "id": "1XK47OojboqQdYqH8hPuGDBmcfEhgr0zs",
+    "nome": "4. Clínica Faber - Abril.26"
+   },
+   {
+    "cliente": "Clínica Faber",
+    "mes": "2026-05",
+    "id": "1iD7WV4oqXwDofqixMIypBUlq6ol_tvON",
+    "nome": "5. Clínica Faber - Maio.26"
+   },
+   {
+    "cliente": "Clínica Faber",
+    "mes": "2026-06",
+    "id": "1_NxM68l2HQUtdZGFGWP76L0BtPuA_Xuy",
+    "nome": "6. Clínica Faber - Junho.26"
+   },
+   {
+    "cliente": "Clínica Faber",
+    "mes": "2026-07",
+    "id": "1B2icho1ryjTH-cunkNWRsqnKi6h1KY3M",
+    "nome": "7. Clínica Faber - Julho.26"
+   },
+   {
+    "cliente": "Clínica Faber",
+    "mes": "2026-08",
+    "id": "12k6AfsV0FNyOiC0X9vehcSdWfx-xs_jY",
+    "nome": "8. Clínica Faber - Agosto.26"
+   },
+   {
+    "cliente": "Clínica Faber",
+    "mes": "2026-09",
+    "id": "126COma8g2EEMCFe5zMaUMKUnereGU4DS",
+    "nome": "9. Clínica Faber - Setembro.26"
+   }
+  ]
+ }
 }
