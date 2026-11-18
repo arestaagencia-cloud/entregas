@@ -85,6 +85,16 @@
   .chips{display:flex;gap:8px;overflow-x:auto;scrollbar-width:none;padding-bottom:2px}
   .chips::-webkit-scrollbar{display:none}
   .chip.off{opacity:.35}
+  .cw{position:relative;flex:1;min-width:0;display:flex;align-items:center}
+  .cw .chips{flex:1;min-width:0;scroll-behavior:smooth}
+  .seta{position:absolute;top:50%;transform:translateY(-50%);z-index:2;width:30px;height:30px;border-radius:50%;border:1px solid var(--line);background:rgba(20,20,20,.95);color:#fff;font-size:18px;line-height:1;display:flex;align-items:center;justify-content:center;box-shadow:0 0 14px 10px rgba(4,4,4,.85)}
+  .seta:hover{border-color:#5a5a5a}
+  .seta.esq{left:0}.seta.dir{right:0}
+  .busca{position:relative;flex:1;min-width:200px;max-width:360px}
+  .busca input{width:100%;border:1px solid var(--line);background:var(--card);border-radius:10px;padding:8px 32px 8px 34px;font-size:14px;color:var(--ink);font-family:inherit;outline:none}
+  .busca input:focus{border-color:#5a5a5a}
+  .busca svg{position:absolute;left:11px;top:50%;transform:translateY(-50%);width:15px;height:15px;stroke:var(--muted)}
+  .busca button{position:absolute;right:6px;top:50%;transform:translateY(-50%);width:22px;height:22px;border-radius:50%;color:var(--muted);font-size:16px;line-height:1}
   .chip{white-space:nowrap;border:1px solid var(--line);background:var(--card);border-radius:999px;padding:7px 14px;font-size:14px;color:var(--ink-2);transition:.15s}
   .chip:hover{border-color:#3a3a3a;color:#fff}
   .chip.on{background:var(--ink);color:#0b0b0b;border-color:var(--ink)}
@@ -197,6 +207,7 @@
       <div class="seg" id="fTipo">
         <button data-t="" class="on">Tudo</button><button data-t="video">Vídeos</button><button data-t="foto">Fotos</button><button data-t="carrossel" id="tCarr" hidden>Carrosséis</button>
       </div>
+      <label class="busca"><svg viewBox="0 0 24 24" fill="none" stroke-width="2"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg><input id="fBusca" type="search" placeholder="Buscar conteúdo pelo nome" aria-label="Buscar conteúdo pelo nome" autocomplete="off"><button id="limpaBusca" type="button" aria-label="Limpar busca" hidden>×</button></label>
       <span class="grow"></span>
       <span class="count" id="count"></span>
       <button class="reset" id="reset" hidden>Limpar filtros</button>
@@ -205,7 +216,7 @@
 </div>
 
 <main class="wrap" id="lista"></main>
-<footer>Atualizado em 18/11/2026 às 10:14 a partir das pastas do Google Drive · ArestAgência</footer>
+<footer>Atualizado em 18/11/2026 às 10:22 a partir das pastas do Google Drive · ArestAgência</footer>
 
 <div class="lb" id="lb" role="dialog" aria-modal="true">
   <button class="lb-x" id="lbX" aria-label="Fechar">✕</button>
@@ -272,10 +283,10 @@ const conta=arr=>{const v=arr.filter(x=>x.tipo==='video').length,c=arr.filter(x=
 })();
 
 // ---------- filtros ----------
-const st={cli:'',mes:'',tipo:'',cor:'',reg:''};const REG=DATA.regioes&&DATA.regioes.length?DATA.regioes:null;
-function readHash(){const p=new URLSearchParams(location.hash.slice(1));st.cli=p.get('cliente')||'';st.mes=p.get('mes')||'';st.tipo=p.get('tipo')||'';st.cor=p.get('corretor')||'';st.reg=p.get('regiao')||''}
-function writeHash(){const p=new URLSearchParams();if(st.cli)p.set('cliente',st.cli);if(st.mes)p.set('mes',st.mes);if(st.tipo)p.set('tipo',st.tipo);if(st.cor)p.set('corretor',st.cor);if(st.reg)p.set('regiao',st.reg);history.replaceState(null,'',p.toString()?'#'+p:location.pathname)}
-const match=(x,ign)=>(ign==='cli'||ign==='reg'||!st.reg||x.reg===st.reg)&&(ign==='cli'||!st.cli||x.cliente===st.cli)&&(ign==='mes'||!st.mes||x.mes===st.mes)&&(!st.tipo||x.tipo===st.tipo)&&(ign==='cor'||!st.cor||(x.cor||[]).includes(st.cor));
+const st={cli:'',mes:'',tipo:'',cor:'',reg:'',q:''};const nrm=t=>(t||'').normalize('NFD').replace(/[\u0300-\u036f]/g,'').toLowerCase();const REG=DATA.regioes&&DATA.regioes.length?DATA.regioes:null;
+function readHash(){const p=new URLSearchParams(location.hash.slice(1));st.cli=p.get('cliente')||'';st.mes=p.get('mes')||'';st.tipo=p.get('tipo')||'';st.cor=p.get('corretor')||'';st.reg=p.get('regiao')||'';st.q=p.get('busca')||''}
+function writeHash(){const p=new URLSearchParams();if(st.cli)p.set('cliente',st.cli);if(st.mes)p.set('mes',st.mes);if(st.tipo)p.set('tipo',st.tipo);if(st.cor)p.set('corretor',st.cor);if(st.reg)p.set('regiao',st.reg);if(st.q)p.set('busca',st.q);history.replaceState(null,'',p.toString()?'#'+p:location.pathname)}
+const match=(x,ign)=>(ign==='cli'||ign==='reg'||!st.reg||x.reg===st.reg)&&(ign==='cli'||!st.cli||x.cliente===st.cli)&&(ign==='mes'||!st.mes||x.mes===st.mes)&&(!st.tipo||x.tipo===st.tipo)&&(ign==='cor'||!st.cor||(x.cor||[]).includes(st.cor))&&(!st.q||nrm([x.titulo,x.arquivo,x.cliente,(x.cor||[]).join(' ')].join(' ')).includes(nrm(st.q).trim()));
 
 function renderFiltros(){
   const base=I.filter(x=>match(x,'cli'));
@@ -296,13 +307,28 @@ function renderFiltros(){
   const ms=[...new Set(I.map(x=>x.mes))].sort().reverse();
   $('#fMes').innerHTML=`<option value="">${EDICAO?'Todas as edições':'Todos os meses'} (${bm.length})</option>`+ms.map(m=>{const n=bm.filter(x=>x.mes===m).length;return `<option value="${m}"${st.mes===m?' selected':''}${n?'':' disabled'}>${mesLabel(m)} (${n})</option>`}).join('');
   document.querySelectorAll('#fTipo button').forEach(b=>b.classList.toggle('on',b.dataset.t===st.tipo));
-  $('#reset').hidden=!(st.cli||st.mes||st.tipo||st.cor||st.reg);
+  $('#reset').hidden=!(st.cli||st.mes||st.tipo||st.cor||st.reg||st.q);if($('#fBusca').value!==st.q)$('#fBusca').value=st.q;$('#limpaBusca').hidden=!st.q;requestAnimationFrame(setas);
 }
 $('#fCli').addEventListener('click',e=>{const b=e.target.closest('.chip');if(!b)return;if(REG){st.reg=b.dataset.v;st.cli=''}else st.cli=b.dataset.v;update()});
 $('#fEmp').addEventListener('click',e=>{const b=e.target.closest('.chip');if(!b)return;st.cli=b.dataset.v;update()});
 $('#fMes').addEventListener('change',e=>{st.mes=e.target.value;update()});
 $('#fTipo').addEventListener('click',e=>{const b=e.target.closest('button');if(!b)return;st.tipo=b.dataset.t;update()});
-$('#reset').addEventListener('click',()=>{st.cli=st.mes=st.tipo=st.cor=st.reg='';update()});
+$('#reset').addEventListener('click',()=>{st.cli=st.mes=st.tipo=st.cor=st.reg=st.q='';update()});
+let tBusca;$('#fBusca').addEventListener('input',e=>{clearTimeout(tBusca);tBusca=setTimeout(()=>{st.q=e.target.value;update()},180)});
+$('#limpaBusca').addEventListener('click',()=>{st.q='';update();$('#fBusca').focus()});
+// setas para navegar nos filtros que não cabem na tela
+document.querySelectorAll('.bar .chips').forEach(c=>{const w=document.createElement('div');w.className='cw';c.parentNode.insertBefore(w,c);w.appendChild(c);
+  c.classList.remove('grow');
+  ['esq','dir'].forEach(d=>{const b=document.createElement('button');b.type='button';b.className='seta '+d;b.hidden=true;b.setAttribute('aria-label',d==='esq'?'Ver filtros anteriores':'Ver mais filtros');b.textContent=d==='esq'?'‹':'›';
+    b.addEventListener('click',()=>c.scrollBy({left:(d==='esq'?-1:1)*c.clientWidth*.7}));w.appendChild(b)});
+  c.addEventListener('scroll',setas,{passive:true});
+  let x0=null,s0=0,mov=false;c.addEventListener('pointerdown',e=>{if(e.pointerType!=='mouse')return;x0=e.clientX;s0=c.scrollLeft;mov=false});
+  window.addEventListener('pointermove',e=>{if(x0===null)return;const dx=e.clientX-x0;if(Math.abs(dx)>5){mov=true;c.style.scrollBehavior='auto';c.scrollLeft=s0-dx}});
+  window.addEventListener('pointerup',()=>{x0=null;c.style.scrollBehavior=''});
+  c.addEventListener('click',e=>{if(mov){e.stopPropagation();e.preventDefault();mov=false}},true);});
+function setas(){document.querySelectorAll('.bar .cw').forEach(w=>{const c=w.querySelector('.chips'),[a,b]=w.querySelectorAll('.seta');
+  a.hidden=c.scrollLeft<=4;b.hidden=c.scrollLeft+c.clientWidth>=c.scrollWidth-4})}
+window.addEventListener('resize',setas);
 $('#fCor').addEventListener('click',e=>{const b=e.target.closest('.chip');if(!b)return;st.cor=b.dataset.v;update()});
 if(DATA.corretores&&DATA.corretores.length){$('#rowCor').hidden=false;$('#lblCor').textContent=DATA.rotulo_corretores||'Corretor'}
 
