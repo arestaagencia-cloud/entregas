@@ -38,8 +38,15 @@
   .btn-gold svg{width:16px;height:16px}
   .btn-gold.girando svg{animation:gira 1s linear infinite}
   @keyframes gira{to{transform:rotate(360deg)}}
-  .sair{font-size:13px;color:var(--muted)}
-  .sair:hover{color:var(--ink)}
+  .pf{position:relative}
+  .perfil{width:40px;height:40px;border-radius:50%;overflow:hidden;border:1px solid #3a3a3a;background:#1d1a14;color:var(--gold);font-weight:600;display:flex;align-items:center;justify-content:center;font-size:15px}
+  .perfil:hover{border-color:var(--gold)}
+  .perfil img{width:100%;height:100%;object-fit:cover}
+  .menu-pf{position:absolute;right:0;top:calc(100% + 10px);z-index:40;min-width:240px;background:#141414;border:1px solid #2e2e2e;border-radius:12px;padding:6px;box-shadow:0 12px 32px rgba(0,0,0,.6);text-align:left}
+  .mp-h{padding:10px 10px 12px;border-bottom:1px solid #262626;margin-bottom:6px;display:flex;flex-direction:column;gap:2px}
+  .mp-h b{font-size:14px;font-weight:600}.mp-h span{font-size:12px;color:var(--muted);word-break:break-all}
+  .menu-pf button{display:block;width:100%;text-align:left;padding:9px 10px;border-radius:7px;font-size:14px;color:var(--ink-2)}
+  .menu-pf button:hover{background:#222;color:var(--ink)}
   nav.secoes{position:sticky;top:0;z-index:30;background:rgba(4,4,4,.9);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);border-bottom:1px solid var(--line)}
   nav.secoes .wrap{display:flex;justify-content:center;gap:36px;flex-wrap:wrap;font-size:14px}
   nav.secoes a{color:var(--muted);padding:16px 0 14px;border-bottom:2px solid transparent}
@@ -213,6 +220,11 @@
   .gate .g-btn{display:flex;align-items:center;justify-content:center;gap:10px;background:#fff;color:#1f1f1f}
   .gate .g-alt{width:auto;background:none;color:var(--muted);padding:0;margin-top:6px;font-weight:400}
   .gate .lnk{text-decoration:underline;text-underline-offset:3px;font-size:13px}
+  .gate .gmsg{color:var(--gold);font-size:14px;margin:-12px 0 20px}
+  .gate .gmsg:empty{display:none}
+  .gate #porSenha{margin-top:14px;display:flex;flex-direction:column;gap:10px}
+  .gate #porSenha[hidden]{display:none}
+  .gate .g-alt{margin-top:16px!important}
   .gate .erro{color:#ff8b7b;font-size:13px;min-height:20px;margin-top:10px}
 
   @media (max-width:760px){
@@ -230,12 +242,12 @@
 <div class="gate" id="gate"><form id="fGate">
   <div class="brand"><img src="data:image/png;base64,{{LOGO}}" alt=""><span>ARESTAGÊNCIA</span></div>
   <h2 style="margin-bottom:26px">Área da equipe</h2>
+  <p class="gmsg" id="gMsg"></p>
   <button type="button" class="g-btn" id="gGate" hidden><svg width="18" height="18" viewBox="0 0 48 48" aria-hidden="true"><path fill="#FFC107" d="M43.6 20.5H42V20H24v8h11.3C33.7 32.7 29.2 36 24 36c-6.6 0-12-5.4-12-12s5.4-12 12-12c3.1 0 5.8 1.2 7.9 3.1l5.7-5.7C34 6.1 29.3 4 24 4 12.9 4 4 12.9 4 24s8.9 20 20 20 20-8.9 20-20c0-1.3-.1-2.4-.4-3.5z"/><path fill="#FF3D00" d="m6.3 14.7 6.6 4.8C14.7 15.1 19 12 24 12c3.1 0 5.8 1.2 7.9 3.1l5.7-5.7C34 6.1 29.3 4 24 4 16.3 4 9.7 8.3 6.3 14.7z"/><path fill="#4CAF50" d="M24 44c5.2 0 9.9-2 13.4-5.2l-6.2-5.2C29.2 35.1 26.7 36 24 36c-5.2 0-9.6-3.3-11.3-8l-6.5 5C9.5 39.6 16.2 44 24 44z"/><path fill="#1976D2" d="M43.6 20.5H42V20H24v8h11.3c-.8 2.2-2.2 4.2-4.1 5.6l6.2 5.2C37 39.2 44 34 44 24c0-1.3-.1-2.4-.4-3.5z"/></svg>Entrar com Google</button>
   <div id="porSenha">
     <input type="password" id="senha" placeholder="Senha de emergência" autocomplete="current-password" aria-label="Senha">
     <button type="submit">Entrar com senha</button>
   </div>
-  <label><input type="checkbox" id="lembrar" checked> Manter conectado neste aparelho</label>
   <button type="button" class="lnk g-alt" id="mostraSenha" hidden>Entrar com a senha de emergência</button>
   <div class="erro" id="erro"></div>
 </form></div>
@@ -250,7 +262,9 @@
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 12a9 9 0 1 1-2.64-6.36"/><path d="M21 3v6h-6"/></svg>
         <span>Atualizar sistema</span>
       </button>
-      <button type="button" class="sair" id="sair" hidden>Sair</button>
+      <div class="pf"><button type="button" class="perfil" id="perfil" hidden aria-label="Conta"></button>
+        <div class="menu-pf" id="menuPerfil" hidden><div class="mp-h"><b id="mpNome"></b><span id="mpMail"></span></div>
+          <button type="button" id="mpTroca">Trocar de conta</button><button type="button" id="mpSair">Sair</button></div></div>
     </div>
   </div>
   <div style="height:22px"></div>
@@ -261,7 +275,6 @@
 
 <main>
   <section class="sec" id="upload"><div class="wrap sec-in">
-    <div class="kick">01 · Upload</div><h2 class="tit" style="margin-bottom:28px">Entregas</h2>
     <div class="prod">
       <div class="prod-h"><span class="bl">Produção da casa</span><span class="nota" id="mNota"></span></div>
       <div class="kpis" id="kpis"></div>
@@ -273,7 +286,6 @@
           <div class="cmp"><span>Cliente</span><div class="combo"><input type="text" autocomplete="off" spellcheck="false" placeholder="Digite ou escolha o cliente" aria-label="Cliente"><div class="cb-list" role="listbox"></div></div><select id="uCli" hidden></select></div>
           <div class="cmp"><span>Mês da entrega</span><div class="combo"><input type="text" autocomplete="off" spellcheck="false" placeholder="Digite o mês ou escolha" aria-label="Mês da entrega"><div class="cb-list" role="listbox"></div></div><select id="uMes" hidden></select></div>
         </div>
-        <div class="conta" id="conta"></div>
         <div class="drop" id="drop"></div>
         <input type="file" id="uArq" multiple hidden>
         <div class="fila" id="fila" hidden>
@@ -285,7 +297,7 @@
         </div>
       </div>
       <div class="cal">
-        <div class="cal-h"><div><h3 id="calTit">Uploads</h3><button type="button" class="lnk" id="calQuem" hidden>Mostrar quem enviou</button></div>
+        <div class="cal-h"><div><h3 id="calTit">Uploads</h3></div>
           <div class="nav-m"><button type="button" id="calAnt" aria-label="Mês anterior">←</button><button type="button" id="calProx" aria-label="Próximo mês">→</button></div></div>
         <div class="dow"><span>Dom</span><span>Seg</span><span>Ter</span><span>Qua</span><span>Qui</span><span>Sex</span><span>Sáb</span></div>
         <div class="dias" id="dias"></div>
@@ -295,7 +307,7 @@
   </div></section>
   <section class="sec alt" id="paineis"><div class="wrap sec-in">
     <div class="sec-h">
-      <div><div class="kick">02 · Painéis</div><h2 class="tit">Clientes ativos</h2></div>
+      <div><div class="kick">Painéis</div><h2 class="tit">Clientes ativos</h2></div>
       <label class="busca"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg>
         <span class="sr">Buscar cliente</span><input type="search" id="busca" placeholder="Buscar cliente ou marca"></label>
     </div>
@@ -441,16 +453,7 @@ async function listar(q,campos='files(id,name)'){
     out=out.concat(r.files||[]);pt=r.nextPageToken||''}while(pt);
   return out;
 }
-function contaUI(){
-  const q=$('#calQuem');if(q){q.hidden=!PUB.google||logado();q.onclick=()=>pedirToken('').catch(()=>toast('Login não concluído'))}
-  if(!PUB.google){$('#conta').innerHTML='';return}
-  $('#conta').innerHTML=logado()
-    ?`<span class="ok"><i></i>Conectado ao Google Drive</span><button type="button" class="lnk" id="gSair">Trocar de conta</button>`
-    :`<button type="button" class="btn-sec" id="gEntrar"><svg width="16" height="16" viewBox="0 0 48 48" aria-hidden="true"><path fill="#FFC107" d="M43.6 20.5H42V20H24v8h11.3C33.7 32.7 29.2 36 24 36c-6.6 0-12-5.4-12-12s5.4-12 12-12c3.1 0 5.8 1.2 7.9 3.1l5.7-5.7C34 6.1 29.3 4 24 4 12.9 4 4 12.9 4 24s8.9 20 20 20 20-8.9 20-20c0-1.3-.1-2.4-.4-3.5z"/><path fill="#FF3D00" d="m6.3 14.7 6.6 4.8C14.7 15.1 19 12 24 12c3.1 0 5.8 1.2 7.9 3.1l5.7-5.7C34 6.1 29.3 4 24 4 16.3 4 9.7 8.3 6.3 14.7z"/><path fill="#4CAF50" d="M24 44c5.2 0 9.9-2 13.4-5.2l-6.2-5.2C29.2 35.1 26.7 36 24 36c-5.2 0-9.6-3.3-11.3-8l-6.5 5C9.5 39.6 16.2 44 24 44z"/><path fill="#1976D2" d="M43.6 20.5H42V20H24v8h11.3c-.8 2.2-2.2 4.2-4.1 5.6l6.2 5.2C37 39.2 44 34 44 24c0-1.3-.1-2.4-.4-3.5z"/></svg>Entrar com Google</button><span class="nota" style="font-size:13px">para enviar direto pelo Hub</span>`;
-  const e=$('#gEntrar');if(e)e.onclick=()=>pedirToken('select_account').then(()=>toast('Conectado')).catch(err=>toast('Login não concluído: '+err.message));
-  const s=$('#gSair');if(s)s.onclick=()=>{G.tok=null;pedirToken('select_account').catch(()=>contaUI())};
-  renderDrop();
-}
+function contaUI(){if(typeof UC!=='undefined'&&UC.length)renderDrop()}
 
 // fila de arquivos
 let FILA=[],enviando=false;
@@ -460,14 +463,14 @@ function alvo(){const u=UC[+$('#uCli').value];const v=$('#uMes').value;
 function renderDrop(){
   const u=UC[+$('#uCli').value];if(!u)return;const a=alvo();
   const abrir=a.id?`https://drive.google.com/drive/folders/${a.id}`:`https://drive.google.com/drive/folders/${u.c.id}`;
-  if(PUB.google){
+  if(PUB.google&&logado()){
     $('#drop').innerHTML=`${seta}<span class="gr">Arraste os arquivos aqui</span>
       <span class="pq">Vão para <b>${esc(a.nome)}</b>${a.id?'':' (pasta nova, criada no envio)'}. Vídeos, fotos ou o .zip do mês.</span>
       <span class="ab2" style="display:flex;gap:18px;align-items:center;flex-wrap:wrap;justify-content:center"><button type="button" class="btn-pri" id="escolher">Escolher arquivos</button>
       <a class="lnk" href="${abrir}" target="_blank" rel="noopener">Abrir pasta no Drive</a></span>`;
     $('#escolher').onclick=()=>$('#uArq').click();
-  }else if(false){
-    $('#drop').innerHTML=`${seta}<span class="gr">Entre com Google para enviar</span>
+  }else if(PUB.google){
+    $('#drop').innerHTML=`${seta}<span class="gr">Upload só com login Google</span>
       <span class="pq">Destino: <b>${esc(a.nome)}</b>${a.id?'':' (pasta nova, criada no envio)'}. Se preferir, abra a pasta e envie pelo próprio Drive.</span>
       <a class="lnk" href="${abrir}" target="_blank" rel="noopener">Abrir pasta no Drive</a>`;
   }else{
@@ -478,6 +481,7 @@ function renderDrop(){
   renderFila();
 }
 function addArquivos(lista){
+  if(!logado()){toast('Entre com Google para enviar');return}
   [...lista].forEach(f=>{
     if(FILA.some(x=>x.f.name===f.name&&x.f.size===f.size&&x.st!=='feito'))return;
     const video=VID.test(f.name),foto=IMG.test(f.name),ext=(f.name.match(/\.[^.]+$/)||[''])[0];
@@ -554,7 +558,7 @@ $('#fl').addEventListener('change',e=>{if(e.target.tagName==='SELECT')renderFila
 $('#fl').addEventListener('click',e=>{const b=e.target.closest('[data-rm]');if(!b)return;const x=FILA.splice(+b.dataset.rm,1)[0];if(x.url)URL.revokeObjectURL(x.url);renderFila()});
 $('#limpaFila').onclick=()=>{FILA.forEach(x=>x.url&&URL.revokeObjectURL(x.url));FILA=[];renderFila()};
 $('#uArq').onchange=e=>{addArquivos(e.target.files);e.target.value=''};
-['dragenter','dragover'].forEach(t=>$('#drop').addEventListener(t,e=>{e.preventDefault();if(PUB.google)$('#drop').classList.add('on')}));
+['dragenter','dragover'].forEach(t=>$('#drop').addEventListener(t,e=>{e.preventDefault();if(PUB.google&&logado())$('#drop').classList.add('on')}));
 ['dragleave','drop'].forEach(t=>$('#drop').addEventListener(t,e=>{e.preventDefault();$('#drop').classList.remove('on')}));
 $('#drop').addEventListener('drop',e=>{const fs=[...e.dataTransfer.files].filter(f=>f.size>0||/\.[a-z0-9]+$/i.test(f.name));addArquivos(fs)});
 window.addEventListener('beforeunload',e=>{if(enviando){e.preventDefault();e.returnValue=''}});
@@ -741,44 +745,93 @@ async function abrir(senha){
   const txt=await crypto.subtle.decrypt({name:'AES-GCM',iv:b64(CIFRA.iv)},chave,b64(CIFRA.ct));
   return JSON.parse(new TextDecoder().decode(txt));
 }
-const guardar={get(){try{return localStorage.getItem('aresta-hub')}catch(e){return null}},
-  set(v){try{v?localStorage.setItem('aresta-hub',v):localStorage.removeItem('aresta-hub')}catch(e){}}};
-async function entrar(senha,lembrar){
-  D=await abrir(senha);
-  if(Array.isArray(D))D={paineis:D,metricas:{total:0,videos:0,fotos:0,carrosseis:0,paineis:D.length,meses:[],clientes:[],uploads:[]},gh:{repo:'arestaagencia-cloud/entregas',workflow:'atualizar-paineis.yml'}};
-  if(lembrar)guardar.set(senha);
-  $('#gate').hidden=true;$('#sair').hidden=false;iniciar();
+// ---------- sessão: sempre com login Google; sem Google conectado, o HUB fecha ----------
+// sessionStorage = só esta aba, some ao fechar. Guarda a chave e o token para sobreviver ao recarregar (ex.: Atualizar sistema).
+const SESS={get(){try{return JSON.parse(sessionStorage.getItem('aresta-hub-s')||'null')}catch(e){return null}},
+  set(v){try{v?sessionStorage.setItem('aresta-hub-s',JSON.stringify(v)):sessionStorage.removeItem('aresta-hub-s')}catch(e){}}};
+try{localStorage.removeItem('aresta-hub')}catch(e){}  // senha lembrada da versão antiga: não vale mais
+let INI=false,VIA=null,EXP_SENHA=0;
+async function entrar(senha,via){
+  const dados=await abrir(senha);
+  if(!INI){D=dados;if(Array.isArray(D))D={paineis:D,metricas:{total:0,videos:0,fotos:0,carrosseis:0,paineis:D.length,meses:[],clientes:[],uploads:[]},gh:{repo:'arestaagencia-cloud/entregas',workflow:'atualizar-paineis.yml'}}}
+  VIA=via;if(via==='senha'){EXP_SENHA=Date.now()+3600e3;G.tok=null}
+  SESS.set({k:senha,via,tok:G.tok,exp:via==='senha'?EXP_SENHA:G.exp});
+  $('#gate').hidden=true;$('#gMsg').textContent='';$('#perfil').hidden=false;
+  if(!INI){INI=true;iniciar()}
+  if(via==='google'){EU=null;await quemSouEu()}
+  perfilUI();if(via==='google'){carregarAutores(calYM)}
 }
+function bloquear(msg){
+  if(!INI)return;
+  $('#menuPerfil').hidden=true;$('#gate').hidden=false;$('#gMsg').textContent=msg||'';$('#erro').textContent='';
+  window.scrollTo(0,0);
+}
+function sair(){
+  const t=G.tok;G.tok=null;G.exp=0;EU=null;SESS.set(null);
+  try{t&&google.accounts.oauth2.revoke(t,()=>{})}catch(e){}
+  location.reload();
+}
+// vigia: token do Google vence em 1 h; sem ele o HUB fecha (só depois de terminar um envio em andamento)
+setInterval(()=>{
+  if(!INI||!$('#gate').hidden||(typeof enviando!=='undefined'&&enviando))return;
+  if(VIA==='google'&&!logado())bloquear('Sua conexão com o Google terminou. Entre de novo para continuar.');
+  if(VIA==='senha'&&Date.now()>EXP_SENHA)bloquear('A sessão com a senha de emergência terminou. Entre de novo.');
+},15000);
+document.addEventListener('visibilitychange',()=>{if(!document.hidden&&INI&&VIA==='google'&&!logado()&&!(typeof enviando!=='undefined'&&enviando))bloquear('Sua conexão com o Google terminou. Entre de novo para continuar.')});
+
+function perfilUI(){
+  const b=$('#perfil'),m=$('#menuPerfil');
+  if(VIA==='google'&&EU){
+    b.innerHTML=EU.photoLink?`<img src="${esc(EU.photoLink)}" alt="" referrerpolicy="no-referrer">`:`<span>${esc((EU.displayName||EU.emailAddress||'?')[0].toUpperCase())}</span>`;
+    b.title=EU.displayName||EU.emailAddress||'';
+    $('#mpNome').textContent=EU.displayName||'';$('#mpMail').textContent=EU.emailAddress||'';$('#mpTroca').hidden=false;
+  }else{
+    b.innerHTML='<span>*</span>';b.title='Acesso pela senha de emergência';
+    $('#mpNome').textContent='Senha de emergência';$('#mpMail').textContent='Sem conta Google: o upload fica indisponível';$('#mpTroca').hidden=false;
+  }
+}
+$('#perfil').onclick=e=>{e.stopPropagation();$('#menuPerfil').hidden=!$('#menuPerfil').hidden};
+document.addEventListener('click',e=>{if(!e.target.closest('#menuPerfil'))$('#menuPerfil').hidden=true});
+$('#mpSair').onclick=sair;
+$('#mpTroca').onclick=async()=>{$('#menuPerfil').hidden=true;
+  if(typeof enviando!=='undefined'&&enviando){toast('Aguarde o envio terminar');return}
+  const ok=await entrarGoogle(true);if(!ok)bloquear('Entre com uma conta que tenha acesso ao HUB.')};
+
 $('#fGate').addEventListener('submit',async e=>{
   e.preventDefault();$('#erro').textContent='';
-  try{await entrar($('#senha').value,$('#lembrar').checked)}catch(err){$('#erro').textContent='Senha incorreta.';$('#senha').select()}
+  try{await entrar($('#senha').value,'senha');$('#senha').value=''}catch(err){$('#erro').textContent='Senha incorreta.';$('#senha').select()}
 });
 // login Google: a chave do HUB fica num documento do Drive compartilhado só com a equipe
-async function entrarGoogle(){
+async function entrarGoogle(troca){
   $('#erro').textContent='';const b=$('#gGate');b.disabled=true;
   try{
     await pedirToken('select_account');
     const r=await fetch(`${DRV}/${PUB.chave}/export?mimeType=text/plain`,{headers:{Authorization:`Bearer ${G.tok}`}});
     if(r.status===403||r.status===404)throw new Error('sem acesso');
     if(!r.ok)throw new Error('erro '+r.status);
-    const chave=(await r.text()).replace(/^\uFEFF/,'').trim();
-    try{await entrar(chave,$('#lembrar').checked)}catch(e){throw new Error('chave')}
+    const chave=(await r.text()).replace(/^﻿/,'').trim();
+    try{await entrar(chave,'google')}catch(e){throw new Error('chave')}
+    if(troca)toast('Conta trocada');
+    return true;
   }catch(e){
     G.tok=null;
     $('#erro').textContent=e.message==='sem acesso'?'Este e-mail não tem acesso ao HUB. Peça para compartilharem a "Chave do Hub" com você.'
       :e.message==='chave'?'A "Chave do Hub" no Drive não confere com o HUB. Avise quem administra.'
       :'Login não concluído. Tente de novo ou use a senha de emergência.';
+    return false;
   }finally{b.disabled=false}
 }
 if(PUB.google&&PUB.chave){
   $('#gGate').hidden=false;$('#mostraSenha').hidden=false;$('#porSenha').hidden=true;
-  $('#gGate').onclick=entrarGoogle;
+  $('#gGate').onclick=()=>entrarGoogle(false);
   $('#mostraSenha').onclick=()=>{$('#porSenha').hidden=false;$('#mostraSenha').hidden=true;$('#senha').focus()};
   carregarGIS().catch(()=>{});  // já carrega o login para o clique abrir na hora
 }else{$('#senha').placeholder='Senha'}
-$('#sair').onclick=()=>{guardar.set(null);G.tok=null;location.reload()};
-const salva=guardar.get();
-if(salva)entrar(salva,true).catch(()=>guardar.set(null));
+// recarregou a aba dentro da hora: continua conectado
+(()=>{const s=SESS.get();if(!s)return;
+  if(s.via==='google'&&s.tok&&Date.now()<s.exp){G.tok=s.tok;G.exp=s.exp;entrar(s.k,'google').catch(()=>SESS.set(null))}
+  else if(s.via==='senha'&&Date.now()<s.exp){entrar(s.k,'senha').then(()=>{EXP_SENHA=s.exp}).catch(()=>SESS.set(null))}
+  else{SESS.set(null);$('#gMsg').textContent='Sua conexão com o Google terminou. Entre de novo para continuar.'}})();
 </script>
 </body>
 </html>
