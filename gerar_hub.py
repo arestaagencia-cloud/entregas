@@ -66,7 +66,7 @@ def resumo(cfg):
         cid = i["slides"][0]["id"] if i["tipo"] == "carrossel" else i["id"]
         if cid not in capas:
             capas.append(cid)
-        if len(capas) == 24:  # 8 para o card, todas para o mosaico da abertura
+        if len(capas) == 36:  # candidatas: as boas vão para o card (8) e para o mosaico da abertura
             break
     conta = lambda t: sum(1 for i in itens if i["tipo"] == t)
     marcas = [{"nome": c, "total": sum(1 for i in itens if i["cliente"] == c)} for c in cfg["clientes"]]
@@ -212,6 +212,45 @@ def miniaturas(paineis, limite=400):
     return feitos
 
 
+def qualidade(ids):
+    """Avalia cada miniatura (cache em docs/m/_qualidade.json): ok = não é quase lisa, preta ou branca;
+    rosto = tem rosto de frente (OpenCV, se instalado)."""
+    arq = MINI / "_qualidade.json"
+    cache = json.loads(arq.read_text()) if arq.exists() else {}
+    try:
+        from PIL import Image, ImageStat
+    except ImportError:
+        return cache
+    try:
+        import cv2
+        det = cv2.CascadeClassifier(cv2.data.haarcascades + "haarcascade_frontalface_default.xml")
+        if det.empty():
+            det = None
+    except Exception:  # noqa: BLE001
+        cv2 = det = None
+    for fid in ids:
+        f = MINI / f"{fid}.jpg"
+        if not f.exists() or (fid in cache and cache[fid].get("v") == 2 and (cache[fid].get("rosto") is not None or det is None)):
+            continue
+        g = Image.open(f).convert("L")
+        st = ImageStat.Stat(g.resize((64, 64)))
+        media, desvio = st.mean[0], st.stddev[0]
+        hist = g.histogram(); tot = sum(hist)
+        pretos, brancos = sum(hist[:22]) / tot, sum(hist[226:]) / tot  # pixels quase pretos / quase brancos
+        ok = desvio >= 20 and 24 <= media <= 205 and brancos < 0.45 and pretos < 0.85
+        rosto = None
+        if det is not None:
+            img = cv2.imread(str(f), cv2.IMREAD_GRAYSCALE)
+            rosto = int(len(det.detectMultiScale(img, 1.1, 5, minSize=(24, 24))) > 0) if img is not None else 0
+        cache[fid] = {"ok": ok, "rosto": rosto, "v": 2}
+    cache = {k: v for k, v in cache.items() if k in set(ids)}
+    MINI.mkdir(parents=True, exist_ok=True)
+    arq.write_text(json.dumps(cache, sort_keys=True))
+    ruins = sum(1 for v in cache.values() if not v["ok"]); rostos = sum(1 for v in cache.values() if v.get("rosto"))
+    print(f"Qualidade das miniaturas: {ruins} evitadas (lisas/pretas/brancas), {rostos} com rosto.")
+    return cache
+
+
 def main():
     senha = os.environ.get("HUB_SENHA", "").strip()
     if not senha:
@@ -225,8 +264,15 @@ def main():
             cfgs.append(c)
             paineis.append(r)
     prontas = miniaturas(paineis)
-    for p in paineis:  # o HUB sabe quais miniaturas já existem no site
-        p["mini"] = [f for f in (p.get("mosaico") or []) if ("m", f) in prontas]
+    q = qualidade([f for p in paineis for f in (p.get("mosaico") or [])])
+    boa = lambda f: q.get(f, {}).get("ok", True)
+    for p in paineis:  # o HUB sabe quais miniaturas já existem no site; evita as lisas e põe rostos primeiro
+        cand = p.get("mosaico") or []
+        boas = [f for f in cand if boa(f)]
+        p["capas"] = (boas + [f for f in cand if not boa(f)])[:8]
+        mini = [f for f in boas if ("m", f) in prontas]
+        p["mini"] = sorted(mini, key=lambda f: -(q.get(f, {}).get("rosto") or 0))
+        p["mosaico"] = boas
         p["imgLocal"] = bool(p.get("img") and ("c", p["img"]) in prontas)
     dados = {"paineis": paineis, "metricas": metricas(cfgs, paineis),
              "gh": {"repo": "arestaagencia-cloud/entregas", "workflow": "atualizar-paineis.yml",
