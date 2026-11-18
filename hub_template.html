@@ -23,12 +23,17 @@
   .sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0)}
 
   /* topo */
-  header.top{border-bottom:1px solid var(--line)}
-  .top-g{display:grid;grid-template-columns:minmax(0,1fr) auto minmax(0,1fr);align-items:center;gap:24px;padding-top:28px}
+  header.top{position:sticky;top:0;z-index:30;background:rgba(4,4,4,.92);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);border-bottom:1px solid var(--line)}
+  .top-g{display:grid;grid-template-columns:minmax(0,1fr) auto minmax(0,1fr);align-items:center;gap:24px;padding-top:14px;padding-bottom:14px}
+  .t-esq{display:flex;align-items:center;gap:14px;min-width:0}
+  .t-esq .sync{white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+  .t-dir{display:flex;align-items:center;justify-content:flex-end;gap:28px}
   .eyeb{font-size:12px;letter-spacing:.18em;text-transform:uppercase;color:var(--muted)}
   .brand{display:flex;flex-direction:column;align-items:center;gap:10px}
   .brand img{width:56px;height:56px;object-fit:contain}
   .brand span{font-size:13px;letter-spacing:.32em;font-weight:600}
+  .top-g .brand{flex-direction:row;gap:12px}
+  .top-g .brand img{width:34px;height:34px}
   .acoes-top{display:flex;justify-content:flex-end;align-items:center;gap:14px;flex-wrap:wrap}
   .sync{font-size:13px;color:var(--muted)}
   .sync.rodando{color:var(--gold)}
@@ -47,14 +52,13 @@
   .mp-h b{font-size:14px;font-weight:600}.mp-h span{font-size:12px;color:var(--muted);word-break:break-all}
   .menu-pf button{display:block;width:100%;text-align:left;padding:9px 10px;border-radius:7px;font-size:14px;color:var(--ink-2)}
   .menu-pf button:hover{background:#222;color:var(--ink)}
-  nav.secoes{position:sticky;top:0;z-index:30;background:rgba(4,4,4,.9);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);border-bottom:1px solid var(--line)}
-  nav.secoes .wrap{display:flex;justify-content:center;gap:36px;flex-wrap:wrap;font-size:14px}
-  nav.secoes a{color:var(--muted);padding:16px 0 14px;border-bottom:2px solid transparent}
+  nav.secoes{display:flex;gap:26px;font-size:14px}
+  nav.secoes a{color:var(--muted);padding:6px 0;border-bottom:2px solid transparent}
   nav.secoes a.on{color:var(--ink);border-bottom-color:var(--gold)}
   nav.secoes a:hover{color:var(--ink)}
 
   /* seções */
-  section.sec{border-top:1px solid var(--line)}
+  section.sec{border-top:1px solid var(--line);scroll-margin-top:70px}
   section.sec:first-of-type{border-top:0}
   section.sec.alt{background:#080808}
   .sec-in{padding-top:72px;padding-bottom:84px}
@@ -137,6 +141,8 @@
   .btn-sec:hover{border-color:#666}
   .lnk{font-size:13px;color:var(--muted);text-decoration:underline;text-underline-offset:3px}
   .lnk:hover{color:var(--ink)}
+  .pend{font-size:12px;letter-spacing:.06em;text-transform:uppercase;color:var(--gold)}
+  .pend:empty{display:none}
   .drop.on{border-color:var(--gold);background:#141008}
   .fila{display:flex;flex-direction:column;gap:14px}
   .lote{display:flex;flex-wrap:wrap;gap:10px;align-items:flex-end;background:var(--card);border:1px solid var(--line);border-radius:12px;padding:14px}
@@ -228,10 +234,13 @@
   .gate .erro{color:#ff8b7b;font-size:13px;min-height:20px;margin-top:10px}
 
   @media (max-width:760px){
-    .top-g{grid-template-columns:1fr;justify-items:center;text-align:center}
-    .top-g>.eyeb{display:none}
+    .top-g{grid-template-columns:auto 1fr auto;gap:12px}
+    .t-esq .sync,.btn-gold span,.top-g .brand span{display:none}
+    .btn-gold{padding:0 12px}
+    .top-g .brand{justify-content:center}
+    .t-dir{gap:14px}
     .acoes-top{justify-content:center}
-    nav.secoes .wrap{gap:22px}
+    nav.secoes{gap:14px}
     .dia{min-height:64px;padding:6px}
     .dia .ev .et{display:none}
       .busca input{width:140px}
@@ -254,24 +263,22 @@
 
 <header class="top">
   <div class="wrap top-g">
-    <div class="eyeb">HUB de Entregas · Equipe</div>
-    <div class="brand"><img src="data:image/png;base64,{{LOGO}}" alt="ArestAgência"><span>ARESTAGÊNCIA</span></div>
-    <div class="acoes-top">
-      <span class="sync" id="sync">Atualizado em {{ATUALIZADO}}</span>
+    <div class="t-esq">
       <button type="button" class="btn-gold" id="refresh" title="Lê o Drive agora e atualiza todos os painéis">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 12a9 9 0 1 1-2.64-6.36"/><path d="M21 3v6h-6"/></svg>
         <span>Atualizar sistema</span>
       </button>
+      <span class="sync" id="sync">Atualizado em {{ATUALIZADO}}</span>
+    </div>
+    <div class="brand"><img src="data:image/png;base64,{{LOGO}}" alt="ArestAgência"><span>ARESTAGÊNCIA</span></div>
+    <div class="t-dir">
+      <nav class="secoes" aria-label="Seções"><a href="#upload" class="on">Upload</a><a href="#paineis">Painéis</a></nav>
       <div class="pf"><button type="button" class="perfil" id="perfil" hidden aria-label="Conta"></button>
         <div class="menu-pf" id="menuPerfil" hidden><div class="mp-h"><b id="mpNome"></b><span id="mpMail"></span></div>
           <button type="button" id="mpTroca">Trocar de conta</button><button type="button" id="mpSair">Sair</button></div></div>
     </div>
   </div>
-  <div style="height:22px"></div>
 </header>
-<nav class="secoes" aria-label="Seções"><div class="wrap">
-  <a href="#upload" class="on">Upload</a><a href="#paineis">Painéis</a>
-</div></nav>
 
 <main>
   <section class="sec" id="upload"><div class="wrap sec-in">
@@ -397,6 +404,7 @@ function iniciarUpload(){
     const cl=p.pastas.clientes||[];
     cl.forEach(c=>UC.push({p,c,rot:cl.length>1?`${p.nome} · ${c.nome}`:p.nome,meses:(p.pastas.meses||[]).filter(m=>m.cliente===c.nome)}));
   });
+  if(D.indefinido)UC.unshift({indef:true,p:{nome:'Cliente indefinido',nomes:{},url:null},c:{nome:'Cliente indefinido',id:D.indefinido},rot:'Cliente indefinido (organizar depois)',meses:[],ex:[]});
   $('#uCli').innerHTML=UC.map((u,i)=>`<option value="${i}">${esc(u.rot)}</option>`).join('');
   if(!$('#uCli').sync){combo('uCli');combo('uMes')}else $('#uCli').sync();
   $('#uCli').onchange=()=>{if(enviando)return;mesesUpload()};$('#uMes').onchange=()=>{if(!enviando)renderDrop()};mesesUpload();contaUI();
@@ -404,7 +412,8 @@ function iniciarUpload(){
 function mesesUpload(){
   const u=UC[+$('#uCli').value];if(!u)return;
   const ex=u.meses.slice().sort((a,b)=>b.mes.localeCompare(a.mes));
-  const opts=[];
+  const opts=D.indefinido?[{v:'indef',t:'Mês indefinido (organizar depois)'}]:[];
+  if(u.indef){u.ex=[];$('#uMes').innerHTML=opts.map(o=>`<option value="${o.v}">${o.t}</option>`).join('');$('#uMes').sync&&$('#uMes').sync();renderDrop();return}
   if(!ex.some(m=>m.mes===YM))opts.push({v:'novo:'+YM,t:`${MESES[hoje.getMonth()]} ${hoje.getFullYear()} · criar pasta`});
   ex.forEach((m,i)=>opts.push({v:'id:'+i,t:`${MESES[+m.mes.slice(5)-1]} ${m.mes.slice(0,4)} · ${esc(m.nome)}`}));
   u.ex=ex;
@@ -459,16 +468,19 @@ function contaUI(){if(typeof UC!=='undefined'&&UC.length)renderDrop()}
 let FILA=[],enviando=false;
 const seta=`<svg viewBox="0 0 24 24" fill="none" stroke="#F6AD03" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 16V4"/><path d="m6 10 6-6 6 6"/><path d="M4 20h16"/></svg>`;
 function alvo(){const u=UC[+$('#uCli').value];const v=$('#uMes').value;
+  if(u.indef||v==='indef')return {u,id:D.indefinido,nome:'0. Cliente Indefinido / 00. Mês Indefinido',indef:true};
   return v.startsWith('id:')?{u,id:u.ex[+v.slice(3)].id,nome:u.ex[+v.slice(3)].nome}:{u,id:null,nome:nomeSugerido(u,v.slice(5)),ym:v.slice(5)}}
 function renderDrop(){
   const u=UC[+$('#uCli').value];if(!u)return;const a=alvo();
   const abrir=a.id?`https://drive.google.com/drive/folders/${a.id}`:`https://drive.google.com/drive/folders/${u.c.id}`;
   if(PUB.google&&logado()){
     $('#drop').innerHTML=`${seta}<span class="gr">Arraste os arquivos aqui</span>
-      <span class="pq">Vão para <b>${esc(a.nome)}</b>${a.id?'':' (pasta nova, criada no envio)'}. Vídeos, fotos ou o .zip do mês.</span>
+      <span class="pq">${a.indef?`${u.indef?'Sem cliente e mês escolhidos':'Sem mês escolhido'}, vão para <b>Indefinido</b>${u.indef?' com o nome original':''}, para organizar depois.${u.indef?' Escolha acima para enviar direto para a pasta certa.':''}`:`Vão para <b>${esc(a.nome)}</b>${a.id?'':' (pasta nova, criada no envio)'}. Vídeos, fotos ou o .zip do mês.`}</span>
+      ${a.indef?'<span class="pend" id="pend"></span>':''}
       <span class="ab2" style="display:flex;gap:18px;align-items:center;flex-wrap:wrap;justify-content:center"><button type="button" class="btn-pri" id="escolher">Escolher arquivos</button>
       <a class="lnk" href="${abrir}" target="_blank" rel="noopener">Abrir pasta no Drive</a></span>`;
     $('#escolher').onclick=()=>$('#uArq').click();
+    if(a.indef)listar(`'${D.indefinido}' in parents and trashed=false`).then(fs=>{const e=$('#pend');if(e)e.textContent=fs.length?`${fs.length} ${fs.length===1?'arquivo aguardando':'arquivos aguardando'} organização`:'Nenhum arquivo aguardando organização'}).catch(()=>{});
   }else if(PUB.google){
     $('#drop').innerHTML=`${seta}<span class="gr">Upload só com login Google</span>
       <span class="pq">Destino: <b>${esc(a.nome)}</b>${a.id?'':' (pasta nova, criada no envio)'}. Se preferir, abra a pasta e envie pelo próprio Drive.</span>
@@ -492,7 +504,7 @@ function addArquivos(lista){
   renderFila();
 }
 function nomeFinal(x,u,idx){
-  if(x.outro)return x.f.name;  // .zip e outros: nome original
+  if(x.so)return x.f.name;  // .zip, outros e pasta Indefinido: nome original
   const N=u.p.nomes||{};const t=(x.t||'').trim().replace(/[\\/:*?"<>|]/g,'');if(!t)return '';
   const pre=N.cat?(x.cat||''):u.c.nome;if(N.cat&&!pre)return '';
   let n=`F. ${pre} - ${t}`;
@@ -502,7 +514,7 @@ function nomeFinal(x,u,idx){
   return n+x.ext.toLowerCase();
 }
 function nomesFila(){  // fotos com o mesmo título ganham número (1, 2, 3...)
-  const u=UC[+$('#uCli').value];const grupos={};
+  const u=UC[+$('#uCli').value];FILA.forEach(x=>x.so=x.outro||!!u.indef);const grupos={};
   FILA.forEach(x=>{if(x.foto){const k=[x.t.trim(),x.cat,x.pes].join('|');(grupos[k]=grupos[k]||[]).push(x)}});
   FILA.forEach(x=>{const g=x.foto?grupos[[x.t.trim(),x.cat,x.pes].join('|')]:null;
     x.nome=nomeFinal(x,u,g&&g.length>1?g.indexOf(x)+1:0)});
@@ -513,7 +525,7 @@ function renderFila(){
   if(!FILA.length){$('#fila').hidden=true;return}
   $('#fila').hidden=false;const u=UC[+$('#uCli').value];const N=u.p.nomes||{};nomesFila();
   const cats=N.cat?N.cat.ops:[],pess=N.pes?N.pes.lista.map(p=>({r:p,v:p})):[];
-  const editaveis=FILA.filter(x=>!x.outro&&x.st!=='feito').length;
+  const editaveis=FILA.filter(x=>!x.so&&x.st!=='feito').length;
   $('#lote').hidden=!editaveis||enviando;
   $('#lote').innerHTML=`<div class="bl">Aplicar a todos os arquivos</div>
     ${N.cat?`<label>${esc(N.cat.rotulo)}<select id="lCat">${opcoes(cats,'','—')}</select></label>`:''}
@@ -521,15 +533,15 @@ function renderFila(){
     <label style="flex:1 1 200px">Título<input type="text" id="lTit" placeholder="ex.: Bastidores da gravação"></label>
     <button type="button" class="btn-sec" id="lAplicar">Aplicar</button>`;
   $('#lAplicar').onclick=()=>{const c=$('#lCat')?.value,p=$('#lPes')?.value,t=$('#lTit').value.trim();
-    FILA.forEach(x=>{if(x.outro||x.st==='feito')return;if(c)x.cat=c;if(p)x.pes=p;if(t)x.t=t});renderFila()};
+    FILA.forEach(x=>{if(x.so||x.st==='feito')return;if(c)x.cat=c;if(p)x.pes=p;if(t)x.t=t});renderFila()};
   $('#fl').innerHTML=FILA.map((x,i)=>{
-    const trava=enviando||x.st==='feito';const prob=!x.outro&&(!x.nome||x.dup||x.existe);
-    const msg=x.st==='erro'?x.erro:x.dup?'Nome repetido na lista: mude o título ou a versão.':x.existe?'Já existe um arquivo com esse nome na pasta.':!x.outro&&!x.nome?(N.cat&&!x.cat?`Escolha o ${N.cat.rotulo.toLowerCase()} e o título.`:'Preencha o título.'):'';
+    const trava=enviando||x.st==='feito';const prob=!x.so&&(!x.nome||x.dup||x.existe);
+    const msg=x.st==='erro'?x.erro:x.dup?'Nome repetido na lista: mude o título ou a versão.':x.existe?'Já existe um arquivo com esse nome na pasta.':!x.so&&!x.nome?(N.cat&&!x.cat?`Escolha o ${N.cat.rotulo.toLowerCase()} e o título.`:'Preencha o título.'):'';
     const ic=x.foto&&x.f.size<25e6?`style="background-image:url('${x.url||(x.url=URL.createObjectURL(x.f))}')"`:'';
     return `<div class="arq${x.st==='feito'?' feito':''}${x.st==='erro'?' erro':''}" data-i="${i}">
       <div class="ic" ${ic}>${ic?'':(x.video?'vídeo':x.ext.slice(1))}</div>
       <div><div class="orig" title="${esc(x.f.name)}">${esc(x.f.name)} · ${tam(x.f.size)}</div>
-      ${x.outro?'':`<div class="cp2">
+      ${x.so?'':`<div class="cp2">
         <label class="t">Título<input type="text" data-k="t" value="${esc(x.t)}" ${trava?'disabled':''} class="${x.t.trim()?'':'vazio'}"></label>
         ${N.cat?`<label class="c">${esc(N.cat.rotulo)}<select data-k="cat" ${trava?'disabled':''}>${opcoes(cats,x.cat,'Escolher…')}</select></label>`:''}
         ${N.pes?`<label class="c">${esc(N.pes.rotulo)}<select data-k="pes" ${trava?'disabled':''}>${opcoes(pess,x.pes,'—')}</select></label>`:''}
@@ -539,7 +551,7 @@ function renderFila(){
       ${x.st?`<div class="pg"><i style="width:${x.p}%"></i></div>`:''}</div>
       <button type="button" class="x" data-rm="${i}" ${enviando?'hidden':''} aria-label="Remover">×</button></div>`}).join('');
   const prontos=FILA.filter(x=>x.st!=='feito');
-  const ok=prontos.length&&prontos.every(x=>x.outro||(x.nome&&!x.dup&&!x.existe));
+  const ok=prontos.length&&prontos.every(x=>x.so||(x.nome&&!x.dup&&!x.existe));
   const total=prontos.reduce((s,x)=>s+x.f.size,0);
   $('#enviar').disabled=enviando||!ok;
   $('#enviar').textContent=enviando?'Enviando…':!prontos.length?'Enviado':`Enviar ${prontos.length} ${prontos.length===1?'arquivo':'arquivos'}`;
@@ -615,8 +627,8 @@ $('#enviar').onclick=async()=>{
   try{
     pasta=await pastaDestino(a);
     const nomes=new Set((await listar(`'${pasta}' in parents and trashed=false`)).map(f=>f.name.normalize('NFC')));
-    let conflito=false;FILA.forEach(x=>{if(x.st!=='feito'&&!x.outro&&nomes.has(x.nome.normalize('NFC'))){x.existe=true;conflito=true}
-      if(x.st!=='feito'&&x.outro&&nomes.has(x.f.name.normalize('NFC'))){x.existe=true;conflito=true}});
+    let conflito=false;FILA.forEach(x=>{if(x.st!=='feito'&&!x.so&&nomes.has(x.nome.normalize('NFC'))){x.existe=true;conflito=true}
+      if(x.st!=='feito'&&x.so&&nomes.has(x.f.name.normalize('NFC'))){x.existe=true;conflito=true}});
     if(conflito){enviando=false;renderFila();toast('Alguns nomes já existem na pasta. Ajuste e envie de novo.');return}
   }catch(e){enviando=false;renderFila();toast(e.auth?'Sessão expirou. Entre com Google de novo.':'Não consegui acessar a pasta: '+e.message);return}
   let ok=0,erro=0;
@@ -630,7 +642,8 @@ $('#enviar').onclick=async()=>{
     renderFila();
   }
   enviando=false;renderFila();
-  if(ok&&!erro){toast(`${ok} ${ok===1?'arquivo enviado':'arquivos enviados'}. Atualizando o sistema…`);
+  if(ok&&!erro&&a.indef){toast(`${ok} ${ok===1?'arquivo enviado':'arquivos enviados'} para a pasta Indefinido. Organize depois.`);renderDrop()}
+  else if(ok&&!erro){toast(`${ok} ${ok===1?'arquivo enviado':'arquivos enviados'}. Atualizando o sistema…`);
     setTimeout(()=>refresh(),1500)}
   else if(ok)toast(`${ok} enviados, ${erro} com erro. Tente de novo os que falharam.`);
   else toast('Nenhum arquivo foi enviado.');
@@ -650,6 +663,7 @@ function renderMetricas(pulso){
 
 // ---------- 04 · calendário ----------
 function contaEnvio(x,a){
+  if(a.indef)return;  // ainda não está em nenhum painel
   const M=D.metricas,t=x.video?'video':x.foto?'foto':null;if(!t)return;
   M.total++;t==='video'?M.videos++:M.fotos++;
   const hj=iso(new Date());UP.unshift({d:hj,p:a.u.p.nome,c:a.u.c.nome,url:a.u.p.url,video:t==='video'?1:0,foto:t==='foto'?1:0,carrossel:0});

@@ -162,7 +162,7 @@ def main():
     dados = {"paineis": paineis, "metricas": metricas(cfgs, paineis),
              "gh": {"repo": "arestaagencia-cloud/entregas", "workflow": "atualizar-paineis.yml",
                     "token": os.environ.get("HUB_GH_TOKEN", "").strip() or None},
-             "google": hub.get("google_client_id"),
+             "google": hub.get("google_client_id"), "indefinido": hub.get("pasta_indefinido"),
              "gerado": datetime.now(timezone(timedelta(hours=-3))).isoformat(timespec="minutes")}
     html = (RAIZ / "hub_template.html").read_text()
     logo = (RAIZ / "assets/logo-mark.b64").read_text().strip()
