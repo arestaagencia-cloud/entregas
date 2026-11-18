@@ -99,7 +99,9 @@ Sempre atualize `atualizado_em` (ISO, UTC).
 - Mudar o slug de uma entrega já publicada (o cliente já tem o link).
 - Marcar "Página no Ar" sem confirmar que o deploy terminou com sucesso.
 
-## Dashboards de clientes (atualização automática)
+## Dashboards
+
+**Player no celular (painel_template.html):** o iframe do Drive é desenhado em 420x747 (vertical) ou 747x420 (horizontal) e reduzido para caber. Botão grande "Tela cheia" (só no celular, vídeo e foto): usa a tela cheia do navegador (Android, gira para paisagem em vídeo horizontal); no iPhone, que não tem tela cheia para isso, a caixa ocupa a tela inteira e o vídeo horizontal com o celular em pé gira 90°. Botão de sair no canto e o X também sai da tela cheia antes de fechar. de clientes (atualização automática)
 
 Cada cliente tem um dashboard fixo em `https://entregas.arestagencia.com.br/<cliente>/` com todos os vídeos e
 fotos do Drive, filtros por Cliente, Mês e tipo. Config em `paineis/<cliente>.json`:
