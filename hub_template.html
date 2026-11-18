@@ -375,7 +375,8 @@ function nomeSugerido(u,ym){
       const peloMes=u.ex.every(x=>parseInt(x.nome)===+x.mes.slice(5));
       num=peloMes?+m:(nums.length?Math.max(...nums)+1:1);}}
   else num=1;
-  return `${num!=null?String(num).padStart(2,'0')+'. ':''}${base} - ${mesTxt}`;
+  const zero=!u.ex.length||u.ex.some(x=>/^\s*0\d/.test(x.nome));
+  return `${num!=null?(zero?String(num).padStart(2,'0'):String(num))+'. ':''}${base} - ${mesTxt}`;
 }
 function renderDrop(){
   const u=UC[+$('#uCli').value];if(!u)return;const v=$('#uMes').value;
