@@ -1507,5 +1507,10 @@
     "nome": "06. Samba ao Quadrado - Setembro.26"
    }
   ]
+ },
+ "layout": "tipo",
+ "hero": {
+  "altura": 90,
+  "compacto": true
  }
 }
