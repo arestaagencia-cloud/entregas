@@ -22769,16 +22769,6 @@
    "fmt": "v"
   },
   {
-   "id": "1-BUsT1KVRo__XkJXJTwGTr-GbFONL2Cm",
-   "nome": "F. Sarau Junho - Magrão Horizontal Apresentação 3 - V.1  .mov",
-   "tipo": "video",
-   "cliente": "Sarau Secreto",
-   "mes": "2026-06",
-   "servico": "Sarau Convida - Magrão - Junho.26",
-   "pasta": "1i58PksXzPshVtS-C-KceyP0RNx5b_lOV",
-   "fmt": "h"
-  },
-  {
    "id": "1061M0_fzW2iyWGQuRJZppFu12X2cYvDx",
    "nome": "F. Sarau Junho - Horizontal Apresentação 4 - V.1  .mov",
    "tipo": "video",
@@ -22827,16 +22817,6 @@
    "servico": "Sarau Convida - Magrão - Junho.26",
    "pasta": "1i58PksXzPshVtS-C-KceyP0RNx5b_lOV",
    "fmt": "h"
-  },
-  {
-   "id": "134btEJrhvF5C41kh7SA4JJmOEUCBAxw8",
-   "nome": "F. Sarau Junho - Magrão Vertical Apresentação 3 - V.2.mov",
-   "tipo": "video",
-   "cliente": "Sarau Secreto",
-   "mes": "2026-06",
-   "servico": "Sarau Convida - Magrão - Junho.26",
-   "pasta": "1RdqRMLkGz15dUF4jhsGB6IG6JuX-mdjE",
-   "fmt": "v"
   },
   {
    "id": "13uQXtN-FhqfTIZDP1OQkjw7CYrLMKfmU",
@@ -23370,12 +23350,12 @@
   },
   {
    "id": "1fjQoaKoGPe2FVpvDpTIIvex7_ELwr3Kk",
-   "nome": "F. Sarau Secreto - Sarau Junho - Magrão Vertical Apresentação 3 - V.1.mov",
+   "nome": "F. Sarau Junho - Magrão Vertical Apresentação 3 - V.3.mov",
    "tipo": "video",
    "cliente": "Sarau Secreto",
    "mes": "2026-06",
    "servico": "Sarau Convida - Magrão - Junho.26",
-   "pasta": "1BGFPkaEoSMpPJw-4lGdAitVfRxZChwmr",
+   "pasta": "1RdqRMLkGz15dUF4jhsGB6IG6JuX-mdjE",
    "fmt": "v",
    "up": "2026-11-18"
   },
@@ -23501,12 +23481,12 @@
   },
   {
    "id": "1piEhF_OYh_vjnmei_aGpxsAw5aGIY2PH",
-   "nome": "F. Sarau Secreto - Sarau Junho - Magrão Horizontal Apresentação 3 - V.1.mov",
+   "nome": "F. Sarau Junho - Magrão Horizontal Apresentação 3 - V.3.mov",
    "tipo": "video",
    "cliente": "Sarau Secreto",
    "mes": "2026-06",
    "servico": "Sarau Convida - Magrão - Junho.26",
-   "pasta": "1BGFPkaEoSMpPJw-4lGdAitVfRxZChwmr",
+   "pasta": "1i58PksXzPshVtS-C-KceyP0RNx5b_lOV",
    "fmt": "h",
    "up": "2026-11-18"
   },
