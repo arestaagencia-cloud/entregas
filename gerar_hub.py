@@ -66,7 +66,7 @@ def resumo(cfg):
         cid = i["slides"][0]["id"] if i["tipo"] == "carrossel" else i["id"]
         if cid not in capas:
             capas.append(cid)
-        if len(capas) == 8:
+        if len(capas) == 24:  # 8 para o card, todas para o mosaico da abertura
             break
     conta = lambda t: sum(1 for i in itens if i["tipo"] == t)
     marcas = [{"nome": c, "total": sum(1 for i in itens if i["cliente"] == c)} for c in cfg["clientes"]]
@@ -79,7 +79,7 @@ def resumo(cfg):
         "nome": cfg.get("nome_hub") or (cfg["marca"] if len(cfg["clientes"]) > 1 else cfg["clientes"][0]),
         "url": f"/{cfg['slug']}/", "total": len(itens), "videos": conta("video"), "fotos": conta("foto"),
         "carrosseis": conta("carrossel"), "primeiro": meses[0], "ultimo": meses[-1], "meses": len(meses),
-        "capas": capas, "marcas": [m for m in marcas if m["total"]], "grupos": grupos(cfg),
+        "capas": capas[:8], "mosaico": capas, "marcas": [m for m in marcas if m["total"]], "grupos": grupos(cfg),
         "capa": capa_unica(cfg), "nomes": nomes_upload(cfg),
         "tipo": "freelancer" if cfg.get("tipo_cliente") == "freelancer" else "recorrente",
     }

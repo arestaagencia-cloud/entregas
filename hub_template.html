@@ -108,34 +108,37 @@
 
   /* abertura */
   .hero{position:relative;min-height:min(78vh,720px);display:flex;align-items:flex-end;justify-content:center;text-align:center;overflow:hidden}
-  .mosaic{position:absolute;inset:-60px -20px;display:flex;gap:8px}
-  .mcol{flex:1;display:flex;flex-direction:column;gap:8px;animation:drift 70s ease-in-out infinite alternate}
-  .mcol:nth-child(even){animation-direction:alternate-reverse;margin-top:-110px}
-  .mtile{width:100%;aspect-ratio:9/16;border-radius:6px;background:#1a160f center/cover no-repeat;flex:none}
+  .mosaic{position:absolute;inset:-60px -20px;display:flex;gap:6px}
+  .mcol{flex:1;display:flex;flex-direction:column;gap:6px;animation:drift 70s ease-in-out infinite alternate}
+  .mcol:nth-child(even){animation-direction:alternate-reverse;margin-top:-70px}
+  .mtile{width:100%;aspect-ratio:9/16;border-radius:4px;background:#1a160f center/cover no-repeat;flex:none}
   .mtile.h{aspect-ratio:4/5}
   @keyframes drift{from{transform:translateY(0)}to{transform:translateY(-160px)}}
   @media (prefers-reduced-motion:reduce){.mcol{animation:none}}
   .hero::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(4,4,4,.8) 0%,rgba(4,4,4,.5) 30%,rgba(4,4,4,.7) 62%,#040404 100%)}
   .hero-in{position:relative;z-index:2;padding:0 24px clamp(48px,9vh,96px);max-width:900px}
   .hero-in .kick{color:var(--ink-2)}
-  .hero h1{font-weight:700;font-size:clamp(48px,9vw,128px);line-height:.9;letter-spacing:.02em;text-transform:uppercase;margin-top:14px}
+  .hero h1{font-weight:700;font-size:clamp(34px,5.6vw,80px);line-height:.9;letter-spacing:.02em;text-transform:uppercase;margin-top:14px}
   .hero h2{font-family:var(--serif);font-style:italic;font-weight:400;color:var(--gold);font-size:clamp(28px,4vw,48px);margin-top:10px}
   .hero p{margin-top:18px;color:var(--ink-2);font-size:clamp(15px,1.5vw,18px)}
-  .hero{min-height:min(92vh,880px)}
-  .hero-in{padding-top:clamp(120px,22vh,220px)}
-  .hstats{display:flex;justify-content:center;gap:clamp(28px,6vw,72px);margin-top:clamp(28px,5vh,48px)}
+  .hero{min-height:min(94vh,900px)}
+  .hero-in{padding-top:clamp(220px,40vh,420px);padding-bottom:clamp(40px,7vh,72px)}
+  .hstats{display:flex;justify-content:center;gap:clamp(24px,5vw,56px);margin-top:clamp(20px,3.5vh,32px)}
   .hs{display:flex;flex-direction:column;align-items:center;gap:4px}
-  .hs b{font-family:var(--mono);font-weight:500;font-size:clamp(28px,3.4vw,40px);color:var(--ink)}
+  .hs b{font-family:var(--mono);font-weight:500;font-size:clamp(20px,2.2vw,26px);color:var(--ink)}
   .hs:first-child b{color:var(--gold)}
-  .hs span{font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:var(--ink-2)}
-  .hmix{width:min(420px,80vw);margin:26px auto 0;display:flex;flex-direction:column;gap:10px}
-  .hmix .mix{height:6px}
+  .hs span{font-size:10px;letter-spacing:.14em;text-transform:uppercase;color:var(--ink-2)}
+  .hmix{width:min(320px,76vw);margin:18px auto 0;font-size:11px;display:flex;flex-direction:column;gap:10px}
+  .hmix .mix{height:4px}
+  .hmix .leg{font-size:11px}
   .hmix .leg{justify-content:center}
   .hmix .leg b{font-family:var(--mono);font-weight:500;color:var(--ink);display:inline-block}
   .pulso{animation:pulso 1.2s ease}
   /* upload */
-  .up-g{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.15fr);gap:40px;align-items:start}
+  .up-g{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.15fr);gap:40px;align-items:stretch}
   .up-f{min-width:0;display:flex;flex-direction:column;gap:16px}
+  .up-f .drop{flex:1 0 auto}
+  .cal{align-self:start}
   .sub{font-size:15px;font-weight:600;letter-spacing:.04em}
   @media (max-width:1000px){.up-g{grid-template-columns:1fr}}
   .campos{display:grid;grid-template-columns:1fr;gap:12px}
@@ -301,7 +304,7 @@
     </div>
     <a class="brand" href="#inicio"><img src="data:image/png;base64,{{LOGO}}" alt="ArestAgência"><span>ARESTAGÊNCIA</span></a>
     <div class="t-dir">
-      <nav class="secoes" aria-label="Seções"><a href="#upload">Upload</a><a href="#paineis">Painéis</a></nav>
+      <nav class="secoes" aria-label="Seções"><a href="#inicio" class="on">Início</a><a href="#upload">Upload</a><a href="#paineis">Painéis</a></nav>
       <div class="pf"><button type="button" class="perfil" id="perfil" hidden aria-label="Conta"></button>
         <div class="menu-pf" id="menuPerfil" hidden><div class="mp-h"><b id="mpNome"></b><span id="mpMail"></span></div>
           <button type="button" id="mpTroca">Trocar de conta</button><button type="button" id="mpSair">Sair</button></div></div>
@@ -842,17 +845,17 @@ $('#refresh').onclick=refresh;
 // ---------- navegação ----------
 const links=[...document.querySelectorAll('nav.secoes a')];
 const obs=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting)links.forEach(a=>a.classList.toggle('on',a.getAttribute('href')==='#'+e.target.id))}),{rootMargin:'-45% 0px -50% 0px'});
-document.querySelectorAll('section.sec').forEach(s=>obs.observe(s));
+document.querySelectorAll('section.sec,section.hero').forEach(s=>obs.observe(s));
 
 // ---------- abertura: mosaico com um pouco das entregas de todos os clientes ----------
 function abertura(){
-  const fila=P.map(p=>(p.capas||[]).slice());const ids=[];let k=0;
+  const fila=P.map(p=>(p.mosaico||p.capas||[]).slice());const ids=[];let k=0;
   while(fila.some(f=>f.length)){const f=fila[k++%fila.length];if(f.length)ids.push(f.shift())}  // intercala os clientes
-  const cols=window.innerWidth<700?4:8,m=$('#mosaic');m.innerHTML='';
-  const total=Math.max(ids.length,cols*5);
+  const cols=window.innerWidth<700?6:window.innerWidth<1100?10:14,m=$('#mosaic');m.innerHTML='';
+  const total=Math.max(ids.length,cols*6);
   for(let c=0;c<cols;c++){const col=document.createElement('div');col.className='mcol';
     for(let i=c;i<total;i+=cols){const id=ids[i%ids.length];if(!id)continue;const t=document.createElement('div');t.className='mtile';
-      t.style.backgroundImage=`url("${img(id)}")`;col.appendChild(t)}
+      t.style.backgroundImage=`url("https://drive.google.com/thumbnail?id=${id}&sz=w240")`;col.appendChild(t)}
     m.appendChild(col)}
   const M=D.metricas,nc=P.length;
   
