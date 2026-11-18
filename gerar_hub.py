@@ -150,7 +150,7 @@ def cifrar(dados, senha):
 
 
 MINI = RAIZ / "docs" / "m"   # miniaturas do HUB servidas pelo próprio site (o Drive bloqueia muitas de uma vez)
-LARG = {"m": 240, "c": 640}
+LARG = {"m": 360, "c": 640}  # m: mosaicos e grade dos painéis; c: capa de card de freelancer
 
 
 def _thumb_drive(fid, w):
@@ -169,7 +169,7 @@ def _thumb_drive(fid, w):
     return None
 
 
-def miniaturas(paineis, limite=400):
+def miniaturas(paineis, extras=(), limite=1200):
     """Garante docs/m/<id>.jpg (240px, mosaicos) e docs/m/c/<id>.jpg (640px, capa do card de freelancer).
     Usa a capa já baixada em docs/capas quando existe; senão baixa do Drive, devagar. Apaga as que não são mais usadas."""
     try:
@@ -183,15 +183,23 @@ def miniaturas(paineis, limite=400):
             quer[("m", fid)] = 1
         if p.get("img") and "/" not in p["img"]:
             quer[("c", p["img"])] = 1
+    for fid in extras:  # todos os conteúdos dos painéis (grade e mosaico de cada painel)
+        quer[("m", fid)] = 1
     feitos, novos = set(), 0
     for (tam, fid) in quer:
         dest = MINI / (f"c/{fid}.jpg" if tam == "c" else f"{fid}.jpg")
         if dest.exists():
-            feitos.add((tam, fid)); continue
-        if novos >= limite:
-            continue
+            try:  # miniatura antiga, menor que o tamanho atual: refaz
+                with Image.open(dest) as velho_im:
+                    pequena = velho_im.width < LARG[tam] * 0.8 and velho_im.height < LARG[tam] * 1.7
+            except Exception:  # noqa: BLE001
+                pequena = True
+            if not pequena or (novos >= limite and not (RAIZ / "docs" / "capas" / f"{fid}.jpg").exists()):
+                feitos.add((tam, fid)); continue
         local = RAIZ / "docs" / "capas" / f"{fid}.jpg"
         dado = local.read_bytes() if local.exists() else None
+        if dado is None and novos >= limite:
+            continue
         if dado is None:
             dado = _thumb_drive(fid, LARG[tam]); novos += 1; time.sleep(0.3)
         if not dado:
@@ -265,7 +273,12 @@ def main():
         if (r := resumo(c)):
             cfgs.append(c)
             paineis.append(r)
-    prontas = miniaturas(paineis)
+    import gerar_painel
+    extras = []
+    for c in cfgs:  # capa de cada conteúdo, como o painel mostra (carrossel = 1º slide)
+        for it in gerar_painel.montar(json.loads(json.dumps(c)))["itens"]:
+            extras.append(it.get("capa") or it["id"])
+    prontas = miniaturas(paineis, extras, limite=int(os.environ.get("MINI_LIMITE", "600")))
     q = qualidade([f for p in paineis for f in (p.get("mosaico") or [])])
     boa = lambda f: q.get(f, {}).get("ok", True)
     for p in paineis:  # o HUB sabe quais miniaturas já existem no site; evita as lisas e põe rostos primeiro

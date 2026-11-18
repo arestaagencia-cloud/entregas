@@ -105,6 +105,8 @@ Sempre atualize `atualizado_em` (ISO, UTC).
 
 **Abertura dos painéis:** sempre 80% da altura da tela (`height:80svh`), mosaico ou foto (foto em `object-fit:cover` com degradê para o texto). Título e números se ajustam à altura. No lightbox aparecem só o título e o nome do arquivo (a linha cliente · mês fica escondida).
 
+**Revisão de design dos painéis (nov/2026):** miniaturas da grade e do mosaico vêm do próprio site (`/m/<id>.jpg`, 360px, geradas por `miniaturas()` em gerar_hub.py para TODOS os conteúdos dos painéis; até 600 downloads do Drive por rodada, `MINI_LIMITE`); se faltar, a página cai no thumbnail do Drive. No celular a barra fixa mostra só busca + botão "Filtros" (com contador); os filtros abrem por cima ao tocar. Título do card sem repetir categoria/pessoa da linha de baixo (`tituloCurto()`); selo só para Foto e Carrossel. No celular a abertura mostra só conteúdos, vídeos e meses. Meses, números e títulos na fonte sem serifa (a serifada só na frase "Tudo o que já criamos juntos"). Foco visível, lightbox prende o Tab e devolve o foco ao card, destaque abre pelo teclado.
+
 **Player no celular (painel_template.html):** o iframe do Drive é desenhado em 540x960 (vertical) ou 960x540 (horizontal) e reduzido para caber. Botão grande "Tela cheia" (só no celular, vídeo e foto): usa a tela cheia do navegador (Android, gira para paisagem em vídeo horizontal); no iPhone, que não tem tela cheia para isso, a caixa ocupa a tela inteira e o vídeo horizontal com o celular em pé gira 90°. Botão de sair no canto e o X também sai da tela cheia antes de fechar. de clientes (atualização automática)
 
 Cada cliente tem um dashboard fixo em `https://entregas.arestagencia.com.br/<cliente>/` com todos os vídeos e
