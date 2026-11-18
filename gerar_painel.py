@@ -37,7 +37,7 @@ def titulo(nome, cliente):
     for _ in range(3):
         t = re.sub(r"[\s.\-]*[Vv]\.?\s?\d+(\.\d+)?(\(\d+\))?\s*$", "", t)  # versão no fim
         t = re.sub(r"\s+-\s*[Vv]\.?\s*$", "", t)  # "- V" sem número
-        t = re.sub(r"[\s.\-]+(Andressa|Gabi|Gabriela|Marcus|Luiz)\s*$", "", t, flags=re.I)  # apresentador
+        t = re.sub(r"(?<! e)(?<! E)[\s.\-]+(Andressa|Gabi|Gabriela|Marcus|Luiz)\s*$", "", t, flags=re.I)  # apresentador
         t = re.sub(rf"\s*-\s*{re.escape(cliente)}\s*$", "", t, flags=re.I)  # cliente no fim
         t = t.strip(" -.")
     if not t:  # o nome era só o cliente (ex.: "F. Raul & Paola - V.3")
