@@ -103,6 +103,17 @@
   .campos{display:grid;grid-template-columns:1fr;gap:12px}
   .campos label{min-width:0;display:flex;flex-direction:column;gap:8px;font-size:13px;color:var(--muted)}
   .campos select{width:100%;min-width:0;text-overflow:ellipsis;height:48px;background:#0f0f0f;border:1px solid var(--line);border-radius:10px;color:var(--ink);padding:0 14px;font-size:15px;appearance:auto}
+  .cmp{display:flex;flex-direction:column;gap:8px;font-size:13px;color:var(--muted);min-width:0}
+  .combo{position:relative}
+  .combo input{width:100%;height:48px;background:#0f0f0f;border:1px solid var(--line);border-radius:10px;color:var(--ink);padding:0 40px 0 14px;font-size:15px;text-overflow:ellipsis}
+  .combo::after{content:"";position:absolute;right:16px;top:20px;width:7px;height:7px;border-right:1.5px solid var(--muted);border-bottom:1.5px solid var(--muted);transform:rotate(45deg);pointer-events:none}
+  .combo input:focus{outline:none;border-color:var(--gold)}
+  .cb-list{display:none;position:absolute;left:0;right:0;top:calc(100% + 6px);z-index:20;max-height:300px;overflow:auto;background:#141414;border:1px solid #2e2e2e;border-radius:10px;padding:6px;box-shadow:0 12px 32px rgba(0,0,0,.6)}
+  .combo.aberto .cb-list{display:block}
+  .cb-o{padding:9px 10px;border-radius:7px;font-size:14px;color:var(--ink-2);cursor:pointer}
+  .cb-o.on{background:#242019;color:var(--ink)}
+  .cb-o.sel{color:var(--gold)}
+  .cb-vz{padding:10px;font-size:13px;color:var(--muted)}
   .drop{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:12px;min-height:180px;border:1.5px dashed #4a4440;border-radius:16px;background:#0a0a0a;text-align:center;padding:32px}
   .drop svg{width:40px;height:40px}
   .drop .gr{font-family:var(--serif);font-size:26px;line-height:1.1}
@@ -173,6 +184,14 @@
   .dia .ev{display:flex;flex-direction:column;gap:2px}
   .dia .ev a{font-size:10px;line-height:1.3;color:var(--gold);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
   .dia .ev a:hover{text-decoration:underline}
+  .dia .ev a{display:flex;align-items:center;gap:4px}
+  .dia .ev .et{overflow:hidden;text-overflow:ellipsis;white-space:nowrap;min-width:0}
+  .dia .ev .pt{font-weight:400;flex:none}
+  .avs{display:flex;flex:none}
+  .av{width:16px;height:16px;border-radius:50%;object-fit:cover;border:1px solid #0d0d0d;background:#3a3020;color:var(--gold);font-style:normal;font-size:9px;display:inline-flex;align-items:center;justify-content:center;flex:none}
+  .avs .av+.av{margin-left:-5px}
+  .kpi b.pulso{animation:pulso 1.2s ease}
+  @keyframes pulso{0%{transform:scale(1)}30%{transform:scale(1.12);color:#fff}100%{transform:scale(1)}}
   .nav-m{display:flex;gap:8px}
   .nav-m button{width:36px;height:36px;border-radius:999px;border:1px solid var(--line)}
   .nav-m button:hover{border-color:#4a4440}
@@ -202,8 +221,7 @@
     .acoes-top{justify-content:center}
     nav.secoes .wrap{gap:22px}
     .dia{min-height:64px;padding:6px}
-    .dia .ev a{font-size:0}
-    .dia .ev a::before{content:"●";font-size:10px}
+    .dia .ev .et{display:none}
       .busca input{width:140px}
   }
 </style>
@@ -238,31 +256,22 @@
   <div style="height:22px"></div>
 </header>
 <nav class="secoes" aria-label="Seções"><div class="wrap">
-  <a href="#paineis" class="on">Painéis</a><a href="#upload">Upload e calendário</a>
+  <a href="#upload" class="on">Upload</a><a href="#paineis">Painéis</a>
 </div></nav>
 
 <main>
-  <section class="sec" id="paineis"><div class="wrap sec-in">
-    <div class="sec-h">
-      <div><div class="kick">01 · Painéis</div><h2 class="tit">Clientes ativos</h2></div>
-      <label class="busca"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg>
-        <span class="sr">Buscar cliente</span><input type="search" id="busca" placeholder="Buscar cliente ou marca"></label>
-    </div>
+  <section class="sec" id="upload"><div class="wrap sec-in">
+    <div class="kick">01 · Upload</div><h2 class="tit" style="margin-bottom:28px">Entregas</h2>
     <div class="prod">
       <div class="prod-h"><span class="bl">Produção da casa</span><span class="nota" id="mNota"></span></div>
       <div class="kpis" id="kpis"></div>
       <div class="prod-mix"><div class="mix" id="mix"></div><div class="leg" id="mixLeg"></div></div>
     </div>
-    <div class="cols" id="cols"></div>
-  </div></section>
-
-  <section class="sec alt" id="upload"><div class="wrap sec-in">
-    <div class="kick">02 · Upload e calendário</div><h2 class="tit" style="margin-bottom:32px">Entregas</h2>
     <div class="up-g">
       <div class="up-f"><h3 class="sub">Enviar nova entrega</h3>
         <div class="campos">
-          <label>Cliente<select id="uCli"></select></label>
-          <label>Mês da entrega<select id="uMes"></select></label>
+          <div class="cmp"><span>Cliente</span><div class="combo"><input type="text" autocomplete="off" spellcheck="false" placeholder="Digite ou escolha o cliente" aria-label="Cliente"><div class="cb-list" role="listbox"></div></div><select id="uCli" hidden></select></div>
+          <div class="cmp"><span>Mês da entrega</span><div class="combo"><input type="text" autocomplete="off" spellcheck="false" placeholder="Digite o mês ou escolha" aria-label="Mês da entrega"><div class="cb-list" role="listbox"></div></div><select id="uMes" hidden></select></div>
         </div>
         <div class="conta" id="conta"></div>
         <div class="drop" id="drop"></div>
@@ -276,7 +285,7 @@
         </div>
       </div>
       <div class="cal">
-        <div class="cal-h"><h3 id="calTit">Uploads</h3>
+        <div class="cal-h"><div><h3 id="calTit">Uploads</h3><button type="button" class="lnk" id="calQuem" hidden>Mostrar quem enviou</button></div>
           <div class="nav-m"><button type="button" id="calAnt" aria-label="Mês anterior">←</button><button type="button" id="calProx" aria-label="Próximo mês">→</button></div></div>
         <div class="dow"><span>Dom</span><span>Seg</span><span>Ter</span><span>Qua</span><span>Qui</span><span>Sex</span><span>Sáb</span></div>
         <div class="dias" id="dias"></div>
@@ -284,6 +293,15 @@
       </div>
     </div>
   </div></section>
+  <section class="sec alt" id="paineis"><div class="wrap sec-in">
+    <div class="sec-h">
+      <div><div class="kick">02 · Painéis</div><h2 class="tit">Clientes ativos</h2></div>
+      <label class="busca"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg>
+        <span class="sr">Buscar cliente</span><input type="search" id="busca" placeholder="Buscar cliente ou marca"></label>
+    </div>
+    <div class="cols" id="cols"></div>
+  </div></section>
+
 </main>
 <footer>ArestAgência · Brasília · Painel interno da equipe · os painéis se atualizam sozinhos de hora em hora a partir do Google Drive</footer>
 <div class="toast" id="toast"></div>
@@ -334,7 +352,32 @@ document.addEventListener('click',e=>{
   (navigator.clipboard?navigator.clipboard.writeText(url):Promise.reject()).then(()=>toast('Link copiado')).catch(()=>prompt('Copie o link:',url));
 });
 
-// ---------- 02 · upload ----------
+// ---------- campo com busca (digitar ou escolher) por cima de um <select> escondido ----------
+function combo(id){
+  const sel=$('#'+id),box=sel.previousElementSibling,inp=box.querySelector('input'),lst=box.querySelector('.cb-list');let ativo=-1,vis=[];
+  const rot=()=>{const o=sel.options[sel.selectedIndex];return o?o.textContent:''};
+  const abre=f=>{const q=nrm(f||'').trim();
+    vis=[...sel.options].filter(o=>!q||q.split(/\s+/).every(t=>nrm(o.textContent).includes(t)));
+    ativo=vis.findIndex(o=>o.value===sel.value);if(ativo<0&&vis.length)ativo=0;
+    lst.innerHTML=vis.length?vis.map((o,i)=>`<div class="cb-o${i===ativo?' on':''}${o.value===sel.value?' sel':''}" data-v="${esc(o.value)}">${esc(o.textContent)}</div>`).join('')
+      :'<div class="cb-vz">Nada encontrado</div>';
+    box.classList.add('aberto');const a=lst.querySelector('.on');a&&a.scrollIntoView({block:'nearest'})};
+  const fecha=()=>{box.classList.remove('aberto');inp.value=rot()};
+  const escolhe=v=>{if(typeof enviando!=='undefined'&&enviando){fecha();inp.blur();toast('Aguarde o envio terminar');return}if(v!=null&&v!==sel.value){sel.value=v;sel.dispatchEvent(new Event('change'))}fecha();inp.blur()};
+  inp.addEventListener('focus',()=>{if(sel.disabled)return;inp.select();abre('')});
+  inp.addEventListener('input',()=>abre(inp.value));
+  inp.addEventListener('keydown',e=>{
+    if(e.key==='ArrowDown'||e.key==='ArrowUp'){e.preventDefault();if(!box.classList.contains('aberto'))abre('');
+      ativo=Math.max(0,Math.min(vis.length-1,ativo+(e.key==='ArrowDown'?1:-1)));
+      lst.querySelectorAll('.cb-o').forEach((el,i)=>el.classList.toggle('on',i===ativo));lst.querySelector('.on')?.scrollIntoView({block:'nearest'})}
+    else if(e.key==='Enter'){e.preventDefault();if(vis[ativo])escolhe(vis[ativo].value)}
+    else if(e.key==='Escape'){fecha();inp.blur()}});
+  lst.addEventListener('mousedown',e=>{const o=e.target.closest('.cb-o');e.preventDefault();if(o)escolhe(o.dataset.v)});
+  inp.addEventListener('blur',()=>setTimeout(fecha,120));
+  sel.sync=()=>{inp.value=rot();inp.disabled=sel.disabled};sel.sync();
+}
+
+// ---------- upload ----------
 let UC=[];
 function iniciarUpload(){
   UC=[];
@@ -343,6 +386,7 @@ function iniciarUpload(){
     cl.forEach(c=>UC.push({p,c,rot:cl.length>1?`${p.nome} · ${c.nome}`:p.nome,meses:(p.pastas.meses||[]).filter(m=>m.cliente===c.nome)}));
   });
   $('#uCli').innerHTML=UC.map((u,i)=>`<option value="${i}">${esc(u.rot)}</option>`).join('');
+  if(!$('#uCli').sync){combo('uCli');combo('uMes')}else $('#uCli').sync();
   $('#uCli').onchange=()=>{if(enviando)return;mesesUpload()};$('#uMes').onchange=()=>{if(!enviando)renderDrop()};mesesUpload();contaUI();
 }
 function mesesUpload(){
@@ -353,6 +397,7 @@ function mesesUpload(){
   ex.forEach((m,i)=>opts.push({v:'id:'+i,t:`${MESES[+m.mes.slice(5)-1]} ${m.mes.slice(0,4)} · ${esc(m.nome)}`}));
   u.ex=ex;
   $('#uMes').innerHTML=opts.map(o=>`<option value="${o.v}">${o.t}</option>`).join('');
+  $('#uMes').sync&&$('#uMes').sync();
   renderDrop();
 }
 function nomeSugerido(u,ym){
@@ -377,7 +422,7 @@ function pedirToken(prompt){
     try{await carregarGIS()}catch(e){return nok(new Error('Não consegui carregar o login do Google.'))}
     if(!G.cli)G.cli=google.accounts.oauth2.initTokenClient({client_id:PUB.google,scope:'https://www.googleapis.com/auth/drive',
       callback:r=>{const p=G.pend;G.pend=null;if(!p)return;if(r.error)return p.nok(new Error(r.error));
-        G.tok=r.access_token;G.exp=Date.now()+(r.expires_in-120)*1000;contaUI();p.ok(G.tok)},
+        G.tok=r.access_token;G.exp=Date.now()+(r.expires_in-120)*1000;contaUI();p.ok(G.tok);setTimeout(()=>{if(typeof P!=='undefined'&&P.length){carregarAutores(calYM);quemSouEu()}},300)},
       error_callback:e=>{const p=G.pend;G.pend=null;p&&p.nok(new Error(e.type||'login cancelado'))}});
     G.pend={ok,nok};G.cli.requestAccessToken({prompt:prompt??''});
   });
@@ -397,6 +442,7 @@ async function listar(q,campos='files(id,name)'){
   return out;
 }
 function contaUI(){
+  const q=$('#calQuem');if(q){q.hidden=!PUB.google||logado();q.onclick=()=>pedirToken('').catch(()=>toast('Login não concluído'))}
   if(!PUB.google){$('#conta').innerHTML='';return}
   $('#conta').innerHTML=logado()
     ?`<span class="ok"><i></i>Conectado ao Google Drive</span><button type="button" class="lnk" id="gSair">Trocar de conta</button>`
@@ -575,7 +621,7 @@ $('#enviar').onclick=async()=>{
     x.st='env';x.p=0;x.erro='';renderFila();
     try{
       if(!logado())await pedirToken('');
-      await subir(x,pasta);x.st='feito';x.p=100;ok++;
+      await subir(x,pasta);x.st='feito';x.p=100;ok++;contaEnvio(x,a);
     }catch(e){x.st='erro';x.erro=e.auth?'Sessão do Google expirou. Clique em Enviar de novo.':('Falhou: '+e.message);erro++;if(e.auth)break}
     renderFila();
   }
@@ -587,11 +633,11 @@ $('#enviar').onclick=async()=>{
 };
 
 // ---------- 03 · métricas ----------
-function renderMetricas(){
+function renderMetricas(pulso){
   const M=D.metricas;
   $('#mNota').textContent=`Somando os ${M.paineis} painéis · até ${hoje.toLocaleDateString('pt-BR',{day:'2-digit',month:'2-digit'})}`;
   $('#kpis').innerHTML=[['Conteúdos',M.total,'var(--gold)'],['Painéis ativos',M.paineis],['Vídeos',M.videos],['Fotos',M.fotos]]
-    .map(([l,v,c])=>`<div class="kpi"><div class="bl">${l}</div><b style="color:${c||'var(--ink)'}">${v.toLocaleString('pt-BR')}</b></div>`).join('');
+    .map(([l,v,c])=>`<div class="kpi"><div class="bl">${l}</div><b class="${pulso&&l!=='Painéis ativos'?'pulso':''}" style="color:${c||'var(--ink)'}">${v.toLocaleString('pt-BR')}</b></div>`).join('');
   const mix=[['Fotos',M.fotos,'#F8F4F2'],['Vídeos',M.videos,'#F6AD03'],['Carrosséis',M.carrosseis,'#8f8784']].filter(x=>x[1]);
   const pc=n=>(n/M.total*100);
   $('#mix').innerHTML=mix.map(([,n,c])=>`<div style="width:${pc(n)}%;min-width:4px;background:${c}"></div>`).join('');
@@ -599,6 +645,31 @@ function renderMetricas(){
 }
 
 // ---------- 04 · calendário ----------
+function contaEnvio(x,a){
+  const M=D.metricas,t=x.video?'video':x.foto?'foto':null;if(!t)return;
+  M.total++;t==='video'?M.videos++:M.fotos++;
+  const hj=iso(new Date());UP.unshift({d:hj,p:a.u.p.nome,c:a.u.c.nome,url:a.u.p.url,video:t==='video'?1:0,foto:t==='foto'?1:0,carrossel:0});
+  if(EU)addAutor(hj,a.u.p.nome,EU);
+  renderMetricas(true);calYM=YM;calendario();
+}
+// ---------- quem enviou: dono do arquivo no Drive (lido com o login Google de quem está no HUB) ----------
+const AV={},AVmes={};let EU=null;
+const diaLocal=t=>{const d=new Date(t);return `${d.getFullYear()}-${String(d.getMonth()+1).padStart(2,'0')}-${String(d.getDate()).padStart(2,'0')}`};
+function addAutor(dia,painel,pes){if(!pes)return;const k=dia+'|'+painel;const m=AV[k]=AV[k]||{};const id=pes.emailAddress||pes.displayName;if(id&&!m[id])m[id]={n:pes.displayName||pes.emailAddress||'',f:pes.photoLink||''}}
+async function carregarAutores(ym){
+  if(!PUB.google||!logado()||AVmes[ym])return;AVmes[ym]='…';
+  const FOLD={};P.forEach(p=>(p.pastas.meses||[]).forEach(m=>FOLD[m.id]=p.nome));
+  const [a,m]=ym.split('-').map(Number),fim=new Date(a,m,1);
+  const ini=`${ym}-01T00:00:00-03:00`,ate=`${fim.getFullYear()}-${String(fim.getMonth()+1).padStart(2,'0')}-01T00:00:00-03:00`;
+  try{
+    const fs=await listar(`createdTime >= '${ini}' and createdTime < '${ate}' and trashed=false and mimeType != 'application/vnd.google-apps.folder'`,
+      'files(parents,createdTime,owners(displayName,photoLink,emailAddress))');
+    fs.forEach(f=>{const p=(f.parents||[]).map(x=>FOLD[x]).find(Boolean);if(p)addAutor(diaLocal(f.createdTime),p,(f.owners||[])[0])});
+    AVmes[ym]=1;if(calYM===ym)calendario();
+  }catch(e){AVmes[ym]=0}
+}
+async function quemSouEu(){if(EU||!logado())return EU;try{EU=(await(await api('https://www.googleapis.com/drive/v3/about?fields=user(displayName,photoLink,emailAddress)')).json()).user}catch(e){}return EU}
+const avatar=a=>a.f?`<img class="av" src="${esc(a.f)}" alt="" title="${esc(a.n)}" referrerpolicy="no-referrer" onerror="this.outerHTML='<i class=&quot;av&quot;>${esc((a.n||'?')[0].toUpperCase())}</i>'">`:`<i class="av" title="${esc(a.n)}">${esc((a.n||'?')[0].toUpperCase())}</i>`;
 let calYM=YM,UP=[];
 function calendario(){
   const [a,m]=calYM.split('-').map(Number);
@@ -609,13 +680,13 @@ function calendario(){
   for(let i=0;i<ini;i++)h+='<div class="dia vz"></div>';
   for(let d=1;d<=nd;d++){const k=`${calYM}-${String(d).padStart(2,'0')}`,ev=doDia[d]||[];
     const pn={};ev.forEach(u=>{pn[u.p]=pn[u.p]||{url:u.url,n:0};pn[u.p].n+=u.video+u.foto+u.carrossel});
-    h+=`<div class="dia${k===tHoje?' hoje':''}"><span class="n">${d}</span>${ev.length?`<span class="ev">${Object.entries(pn).map(([p,x])=>`<a href="${x.url}" target="_blank" rel="noopener" title="${esc(p)}: ${x.n} arquivos">● ${esc(p)} · ${x.n}</a>`).join('')}</span>`:''}</div>`}
+    h+=`<div class="dia${k===tHoje?' hoje':''}"><span class="n">${d}</span>${ev.length?`<span class="ev">${Object.entries(pn).map(([p,x])=>{const au=Object.values(AV[k+'|'+p]||{});return `<a href="${x.url}" target="_blank" rel="noopener" title="${esc(p)}: ${x.n} arquivos${au.length?' · enviado por '+esc(au.map(a=>a.n).join(', ')):''}">${au.length?`<span class="avs">${au.slice(0,3).map(avatar).join('')}</span>`:'<b class="pt">●</b>'}<span class="et">${esc(p)} · ${x.n}</span></a>`}).join('')}</span>`:''}</div>`}
   $('#dias').innerHTML=h;
   const meses=[...new Set(UP.map(u=>u.d.slice(0,7)))].concat(YM).sort();
   $('#calAnt').disabled=calYM<=meses[0];$('#calProx').disabled=calYM>=YM;
 }
-$('#calAnt').onclick=()=>{const[a,m]=calYM.split('-').map(Number);const d=new Date(a,m-2,1);calYM=`${d.getFullYear()}-${String(d.getMonth()+1).padStart(2,'0')}`;calendario()};
-$('#calProx').onclick=()=>{const[a,m]=calYM.split('-').map(Number);const d=new Date(a,m,1);calYM=`${d.getFullYear()}-${String(d.getMonth()+1).padStart(2,'0')}`;calendario()};
+$('#calAnt').onclick=()=>{const[a,m]=calYM.split('-').map(Number);const d=new Date(a,m-2,1);calYM=`${d.getFullYear()}-${String(d.getMonth()+1).padStart(2,'0')}`;calendario();carregarAutores(calYM)};
+$('#calProx').onclick=()=>{const[a,m]=calYM.split('-').map(Number);const d=new Date(a,m,1);calYM=`${d.getFullYear()}-${String(d.getMonth()+1).padStart(2,'0')}`;calendario();carregarAutores(calYM)};
 
 // ---------- atualizar sistema (GitHub Actions) ----------
 const API=()=>`https://api.github.com/repos/${D.gh.repo}/actions/workflows/${D.gh.workflow}/runs?per_page=1`;
@@ -658,7 +729,7 @@ document.querySelectorAll('section.sec').forEach(s=>obs.observe(s));
 
 function iniciar(){
   P=D.paineis;UP=D.metricas.uploads||[];
-  renderPaineis();iniciarUpload();renderMetricas();calendario();
+  renderPaineis();iniciarUpload();renderMetricas();calendario();carregarAutores(calYM);
   status();setInterval(()=>{if(!rodando)status()},120000);
 }
 
