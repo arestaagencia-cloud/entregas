@@ -47,6 +47,8 @@ def grupos(cfg):
         out.append({"rotulo": d.get("rotulo_corretores", "Corretor"),
                     "itens": [{"nome": c, "total": conta(lambda x, c=c: c in x.get("cor", [])), "link": lk(corretor=c)}
                               for c in d["corretores"]]})
+    if cfg.get("hub_grupos"):  # quais grupos aparecem no card do hub (ex.: só "Empreendimento")
+        out = [g for g in out if g["rotulo"] in cfg["hub_grupos"]]
     for g in out:
         g["itens"] = [i for i in g["itens"] if i["total"]]
     return [g for g in out if g["itens"]]

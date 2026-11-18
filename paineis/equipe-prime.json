@@ -2440,5 +2440,8 @@
  },
  "remover_titulo": [
   "^\\(L\\)\\s*"
+ ],
+ "hub_grupos": [
+  "Empreendimento"
  ]
 }
