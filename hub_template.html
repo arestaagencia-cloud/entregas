@@ -106,6 +106,21 @@
   .cf .cp:hover{color:var(--ink)}
   .vazio{padding:40px 0;color:var(--muted);font-size:14px}
 
+  /* abertura */
+  .hero{position:relative;min-height:min(78vh,720px);display:flex;align-items:flex-end;justify-content:center;text-align:center;overflow:hidden}
+  .mosaic{position:absolute;inset:-60px -20px;display:flex;gap:8px}
+  .mcol{flex:1;display:flex;flex-direction:column;gap:8px;animation:drift 70s ease-in-out infinite alternate}
+  .mcol:nth-child(even){animation-direction:alternate-reverse;margin-top:-110px}
+  .mtile{width:100%;aspect-ratio:9/16;border-radius:6px;background:#1a160f center/cover no-repeat;flex:none}
+  .mtile.h{aspect-ratio:4/5}
+  @keyframes drift{from{transform:translateY(0)}to{transform:translateY(-160px)}}
+  @media (prefers-reduced-motion:reduce){.mcol{animation:none}}
+  .hero::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(4,4,4,.8) 0%,rgba(4,4,4,.5) 30%,rgba(4,4,4,.7) 62%,#040404 100%)}
+  .hero-in{position:relative;z-index:2;padding:0 24px clamp(48px,9vh,96px);max-width:900px}
+  .hero-in .kick{color:var(--ink-2)}
+  .hero h1{font-weight:700;font-size:clamp(48px,9vw,128px);line-height:.9;letter-spacing:.02em;text-transform:uppercase;margin-top:14px}
+  .hero h2{font-family:var(--serif);font-style:italic;font-weight:400;color:var(--gold);font-size:clamp(28px,4vw,48px);margin-top:10px}
+  .hero p{margin-top:18px;color:var(--ink-2);font-size:clamp(15px,1.5vw,18px)}
   /* upload */
   .up-g{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.15fr);gap:40px;align-items:start}
   .up-f{min-width:0;display:flex;flex-direction:column;gap:16px}
@@ -124,6 +139,8 @@
   .cb-o{padding:9px 10px;border-radius:7px;font-size:14px;color:var(--ink-2);cursor:pointer}
   .cb-o.on{background:#242019;color:var(--ink)}
   .cb-o.sel{color:var(--gold)}
+  .cb-o.novo{color:var(--gold);border-top:1px solid #262626;border-radius:0 0 7px 7px}
+  .cb-o.novo+.cb-o.novo{border-top:0}
   .cb-vz{padding:10px;font-size:13px;color:var(--muted)}
   .drop{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:12px;min-height:180px;border:1.5px dashed #4a4440;border-radius:16px;background:#0a0a0a;text-align:center;padding:32px}
   .drop svg{width:40px;height:40px}
@@ -270,9 +287,9 @@
       </button>
       <span class="sync" id="sync">Atualizado em {{ATUALIZADO}}</span>
     </div>
-    <div class="brand"><img src="data:image/png;base64,{{LOGO}}" alt="ArestAgência"><span>ARESTAGÊNCIA</span></div>
+    <a class="brand" href="#inicio"><img src="data:image/png;base64,{{LOGO}}" alt="ArestAgência"><span>ARESTAGÊNCIA</span></a>
     <div class="t-dir">
-      <nav class="secoes" aria-label="Seções"><a href="#upload" class="on">Upload</a><a href="#paineis">Painéis</a></nav>
+      <nav class="secoes" aria-label="Seções"><a href="#upload">Upload</a><a href="#paineis">Painéis</a></nav>
       <div class="pf"><button type="button" class="perfil" id="perfil" hidden aria-label="Conta"></button>
         <div class="menu-pf" id="menuPerfil" hidden><div class="mp-h"><b id="mpNome"></b><span id="mpMail"></span></div>
           <button type="button" id="mpTroca">Trocar de conta</button><button type="button" id="mpSair">Sair</button></div></div>
@@ -281,6 +298,15 @@
 </header>
 
 <main>
+  <section class="hero" id="inicio">
+    <div class="mosaic" id="mosaic" aria-hidden="true"></div>
+    <div class="hero-in">
+      <div class="kick">ArestAgência</div>
+      <h1>Hub de entregas</h1>
+      <h2>Equipe</h2>
+      <p id="heroTxt"></p>
+    </div>
+  </section>
   <section class="sec" id="upload"><div class="wrap sec-in">
     <div class="prod">
       <div class="prod-h"><span class="bl">Produção da casa</span><span class="nota" id="mNota"></span></div>
@@ -372,17 +398,18 @@ document.addEventListener('click',e=>{
 });
 
 // ---------- campo com busca (digitar ou escolher) por cima de um <select> escondido ----------
-function combo(id){
+function combo(id,extra){
   const sel=$('#'+id),box=sel.previousElementSibling,inp=box.querySelector('input'),lst=box.querySelector('.cb-list');let ativo=-1,vis=[];
   const rot=()=>{const o=sel.options[sel.selectedIndex];return o?o.textContent:''};
   const abre=f=>{const q=nrm(f||'').trim();
     vis=[...sel.options].filter(o=>!q||q.split(/\s+/).every(t=>nrm(o.textContent).includes(t)));
+    if(extra&&(f||'').trim())vis=vis.concat(extra((f||'').trim(),vis).map(e=>({value:e.v,textContent:e.t,novo:1})));
     ativo=vis.findIndex(o=>o.value===sel.value);if(ativo<0&&vis.length)ativo=0;
-    lst.innerHTML=vis.length?vis.map((o,i)=>`<div class="cb-o${i===ativo?' on':''}${o.value===sel.value?' sel':''}" data-v="${esc(o.value)}">${esc(o.textContent)}</div>`).join('')
+    lst.innerHTML=vis.length?vis.map((o,i)=>`<div class="cb-o${i===ativo?' on':''}${o.value===sel.value?' sel':''}${o.novo?' novo':''}" data-v="${esc(o.value)}">${esc(o.textContent)}</div>`).join('')
       :'<div class="cb-vz">Nada encontrado</div>';
     box.classList.add('aberto');const a=lst.querySelector('.on');a&&a.scrollIntoView({block:'nearest'})};
   const fecha=()=>{box.classList.remove('aberto');inp.value=rot()};
-  const escolhe=v=>{if(typeof enviando!=='undefined'&&enviando){fecha();inp.blur();toast('Aguarde o envio terminar');return}if(v!=null&&v!==sel.value){sel.value=v;sel.dispatchEvent(new Event('change'))}fecha();inp.blur()};
+  const escolhe=v=>{if(typeof enviando!=='undefined'&&enviando){fecha();inp.blur();toast('Aguarde o envio terminar');return}if(v!=null&&v!==sel.value){if(![...sel.options].some(o=>o.value===v)){const e=vis.find(o=>o.value===v);if(e)sel.add(new Option(e.textContent,v))}sel.value=v;sel.dispatchEvent(new Event('change'))}fecha();inp.blur()};
   inp.addEventListener('focus',()=>{if(sel.disabled)return;inp.select();abre('')});
   inp.addEventListener('input',()=>abre(inp.value));
   inp.addEventListener('keydown',e=>{
@@ -405,21 +432,78 @@ function iniciarUpload(){
     cl.forEach(c=>UC.push({p,c,rot:cl.length>1?`${p.nome} · ${c.nome}`:p.nome,meses:(p.pastas.meses||[]).filter(m=>m.cliente===c.nome)}));
   });
   if(D.indefinido)UC.unshift({indef:true,p:{nome:'Cliente indefinido',nomes:{},url:null},c:{nome:'Cliente indefinido',id:D.indefinido},rot:'Cliente indefinido (organizar depois)',meses:[],ex:[]});
-  $('#uCli').innerHTML=UC.map((u,i)=>`<option value="${i}">${esc(u.rot)}</option>`).join('');
-  if(!$('#uCli').sync){combo('uCli');combo('uMes')}else $('#uCli').sync();
-  $('#uCli').onchange=()=>{if(enviando)return;mesesUpload()};$('#uMes').onchange=()=>{if(!enviando)renderDrop()};mesesUpload();contaUI();
+  opcoesCli(0);
+  if(!$('#uCli').sync){combo('uCli',extraCli);combo('uMes',extraMes)}else $('#uCli').sync();
+  $('#uCli').onchange=()=>{if(enviando)return;const v=$('#uCli').value;
+    if(v.startsWith('novocli:')){const[,t,...n]=v.split(':');const nome=n.join(':').trim();
+      const ja=UC.findIndex(u=>!u.indef&&nrm(u.c.nome)===nrm(nome));
+      if(ja>=0){opcoesCli(ja)}else{UC.push({novo:true,tipo:t==='f'?'freelancer':'recorrente',p:{nome,nomes:{},url:null},c:{nome,id:null},rot:`${nome} (novo ${t==='f'?'freelancer':'recorrente'})`,meses:[]});opcoesCli(UC.length-1)}
+      $('#uCli').sync()}
+    mesesUpload()};
+  $('#uMes').onchange=()=>{if(!enviando)renderDrop()};mesesUpload();contaUI();
+  clientesDoDrive();
+}
+function opcoesCli(sel){$('#uCli').innerHTML=UC.map((u,i)=>`<option value="${i}"${i===sel?' selected':''}>${esc(u.rot)}</option>`).join('')}
+// "+ Criar cliente" ao digitar um nome que não existe
+function extraCli(q,vis){
+  if(q.length<2||UC.some(u=>nrm(u.c.nome)===nrm(q)||nrm(u.rot)===nrm(q)))return[];
+  const n=q.replace(/[\\/:*?"<>|]/g,'').replace(/\s+/g,' ').trim();if(!n)return[];
+  return[{v:'novocli:r:'+n,t:`+ Criar cliente "${n}" em Recorrentes`},{v:'novocli:f:'+n,t:`+ Criar cliente "${n}" em Freelancers`}];
+}
+// "+ Criar pasta" ao digitar um mês (ex.: "dez", "dezembro 26", "jan 2027")
+function extraMes(q){
+  const u=UC[+$('#uCli').value];if(!u||u.indef)return[];
+  const m=nrm(q).match(/^([a-zç]{3,})\.?\s*(\d{2}|\d{4})?$/);if(!m)return[];
+  const mi=MESES.findIndex(x=>nrm(x).startsWith(m[1]));if(mi<0)return[];
+  let ano=m[2]?(m[2].length===2?2000+ +m[2]:+m[2]):hoje.getFullYear();
+  if(!m[2]&&mi<hoje.getMonth()-1)ano++;  // "jan" em novembro = janeiro do ano que vem
+  const ym=`${ano}-${String(mi+1).padStart(2,'0')}`;
+  if((u.ex||[]).some(x=>x.mes===ym)||[...$('#uMes').options].some(o=>o.value==='novo:'+ym))return[];
+  return[{v:'novo:'+ym,t:`+ Criar pasta de ${MESES[mi]} ${ano}`}];
 }
 function mesesUpload(){
   const u=UC[+$('#uCli').value];if(!u)return;
   const ex=u.meses.slice().sort((a,b)=>b.mes.localeCompare(a.mes));
   const opts=D.indefinido?[{v:'indef',t:'Mês indefinido (organizar depois)'}]:[];
-  if(u.indef){u.ex=[];$('#uMes').innerHTML=opts.map(o=>`<option value="${o.v}">${o.t}</option>`).join('');$('#uMes').sync&&$('#uMes').sync();renderDrop();return}
-  if(!ex.some(m=>m.mes===YM))opts.push({v:'novo:'+YM,t:`${MESES[hoje.getMonth()]} ${hoje.getFullYear()} · criar pasta`});
-  ex.forEach((m,i)=>opts.push({v:'id:'+i,t:`${MESES[+m.mes.slice(5)-1]} ${m.mes.slice(0,4)} · ${esc(m.nome)}`}));
   u.ex=ex;
-  $('#uMes').innerHTML=opts.map(o=>`<option value="${o.v}">${o.t}</option>`).join('');
+  if(!u.indef){
+    // meses que ainda não têm pasta: do mês passado até 2 meses à frente
+    const novos=[];for(let k=2;k>=-1;k--){const d=new Date(hoje.getFullYear(),hoje.getMonth()+k,1),ym=`${d.getFullYear()}-${String(d.getMonth()+1).padStart(2,'0')}`;
+      if(!ex.some(m=>m.mes===ym))novos.push({v:'novo:'+ym,t:`${MESES[d.getMonth()]} ${d.getFullYear()} · criar pasta`,ym})}
+    const todos=novos.map(n=>({...n,ord:n.ym})).concat(ex.map((m,i)=>({v:'id:'+i,t:`${MESES[+m.mes.slice(5)-1]} ${m.mes.slice(0,4)} · ${m.nome}`,ord:m.mes})));
+    todos.sort((a,b)=>b.ord.localeCompare(a.ord)).forEach(o=>opts.push(o));
+  }
+  const ant=$('#uMes').value;
+  $('#uMes').innerHTML=opts.map(o=>`<option value="${o.v}">${esc(o.t)}</option>`).join('');
+  if(ant&&[...$('#uMes').options].some(o=>o.value===ant)&&u.lido===true)$('#uMes').value=ant;
   $('#uMes').sync&&$('#uMes').sync();
   renderDrop();
+  lerMeses(u);
+}
+// lê no Drive as pastas de mês do cliente (pegam pastas criadas depois da última atualização do robô)
+const MMAP=Object.fromEntries(MESES.map((m,i)=>[nrm(m),i+1]));
+async function lerMeses(u){
+  if(u.lido||u.indef||!u.c.id||!logado())return;u.lido='…';
+  try{
+    const fs=await listar(`'${u.c.id}' in parents and mimeType='application/vnd.google-apps.folder' and trashed=false`);
+    fs.forEach(f=>{const m=f.name.normalize('NFC').match(/([A-Za-zÀ-ÿ]+)\.(\d{2})\s*$/);if(!m)return;const mi=MMAP[nrm(m[1])];if(!mi)return;
+      const ym=`20${m[2]}-${String(mi).padStart(2,'0')}`;if(!u.meses.some(x=>x.id===f.id))u.meses.push({cliente:u.c.nome,mes:ym,id:f.id,nome:f.name})});
+    u.lido=true;
+  }catch(e){u.lido=false;return}
+  if(UC[+$('#uCli').value]===u&&!enviando)mesesUpload();
+}
+// clientes que existem no Drive mas ainda não têm painel
+async function clientesDoDrive(){
+  if(!D.tipos||!logado()||clientesDoDrive.ok)return;clientesDoDrive.ok=1;
+  const ids=new Set(UC.map(u=>u.c.id).concat(P.map(p=>p.raiz)).filter(Boolean));
+  try{
+    for(const [tipo,pai] of Object.entries(D.tipos)){
+      const fs=await listar(`'${pai}' in parents and mimeType='application/vnd.google-apps.folder' and trashed=false`);
+      fs.forEach(f=>{if(ids.has(f.id))return;const nome=f.name.replace(/^\s*\d+\s*[.\-]\s*/,'').trim();
+        UC.push({semPainel:true,tipo,p:{nome,nomes:{},url:null},c:{nome,id:f.id},rot:`${nome} (sem painel)`,meses:[]})});
+    }
+    const atual=+$('#uCli').value;opcoesCli(atual);$('#uCli').sync();
+  }catch(e){clientesDoDrive.ok=0}
 }
 function nomeSugerido(u,ym){
   const ref=u.ex[0];const [a,m]=ym.split('-');const mesTxt=`${MESES[+m-1]}.${a.slice(2)}`;
@@ -427,7 +511,7 @@ function nomeSugerido(u,ym){
   if(ref){const mm=ref.nome.match(/^\s*(\d+)\s*[.\-]\s*(.*?)\s*-\s*[^-]*$/);
     if(mm){base=mm[2]||base;const nums=u.ex.map(x=>parseInt(x.nome)).filter(n=>!isNaN(n));
       // numeração pelo mês do ano (11. ... Novembro) ou sequencial (07. ...)
-      const peloMes=u.ex.every(x=>parseInt(x.nome)===+x.mes.slice(5));
+      const peloMes=u.ex.filter(x=>parseInt(x.nome)===+x.mes.slice(5)).length>=u.ex.length*.8;
       num=peloMes?+m:(nums.length?Math.max(...nums)+1:1);}}
   else num=1;
   const zero=!u.ex.length||u.ex.some(x=>/^\s*0\d/.test(x.nome));
@@ -443,7 +527,7 @@ function pedirToken(prompt){
     try{await carregarGIS()}catch(e){return nok(new Error('Não consegui carregar o login do Google.'))}
     if(!G.cli)G.cli=google.accounts.oauth2.initTokenClient({client_id:PUB.google,scope:'https://www.googleapis.com/auth/drive',
       callback:r=>{const p=G.pend;G.pend=null;if(!p)return;if(r.error)return p.nok(new Error(r.error));
-        G.tok=r.access_token;G.exp=Date.now()+(r.expires_in-120)*1000;contaUI();p.ok(G.tok);setTimeout(()=>{if(typeof P!=='undefined'&&P.length){carregarAutores(calYM);quemSouEu()}},300)},
+        G.tok=r.access_token;G.exp=Date.now()+(r.expires_in-120)*1000;contaUI();p.ok(G.tok);setTimeout(()=>{if(typeof P!=='undefined'&&P.length){carregarAutores(calYM);quemSouEu();clientesDoDrive();const u=UC[+$('#uCli').value];u&&lerMeses(u)}},300)},
       error_callback:e=>{const p=G.pend;G.pend=null;p&&p.nok(new Error(e.type||'login cancelado'))}});
     G.pend={ok,nok};G.cli.requestAccessToken({prompt:prompt??''});
   });
@@ -472,10 +556,10 @@ function alvo(){const u=UC[+$('#uCli').value];const v=$('#uMes').value;
   return v.startsWith('id:')?{u,id:u.ex[+v.slice(3)].id,nome:u.ex[+v.slice(3)].nome}:{u,id:null,nome:nomeSugerido(u,v.slice(5)),ym:v.slice(5)}}
 function renderDrop(){
   const u=UC[+$('#uCli').value];if(!u)return;const a=alvo();
-  const abrir=a.id?`https://drive.google.com/drive/folders/${a.id}`:`https://drive.google.com/drive/folders/${u.c.id}`;
+  const abrir=`https://drive.google.com/drive/folders/${a.id||u.c.id||(D.tipos&&D.tipos[u.tipo])||''}`;
   if(PUB.google&&logado()){
     $('#drop').innerHTML=`${seta}<span class="gr">Arraste os arquivos aqui</span>
-      <span class="pq">${a.indef?`${u.indef?'Sem cliente e mês escolhidos':'Sem mês escolhido'}, vão para <b>Indefinido</b>${u.indef?' com o nome original':''}, para organizar depois.${u.indef?' Escolha acima para enviar direto para a pasta certa.':''}`:`Vão para <b>${esc(a.nome)}</b>${a.id?'':' (pasta nova, criada no envio)'}. Vídeos, fotos ou o .zip do mês.`}</span>
+      ${a.indef?'':`<span class="pq">Vão para <b>${esc(a.nome)}</b>${a.id?'':u.c.id?' (pasta nova, criada no envio)':' (cliente e pasta novos, criados no envio)'}. Vídeos, fotos ou o .zip do mês.</span>`}
       ${a.indef?'<span class="pend" id="pend"></span>':''}
       <span class="ab2" style="display:flex;gap:18px;align-items:center;flex-wrap:wrap;justify-content:center"><button type="button" class="btn-pri" id="escolher">Escolher arquivos</button>
       <a class="lnk" href="${abrir}" target="_blank" rel="noopener">Abrir pasta no Drive</a></span>`;
@@ -577,6 +661,14 @@ window.addEventListener('beforeunload',e=>{if(enviando){e.preventDefault();e.ret
 
 async function pastaDestino(a){
   if(a.id)return a.id;
+  if(!a.u.c.id){  // cliente novo: procura pelo nome (alguém pode ter criado) ou cria a pasta
+    const pai=D.tipos[a.u.tipo];
+    const fs=await listar(`'${pai}' in parents and mimeType='application/vnd.google-apps.folder' and trashed=false`);
+    const f=fs.find(x=>nrm(x.name.replace(/^\s*\d+\s*[.\-]\s*/,''))===nrm(a.u.c.nome));
+    if(f)a.u.c.id=f.id;
+    else{const r=await(await api(`${DRV}?${qs({fields:'id'})}`,{method:'POST',headers:{'Content-Type':'application/json'},
+      body:JSON.stringify({name:a.u.c.nome,mimeType:'application/vnd.google-apps.folder',parents:[pai]})})).json();a.u.c.id=r.id;toast('Cliente criado: '+a.u.c.nome)}
+  }
   const esc2=t=>t.replace(/\\/g,'\\\\').replace(/'/g,"\\'");
   const [y,m]=a.ym.split('-');const mesTxt=`${MESES[+m-1]}.${y.slice(2)}`;
   const ex=await listar(`'${a.u.c.id}' in parents and mimeType='application/vnd.google-apps.folder' and trashed=false`);
@@ -643,6 +735,7 @@ $('#enviar').onclick=async()=>{
   }
   enviando=false;renderFila();
   if(ok&&!erro&&a.indef){toast(`${ok} ${ok===1?'arquivo enviado':'arquivos enviados'} para a pasta Indefinido. Organize depois.`);renderDrop()}
+  else if(ok&&!erro&&!a.u.p.url){toast(`${ok} ${ok===1?'arquivo enviado':'arquivos enviados'}. Este cliente ainda não tem painel.`);a.u.lido=false;mesesUpload()}
   else if(ok&&!erro){toast(`${ok} ${ok===1?'arquivo enviado':'arquivos enviados'}. Atualizando o sistema…`);
     setTimeout(()=>refresh(),1500)}
   else if(ok)toast(`${ok} enviados, ${erro} com erro. Tente de novo os que falharam.`);
@@ -663,7 +756,7 @@ function renderMetricas(pulso){
 
 // ---------- 04 · calendário ----------
 function contaEnvio(x,a){
-  if(a.indef)return;  // ainda não está em nenhum painel
+  if(a.indef||!a.u.p.url)return;  // ainda não está em nenhum painel
   const M=D.metricas,t=x.video?'video':x.foto?'foto':null;if(!t)return;
   M.total++;t==='video'?M.videos++:M.fotos++;
   const hj=iso(new Date());UP.unshift({d:hj,p:a.u.p.nome,c:a.u.c.nome,url:a.u.p.url,video:t==='video'?1:0,foto:t==='foto'?1:0,carrossel:0});
@@ -745,9 +838,22 @@ const links=[...document.querySelectorAll('nav.secoes a')];
 const obs=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting)links.forEach(a=>a.classList.toggle('on',a.getAttribute('href')==='#'+e.target.id))}),{rootMargin:'-45% 0px -50% 0px'});
 document.querySelectorAll('section.sec').forEach(s=>obs.observe(s));
 
+// ---------- abertura: mosaico com um pouco das entregas de todos os clientes ----------
+function abertura(){
+  const fila=P.map(p=>(p.capas||[]).slice());const ids=[];let k=0;
+  while(fila.some(f=>f.length)){const f=fila[k++%fila.length];if(f.length)ids.push(f.shift())}  // intercala os clientes
+  const cols=window.innerWidth<700?4:8,m=$('#mosaic');m.innerHTML='';
+  const total=Math.max(ids.length,cols*5);
+  for(let c=0;c<cols;c++){const col=document.createElement('div');col.className='mcol';
+    for(let i=c;i<total;i+=cols){const id=ids[i%ids.length];if(!id)continue;const t=document.createElement('div');t.className='mtile';
+      t.style.backgroundImage=`url("${img(id)}")`;col.appendChild(t)}
+    m.appendChild(col)}
+  const M=D.metricas,nc=P.length;
+  $('#heroTxt').textContent=`${M.total.toLocaleString('pt-BR')} conteúdos entregues para ${nc} ${nc===1?'cliente':'clientes'}`;
+}
 function iniciar(){
   P=D.paineis;UP=D.metricas.uploads||[];
-  renderPaineis();iniciarUpload();renderMetricas();calendario();carregarAutores(calYM);
+  abertura();renderPaineis();iniciarUpload();renderMetricas();calendario();carregarAutores(calYM);
   status();setInterval(()=>{if(!rodando)status()},120000);
 }
 
