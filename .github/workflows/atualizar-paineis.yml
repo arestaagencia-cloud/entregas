@@ -62,7 +62,7 @@ jobs:
             git config user.email "aresta.agencia@gmail.com"
             git add paineis docs
             git commit -m "Dashboards atualizados pelo Drive"
-            git pull --rebase
+            git pull --rebase -X theirs  # em conflito nos arquivos gerados, fica a versão desta rodada (a mais nova)
             git push
           else
             echo "Nada mudou no Drive."
