@@ -307,5 +307,6 @@
    "fmt": "v"
   }
  ],
- "tipo_cliente": "freelancer"
+ "tipo_cliente": "freelancer",
+ "capa": "/capas/samba-no-parque-capa.jpg"
 }

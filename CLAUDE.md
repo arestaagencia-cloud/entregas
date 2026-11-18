@@ -104,7 +104,7 @@ fotos do Drive, filtros por Cliente, Mês e tipo. Config em `paineis/<cliente>.j
 `slug` (ex.: `universa`), `titulo`, `marca` (nome grande da capa), `drive_raiz` (id da pasta raiz no Drive),
 `cliente_unico` (opcional: use quando a raiz já contém as pastas de mês, sem subpastas de marca),
 `clientes` (ordem dos filtros), `capa` (opcional: id de foto do Drive ou caminho no site, ex. `/capas/raul-paola-capa.jpg`; substitui o mosaico,
-mostrada inteira, sem corte, com o nome logo abaixo), `destaque` (opcional: lista de ids de vídeos 16:9 mostrados grandes, com player, acima da grade e fora
+mostrada inteira, sem corte, com o nome logo abaixo; **sempre horizontal**, nunca foto vertical, porque fica ruim no notebook), `destaque` (opcional: lista de ids de vídeos 16:9 mostrados grandes, com player, acima da grade e fora
 dela) com `destaque_titulo` opcional (sem ele, só o vídeo) e
 `itens` (preenchido pelo robô). `agrupar_por: "edicao"` (Sarau): agrupa pela pasta da edição em vez do mês e troca o filtro de cliente
 pelo de linha (`linhas`, rótulo em `rotulo_clientes`), tirando a linha do começo do nome da pasta
@@ -131,7 +131,7 @@ Dashboards no ar: `universa` (9 marcas, raiz = pasta Universa) `niso` (Niso Enge
 Protegido por senha da equipe: os dados vão criptografados (AES-GCM/PBKDF2) e só abrem com a senha, que fica
 no segredo `HUB_SENHA` do repositório. O robô regera o painel quando algum dashboard muda; sem o segredo, ele
 não regera (mantém a versão publicada). Para regerar à mão: `HUB_SENHA=... python3 gerar_hub.py`.
-Novo dashboard aparece sozinho no painel interno. Nunca publique o painel interno sem senha.
+Novo dashboard aparece sozinho no painel interno. `hub_grupos` (opcional, no `paineis/<cliente>.json`) limita os filtros do card no painel interno, ex.: `["Empreendimento"]` (Equipe Prime), `["Tópico"]` (Faber). Nunca publique o painel interno sem senha.
 
 Layout: `painel_template.html` + `gerar_painel.py`. Endereço antigo `/painel-universa-k7q2/` redireciona para `/universa/`.
 

@@ -3944,5 +3944,8 @@
    "Clarisse": "Dra. Clarisse",
    "Vânia": "Dra. Vânia"
   }
- }
+ },
+ "hub_grupos": [
+  "Tópico"
+ ]
 }
