@@ -207,6 +207,13 @@ Com `categorias.regioes` ({"Sudoeste":[...], ...}) o filtro vira dois níveis: l
 ## Clínica Faber: Tópico + Quem grava
 Mesmo mecanismo (`categorias` com rotulo "Tópico" e `corretores` com rotulo "Quem grava"). Faber tem também `categorias.palavras`: {tópico: [palavras-chave]} em ordem de prioridade, usado quando o 1º trecho do nome não é um tópico (ex.: "Ranger dos dentes" → Bruxismo). Sem nada → Gerais.
 
+## HUB (painel interno) · layout "Sala de Projeção" (18/11/2026)
+Quatro áreas, com menu fixo: **Painéis** (cards Recorrentes x Freelancers, capa horizontal, sigla, filtros do `hub_grupos`, "Último mês", Abrir em nova aba), **Upload**, **Métricas** e **Calendário**. Tudo vem do JSON cifrado gerado por `gerar_hub.py` (`{"paineis", "metricas", "gh", "gerado"}`).
+- **Upload:** não envia arquivos pela página (precisaria de login Google/OAuth). Escolhe cliente e mês e abre a pasta certa do Drive em nova aba; mês novo mostra o nome sugerido da pasta ("NN. Cliente - Mês.AA", numeração igual às pastas que já existem) com botão de copiar. O robô grava `pastas` ({clientes:[{nome,id}], meses:[{cliente,mes,id,nome}]}) em cada `paineis/*.json`.
+- **Métricas:** totais, mix de formatos, conteúdos por mês da pasta de entrega (últimos 12) e por cliente.
+- **Calendário:** dias de upload. Cada item tem `up` (AAAA-MM-DD): o robô grava a data do dia em que o arquivo apareceu no Drive (arquivos novos); itens criados desde 01/08/2026 foram preenchidos com o `createdTime` do Drive. Antes disso não há data. Em 17/11 aparece o pico da reorganização de Faber e Equipe Prime (arquivos reenviados).
+- **Atualizar sistema:** mostra "Sincronizado há X" pela API pública do GitHub (repo público). Com o segredo `HUB_GH_TOKEN` (token fine-grained só deste repo, permissão Actions: read and write), o botão dispara `atualizar-paineis.yml`, acompanha e recarrega a página; sem o segredo, abre a página do workflow no GitHub para clicar em "Run workflow". O token vai dentro dos dados cifrados (só abre com a senha).
+
 ## Painel interno: subcategorias
 `gerar_hub.grupos(cfg)` usa `gerar_painel.montar(cfg)` (o mesmo DATA do painel) e mostra no card de cada cliente as subcategorias com link já filtrado: Marcas (Universa), Tipo de Sarau, Região/Empreendimento/Corretor (Equipe Prime), Tópico/Quem grava (Faber). Qualquer filtro novo num painel aparece aqui sozinho.
 Painel interno dividido em duas áreas: "Clientes Recorrentes" e "Clientes Freelancers". Padrão = recorrente; para freelancer, `"tipo_cliente": "freelancer"` no JSON do painel (ex.: raul-paola). Busca e ordenação valem para as duas áreas.

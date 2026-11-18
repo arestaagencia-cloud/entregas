@@ -39,6 +39,7 @@ jobs:
       - name: Painel interno (raiz do site)
         env:
           HUB_SENHA: ${{ secrets.HUB_SENHA }}
+          HUB_GH_TOKEN: ${{ secrets.HUB_GH_TOKEN }}
           TZ: America/Sao_Paulo
         run: |
           pip install -q cryptography

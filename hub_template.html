@@ -5,171 +5,484 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="robots" content="noindex, nofollow">
-<title>Clientes · Painéis · ArestAgência</title>
+<title>HUB de Entregas · ArestAgência</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@400;500;600;700&family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@400;500;600;700&family=Instrument+Serif:ital@0;1&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
 <style>
-  :root{
-    --bg:#040404; --ink:#F8F4F2; --ink-2:#d9d2ce; --muted:#8f8784;
-    --line:#232323; --card:#0f0f0f; --card-2:#161616; --accent-dark:#3c1e1e; --gold:#F6AD03;
-    --sans:"Inter Tight","Helvetica Neue",Helvetica,Arial,sans-serif;
-    --serif:"Instrument Serif",Georgia,serif;
-  }
+  :root{--bg:#040404;--ink:#F8F4F2;--ink-2:#b9b1ad;--muted:#8f8784;--line:#232323;--card:#0f0f0f;--card-2:#151515;--gold:#F6AD03;
+    --sans:"Inter Tight",system-ui,sans-serif;--serif:"Instrument Serif",Georgia,serif;--mono:"JetBrains Mono",ui-monospace,monospace}
   *{box-sizing:border-box;margin:0;padding:0}
+  html{scroll-behavior:smooth;scroll-padding-top:70px}
   body{background:var(--bg);color:var(--ink);font-family:var(--sans);-webkit-font-smoothing:antialiased;line-height:1.45}
   a{color:inherit;text-decoration:none}
-  input,button{font:inherit;color:inherit;background:none;border:0}
-  .wrap{max-width:1240px;margin:0 auto;padding:0 clamp(18px,4vw,48px)}
+  input,button,select{font:inherit;color:inherit;background:none;border:0}
+  button{cursor:pointer}
+  [hidden]{display:none!important}
+  .wrap{max-width:1280px;margin:0 auto;padding:0 clamp(18px,3.2vw,40px)}
+  .sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0)}
 
-  header{padding:34px 0 0;display:flex;justify-content:center}
-  .brand{display:flex;align-items:center;gap:12px}
-  .brand img{width:40px;height:40px;object-fit:contain}
-  .brand span{font-weight:700;letter-spacing:.14em;font-size:15px}
+  /* topo */
+  header.top{border-bottom:1px solid var(--line)}
+  .top-g{display:grid;grid-template-columns:minmax(0,1fr) auto minmax(0,1fr);align-items:center;gap:24px;padding-top:28px}
+  .eyeb{font-size:12px;letter-spacing:.18em;text-transform:uppercase;color:var(--muted)}
+  .brand{display:flex;flex-direction:column;align-items:center;gap:10px}
+  .brand img{width:56px;height:56px;object-fit:contain}
+  .brand span{font-size:13px;letter-spacing:.32em;font-weight:600}
+  .acoes-top{display:flex;justify-content:flex-end;align-items:center;gap:14px;flex-wrap:wrap}
+  .sync{font-size:13px;color:var(--muted)}
+  .sync.rodando{color:var(--gold)}
+  .btn-gold{display:inline-flex;align-items:center;gap:8px;height:44px;padding:0 18px;border-radius:999px;border:1px solid var(--gold);color:var(--gold);font-size:14px;font-weight:600}
+  .btn-gold:hover{background:rgba(246,173,3,.08)}
+  .btn-gold:disabled{opacity:.55;cursor:default}
+  .btn-gold svg{width:16px;height:16px}
+  .btn-gold.girando svg{animation:gira 1s linear infinite}
+  @keyframes gira{to{transform:rotate(360deg)}}
+  .sair{font-size:13px;color:var(--muted)}
+  .sair:hover{color:var(--ink)}
+  nav.secoes{position:sticky;top:0;z-index:30;background:rgba(4,4,4,.9);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);border-bottom:1px solid var(--line)}
+  nav.secoes .wrap{display:flex;justify-content:center;gap:36px;flex-wrap:wrap;font-size:14px}
+  nav.secoes a{color:var(--muted);padding:16px 0 14px;border-bottom:2px solid transparent}
+  nav.secoes a.on{color:var(--ink);border-bottom-color:var(--gold)}
+  nav.secoes a:hover{color:var(--ink)}
 
-  .hero{text-align:center;padding:clamp(48px,9vh,96px) 0 clamp(28px,5vh,48px)}
-  .eyebrow{font-size:12px;letter-spacing:.42em;text-transform:uppercase;color:var(--muted)}
-  h1{font-family:var(--serif);font-weight:400;font-size:clamp(44px,7vw,88px);line-height:1;margin:14px 0 10px}
-  h1 em{color:var(--gold)}
-  .sub{color:var(--ink-2);font-size:15px}
-  .stats{display:flex;justify-content:center;gap:clamp(22px,5vw,64px);margin-top:34px;flex-wrap:wrap}
-  .stat b{display:block;font-family:var(--serif);font-weight:400;font-size:clamp(34px,4vw,48px);line-height:1}
-  .stat span{font-size:11px;letter-spacing:.2em;text-transform:uppercase;color:var(--muted)}
+  /* seções */
+  section.sec{border-top:1px solid var(--line)}
+  section.sec:first-of-type{border-top:0}
+  section.sec.alt{background:#080808}
+  .sec-in{padding-top:72px;padding-bottom:84px}
+  .kick{font-size:12px;letter-spacing:.24em;text-transform:uppercase;color:var(--muted)}
+  h2.tit{margin:10px 0 0;font-family:var(--serif);font-weight:400;font-size:clamp(36px,4.4vw,48px);line-height:1.05}
+  .sec-h{display:flex;justify-content:space-between;align-items:flex-end;gap:16px;flex-wrap:wrap;margin-bottom:32px}
+  .nota{font-size:13px;color:var(--muted)}
 
-  .tools{display:flex;gap:12px;align-items:center;margin:8px 0 22px;flex-wrap:wrap}
-  .busca{flex:1;min-width:220px;border:1px solid var(--line);background:var(--card);border-radius:12px;padding:12px 16px;font-size:15px}
-  .busca::placeholder{color:var(--muted)}
-  .busca:focus{outline:none;border-color:#3a3a3a}
-  .ord{display:inline-flex;border:1px solid var(--line);border-radius:12px;overflow:hidden}
-  .ord button{padding:11px 14px;font-size:14px;color:var(--ink-2);cursor:pointer}
-  .ord button.on{background:var(--card-2);color:#fff}
+  /* painéis */
+  .busca{display:flex;align-items:center;gap:10px;height:44px;padding:0 16px;border:1px solid var(--line);border-radius:999px;color:var(--muted);font-size:14px}
+  .busca:focus-within{border-color:#4a4440}
+  .busca input{outline:none;color:var(--ink);width:200px}
+  .busca svg{width:16px;height:16px;flex:none}
+  .cols{display:flex;flex-wrap:wrap;gap:32px}
+  .col{flex:1 1 520px;min-width:0}
+  .col-h{display:flex;align-items:center;gap:12px;padding-bottom:14px;margin-bottom:20px;border-bottom:2px solid var(--gold)}
+  .col-h.free{border-bottom-color:var(--muted)}
+  .col-h i{width:10px;height:10px;border-radius:50%;background:var(--gold)}
+  .col-h.free i{background:none;border:2px solid #c9c3bf}
+  .col-h h3{font-size:15px;font-weight:600;letter-spacing:.06em;text-transform:uppercase}
+  .col-h span{margin-left:auto;font-size:13px;color:var(--muted)}
+  .cards{display:grid;grid-template-columns:repeat(auto-fill,minmax(230px,1fr));gap:20px}
+  .card{display:flex;flex-direction:column;background:#14100a;border:1px solid #3a2e14;border-radius:14px;overflow:hidden;transition:transform .2s,border-color .2s}
+  .card.free{background:var(--card);border-color:#262626}
+  .card:hover{transform:translateY(-3px);border-color:#6b5420}
+  .card.free:hover{border-color:#444}
+  .cv{position:relative;display:block;aspect-ratio:16/9;background:#1f180b;overflow:hidden}
+  .card.free .cv{background:#181818}
+  .cv img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:.92;transition:transform .4s}
+  .card:hover .cv img{transform:scale(1.03)}
+  .cv::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(0,0,0,0) 35%,rgba(0,0,0,.72))}
+  .cv .sig{position:absolute;left:14px;bottom:10px;z-index:2;font-family:var(--serif);font-size:40px;line-height:1;color:#F8F4F2}
+  .cv.sem .sig{color:#5a4520}
+  .card.free .cv.sem .sig{color:#3d3d3d}
+  .cv .tag{position:absolute;right:14px;bottom:14px;z-index:2;font-size:10px;letter-spacing:.14em;text-transform:uppercase;color:var(--gold);border:1px solid rgba(246,173,3,.45);background:rgba(0,0,0,.45);border-radius:999px;padding:4px 8px}
+  .card.free .cv .tag{color:#c9c3bf;border-color:#555}
+  .cb{padding:16px 16px 18px;display:flex;flex-direction:column;gap:6px;flex:1}
+  .cb .nm{font-size:16px;font-weight:600}
+  .cb .rs{font-size:13px;color:#a0968f}
+  .chips{display:flex;gap:6px;overflow-x:auto;scrollbar-width:none;margin-top:6px;padding-bottom:2px}
+  .chips::-webkit-scrollbar{display:none}
+  .chips a{white-space:nowrap;font-size:12px;border:1px solid #2e2e2e;border-radius:999px;padding:3px 9px;color:var(--ink-2)}
+  .chips a:hover{border-color:#555;color:#fff}
+  .chips a small{margin-left:5px;opacity:.5}
+  .cf{margin-top:auto;padding-top:10px;display:flex;justify-content:space-between;align-items:center;gap:8px;font-size:13px}
+  .cf .um{color:#a0968f}
+  .cf .ab{display:flex;align-items:center;gap:12px}
+  .cf .ab a{color:var(--gold);font-weight:600}
+  .card.free .cf .ab a{color:var(--ink)}
+  .cf .cp{color:var(--muted);font-size:12px}
+  .cf .cp:hover{color:var(--ink)}
+  .vazio{padding:40px 0;color:var(--muted);font-size:14px}
 
-  .grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:14px}
-  .card{display:flex;flex-direction:column;background:var(--card);border:1px solid var(--line);border-radius:16px;overflow:hidden;transition:transform .2s,border-color .2s}
-  .card:hover{transform:translateY(-3px);border-color:#3a3a3a}
-  .mos{display:grid;grid-template-columns:repeat(4,1fr);gap:3px;aspect-ratio:16/9;background:#000;position:relative}
-  .mos.solo{display:block;overflow:hidden}
-  .mos.solo img{width:100%;height:100%;object-fit:cover;display:block}
-  .mos i{background:var(--accent-dark) center/cover no-repeat}
-  .mos::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,transparent 45%,rgba(0,0,0,.75))}
-  .mos .nome{position:absolute;left:16px;right:16px;bottom:12px;z-index:2;font-weight:700;font-size:24px;letter-spacing:.02em;line-height:1.05;text-transform:uppercase}
-  .info{padding:14px 16px 16px;display:flex;flex-direction:column;gap:10px;flex:1}
-  .nums{display:flex;gap:14px;font-size:13px;color:var(--ink-2);flex-wrap:wrap}
-  .nums b{color:#fff;font-weight:600}
-  .meta{font-size:12.5px;color:var(--muted)}
-  .meta .novo{color:var(--gold)}
-  .marcas{display:flex;flex-wrap:wrap;gap:6px}
-  .marcas a{font-size:12px;border:1px solid var(--line);border-radius:999px;padding:4px 10px;color:var(--ink-2)}
-  .marcas a:hover{border-color:#444;color:#fff}
-  .marcas a small{margin-left:5px;opacity:.5}
-  .grp+.grp{margin-top:10px}
-  .glbl{display:block;font-size:10px;letter-spacing:.18em;text-transform:uppercase;color:var(--muted,#888);margin-bottom:6px}
-  .acoes{display:flex;gap:8px;margin-top:auto;padding-top:4px}
-  .btn{flex:1;text-align:center;border-radius:999px;padding:10px 14px;font-size:14px;font-weight:500}
-  .btn.pri{background:var(--ink);color:#0b0b0b}
-  .btn.sec{border:1px solid #333;color:#fff;cursor:pointer;flex:none}
-  .area+.area{margin-top:56px}
-  .area-h{display:flex;align-items:baseline;gap:12px;margin:0 0 18px;padding-bottom:12px;border-bottom:1px solid var(--line)}
-  .area-h h2{font-family:var(--serif,Georgia,serif);font-weight:400;font-size:clamp(26px,3vw,34px);margin:0}
-  .area-h h2 em{color:var(--accent,#f5a400)}
-  .area-h span{font-size:12px;letter-spacing:.18em;text-transform:uppercase;color:var(--muted)}
-  .vazio{padding:60px 0;text-align:center;color:var(--muted)}
-  footer{margin:72px 0 40px;text-align:center;color:var(--muted);font-size:13px}
-  .toast{position:fixed;left:50%;bottom:24px;transform:translateX(-50%) translateY(20px);background:#fff;color:#000;padding:10px 16px;border-radius:999px;font-size:14px;opacity:0;transition:all .25s;pointer-events:none}
+  /* upload */
+  .up-g{display:flex;flex-wrap:wrap;gap:32px}
+  .up-f{flex:999 1 560px;min-width:0;display:flex;flex-direction:column;gap:20px}
+  .campos{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:16px}
+  .campos label{display:flex;flex-direction:column;gap:8px;font-size:13px;color:var(--muted)}
+  .campos select{height:48px;background:#0f0f0f;border:1px solid var(--line);border-radius:10px;color:var(--ink);padding:0 14px;font-size:15px;appearance:auto}
+  .drop{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:14px;min-height:240px;border:1.5px dashed #4a4440;border-radius:16px;background:#0a0a0a;text-align:center;padding:32px}
+  .drop svg{width:40px;height:40px}
+  .drop .gr{font-family:var(--serif);font-size:30px;line-height:1.1}
+  .drop .pq{font-size:14px;color:var(--muted);max-width:520px}
+  .pasta{display:flex;align-items:center;gap:10px;flex-wrap:wrap;justify-content:center}
+  .pasta code{font-family:var(--mono);font-size:14px;background:#151515;border:1px solid #2c2c2c;border-radius:8px;padding:8px 12px;color:var(--ink)}
+  .pasta button{font-size:13px;color:var(--gold);text-decoration:underline;text-underline-offset:3px}
+  .btn-pri{display:inline-flex;align-items:center;justify-content:center;height:48px;padding:0 28px;border-radius:999px;background:var(--gold);color:#040404;font-size:15px;font-weight:700}
+  .btn-pri:hover{background:#ffc93d}
+  .up-a{flex:1 1 320px;min-width:0;background:var(--card);border:1px solid var(--line);border-radius:16px;padding:24px}
+  .up-a h3{font-size:15px;font-weight:600;margin-bottom:18px}
+  .passos{list-style:none;display:flex;flex-direction:column;gap:16px;counter-reset:p}
+  .passos li{display:grid;grid-template-columns:28px 1fr;gap:12px;font-size:14px;color:var(--ink-2)}
+  .passos li::before{counter-increment:p;content:counter(p);width:28px;height:28px;border-radius:50%;border:1px solid #3a3a3a;display:flex;align-items:center;justify-content:center;font-family:var(--mono);font-size:12px;color:var(--gold)}
+  .passos b{color:var(--ink);font-weight:600}
+
+  /* métricas */
+  .met{display:flex;flex-wrap:wrap;gap:20px}
+  .box{flex:1 1 340px;min-width:0;background:var(--card);border:1px solid var(--line);border-radius:14px;padding:20px;display:flex;flex-direction:column;gap:16px}
+  .bl{font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--muted)}
+  .kpis{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}
+  .kpi{background:var(--card-2);border:1px solid var(--line);border-radius:10px;padding:14px}
+  .kpi b{display:block;margin-top:6px;font-family:var(--mono);font-size:26px;font-weight:500}
+  .mix{display:flex;height:8px;border-radius:999px;overflow:hidden;gap:2px}
+  .leg{display:flex;gap:14px;flex-wrap:wrap;font-size:12px;color:var(--ink-2)}
+  .leg i{display:inline-block;width:8px;height:8px;border-radius:2px;margin-right:6px}
+  .barsv{flex:1;min-height:170px;display:flex;align-items:flex-end;gap:6px;border-bottom:1px solid #2c2c2c;padding-bottom:2px}
+  .barsv div{flex:1;display:flex;flex-direction:column;align-items:center;justify-content:flex-end;height:100%;gap:4px}
+  .barsv span{font-family:var(--mono);font-size:10px;color:var(--muted)}
+  .barsv i{width:100%;border-radius:3px 3px 0 0;background:#3d3a37}
+  .barsv div.cur i{background:var(--gold)}
+  .labs{display:flex;gap:6px}
+  .labs span{flex:1;text-align:center;font-family:var(--mono);font-size:10px;color:var(--muted)}
+  .barsh{display:flex;flex-direction:column;gap:11px}
+  .barsh a{display:grid;grid-template-columns:120px minmax(0,1fr) 52px;align-items:center;gap:10px;font-size:13px}
+  .barsh a:hover span:first-child{color:var(--ink)}
+  .barsh span:first-child{color:var(--ink-2);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+  .barsh .tr{height:8px;background:#1b1b1b;border-radius:999px;overflow:hidden}
+  .barsh .tr i{display:block;height:100%;border-radius:999px}
+  .barsh span:last-child{text-align:right;font-family:var(--mono);font-size:12px}
+
+  /* calendário */
+  .cal-g{display:flex;flex-wrap:wrap;gap:32px}
+  .cal{flex:999 1 640px;min-width:0}
+  .dow,.dias{display:grid;grid-template-columns:repeat(7,minmax(0,1fr));gap:8px}
+  .dow{font-size:12px;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);margin-bottom:10px}
+  .dia{min-height:92px;border-radius:10px;padding:10px;display:flex;flex-direction:column;justify-content:space-between;gap:6px;background:var(--card);border:1px solid #1d1d1d}
+  .dia.vz{background:transparent;border-color:transparent}
+  .dia.hoje{background:#1a1407;border-color:var(--gold)}
+  .dia .n{font-size:14px}
+  .dia.hoje .n{color:var(--gold)}
+  .dia .ev{display:flex;flex-direction:column;gap:2px}
+  .dia .ev a{font-size:11px;line-height:1.3;color:var(--gold);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+  .dia .ev a:hover{text-decoration:underline}
+  .nav-m{display:flex;gap:8px}
+  .nav-m button{width:44px;height:44px;border-radius:999px;border:1px solid var(--line)}
+  .nav-m button:hover{border-color:#4a4440}
+  .nav-m button:disabled{opacity:.3;cursor:default}
+  .ag{flex:1 1 300px;min-width:0}
+  .ag h3{font-size:15px;font-weight:600;margin-bottom:16px}
+  .ag-l{border-top:1px solid var(--line)}
+  .ag-i{display:grid;grid-template-columns:56px minmax(0,1fr);gap:14px;padding:16px 0;border-bottom:1px solid var(--line)}
+  .ag-i .d{font-family:var(--serif);font-size:34px;line-height:1;color:var(--gold)}
+  .ag-i .d small{display:block;font-family:var(--sans);font-size:10px;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);margin-top:4px}
+  .ag-i .c{font-size:15px}
+  .ag-i .o{font-size:13px;color:var(--muted);margin-top:4px}
+
+  footer{border-top:1px solid var(--line);padding:32px 0;text-align:center;font-size:13px;color:var(--muted)}
+  .toast{position:fixed;left:50%;bottom:24px;transform:translateX(-50%) translateY(20px);background:#fff;color:#000;padding:10px 16px;border-radius:999px;font-size:14px;opacity:0;transition:all .25s;pointer-events:none;z-index:60}
   .toast.on{opacity:1;transform:translateX(-50%)}
-  .gate{position:fixed;inset:0;z-index:50;background:var(--bg);display:flex;align-items:center;justify-content:center;padding:24px}
+
+  /* senha */
+  .gate{position:fixed;inset:0;z-index:70;background:var(--bg);display:flex;align-items:center;justify-content:center;padding:24px}
   .gate form{width:100%;max-width:360px;text-align:center}
   .gate h2{font-family:var(--serif);font-weight:400;font-size:40px;margin:18px 0 6px}
   .gate p{color:var(--muted);font-size:14px;margin-bottom:22px}
   .gate input[type=password]{width:100%;border:1px solid var(--line);background:var(--card);border-radius:12px;padding:13px 16px;font-size:16px;text-align:center}
   .gate input:focus{outline:none;border-color:#444}
   .gate label{display:flex;gap:8px;justify-content:center;align-items:center;font-size:13px;color:var(--ink-2);margin:14px 0}
-  .gate button{width:100%;background:var(--ink);color:#0b0b0b;border-radius:999px;padding:12px;font-weight:600;cursor:pointer}
+  .gate button{width:100%;background:var(--ink);color:#0b0b0b;border-radius:999px;padding:12px;font-weight:600}
   .gate .erro{color:#ff8b7b;font-size:13px;min-height:20px;margin-top:10px}
-  .sair{position:absolute;top:30px;right:clamp(18px,4vw,48px);font-size:13px;color:var(--muted);cursor:pointer}
-  [hidden]{display:none!important}
-  @media (max-width:600px){.grid{grid-template-columns:1fr}.mos .nome{font-size:21px}}
+
+  @media (max-width:760px){
+    .top-g{grid-template-columns:1fr;justify-items:center;text-align:center}
+    .top-g>.eyeb{display:none}
+    .acoes-top{justify-content:center}
+    nav.secoes .wrap{gap:22px}
+    .dia{min-height:64px;padding:6px}
+    .dia .ev a{font-size:0}
+    .dia .ev a::before{content:"●";font-size:10px}
+    .barsh a{grid-template-columns:96px minmax(0,1fr) 46px}
+    .busca input{width:140px}
+  }
 </style>
 </head>
 <body>
 <div class="gate" id="gate"><form id="fGate">
-  <div class="brand" style="justify-content:center"><img src="data:image/png;base64,{{LOGO}}" alt=""><span>ARESTAGÊNCIA</span></div>
-  <h2>Área da equipe</h2><p>Digite a senha para ver os painéis dos clientes.</p>
+  <div class="brand"><img src="data:image/png;base64,{{LOGO}}" alt=""><span>ARESTAGÊNCIA</span></div>
+  <h2>Área da equipe</h2><p>Digite a senha para abrir o HUB de entregas.</p>
   <input type="password" id="senha" placeholder="Senha" autocomplete="current-password" autofocus aria-label="Senha">
   <label><input type="checkbox" id="lembrar" checked> Lembrar neste aparelho</label>
   <button type="submit">Entrar</button><div class="erro" id="erro"></div>
 </form></div>
-<button class="sair" id="sair" hidden>Sair</button>
-<header><div class="brand"><img src="data:image/png;base64,{{LOGO}}" alt=""><span>ARESTAGÊNCIA</span></div></header>
 
-<main class="wrap">
-  <section class="hero">
-    <div class="eyebrow">Uso interno</div>
-    <h1>Painéis dos <em>clientes</em></h1>
-    <p class="sub">Todos os dashboards de entrega em um só lugar</p>
-    <div class="stats" id="stats"></div>
-  </section>
-
-  <div class="tools">
-    <input class="busca" id="busca" type="search" placeholder="Buscar cliente ou marca…" aria-label="Buscar cliente">
-    <div class="ord" id="ord"><button data-o="recente" class="on">Mais recentes</button><button data-o="nome">A–Z</button><button data-o="volume">Mais conteúdos</button></div>
+<header class="top">
+  <div class="wrap top-g">
+    <div class="eyeb">HUB de Entregas · Equipe</div>
+    <div class="brand"><img src="data:image/png;base64,{{LOGO}}" alt="ArestAgência"><span>ARESTAGÊNCIA</span></div>
+    <div class="acoes-top">
+      <span class="sync" id="sync">Atualizado em {{ATUALIZADO}}</span>
+      <button type="button" class="btn-gold" id="refresh" title="Lê o Drive agora e atualiza todos os painéis">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 12a9 9 0 1 1-2.64-6.36"/><path d="M21 3v6h-6"/></svg>
+        <span>Atualizar sistema</span>
+      </button>
+      <button type="button" class="sair" id="sair" hidden>Sair</button>
+    </div>
   </div>
-  <div id="grid"></div>
+  <div style="height:22px"></div>
+</header>
+<nav class="secoes" aria-label="Seções"><div class="wrap">
+  <a href="#paineis" class="on">Painéis</a><a href="#upload">Upload</a><a href="#metricas">Métricas</a><a href="#calendario">Calendário</a>
+</div></nav>
+
+<main>
+  <section class="sec" id="paineis"><div class="wrap sec-in">
+    <div class="sec-h">
+      <div><div class="kick">01 · Painéis</div><h2 class="tit">Clientes ativos</h2></div>
+      <label class="busca"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg>
+        <span class="sr">Buscar cliente</span><input type="search" id="busca" placeholder="Buscar cliente ou marca"></label>
+    </div>
+    <div class="cols" id="cols"></div>
+  </div></section>
+
+  <section class="sec alt" id="upload"><div class="wrap sec-in">
+    <div class="kick">02 · Upload</div><h2 class="tit" style="margin-bottom:36px">Enviar nova entrega</h2>
+    <div class="up-g">
+      <div class="up-f">
+        <div class="campos">
+          <label>Cliente<select id="uCli"></select></label>
+          <label>Mês da entrega<select id="uMes"></select></label>
+        </div>
+        <div class="drop" id="drop"></div>
+      </div>
+      <aside class="up-a">
+        <h3>Como enviar</h3>
+        <ol class="passos">
+          <li><span>Escolha o <b>cliente</b> e o <b>mês</b> ao lado.</span></li>
+          <li><span>Abra a pasta no Drive e <b>arraste os arquivos</b> para dentro dela. Se o mês ainda não existir, crie a pasta com o nome sugerido.</span></li>
+          <li><span>Nomeie no padrão <b>F. Tópico - Título - Pessoa - V.1</b>. Carrossel é uma subpasta começando com <b>C.</b></span></li>
+          <li><span>Clique em <b>Atualizar sistema</b> no topo. Em uns 3 minutos o painel do cliente e o Notion já mostram os arquivos.</span></li>
+        </ol>
+      </aside>
+    </div>
+  </div></section>
+
+  <section class="sec" id="metricas"><div class="wrap sec-in">
+    <div class="sec-h">
+      <div><div class="kick">03 · Métricas</div><h2 class="tit">Produção da casa</h2></div>
+      <span class="nota" id="mNota"></span>
+    </div>
+    <div class="met">
+      <div class="box">
+        <div class="kpis" id="kpis"></div>
+        <div><div class="bl" style="margin-bottom:8px">Mix de formatos</div><div class="mix" id="mix"></div><div class="leg" id="mixLeg" style="margin-top:8px"></div></div>
+      </div>
+      <div class="box"><div class="bl">Conteúdos por mês de entrega · últimos 12</div>
+        <div class="barsv" id="barsv"></div><div class="labs" id="labs"></div><div class="nota" id="mesNota" style="font-size:12px"></div></div>
+      <div class="box"><div class="bl">Conteúdos por cliente</div>
+        <div class="barsh" id="barsh"></div>
+        <div class="leg"><span><i style="background:var(--gold)"></i>Recorrente</span><span><i style="background:#c9c3bf"></i>Freelancer</span></div></div>
+    </div>
+  </div></section>
+
+  <section class="sec" id="calendario"><div class="wrap sec-in">
+    <div class="kick">04 · Calendário</div>
+    <div class="sec-h" style="margin-top:10px;margin-bottom:36px">
+      <h2 class="tit" style="margin:0" id="calTit">Uploads</h2>
+      <div class="nav-m"><button type="button" id="calAnt" aria-label="Mês anterior">←</button><button type="button" id="calProx" aria-label="Próximo mês">→</button></div>
+    </div>
+    <div class="cal-g">
+      <div class="cal">
+        <div class="dow"><span>Dom</span><span>Seg</span><span>Ter</span><span>Qua</span><span>Qui</span><span>Sex</span><span>Sáb</span></div>
+        <div class="dias" id="dias"></div>
+        <p class="nota" id="calNota" style="margin-top:14px;font-size:12px"></p>
+      </div>
+      <aside class="ag"><h3>Últimos uploads</h3><div class="ag-l" id="ag"></div></aside>
+    </div>
+  </div></section>
 </main>
-<footer>Atualizado em {{ATUALIZADO}} · os painéis se atualizam sozinhos de hora em hora a partir do Google Drive</footer>
-<div class="toast" id="toast">Link copiado</div>
+<footer>ArestAgência · Brasília · Painel interno da equipe · os painéis se atualizam sozinhos de hora em hora a partir do Google Drive</footer>
+<div class="toast" id="toast"></div>
 
 <script>
 const CIFRA = /*__DATA__*/null;
-let P = [];
+let D=null,P=[];
 const MESES=['Janeiro','Fevereiro','Março','Abril','Maio','Junho','Julho','Agosto','Setembro','Outubro','Novembro','Dezembro'];
-const mes=ym=>{const[a,m]=ym.split('-');return `${MESES[+m-1]} ${a}`};
-const thumb=id=>`https://drive.google.com/thumbnail?id=${id}&sz=w360`;
-const esc=s=>String(s).replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+const MC=['Jan','Fev','Mar','Abr','Mai','Jun','Jul','Ago','Set','Out','Nov','Dez'];
+const curto=ym=>{const[a,m]=ym.split('-');return `${MC[+m-1]}.${a.slice(2)}`};
+const esc=s=>String(s??'').replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
 const $=s=>document.querySelector(s);
-const hoje=new Date(), atual=`${hoje.getFullYear()}-${String(hoje.getMonth()+1).padStart(2,'0')}`;
+const nrm=s=>String(s||'').toLowerCase().normalize('NFD').replace(/[̀-ͯ]/g,'');
+const pl=(n,a,b)=>`${n.toLocaleString('pt-BR')} ${n===1?a:b}`;
+const img=x=>!x?'':x.includes('/')?x:`https://drive.google.com/thumbnail?id=${x}&sz=w640`;
+const hoje=new Date(),YM=`${hoje.getFullYear()}-${String(hoje.getMonth()+1).padStart(2,'0')}`;
+const iso=d=>`${d.getFullYear()}-${String(d.getMonth()+1).padStart(2,'0')}-${String(d.getDate()).padStart(2,'0')}`;
+function toast(t){const e=$('#toast');e.textContent=t;e.classList.add('on');clearTimeout(toast.t);toast.t=setTimeout(()=>e.classList.remove('on'),2200)}
+function resumoTxt(p){return [[p.videos,'vídeo','vídeos'],[p.fotos,'foto','fotos'],[p.carrosseis,'carrossel','carrosséis']].filter(([n])=>n).map(([n,a,b])=>pl(n,a,b)).join(' · ')}
 
-let ordem='recente';
-function render(){
-  const q=$('#busca').value.trim().toLowerCase().normalize('NFD').replace(/[̀-ͯ]/g,'');
-  const norm=s=>s.toLowerCase().normalize('NFD').replace(/[̀-ͯ]/g,'');
-  let l=P.filter(p=>!q||norm(p.nome).includes(q)||(p.grupos||[]).some(g=>g.itens.some(m=>norm(m.nome).includes(q))));
-  l.sort(ordem==='nome'?(a,b)=>a.nome.localeCompare(b.nome):ordem==='volume'?(a,b)=>b.total-a.total:(a,b)=>b.ultimo.localeCompare(a.ultimo)||b.total-a.total);
-  if(!l.length){$('#grid').innerHTML='<div class="vazio">Nenhum cliente encontrado.</div>';return}
-  const AREAS=[['recorrente','Clientes <em>Recorrentes</em>'],['freelancer','Clientes <em>Freelancers</em>']];
-  $('#grid').innerHTML=AREAS.map(([t,h])=>{const la=l.filter(p=>p.tipo===t);if(!la.length)return '';
-    return `<section class="area" id="area-${t}"><div class="area-h"><h2>${h}</h2><span>${la.length} ${la.length===1?'cliente':'clientes'}</span></div><div class="grid">${cards(la)}</div></section>`}).join('');
+// ---------- 01 · painéis ----------
+function renderPaineis(){
+  const q=nrm($('#busca').value.trim());
+  const l=P.filter(p=>!q||nrm(p.nome).includes(q)||(p.grupos||[]).some(g=>g.itens.some(m=>nrm(m.nome).includes(q))))
+    .sort((a,b)=>b.ultimo.localeCompare(a.ultimo)||b.total-a.total);
+  $('#cols').innerHTML=[['recorrente','Recorrentes',''],['freelancer','Freelancers','free']].map(([t,h,c])=>{
+    const la=l.filter(p=>p.tipo===t);
+    return `<div class="col"><div class="col-h ${c}"><i></i><h3>${h}</h3><span>${pl(la.length,'painel','painéis')}</span></div>
+      ${la.length?`<div class="cards">${la.map(card).join('')}</div>`:'<div class="vazio">Nenhum painel encontrado.</div>'}</div>`}).join('');
 }
-function cards(l){
-  return l.map(p=>{
-    const pl=(n,a,b)=>n===1?a:b;const nums=[[p.total,pl(p.total,'conteúdo','conteúdos')],[p.videos,pl(p.videos,'vídeo','vídeos')],[p.fotos,pl(p.fotos,'foto','fotos')]].concat([[p.carrosseis,pl(p.carrosseis,'carrossel','carrosséis')]]).filter(([n],k)=>k===0||n>0)
-      .map(([n,t])=>`<span><b>${n}</b> ${t}</span>`).join('');
-    const marcas=(p.grupos||[]).map(g=>`<div class="grp"><span class="glbl">${esc(g.rotulo)}</span><div class="marcas">${g.itens.map(m=>`<a href="${p.url}${m.link}" target="_blank" rel="noopener" title="${m.total} conteúdos">${esc(m.nome)}<small>${m.total}</small></a>`).join('')}</div></div>`).join('');
-    return `<article class="card">
-      <a class="mos${p.capa?' solo':''}" href="${p.url}" target="_blank" rel="noopener">${p.capa?`<img src="${p.capa.includes('/')?p.capa:`https://drive.google.com/thumbnail?id=${p.capa}&sz=w900`}" alt="" loading="lazy" onerror="this.style.visibility='hidden'">`:p.capas.map(id=>`<i style="background-image:url('${thumb(id)}')"></i>`).join('')}<span class="nome">${esc(p.nome)}</span></a>
-      <div class="info">
-        <div class="nums">${nums}</div>
-        <div class="meta">${mes(p.primeiro)} a ${mes(p.ultimo)} · ${p.meses} ${p.meses>1?'meses':'mês'}${p.ultimo===atual?' · <span class="novo">entregas este mês</span>':''}</div>
-        ${marcas}
-        <div class="acoes"><a class="btn pri" href="${p.url}" target="_blank" rel="noopener">Abrir painel</a><button class="btn sec" data-copiar="${p.url}">Copiar link</button></div>
-      </div></article>`}).join('');
+function card(p){
+  const fr=p.tipo==='freelancer';
+  const chips=(p.grupos||[]).map(g=>g.itens.map(m=>`<a href="${p.url}${m.link}" target="_blank" rel="noopener" title="${esc(g.rotulo)}: ${m.total} conteúdos">${esc(m.nome)}<small>${m.total}</small></a>`).join('')).join('');
+  return `<article class="card${fr?' free':''}">
+    <a class="cv${p.img?'':' sem'}" href="${p.url}" target="_blank" rel="noopener" aria-label="Abrir painel ${esc(p.nome)}">
+      ${p.img?`<img src="${img(p.img)}" alt="" loading="lazy" onerror="this.remove();this.parentNode&&this.parentNode.classList.add('sem')">`:''}
+      <span class="sig">${esc(p.sigla)}</span><span class="tag">${fr?'Freelancer':'Recorrente'}</span></a>
+    <div class="cb"><div class="nm">${esc(p.nome)}</div><div class="rs">${resumoTxt(p)}</div>
+      ${chips?`<div class="chips">${chips}</div>`:''}
+      <div class="cf"><span class="um">Último mês: ${curto(p.ultimo)}</span>
+        <span class="ab"><button type="button" class="cp" data-copiar="${p.url}" title="Copiar link do painel">Copiar link</button><a href="${p.url}" target="_blank" rel="noopener">Abrir →</a></span></div>
+    </div></article>`;
 }
-function iniciar(){
-const tot=k=>P.reduce((s,p)=>s+p[k],0);
-const nR=P.filter(p=>p.tipo==='recorrente').length,nF=P.length-nR;
-$('#stats').innerHTML=[[nR,nR===1?'recorrente':'recorrentes'],[nF,nF===1?'freelancer':'freelancers'],[P.reduce((s,p)=>s+p.marcas.length,0),'marcas'],[tot('total'),'conteúdos'],[tot('videos'),'vídeos']]
-  .map(([n,l])=>`<div class="stat"><b>${n}</b><span>${l}</span></div>`).join('');
-
-render();
-}
-$('#busca').addEventListener('input',render);
-$('#ord').addEventListener('click',e=>{const b=e.target.closest('button');if(!b)return;ordem=b.dataset.o;document.querySelectorAll('#ord button').forEach(x=>x.classList.toggle('on',x===b));render()});
-$('#grid').addEventListener('click',e=>{
+$('#busca').addEventListener('input',renderPaineis);
+document.addEventListener('click',e=>{
   const b=e.target.closest('[data-copiar]');if(!b)return;
   const url=new URL(b.dataset.copiar,location.href).href;
-  const ok=()=>{$('#toast').classList.add('on');setTimeout(()=>$('#toast').classList.remove('on'),1600)};
-  (navigator.clipboard?navigator.clipboard.writeText(url):Promise.reject()).then(ok).catch(()=>{prompt('Copie o link:',url)});
+  (navigator.clipboard?navigator.clipboard.writeText(url):Promise.reject()).then(()=>toast('Link copiado')).catch(()=>prompt('Copie o link:',url));
 });
+
+// ---------- 02 · upload ----------
+let UC=[];
+function iniciarUpload(){
+  UC=[];
+  P.slice().sort((a,b)=>a.nome.localeCompare(b.nome)).forEach(p=>{
+    const cl=p.pastas.clientes||[];
+    cl.forEach(c=>UC.push({p,c,rot:cl.length>1?`${p.nome} · ${c.nome}`:p.nome,meses:(p.pastas.meses||[]).filter(m=>m.cliente===c.nome)}));
+  });
+  $('#uCli').innerHTML=UC.map((u,i)=>`<option value="${i}">${esc(u.rot)}</option>`).join('');
+  $('#uCli').onchange=mesesUpload;$('#uMes').onchange=renderDrop;mesesUpload();
+}
+function mesesUpload(){
+  const u=UC[+$('#uCli').value];if(!u)return;
+  const ex=u.meses.slice().sort((a,b)=>b.mes.localeCompare(a.mes));
+  const opts=[];
+  if(!ex.some(m=>m.mes===YM))opts.push({v:'novo:'+YM,t:`${MESES[hoje.getMonth()]} ${hoje.getFullYear()} · criar pasta`});
+  ex.forEach((m,i)=>opts.push({v:'id:'+i,t:`${MESES[+m.mes.slice(5)-1]} ${m.mes.slice(0,4)} · ${esc(m.nome)}`}));
+  u.ex=ex;
+  $('#uMes').innerHTML=opts.map(o=>`<option value="${o.v}">${o.t}</option>`).join('');
+  renderDrop();
+}
+function nomeSugerido(u,ym){
+  const ref=u.ex[0];const [a,m]=ym.split('-');const mesTxt=`${MESES[+m-1]}.${a.slice(2)}`;
+  let base=u.c.nome,num=null;
+  if(ref){const mm=ref.nome.match(/^\s*(\d+)\s*[.\-]\s*(.*?)\s*-\s*[^-]*$/);
+    if(mm){base=mm[2]||base;const nums=u.ex.map(x=>parseInt(x.nome)).filter(n=>!isNaN(n));
+      // numeração pelo mês do ano (11. ... Novembro) ou sequencial (07. ...)
+      const peloMes=u.ex.every(x=>parseInt(x.nome)===+x.mes.slice(5));
+      num=peloMes?+m:(nums.length?Math.max(...nums)+1:1);}}
+  else num=1;
+  return `${num!=null?String(num).padStart(2,'0')+'. ':''}${base} - ${mesTxt}`;
+}
+function renderDrop(){
+  const u=UC[+$('#uCli').value];if(!u)return;const v=$('#uMes').value;
+  const seta=`<svg viewBox="0 0 24 24" fill="none" stroke="#F6AD03" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 16V4"/><path d="m6 10 6-6 6 6"/><path d="M4 20h16"/></svg>`;
+  if(v.startsWith('id:')){const m=u.ex[+v.slice(3)];
+    $('#drop').innerHTML=`${seta}<span class="gr">Arraste os arquivos na pasta do Drive</span>
+      <span class="pq">Vídeos, fotos ou o .zip do mês vão na pasta <b>${esc(m.nome)}</b>. Ela abre em uma nova aba.</span>
+      <a class="btn-pri" href="https://drive.google.com/drive/folders/${m.id}" target="_blank" rel="noopener">Abrir pasta no Drive</a>`;
+  }else{const nome=nomeSugerido(u,v.slice(5));
+    $('#drop').innerHTML=`${seta}<span class="gr">Crie a pasta do mês e arraste os arquivos</span>
+      <span class="pq">Na pasta de <b>${esc(u.c.nome)}</b>, crie uma pasta com este nome (é ele que define o mês no painel):</span>
+      <span class="pasta"><code id="nomePasta">${esc(nome)}</code><button type="button" id="copiaNome">Copiar nome</button></span>
+      <a class="btn-pri" href="https://drive.google.com/drive/folders/${u.c.id}" target="_blank" rel="noopener">Abrir pasta do cliente no Drive</a>`;
+    $('#copiaNome').onclick=()=>(navigator.clipboard?navigator.clipboard.writeText(nome):Promise.reject()).then(()=>toast('Nome copiado')).catch(()=>prompt('Copie o nome:',nome));
+  }
+}
+
+// ---------- 03 · métricas ----------
+function renderMetricas(){
+  const M=D.metricas;
+  $('#mNota').textContent=`Somando os ${M.paineis} painéis · até ${hoje.toLocaleDateString('pt-BR',{day:'2-digit',month:'2-digit'})}`;
+  $('#kpis').innerHTML=[['Conteúdos',M.total,'var(--gold)'],['Painéis ativos',M.paineis],['Vídeos',M.videos],['Fotos',M.fotos]]
+    .map(([l,v,c])=>`<div class="kpi"><div class="bl">${l}</div><b style="color:${c||'var(--ink)'}">${v.toLocaleString('pt-BR')}</b></div>`).join('');
+  const mix=[['Fotos',M.fotos,'#F8F4F2'],['Vídeos',M.videos,'#F6AD03'],['Carrosséis',M.carrosseis,'#8f8784']].filter(x=>x[1]);
+  const pc=n=>(n/M.total*100);
+  $('#mix').innerHTML=mix.map(([,n,c])=>`<div style="width:${pc(n)}%;min-width:4px;background:${c}"></div>`).join('');
+  $('#mixLeg').innerHTML=mix.map(([l,n,c])=>`<span><i style="background:${c}"></i>${l} ${pc(n).toLocaleString('pt-BR',{maximumFractionDigits:1})}%</span>`).join('');
+  const mx=Math.max(...M.meses.map(m=>m.n),1);
+  $('#barsv').innerHTML=M.meses.map(m=>`<div class="${m.ym===YM?'cur':''}" title="${MESES[+m.ym.slice(5)-1]} ${m.ym.slice(0,4)}: ${m.n} conteúdos"><span>${m.n}</span><i style="height:${Math.max(2,Math.round(m.n/mx*130))}px"></i></div>`).join('');
+  $('#labs').innerHTML=M.meses.map(m=>`<span>${MC[+m.ym.slice(5)-1][0]}</span>`).join('');
+  $('#mesNota').textContent=`Pelo mês da pasta de entrega no Drive.${M.meses.at(-1).ym===YM?' '+MESES[hoje.getMonth()]+' parcial.':''}`;
+  const top=Math.max(...M.clientes.map(c=>c.n),1);
+  const url=Object.fromEntries(P.map(p=>[p.nome,p.url]));
+  $('#barsh').innerHTML=M.clientes.map(c=>`<a href="${url[c.nome]||'#'}" target="_blank" rel="noopener"><span>${esc(c.nome)}</span><span class="tr"><i style="width:${Math.max(1.5,c.n/top*100)}%;background:${c.tipo==='recorrente'?'#F6AD03':'#c9c3bf'}"></i></span><span>${c.n.toLocaleString('pt-BR')}</span></a>`).join('');
+}
+
+// ---------- 04 · calendário ----------
+let calYM=YM,UP=[];
+function calendario(){
+  const [a,m]=calYM.split('-').map(Number);
+  $('#calTit').textContent=`Uploads de ${MESES[m-1].toLowerCase()}${a!==hoje.getFullYear()?' de '+a:''}`;
+  const ini=new Date(a,m-1,1).getDay(),nd=new Date(a,m,0).getDate(),tHoje=iso(hoje);
+  const doDia={};UP.filter(u=>u.d.startsWith(calYM)).forEach(u=>(doDia[+u.d.slice(8)]=doDia[+u.d.slice(8)]||[]).push(u));
+  let h='';
+  for(let i=0;i<ini;i++)h+='<div class="dia vz"></div>';
+  for(let d=1;d<=nd;d++){const k=`${calYM}-${String(d).padStart(2,'0')}`,ev=doDia[d]||[];
+    const pn={};ev.forEach(u=>{pn[u.p]=pn[u.p]||{url:u.url,n:0};pn[u.p].n+=u.video+u.foto+u.carrossel});
+    h+=`<div class="dia${k===tHoje?' hoje':''}"><span class="n">${d}</span>${ev.length?`<span class="ev">${Object.entries(pn).map(([p,x])=>`<a href="${x.url}" target="_blank" rel="noopener" title="${esc(p)}: ${x.n} arquivos">● ${k===tHoje?'Hoje · ':''}${esc(p)} · ${x.n}</a>`).join('')}</span>`:''}</div>`}
+  $('#dias').innerHTML=h;
+  const meses=[...new Set(UP.map(u=>u.d.slice(0,7)))].concat(YM).sort();
+  $('#calAnt').disabled=calYM<=meses[0];$('#calProx').disabled=calYM>=YM;
+}
+function agenda(){
+  const dias={};UP.forEach(u=>{const k=u.d+'|'+u.p;const x=dias[k]=dias[k]||{d:u.d,p:u.p,url:u.url,v:0,f:0,c:0};x.v+=u.video;x.f+=u.foto;x.c+=u.carrossel});
+  const l=Object.values(dias).sort((a,b)=>b.d.localeCompare(a.d)).slice(0,6);
+  $('#ag').innerHTML=l.length?l.map(x=>{const[a,m,d]=x.d.split('-');
+    return `<a class="ag-i" href="${x.url}" target="_blank" rel="noopener"><div class="d">${d}<small>${MC[+m-1]}${+a!==hoje.getFullYear()?'.'+a.slice(2):''}</small></div><div><div class="c">${esc(x.p)}</div><div class="o">${[[x.v,'vídeo','vídeos'],[x.f,'foto','fotos'],[x.c,'carrossel','carrosséis']].filter(([n])=>n).map(([n,s,p])=>pl(n,s,p)).join(' · ')}</div></div></a>`}).join('')
+    :'<p class="nota" style="padding:16px 0">Nenhum upload registrado ainda.</p>';
+}
+$('#calAnt').onclick=()=>{const[a,m]=calYM.split('-').map(Number);const d=new Date(a,m-2,1);calYM=`${d.getFullYear()}-${String(d.getMonth()+1).padStart(2,'0')}`;calendario()};
+$('#calProx').onclick=()=>{const[a,m]=calYM.split('-').map(Number);const d=new Date(a,m,1);calYM=`${d.getFullYear()}-${String(d.getMonth()+1).padStart(2,'0')}`;calendario()};
+
+// ---------- atualizar sistema (GitHub Actions) ----------
+const API=()=>`https://api.github.com/repos/${D.gh.repo}/actions/workflows/${D.gh.workflow}/runs?per_page=1`;
+function haQuanto(t){const m=Math.round((Date.now()-new Date(t))/60000);if(m<1)return 'agora';if(m<60)return `há ${m} min`;const h=Math.round(m/60);return h<24?`há ${h} h`:`há ${Math.round(h/24)} d`}
+let rodando=false;
+async function status(){
+  try{const r=await fetch(API(),{headers:{Accept:'application/vnd.github+json'},cache:'no-store'});if(!r.ok)throw 0;
+    const run=(await r.json()).workflow_runs[0];if(!run)return null;
+    const em=run.status!=='completed';
+    $('#sync').textContent=em?'Atualizando o sistema…':`Sincronizado ${haQuanto(run.updated_at)}`;
+    $('#sync').classList.toggle('rodando',em);
+    return run;
+  }catch(e){return null}
+}
+async function refresh(){
+  if(rodando)return;
+  if(!D.gh.token){window.open(`https://github.com/${D.gh.repo}/actions/workflows/${D.gh.workflow}`,'_blank','noopener');
+    toast('No GitHub, clique em "Run workflow"');return}
+  const b=$('#refresh');rodando=true;b.disabled=true;b.classList.add('girando');b.querySelector('span').textContent='Atualizando…';
+  const ini=Date.now();
+  try{
+    const r=await fetch(`https://api.github.com/repos/${D.gh.repo}/actions/workflows/${D.gh.workflow}/dispatches`,{method:'POST',
+      headers:{Accept:'application/vnd.github+json',Authorization:`Bearer ${D.gh.token}`},body:JSON.stringify({ref:'main'})});
+    if(r.status!==204)throw new Error(r.status);
+    toast('Lendo o Drive. Leva uns 2 a 3 minutos.');
+    let fim=null;
+    for(let i=0;i<60&&!fim;i++){await new Promise(s=>setTimeout(s,8000));const run=await status();
+      if(run&&new Date(run.created_at)>=ini-60000&&run.status==='completed')fim=run}
+    if(fim&&fim.conclusion==='success'){$('#sync').textContent='Publicando a nova versão…';toast('Pronto. A página recarrega em 1 minuto.');setTimeout(()=>location.reload(),60000)}
+    else toast('Não terminou como esperado. Veja o GitHub Actions.');
+  }catch(e){toast('Não consegui acionar o robô. Abrindo o GitHub.');window.open(`https://github.com/${D.gh.repo}/actions/workflows/${D.gh.workflow}`,'_blank','noopener')}
+  finally{rodando=false;b.disabled=false;b.classList.remove('girando');b.querySelector('span').textContent='Atualizar sistema'}
+}
+$('#refresh').onclick=refresh;
+
+// ---------- navegação ----------
+const links=[...document.querySelectorAll('nav.secoes a')];
+const obs=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting)links.forEach(a=>a.classList.toggle('on',a.getAttribute('href')==='#'+e.target.id))}),{rootMargin:'-45% 0px -50% 0px'});
+document.querySelectorAll('section.sec').forEach(s=>obs.observe(s));
+
+function iniciar(){
+  P=D.paineis;UP=D.metricas.uploads||[];
+  renderPaineis();iniciarUpload();renderMetricas();calendario();agenda();
+  status();setInterval(()=>{if(!rodando)status()},120000);
+}
+
 // ---------- senha: os dados só existem decifrados com ela ----------
 const b64=s=>Uint8Array.from(atob(s),c=>c.charCodeAt(0));
 async function abrir(senha){
@@ -181,7 +494,8 @@ async function abrir(senha){
 const guardar={get(){try{return localStorage.getItem('aresta-hub')}catch(e){return null}},
   set(v){try{v?localStorage.setItem('aresta-hub',v):localStorage.removeItem('aresta-hub')}catch(e){}}};
 async function entrar(senha,lembrar){
-  P=await abrir(senha);
+  D=await abrir(senha);
+  if(Array.isArray(D))D={paineis:D,metricas:{total:0,videos:0,fotos:0,carrosseis:0,paineis:D.length,meses:[],clientes:[],uploads:[]},gh:{repo:'arestaagencia-cloud/entregas',workflow:'atualizar-paineis.yml'}};
   if(lembrar)guardar.set(senha);
   $('#gate').hidden=true;$('#sair').hidden=false;iniciar();
 }

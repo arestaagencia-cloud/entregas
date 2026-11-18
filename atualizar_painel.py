@@ -179,6 +179,19 @@ def formatos(itens, antigos):
         print(f"  formatos medidos: {sum(1 for x in falta if x.get('fmt'))}/{len(falta)} novos")
 
 
+def datas_upload(itens, antigos):
+    """Grava it["up"] (AAAA-MM-DD): dia em que o arquivo apareceu no Drive. Reaproveita o já gravado;
+    arquivo novo ganha a data de hoje (o robô roda de hora em hora, então é o dia do upload)."""
+    ja = {a["id"]: a["up"] for a in antigos if a.get("up")}
+    ids_antigos = {a["id"] for a in antigos}
+    hoje = time.strftime("%Y-%m-%d")
+    for it in itens:
+        if it["id"] in ja:
+            it["up"] = ja[it["id"]]
+        elif antigos and it["id"] not in ids_antigos:  # painel novo (sem antigos) não marca tudo como "hoje"
+            it["up"] = hoje
+
+
 def coletar(pasta, cliente, mes, destino, prof=0, servico=None):
     for x in listar(pasta):
         if x["pasta"] and eh_carrossel(x["nome"]):  # pasta "Carrossel ..." vira um item só, slides na ordem do nome
@@ -212,12 +225,14 @@ def main(caminho, forcar=False):
     raiz = cfg["drive_raiz"]
     print(f"Lendo Drive ({'API oficial' if KEY else 'listagem pública'}) — pasta {raiz}")
     itens, clientes = [], []
+    pastas = {"clientes": [], "meses": []}  # para o hub: abrir a pasta certa do Drive na hora do upload
     entradas = listar(raiz)
     pastas_cli = [x for x in entradas if x["pasta"]]
     if cfg.get("cliente_unico"):  # cliente sem subpastas de marca: raiz já tem os meses
         pastas_cli = [{"id": raiz, "nome": cfg["cliente_unico"], "pasta": True}]
     for c in pastas_cli:
         cliente = nome_cliente(c["nome"])
+        pastas["clientes"].append({"nome": cliente, "id": c["id"]})
         n0 = len(itens)
         meses = []
         for m in listar(c["id"]):
@@ -235,6 +250,7 @@ def main(caminho, forcar=False):
             if not mes:
                 avisos.append(f"Pasta fora do padrão ignorada: {cliente} / {m['nome']}")
                 continue
+            pastas["meses"].append({"cliente": cliente, "mes": mes, "id": m["id"], "nome": nfc(m["nome"])})
             coletar(m["id"], cliente, mes, itens, servico=nome_cliente(m["nome"]))  # nome da pasta = página do Notion
         if len(itens) > n0:
             clientes.append(cliente)
@@ -247,6 +263,7 @@ def main(caminho, forcar=False):
     itens.sort(key=chave)
     antigos = sorted(cfg.get("itens", []), key=chave)
     formatos(itens, antigos)
+    datas_upload(itens, antigos)
     zip_novo = None
     if len(ZIPS) == 1:  # só faz sentido com uma entrega; vários zips = ignora
         zip_novo = dict(ZIPS[0])
@@ -254,7 +271,7 @@ def main(caminho, forcar=False):
             zip_novo["bytes"] = cfg["zip"]["bytes"]
     elif len(ZIPS) > 1:
         avisos.append(f"{len(ZIPS)} arquivos .zip encontrados; botão Baixar tudo só aparece com um")
-    mudou = forcar or ordem != cfg.get("clientes") or itens != antigos or zip_novo != cfg.get("zip")
+    mudou = forcar or pastas != cfg.get("pastas") or ordem != cfg.get("clientes") or itens != antigos or zip_novo != cfg.get("zip")
     for a in avisos:
         print("AVISO:", a)
     if not mudou:
@@ -262,7 +279,7 @@ def main(caminho, forcar=False):
         return
     novos = len({i["id"] for i in itens} - {i["id"] for i in antigos})
     removidos = len({i["id"] for i in antigos} - {i["id"] for i in itens})
-    cfg["clientes"], cfg["itens"] = ordem, itens
+    cfg["clientes"], cfg["itens"], cfg["pastas"] = ordem, itens, pastas
     if zip_novo:
         cfg["zip"] = zip_novo
     else:
