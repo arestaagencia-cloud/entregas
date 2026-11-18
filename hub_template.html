@@ -79,21 +79,15 @@
   .cv img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:.92;transition:transform .4s}
   .card:hover .cv img{transform:scale(1.03)}
   .cv::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(0,0,0,0) 35%,rgba(0,0,0,.72))}
-  .cv .sig{position:absolute;left:14px;bottom:10px;z-index:2;font-family:var(--serif);font-size:40px;line-height:1;color:#F8F4F2}
-  .cv.sem .sig{color:#5a4520}
-  .card.free .cv.sem .sig{color:#3d3d3d}
-  .cv .tag{position:absolute;right:14px;bottom:14px;z-index:2;font-size:10px;letter-spacing:.14em;text-transform:uppercase;color:var(--gold);border:1px solid rgba(246,173,3,.45);background:rgba(0,0,0,.45);border-radius:999px;padding:4px 8px}
-  .card.free .cv .tag{color:#c9c3bf;border-color:#555}
+  .cv .mos{position:absolute;inset:0;display:grid;grid-template-columns:repeat(4,1fr);grid-template-rows:repeat(2,1fr);gap:3px;transition:transform .4s}
+  .card:hover .cv .mos{transform:scale(1.03)}
+  .cv .mos i{background:#1f180b center/cover no-repeat}
   .cb{padding:16px 16px 18px;display:flex;flex-direction:column;gap:6px;flex:1}
   .cb .nm{font-size:16px;font-weight:600}
   .cb .rs{font-size:13px;color:#a0968f}
-  .chips{display:flex;gap:6px;overflow-x:auto;scrollbar-width:none;margin-top:6px;padding-bottom:2px}
-  .chips::-webkit-scrollbar{display:none}
-  .chips a{white-space:nowrap;font-size:12px;border:1px solid #2e2e2e;border-radius:999px;padding:3px 9px;color:var(--ink-2)}
-  .chips a:hover{border-color:#555;color:#fff}
-  .chips a small{margin-left:5px;opacity:.5}
-  .cf{margin-top:auto;padding-top:10px;display:flex;justify-content:space-between;align-items:center;gap:8px;font-size:13px}
-  .cf .um{color:#a0968f}
+  .cf{margin-top:auto;padding-top:10px;display:flex;flex-wrap:wrap;row-gap:6px;justify-content:space-between;align-items:center;gap:8px;font-size:13px}
+  .cf .um{color:#a0968f;white-space:nowrap}
+  .cf .ab,.cf .ab a,.cf .cp{white-space:nowrap}
   .cf .ab{display:flex;align-items:center;gap:12px}
   .cf .ab a{color:var(--gold);font-weight:600}
   .card.free .cf .ab a{color:var(--ink)}
@@ -327,13 +321,12 @@ function renderPaineis(){
 }
 function card(p){
   const fr=p.tipo==='freelancer';
-  const chips=(p.grupos||[]).map(g=>g.itens.map(m=>`<a href="${p.url}${m.link}" target="_blank" rel="noopener" title="${esc(g.rotulo)}: ${m.total} conteúdos">${esc(m.nome)}<small>${m.total}</small></a>`).join('')).join('');
+  const mos=!fr&&!p.capa&&(p.capas||[]).length;  // recorrentes: o mesmo mosaico da capa do painel
+  const capa=mos?`<span class="mos">${p.capas.slice(0,8).map(id=>`<i style="background-image:url('${img(id)}')"></i>`).join('')}</span>`
+    :(p.img?`<img src="${img(p.img)}" alt="" loading="lazy" onerror="this.remove()">`:'');
   return `<article class="card${fr?' free':''}">
-    <a class="cv${p.img?'':' sem'}" href="${p.url}" target="_blank" rel="noopener" aria-label="Abrir painel ${esc(p.nome)}">
-      ${p.img?`<img src="${img(p.img)}" alt="" loading="lazy" onerror="this.remove();this.parentNode&&this.parentNode.classList.add('sem')">`:''}
-      <span class="sig">${esc(p.sigla)}</span><span class="tag">${fr?'Freelancer':'Recorrente'}</span></a>
+    <a class="cv" href="${p.url}" target="_blank" rel="noopener" aria-label="Abrir painel ${esc(p.nome)}">${capa}</a>
     <div class="cb"><div class="nm">${esc(p.nome)}</div><div class="rs">${resumoTxt(p)}</div>
-      ${chips?`<div class="chips">${chips}</div>`:''}
       <div class="cf"><span class="um">Último mês: ${curto(p.ultimo)}</span>
         <span class="ab"><button type="button" class="cp" data-copiar="${p.url}" title="Copiar link do painel">Copiar link</button><a href="${p.url}" target="_blank" rel="noopener">Abrir →</a></span></div>
     </div></article>`;

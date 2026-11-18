@@ -133,7 +133,7 @@ Dashboards no ar: `universa` (9 marcas, raiz = pasta Universa) `niso` (Niso Enge
 Protegido por senha da equipe: os dados vão criptografados (AES-GCM/PBKDF2) e só abrem com a senha, que fica
 no segredo `HUB_SENHA` do repositório. O robô regera o painel quando algum dashboard muda; sem o segredo, ele
 não regera (mantém a versão publicada). Para regerar à mão: `HUB_SENHA=... python3 gerar_hub.py`.
-Novo dashboard aparece sozinho no painel interno. `hub_grupos` (opcional, no `paineis/<cliente>.json`) limita os filtros do card no painel interno, ex.: `["Empreendimento"]` (Equipe Prime), `["Tópico"]` (Faber). Nunca publique o painel interno sem senha.
+Novo dashboard aparece sozinho no painel interno. Nunca publique o painel interno sem senha.
 
 Layout: `painel_template.html` + `gerar_painel.py`. Endereço antigo `/painel-universa-k7q2/` redireciona para `/universa/`.
 
@@ -208,7 +208,7 @@ Com `categorias.regioes` ({"Sudoeste":[...], ...}) o filtro vira dois níveis: l
 Mesmo mecanismo (`categorias` com rotulo "Tópico" e `corretores` com rotulo "Quem grava"). Faber tem também `categorias.palavras`: {tópico: [palavras-chave]} em ordem de prioridade, usado quando o 1º trecho do nome não é um tópico (ex.: "Ranger dos dentes" → Bruxismo). Sem nada → Gerais.
 
 ## HUB (painel interno) · layout "Sala de Projeção" (18/11/2026)
-Quatro áreas, com menu fixo: **Painéis** (cards Recorrentes x Freelancers, capa horizontal, sigla, filtros do `hub_grupos`, "Último mês", Abrir em nova aba), **Upload**, **Métricas** e **Calendário**. Tudo vem do JSON cifrado gerado por `gerar_hub.py` (`{"paineis", "metricas", "gh", "gerado"}`).
+Quatro áreas, com menu fixo: **Painéis** (cards Recorrentes x Freelancers, sem sigla, sem selo e sem prévia de filtros; recorrentes usam o mosaico da capa do painel, freelancers a foto horizontal da capa; "Último mês", Abrir em nova aba), **Upload**, **Métricas** e **Calendário**. Tudo vem do JSON cifrado gerado por `gerar_hub.py` (`{"paineis", "metricas", "gh", "gerado"}`).
 - **Upload:** não envia arquivos pela página (precisaria de login Google/OAuth). Escolhe cliente e mês e abre a pasta certa do Drive em nova aba; mês novo mostra o nome sugerido da pasta ("NN. Cliente - Mês.AA", numeração igual às pastas que já existem) com botão de copiar. O robô grava `pastas` ({clientes:[{nome,id}], meses:[{cliente,mes,id,nome}]}) em cada `paineis/*.json`.
 - **Métricas:** totais, mix de formatos, conteúdos por mês da pasta de entrega (últimos 12) e por cliente.
 - **Calendário:** dias de upload. Cada item tem `up` (AAAA-MM-DD): o robô grava a data do dia em que o arquivo apareceu no Drive (arquivos novos); itens criados desde 01/08/2026 foram preenchidos com o `createdTime` do Drive. Antes disso não há data. Em 17/11 aparece o pico da reorganização de Faber e Equipe Prime (arquivos reenviados).
