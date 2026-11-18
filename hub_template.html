@@ -129,8 +129,8 @@
   .hero h1{font-weight:700;font-size:clamp(34px,5.6vw,80px);line-height:.9;letter-spacing:.02em;text-transform:uppercase;margin-top:14px}
   .hero h2{font-family:var(--serif);font-style:italic;font-weight:400;color:var(--gold);font-size:clamp(28px,4vw,48px);margin-top:10px}
   .hero p{margin-top:18px;color:var(--ink-2);font-size:clamp(15px,1.5vw,18px)}
-  .hero{min-height:min(56vh,560px)}
-  .hero-in{padding-top:clamp(120px,20vh,200px);padding-bottom:clamp(32px,5vh,52px)}
+  .hero{min-height:min(80vh,800px)}
+  .hero-in{padding-top:clamp(180px,34vh,360px);padding-bottom:clamp(36px,6vh,64px)}
   .hero.parado .mcol,.hero:hover .mcol{animation-play-state:paused}
   .hstats{display:flex;justify-content:center;gap:clamp(24px,5vw,56px);margin-top:clamp(20px,3.5vh,32px)}
   .hs{display:flex;flex-direction:column;align-items:center;gap:4px}
@@ -629,9 +629,11 @@ function addArquivos(lista){
   [...lista].forEach(f=>{
     if(FILA.some(x=>x.f.name===f.name&&x.f.size===f.size&&x.st!=='feito'))return;
     const video=VID.test(f.name),foto=IMG.test(f.name),ext=(f.name.match(/\.[^.]+$/)||[''])[0];
-    let t=f.name.replace(/\.[^.]+$/,'').replace(/^[FPQ](\.\s*|\s+-\s*)/,'').replace(/[\s.\-]*[Vv]\.?\s?\d+\s*$/,'').trim();
+    const base=f.name.replace(/\.[^.]+$/,'').trim(),mv=[...base.matchAll(new RegExp(RXV.source,'gi'))].pop();
+    const vOrig=mv?parseInt(mv[0].replace(/^\D+/,''))||1:1;  // "… - V.3" no arquivo original continua V.3
+    let t=(mv?base.slice(0,mv.index)+base.slice(mv.index+mv[0].length):base).replace(/^[FPQ](\.\s*|\s+-\s*)/,'').trim();
     if(foto&&/^(IMG|DSC|DSCF|FX|_MG|P\d|DJI|GOPR|MVI|C\d{4})[_\-]?\d+/i.test(t))t='';  // nome de câmera não vira título
-    FILA.push({f,video,foto,ext,outro:!video&&!foto,t,cat:'',pes:'',v:1,st:'',p:0,url:video||foto?'':null});
+    FILA.push({f,video,foto,ext,outro:!video&&!foto,t,cat:'',pes:'',v:vOrig,vManual:!!mv,st:'',p:0,url:video||foto?'':null});
   });
   renderFila();
 }
@@ -639,7 +641,8 @@ function nomeFinal(x,u,idx){
   if(x.so)return x.f.name;  // .zip, outros e pasta Indefinido: nome original
   const N=u.p.nomes||{};const t=(x.t||'').trim().replace(/[\\/:*?"<>|]/g,'');if(!t)return '';
   const pre=N.cat?(x.cat||''):u.c.nome;if(N.cat&&!pre)return '';
-  let n=`F. ${pre} - ${t}`;
+  const p1=w=>nrm(w).split(/[^a-z0-9]+/).filter(Boolean)[0];
+  let n=!N.cat&&p1(t)===p1(u.c.nome)?`F. ${t}`:`F. ${pre} - ${t}`;  // título já começa pelo cliente ("Sarau Junho…", "Niso - …"): não repete
   if(x.foto&&idx)n+=` ${idx}`;
   if(N.pes&&x.pes)n+=` - ${x.pes}`;
   if(x.video)n+=` - V.${Math.max(1,+x.v||1)}`;
@@ -662,8 +665,13 @@ function semVersao(n,cli){n=String(n||'').normalize('NFC').replace(/\.[a-z0-9]{2
 const NOPASTA={};  // id da pasta -> [{id,name}]
 async function arquivosDaPasta(id,forcar){
   if(!id||!logado())return null;if(NOPASTA[id]&&!forcar)return NOPASTA[id];
-  try{NOPASTA[id]=await listar(`'${id}' in parents and trashed=false and mimeType != 'application/vnd.google-apps.folder'`)}catch(e){return null}
+  try{NOPASTA[id]=await listarFundo(id)}catch(e){return null}
   return NOPASTA[id];
+}
+async function listarFundo(id,nivel=0){  // arquivos da pasta e das subpastas (até 3 níveis), com a pasta de cada um
+  const fs=await listar(`'${id}' in parents and trashed=false`,'files(id,name,mimeType,parents)');let out=[];
+  for(const f of fs){if(f.mimeType==='application/vnd.google-apps.folder'){if(nivel<3)out=out.concat(await listarFundo(f.id,nivel+1))}else out.push(f)}
+  return out;
 }
 function versoes(){  // marca em cada arquivo da lista as versões anteriores que ele substitui
   const a=alvo();const ex=a.indef?null:NOPASTA[a.id];
@@ -789,9 +797,9 @@ $('#enviar').onclick=async()=>{
   let pasta;
   try{
     pasta=await pastaDestino(a);
-    const lista=await listar(`'${pasta}' in parents and trashed=false`);NOPASTA[pasta]=lista.filter(f=>f.mimeType!=='application/vnd.google-apps.folder');
+    const lista=await listar(`'${pasta}' in parents and trashed=false`);NOPASTA[pasta]=await listarFundo(pasta);
     if(!a.indef){a.id=pasta;versoes()}
-    const nomes=new Set(lista.map(f=>f.name.normalize('NFC')));
+    const nomes=new Set(lista.concat(NOPASTA[pasta]||[]).map(f=>f.name.normalize('NFC')));
     let conflito=false;FILA.forEach(x=>{if(x.st!=='feito'&&!x.so&&nomes.has(x.nome.normalize('NFC'))){x.existe=true;conflito=true}
       if(x.st!=='feito'&&x.so&&nomes.has(x.f.name.normalize('NFC'))){x.existe=true;conflito=true}});
     if(conflito){enviando=false;renderFila();toast('Alguns nomes já existem na pasta. Ajuste e envie de novo.');return}
@@ -802,7 +810,8 @@ $('#enviar').onclick=async()=>{
     x.st='env';x.p=0;x.erro='';renderFila();
     try{
       if(!logado())await pedirToken('');
-      await subir(x,pasta);x.st='feito';x.p=100;ok++;
+      const ondeVelha=!x.manter&&(x.subs||[]).length&&[...new Set(x.subs.map(f=>(f.parents||[])[0]))].length===1?x.subs[0].parents[0]:null;
+      await subir(x,ondeVelha||pasta);x.st='feito';x.p=100;ok++;
       const velhas=x.manter?[]:(x.subs||[]);let foram=0;
       for(const f of velhas){try{await api(`${DRV}/${f.id}?${qs({fields:'id'})}`,{method:'PATCH',headers:{'Content-Type':'application/json'},body:JSON.stringify({trashed:true})});foram++}catch(e){x.erroLix=(x.erroLix||0)+1}}
       if(foram){x.trocou=true;if(NOPASTA[pasta])NOPASTA[pasta]=NOPASTA[pasta].filter(f=>!velhas.some(v=>v.id===f.id))}
