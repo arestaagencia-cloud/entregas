@@ -167,7 +167,7 @@ def montar(cfg):
         presentes = {c for it in itens for c in it.get("cor", [])}
         dados.update({"corretores": [c for c in cfg["corretores"]["lista"] if c in presentes],
                       "rotulo_corretores": cfg["corretores"].get("rotulo", "Corretor")})
-    for k in ("destaque", "destaque_titulo", "zip", "layout", "hero"):  # layout "tipo" = vídeos | fotos lado a lado; hero = {"altura": 90, "compacto": true}  # vídeo(s) em destaque acima da grade
+    for k in ("destaque", "destaque_titulo", "zip", "layout", "hero", "edicoes", "capa_pos"):  # layout "tipo" = vídeos | fotos lado a lado; hero = {"altura": 90, "compacto": true}  # vídeo(s) em destaque acima da grade
         if cfg.get(k):
             dados[k] = cfg[k]
     if cfg.get("capa"):  # id de uma foto do Drive para usar como capa no lugar do mosaico
