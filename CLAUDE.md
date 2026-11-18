@@ -86,6 +86,8 @@ Sempre atualize `atualizado_em` (ISO, UTC).
 
 ## Regras de layout (já no template, não mexer sem pedido)
 
+- Favicon da ArestAgência (logo branca em quadrado escuro) em todas as páginas: arquivos `docs/favicon.ico`, `docs/favicon-32.png` e `docs/apple-touch-icon.png`, já referenciados no `<head>` de `template.html`, `painel_template.html` e `hub_template.html`. Página nova = usar esses templates (ou copiar as 3 tags `<link rel="icon">`).
+
 - Tema escuro, logo no topo, mosaico de fotos + capas de vídeo na capa.
 - Detecta sozinho: misto, só vídeos ou só fotos.
 - "Fale com a gente" abre o WhatsApp (61) 99128-3546 com a mensagem pronta.
