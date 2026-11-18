@@ -96,14 +96,16 @@
   .vazio{padding:40px 0;color:var(--muted);font-size:14px}
 
   /* upload */
-  .up-g{display:flex;flex-wrap:wrap;gap:32px}
-  .up-f{flex:999 1 560px;min-width:0;display:flex;flex-direction:column;gap:20px}
-  .campos{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:16px}
-  .campos label{display:flex;flex-direction:column;gap:8px;font-size:13px;color:var(--muted)}
-  .campos select{height:48px;background:#0f0f0f;border:1px solid var(--line);border-radius:10px;color:var(--ink);padding:0 14px;font-size:15px;appearance:auto}
-  .drop{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:14px;min-height:240px;border:1.5px dashed #4a4440;border-radius:16px;background:#0a0a0a;text-align:center;padding:32px}
+  .up-g{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.15fr);gap:40px;align-items:start}
+  .up-f{min-width:0;display:flex;flex-direction:column;gap:16px}
+  .sub{font-size:15px;font-weight:600;letter-spacing:.04em}
+  @media (max-width:1000px){.up-g{grid-template-columns:1fr}}
+  .campos{display:grid;grid-template-columns:1fr;gap:12px}
+  .campos label{min-width:0;display:flex;flex-direction:column;gap:8px;font-size:13px;color:var(--muted)}
+  .campos select{width:100%;min-width:0;text-overflow:ellipsis;height:48px;background:#0f0f0f;border:1px solid var(--line);border-radius:10px;color:var(--ink);padding:0 14px;font-size:15px;appearance:auto}
+  .drop{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:12px;min-height:180px;border:1.5px dashed #4a4440;border-radius:16px;background:#0a0a0a;text-align:center;padding:32px}
   .drop svg{width:40px;height:40px}
-  .drop .gr{font-family:var(--serif);font-size:30px;line-height:1.1}
+  .drop .gr{font-family:var(--serif);font-size:26px;line-height:1.1}
   .drop .pq{font-size:14px;color:var(--muted);max-width:520px}
   .pasta{display:flex;align-items:center;gap:10px;flex-wrap:wrap;justify-content:center}
   .pasta code{font-family:var(--mono);font-size:14px;background:#151515;border:1px solid #2c2c2c;border-radius:8px;padding:8px 12px;color:var(--ink)}
@@ -142,63 +144,39 @@
   .fila-f{display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap}
   .fila-f .ab2{display:flex;align-items:center;gap:18px}
   .btn-pri:disabled{opacity:.45;cursor:not-allowed}
-  .up-a{flex:1 1 320px;min-width:0;background:var(--card);border:1px solid var(--line);border-radius:16px;padding:24px}
-  .up-a h3{font-size:15px;font-weight:600;margin-bottom:18px}
-  .passos{list-style:none;display:flex;flex-direction:column;gap:16px;counter-reset:p}
-  .passos li{display:grid;grid-template-columns:28px 1fr;gap:12px;font-size:14px;color:var(--ink-2)}
-  .passos li::before{counter-increment:p;content:counter(p);width:28px;height:28px;border-radius:50%;border:1px solid #3a3a3a;display:flex;align-items:center;justify-content:center;font-family:var(--mono);font-size:12px;color:var(--gold)}
-  .passos b{color:var(--ink);font-weight:600}
 
   /* métricas */
-  .met{display:flex;flex-wrap:wrap;gap:20px}
-  .box{flex:1 1 340px;min-width:0;background:var(--card);border:1px solid var(--line);border-radius:14px;padding:20px;display:flex;flex-direction:column;gap:16px}
+  .prod{display:grid;grid-template-columns:minmax(0,2fr) minmax(0,1fr);gap:12px 24px;align-items:end;background:var(--card);border:1px solid var(--line);border-radius:14px;padding:18px 20px;margin-bottom:32px}
+  .prod-h{grid-column:1/-1;display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap}
+  .prod-mix{display:flex;flex-direction:column;gap:10px;padding-bottom:6px}
+  @media (max-width:900px){.prod{grid-template-columns:1fr}}
   .bl{font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--muted)}
-  .kpis{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}
+  .kpis{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:10px}
+  @media (max-width:600px){.kpis{grid-template-columns:repeat(2,minmax(0,1fr))}}
   .kpi{background:var(--card-2);border:1px solid var(--line);border-radius:10px;padding:14px}
-  .kpi b{display:block;margin-top:6px;font-family:var(--mono);font-size:26px;font-weight:500}
+  .kpi b{display:block;margin-top:6px;font-family:var(--mono);font-size:24px;font-weight:500}
   .mix{display:flex;height:8px;border-radius:999px;overflow:hidden;gap:2px}
   .leg{display:flex;gap:14px;flex-wrap:wrap;font-size:12px;color:var(--ink-2)}
   .leg i{display:inline-block;width:8px;height:8px;border-radius:2px;margin-right:6px}
-  .barsv{flex:1;min-height:170px;display:flex;align-items:flex-end;gap:6px;border-bottom:1px solid #2c2c2c;padding-bottom:2px}
-  .barsv div{flex:1;display:flex;flex-direction:column;align-items:center;justify-content:flex-end;height:100%;gap:4px}
-  .barsv span{font-family:var(--mono);font-size:10px;color:var(--muted)}
-  .barsv i{width:100%;border-radius:3px 3px 0 0;background:#3d3a37}
-  .barsv div.cur i{background:var(--gold)}
-  .labs{display:flex;gap:6px}
-  .labs span{flex:1;text-align:center;font-family:var(--mono);font-size:10px;color:var(--muted)}
-  .barsh{display:flex;flex-direction:column;gap:11px}
-  .barsh a{display:grid;grid-template-columns:120px minmax(0,1fr) 52px;align-items:center;gap:10px;font-size:13px}
-  .barsh a:hover span:first-child{color:var(--ink)}
-  .barsh span:first-child{color:var(--ink-2);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
-  .barsh .tr{height:8px;background:#1b1b1b;border-radius:999px;overflow:hidden}
-  .barsh .tr i{display:block;height:100%;border-radius:999px}
-  .barsh span:last-child{text-align:right;font-family:var(--mono);font-size:12px}
 
   /* calendário */
-  .cal-g{display:flex;flex-wrap:wrap;gap:32px}
-  .cal{flex:999 1 640px;min-width:0}
-  .dow,.dias{display:grid;grid-template-columns:repeat(7,minmax(0,1fr));gap:8px}
-  .dow{font-size:12px;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);margin-bottom:10px}
-  .dia{min-height:92px;border-radius:10px;padding:10px;display:flex;flex-direction:column;justify-content:space-between;gap:6px;background:var(--card);border:1px solid #1d1d1d}
+  .cal{min-width:0;background:var(--card);border:1px solid var(--line);border-radius:16px;padding:20px}
+  .cal-h{display:flex;justify-content:space-between;align-items:center;gap:12px;margin-bottom:16px}
+  .cal-h h3{font-size:15px;font-weight:600}
+  .dow,.dias{display:grid;grid-template-columns:repeat(7,minmax(0,1fr));gap:6px}
+  .dow{font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);margin-bottom:10px}
+  .dia{min-height:74px;border-radius:8px;padding:7px;display:flex;flex-direction:column;justify-content:space-between;gap:6px;background:#0d0d0d;border:1px solid #1d1d1d}
   .dia.vz{background:transparent;border-color:transparent}
   .dia.hoje{background:#1a1407;border-color:var(--gold)}
-  .dia .n{font-size:14px}
+  .dia .n{font-size:13px}
   .dia.hoje .n{color:var(--gold)}
   .dia .ev{display:flex;flex-direction:column;gap:2px}
-  .dia .ev a{font-size:11px;line-height:1.3;color:var(--gold);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+  .dia .ev a{font-size:10px;line-height:1.3;color:var(--gold);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
   .dia .ev a:hover{text-decoration:underline}
   .nav-m{display:flex;gap:8px}
-  .nav-m button{width:44px;height:44px;border-radius:999px;border:1px solid var(--line)}
+  .nav-m button{width:36px;height:36px;border-radius:999px;border:1px solid var(--line)}
   .nav-m button:hover{border-color:#4a4440}
   .nav-m button:disabled{opacity:.3;cursor:default}
-  .ag{flex:1 1 300px;min-width:0}
-  .ag h3{font-size:15px;font-weight:600;margin-bottom:16px}
-  .ag-l{border-top:1px solid var(--line)}
-  .ag-i{display:grid;grid-template-columns:56px minmax(0,1fr);gap:14px;padding:16px 0;border-bottom:1px solid var(--line)}
-  .ag-i .d{font-family:var(--serif);font-size:34px;line-height:1;color:var(--gold)}
-  .ag-i .d small{display:block;font-family:var(--sans);font-size:10px;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);margin-top:4px}
-  .ag-i .c{font-size:15px}
-  .ag-i .o{font-size:13px;color:var(--muted);margin-top:4px}
 
   footer{border-top:1px solid var(--line);padding:32px 0;text-align:center;font-size:13px;color:var(--muted)}
   .toast{position:fixed;left:50%;bottom:24px;transform:translateX(-50%) translateY(20px);background:#fff;color:#000;padding:10px 16px;border-radius:999px;font-size:14px;opacity:0;transition:all .25s;pointer-events:none;z-index:60}
@@ -226,15 +204,14 @@
     .dia{min-height:64px;padding:6px}
     .dia .ev a{font-size:0}
     .dia .ev a::before{content:"●";font-size:10px}
-    .barsh a{grid-template-columns:96px minmax(0,1fr) 46px}
-    .busca input{width:140px}
+      .busca input{width:140px}
   }
 </style>
 </head>
 <body>
 <div class="gate" id="gate"><form id="fGate">
   <div class="brand"><img src="data:image/png;base64,{{LOGO}}" alt=""><span>ARESTAGÊNCIA</span></div>
-  <h2>Área da equipe</h2><p id="gTxt">Entre com o Google da agência ou o seu, se ele tiver acesso ao HUB.</p>
+  <h2 style="margin-bottom:26px">Área da equipe</h2>
   <button type="button" class="g-btn" id="gGate" hidden><svg width="18" height="18" viewBox="0 0 48 48" aria-hidden="true"><path fill="#FFC107" d="M43.6 20.5H42V20H24v8h11.3C33.7 32.7 29.2 36 24 36c-6.6 0-12-5.4-12-12s5.4-12 12-12c3.1 0 5.8 1.2 7.9 3.1l5.7-5.7C34 6.1 29.3 4 24 4 12.9 4 4 12.9 4 24s8.9 20 20 20 20-8.9 20-20c0-1.3-.1-2.4-.4-3.5z"/><path fill="#FF3D00" d="m6.3 14.7 6.6 4.8C14.7 15.1 19 12 24 12c3.1 0 5.8 1.2 7.9 3.1l5.7-5.7C34 6.1 29.3 4 24 4 16.3 4 9.7 8.3 6.3 14.7z"/><path fill="#4CAF50" d="M24 44c5.2 0 9.9-2 13.4-5.2l-6.2-5.2C29.2 35.1 26.7 36 24 36c-5.2 0-9.6-3.3-11.3-8l-6.5 5C9.5 39.6 16.2 44 24 44z"/><path fill="#1976D2" d="M43.6 20.5H42V20H24v8h11.3c-.8 2.2-2.2 4.2-4.1 5.6l6.2 5.2C37 39.2 44 34 44 24c0-1.3-.1-2.4-.4-3.5z"/></svg>Entrar com Google</button>
   <div id="porSenha">
     <input type="password" id="senha" placeholder="Senha de emergência" autocomplete="current-password" aria-label="Senha">
@@ -261,7 +238,7 @@
   <div style="height:22px"></div>
 </header>
 <nav class="secoes" aria-label="Seções"><div class="wrap">
-  <a href="#paineis" class="on">Painéis</a><a href="#upload">Upload</a><a href="#metricas">Métricas</a><a href="#calendario">Calendário</a>
+  <a href="#paineis" class="on">Painéis</a><a href="#upload">Upload e calendário</a>
 </div></nav>
 
 <main>
@@ -271,13 +248,18 @@
       <label class="busca"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg>
         <span class="sr">Buscar cliente</span><input type="search" id="busca" placeholder="Buscar cliente ou marca"></label>
     </div>
+    <div class="prod">
+      <div class="prod-h"><span class="bl">Produção da casa</span><span class="nota" id="mNota"></span></div>
+      <div class="kpis" id="kpis"></div>
+      <div class="prod-mix"><div class="mix" id="mix"></div><div class="leg" id="mixLeg"></div></div>
+    </div>
     <div class="cols" id="cols"></div>
   </div></section>
 
   <section class="sec alt" id="upload"><div class="wrap sec-in">
-    <div class="kick">02 · Upload</div><h2 class="tit" style="margin-bottom:36px">Enviar nova entrega</h2>
+    <div class="kick">02 · Upload e calendário</div><h2 class="tit" style="margin-bottom:32px">Entregas</h2>
     <div class="up-g">
-      <div class="up-f">
+      <div class="up-f"><h3 class="sub">Enviar nova entrega</h3>
         <div class="campos">
           <label>Cliente<select id="uCli"></select></label>
           <label>Mês da entrega<select id="uMes"></select></label>
@@ -293,49 +275,13 @@
             <button type="button" class="btn-pri" id="enviar">Enviar</button></span></div>
         </div>
       </div>
-      <aside class="up-a">
-        <h3>Como enviar</h3>
-        <ol class="passos">
-          <li><span>Escolha o <b>cliente</b> e o <b>mês</b>. Se o mês ainda não tem pasta, o Hub cria no padrão <b>NN. Cliente - Mês.AA</b>.</span></li>
-          <li><span>Clique em <b>Entrar com Google</b> (conta da agência ou a sua, com acesso de edição às pastas).</span></li>
-          <li><span><b>Arraste os arquivos</b> e preencha o título. O nome final sai no padrão <b>F. Tópico - Título - Pessoa - V.1</b>, já pronto no Drive.</span></li>
-          <li><span>Clique em <b>Enviar</b>. Ao terminar, o Hub aciona o <b>Atualizar sistema</b> sozinho e em uns 3 minutos o painel e o Notion mostram os arquivos.</span></li>
-        </ol>
-        <p class="nota" style="margin-top:18px;font-size:12px">Carrosséis: envie as imagens pelo Drive, numa subpasta começando com <b>C.</b> ou <b>Carrossel</b>.</p>
-      </aside>
-    </div>
-  </div></section>
-
-  <section class="sec" id="metricas"><div class="wrap sec-in">
-    <div class="sec-h">
-      <div><div class="kick">03 · Métricas</div><h2 class="tit">Produção da casa</h2></div>
-      <span class="nota" id="mNota"></span>
-    </div>
-    <div class="met">
-      <div class="box">
-        <div class="kpis" id="kpis"></div>
-        <div><div class="bl" style="margin-bottom:8px">Mix de formatos</div><div class="mix" id="mix"></div><div class="leg" id="mixLeg" style="margin-top:8px"></div></div>
-      </div>
-      <div class="box"><div class="bl">Conteúdos por mês de entrega · últimos 12</div>
-        <div class="barsv" id="barsv"></div><div class="labs" id="labs"></div><div class="nota" id="mesNota" style="font-size:12px"></div></div>
-      <div class="box"><div class="bl">Conteúdos por cliente recorrente</div>
-        <div class="barsh" id="barsh"></div></div>
-    </div>
-  </div></section>
-
-  <section class="sec" id="calendario"><div class="wrap sec-in">
-    <div class="kick">04 · Calendário</div>
-    <div class="sec-h" style="margin-top:10px;margin-bottom:36px">
-      <h2 class="tit" style="margin:0" id="calTit">Uploads</h2>
-      <div class="nav-m"><button type="button" id="calAnt" aria-label="Mês anterior">←</button><button type="button" id="calProx" aria-label="Próximo mês">→</button></div>
-    </div>
-    <div class="cal-g">
       <div class="cal">
+        <div class="cal-h"><h3 id="calTit">Uploads</h3>
+          <div class="nav-m"><button type="button" id="calAnt" aria-label="Mês anterior">←</button><button type="button" id="calProx" aria-label="Próximo mês">→</button></div></div>
         <div class="dow"><span>Dom</span><span>Seg</span><span>Ter</span><span>Qua</span><span>Qui</span><span>Sex</span><span>Sáb</span></div>
         <div class="dias" id="dias"></div>
-        <p class="nota" id="calNota" style="margin-top:14px;font-size:12px"></p>
+        <p class="nota" id="calNota" style="margin-top:12px;font-size:12px"></p>
       </div>
-      <aside class="ag"><h3>Últimos uploads</h3><div class="ag-l" id="ag"></div></aside>
     </div>
   </div></section>
 </main>
@@ -650,13 +596,6 @@ function renderMetricas(){
   const pc=n=>(n/M.total*100);
   $('#mix').innerHTML=mix.map(([,n,c])=>`<div style="width:${pc(n)}%;min-width:4px;background:${c}"></div>`).join('');
   $('#mixLeg').innerHTML=mix.map(([l,n,c])=>`<span><i style="background:${c}"></i>${l} ${pc(n).toLocaleString('pt-BR',{maximumFractionDigits:1})}%</span>`).join('');
-  const mx=Math.max(...M.meses.map(m=>m.n),1);
-  $('#barsv').innerHTML=M.meses.map(m=>`<div class="${m.ym===YM?'cur':''}" title="${MESES[+m.ym.slice(5)-1]} ${m.ym.slice(0,4)}: ${m.n} conteúdos"><span>${m.n}</span><i style="height:${Math.max(2,Math.round(m.n/mx*130))}px"></i></div>`).join('');
-  $('#labs').innerHTML=M.meses.map(m=>`<span>${MC[+m.ym.slice(5)-1][0]}</span>`).join('');
-  $('#mesNota').textContent=`Pelo mês da pasta de entrega no Drive.${M.meses.at(-1).ym===YM?' '+MESES[hoje.getMonth()]+' parcial.':''}`;
-  const CR=M.clientes.filter(c=>c.tipo==='recorrente'), top=Math.max(...CR.map(c=>c.n),1);
-  const url=Object.fromEntries(P.map(p=>[p.nome,p.url]));
-  $('#barsh').innerHTML=CR.map(c=>`<a href="${url[c.nome]||'#'}" target="_blank" rel="noopener"><span>${esc(c.nome)}</span><span class="tr"><i style="width:${Math.max(1.5,c.n/top*100)}%;background:#F6AD03"></i></span><span>${c.n.toLocaleString('pt-BR')}</span></a>`).join('');
 }
 
 // ---------- 04 · calendário ----------
@@ -670,17 +609,10 @@ function calendario(){
   for(let i=0;i<ini;i++)h+='<div class="dia vz"></div>';
   for(let d=1;d<=nd;d++){const k=`${calYM}-${String(d).padStart(2,'0')}`,ev=doDia[d]||[];
     const pn={};ev.forEach(u=>{pn[u.p]=pn[u.p]||{url:u.url,n:0};pn[u.p].n+=u.video+u.foto+u.carrossel});
-    h+=`<div class="dia${k===tHoje?' hoje':''}"><span class="n">${d}</span>${ev.length?`<span class="ev">${Object.entries(pn).map(([p,x])=>`<a href="${x.url}" target="_blank" rel="noopener" title="${esc(p)}: ${x.n} arquivos">● ${k===tHoje?'Hoje · ':''}${esc(p)} · ${x.n}</a>`).join('')}</span>`:''}</div>`}
+    h+=`<div class="dia${k===tHoje?' hoje':''}"><span class="n">${d}</span>${ev.length?`<span class="ev">${Object.entries(pn).map(([p,x])=>`<a href="${x.url}" target="_blank" rel="noopener" title="${esc(p)}: ${x.n} arquivos">● ${esc(p)} · ${x.n}</a>`).join('')}</span>`:''}</div>`}
   $('#dias').innerHTML=h;
   const meses=[...new Set(UP.map(u=>u.d.slice(0,7)))].concat(YM).sort();
   $('#calAnt').disabled=calYM<=meses[0];$('#calProx').disabled=calYM>=YM;
-}
-function agenda(){
-  const dias={};UP.forEach(u=>{const k=u.d+'|'+u.p;const x=dias[k]=dias[k]||{d:u.d,p:u.p,url:u.url,v:0,f:0,c:0};x.v+=u.video;x.f+=u.foto;x.c+=u.carrossel});
-  const l=Object.values(dias).sort((a,b)=>b.d.localeCompare(a.d)).slice(0,6);
-  $('#ag').innerHTML=l.length?l.map(x=>{const[a,m,d]=x.d.split('-');
-    return `<a class="ag-i" href="${x.url}" target="_blank" rel="noopener"><div class="d">${d}<small>${MC[+m-1]}${+a!==hoje.getFullYear()?'.'+a.slice(2):''}</small></div><div><div class="c">${esc(x.p)}</div><div class="o">${[[x.v,'vídeo','vídeos'],[x.f,'foto','fotos'],[x.c,'carrossel','carrosséis']].filter(([n])=>n).map(([n,s,p])=>pl(n,s,p)).join(' · ')}</div></div></a>`}).join('')
-    :'<p class="nota" style="padding:16px 0">Nenhum upload registrado ainda.</p>';
 }
 $('#calAnt').onclick=()=>{const[a,m]=calYM.split('-').map(Number);const d=new Date(a,m-2,1);calYM=`${d.getFullYear()}-${String(d.getMonth()+1).padStart(2,'0')}`;calendario()};
 $('#calProx').onclick=()=>{const[a,m]=calYM.split('-').map(Number);const d=new Date(a,m,1);calYM=`${d.getFullYear()}-${String(d.getMonth()+1).padStart(2,'0')}`;calendario()};
@@ -726,7 +658,7 @@ document.querySelectorAll('section.sec').forEach(s=>obs.observe(s));
 
 function iniciar(){
   P=D.paineis;UP=D.metricas.uploads||[];
-  renderPaineis();iniciarUpload();renderMetricas();calendario();agenda();
+  renderPaineis();iniciarUpload();renderMetricas();calendario();
   status();setInterval(()=>{if(!rodando)status()},120000);
 }
 
@@ -772,7 +704,7 @@ if(PUB.google&&PUB.chave){
   $('#gGate').onclick=entrarGoogle;
   $('#mostraSenha').onclick=()=>{$('#porSenha').hidden=false;$('#mostraSenha').hidden=true;$('#senha').focus()};
   carregarGIS().catch(()=>{});  // já carrega o login para o clique abrir na hora
-}else{$('#gTxt').textContent='Digite a senha para abrir o HUB de entregas.';$('#senha').placeholder='Senha'}
+}else{$('#senha').placeholder='Senha'}
 $('#sair').onclick=()=>{guardar.set(null);G.tok=null;location.reload()};
 const salva=guardar.get();
 if(salva)entrar(salva,true).catch(()=>guardar.set(null));
