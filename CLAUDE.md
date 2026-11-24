@@ -290,7 +290,8 @@ Duas páginas, geradas por `python3 gerar_bailes.py`:
   baile no navegador, editáveis na lista). **Número pequeno no canto superior esquerdo do vídeo** ("Nº 07"; a edição usa
   os mesmos números, P. 07 / F. 07). Dois formatos: **TV deitada** (vídeo + painel com logos ARESTAGÊNCIA × parceiro em
   destaque, "Se viu aqui? Garanta o seu vídeo completo", oferta do código com o preço do baile e QR para
-  `<url_galeria>/?avise=1`) e **TV em pé** (só os vídeos em tela cheia, logos como marca d'água no topo). Na TV em pé
+  `<url_galeria>/?avise=1`) e **TV em pé** (só os vídeos em tela cheia, marca d'água na parte de baixo do vídeo:
+  logo completa da Aresta `docs/bailes/logo-aresta-completa.png` × logo do parceiro). Na TV em pé
   o Mac e a TV ficam sem nenhum ajuste: a página desenha o player girado 90° (`.giro`, unidades `cq*`) e a TV é
   colocada em pé no suporte; lado do giro escolhido na configuração (esquerda/direita) ou tecla R. Teclas: espaço pausa,
   ← → anterior/próximo, F tela cheia, R inverte o giro, S configuração.

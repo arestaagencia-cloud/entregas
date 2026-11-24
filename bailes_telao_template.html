@@ -106,11 +106,11 @@
   .telao.vertical.dir .giro{transform:translate(-50%,-50%) rotate(90deg)}
   .telao.vertical .palco video{object-fit:cover}
   .telao.vertical.horizontal .palco video{object-fit:contain}
-  .marca-agua{display:none;position:absolute;left:0;right:0;top:4cqh;z-index:2;justify-content:center;align-items:center;gap:1.6cqh;opacity:.78;pointer-events:none;filter:drop-shadow(0 .3cqh 1.2cqh rgba(0,0,0,.55))}
+  .marca-agua{display:none;position:absolute;left:0;right:0;bottom:4cqh;z-index:2;justify-content:center;align-items:center;gap:1.6cqh;opacity:.78;pointer-events:none;filter:drop-shadow(0 .3cqh 1.2cqh rgba(0,0,0,.55))}
   .telao.vertical .marca-agua{display:flex}
-  .marca-agua img.m{height:4.2cqh;width:auto}
+  .marca-agua img.ag{height:8cqh;width:auto}
   .marca-agua span{font-weight:700;letter-spacing:.16em;font-size:2cqh;color:#fff}
-  .marca-agua .x{font-weight:400;opacity:.6;letter-spacing:0}
+  .marca-agua .x{font-weight:400;opacity:.6;letter-spacing:0;font-size:2.4cqh;color:#fff}
   .marca-agua img.parc{height:8cqh;width:auto}
   .telao.vertical .num-video{top:2.4cqmin}
   .telao.vertical .barra-v{display:block}
@@ -345,7 +345,8 @@ function montarPainel() {
   const e = baile(), g = GALERIAS[e.slug] || {};
   const marcas = `<img class="m" src="/bailes/logo-mark.png" alt=""><span>ARESTAGÊNCIA</span>${g.logo ? `<span class="x">×</span><img class="parc" src="${esc(g.logo)}" alt="">` : ""}`;
   $("#tMarca").innerHTML = marcas;
-  $("#tMarcaAgua").innerHTML = marcas;
+  // marca d'água sobre o vídeo (TV em pé): logo completa da Aresta × parceiro, embaixo do vídeo
+  $("#tMarcaAgua").innerHTML = `<img class="ag" src="/bailes/logo-aresta-completa.png" alt="">${g.logo ? `<span class="x">×</span><img class="parc" src="${esc(g.logo)}" alt="">` : ""}`;
   $("#telao").classList.toggle("vertical", FORMATO === "vertical");
   $("#tBaile").textContent = e.nome;
   const c = Math.round(Number(String($("#cPreco").value).replace(/\./g, "").replace(",", ".")) * 100);
