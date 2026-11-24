@@ -1,7 +1,8 @@
 """Gera as páginas dos bailes.
 
 Uso: python3 gerar_bailes.py
-- docs/bailes/index.html          ← bailes_template.html  (Hub de Bailes, interno, login Google)
+- docs/bailes/index.html          ← bailes_publico_template.html (Hub PÚBLICO dos bailes: lista as galerias, campo de código)
+- docs/bailes/painel/index.html   ← bailes_template.html  (Hub de Bailes INTERNO: métricas e códigos, login Google)
 - docs/bailes/<pasta>/index.html   ← galeria_template.html (galeria pública de cada baile, uma por item de bailes.json)
 
 Nenhuma página leva dados: tudo vem ao vivo do Supabase (projeto arestagencia-bailes).
@@ -15,13 +16,23 @@ RAIZ = Path(__file__).parent
 DOCS = RAIZ / "docs" / "bailes"
 logo = (RAIZ / "assets/logo-mark.b64").read_text().strip()
 
+galerias = json.loads((RAIZ / "bailes.json").read_text())["galerias"]
+
 hub = (RAIZ / "bailes_template.html").read_text().replace("{{LOGO}}", logo)
-DOCS.mkdir(parents=True, exist_ok=True)
-(DOCS / "index.html").write_text(hub)
+(DOCS / "painel").mkdir(parents=True, exist_ok=True)
+(DOCS / "painel" / "index.html").write_text(hub)
+print(DOCS / "painel" / "index.html")
+
+mapa = {g["evento"]: {"pasta": g["pasta"],
+                      "logo": f'/bailes/{g["pasta"]}/{g["parceiro"]["logo"]}' if (g.get("parceiro") or {}).get("logo") else None}
+        for g in galerias}
+publico = (RAIZ / "bailes_publico_template.html").read_text().replace(
+    "{{GALERIAS}}", json.dumps(mapa, ensure_ascii=False).replace("</", "<\\/"))
+(DOCS / "index.html").write_text(publico)
 print(DOCS / "index.html")
 
 modelo = (RAIZ / "galeria_template.html").read_text()
-for g in json.loads((RAIZ / "bailes.json").read_text())["galerias"]:
+for g in galerias:
     p = g.get("parceiro") or {}
     parceiro = ""
     if p.get("logo"):

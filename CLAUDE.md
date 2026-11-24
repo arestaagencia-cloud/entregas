@@ -240,35 +240,43 @@ Drive: "Contrato N" (pasta-contêiner, o robô entra nela) > "NN. Tuiuti - Contr
 Equipe Prime: nome começando pela região ("Sudoeste - ...") vira "Sudoeste · Geral" (aparece dentro da região); "Geral" em qualquer trecho do nome = Gerais. Faber ganhou o tópico Periodontia.
 Freelancers (`tipo_cliente: freelancer`): capa do painel com uma imagem só (`capa`; sem ela, usa a miniatura do vídeo horizontal mais recente) e o card no painel interno mostra essa mesma imagem em vez do mosaico.
 
-## Hub de Bailes (`/bailes/`, desde 24/11/2026)
-Painel interno das coberturas de bailes (venda dos vídeos de cada casal em `https://videos.arestagencia.com.br`,
-repositório `arestaagencia-cloud/videos`). Aparece no HUB como card na coluna **Freelancers**, vindo de `hub.json` →
-`extras` (painéis especiais sem Drive: `nome`, `url`, `img`, `descricao`, `rotulo`; `gerar_hub.py` leva a lista para
-os dados cifrados e `cardExtra()` em `hub_template.html` desenha o card). Capa do card: `docs/bailes/capa.jpg`.
-- **Página:** `bailes_template.html` → `python3 gerar_bailes.py` → `docs/bailes/index.html` (só troca o `{{LOGO}}`;
-  não leva dados). Login Google igual ao HUB (mesmo client_id e escopo `drive`).
+## Hub de Bailes (desde 24/11/2026)
+Duas páginas, geradas por `python3 gerar_bailes.py`:
+- **Pública `/bailes/`** (`bailes_publico_template.html`): mosaico, bailes com galeria aberta (`eventos.aberto`) do mais
+  recente ao mais antigo, separados por ano; cada card abre a galeria do baile (`eventos.url_galeria`), com o logo do
+  parceiro (de `bailes.json`). Campo "Comprou um código no baile?" (e `?codigo=` do QR): confere o código e leva à
+  galeria do baile para o qual ele foi vendido. **Sem nenhuma métrica.**
+- **Interna `/bailes/painel/`** (`bailes_template.html`, login Google igual ao HUB): métricas e códigos. Aparece no HUB
+  como card na coluna **Freelancers**, vindo de `hub.json` → `extras` (url `/bailes/painel/`; `gerar_hub.py` leva a
+  lista para os dados cifrados e `cardExtra()` em `hub_template.html` desenha o card). Capa do card: `docs/bailes/capa.jpg`.
 - **Números ao vivo:** função `painel-bailes` do Supabase (projeto `arestagencia-bailes`, id `jlogxdjttufiiikiezfe`).
   A página manda o token Google no cabeçalho `x-google-token`; a função só responde se essa conta abre a
   "Chave do Hub" no Drive (mesmo controle de acesso do HUB). Devolve totais e, por baile: vídeos publicados,
-  vendas, vídeos vendidos, arrecadado (bruto), Pix x cartão, vendas por dia, checkouts abertos, downloads,
-  estornos, mais vendidos, últimas vendas e alerta de venda paga sem e-mail enviado.
+  vendas, vídeos vendidos, arrecadado (bruto), Pix x cartão x dinheiro, vendas por dia, checkouts, downloads,
+  estornos, mais vendidos, últimas vendas, códigos vendidos/a resgatar e alerta de venda paga sem e-mail enviado.
 - **Galerias públicas de cada baile:** `https://entregas.arestagencia.com.br/bailes/<pasta>/` (ex.: `/bailes/idalhesamba/`),
-  geradas por `gerar_bailes.py` a partir de `galeria_template.html` e da lista `bailes.json`
+  geradas a partir de `galeria_template.html` e da lista `bailes.json`
   (`pasta`, `evento` = slug no Supabase, `parceiro` opcional com `nome` e `logo`, arquivo em `docs/bailes/<pasta>/`;
   o logo aparece ao lado da marca, "ARESTAGÊNCIA × logo"; **sempre a versão toda branca do logo, PNG com fundo
   transparente, sem quadro nem fundo** (pedido da Aresta, 24/11/2026). Se o cliente só tiver o logo colorido, peça a versão branca). A galeria lê eventos/vídeos pela chave pública, abre a
   compra (função `criar-checkout`), mostra a confirmação (`?pedido=`) e o download (`?baixar=`). O Supabase guarda o
   endereço em `eventos.url_galeria`: é para lá que o Mercado Pago devolve o cliente e para onde aponta o link do e-mail.
   O endereço antigo `videos.arestagencia.com.br` (repo `arestaagencia-cloud/videos`) só redireciona para cá.
-- **Códigos de resgate (desde 24/11/2026):** venda no próprio baile, mais barata, trocada depois por UM vídeo.
-  Tabela `codigos` (8 caracteres sem 0/O/1/I/L, exibidos `XXXX-XXXX`; status disponivel → vendido → resgatado).
-  No Hub de Bailes, botão **Códigos** de cada baile: preço no baile (`eventos.preco_codigo_centavos`), gerar lote,
-  **imprimir cartões** (A4, 10 por folha, QR para `<url_galeria>/?codigo=XXXXXXXX`, lib `docs/bailes/qrcode.min.js`),
-  copiar lista, **marcar como vendido** (valor, Pix/Cartão/Dinheiro/Cortesia, nome e contato opcionais; gera a mensagem
-  pronta para WhatsApp) e desfazer venda. Função `codigos-admin` (mesmo acesso Google do Hub). **Código não marcado como
-  vendido não resgata.** Na galeria: `?codigo=` (QR) mostra o aviso e fica guardado no aparelho; na janela do vídeo,
-  "Tenho um código" troca a compra pelo resgate (função pública `resgatar-codigo`, até 8 erros por IP a cada 15 min,
-  resgate atômico na função SQL `resgatar_codigo`). O resgate cria um pedido `origem: codigo`, valor 0, pago, e manda o
-  e-mail de sempre. Métricas: vendas e arrecadado somam códigos vendidos (pelo valor da venda), sem contar o resgate de novo.
-- **Novo baile** = criar o evento no Supabase (tabela `eventos`, com `url_galeria`), acrescentar em `bailes.json`,
-  rodar `gerar_bailes.py` e cadastrar os vídeos; ele aparece sozinho no Hub de Bailes.
+- **Códigos de resgate (genéricos desde 24/11/2026):** vendidos no baile, mais baratos, trocados depois por UM vídeo.
+  **Valem para qualquer baile:** o código nasce sem baile (`codigos.evento_id` nulo) e o baile é escolhido NA VENDA;
+  valor e métricas somam para esse baile e o resgate só vale para vídeos dele. Cartão que sobra serve no próximo baile.
+  Tabela `codigos` (8 caracteres sem 0/O/1/I/L, exibidos `XXXX-XXXX`; status disponivel → vendido → resgatado;
+  "Desfazer" volta para o estoque e limpa o baile). Painel interno, seção **Códigos de resgate** → "Vender e gerenciar":
+  baile da venda (padrão: o mais recente aberto), código do cartão, valor (preço do baile em
+  `eventos.preco_codigo_centavos`), Pix/Cartão/Dinheiro/Cortesia, nome e contato opcionais, mensagem pronta para
+  WhatsApp (link direto da galeria do baile); preço por baile; gerar lote; **imprimir cartões** (A4, 10 por folha,
+  "VALE 1 VÍDEO", QR para `https://entregas.arestagencia.com.br/bailes/?codigo=XXXXXXXX`, lib `docs/bailes/qrcode.min.js`);
+  copiar lista; filtro por situação e por baile. Função `codigos-admin` (mesmo acesso Google). **Código não marcado como
+  vendido não resgata.** Galeria: `?codigo=` mostra o aviso (ou redireciona para a galeria do baile certo); na janela do
+  vídeo, "Tenho um código" troca a compra pelo resgate (função pública `resgatar-codigo`, até 8 erros por IP a cada
+  15 min, resgate atômico na função SQL `resgatar_codigo`). O resgate cria um pedido `origem: codigo`, valor 0, pago, e
+  manda o e-mail de sempre. Métricas: vendas e arrecadado somam códigos vendidos (pelo valor da venda), sem contar o resgate.
+  Primeiro lote: 25 códigos (24/11/2026), preço no I Dá-lhe Samba R$ 35.
+- **Novo baile** = criar o evento no Supabase (tabela `eventos`, com `url_galeria`, `aberto` e o preço do código),
+  acrescentar em `bailes.json`, rodar `gerar_bailes.py` e cadastrar os vídeos; ele aparece sozinho na página pública
+  (se `aberto`), no painel interno e na lista de bailes da venda de códigos.

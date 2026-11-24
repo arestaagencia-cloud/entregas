@@ -1,0 +1,391 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta name="robots" content="noindex">
+<link rel="icon" href="/favicon.ico" sizes="any"><link rel="icon" type="image/png" sizes="32x32" href="/favicon-32.png"><link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#040404">
+<meta name="color-scheme" content="dark">
+<title>Bailes | Vídeos ArestAgência</title>
+<meta name="description" content="Encontre e compre o vídeo da sua dança no baile. Produção ArestAgência.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@400;500;600;700&family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#040404; --ink:#F8F4F2; --ink-2:#d9d2ce; --muted:#8f8784;
+    --line:#232323; --card:#0f0f0f; --card-2:#161616; --accent:#882725; --accent-dark:#3c1e1e; --gold:#F6AD03;
+    --radius:14px;
+    --sans:"Inter Tight","Helvetica Neue",Helvetica,Arial,sans-serif;
+    --serif:"Instrument Serif",Georgia,serif;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  :root{color-scheme:dark}
+  :focus-visible{outline:2px solid var(--gold);outline-offset:2px;border-radius:6px}
+  html{scroll-behavior:smooth}
+  body{background:var(--bg);color:var(--ink);font-family:var(--sans);-webkit-font-smoothing:antialiased;line-height:1.45}
+  a{color:inherit;text-decoration:none}
+  button,input{font:inherit;color:inherit}
+  button{cursor:pointer;border:0;background:none}
+  img{display:block;max-width:100%}
+  [hidden]{display:none!important}
+
+  /* topo e abertura (mesmo padrão dos painéis) */
+  .top{position:absolute;inset:0 0 auto 0;z-index:5;display:flex;align-items:center;justify-content:center;padding:28px clamp(20px,5vw,64px)}
+  .brand{display:flex;align-items:center;gap:12px;color:#fff}
+  .brand-mark{width:40px;height:40px;object-fit:contain}
+  .brand-name{font-weight:700;letter-spacing:.14em;font-size:15px}
+  /* parceria: logo do cliente ao lado da marca */
+  .brand .x{font-size:18px;opacity:.55;margin:0 2px;font-weight:400}
+  /* logo do parceiro sempre na versão toda branca (PNG transparente), sem fundo */
+  .brand .parceiro{height:60px;width:auto;object-fit:contain}
+  @media (max-width:420px){.brand .parceiro{height:50px}}
+
+  .hero{position:relative;height:80vh;height:80svh;min-height:460px;display:flex;align-items:flex-end;justify-content:center;text-align:center;overflow:hidden}
+  .hero.compacto{height:auto;min-height:0;padding-top:120px}
+  .mosaic{position:absolute;inset:-60px -20px;display:flex;gap:8px}
+  .mcol{flex:1;display:flex;flex-direction:column;gap:8px;animation:drift 70s ease-in-out infinite alternate}
+  .mcol:nth-child(even){animation-direction:alternate-reverse;margin-top:-110px}
+  .mtile{width:100%;aspect-ratio:9/16;border-radius:6px;background:var(--accent-dark) center/cover no-repeat;flex:none}
+  @keyframes drift{from{transform:translateY(0)}to{transform:translateY(-160px)}}
+  @media (prefers-reduced-motion:reduce){.mcol{animation:none}}
+  .hero::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(4,4,4,.75) 0%,rgba(4,4,4,.45) 30%,rgba(4,4,4,.65) 60%,rgba(4,4,4,1) 100%)}
+  .hero-inner{position:relative;z-index:2;color:#fff;padding:0 24px clamp(28px,6vh,72px);max-width:960px}
+  .eyebrow{font-size:13px;letter-spacing:.42em;text-transform:uppercase;opacity:.85;margin-bottom:18px}
+  .hero h1{font-weight:700;font-size:clamp(26px,min(9vw,12vh),112px);line-height:.95;letter-spacing:.03em;margin-right:-.03em;text-transform:uppercase;white-space:nowrap}
+  .hero h2.sub{font-family:var(--serif);font-weight:400;font-size:clamp(24px,3.2vw,40px);line-height:1.1;margin-top:18px;color:var(--ink-2)}
+  .hero h2.sub em{color:var(--gold);font-style:italic}
+  .hero p.data{margin-top:14px;color:var(--ink-2);font-size:clamp(15px,1.6vw,18px)}
+  .stats{display:flex;justify-content:center;gap:clamp(20px,5vw,56px);margin-top:clamp(18px,3.5vh,32px);flex-wrap:wrap}
+  .stat b{display:block;font-weight:600;font-size:clamp(28px,3.4vw,42px);line-height:1;font-variant-numeric:tabular-nums}
+  .stat span{font-size:12px;letter-spacing:.18em;text-transform:uppercase;color:var(--muted)}
+  .hero.compacto h1{font-size:clamp(24px,min(6vw,9vh),72px)}
+  .hero.compacto .hero-inner{padding-bottom:0}
+  .hero.compacto ~ #estado .estado{margin-top:28px}
+
+  .wrap{max-width:1320px;margin:0 auto;padding:0 clamp(16px,4vw,48px)}
+
+  /* como funciona */
+  .passos{display:flex;justify-content:center;gap:8px;flex-wrap:wrap;margin:6px auto 0;padding:0 16px;list-style:none}
+  .passos li{display:flex;align-items:center;gap:8px;border:1px solid var(--line);background:var(--card);border-radius:999px;padding:7px 14px 7px 8px;font-size:14px;color:var(--ink-2)}
+  .passos li b{display:grid;place-items:center;width:22px;height:22px;border-radius:50%;background:var(--card-2);color:var(--gold);font-size:12px;font-weight:600}
+
+  /* barra de busca */
+  .bar{position:sticky;top:0;z-index:20;background:rgba(4,4,4,.88);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);border-bottom:1px solid var(--line);margin-top:28px}
+  .bar .wrap{display:flex;align-items:center;gap:12px;padding-top:14px;padding-bottom:14px;flex-wrap:wrap}
+  .lbl{font-size:11px;letter-spacing:.2em;text-transform:uppercase;color:var(--muted)}
+  .busca{position:relative;flex:1;min-width:200px;max-width:360px}
+  .busca input{width:100%;border:1px solid var(--line);background:var(--card);border-radius:10px;padding:9px 32px 9px 34px;font-size:14px;color:var(--ink);outline:none}
+  .busca input:focus{border-color:var(--gold)}
+  .busca svg{position:absolute;left:11px;top:50%;transform:translateY(-50%);width:15px;height:15px;stroke:var(--muted)}
+  .grow{flex:1}
+  .count{font-size:14px;color:var(--muted)}
+
+  /* grade de vídeos */
+  .month{margin-top:44px}
+  .month h2{font-weight:700;font-size:clamp(22px,2.4vw,30px);letter-spacing:-.01em;display:flex;align-items:baseline;gap:6px 14px;flex-wrap:wrap;margin-bottom:18px}
+  .month h2 span{font-size:13px;letter-spacing:.14em;text-transform:uppercase;color:var(--muted)}
+  .grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(170px,1fr));gap:8px}
+  .card{position:relative;display:block;width:100%;background:var(--card);border:1px solid var(--line);border-radius:var(--radius);overflow:hidden;text-align:left;cursor:pointer;transition:transform .2s,border-color .2s}
+  .card:hover{transform:translateY(-3px);border-color:#3a3a3a}
+  .card:focus-visible{outline-offset:3px}
+  .thumb{position:relative;aspect-ratio:9/14;background:var(--accent-dark);overflow:hidden}
+  .thumb img{display:block;width:100%;height:100%;object-fit:cover;transition:transform .4s}
+  .card:hover .thumb img{transform:scale(1.04)}
+  .sem-capa{position:absolute;inset:0;display:grid;place-items:center;color:var(--muted);font-size:13px}
+  /* "Em breve": capa provisória enquanto os vídeos não são publicados */
+  .ph{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:10px;
+      background:radial-gradient(120% 80% at 50% 0%,#5a2a26 0%,var(--accent-dark) 45%,#140b0b 100%);overflow:hidden}
+  .ph::before{content:"";position:absolute;inset:0;background:url(/bailes/logo-mark.png) center 38%/38% no-repeat;opacity:.07}
+  .ph em{position:relative;font-family:var(--serif);font-style:italic;font-size:clamp(22px,2.2vw,30px);color:var(--gold);line-height:1}
+  .ph small{position:relative;font-size:10px;letter-spacing:.28em;text-transform:uppercase;color:rgba(248,244,242,.55)}
+  .mtile.ph{position:relative}
+  .mtile.ph em{font-size:clamp(16px,1.6vw,22px)}
+  .mtile.ph small{display:none}
+  .card.breve{cursor:default}
+  .card.breve:hover{transform:none;border-color:var(--line)}
+  .badge{position:absolute;top:8px;left:8px;font-size:11px;letter-spacing:.06em;background:rgba(0,0,0,.6);backdrop-filter:blur(6px);padding:4px 8px;border-radius:999px;color:#fff}
+  .play{position:absolute;inset:0;display:grid;place-items:center;pointer-events:none}
+  .play i{width:42px;height:42px;border-radius:50%;background:rgba(0,0,0,.45);backdrop-filter:blur(4px);display:grid;place-items:center;opacity:.9}
+  .play i::after{content:"";border-left:13px solid #fff;border-top:8px solid transparent;border-bottom:8px solid transparent;margin-left:4px}
+  .meta{padding:8px 10px 9px}
+  .meta b{display:block;font-weight:500;font-size:14px;line-height:1.25}
+  .meta>span{display:flex;align-items:center;margin-top:3px;font-size:12px;color:var(--muted)}
+  .dot{display:inline-block;width:7px;height:7px;border-radius:50%;margin-right:6px;background:var(--gold)}
+  .empty{padding:80px 0;text-align:center;color:var(--muted)}
+  .spinner{width:34px;height:34px;border-radius:50%;border:3px solid var(--line);border-top-color:var(--gold);margin:0 auto 18px;animation:gira 1s linear infinite}
+  @keyframes gira{to{transform:rotate(360deg)}}
+
+  /* telas de estado (confirmação, link expirado...) */
+  .estado{max-width:560px;margin:40px auto 0;background:var(--card);border:1px solid var(--line);border-radius:20px;padding:36px 26px;text-align:center}
+  .estado .k{font-size:12px;letter-spacing:.2em;text-transform:uppercase;color:var(--muted)}
+  .estado h3{font-weight:700;font-size:clamp(24px,3vw,32px);line-height:1.15;letter-spacing:-.01em;margin:10px 0 12px}
+  .estado h3 em{font-family:var(--serif);font-weight:400;font-style:italic;color:var(--gold)}
+  .estado p{color:var(--ink-2);font-size:15px;margin:0 0 14px}
+  .estado .miniatura{width:150px;aspect-ratio:9/14;object-fit:cover;border-radius:12px;margin:0 auto 20px;background:var(--accent-dark)}
+  .estado .nota{font-size:13px;color:var(--muted)}
+
+  /* botões */
+  .btns{display:flex;gap:10px;margin-top:22px;flex-wrap:wrap;justify-content:center}
+  .btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;border-radius:999px;padding:12px 20px;font-size:15px;font-weight:500}
+  .btn.pri{background:var(--ink);color:#0b0b0b}
+  .btn.ouro{background:var(--gold);color:#0b0b0b;font-weight:600}
+  .btn.sec{border:1px solid #333;color:#fff}
+  .btn.sec:hover{border-color:#555}
+  .btn[disabled]{opacity:.6;cursor:wait}
+  .btn.bloco{width:100%}
+
+  /* lightbox de compra */
+  .lb{position:fixed;inset:0;z-index:60;background:rgba(4,4,4,.97);display:none;align-items:center;justify-content:center;padding:24px}
+  .lb.open{display:flex}
+  .lb-box{display:flex;gap:36px;align-items:center;max-width:1100px;width:100%;max-height:92vh}
+  .lb-media{flex:none;position:relative;height:min(86vh,820px);aspect-ratio:9/16;background:#000;border-radius:12px;overflow:hidden}
+  /* o player do Drive é desenhado em 540x960 e reduzido para caber: no celular os controles ficam proporcionais (mesma técnica dos painéis) */
+  .lb-media iframe{position:absolute;top:0;left:0;width:540px;height:960px;border:0;transform-origin:0 0}
+  .lb-info{flex:1;min-width:0;max-width:420px}
+  .lb-info .k{font-size:12px;letter-spacing:.2em;text-transform:uppercase;color:var(--muted)}
+  .lb-info h3{font-weight:700;font-size:clamp(26px,2.8vw,36px);line-height:1.1;letter-spacing:-.01em;margin:10px 0 6px}
+  .lb-info h3 em{font-family:var(--serif);font-weight:400;font-style:italic;color:var(--gold)}
+  .preco{display:flex;align-items:baseline;gap:8px;margin:14px 0 4px}
+  .preco b{font-weight:600;font-size:34px;line-height:1;font-variant-numeric:tabular-nums}
+  .preco{flex-wrap:wrap;margin:14px 0 20px}
+  .preco span{font-size:15px;color:var(--ink-2)}
+  .preco .de s{color:var(--muted);text-decoration-thickness:1.5px}
+  .inclui{list-style:none;margin:14px 0 18px;font-size:14px;color:var(--ink-2)}
+  .inclui li{display:flex;align-items:center;gap:10px;padding:3px 0}
+  .inclui li::before{content:"";width:7px;height:7px;border-radius:50%;background:var(--gold);flex:none}
+  .form label{display:block;font-size:11px;letter-spacing:.2em;text-transform:uppercase;color:var(--muted);margin:14px 0 6px}
+  .form input{width:100%;border:1px solid var(--line);background:var(--card);border-radius:10px;padding:12px 14px;font-size:16px;color:var(--ink);outline:none}
+  .form input:focus{border-color:var(--gold)}
+  .ajuda{font-size:12px;color:var(--muted);margin-top:6px}
+  .erro{color:#ff8a7a;font-size:14px;margin-top:12px;min-height:1em}
+  .form .btn{margin-top:14px}
+  .seguro{font-size:12px;color:var(--muted);text-align:center;margin-top:12px}
+  .troca-modo{display:block;margin:16px auto 0;font-size:14px;color:var(--ink-2);text-decoration:underline;text-underline-offset:3px;min-height:44px;padding:0 8px}
+  .troca-modo:hover{color:var(--ink)}
+  #fCodigo{text-transform:uppercase;letter-spacing:.18em;font-variant-numeric:tabular-nums;font-weight:600}
+  .aviso-cod{max-width:1180px;margin:18px auto 8px;padding:0 24px}
+  .aviso-cod>div{display:flex;flex-wrap:wrap;align-items:center;gap:10px 18px;border:1px solid rgba(246,173,3,.45);background:rgba(246,173,3,.07);border-radius:14px;padding:14px 18px;font-size:15px;color:var(--ink-2)}
+  .aviso-cod b{color:var(--ink);letter-spacing:.12em;font-variant-numeric:tabular-nums}
+  .aviso-cod .grow{flex:1}
+  .aviso-cod button{font-size:13px;color:var(--muted);text-decoration:underline;text-underline-offset:3px;min-height:36px}
+  .lb-x{position:absolute;top:18px;right:22px;font-size:28px;color:#fff;opacity:.8;width:44px;height:44px;z-index:3}
+  .lb-nav{position:absolute;top:50%;transform:translateY(-50%);font-size:30px;color:#fff;opacity:.6;width:48px;height:64px;z-index:3}
+  .lb-nav:hover,.lb-x:hover{opacity:1}
+  .lb-prev{left:8px}.lb-next{right:8px}
+
+  footer{margin:80px 0 40px;text-align:center;color:var(--muted);font-size:13px;padding:0 20px}
+  footer p+p{margin-top:6px}
+  footer a{text-decoration:underline;text-underline-offset:3px}
+
+  .wa-fab{position:fixed;right:max(18px,env(safe-area-inset-right));bottom:max(18px,env(safe-area-inset-bottom));z-index:40;width:56px;height:56px;border-radius:50%;background:#25D366;color:#fff;display:flex;align-items:center;justify-content:center;box-shadow:0 6px 22px rgba(0,0,0,.45);transition:transform .2s,box-shadow .2s}
+  .wa-fab:hover{transform:translateY(-2px) scale(1.04);box-shadow:0 10px 28px rgba(0,0,0,.5)}
+  .wa-fab svg{width:30px;height:30px}
+  .lb.open ~ .wa-fab{display:none}
+
+  @media (max-width:760px){
+    .grid{grid-template-columns:repeat(2,1fr);gap:6px}
+    .passos{display:grid;grid-template-columns:1fr 1fr;max-width:420px}
+    .passos li{font-size:13px;padding:7px 10px 7px 7px}
+    .bar .wrap{flex-wrap:nowrap}
+    .busca{max-width:none}
+    .bar .lbl{display:none}
+    .lb{align-items:flex-start;padding:0;overflow:auto}
+    .lb-box{flex-direction:column;gap:18px;max-height:none;padding:64px 16px 32px}
+    .lb-media{height:auto;width:min(88vw,calc(62vh * 9 / 16))}
+    .lb-info{max-width:none;width:100%}
+    .lb-info h3,.lb-info .k{text-align:center}
+    .preco{justify-content:center}
+    .lb-x{position:fixed;top:10px;right:10px;width:48px;height:48px}
+    .lb-nav{position:absolute;transform:none;top:calc(64px + min(88vw * 16 / 9, 62vh) / 2 - 32px)}
+    .wa-fab{width:52px;height:52px}.wa-fab svg{width:28px;height:28px}
+  }
+</style>
+<style>
+  /* Hub público dos bailes */
+  .resgate{max-width:720px;margin:8px auto 0;padding:0 16px}
+  .resgate form{display:flex;flex-wrap:wrap;align-items:center;gap:10px 14px;border:1px solid var(--line);background:var(--card);border-radius:16px;padding:16px 18px}
+  .resgate .txt{flex:1 1 220px;min-width:0}
+  .resgate .txt b{display:block;font-weight:600;font-size:16px}
+  .resgate .txt span{font-size:13px;color:var(--muted)}
+  .resgate input{flex:1 1 160px;border:1px solid var(--line);background:var(--bg);border-radius:10px;padding:11px 12px;font-size:16px;color:var(--ink);outline:none;text-transform:uppercase;letter-spacing:.16em;font-weight:600;min-width:0}
+  .resgate input:focus{border-color:var(--gold)}
+  .resgate .btn{padding:11px 18px}
+  .resgate .msg{flex-basis:100%;font-size:14px;color:var(--ink-2);min-height:0}
+  .resgate .msg:empty{display:none}
+  .resgate .msg.erro{color:#ff8a7a}
+  .bailes{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:12px}
+  .baile{display:flex;flex-direction:column;background:var(--card);border:1px solid var(--line);border-radius:var(--radius);overflow:hidden;transition:transform .2s,border-color .2s}
+  .baile:hover{transform:translateY(-3px);border-color:#3a3a3a}
+  .capa{position:relative;aspect-ratio:4/3;background:var(--accent-dark);overflow:hidden}
+  .capa .mos{position:absolute;inset:0;display:grid;grid-template-columns:repeat(3,1fr);gap:3px}
+  .capa .mos i{background:var(--accent-dark) center/cover no-repeat}
+  .capa .ph{position:absolute;inset:0}
+  .capa::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(4,4,4,.15) 0%,rgba(4,4,4,.35) 55%,rgba(4,4,4,.85) 100%)}
+  .capa .logo{position:absolute;left:50%;top:46%;transform:translate(-50%,-50%);z-index:2;max-width:46%;max-height:46%;object-fit:contain}
+  .capa .selo{position:absolute;left:12px;bottom:12px;z-index:2;font-size:12px;letter-spacing:.06em;background:rgba(0,0,0,.6);backdrop-filter:blur(6px);padding:5px 10px;border-radius:999px;color:#fff}
+  .baile .info{padding:16px 18px 18px;display:flex;flex-direction:column;gap:4px;flex:1}
+  .baile .k{font-size:11px;letter-spacing:.2em;text-transform:uppercase;color:var(--muted)}
+  .baile h3{font-weight:700;font-size:22px;letter-spacing:-.01em;line-height:1.15}
+  .baile .ver{margin-top:12px;font-size:14px;color:var(--ink-2)}
+  .baile:hover .ver{color:#fff}
+  .ano{margin-top:44px}
+  .ano h2{font-weight:700;font-size:clamp(22px,2.4vw,30px);letter-spacing:-.01em;margin-bottom:18px;display:flex;align-items:baseline;gap:14px}
+  .ano h2 span{font-size:13px;letter-spacing:.14em;text-transform:uppercase;color:var(--muted)}
+  @media (max-width:760px){.bailes{grid-template-columns:1fr}}
+</style>
+</head>
+<body>
+
+<header class="top">
+  <div class="brand"><img class="brand-mark" src="/bailes/logo-mark.png" alt=""><span class="brand-name">ARESTAGÊNCIA</span></div>
+</header>
+
+<section class="hero" id="hero">
+  <div class="mosaic" id="mosaic"></div>
+  <div class="hero-inner">
+    <div class="eyebrow">Coberturas de bailes</div>
+    <h1>Bailes</h1>
+    <h2 class="sub">Reviva a <em>sua dança</em></h2>
+    <p class="data">Escolha o baile e encontre o seu vídeo</p>
+  </div>
+</section>
+
+<div class="resgate">
+  <form id="fCod" novalidate>
+    <div class="txt"><b>Comprou um código no baile?</b><span>Digite para ir direto à galeria do seu baile.</span></div>
+    <input id="cod" autocomplete="off" autocapitalize="characters" spellcheck="false" maxlength="9" placeholder="XXXX-XXXX" aria-label="Seu código">
+    <button class="btn ouro" id="codBtn" type="submit">Usar código</button>
+    <p class="msg" id="codMsg" role="alert"></p>
+  </form>
+</div>
+
+<main class="wrap" id="lista"><div class="empty"><div class="spinner"></div>Carregando os bailes...</div></main>
+
+<footer>
+  <p>ArestAgência - Produção de Conteúdo</p>
+  <p>Não quer que o seu vídeo apareça nas galerias? <a href="https://wa.me/5561991283546" target="_blank" rel="noopener">Fale com a gente</a> e retiramos.</p>
+</footer>
+
+<a class="wa-fab" href="https://wa.me/5561991283546?text=Ol%C3%A1!%20Vim%20pela%20p%C3%A1gina%20dos%20bailes." target="_blank" rel="noopener" aria-label="Falar com a ArestAgência no WhatsApp" title="Falar no WhatsApp"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2zm0 18.2c-1.5 0-3-.4-4.3-1.2l-.3-.2-3 .8.8-2.9-.2-.3A8.2 8.2 0 1 1 12 20.2zm4.5-6.1c-.2-.1-1.5-.7-1.7-.8-.2-.1-.4-.1-.6.1l-.8 1c-.1.2-.3.2-.5.1-1.4-.6-2.3-1.2-3.2-2.7-.2-.4.2-.4.7-1.3.1-.2 0-.3 0-.4l-.8-1.8c-.2-.5-.4-.4-.6-.4h-.5c-.2 0-.4.1-.7.3-.2.3-.9.9-.9 2.2s.9 2.5 1 2.7c.1.2 1.8 2.8 4.4 3.9 1.6.7 2.3.8 3.1.6.5-.1 1.5-.6 1.7-1.2.2-.6.2-1.1.2-1.2-.1-.1-.3-.2-.5-.3z"/></svg></a>
+
+<script>
+// Hub público dos bailes: lista os bailes com galeria aberta (mais recentes primeiro) e leva o código à galeria certa.
+const CONFIG = {
+  supabaseUrl: "https://jlogxdjttufiiikiezfe.supabase.co",
+  chavePublica: "sb_publishable_ilWt8PPFiHuOBCmiCcsZ3A_CTmqyjmR",
+  whatsapp: "https://wa.me/5561991283546",
+};
+const GALERIAS = {{GALERIAS}}; // de bailes.json (gerado por gerar_bailes.py): evento -> pasta e logo do parceiro
+
+const $ = (s) => document.querySelector(s);
+const api = (p) => `${CONFIG.supabaseUrl}${p}`;
+const esc = (s) => String(s ?? "").replace(/[&<>"']/g, (c) => ({ "&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;" }[c]));
+const capaUrl = (videoId, w = 400) => api(`/functions/v1/capa?v=${encodeURIComponent(videoId)}&w=${w}`);
+async function rest(caminho) {
+  const r = await fetch(api(`/rest/v1/${caminho}`), { headers: { apikey: CONFIG.chavePublica } });
+  if (!r.ok) throw new Error(`Erro ${r.status}`);
+  return r.json();
+}
+function dataLonga(d) {
+  if (!d) return "";
+  const [a, m, dia] = d.split("-").map(Number);
+  return new Date(a, m - 1, dia).toLocaleDateString("pt-BR", { day: "numeric", month: "long", year: "numeric" });
+}
+const linkBaile = (e) => e.url_galeria || (GALERIAS[e.slug] ? `/bailes/${GALERIAS[e.slug].pasta}/` : "#");
+
+let eventos = [], videos = [];
+
+function montarMosaico() {
+  const m = $("#mosaic");
+  m.innerHTML = "";
+  const cols = innerWidth < 700 ? 4 : 8, porCol = 6;
+  for (let c = 0; c < cols; c++) {
+    const col = document.createElement("div");
+    col.className = "mcol";
+    for (let i = 0; i < porCol; i++) {
+      const t = document.createElement("div");
+      if (videos.length) {
+        const v = videos[(c * porCol + i * 3 + c) % videos.length];
+        t.className = "mtile";
+        const im = new Image();
+        im.onload = () => (t.style.backgroundImage = `url("${im.src}")`);
+        im.src = capaUrl(v.id, 300);
+      } else {
+        t.className = "mtile ph";
+        t.innerHTML = `<em>Em breve</em><small>ArestAgência</small>`;
+      }
+      col.appendChild(t);
+    }
+    m.appendChild(col);
+  }
+}
+
+function card(e) {
+  const vs = videos.filter((v) => v.evento_id === e.id);
+  const g = GALERIAS[e.slug] || {};
+  const capa = vs.length
+    ? `<div class="mos">${vs.slice(0, 6).map((v) => `<i style="background-image:url('${capaUrl(v.id, 300)}')"></i>`).join("")}</div>`
+    : `<div class="ph"></div>`;
+  return `<a class="baile" href="${esc(linkBaile(e))}">
+    <div class="capa">${capa}${g.logo ? `<img class="logo" src="${esc(g.logo)}" alt="">` : ""}
+      <span class="selo">${vs.length ? `${vs.length} ${vs.length === 1 ? "vídeo" : "vídeos"}` : "Vídeos em breve"}</span></div>
+    <div class="info"><span class="k">${esc(dataLonga(e.data))}${e.local ? ` · ${esc(e.local)}` : ""}</span><h3>${esc(e.nome)}</h3>
+      <span class="ver">Ver os vídeos →</span></div></a>`;
+}
+
+async function carregar() {
+  try {
+    eventos = await rest("eventos?aberto=eq.true&select=id,slug,nome,data,local,url_galeria&order=data.desc.nullslast");
+    videos = eventos.length ? await rest("videos?select=id,evento_id&order=ordem.asc,codigo.asc") : [];
+    montarMosaico();
+    if (!eventos.length) { $("#lista").innerHTML = `<div class="empty">Nenhum baile com vídeos no momento.</div>`; return; }
+    // mais recentes primeiro, separados por ano
+    const anos = [...new Set(eventos.map((e) => (e.data || "").slice(0, 4) || "Outros"))];
+    $("#lista").innerHTML = anos.map((a) => {
+      const es = eventos.filter((e) => ((e.data || "").slice(0, 4) || "Outros") === a);
+      return `<section class="ano"><h2>${esc(a)} <span>${es.length} ${es.length === 1 ? "baile" : "bailes"}</span></h2><div class="bailes">${es.map(card).join("")}</div></section>`;
+    }).join("");
+  } catch (err) {
+    console.error(err);
+    montarMosaico();
+    $("#lista").innerHTML = `<div class="empty">Não conseguimos carregar os bailes. Atualize a página em instantes.</div>`;
+  }
+}
+
+// ---------- código de resgate: descobre para qual baile foi vendido e leva até a galeria ----------
+const limpar = (c) => String(c || "").toUpperCase().replace(/[^A-Z0-9]/g, "").slice(0, 8);
+const ver = (c) => (c.length > 4 ? `${c.slice(0, 4)}-${c.slice(4)}` : c);
+$("#cod").addEventListener("input", (e) => { e.target.value = ver(limpar(e.target.value)); });
+async function usarCodigo(c) {
+  const msg = $("#codMsg"), btn = $("#codBtn");
+  msg.className = "msg"; msg.textContent = "";
+  if (c.length !== 8) { msg.className = "msg erro"; msg.textContent = "O código tem 8 letras e números, como no seu cartão."; return; }
+  btn.disabled = true; btn.textContent = "Conferindo...";
+  try {
+    const r = await fetch(api("/functions/v1/resgatar-codigo"), {
+      method: "POST", headers: { "Content-Type": "application/json", apikey: CONFIG.chavePublica },
+      body: JSON.stringify({ acao: "conferir", codigo: c }),
+    });
+    const d = await r.json().catch(() => ({}));
+    if (d.ok && d.url_galeria) {
+      msg.textContent = `Código do ${d.evento_nome}. Abrindo a galeria...`;
+      location.href = `${d.url_galeria.replace(/\/+$/, "")}/?codigo=${c}`;
+      return;
+    }
+    msg.className = "msg erro";
+    msg.innerHTML = `${esc(d.erro || "Não encontramos esse código.")} <a href="${CONFIG.whatsapp}" target="_blank" rel="noopener" style="text-decoration:underline">Falar no WhatsApp</a>`;
+  } catch {
+    msg.className = "msg erro"; msg.textContent = "Não conseguimos conferir agora. Tente de novo em instantes.";
+  }
+  btn.disabled = false; btn.textContent = "Usar código";
+}
+$("#fCod").addEventListener("submit", (e) => { e.preventDefault(); usarCodigo(limpar($("#cod").value)); });
+
+carregar();
+const inicial = limpar(new URLSearchParams(location.search).get("codigo"));
+if (inicial) { $("#cod").value = ver(inicial); history.replaceState(null, "", location.pathname); usarCodigo(inicial); }
+</script>
+</body>
+</html>

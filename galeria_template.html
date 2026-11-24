@@ -548,6 +548,12 @@ async function prepararCodigo() {
   if (!c) { try { c = limparCodigo(localStorage.getItem(chaveCodigo)); } catch {} }
   if (c.length !== 8) return;
   const { d } = await chamarResgate({ acao: "conferir", codigo: c }).catch(() => ({ d: {} }));
+  // código vendido para outro baile: leva para a galeria certa
+  if (d.ok && d.evento && d.evento !== slug && d.url_galeria) {
+    try { localStorage.removeItem(chaveCodigo); } catch {}
+    location.replace(`${d.url_galeria.replace(/\/+$/, "")}/?codigo=${c}`);
+    return;
+  }
   if (d.ok && d.evento === slug) {
     codigoAtivo = c;
     try { localStorage.setItem(chaveCodigo, c); } catch {}
@@ -558,8 +564,6 @@ async function prepararCodigo() {
   } else if (d.motivo === "usado" || d.motivo === "nao_ativado" || d.motivo === "invalido") {
     try { localStorage.removeItem(chaveCodigo); } catch {}
     avisoCodigo(`<span>${esc(d.erro || "Código inválido.")}</span><span class="grow"></span><a class="btn sec" href="${CONFIG.whatsapp}" target="_blank" rel="noopener">Falar no WhatsApp</a>`);
-  } else if (d.evento && d.evento !== slug) {
-    avisoCodigo(`<span>Esse código é de outro baile.</span>`);
   }
   if (params.get("codigo")) history.replaceState(null, "", location.pathname);
 }
