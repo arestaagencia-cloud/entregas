@@ -1,0 +1,64 @@
+EDITOR DE BAILES · ArestAgência
+================================
+
+O que faz
+---------
+Para cada vídeo bruto da câmera (um arquivo por casal), gera:
+  • F. 01.mp4, F. 02.mp4 ...  (pasta "3. Finais")   1080x1920, logos Aresta × parceiro embaixo durante todo o vídeo
+  • P. 01.mp4, P. 02.mp4 ...  (pasta "2. Prévias")  720x1280, mesmas logos + PNG "PRÉVIA" a 35%, entrando
+                                                    no segundo 5 com fade de 1,5 s
+A numeração segue a ordem dos arquivos em "1. Brutos" (a mesma do telão) e fica guardada em numeracao.csv
+dentro da pasta do baile. Vídeo novo entra no fim e nunca muda o número dos que já existem.
+
+
+Estrutura de pastas (uma por baile)
+-----------------------------------
+  Filmes/Bailes/
+    2026-11-28 I Dá-lhe Samba/
+      1. Brutos/      ← copie aqui os arquivos do cartão (só os .MP4, sem subpastas). O telão e o editor leem daqui.
+      2. Prévias/     ← o editor exporta as prévias (P. NN)
+      3. Finais/      ← o editor exporta os finais (F. NN)
+      numeracao.csv   ← número de cada vídeo ↔ arquivo bruto
+
+Os brutos em 4K são pesados (cerca de 700 MB por minuto): por isso ficam no Mac, fora do Google Drive.
+Só as prévias e os finais vão para o Drive.
+
+
+Instalação (uma vez só)
+-----------------------
+1. Instale o Homebrew (se ainda não tiver): abra o Terminal e cole o comando do site https://brew.sh
+2. No Terminal:   brew install ffmpeg
+3. Coloque a pasta "Editor de Bailes" onde preferir (ex.: Documentos).
+4. Na primeira vez, clique com o botão direito em "Criar pasta do baile.command" › Abrir › Abrir
+   (o macOS pede essa confirmação para arquivos baixados). Faça o mesmo com "Editar baile.command".
+5. Opcional: instale o Google Drive para computador (https://www.google.com/drive/download/) para a cópia
+   automática das prévias e finais para o Drive.
+
+
+No dia do baile
+---------------
+1. Dois cliques em "Criar pasta do baile.command" › digite data e nome › escolha a pasta do baile no
+   Google Drive (as subpastas Prévias e Finais são criadas lá) ou "Agora não".
+2. A cada descarga do cartão: copie os .MP4 de PRIVATE/M4ROOT/CLIP para "1. Brutos".
+3. Telão: "Adicionar pasta" › "1. Brutos". Na próxima leva, adicione a mesma pasta de novo: só os vídeos
+   novos entram e a numeração continua.
+4. Edição: dois cliques em "Editar baile.command" › escolha a pasta do baile. Pode rodar durante e depois
+   do baile quantas vezes quiser: ele só edita o que falta. O Mac não dorme enquanto edita.
+5. Com as prévias e finais no Drive, peça no chat "cadastra os vídeos do <baile>" para eles entrarem na galeria.
+
+IMPORTANTE: para a numeração do telão bater com a edição, comece o telão do 01 ("Recomeçar do 01") e
+adicione sempre a pasta "1. Brutos" inteira.
+
+
+Câmera (Sony A7IV)
+------------------
+Grave em XAVC S 4K, 4:2:0 8 bit (ex.: 30p 100M). Esse formato toca no telão (navegador) e no editor.
+4:2:2 10 bit (XAVC S-I ou XAVC S 4:2:2) NÃO toca no navegador: o telão mostraria "não tocou".
+Se algum vídeo vier deitado (a câmera nem sempre marca o vídeo como vertical), o editor gira sozinho
+para a direita. Se ficar de cabeça para baixo, troque GIRAR_HORIZONTAIS para "esquerda" no config.txt.
+
+
+Ajustes (config.txt)
+--------------------
+PASTA_BAILES, tamanho e opacidade das logos, opacidade/início/fade da prévia e o giro dos vídeos deitados.
+Trocar as logos ou o PNG da prévia: substitua os arquivos em recursos/ (mesmo nome).

@@ -1,0 +1,16 @@
+# Ajustes do Editor de Bailes (mude só o valor depois do "=", sem espaços)
+
+# Onde ficam as pastas dos bailes
+PASTA_BAILES="$HOME/Movies/Bailes"
+
+# Logos embaixo do vídeo (Aresta × parceiro): largura em % da largura do vídeo e opacidade (0 a 1)
+LOGO_LARGURA_PCT=34
+LOGO_OPACIDADE=0.85
+
+# PNG "prévia" por cima da prévia: opacidade, segundo em que começa a aparecer e duração do fade (segundos)
+PREVIA_OPACIDADE=0.35
+PREVIA_INICIO=5
+PREVIA_FADE=1.5
+
+# Se um vídeo vier deitado (a A7IV às vezes não marca o vídeo como vertical): direita | esquerda | nao
+GIRAR_HORIZONTAIS=direita

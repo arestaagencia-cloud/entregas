@@ -298,6 +298,14 @@ Duas páginas, geradas por `python3 gerar_bailes.py`:
   faixa embaixo do vídeo (`@container quadro (orientation: portrait)`). Sem oferta: vídeo em tela cheia com a mesma
   dupla de logos como marca d'água na parte de baixo. Teclas: espaço pausa, ← → anterior/próximo, F tela cheia,
   R inverte o giro, O liga/desliga a oferta, S configuração.
+- **Editor de Bailes (Mac, desde 24/11/2026):** `ferramentas/editor-bailes/` (a Aresta usa a cópia baixada no Mac).
+  Estrutura por baile em `~/Movies/Bailes/<AAAA-MM-DD Nome>/`: `1. Brutos` (cartão da A7IV, só .MP4, sem subpastas;
+  o telão e o editor leem daqui), `2. Prévias`, `3. Finais`, `numeracao.csv` (nº ↔ bruto, estável). `Editar baile.command`
+  roda `editar.sh` (FFmpeg via Homebrew; h264_videotoolbox se houver): F. NN = 1080x1920 com `recursos/logos-baixo.png`
+  (Aresta × parceiro, 34% da largura, 85%, embaixo); P. NN = 720x1280 + `recursos/previa.png` a 35% com fade de 1,5 s
+  a partir de 5 s. Só faz o que falta. Vídeo deitado é girado (`GIRAR_HORIZONTAIS` no config.txt). Opcional
+  `.destino-drive` na pasta do baile: copia P/F para Prévias/Finais da pasta do baile no Google Drive para computador.
+  Parceiro novo = refazer `recursos/logos-baixo.png` com o logo branco dele.
 - **Novo baile** = criar o evento no Supabase (tabela `eventos`, com `url_galeria`, `aberto` e o preço do código),
   acrescentar em `bailes.json`, rodar `gerar_bailes.py` e cadastrar os vídeos; ele aparece sozinho na página pública
   (se `aberto`), no painel interno e na lista de bailes da venda de códigos.
