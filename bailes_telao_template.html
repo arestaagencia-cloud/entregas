@@ -156,7 +156,6 @@
   <div class="config-in">
     <div class="marca"><img src="/bailes/logo-mark.png" alt=""><span>ARESTAGÊNCIA</span></div>
     <h1>Telão do <em>baile</em></h1>
-    <p class="lead">Escolha os vídeos que acabaram de sair do cartão. Cada um toca por alguns segundos, em loop, com o número do vídeo, a oferta do código e o QR para quem quer ser avisado. Funciona sem internet depois de aberta.</p>
 
     <div class="grade">
       <div class="caixa">
@@ -190,13 +189,7 @@
 
     <div class="fila"><table><thead><tr><th>Nº</th><th>Arquivo</th><th>Duração</th><th></th></tr></thead><tbody id="cFila"></tbody></table></div>
 
-    <div class="iniciar">
-      <button class="btn ouro" type="button" id="cIniciar" disabled>Iniciar telão em tela cheia</button>
-      <small id="cResumo"></small>
-    </div>
-
     <div class="dicas">
-      <b>TV em pé:</b> não mexa em nada no Mac nem na TV. Escolha "TV em pé": a página desenha o player deitado e você só coloca a TV em pé no suporte. Se a imagem ficar de cabeça para baixo, aperte <kbd>R</kbd> (ou troque o lado aqui).<br>
       <b>No telão:</b> <kbd>espaço</kbd> pausa · <kbd>←</kbd> <kbd>→</kbd> vídeo anterior / próximo · <kbd>F</kbd> tela cheia · <kbd>R</kbd> inverte o giro da TV em pé · <kbd>O</kbd> liga/desliga a oferta · <kbd>S</kbd> volta para esta tela (o telão continua de onde parou).
     </div>
   </div>
@@ -326,8 +319,7 @@ function desenharFila() {
       <td><button class="x" type="button" data-tirar="${i}">tirar</button></td></tr>`).join("")
     : `<tr><td colspan="4" class="vazio">Nenhum vídeo ainda. Descarregue o cartão e toque em "Adicionar pasta".</td></tr>`;
   const bons = FILA.filter((x) => x.ok !== false).length;
-  $("#cIniciar").disabled = $("#cIniciarTopo").disabled = !bons || !baile();
-  $("#cResumo").textContent = bons ? `${bons} ${bons === 1 ? "vídeo" : "vídeos"} · um ciclo dura ${mmss(bons * segundos())}` : "";
+  $("#cIniciarTopo").disabled = !bons || !baile();
 }
 $("#cFila").addEventListener("change", (e) => {
   const i = e.target.dataset.num; if (i == null) return;
@@ -414,7 +406,7 @@ async function iniciar() {
   pausado = false; $("#tPausa").hidden = true;
   proximo(1);
 }
-$("#cIniciar").onclick = $("#cIniciarTopo").onclick = iniciar;
+$("#cIniciarTopo").onclick = iniciar;
 
 function proximo(passo) {
   const L = tocaveis(); if (!L.length) return;
