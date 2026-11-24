@@ -260,5 +260,15 @@ os dados cifrados e `cardExtra()` em `hub_template.html` desenha o card). Capa d
   compra (função `criar-checkout`), mostra a confirmação (`?pedido=`) e o download (`?baixar=`). O Supabase guarda o
   endereço em `eventos.url_galeria`: é para lá que o Mercado Pago devolve o cliente e para onde aponta o link do e-mail.
   O endereço antigo `videos.arestagencia.com.br` (repo `arestaagencia-cloud/videos`) só redireciona para cá.
+- **Códigos de resgate (desde 24/11/2026):** venda no próprio baile, mais barata, trocada depois por UM vídeo.
+  Tabela `codigos` (8 caracteres sem 0/O/1/I/L, exibidos `XXXX-XXXX`; status disponivel → vendido → resgatado).
+  No Hub de Bailes, botão **Códigos** de cada baile: preço no baile (`eventos.preco_codigo_centavos`), gerar lote,
+  **imprimir cartões** (A4, 10 por folha, QR para `<url_galeria>/?codigo=XXXXXXXX`, lib `docs/bailes/qrcode.min.js`),
+  copiar lista, **marcar como vendido** (valor, Pix/Cartão/Dinheiro/Cortesia, nome e contato opcionais; gera a mensagem
+  pronta para WhatsApp) e desfazer venda. Função `codigos-admin` (mesmo acesso Google do Hub). **Código não marcado como
+  vendido não resgata.** Na galeria: `?codigo=` (QR) mostra o aviso e fica guardado no aparelho; na janela do vídeo,
+  "Tenho um código" troca a compra pelo resgate (função pública `resgatar-codigo`, até 8 erros por IP a cada 15 min,
+  resgate atômico na função SQL `resgatar_codigo`). O resgate cria um pedido `origem: codigo`, valor 0, pago, e manda o
+  e-mail de sempre. Métricas: vendas e arrecadado somam códigos vendidos (pelo valor da venda), sem contar o resgate de novo.
 - **Novo baile** = criar o evento no Supabase (tabela `eventos`, com `url_galeria`), acrescentar em `bailes.json`,
   rodar `gerar_bailes.py` e cadastrar os vídeos; ele aparece sozinho no Hub de Bailes.

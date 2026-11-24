@@ -162,6 +162,14 @@
   .erro{color:#ff8a7a;font-size:14px;margin-top:12px;min-height:1em}
   .form .btn{margin-top:14px}
   .seguro{font-size:12px;color:var(--muted);text-align:center;margin-top:12px}
+  .troca-modo{display:block;margin:16px auto 0;font-size:14px;color:var(--ink-2);text-decoration:underline;text-underline-offset:3px;min-height:44px;padding:0 8px}
+  .troca-modo:hover{color:var(--ink)}
+  #fCodigo{text-transform:uppercase;letter-spacing:.18em;font-variant-numeric:tabular-nums;font-weight:600}
+  .aviso-cod{max-width:1180px;margin:18px auto 8px;padding:0 24px}
+  .aviso-cod>div{display:flex;flex-wrap:wrap;align-items:center;gap:10px 18px;border:1px solid rgba(246,173,3,.45);background:rgba(246,173,3,.07);border-radius:14px;padding:14px 18px;font-size:15px;color:var(--ink-2)}
+  .aviso-cod b{color:var(--ink);letter-spacing:.12em;font-variant-numeric:tabular-nums}
+  .aviso-cod .grow{flex:1}
+  .aviso-cod button{font-size:13px;color:var(--muted);text-decoration:underline;text-underline-offset:3px;min-height:36px}
   .lb-x{position:absolute;top:18px;right:22px;font-size:28px;color:#fff;opacity:.8;width:44px;height:44px;z-index:3}
   .lb-nav{position:absolute;top:50%;transform:translateY(-50%);font-size:30px;color:#fff;opacity:.6;width:48px;height:64px;z-index:3}
   .lb-nav:hover,.lb-x:hover{opacity:1}
@@ -217,6 +225,8 @@
   <li><b>4</b>Receba por e-mail</li>
 </ol>
 
+<div class="aviso-cod" id="avisoCod" hidden></div>
+
 <div class="bar" id="bar">
   <div class="wrap">
     <span class="lbl">Buscar</span>
@@ -245,6 +255,10 @@
       <h3 id="lbT">Acesse seu <em>vídeo completo</em>:</h3>
       <div class="preco"><span class="de" id="lbDe" hidden>de <s id="lbPrecoDe"></s> por</span><b id="lbPreco"></b></div>
       <form class="form" id="fCompra" novalidate>
+        <div id="campoCodigo" hidden>
+          <label for="fCodigo">Seu código</label>
+          <input id="fCodigo" autocomplete="off" autocapitalize="characters" spellcheck="false" maxlength="12" placeholder="XXXX-XXXX">
+        </div>
         <label for="fNome">Seu nome</label>
         <input id="fNome" autocomplete="name" required maxlength="120">
         <label for="fEmail">Seu e-mail</label>
@@ -252,8 +266,9 @@
         <p class="ajuda">O vídeo chega neste e-mail. Confira se está certinho.</p>
         <p class="erro" id="fErro" role="alert"></p>
         <button class="btn ouro bloco" id="fComprar" type="submit">Comprar meu vídeo</button>
-        <p class="seguro">Pagamento seguro pelo Mercado Pago · Pix, débito ou crédito</p>
+        <p class="seguro" id="fSeguro">Pagamento seguro pelo Mercado Pago · Pix, débito ou crédito</p>
       </form>
+      <button type="button" class="troca-modo" id="lbModo">Tenho um código</button>
     </div>
   </div>
 </div>
@@ -401,6 +416,7 @@ function abrir(i) {
   $("#lbV").src = v.previa_drive_id ? previaUrl(v.previa_drive_id) : "about:blank";
   requestAnimationFrame(ajustarPlayer);
   $("#fErro").textContent = "";
+  modoCodigo(!!codigoAtivo);
   $("#lbP").hidden = i <= 0;
   $("#lbN").hidden = i >= visiveis.length - 1;
   $("#lb").classList.add("open");
@@ -442,6 +458,7 @@ $("#fCompra").addEventListener("submit", async (e) => {
   erro.textContent = "";
   if (nome.length < 2) { erro.textContent = "Informe seu nome."; return; }
   if (!/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(email)) { erro.textContent = "Confira o seu e-mail."; return; }
+  if (emModoCodigo) return resgatar(nome, email);
   const btn = $("#fComprar");
   btn.disabled = true; btn.textContent = "Abrindo pagamento...";
   try {
@@ -459,6 +476,93 @@ $("#fCompra").addEventListener("submit", async (e) => {
     btn.disabled = false; btn.textContent = "Comprar meu vídeo";
   }
 });
+
+// ---------- Código de resgate (vendido no baile) ----------
+const chaveCodigo = `codigo-${slug}`;
+const limparCodigo = (c) => String(c || "").toUpperCase().replace(/[^A-Z0-9]/g, "").slice(0, 8);
+const verCodigo = (c) => (c.length === 8 ? `${c.slice(0, 4)}-${c.slice(4)}` : c);
+let codigoAtivo = "", emModoCodigo = false;
+
+function modoCodigo(sim) {
+  emModoCodigo = sim;
+  $("#campoCodigo").hidden = !sim;
+  document.querySelector(".lb-info .preco").hidden = sim;
+  $("#fSeguro").hidden = sim;
+  $("#lbT").innerHTML = sim ? "Resgate seu <em>vídeo completo</em>:" : "Acesse seu <em>vídeo completo</em>:";
+  $("#lbModo").textContent = sim ? "Não tenho código, quero comprar" : "Tenho um código";
+  if (sim && codigoAtivo && !$("#fCodigo").value) $("#fCodigo").value = verCodigo(codigoAtivo);
+  const v = visiveis[atual];
+  $("#fComprar").textContent = sim ? `Resgatar o vídeo nº ${v ? v.codigo : ""}` : "Comprar meu vídeo";
+  $("#fErro").textContent = "";
+}
+$("#lbModo").addEventListener("click", () => { modoCodigo(!emModoCodigo); if (emModoCodigo) $("#fCodigo").focus(); });
+$("#fCodigo").addEventListener("input", (e) => {
+  const c = limparCodigo(e.target.value);
+  e.target.value = c.length > 4 ? verCodigo(c) : c;
+});
+
+async function chamarResgate(corpo) {
+  const r = await fetch(api("/functions/v1/resgatar-codigo"), {
+    method: "POST",
+    headers: { "Content-Type": "application/json", apikey: CONFIG.chavePublica },
+    body: JSON.stringify(corpo),
+  });
+  return { ok: r.ok, d: await r.json().catch(() => ({})) };
+}
+
+async function resgatar(nome, email) {
+  const erro = $("#fErro"), btn = $("#fComprar");
+  const codigo = limparCodigo($("#fCodigo").value);
+  if (codigo.length !== 8) { erro.textContent = "O código tem 8 letras e números, como no seu cartão."; return; }
+  const v = visiveis[atual];
+  btn.disabled = true; btn.textContent = "Resgatando...";
+  try {
+    try { localStorage.setItem("comprador", JSON.stringify({ nome, email })); } catch {}
+    const { ok, d } = await chamarResgate({ acao: "resgatar", codigo, video_id: v.id, nome, email });
+    if (!ok || !d.link) throw new Error(d.erro || "Não foi possível resgatar agora.");
+    try { localStorage.removeItem(chaveCodigo); } catch {}
+    codigoAtivo = "";
+    avisoCodigo("");
+    fechar();
+    modoEstado(`<img class="miniatura" src="${capaUrl(v.id, 300)}" alt=""><h3>Vídeo <em>liberado!</em></h3><p>O vídeo nº ${esc(v.codigo)} foi resgatado com o código ${esc(verCodigo(codigo))}. Enviamos o link para ${esc(email)}, mas você já pode baixar agora.</p><div class="btns"><a class="btn ouro" href="${d.link}">Baixar meu vídeo</a></div><p class="nota">O link vale por 30 dias. Não chegou o e-mail? Confira o spam.</p>`);
+    history.replaceState(null, "", location.pathname);
+  } catch (err) {
+    erro.textContent = err.message;
+    btn.disabled = false; btn.textContent = `Resgatar o vídeo nº ${v.codigo}`;
+  }
+}
+
+function avisoCodigo(html) {
+  const el = $("#avisoCod");
+  el.hidden = !html;
+  el.innerHTML = html ? `<div>${html}</div>` : "";
+  const sair = el.querySelector("[data-sair]");
+  if (sair) sair.addEventListener("click", () => {
+    try { localStorage.removeItem(chaveCodigo); } catch {}
+    codigoAtivo = ""; avisoCodigo("");
+  });
+}
+
+async function prepararCodigo() {
+  let c = limparCodigo(params.get("codigo"));
+  if (!c) { try { c = limparCodigo(localStorage.getItem(chaveCodigo)); } catch {} }
+  if (c.length !== 8) return;
+  const { d } = await chamarResgate({ acao: "conferir", codigo: c }).catch(() => ({ d: {} }));
+  if (d.ok && d.evento === slug) {
+    codigoAtivo = c;
+    try { localStorage.setItem(chaveCodigo, c); } catch {}
+    const semVideos = !videos.length;
+    avisoCodigo(semVideos
+      ? `<span>Seu código <b>${verCodigo(c)}</b> está pronto para usar. Os vídeos ainda estão sendo editados: volte por este mesmo QR code quando eles chegarem e escolha o seu.</span>`
+      : `<span>Você tem o código <b>${verCodigo(c)}</b>. Ache o seu vídeo, abra a prévia e resgate sem pagar nada.</span><span class="grow"></span><button type="button" data-sair>Não usar agora</button>`);
+  } else if (d.motivo === "usado" || d.motivo === "nao_ativado" || d.motivo === "invalido") {
+    try { localStorage.removeItem(chaveCodigo); } catch {}
+    avisoCodigo(`<span>${esc(d.erro || "Código inválido.")}</span><span class="grow"></span><a class="btn sec" href="${CONFIG.whatsapp}" target="_blank" rel="noopener">Falar no WhatsApp</a>`);
+  } else if (d.evento && d.evento !== slug) {
+    avisoCodigo(`<span>Esse código é de outro baile.</span>`);
+  }
+  if (params.get("codigo")) history.replaceState(null, "", location.pathname);
+}
 
 // ---------- Telas de estado ----------
 function modoEstado(html) {
@@ -541,7 +645,7 @@ if (baixar && /^[0-9a-f]{64}$/.test(baixar)) {
   cabecalhoEstado();
   acompanharPedido(pedido);
 } else {
-  carregarGaleria();
+  carregarGaleria().then(prepararCodigo);
 }
 </script>
 </body>

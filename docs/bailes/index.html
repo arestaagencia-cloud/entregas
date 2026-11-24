@@ -139,6 +139,51 @@
   .spinner{width:34px;height:34px;border-radius:50%;border:3px solid var(--line);border-top-color:var(--gold);margin:0 auto 18px;animation:gira 1s linear infinite}
   @keyframes gira{to{transform:rotate(360deg)}}
 
+  /* códigos de resgate */
+  .cod{position:fixed;inset:0;z-index:60;background:var(--bg);overflow-y:auto;display:none}
+  .cod.open{display:block}
+  .cod-in{max-width:1100px;margin:0 auto;padding:24px clamp(16px,4vw,40px) 80px}
+  .cod-top{display:flex;align-items:center;justify-content:space-between;gap:12px;margin-bottom:22px}
+  .cod-top .k{font-size:11px;letter-spacing:.2em;text-transform:uppercase;color:var(--muted)}
+  .cod-top h3{font-weight:700;font-size:clamp(22px,2.6vw,30px);letter-spacing:-.01em;margin-top:4px}
+  .cod-x{width:44px;height:44px;font-size:24px;color:#fff;opacity:.8;flex:none}
+  .cod-nums{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:1px;background:var(--line);border:1px solid var(--line);border-radius:var(--radius);overflow:hidden}
+  .cod-nums div{background:var(--card);padding:14px 16px}
+  .cod-nums span{display:block;font-size:10px;letter-spacing:.18em;text-transform:uppercase;color:var(--muted)}
+  .cod-nums b{display:block;font-weight:600;font-size:22px;margin-top:4px;font-variant-numeric:tabular-nums}
+  .cod-grid{display:grid;grid-template-columns:minmax(0,1.15fr) minmax(0,1fr);gap:12px;margin-top:12px}
+  .caixa{background:var(--card);border:1px solid var(--line);border-radius:var(--radius);padding:20px}
+  .caixa h4{font-weight:600;font-size:16px;margin-bottom:4px}
+  .caixa p.sub{font-size:13px;color:var(--muted);margin-bottom:14px}
+  .campo{display:block;margin-top:12px}
+  .campo>span{display:block;font-size:10px;letter-spacing:.18em;text-transform:uppercase;color:var(--muted);margin-bottom:6px}
+  .campo input{width:100%;border:1px solid var(--line);background:var(--bg);border-radius:10px;padding:11px 12px;font:inherit;font-size:15px;color:var(--ink);outline:none}
+  .campo input:focus{border-color:var(--gold)}
+  .campo input.cod-in-c{text-transform:uppercase;letter-spacing:.16em;font-weight:600;font-variant-numeric:tabular-nums}
+  .duas{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+  .metodos{display:grid;grid-template-columns:repeat(4,1fr);gap:6px}
+  .metodos button{border:1px solid var(--line);border-radius:10px;padding:10px 4px;font-size:13px;color:var(--ink-2);background:var(--bg);min-height:44px}
+  .metodos button.on{border-color:var(--ink);color:#fff;background:var(--card-2)}
+  .btn.ouro{background:var(--gold);color:#0b0b0b;font-weight:600}
+  .btn.bloco{width:100%;justify-content:center;padding:13px 16px;font-size:15px;margin-top:16px}
+  .btn[disabled]{opacity:.55;cursor:wait}
+  .msg{font-size:13px;min-height:18px;margin-top:10px;color:var(--ink-2)}
+  .msg.erro{color:#ff8b7b}
+  .vendido{margin-top:14px;border:1px solid rgba(246,173,3,.45);background:rgba(246,173,3,.06);border-radius:12px;padding:14px}
+  .vendido pre{white-space:pre-wrap;font:inherit;font-size:13px;color:var(--ink-2);margin:8px 0 10px}
+  .linha-acoes{display:flex;gap:8px;flex-wrap:wrap;align-items:center}
+  .linha-acoes .campo{margin:0;flex:1;min-width:120px}
+  .filtros{display:flex;gap:6px;flex-wrap:wrap;margin:22px 0 10px;align-items:center}
+  .filtros .seg button{font-size:13px;padding:7px 12px}
+  .filtros .grow{flex:1}
+  .tab td .acao{font-size:12px;color:var(--ink-2);text-decoration:underline;text-underline-offset:3px;padding:4px 6px}
+  .tab td.cd{font-weight:600;letter-spacing:.1em;color:var(--ink)}
+  .tag{display:inline-block;font-size:11px;border-radius:999px;padding:2px 9px;border:1px solid var(--line);color:var(--muted)}
+  .tag.vendido{border-color:rgba(246,173,3,.5);color:var(--gold);background:none;padding:2px 9px;margin:0}
+  .tag.resgatado{border-color:#2f5a3e;color:#6fbf8b}
+  .tab-wrap{overflow-x:auto;border:1px solid var(--line);border-radius:var(--radius);background:var(--card)}
+  .tab-wrap .tab{margin:0;min-width:760px}
+  @media (max-width:900px){.cod-grid{grid-template-columns:1fr}.cod-nums{grid-template-columns:repeat(3,minmax(0,1fr))}}
   @media (max-width:900px){.kpis{grid-template-columns:repeat(2,minmax(0,1fr))}.kpis .kpi:first-child{grid-column:1/-1}}
   @media (max-width:760px){
     .top{grid-template-columns:auto 1fr auto}.top .brand span,.quem{display:none}
@@ -191,6 +236,54 @@
   </section>
   <footer>ArestAgência - Produção de Conteúdo<br><span id="gerado"></span></footer>
 </main>
+<div class="cod" id="cod" role="dialog" aria-modal="true" aria-labelledby="codT">
+  <div class="cod-in">
+    <div class="cod-top"><div><div class="k">Códigos de resgate</div><h3 id="codT"></h3></div><button class="cod-x" id="codX" type="button" aria-label="Fechar">✕</button></div>
+    <div class="cod-nums" id="codNums"></div>
+    <div class="cod-grid">
+      <form class="caixa" id="fVenda" novalidate>
+        <h4>Vender um código</h4>
+        <p class="sub">Digite o código do cartão entregue ou use o próximo disponível. Só código marcado aqui pode ser resgatado.</p>
+        <div class="linha-acoes">
+          <label class="campo"><span>Código</span><input id="vCod" class="cod-in-c" autocomplete="off" spellcheck="false" maxlength="9" placeholder="XXXX-XXXX"></label>
+          <button class="btn sec" type="button" id="vProx" style="margin-top:20px">Próximo livre</button>
+        </div>
+        <div class="duas">
+          <label class="campo"><span>Valor (R$)</span><input id="vValor" inputmode="decimal" placeholder="30"></label>
+          <label class="campo"><span>Nome (opcional)</span><input id="vNome" maxlength="120" autocomplete="off"></label>
+        </div>
+        <label class="campo"><span>WhatsApp ou e-mail (opcional)</span><input id="vContato" maxlength="120" autocomplete="off" placeholder="(61) 9...."></label>
+        <div class="campo"><span>Pagou com</span><div class="metodos" id="vMet"><button type="button" data-m="pix" class="on">Pix</button><button type="button" data-m="cartao">Cartão</button><button type="button" data-m="dinheiro">Dinheiro</button><button type="button" data-m="cortesia">Cortesia</button></div></div>
+        <button class="btn ouro bloco" id="vBtn" type="submit">Marcar como vendido</button>
+        <p class="msg" id="vMsg" role="status"></p>
+        <div id="vOk"></div>
+      </form>
+      <div class="caixa">
+        <h4>Preparar o baile</h4>
+        <p class="sub">Defina o preço da venda na hora e gere os cartões para imprimir.</p>
+        <div class="linha-acoes">
+          <label class="campo"><span>Preço no baile (R$)</span><input id="pValor" inputmode="decimal" placeholder="30"></label>
+          <button class="btn sec" type="button" id="pBtn" style="margin-top:20px">Salvar preço</button>
+        </div>
+        <div class="linha-acoes" style="margin-top:12px">
+          <label class="campo"><span>Gerar mais códigos</span><input id="gQtd" inputmode="numeric" placeholder="40"></label>
+          <button class="btn sec" type="button" id="gBtnCod" style="margin-top:20px">Gerar</button>
+        </div>
+        <div class="linha-acoes" style="margin-top:18px">
+          <button class="btn pri" type="button" id="impBtn">Imprimir cartões disponíveis</button>
+          <button class="btn sec" type="button" id="listaBtn">Copiar lista</button>
+        </div>
+        <p class="msg" id="pMsg" role="status"></p>
+      </div>
+    </div>
+    <div class="filtros">
+      <div class="seg" id="codFiltro"><button data-f="todos" class="on">Todos</button><button data-f="disponivel">Disponíveis</button><button data-f="vendido">A resgatar</button><button data-f="resgatado">Resgatados</button></div>
+      <span class="grow"></span><span class="quem" id="codConta" style="display:inline"></span>
+    </div>
+    <div class="tab-wrap"><table class="tab"><thead><tr><th>Código</th><th>Situação</th><th>Valor</th><th>Pagou com</th><th>Comprador</th><th>Vendido</th><th>Resgate</th><th></th></tr></thead><tbody id="codTab"></tbody></table></div>
+  </div>
+</div>
+
 <div class="carregando" id="carregando" hidden><div class="spinner"></div>Carregando os números...</div>
 <div class="tip" id="tip"></div>
 
@@ -262,10 +355,10 @@ function desenhar() {
   const ticketMedio = t.vendas ? Math.round(t.receita_centavos / t.vendas) : 0;
   $("#kpis").innerHTML = [
     ["Arrecadado", brl(t.receita_centavos), t.vendas ? `ticket médio ${brl(ticketMedio)}` : "valor bruto, antes das taxas"],
-    ["Vendas", num(t.vendas), `${num(t.compradores)} ${t.compradores === 1 ? "comprador" : "compradores"}`],
+    ["Vendas", num(t.vendas), t.codigos_vendidos ? `${num(t.codigos_vendidos)} por código · ${num(t.codigos_a_resgatar)} a resgatar` : `${num(t.compradores)} ${t.compradores === 1 ? "comprador" : "compradores"}`],
     ["Vídeos publicados", num(t.videos), `${pct(B.reduce((s, b) => s + b.videos_vendidos, 0), t.videos)}% já vendidos`],
     ["Bailes", num(t.bailes), `${B.filter((b) => b.aberto).length} com galeria aberta`],
-    ["Pix · Cartão", `${num(t.pix)} · ${num(t.cartao)}`, t.estornos ? `${num(t.estornos)} ${t.estornos === 1 ? "estorno" : "estornos"}` : "sem estornos"],
+    [t.dinheiro ? "Pix · Cartão · Dinheiro" : "Pix · Cartão", t.dinheiro ? `${num(t.pix)} · ${num(t.cartao)} · ${num(t.dinheiro)}` : `${num(t.pix)} · ${num(t.cartao)}`, t.estornos ? `${num(t.estornos)} ${t.estornos === 1 ? "estorno" : "estornos"}` : "sem estornos"],
   ].map(([k, v, s]) => `<div class="kpi"><span>${k}</span><b>${v}</b><small>${s}</small></div>`).join("");
 
   $("#avisos").innerHTML = t.sem_email ? `<div class="aviso"><b>Atenção:</b> ${t.sem_email} ${t.sem_email === 1 ? "venda paga está" : "vendas pagas estão"} sem e-mail enviado. O cliente pagou e pode não ter recebido o link. Peça para reenviar.</div>` : "";
@@ -289,7 +382,7 @@ $("#metrica").addEventListener("click", (e) => { const b = e.target.closest("but
 
 function card(b) {
   const conv = pct(b.videos_vendidos, b.videos);
-  const metodo = b.pix + b.cartao;
+  const metodo = b.pix + b.cartao + (b.dinheiro || 0);
   const maxDia = Math.max(1, ...b.por_dia.map((d) => d.n));
   return `<article class="baile">
     <div class="baile-h">
@@ -305,11 +398,12 @@ function card(b) {
     <div class="det">
       <div><div class="linha"><span>Vídeos vendidos</span><b>${num(b.videos_vendidos)} de ${num(b.videos)}</b></div><div class="prog"><i style="width:${conv}%"></i></div></div>
       ${metodo ? `<div><div class="linha"><span>Forma de pagamento</span><b>${pct(b.pix, metodo)}% Pix</b></div>
-        <div class="mix"><i class="pix" style="width:${pct(b.pix, metodo)}%"></i><i class="car" style="width:${100 - pct(b.pix, metodo)}%"></i></div>
-        <div class="leg"><span><i style="background:var(--ink-2)"></i>Pix ${num(b.pix)}</span><span><i style="background:#6d6461"></i>Cartão ${num(b.cartao)}</span></div></div>` : ""}
+        <div class="mix"><i class="pix" style="width:${pct(b.pix, metodo)}%"></i><i class="car" style="width:${pct(b.cartao, metodo)}%"></i>${b.dinheiro ? `<i style="background:#3d3735;width:${pct(b.dinheiro, metodo)}%"></i>` : ""}</div>
+        <div class="leg"><span><i style="background:var(--ink-2)"></i>Pix ${num(b.pix)}</span><span><i style="background:#6d6461"></i>Cartão ${num(b.cartao)}</span>${b.dinheiro ? `<span><i style="background:#3d3735"></i>Dinheiro ${num(b.dinheiro)}</span>` : ""}</div></div>` : ""}
       ${b.por_dia.length ? `<div><div class="linha"><span>Vendas por dia</span><b>${num(b.por_dia.length)} ${b.por_dia.length === 1 ? "dia" : "dias"} com venda</b></div>
         <div class="spark">${b.por_dia.map((d) => `<i style="height:${Math.max(8, (d.n / maxDia) * 100)}%" data-tip="${diaCurto(d.dia)}: ${d.n} ${d.n === 1 ? "venda" : "vendas"} · ${brl(d.valor)}"></i>`).join("")}</div></div>` : ""}
-      <div class="linha"><span>Checkouts abertos</span><b>${num(b.checkouts)} (${pct(b.vendas, b.checkouts)}% viraram venda)</b></div>
+      ${b.codigos && b.codigos.vendidos ? `<div class="linha"><span>Códigos vendidos no baile</span><b>${num(b.codigos.vendidos)} · ${brl(b.codigos.receita_centavos)} · ${num(b.codigos.a_resgatar)} a resgatar</b></div>` : ""}
+      <div class="linha"><span>Checkouts online</span><b>${num(b.checkouts)} (${pct(b.vendas_online, b.checkouts)}% viraram venda)</b></div>
       <div class="linha"><span>Downloads</span><b>${num(b.downloads)}</b></div>
       ${b.estornos ? `<div class="linha"><span>Estornos</span><b>${num(b.estornos)} · ${brl(b.estornado_centavos)}</b></div>` : ""}
       ${b.mais_vendidos.length ? `<div class="linha"><span>Mais vendidos</span><b>${b.mais_vendidos.map((m) => `Nº ${esc(m.codigo)} (${m.n})`).join(" · ")}</b></div>` : ""}
@@ -317,6 +411,7 @@ function card(b) {
     <div class="baile-f">
       <a class="btn pri" href="${esc(b.link)}" target="_blank" rel="noopener">Abrir galeria →</a>
       <button class="btn sec" type="button" data-copiar="${esc(b.link)}">Copiar link</button>
+      <button class="btn sec" type="button" data-codigos="${esc(b.slug)}">Códigos${b.codigos && b.codigos.total ? ` · ${num(b.codigos.vendidos)}/${num(b.codigos.total)} vendidos` : ""}</button>
     </div>
     ${b.ultimas.length ? `<details class="mais"><summary>Últimas vendas (${b.ultimas.length})</summary>
       <table class="tab"><thead><tr><th>Quando</th><th>Vídeo</th><th>Cliente</th><th>Pagou com</th><th>E-mail</th></tr></thead><tbody>
@@ -325,6 +420,153 @@ function card(b) {
       </tbody></table></details>` : ""}
   </article>`;
 }
+
+// ---------- códigos de resgate ----------
+const COD = { slug: null, ev: null, lista: [], filtro: "todos", metodo: "pix" };
+const API_COD = CONF.api.replace("painel-bailes", "codigos-admin");
+const limparCod = (c) => String(c || "").toUpperCase().replace(/[^A-Z0-9]/g, "").slice(0, 8);
+const verCod = (c) => { c = limparCod(c); return c.length > 4 ? `${c.slice(0, 4)}-${c.slice(4)}` : c; };
+const centavos = (v) => { const n = Number(String(v).replace(/[^\d,.]/g, "").replace(/\.(?=\d{3}(\D|$))/g, "").replace(",", ".")); return Math.round(n * 100); };
+const linkCod = (c) => `${COD.ev.url_galeria}/?codigo=${limparCod(c)}`;
+const quando = (d) => d ? new Date(d).toLocaleString("pt-BR", { day: "2-digit", month: "2-digit", hour: "2-digit", minute: "2-digit" }) : "";
+
+async function chamarCod(corpo) {
+  if (!logado()) { bloquear("Sua conexão com o Google terminou.\nEntre de novo para continuar."); throw new Error("Entre de novo."); }
+  const r = await fetch(API_COD, { method: "POST", headers: { "Content-Type": "application/json", "x-google-token": G.tok }, body: JSON.stringify(corpo) });
+  const d = await r.json().catch(() => ({}));
+  if (r.status === 401) { bloquear("Esta conta não tem acesso."); throw new Error("Sem acesso"); }
+  if (!r.ok) throw new Error(d.erro || "Erro " + r.status);
+  return d;
+}
+async function abrirCodigos(slug) {
+  COD.slug = slug; COD.filtro = "todos";
+  const b = D.bailes.find((x) => x.slug === slug);
+  $("#codT").textContent = b ? b.nome : slug;
+  $("#codTab").innerHTML = `<tr><td colspan="8" style="text-align:center;padding:30px">Carregando...</td></tr>`;
+  $("#codNums").innerHTML = ""; $("#vOk").innerHTML = ""; $("#vMsg").textContent = ""; $("#pMsg").textContent = "";
+  $("#cod").classList.add("open"); document.body.style.overflow = "hidden";
+  try { aplicarCod(await chamarCod({ acao: "listar", evento: slug })); } catch (e) { $("#pMsg").textContent = e.message; $("#pMsg").className = "msg erro"; }
+}
+function fecharCodigos() { $("#cod").classList.remove("open"); document.body.style.overflow = ""; carregar().catch(() => {}); }
+function aplicarCod(d) {
+  COD.ev = d.evento; COD.lista = d.codigos;
+  const preco = COD.ev.preco_codigo_centavos;
+  if (preco && !$("#pValor").value) $("#pValor").value = (preco / 100).toLocaleString("pt-BR");
+  if (preco && !$("#vValor").value) $("#vValor").value = (preco / 100).toLocaleString("pt-BR");
+  const L = COD.lista, n = (st) => L.filter((c) => c.status === st).length;
+  const vend = L.filter((c) => c.status === "vendido" || c.status === "resgatado");
+  $("#codNums").innerHTML = [["Disponíveis", num(n("disponivel"))], ["Vendidos", num(vend.length)], ["A resgatar", num(n("vendido"))], ["Resgatados", num(n("resgatado"))],
+    ["Arrecadado", brl(vend.reduce((s, c) => s + (c.valor_centavos || 0), 0))]].map(([k, v]) => `<div><span>${k}</span><b>${v}</b></div>`).join("");
+  tabelaCod();
+}
+const METODO_NOME = { pix: "Pix", cartao: "Cartão", dinheiro: "Dinheiro", cortesia: "Cortesia" };
+const SIT = { disponivel: ["Disponível", ""], vendido: ["A resgatar", "vendido"], resgatado: ["Resgatado", "resgatado"], cancelado: ["Cancelado", ""] };
+function tabelaCod() {
+  const L = COD.filtro === "todos" ? COD.lista : COD.lista.filter((c) => c.status === COD.filtro);
+  $("#codConta").textContent = `${num(L.length)} ${L.length === 1 ? "código" : "códigos"}`;
+  $("#codTab").innerHTML = L.length ? L.map((c) => `<tr>
+    <td class="cd">${esc(c.codigo)}</td><td><span class="tag ${SIT[c.status][1]}">${SIT[c.status][0]}</span></td>
+    <td>${c.valor_centavos != null && c.status !== "disponivel" ? brl(c.valor_centavos) : ""}</td><td>${esc(METODO_NOME[c.metodo] || "")}</td>
+    <td title="${esc(c.comprador_contato || "")}">${esc(c.comprador_nome || "")}${c.comprador_contato ? `<br><small style="color:var(--muted)">${esc(c.comprador_contato)}</small>` : ""}</td>
+    <td title="${esc(c.vendido_por || "")}">${quando(c.vendido_em)}</td>
+    <td>${c.resgate ? `Nº ${esc(c.resgate.video)} · ${esc(String(c.resgate.nome).split(" ")[0])}<br><small style="color:var(--muted)">${quando(c.resgatado_em)}</small>` : ""}</td>
+    <td style="white-space:nowrap">${c.status === "disponivel" ? `<button class="acao" type="button" data-vender="${esc(c.codigo)}">Vender</button>` : ""}
+      ${c.status === "vendido" ? `<button class="acao" type="button" data-msg="${esc(c.codigo)}">Mensagem</button><button class="acao" type="button" data-desfazer="${esc(c.codigo)}">Desfazer</button>` : ""}</td></tr>`).join("")
+    : `<tr><td colspan="8" style="text-align:center;padding:30px;color:var(--muted)">${COD.lista.length ? "Nenhum código nesta situação." : "Nenhum código ainda. Gere um lote ao lado."}</td></tr>`;
+}
+function mensagemCod(c) {
+  return `Olá! Este é o seu código para resgatar o vídeo da sua dança no ${COD.ev.nome}: ${verCod(c)}\n\nQuando os vídeos estiverem prontos, é só abrir este link, achar o seu vídeo e resgatar (sem pagar nada):\n${linkCod(c)}\n\nO código vale para 1 vídeo. Qualquer dúvida, é só chamar aqui.`;
+}
+function waLink(contato, texto) {
+  let d = String(contato || "").replace(/\D/g, "");
+  if (d.length === 10 || d.length === 11) d = "55" + d;
+  return `https://wa.me/${d.length >= 12 ? d : ""}?text=${encodeURIComponent(texto)}`;
+}
+function mostrarVendido(c, contato) {
+  const t = mensagemCod(c);
+  $("#vOk").innerHTML = `<div class="vendido"><b>${esc(verCod(c))}</b> vendido. Mensagem para o cliente:<pre>${esc(t)}</pre>
+    <div class="linha-acoes"><a class="btn ouro" href="${esc(waLink(contato, t))}" target="_blank" rel="noopener">Enviar no WhatsApp</a><button class="btn sec" type="button" data-copiar="${esc(t)}">Copiar mensagem</button></div></div>`;
+}
+
+$("#vCod").addEventListener("input", (e) => { e.target.value = verCod(e.target.value); });
+$("#vProx").onclick = () => { const c = COD.lista.find((x) => x.status === "disponivel");
+  if (!c) { $("#vMsg").textContent = "Não há códigos disponíveis. Gere mais ao lado."; $("#vMsg").className = "msg erro"; return; }
+  $("#vCod").value = c.codigo; $("#vMsg").textContent = ""; };
+$("#vMet").addEventListener("click", (e) => { const b = e.target.closest("button"); if (!b) return; COD.metodo = b.dataset.m;
+  $("#vMet").querySelectorAll("button").forEach((x) => x.classList.toggle("on", x === b)); });
+$("#fVenda").addEventListener("submit", async (e) => {
+  e.preventDefault();
+  const msg = $("#vMsg"), btn = $("#vBtn"); msg.className = "msg"; msg.textContent = "";
+  const codigo = limparCod($("#vCod").value), v = centavos($("#vValor").value);
+  if (codigo.length !== 8) { msg.className = "msg erro"; msg.textContent = "Informe o código (8 letras e números)."; return; }
+  if (COD.metodo !== "cortesia" && !(v > 0)) { msg.className = "msg erro"; msg.textContent = "Informe o valor da venda."; return; }
+  btn.disabled = true; btn.textContent = "Salvando...";
+  try {
+    const contato = $("#vContato").value.trim();
+    await chamarCod({ acao: "vender", codigo, valor_centavos: v, metodo: COD.metodo, nome: $("#vNome").value, contato });
+    mostrarVendido(codigo, contato);
+    $("#vCod").value = ""; $("#vNome").value = ""; $("#vContato").value = "";
+    aplicarCod(await chamarCod({ acao: "listar", evento: COD.slug }));
+  } catch (err) { msg.className = "msg erro"; msg.textContent = err.message; }
+  finally { btn.disabled = false; btn.textContent = "Marcar como vendido"; }
+});
+$("#pBtn").onclick = async () => { const m = $("#pMsg"); m.className = "msg";
+  const v = centavos($("#pValor").value); if (!(v > 0)) { m.className = "msg erro"; m.textContent = "Informe o preço."; return; }
+  try { aplicarCod(await chamarCod({ acao: "preco", evento: COD.slug, valor_centavos: v })); $("#vValor").value = $("#pValor").value; m.textContent = `Preço no baile: ${brl(v)}.`; }
+  catch (e) { m.className = "msg erro"; m.textContent = e.message; } };
+$("#gBtnCod").onclick = async () => { const m = $("#pMsg"), b = $("#gBtnCod"); m.className = "msg";
+  const q = parseInt($("#gQtd").value, 10); if (!(q >= 1 && q <= 300)) { m.className = "msg erro"; m.textContent = "Escolha de 1 a 300 códigos."; return; }
+  b.disabled = true;
+  try { aplicarCod(await chamarCod({ acao: "gerar", evento: COD.slug, quantidade: q })); m.textContent = `${q} códigos criados.`; $("#gQtd").value = ""; }
+  catch (e) { m.className = "msg erro"; m.textContent = e.message; } finally { b.disabled = false; } };
+$("#codFiltro").addEventListener("click", (e) => { const b = e.target.closest("button"); if (!b) return; COD.filtro = b.dataset.f;
+  $("#codFiltro").querySelectorAll("button").forEach((x) => x.classList.toggle("on", x === b)); tabelaCod(); });
+$("#codX").onclick = fecharCodigos;
+document.addEventListener("keydown", (e) => { if (e.key === "Escape" && $("#cod").classList.contains("open")) fecharCodigos(); });
+$("#listaBtn").onclick = () => {
+  const L = COD.lista.filter((c) => c.status === "disponivel");
+  const t = `Códigos disponíveis · ${COD.ev.nome}\nResgate em: ${COD.ev.url_galeria}/\n\n` + L.map((c) => `${c.codigo}  ${linkCod(c.codigo)}`).join("\n");
+  (navigator.clipboard ? navigator.clipboard.writeText(t) : Promise.reject()).then(() => { $("#pMsg").className = "msg"; $("#pMsg").textContent = `Lista com ${L.length} códigos copiada.`; }).catch(() => prompt("Copie a lista:", t));
+};
+document.addEventListener("click", async (e) => {
+  const v = e.target.closest("[data-vender]"), m = e.target.closest("[data-msg]"), d = e.target.closest("[data-desfazer]"), c = e.target.closest("[data-codigos]");
+  if (c) return abrirCodigos(c.dataset.codigos);
+  if (v) { $("#vCod").value = v.dataset.vender; $("#vCod").focus(); $("#fVenda").scrollIntoView({ behavior: "smooth", block: "start" }); }
+  if (m) { const x = COD.lista.find((y) => y.codigo === m.dataset.msg); mostrarVendido(m.dataset.msg, x && x.comprador_contato); $("#fVenda").scrollIntoView({ behavior: "smooth", block: "start" }); }
+  if (d && confirm(`Desfazer a venda do código ${d.dataset.desfazer}? Ele volta a ficar disponível.`)) {
+    try { await chamarCod({ acao: "desfazer", codigo: d.dataset.desfazer }); aplicarCod(await chamarCod({ acao: "listar", evento: COD.slug })); }
+    catch (err) { alert(err.message); }
+  }
+});
+
+// cartões para imprimir: A4, 10 por folha (85 x 54 mm), com QR que abre a galeria com o código
+function carregarQR() { return new Promise((ok, nok) => { if (window.qrcode) return ok();
+  const s = document.createElement("script"); s.src = "/bailes/qrcode.min.js"; s.onload = ok; s.onerror = nok; document.head.appendChild(s); }); }
+$("#impBtn").onclick = async () => {
+  const L = COD.lista.filter((c) => c.status === "disponivel");
+  if (!L.length) { $("#pMsg").className = "msg erro"; $("#pMsg").textContent = "Não há códigos disponíveis para imprimir."; return; }
+  const w = window.open("", "_blank");
+  if (!w) { $("#pMsg").className = "msg erro"; $("#pMsg").textContent = "O navegador bloqueou a janela. Libere pop-ups para esta página."; return; }
+  await carregarQR();
+  const qr = (t) => { const q = qrcode(0, "M"); q.addData(t); q.make(); return q.createSvgTag({ cellSize: 3, margin: 0, scalable: true }); };
+  const site = COD.ev.url_galeria.replace(/^https?:\/\//, "");
+  const cartoes = L.map((c) => `<div class="c"><div class="t"><div class="m">ARESTAGÊNCIA</div><div class="e">${esc(COD.ev.nome)}</div>
+    <div class="h">Vale <em>1 vídeo</em> da sua dança</div><div class="lb">Seu código</div><div class="cd">${esc(c.codigo)}</div>
+    <div class="p">Aponte a câmera para o QR ou acesse<br><b>${esc(site).replace(/\//g, "/<wbr>")}</b> e digite o código.</div></div><div class="q">${qr(linkCod(c.codigo))}</div></div>`).join("");
+  w.document.write(`<!DOCTYPE html><html lang="pt-BR"><head><meta charset="utf-8"><title>Cartões · ${esc(COD.ev.nome)}</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@400;600;700&family=Instrument+Serif:ital@1&display=swap" rel="stylesheet">
+<style>@page{size:A4;margin:10mm 15mm}*{box-sizing:border-box;margin:0;padding:0}body{font-family:"Inter Tight",Arial,sans-serif;color:#040404}
+.g{display:grid;grid-template-columns:85mm 85mm;grid-auto-rows:54mm;justify-content:center}
+.c{border:.2mm dashed #b9b2ae;padding:5mm;display:flex;gap:4mm;align-items:center;break-inside:avoid}
+.t{flex:1;min-width:0}.m{font-weight:700;letter-spacing:.24em;font-size:6.5pt}.e{font-size:7pt;color:#6f6866;margin-top:.6mm;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.h{font-weight:700;font-size:11pt;line-height:1.1;margin-top:3mm}.h em{font-family:"Instrument Serif",Georgia,serif;font-weight:400;color:#882725;font-size:12.5pt}
+.lb{font-size:5.5pt;letter-spacing:.2em;text-transform:uppercase;color:#6f6866;margin-top:3mm}.cd{font-weight:700;font-size:15pt;letter-spacing:.12em;font-variant-numeric:tabular-nums}
+.p{font-size:6pt;line-height:1.35;color:#3d3735;margin-top:2mm}.p b{color:#040404}.q{width:27mm;flex:none}.q svg{width:27mm;height:27mm;display:block}
+.dica{font-size:9pt;color:#6f6866;text-align:center;margin-bottom:6mm}@media print{.dica{display:none}}</style></head>
+<body><p class="dica">${L.length} cartões · imprima em A4 sem ajustar à página (escala 100%) e recorte nas linhas tracejadas.</p><div class="g">${cartoes}</div>
+<script>document.fonts.ready.then(()=>setTimeout(()=>print(),300))<\/script></body></html>`);
+  w.document.close();
+};
 
 // copiar link e dica das barrinhas
 document.addEventListener("click", (e) => { const b = e.target.closest("[data-copiar]"); if (!b) return;
