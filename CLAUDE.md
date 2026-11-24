@@ -285,11 +285,13 @@ Duas páginas, geradas por `python3 gerar_bailes.py`:
   por pessoa no WhatsApp (mensagem pronta; marca `whatsapp_avisado_em`) e copiar lista. Ações `avisos`,
   `avisar_email`, `whats_avisado` na função `codigos-admin`.
 - **Telão `/bailes/telao/`** (`bailes_telao_template.html`, sem login): no MacBook, escolhe o baile, adiciona a pasta
-  do cartão (ou arquivos, ou arrasta) e toca cada vídeo N segundos (padrão 20, a partir do meio do vídeo), em loop,
-  com número do vídeo, oferta do código (preço do baile, editável) e QR para `<url_galeria>/?avise=1`. Os arquivos
-  não saem do computador. Numeração: novas levas continuam a contagem; números ficam guardados por baile no
-  navegador (recarregar a página e reescolher a pasta mantém os números); número editável por vídeo. **A edição usa
-  os mesmos números (P. 07 / F. 07).** Teclas: espaço pausa, ← → anterior/próximo, F tela cheia, S configuração.
+  do cartão (ou arquivos, ou arrasta) e toca cada vídeo N segundos (padrão 20, a partir do meio do vídeo), em loop.
+  Os arquivos não saem do computador; novas levas entram no fim da fila. **Sem numeração dos vídeos** (pedido da
+  Aresta: o número podia não bater com a edição final). Dois formatos: **TV deitada** (vídeo + painel com logos
+  ARESTAGÊNCIA × parceiro em destaque, "Se viu aqui? Garanta o seu vídeo completo", oferta do código com o preço do
+  baile e QR para `<url_galeria>/?avise=1`) e **TV em pé** (só os vídeos em tela cheia, logos como marca d'água no
+  topo; girar a tela em Ajustes › Telas › Rotação 90°). Teclas: espaço pausa, ← → anterior/próximo, F tela cheia,
+  S configuração.
 - **Novo baile** = criar o evento no Supabase (tabela `eventos`, com `url_galeria`, `aberto` e o preço do código),
   acrescentar em `bailes.json`, rodar `gerar_bailes.py` e cadastrar os vídeos; ele aparece sozinho na página pública
   (se `aberto`), no painel interno e na lista de bailes da venda de códigos.

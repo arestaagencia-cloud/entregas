@@ -73,17 +73,16 @@
   .palco canvas{position:absolute;inset:-8%;width:116%;height:116%;filter:blur(38px) saturate(1.2) brightness(.55);transform:scale(1.05)}
   .palco video{position:absolute;inset:0;width:100%;height:100%;object-fit:contain;transition:opacity .5s ease}
   .palco video.sai{opacity:0}
-  .palco .num-video{position:absolute;left:2.2vw;top:2.2vw;z-index:2;font-weight:700;font-size:1.6vw;letter-spacing:.06em;background:rgba(0,0,0,.55);backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);padding:.5vw 1.1vw;border-radius:999px}
   .painel{position:relative;display:flex;flex-direction:column;justify-content:space-between;padding:3vw 3vw 2.4vw;background:radial-gradient(120% 70% at 100% 0%,#3c1e1e 0%,#140b0b 45%,#040404 100%);border-left:1px solid #1d1d1d}
   .p-marca{display:flex;align-items:center;gap:.9vw;font-weight:700;letter-spacing:.16em;font-size:1.05vw}
   .p-marca img.m{width:2.3vw;height:2.3vw;object-fit:contain}
   .p-marca .x{opacity:.5;font-weight:400}
-  .p-marca img.parc{height:3.4vw;width:auto;object-fit:contain}
+  .p-marca img.parc{height:6.4vw;width:auto;object-fit:contain}
   .p-baile{margin-top:.8vw;font-size:1vw;letter-spacing:.3em;text-transform:uppercase;color:var(--ink-2)}
-  .p-num .k{font-size:.95vw;letter-spacing:.3em;text-transform:uppercase;color:var(--muted)}
-  .p-num b{display:block;font-weight:700;font-size:8.4vw;line-height:.9;letter-spacing:-.02em;font-variant-numeric:tabular-nums}
-  .p-num .sub{font-family:var(--serif);font-style:italic;font-size:2vw;color:var(--ink-2);margin-top:.4vw}
-  .p-num .sub em{color:var(--gold)}
+  .p-chamada .k{font-size:.95vw;letter-spacing:.3em;text-transform:uppercase;color:var(--muted)}
+  .p-chamada b{display:block;font-weight:700;font-size:4.6vw;line-height:.95;letter-spacing:-.01em;text-transform:uppercase;margin-top:.6vw}
+  .p-chamada .sub{font-family:var(--serif);font-style:italic;font-size:2.6vw;line-height:1.1;color:var(--ink-2);margin-top:.5vw}
+  .p-chamada .sub em{color:var(--gold)}
   .oferta{border:1px solid rgba(246,173,3,.55);background:rgba(246,173,3,.08);border-radius:1.2vw;padding:1.3vw 1.5vw}
   .oferta .k{font-size:.85vw;letter-spacing:.24em;text-transform:uppercase;color:var(--gold)}
   .oferta b{display:block;font-weight:700;font-size:2.1vw;line-height:1.1;margin-top:.4vw}
@@ -97,6 +96,23 @@
   .barra{height:.35vw;background:rgba(255,255,255,.12);border-radius:999px;overflow:hidden;margin-top:1.4vw}
   .barra i{display:block;height:100%;width:0;background:var(--gold)}
   .prox{display:flex;justify-content:space-between;font-size:.9vw;color:var(--muted);margin-top:.6vw}
+  /* telão vertical (TV em pé): só os vídeos, com as logos como marca d'água */
+  .telao.vertical{grid-template-columns:1fr}
+  .telao.vertical .painel{display:none}
+  .telao.vertical .palco video{object-fit:cover}
+  .telao.vertical.horizontal .palco video{object-fit:contain}
+  .marca-agua{display:none;position:absolute;left:0;right:0;top:4vh;z-index:2;justify-content:center;align-items:center;gap:1.6vh;opacity:.78;pointer-events:none;filter:drop-shadow(0 .3vh 1.2vh rgba(0,0,0,.55))}
+  .telao.vertical .marca-agua{display:flex}
+  .marca-agua img.m{height:4.2vh;width:auto}
+  .marca-agua span{font-weight:700;letter-spacing:.16em;font-size:2vh;color:#fff}
+  .marca-agua .x{font-weight:400;opacity:.6;letter-spacing:0}
+  .marca-agua img.parc{height:8vh;width:auto}
+  .telao.vertical .barra-v{display:block}
+  .barra-v{display:none;position:absolute;left:0;right:0;bottom:0;height:.5vh;z-index:2;background:rgba(255,255,255,.12)}
+  .barra-v i{display:block;height:100%;width:0;background:var(--gold)}
+  .formato{display:grid;grid-template-columns:1fr 1fr;gap:6px}
+  .formato button{border:1px solid var(--line);border-radius:10px;padding:10px 6px;font-size:14px;color:var(--ink-2);background:var(--bg);min-height:44px}
+  .formato button.on{border-color:var(--ink);color:#fff;background:var(--card-2)}
   .pausa{position:absolute;inset:auto 0 0 0;z-index:3;text-align:center;padding:1vw;font-size:1.1vw;color:var(--gold);background:rgba(0,0,0,.6)}
   .toast{position:fixed;left:50%;bottom:24px;transform:translateX(-50%);z-index:40;background:#1b1b1b;border:1px solid #333;border-radius:10px;padding:10px 16px;font-size:14px;color:#fff;display:none}
 </style>
@@ -120,10 +136,11 @@
           <label class="campo"><span>Segundos por vídeo</span><input id="cSeg" inputmode="numeric" value="20"></label>
         </div>
         <label class="campo"><span>Frase da oferta</span><input id="cOferta" maxlength="80" value="Fale com a nossa equipe e garanta o seu código"></label>
+        <div class="campo"><span>Formato do telão</span><div class="formato" id="cFormato"><button type="button" data-f="horizontal" class="on">TV deitada · vídeo + oferta</button><button type="button" data-f="vertical">TV em pé · só vídeos</button></div></div>
       </div>
       <div class="caixa">
         <h2>Vídeos</h2>
-        <p class="sub">Novas levas entram no fim da fila e a numeração continua. Use os mesmos números na edição (P. 07 e F. 07).</p>
+        <p class="sub">Novas levas entram no fim da fila, na ordem dos arquivos.</p>
         <div class="acoes">
           <label class="btn ouro" for="cPasta">Adicionar pasta</label>
           <input type="file" id="cPasta" webkitdirectory multiple hidden>
@@ -131,11 +148,10 @@
           <input type="file" id="cArq" accept="video/*,.mov,.mp4,.m4v" multiple hidden>
           <button class="btn sec" type="button" id="cLimpar">Esvaziar fila</button>
         </div>
-        <label class="campo"><span>Número do próximo vídeo</span><input id="cProx" inputmode="numeric" value="1"></label>
       </div>
     </div>
 
-    <div class="fila"><table><thead><tr><th>Nº</th><th>Arquivo</th><th>Duração</th><th></th></tr></thead><tbody id="cFila"></tbody></table></div>
+    <div class="fila"><table><thead><tr><th>Arquivo</th><th>Duração</th><th></th></tr></thead><tbody id="cFila"></tbody></table></div>
 
     <div class="iniciar">
       <button class="btn ouro" type="button" id="cIniciar" disabled>Iniciar telão em tela cheia</button>
@@ -143,6 +159,7 @@
     </div>
 
     <div class="dicas">
+      <b>TV em pé:</b> gire a TV e, no Mac, em Ajustes › Telas, escolha a TV e mude "Rotação" para 90°; depois escolha "TV em pé · só vídeos".<br>
       <b>No telão:</b> <kbd>espaço</kbd> pausa · <kbd>←</kbd> <kbd>→</kbd> vídeo anterior / próximo · <kbd>F</kbd> tela cheia · <kbd>S</kbd> volta para esta tela (o telão continua de onde parou).<br>
       <b>Antes do baile:</b> abra esta página com internet e deixe a aba aberta. No Mac, ligue o carregador e, em Ajustes › Bateria, evite que a tela desligue. Vídeos em H.264 ou HEVC (MP4/MOV) tocam direto; se algum aparecer como "não tocou", exporte uma versão MP4 rápida.
     </div>
@@ -155,7 +172,8 @@
     <canvas id="fundo" width="48" height="27"></canvas>
     <video id="vA" muted playsinline preload="auto"></video>
     <video id="vB" muted playsinline preload="auto" class="sai"></video>
-    <div class="num-video" id="tNumPalco"></div>
+    <div class="marca-agua" id="tMarcaAgua"></div>
+    <div class="barra-v"><i id="tBarraV"></i></div>
     <div class="pausa" id="tPausa" hidden>Pausado · espaço para continuar</div>
   </div>
   <aside class="painel">
@@ -163,10 +181,10 @@
       <div class="p-marca" id="tMarca"></div>
       <div class="p-baile" id="tBaile"></div>
     </div>
-    <div class="p-num">
-      <div class="k">Vídeo nº</div>
-      <b id="tNum">01</b>
-      <div class="sub">Se achou o seu, <em>guarde esse número</em></div>
+    <div class="p-chamada">
+      <div class="k">No telão agora</div>
+      <b>Se viu aqui?</b>
+      <div class="sub">Garanta o <em>seu vídeo</em> completo</div>
     </div>
     <div>
       <div class="oferta">
@@ -225,15 +243,11 @@ function aoTrocarBaile(inicio) {
   if (p) $("#cPreco").value = (p / 100).toLocaleString("pt-BR");
   const of = ler("telao-oferta", null); if (of) $("#cOferta").value = of;
   const sg = ler("telao-seg", null); if (sg) $("#cSeg").value = sg;
-  NUMEROS = ler(`telao-num-${e.slug}`, {});
-  const maior = Math.max(0, ...Object.values(NUMEROS));
-  $("#cProx").value = maior + 1;
 }
 $("#cEv").addEventListener("change", () => aoTrocarBaile(false));
 
 // ---------- fila de vídeos ----------
-let FILA = [];          // { file, url, nome, num, dur, ok }
-let NUMEROS = {};       // nome do arquivo -> número (guardado por baile, sobrevive a recarregar a página)
+let FILA = [];          // { file, url, nome, caminho, dur, ok }
 const natural = new Intl.Collator("pt-BR", { numeric: true, sensitivity: "base" });
 
 function adicionar(files) {
@@ -241,18 +255,12 @@ function adicionar(files) {
     .sort((a, b) => natural.compare(a.webkitRelativePath || a.name, b.webkitRelativePath || b.name))
     .filter((f) => !FILA.some((x) => x.nome === f.name && x.file.size === f.size));
   if (!novos.length) { aviso("Nenhum vídeo novo nessa seleção."); return; }
-  // nunca repete um número já usado neste baile (mesmo depois de recarregar a página)
-  let prox = Math.max(parseInt($("#cProx").value, 10) || 1, ...Object.values(NUMEROS).map((n) => n + 1), 1);
   for (const f of novos) {
-    const num = NUMEROS[f.name] ?? prox;
-    if (NUMEROS[f.name] == null) NUMEROS[f.name] = num;
-    prox = Math.max(prox, num + 1);
-    const item = { file: f, url: URL.createObjectURL(f), nome: f.name, num, dur: 0, ok: null };
+    const item = { file: f, url: URL.createObjectURL(f), nome: f.name, caminho: f.webkitRelativePath || f.name, dur: 0, ok: null };
     FILA.push(item);
     medir(item);
   }
-  $("#cProx").value = prox;
-  salvarNumeros(); desenharFila();
+  desenharFila();
   aviso(`${novos.length} ${novos.length === 1 ? "vídeo adicionado" : "vídeos adicionados"}.`);
 }
 function medir(item) {
@@ -261,24 +269,17 @@ function medir(item) {
   v.onloadedmetadata = () => { item.dur = v.duration || 0; item.ok = v.videoWidth > 0; item.h = v.videoWidth > v.videoHeight; desenharFila(); v.removeAttribute("src"); v.load(); };
   v.onerror = () => { item.ok = false; desenharFila(); };
 }
-function salvarNumeros() { const e = baile(); if (e) guardar(`telao-num-${e.slug}`, NUMEROS); }
 function desenharFila() {
-  FILA.sort((a, b) => a.num - b.num);
+
   $("#cFila").innerHTML = FILA.length ? FILA.map((x, i) => `<tr>
-      <td><input type="number" min="1" value="${x.num}" data-num="${i}" aria-label="Número do vídeo ${esc(x.nome)}"></td>
       <td>${esc(x.nome)}${x.ok === false ? ` <span class="ruim">· não tocou (formato)</span>` : ""}</td>
       <td>${x.ok == null ? "lendo..." : mmss(x.dur)}</td>
       <td><button class="x" type="button" data-tirar="${i}">tirar</button></td></tr>`).join("")
-    : `<tr><td colspan="4" class="vazio">Nenhum vídeo ainda. Descarregue o cartão e toque em "Adicionar pasta".</td></tr>`;
+    : `<tr><td colspan="3" class="vazio">Nenhum vídeo ainda. Descarregue o cartão e toque em "Adicionar pasta".</td></tr>`;
   const bons = FILA.filter((x) => x.ok !== false).length;
   $("#cIniciar").disabled = !bons || !baile();
   $("#cResumo").textContent = bons ? `${bons} ${bons === 1 ? "vídeo" : "vídeos"} · um ciclo dura ${mmss(bons * segundos())}` : "";
 }
-$("#cFila").addEventListener("change", (e) => {
-  const i = e.target.dataset.num; if (i == null) return;
-  const n = parseInt(e.target.value, 10); if (!(n > 0)) return;
-  FILA[i].num = n; NUMEROS[FILA[i].nome] = n; salvarNumeros(); desenharFila();
-});
 $("#cFila").addEventListener("click", (e) => {
   const i = e.target.dataset.tirar; if (i == null) return;
   URL.revokeObjectURL(FILA[i].url); FILA.splice(i, 1); desenharFila();
@@ -292,6 +293,10 @@ $("#cLimpar").onclick = () => {
 // arrastar e soltar arquivos na tela de configuração
 document.addEventListener("dragover", (e) => e.preventDefault());
 document.addEventListener("drop", (e) => { e.preventDefault(); if (!$("#config").hidden && e.dataTransfer.files.length) adicionar(e.dataTransfer.files); });
+let FORMATO = ler("telao-formato", "horizontal");
+function marcarFormato() { $("#cFormato").querySelectorAll("button").forEach((b) => b.classList.toggle("on", b.dataset.f === FORMATO)); }
+$("#cFormato").addEventListener("click", (e) => { const b = e.target.closest("button"); if (!b) return; FORMATO = b.dataset.f; guardar("telao-formato", FORMATO); marcarFormato(); });
+marcarFormato();
 const segundos = () => Math.min(120, Math.max(5, parseInt($("#cSeg").value, 10) || 20));
 $("#cSeg").addEventListener("change", () => { guardar("telao-seg", segundos()); desenharFila(); });
 $("#cOferta").addEventListener("change", () => guardar("telao-oferta", $("#cOferta").value));
@@ -303,7 +308,10 @@ const tocaveis = () => FILA.filter((x) => x.ok !== false);
 
 function montarPainel() {
   const e = baile(), g = GALERIAS[e.slug] || {};
-  $("#tMarca").innerHTML = `<img class="m" src="/bailes/logo-mark.png" alt=""><span>ARESTAGÊNCIA</span>${g.logo ? `<span class="x">×</span><img class="parc" src="${esc(g.logo)}" alt="">` : ""}`;
+  const marcas = `<img class="m" src="/bailes/logo-mark.png" alt=""><span>ARESTAGÊNCIA</span>${g.logo ? `<span class="x">×</span><img class="parc" src="${esc(g.logo)}" alt="">` : ""}`;
+  $("#tMarca").innerHTML = marcas;
+  $("#tMarcaAgua").innerHTML = marcas;
+  $("#telao").classList.toggle("vertical", FORMATO === "vertical");
   $("#tBaile").textContent = e.nome;
   const c = Math.round(Number(String($("#cPreco").value).replace(/\./g, "").replace(",", ".")) * 100);
   $("#tPreco").textContent = c > 0 ? reais(c) : "";
@@ -341,12 +349,9 @@ function tocar(item, depois) {
     v.classList.remove("sai"); ativo.classList.add("sai");
     const antigo = ativo; setTimeout(() => { if (antigo !== ativo) { antigo.pause(); antigo.removeAttribute("src"); antigo.load(); } }, 600);
     ativo = v; reserva = antigo;
-    $("#tNum").textContent = dois(item.num);
-    $("#tNumPalco").textContent = `Nº ${dois(item.num)}`;
     $("#telao").classList.toggle("horizontal", !!item.h);
     const L = tocaveis();
-    $("#tPos").textContent = `${ATUAL + 1} de ${L.length}`;
-    $("#tProx").textContent = L.length > 1 ? `Próximo: nº ${dois(depois.num)}` : "";
+    $("#tPos").textContent = ""; $("#tProx").textContent = "";
     inicioTrecho = performance.now(); restante = Math.min(seg, v.duration || seg) * 1000;
     if (!pausado) timer = setTimeout(() => proximo(1), restante);
   };
@@ -371,7 +376,7 @@ function quadro() {
   if ($("#telao").hidden) return;
   if (!pausado && restante) {
     const p = Math.min(1, (performance.now() - inicioTrecho) / restante);
-    $("#tBarra").style.width = `${p * 100}%`;
+    $("#tBarra").style.width = $("#tBarraV").style.width = `${p * 100}%`;
   }
   if (ativo.readyState >= 2) { try { ctx.drawImage(ativo, 0, 0, 48, 27); } catch {} }
 }
