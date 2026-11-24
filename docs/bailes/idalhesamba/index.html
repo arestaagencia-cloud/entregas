@@ -38,8 +38,9 @@
   .brand-name{font-weight:700;letter-spacing:.14em;font-size:15px}
   /* parceria: logo do cliente ao lado da marca */
   .brand .x{font-size:18px;opacity:.55;margin:0 2px;font-weight:400}
-  .brand .parceiro{width:64px;height:64px;border-radius:12px;background:#fff;object-fit:contain;padding:3px;box-shadow:0 6px 20px rgba(0,0,0,.35)}
-  @media (max-width:420px){.brand .parceiro{width:52px;height:52px}}
+  /* logo do parceiro sempre na versão toda branca (PNG transparente), sem fundo */
+  .brand .parceiro{height:60px;width:auto;object-fit:contain}
+  @media (max-width:420px){.brand .parceiro{height:50px}}
 
   .hero{position:relative;height:80vh;height:80svh;min-height:460px;display:flex;align-items:flex-end;justify-content:center;text-align:center;overflow:hidden}
   .hero.compacto{height:auto;min-height:0;padding-top:120px}

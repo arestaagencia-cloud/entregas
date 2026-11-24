@@ -255,7 +255,8 @@ os dados cifrados e `cardExtra()` em `hub_template.html` desenha o card). Capa d
 - **Galerias públicas de cada baile:** `https://entregas.arestagencia.com.br/bailes/<pasta>/` (ex.: `/bailes/idalhesamba/`),
   geradas por `gerar_bailes.py` a partir de `galeria_template.html` e da lista `bailes.json`
   (`pasta`, `evento` = slug no Supabase, `parceiro` opcional com `nome` e `logo`, arquivo em `docs/bailes/<pasta>/`;
-  o logo aparece ao lado da marca, "ARESTAGÊNCIA × logo"). A galeria lê eventos/vídeos pela chave pública, abre a
+  o logo aparece ao lado da marca, "ARESTAGÊNCIA × logo"; **sempre a versão toda branca do logo, PNG com fundo
+  transparente, sem quadro nem fundo** (pedido da Aresta, 24/11/2026). Se o cliente só tiver o logo colorido, peça a versão branca). A galeria lê eventos/vídeos pela chave pública, abre a
   compra (função `criar-checkout`), mostra a confirmação (`?pedido=`) e o download (`?baixar=`). O Supabase guarda o
   endereço em `eventos.url_galeria`: é para lá que o Mercado Pago devolve o cliente e para onde aponta o link do e-mail.
   O endereço antigo `videos.arestagencia.com.br` (repo `arestaagencia-cloud/videos`) só redireciona para cá.
