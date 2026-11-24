@@ -69,7 +69,9 @@
   /* ---------- telão (16:9) ---------- */
   .telao{position:fixed;inset:0;background:#000;display:grid;grid-template-columns:minmax(0,1fr) 38vw;cursor:none}
   .telao.horizontal{grid-template-columns:minmax(0,1fr) 32vw}
-  .palco{position:relative;overflow:hidden;background:#000}
+  .giro{position:relative;overflow:hidden;background:#000;container-type:size}
+  .palco{position:absolute;inset:0;overflow:hidden;background:#000}
+  .num-video{position:absolute;left:2.4cqmin;top:2.4cqmin;z-index:3;font-weight:600;font-size:max(12px,2.3cqmin);letter-spacing:.08em;color:#fff;background:rgba(0,0,0,.5);backdrop-filter:blur(6px);-webkit-backdrop-filter:blur(6px);padding:.5cqmin 1.3cqmin;border-radius:999px;font-variant-numeric:tabular-nums}
   .palco canvas{position:absolute;inset:-8%;width:116%;height:116%;filter:blur(38px) saturate(1.2) brightness(.55);transform:scale(1.05)}
   .palco video{position:absolute;inset:0;width:100%;height:100%;object-fit:contain;transition:opacity .5s ease}
   .palco video.sai{opacity:0}
@@ -96,20 +98,26 @@
   .barra{height:.35vw;background:rgba(255,255,255,.12);border-radius:999px;overflow:hidden;margin-top:1.4vw}
   .barra i{display:block;height:100%;width:0;background:var(--gold)}
   .prox{display:flex;justify-content:space-between;font-size:.9vw;color:var(--muted);margin-top:.6vw}
-  /* telão vertical (TV em pé): só os vídeos, com as logos como marca d'água */
+  /* telão vertical: o Mac continua normal; a página desenha o player DEITADO (girado 90°) e a TV é colocada em pé.
+     Assim não é preciso mexer em nenhuma configuração do computador nem da TV. */
   .telao.vertical{grid-template-columns:1fr}
   .telao.vertical .painel{display:none}
+  .telao.vertical .giro{position:fixed;top:50%;left:50%;width:100vh;height:100vw;transform:translate(-50%,-50%) rotate(-90deg)}
+  .telao.vertical.dir .giro{transform:translate(-50%,-50%) rotate(90deg)}
   .telao.vertical .palco video{object-fit:cover}
   .telao.vertical.horizontal .palco video{object-fit:contain}
-  .marca-agua{display:none;position:absolute;left:0;right:0;top:4vh;z-index:2;justify-content:center;align-items:center;gap:1.6vh;opacity:.78;pointer-events:none;filter:drop-shadow(0 .3vh 1.2vh rgba(0,0,0,.55))}
+  .marca-agua{display:none;position:absolute;left:0;right:0;top:4cqh;z-index:2;justify-content:center;align-items:center;gap:1.6cqh;opacity:.78;pointer-events:none;filter:drop-shadow(0 .3cqh 1.2cqh rgba(0,0,0,.55))}
   .telao.vertical .marca-agua{display:flex}
-  .marca-agua img.m{height:4.2vh;width:auto}
-  .marca-agua span{font-weight:700;letter-spacing:.16em;font-size:2vh;color:#fff}
+  .marca-agua img.m{height:4.2cqh;width:auto}
+  .marca-agua span{font-weight:700;letter-spacing:.16em;font-size:2cqh;color:#fff}
   .marca-agua .x{font-weight:400;opacity:.6;letter-spacing:0}
-  .marca-agua img.parc{height:8vh;width:auto}
+  .marca-agua img.parc{height:8cqh;width:auto}
+  .telao.vertical .num-video{top:2.4cqmin}
   .telao.vertical .barra-v{display:block}
-  .barra-v{display:none;position:absolute;left:0;right:0;bottom:0;height:.5vh;z-index:2;background:rgba(255,255,255,.12)}
+  .barra-v{display:none;position:absolute;left:0;right:0;bottom:0;height:.5cqh;z-index:2;background:rgba(255,255,255,.12)}
   .barra-v i{display:block;height:100%;width:0;background:var(--gold)}
+  .lado{display:none;margin-top:8px}
+  .lado.on{display:grid}
   .formato{display:grid;grid-template-columns:1fr 1fr;gap:6px}
   .formato button{border:1px solid var(--line);border-radius:10px;padding:10px 6px;font-size:14px;color:var(--ink-2);background:var(--bg);min-height:44px}
   .formato button.on{border-color:var(--ink);color:#fff;background:var(--card-2)}
@@ -136,11 +144,12 @@
           <label class="campo"><span>Segundos por vídeo</span><input id="cSeg" inputmode="numeric" value="20"></label>
         </div>
         <label class="campo"><span>Frase da oferta</span><input id="cOferta" maxlength="80" value="Fale com a nossa equipe e garanta o seu código"></label>
-        <div class="campo"><span>Formato do telão</span><div class="formato" id="cFormato"><button type="button" data-f="horizontal" class="on">TV deitada · vídeo + oferta</button><button type="button" data-f="vertical">TV em pé · só vídeos</button></div></div>
+        <div class="campo"><span>Formato do telão</span><div class="formato" id="cFormato"><button type="button" data-f="horizontal" class="on">TV deitada · vídeo + oferta</button><button type="button" data-f="vertical">TV em pé · só vídeos</button></div>
+          <div class="formato lado" id="cLado"><button type="button" data-l="esq">TV girada para a esquerda ↺</button><button type="button" data-l="dir">TV girada para a direita ↻</button></div></div>
       </div>
       <div class="caixa">
         <h2>Vídeos</h2>
-        <p class="sub">Novas levas entram no fim da fila, na ordem dos arquivos.</p>
+        <p class="sub">Novas levas entram no fim da fila e a numeração continua. O número aparece pequeno no canto do vídeo.</p>
         <div class="acoes">
           <label class="btn ouro" for="cPasta">Adicionar pasta</label>
           <input type="file" id="cPasta" webkitdirectory multiple hidden>
@@ -148,10 +157,11 @@
           <input type="file" id="cArq" accept="video/*,.mov,.mp4,.m4v" multiple hidden>
           <button class="btn sec" type="button" id="cLimpar">Esvaziar fila</button>
         </div>
+        <label class="campo"><span>Número do próximo vídeo</span><input id="cProx" inputmode="numeric" value="1"></label>
       </div>
     </div>
 
-    <div class="fila"><table><thead><tr><th>Arquivo</th><th>Duração</th><th></th></tr></thead><tbody id="cFila"></tbody></table></div>
+    <div class="fila"><table><thead><tr><th>Nº</th><th>Arquivo</th><th>Duração</th><th></th></tr></thead><tbody id="cFila"></tbody></table></div>
 
     <div class="iniciar">
       <button class="btn ouro" type="button" id="cIniciar" disabled>Iniciar telão em tela cheia</button>
@@ -159,8 +169,8 @@
     </div>
 
     <div class="dicas">
-      <b>TV em pé:</b> gire a TV e, no Mac, em Ajustes › Telas, escolha a TV e mude "Rotação" para 90°; depois escolha "TV em pé · só vídeos".<br>
-      <b>No telão:</b> <kbd>espaço</kbd> pausa · <kbd>←</kbd> <kbd>→</kbd> vídeo anterior / próximo · <kbd>F</kbd> tela cheia · <kbd>S</kbd> volta para esta tela (o telão continua de onde parou).<br>
+      <b>TV em pé:</b> não mexa em nada no Mac nem na TV. Escolha "TV em pé · só vídeos": a página desenha o player deitado e você só coloca a TV em pé no suporte. Se a imagem ficar de cabeça para baixo, aperte <kbd>R</kbd> (ou troque o lado aqui).<br>
+      <b>No telão:</b> <kbd>espaço</kbd> pausa · <kbd>←</kbd> <kbd>→</kbd> vídeo anterior / próximo · <kbd>F</kbd> tela cheia · <kbd>R</kbd> inverte o giro da TV em pé · <kbd>S</kbd> volta para esta tela (o telão continua de onde parou).<br>
       <b>Antes do baile:</b> abra esta página com internet e deixe a aba aberta. No Mac, ligue o carregador e, em Ajustes › Bateria, evite que a tela desligue. Vídeos em H.264 ou HEVC (MP4/MOV) tocam direto; se algum aparecer como "não tocou", exporte uma versão MP4 rápida.
     </div>
   </div>
@@ -168,14 +178,15 @@
 
 <!-- ========== telão ========== -->
 <section class="telao" id="telao" hidden>
-  <div class="palco">
+  <div class="giro"><div class="palco">
     <canvas id="fundo" width="48" height="27"></canvas>
     <video id="vA" muted playsinline preload="auto"></video>
     <video id="vB" muted playsinline preload="auto" class="sai"></video>
     <div class="marca-agua" id="tMarcaAgua"></div>
     <div class="barra-v"><i id="tBarraV"></i></div>
+    <div class="num-video" id="tNum"></div>
     <div class="pausa" id="tPausa" hidden>Pausado · espaço para continuar</div>
-  </div>
+  </div></div>
   <aside class="painel">
     <div>
       <div class="p-marca" id="tMarca"></div>
@@ -243,11 +254,14 @@ function aoTrocarBaile(inicio) {
   if (p) $("#cPreco").value = (p / 100).toLocaleString("pt-BR");
   const of = ler("telao-oferta", null); if (of) $("#cOferta").value = of;
   const sg = ler("telao-seg", null); if (sg) $("#cSeg").value = sg;
+  NUMEROS = ler(`telao-num-${e.slug}`, {});
+  $("#cProx").value = Math.max(0, ...Object.values(NUMEROS)) + 1;
 }
 $("#cEv").addEventListener("change", () => aoTrocarBaile(false));
 
 // ---------- fila de vídeos ----------
-let FILA = [];          // { file, url, nome, caminho, dur, ok }
+let FILA = [];          // { file, url, nome, caminho, num, dur, ok }
+let NUMEROS = {};       // nome do arquivo -> número (guardado por baile, sobrevive a recarregar a página)
 const natural = new Intl.Collator("pt-BR", { numeric: true, sensitivity: "base" });
 
 function adicionar(files) {
@@ -255,12 +269,18 @@ function adicionar(files) {
     .sort((a, b) => natural.compare(a.webkitRelativePath || a.name, b.webkitRelativePath || b.name))
     .filter((f) => !FILA.some((x) => x.nome === f.name && x.file.size === f.size));
   if (!novos.length) { aviso("Nenhum vídeo novo nessa seleção."); return; }
+  // nunca repete um número já usado neste baile (mesmo depois de recarregar a página)
+  let prox = Math.max(parseInt($("#cProx").value, 10) || 1, ...Object.values(NUMEROS).map((n) => n + 1), 1);
   for (const f of novos) {
-    const item = { file: f, url: URL.createObjectURL(f), nome: f.name, caminho: f.webkitRelativePath || f.name, dur: 0, ok: null };
+    const num = NUMEROS[f.name] ?? prox;
+    if (NUMEROS[f.name] == null) NUMEROS[f.name] = num;
+    prox = Math.max(prox, num + 1);
+    const item = { file: f, url: URL.createObjectURL(f), nome: f.name, caminho: f.webkitRelativePath || f.name, num, dur: 0, ok: null };
     FILA.push(item);
     medir(item);
   }
-  desenharFila();
+  $("#cProx").value = prox;
+  salvarNumeros(); desenharFila();
   aviso(`${novos.length} ${novos.length === 1 ? "vídeo adicionado" : "vídeos adicionados"}.`);
 }
 function medir(item) {
@@ -269,17 +289,24 @@ function medir(item) {
   v.onloadedmetadata = () => { item.dur = v.duration || 0; item.ok = v.videoWidth > 0; item.h = v.videoWidth > v.videoHeight; desenharFila(); v.removeAttribute("src"); v.load(); };
   v.onerror = () => { item.ok = false; desenharFila(); };
 }
+function salvarNumeros() { const e = baile(); if (e) guardar(`telao-num-${e.slug}`, NUMEROS); }
 function desenharFila() {
-
+  FILA.sort((a, b) => a.num - b.num);
   $("#cFila").innerHTML = FILA.length ? FILA.map((x, i) => `<tr>
+      <td><input type="number" min="1" value="${x.num}" data-num="${i}" aria-label="Número do vídeo ${esc(x.nome)}"></td>
       <td>${esc(x.nome)}${x.ok === false ? ` <span class="ruim">· não tocou (formato)</span>` : ""}</td>
       <td>${x.ok == null ? "lendo..." : mmss(x.dur)}</td>
       <td><button class="x" type="button" data-tirar="${i}">tirar</button></td></tr>`).join("")
-    : `<tr><td colspan="3" class="vazio">Nenhum vídeo ainda. Descarregue o cartão e toque em "Adicionar pasta".</td></tr>`;
+    : `<tr><td colspan="4" class="vazio">Nenhum vídeo ainda. Descarregue o cartão e toque em "Adicionar pasta".</td></tr>`;
   const bons = FILA.filter((x) => x.ok !== false).length;
   $("#cIniciar").disabled = !bons || !baile();
   $("#cResumo").textContent = bons ? `${bons} ${bons === 1 ? "vídeo" : "vídeos"} · um ciclo dura ${mmss(bons * segundos())}` : "";
 }
+$("#cFila").addEventListener("change", (e) => {
+  const i = e.target.dataset.num; if (i == null) return;
+  const n = parseInt(e.target.value, 10); if (!(n > 0)) return;
+  FILA[i].num = n; NUMEROS[FILA[i].nome] = n; salvarNumeros(); desenharFila();
+});
 $("#cFila").addEventListener("click", (e) => {
   const i = e.target.dataset.tirar; if (i == null) return;
   URL.revokeObjectURL(FILA[i].url); FILA.splice(i, 1); desenharFila();
@@ -296,7 +323,15 @@ document.addEventListener("drop", (e) => { e.preventDefault(); if (!$("#config")
 let FORMATO = ler("telao-formato", "horizontal");
 function marcarFormato() { $("#cFormato").querySelectorAll("button").forEach((b) => b.classList.toggle("on", b.dataset.f === FORMATO)); }
 $("#cFormato").addEventListener("click", (e) => { const b = e.target.closest("button"); if (!b) return; FORMATO = b.dataset.f; guardar("telao-formato", FORMATO); marcarFormato(); });
-marcarFormato();
+let LADO = ler("telao-lado", "esq");
+function marcarLado() {
+  $("#cLado").classList.toggle("on", FORMATO === "vertical");
+  $("#cLado").querySelectorAll("button").forEach((b) => b.classList.toggle("on", b.dataset.l === LADO));
+  $("#telao").classList.toggle("dir", LADO === "dir");
+}
+$("#cLado").addEventListener("click", (e) => { const b = e.target.closest("button"); if (!b) return; LADO = b.dataset.l; guardar("telao-lado", LADO); marcarLado(); });
+$("#cFormato").addEventListener("click", marcarLado);
+marcarFormato(); marcarLado();
 const segundos = () => Math.min(120, Math.max(5, parseInt($("#cSeg").value, 10) || 20));
 $("#cSeg").addEventListener("change", () => { guardar("telao-seg", segundos()); desenharFila(); });
 $("#cOferta").addEventListener("change", () => guardar("telao-oferta", $("#cOferta").value));
@@ -350,6 +385,7 @@ function tocar(item, depois) {
     const antigo = ativo; setTimeout(() => { if (antigo !== ativo) { antigo.pause(); antigo.removeAttribute("src"); antigo.load(); } }, 600);
     ativo = v; reserva = antigo;
     $("#telao").classList.toggle("horizontal", !!item.h);
+    $("#tNum").textContent = `Nº ${dois(item.num)}`;
     const L = tocaveis();
     $("#tPos").textContent = ""; $("#tProx").textContent = "";
     inicioTrecho = performance.now(); restante = Math.min(seg, v.duration || seg) * 1000;
@@ -402,6 +438,7 @@ document.addEventListener("keydown", (e) => {
   else if (e.key === "ArrowLeft") { pausado = false; $("#tPausa").hidden = true; proximo(-1); }
   else if (e.key === "f" || e.key === "F") { document.fullscreenElement ? document.exitFullscreen() : document.documentElement.requestFullscreen().catch(() => {}); }
   else if (e.key === "s" || e.key === "S") voltarConfig();
+  else if ((e.key === "r" || e.key === "R") && FORMATO === "vertical") { LADO = LADO === "dir" ? "esq" : "dir"; guardar("telao-lado", LADO); marcarLado(); }
 });
 // se o Mac acordar ou a aba voltar, pede de novo para a tela não apagar
 document.addEventListener("visibilitychange", async () => { if (!document.hidden && !$("#telao").hidden) { try { wake = await navigator.wakeLock.request("screen"); } catch {} } });

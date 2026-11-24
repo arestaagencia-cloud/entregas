@@ -286,12 +286,14 @@ Duas páginas, geradas por `python3 gerar_bailes.py`:
   `avisar_email`, `whats_avisado` na função `codigos-admin`.
 - **Telão `/bailes/telao/`** (`bailes_telao_template.html`, sem login): no MacBook, escolhe o baile, adiciona a pasta
   do cartão (ou arquivos, ou arrasta) e toca cada vídeo N segundos (padrão 20, a partir do meio do vídeo), em loop.
-  Os arquivos não saem do computador; novas levas entram no fim da fila. **Sem numeração dos vídeos** (pedido da
-  Aresta: o número podia não bater com a edição final). Dois formatos: **TV deitada** (vídeo + painel com logos
-  ARESTAGÊNCIA × parceiro em destaque, "Se viu aqui? Garanta o seu vídeo completo", oferta do código com o preço do
-  baile e QR para `<url_galeria>/?avise=1`) e **TV em pé** (só os vídeos em tela cheia, logos como marca d'água no
-  topo; girar a tela em Ajustes › Telas › Rotação 90°). Teclas: espaço pausa, ← → anterior/próximo, F tela cheia,
-  S configuração.
+  Os arquivos não saem do computador; novas levas entram no fim da fila e a numeração continua (números guardados por
+  baile no navegador, editáveis na lista). **Número pequeno no canto superior esquerdo do vídeo** ("Nº 07"; a edição usa
+  os mesmos números, P. 07 / F. 07). Dois formatos: **TV deitada** (vídeo + painel com logos ARESTAGÊNCIA × parceiro em
+  destaque, "Se viu aqui? Garanta o seu vídeo completo", oferta do código com o preço do baile e QR para
+  `<url_galeria>/?avise=1`) e **TV em pé** (só os vídeos em tela cheia, logos como marca d'água no topo). Na TV em pé
+  o Mac e a TV ficam sem nenhum ajuste: a página desenha o player girado 90° (`.giro`, unidades `cq*`) e a TV é
+  colocada em pé no suporte; lado do giro escolhido na configuração (esquerda/direita) ou tecla R. Teclas: espaço pausa,
+  ← → anterior/próximo, F tela cheia, R inverte o giro, S configuração.
 - **Novo baile** = criar o evento no Supabase (tabela `eventos`, com `url_galeria`, `aberto` e o preço do código),
   acrescentar em `bailes.json`, rodar `gerar_bailes.py` e cadastrar os vídeos; ele aparece sozinho na página pública
   (se `aberto`), no painel interno e na lista de bailes da venda de códigos.
