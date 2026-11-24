@@ -3,6 +3,7 @@
 Uso: python3 gerar_bailes.py
 - docs/bailes/index.html          ← bailes_publico_template.html (Hub PÚBLICO dos bailes: lista as galerias, campo de código)
 - docs/bailes/painel/index.html   ← bailes_template.html  (Hub de Bailes INTERNO: métricas e códigos, login Google)
+- docs/bailes/telao/index.html    ← bailes_telao_template.html (telão do baile: vídeos locais em loop + oferta + QR do Me avise)
 - docs/bailes/<pasta>/index.html   ← galeria_template.html (galeria pública de cada baile, uma por item de bailes.json)
 
 Nenhuma página leva dados: tudo vem ao vivo do Supabase (projeto arestagencia-bailes).
@@ -30,6 +31,12 @@ publico = (RAIZ / "bailes_publico_template.html").read_text().replace(
     "{{GALERIAS}}", json.dumps(mapa, ensure_ascii=False).replace("</", "<\\/"))
 (DOCS / "index.html").write_text(publico)
 print(DOCS / "index.html")
+
+telao = (RAIZ / "bailes_telao_template.html").read_text().replace(
+    "{{GALERIAS}}", json.dumps(mapa, ensure_ascii=False).replace("</", "<\\/"))
+(DOCS / "telao").mkdir(parents=True, exist_ok=True)
+(DOCS / "telao" / "index.html").write_text(telao)
+print(DOCS / "telao" / "index.html")
 
 modelo = (RAIZ / "galeria_template.html").read_text()
 for g in galerias:

@@ -277,6 +277,19 @@ Duas páginas, geradas por `python3 gerar_bailes.py`:
   15 min, resgate atômico na função SQL `resgatar_codigo`). O resgate cria um pedido `origem: codigo`, valor 0, pago, e
   manda o e-mail de sempre. Métricas: vendas e arrecadado somam códigos vendidos (pelo valor da venda), sem contar o resgate.
   Primeiro lote: 25 códigos (24/11/2026), preço no I Dá-lhe Samba R$ 35.
+- **"Me avise" (desde 24/11/2026):** na galeria, enquanto não há vídeos, aparece o formulário "Quer saber quando o seu
+  vídeo chegar?" (nome + WhatsApp e/ou e-mail); `?avise=1` (QR do telão) rola até ele. Função pública `avise-me`
+  (até 60 cadastros por IP/hora; mesmo baile + mesmo e-mail/WhatsApp atualiza em vez de duplicar) grava na tabela
+  `avisos` (sem acesso público). Painel interno: linha "Pediram aviso" e botão **Interessados** em cada baile:
+  lista, "Enviar e-mail a quem falta" (só funciona com vídeos publicados; marca `email_avisado_em`), botão "Enviar"
+  por pessoa no WhatsApp (mensagem pronta; marca `whatsapp_avisado_em`) e copiar lista. Ações `avisos`,
+  `avisar_email`, `whats_avisado` na função `codigos-admin`.
+- **Telão `/bailes/telao/`** (`bailes_telao_template.html`, sem login): no MacBook, escolhe o baile, adiciona a pasta
+  do cartão (ou arquivos, ou arrasta) e toca cada vídeo N segundos (padrão 20, a partir do meio do vídeo), em loop,
+  com número do vídeo, oferta do código (preço do baile, editável) e QR para `<url_galeria>/?avise=1`. Os arquivos
+  não saem do computador. Numeração: novas levas continuam a contagem; números ficam guardados por baile no
+  navegador (recarregar a página e reescolher a pasta mantém os números); número editável por vídeo. **A edição usa
+  os mesmos números (P. 07 / F. 07).** Teclas: espaço pausa, ← → anterior/próximo, F tela cheia, S configuração.
 - **Novo baile** = criar o evento no Supabase (tabela `eventos`, com `url_galeria`, `aberto` e o preço do código),
   acrescentar em `bailes.json`, rodar `gerar_bailes.py` e cadastrar os vídeos; ele aparece sozinho na página pública
   (se `aberto`), no painel interno e na lista de bailes da venda de códigos.

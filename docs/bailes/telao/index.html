@@ -1,0 +1,407 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<link rel="icon" href="/favicon.ico" sizes="any"><link rel="icon" type="image/png" sizes="32x32" href="/favicon-32.png"><link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#040404">
+<meta name="color-scheme" content="dark">
+<meta name="robots" content="noindex, nofollow">
+<title>Telão · Bailes ArestAgência</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@400;500;600;700&family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet">
+<script src="/bailes/qrcode.min.js"></script>
+<style>
+  :root{
+    --bg:#040404; --ink:#F8F4F2; --ink-2:#d9d2ce; --muted:#8f8784;
+    --line:#232323; --card:#0f0f0f; --card-2:#161616; --accent:#882725; --accent-dark:#3c1e1e; --gold:#F6AD03;
+    --sans:"Inter Tight","Helvetica Neue",Helvetica,Arial,sans-serif;
+    --serif:"Instrument Serif",Georgia,serif;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html,body{height:100%}
+  body{background:var(--bg);color:var(--ink);font-family:var(--sans);-webkit-font-smoothing:antialiased;line-height:1.45;overflow:hidden}
+  button,input,select{font:inherit;color:inherit}
+  button{cursor:pointer;border:0;background:none}
+  [hidden]{display:none!important}
+  :focus-visible{outline:2px solid var(--gold);outline-offset:2px;border-radius:6px}
+
+  /* ---------- configuração ---------- */
+  .config{position:fixed;inset:0;overflow-y:auto;z-index:20;background:var(--bg)}
+  .config-in{max-width:980px;margin:0 auto;padding:36px 28px 60px}
+  .marca{display:flex;align-items:center;gap:10px;font-weight:700;letter-spacing:.14em;font-size:13px}
+  .marca img{width:30px;height:30px;object-fit:contain}
+  .config h1{font-weight:700;font-size:clamp(30px,4vw,44px);letter-spacing:-.01em;margin-top:26px}
+  .config h1 em{font-family:var(--serif);font-weight:400;font-style:italic;color:var(--gold)}
+  .config .lead{color:var(--ink-2);margin-top:8px;max-width:680px}
+  .grade{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:26px}
+  .caixa{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:20px}
+  .caixa h2{font-weight:600;font-size:16px;margin-bottom:4px}
+  .caixa p.sub{font-size:13px;color:var(--muted);margin-bottom:12px}
+  .campo{display:block;margin-top:12px}
+  .campo>span{display:block;font-size:10px;letter-spacing:.18em;text-transform:uppercase;color:var(--muted);margin-bottom:6px}
+  .campo input,.campo select{width:100%;border:1px solid var(--line);background:var(--bg);border-radius:10px;padding:11px 12px;font-size:15px;outline:none}
+  .campo input:focus,.campo select:focus{border-color:var(--gold)}
+  .duas{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+  .btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;border-radius:999px;padding:11px 18px;font-size:14px;font-weight:500}
+  .btn.ouro{background:var(--gold);color:#0b0b0b;font-weight:600}
+  .btn.sec{border:1px solid #333;color:#fff}
+  .btn.sec:hover{border-color:#555}
+  .btn[disabled]{opacity:.45;cursor:not-allowed}
+  .acoes{display:flex;gap:8px;flex-wrap:wrap;margin-top:14px}
+  .iniciar{display:flex;align-items:center;gap:14px;flex-wrap:wrap;margin-top:18px}
+  .iniciar .btn.ouro{padding:15px 28px;font-size:16px}
+  .iniciar small{color:var(--muted);font-size:13px}
+  .fila{margin-top:12px;border:1px solid var(--line);border-radius:14px;background:var(--card);overflow:hidden}
+  .fila table{width:100%;border-collapse:collapse;font-size:13px}
+  .fila th{font-weight:500;text-align:left;font-size:10px;letter-spacing:.16em;text-transform:uppercase;color:var(--muted);padding:10px 16px;border-bottom:1px solid var(--line)}
+  .fila td{padding:7px 16px;border-bottom:1px solid #161616;color:var(--ink-2)}
+  .fila td input{width:70px;border:1px solid var(--line);background:var(--bg);border-radius:8px;padding:6px 8px;font-size:14px;font-weight:600;text-align:center}
+  .fila td .x{color:var(--muted);text-decoration:underline;text-underline-offset:3px;font-size:12px}
+  .fila .vazio{padding:28px 16px;text-align:center;color:var(--muted)}
+  .ruim{color:#ff8b7b}
+  .dicas{margin-top:22px;font-size:13px;color:var(--muted);line-height:1.6}
+  .dicas b{color:var(--ink-2);font-weight:500}
+  .dicas kbd{display:inline-block;border:1px solid #333;border-radius:5px;padding:0 6px;font:inherit;font-size:12px;color:var(--ink-2)}
+  @media (max-width:820px){.grade{grid-template-columns:1fr}}
+
+  /* ---------- telão (16:9) ---------- */
+  .telao{position:fixed;inset:0;background:#000;display:grid;grid-template-columns:minmax(0,1fr) 38vw;cursor:none}
+  .telao.horizontal{grid-template-columns:minmax(0,1fr) 32vw}
+  .palco{position:relative;overflow:hidden;background:#000}
+  .palco canvas{position:absolute;inset:-8%;width:116%;height:116%;filter:blur(38px) saturate(1.2) brightness(.55);transform:scale(1.05)}
+  .palco video{position:absolute;inset:0;width:100%;height:100%;object-fit:contain;transition:opacity .5s ease}
+  .palco video.sai{opacity:0}
+  .palco .num-video{position:absolute;left:2.2vw;top:2.2vw;z-index:2;font-weight:700;font-size:1.6vw;letter-spacing:.06em;background:rgba(0,0,0,.55);backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);padding:.5vw 1.1vw;border-radius:999px}
+  .painel{position:relative;display:flex;flex-direction:column;justify-content:space-between;padding:3vw 3vw 2.4vw;background:radial-gradient(120% 70% at 100% 0%,#3c1e1e 0%,#140b0b 45%,#040404 100%);border-left:1px solid #1d1d1d}
+  .p-marca{display:flex;align-items:center;gap:.9vw;font-weight:700;letter-spacing:.16em;font-size:1.05vw}
+  .p-marca img.m{width:2.3vw;height:2.3vw;object-fit:contain}
+  .p-marca .x{opacity:.5;font-weight:400}
+  .p-marca img.parc{height:3.4vw;width:auto;object-fit:contain}
+  .p-baile{margin-top:.8vw;font-size:1vw;letter-spacing:.3em;text-transform:uppercase;color:var(--ink-2)}
+  .p-num .k{font-size:.95vw;letter-spacing:.3em;text-transform:uppercase;color:var(--muted)}
+  .p-num b{display:block;font-weight:700;font-size:8.4vw;line-height:.9;letter-spacing:-.02em;font-variant-numeric:tabular-nums}
+  .p-num .sub{font-family:var(--serif);font-style:italic;font-size:2vw;color:var(--ink-2);margin-top:.4vw}
+  .p-num .sub em{color:var(--gold)}
+  .oferta{border:1px solid rgba(246,173,3,.55);background:rgba(246,173,3,.08);border-radius:1.2vw;padding:1.3vw 1.5vw}
+  .oferta .k{font-size:.85vw;letter-spacing:.24em;text-transform:uppercase;color:var(--gold)}
+  .oferta b{display:block;font-weight:700;font-size:2.1vw;line-height:1.1;margin-top:.4vw}
+  .oferta b span{color:var(--gold)}
+  .oferta p{font-size:1.05vw;color:var(--ink-2);margin-top:.4vw}
+  .qr{display:flex;align-items:center;gap:1.3vw;margin-top:1.3vw}
+  .qr .q{flex:none;width:9.5vw;height:9.5vw;background:#fff;border-radius:.8vw;padding:.6vw}
+  .qr .q svg{width:100%;height:100%;display:block}
+  .qr b{display:block;font-weight:600;font-size:1.35vw;line-height:1.2}
+  .qr p{font-size:.98vw;color:var(--ink-2);margin-top:.3vw}
+  .barra{height:.35vw;background:rgba(255,255,255,.12);border-radius:999px;overflow:hidden;margin-top:1.4vw}
+  .barra i{display:block;height:100%;width:0;background:var(--gold)}
+  .prox{display:flex;justify-content:space-between;font-size:.9vw;color:var(--muted);margin-top:.6vw}
+  .pausa{position:absolute;inset:auto 0 0 0;z-index:3;text-align:center;padding:1vw;font-size:1.1vw;color:var(--gold);background:rgba(0,0,0,.6)}
+  .toast{position:fixed;left:50%;bottom:24px;transform:translateX(-50%);z-index:40;background:#1b1b1b;border:1px solid #333;border-radius:10px;padding:10px 16px;font-size:14px;color:#fff;display:none}
+</style>
+</head>
+<body>
+
+<!-- ========== configuração ========== -->
+<section class="config" id="config">
+  <div class="config-in">
+    <div class="marca"><img src="/bailes/logo-mark.png" alt=""><span>ARESTAGÊNCIA</span></div>
+    <h1>Telão do <em>baile</em></h1>
+    <p class="lead">Escolha os vídeos que acabaram de sair do cartão. Cada um toca por alguns segundos, em loop, com o número do vídeo, a oferta do código e o QR para quem quer ser avisado. Funciona sem internet depois de aberta.</p>
+
+    <div class="grade">
+      <div class="caixa">
+        <h2>Baile e oferta</h2>
+        <p class="sub">O QR leva para o "Me avise" da galeria deste baile.</p>
+        <label class="campo"><span>Baile</span><select id="cEv"></select></label>
+        <div class="duas">
+          <label class="campo"><span>Preço do código (R$)</span><input id="cPreco" inputmode="decimal" placeholder="35"></label>
+          <label class="campo"><span>Segundos por vídeo</span><input id="cSeg" inputmode="numeric" value="20"></label>
+        </div>
+        <label class="campo"><span>Frase da oferta</span><input id="cOferta" maxlength="80" value="Fale com a nossa equipe e garanta o seu código"></label>
+      </div>
+      <div class="caixa">
+        <h2>Vídeos</h2>
+        <p class="sub">Novas levas entram no fim da fila e a numeração continua. Use os mesmos números na edição (P. 07 e F. 07).</p>
+        <div class="acoes">
+          <label class="btn ouro" for="cPasta">Adicionar pasta</label>
+          <input type="file" id="cPasta" webkitdirectory multiple hidden>
+          <label class="btn sec" for="cArq">Adicionar arquivos</label>
+          <input type="file" id="cArq" accept="video/*,.mov,.mp4,.m4v" multiple hidden>
+          <button class="btn sec" type="button" id="cLimpar">Esvaziar fila</button>
+        </div>
+        <label class="campo"><span>Número do próximo vídeo</span><input id="cProx" inputmode="numeric" value="1"></label>
+      </div>
+    </div>
+
+    <div class="fila"><table><thead><tr><th>Nº</th><th>Arquivo</th><th>Duração</th><th></th></tr></thead><tbody id="cFila"></tbody></table></div>
+
+    <div class="iniciar">
+      <button class="btn ouro" type="button" id="cIniciar" disabled>Iniciar telão em tela cheia</button>
+      <small id="cResumo"></small>
+    </div>
+
+    <div class="dicas">
+      <b>No telão:</b> <kbd>espaço</kbd> pausa · <kbd>←</kbd> <kbd>→</kbd> vídeo anterior / próximo · <kbd>F</kbd> tela cheia · <kbd>S</kbd> volta para esta tela (o telão continua de onde parou).<br>
+      <b>Antes do baile:</b> abra esta página com internet e deixe a aba aberta. No Mac, ligue o carregador e, em Ajustes › Bateria, evite que a tela desligue. Vídeos em H.264 ou HEVC (MP4/MOV) tocam direto; se algum aparecer como "não tocou", exporte uma versão MP4 rápida.
+    </div>
+  </div>
+</section>
+
+<!-- ========== telão ========== -->
+<section class="telao" id="telao" hidden>
+  <div class="palco">
+    <canvas id="fundo" width="48" height="27"></canvas>
+    <video id="vA" muted playsinline preload="auto"></video>
+    <video id="vB" muted playsinline preload="auto" class="sai"></video>
+    <div class="num-video" id="tNumPalco"></div>
+    <div class="pausa" id="tPausa" hidden>Pausado · espaço para continuar</div>
+  </div>
+  <aside class="painel">
+    <div>
+      <div class="p-marca" id="tMarca"></div>
+      <div class="p-baile" id="tBaile"></div>
+    </div>
+    <div class="p-num">
+      <div class="k">Vídeo nº</div>
+      <b id="tNum">01</b>
+      <div class="sub">Se achou o seu, <em>guarde esse número</em></div>
+    </div>
+    <div>
+      <div class="oferta">
+        <div class="k">Aqui no baile</div>
+        <b>Seu vídeo por <span id="tPreco">R$ 35</span></b>
+        <p id="tOferta"></p>
+      </div>
+      <div class="qr">
+        <div class="q" id="tQR"></div>
+        <div><b>Quer ser avisado quando os vídeos chegarem?</b><p>Aponte a câmera do celular para o QR e deixe seu WhatsApp.</p></div>
+      </div>
+      <div class="barra"><i id="tBarra"></i></div>
+      <div class="prox"><span id="tPos"></span><span id="tProx"></span></div>
+    </div>
+  </aside>
+</section>
+<div class="toast" id="toast"></div>
+
+<script>
+// Telão do baile: toca vídeos locais (pasta do cartão) em loop, com número, oferta do código e QR do "Me avise".
+// Nada é enviado para a internet: os arquivos ficam no computador. A internet só é usada para ler a lista de bailes.
+const CONFIG = {
+  supabaseUrl: "https://jlogxdjttufiiikiezfe.supabase.co",
+  chavePublica: "sb_publishable_ilWt8PPFiHuOBCmiCcsZ3A_CTmqyjmR",
+};
+const GALERIAS = {"da-lhe-samba": {"pasta": "idalhesamba", "logo": "/bailes/idalhesamba/logo-cliente.png"}}; // de bailes.json (gerado por gerar_bailes.py)
+
+const $ = (s) => document.querySelector(s);
+const esc = (s) => String(s ?? "").replace(/[&<>"']/g, (c) => ({ "&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;" }[c]));
+const reais = (c) => (c / 100).toLocaleString("pt-BR", { style: "currency", currency: "BRL", minimumFractionDigits: c % 100 ? 2 : 0 });
+const dois = (n) => String(n).padStart(2, "0");
+const mmss = (s) => s ? `${Math.floor(s / 60)}:${dois(Math.round(s % 60))}` : "";
+const ARQ_VIDEO = /\.(mp4|mov|m4v|webm)$/i;
+const guardar = (k, v) => { try { localStorage.setItem(k, JSON.stringify(v)); } catch {} };
+const ler = (k, d) => { try { return JSON.parse(localStorage.getItem(k) || "null") ?? d; } catch { return d; } };
+function aviso(t) { const el = $("#toast"); el.textContent = t; el.style.display = "block"; clearTimeout(aviso.t); aviso.t = setTimeout(() => (el.style.display = "none"), 2600); }
+
+// ---------- bailes ----------
+let EVENTOS = ler("telao-eventos", []);
+async function carregarBailes() {
+  try {
+    const r = await fetch(`${CONFIG.supabaseUrl}/rest/v1/eventos?aberto=eq.true&select=slug,nome,data,url_galeria,preco_codigo_centavos&order=data.desc.nullslast`,
+      { headers: { apikey: CONFIG.chavePublica } });
+    if (r.ok) { EVENTOS = await r.json(); guardar("telao-eventos", EVENTOS); }
+  } catch {}
+  const sel = $("#cEv"), salvo = ler("telao-ev", null);
+  sel.innerHTML = EVENTOS.map((e) => `<option value="${esc(e.slug)}">${esc(e.nome)}</option>`).join("") || `<option value="">Sem internet e sem bailes salvos</option>`;
+  if (salvo && EVENTOS.some((e) => e.slug === salvo)) sel.value = salvo;
+  aoTrocarBaile(true);
+}
+const baile = () => EVENTOS.find((e) => e.slug === $("#cEv").value);
+function aoTrocarBaile(inicio) {
+  const e = baile(); if (!e) return;
+  guardar("telao-ev", e.slug);
+  const p = ler(`telao-preco-${e.slug}`, null) ?? e.preco_codigo_centavos;
+  if (p) $("#cPreco").value = (p / 100).toLocaleString("pt-BR");
+  const of = ler("telao-oferta", null); if (of) $("#cOferta").value = of;
+  const sg = ler("telao-seg", null); if (sg) $("#cSeg").value = sg;
+  NUMEROS = ler(`telao-num-${e.slug}`, {});
+  const maior = Math.max(0, ...Object.values(NUMEROS));
+  $("#cProx").value = maior + 1;
+}
+$("#cEv").addEventListener("change", () => aoTrocarBaile(false));
+
+// ---------- fila de vídeos ----------
+let FILA = [];          // { file, url, nome, num, dur, ok }
+let NUMEROS = {};       // nome do arquivo -> número (guardado por baile, sobrevive a recarregar a página)
+const natural = new Intl.Collator("pt-BR", { numeric: true, sensitivity: "base" });
+
+function adicionar(files) {
+  const novos = [...files].filter((f) => ARQ_VIDEO.test(f.name) && !f.name.startsWith("._"))
+    .sort((a, b) => natural.compare(a.webkitRelativePath || a.name, b.webkitRelativePath || b.name))
+    .filter((f) => !FILA.some((x) => x.nome === f.name && x.file.size === f.size));
+  if (!novos.length) { aviso("Nenhum vídeo novo nessa seleção."); return; }
+  // nunca repete um número já usado neste baile (mesmo depois de recarregar a página)
+  let prox = Math.max(parseInt($("#cProx").value, 10) || 1, ...Object.values(NUMEROS).map((n) => n + 1), 1);
+  for (const f of novos) {
+    const num = NUMEROS[f.name] ?? prox;
+    if (NUMEROS[f.name] == null) NUMEROS[f.name] = num;
+    prox = Math.max(prox, num + 1);
+    const item = { file: f, url: URL.createObjectURL(f), nome: f.name, num, dur: 0, ok: null };
+    FILA.push(item);
+    medir(item);
+  }
+  $("#cProx").value = prox;
+  salvarNumeros(); desenharFila();
+  aviso(`${novos.length} ${novos.length === 1 ? "vídeo adicionado" : "vídeos adicionados"}.`);
+}
+function medir(item) {
+  const v = document.createElement("video");
+  v.muted = true; v.preload = "metadata"; v.src = item.url;
+  v.onloadedmetadata = () => { item.dur = v.duration || 0; item.ok = v.videoWidth > 0; item.h = v.videoWidth > v.videoHeight; desenharFila(); v.removeAttribute("src"); v.load(); };
+  v.onerror = () => { item.ok = false; desenharFila(); };
+}
+function salvarNumeros() { const e = baile(); if (e) guardar(`telao-num-${e.slug}`, NUMEROS); }
+function desenharFila() {
+  FILA.sort((a, b) => a.num - b.num);
+  $("#cFila").innerHTML = FILA.length ? FILA.map((x, i) => `<tr>
+      <td><input type="number" min="1" value="${x.num}" data-num="${i}" aria-label="Número do vídeo ${esc(x.nome)}"></td>
+      <td>${esc(x.nome)}${x.ok === false ? ` <span class="ruim">· não tocou (formato)</span>` : ""}</td>
+      <td>${x.ok == null ? "lendo..." : mmss(x.dur)}</td>
+      <td><button class="x" type="button" data-tirar="${i}">tirar</button></td></tr>`).join("")
+    : `<tr><td colspan="4" class="vazio">Nenhum vídeo ainda. Descarregue o cartão e toque em "Adicionar pasta".</td></tr>`;
+  const bons = FILA.filter((x) => x.ok !== false).length;
+  $("#cIniciar").disabled = !bons || !baile();
+  $("#cResumo").textContent = bons ? `${bons} ${bons === 1 ? "vídeo" : "vídeos"} · um ciclo dura ${mmss(bons * segundos())}` : "";
+}
+$("#cFila").addEventListener("change", (e) => {
+  const i = e.target.dataset.num; if (i == null) return;
+  const n = parseInt(e.target.value, 10); if (!(n > 0)) return;
+  FILA[i].num = n; NUMEROS[FILA[i].nome] = n; salvarNumeros(); desenharFila();
+});
+$("#cFila").addEventListener("click", (e) => {
+  const i = e.target.dataset.tirar; if (i == null) return;
+  URL.revokeObjectURL(FILA[i].url); FILA.splice(i, 1); desenharFila();
+});
+$("#cPasta").addEventListener("change", (e) => { adicionar(e.target.files); e.target.value = ""; });
+$("#cArq").addEventListener("change", (e) => { adicionar(e.target.files); e.target.value = ""; });
+$("#cLimpar").onclick = () => {
+  if (FILA.length && !confirm("Tirar todos os vídeos da fila? Os arquivos não são apagados do computador.")) return;
+  FILA.forEach((x) => URL.revokeObjectURL(x.url)); FILA = []; desenharFila();
+};
+// arrastar e soltar arquivos na tela de configuração
+document.addEventListener("dragover", (e) => e.preventDefault());
+document.addEventListener("drop", (e) => { e.preventDefault(); if (!$("#config").hidden && e.dataTransfer.files.length) adicionar(e.dataTransfer.files); });
+const segundos = () => Math.min(120, Math.max(5, parseInt($("#cSeg").value, 10) || 20));
+$("#cSeg").addEventListener("change", () => { guardar("telao-seg", segundos()); desenharFila(); });
+$("#cOferta").addEventListener("change", () => guardar("telao-oferta", $("#cOferta").value));
+$("#cPreco").addEventListener("change", () => { const e = baile(); const c = Math.round(Number(String($("#cPreco").value).replace(",", ".")) * 100); if (e && c > 0) guardar(`telao-preco-${e.slug}`, c); });
+
+// ---------- reprodução ----------
+let ATUAL = -1, pausado = false, timer = null, inicioTrecho = 0, restante = 0, wake = null, ativo = $("#vA"), reserva = $("#vB");
+const tocaveis = () => FILA.filter((x) => x.ok !== false);
+
+function montarPainel() {
+  const e = baile(), g = GALERIAS[e.slug] || {};
+  $("#tMarca").innerHTML = `<img class="m" src="/bailes/logo-mark.png" alt=""><span>ARESTAGÊNCIA</span>${g.logo ? `<span class="x">×</span><img class="parc" src="${esc(g.logo)}" alt="">` : ""}`;
+  $("#tBaile").textContent = e.nome;
+  const c = Math.round(Number(String($("#cPreco").value).replace(/\./g, "").replace(",", ".")) * 100);
+  $("#tPreco").textContent = c > 0 ? reais(c) : "";
+  $("#tOferta").textContent = $("#cOferta").value;
+  const link = `${String(e.url_galeria || `https://entregas.arestagencia.com.br/bailes/${g.pasta || ""}`).replace(/\/+$/, "")}/?avise=1`;
+  try { const q = qrcode(0, "M"); q.addData(link); q.make(); $("#tQR").innerHTML = q.createSvgTag({ cellSize: 4, margin: 0, scalable: true }); }
+  catch { $("#tQR").innerHTML = ""; }
+}
+
+async function iniciar() {
+  if (!tocaveis().length) return;
+  montarPainel();
+  $("#config").hidden = true; $("#telao").hidden = false;
+  try { await document.documentElement.requestFullscreen(); } catch {}
+  try { wake = await navigator.wakeLock.request("screen"); } catch {}
+  if (ATUAL < 0 || ATUAL >= tocaveis().length) ATUAL = -1;
+  pausado = false; $("#tPausa").hidden = true;
+  proximo(1);
+}
+$("#cIniciar").onclick = iniciar;
+
+function proximo(passo) {
+  const L = tocaveis(); if (!L.length) return;
+  ATUAL = (ATUAL + passo + L.length) % L.length;
+  tocar(L[ATUAL], L[(ATUAL + 1) % L.length]);
+}
+let geracao = 0;
+function tocar(item, depois) {
+  clearTimeout(timer);
+  const seg = segundos(), minha = ++geracao, v = reserva;
+  let foi = false;
+  const comecar = () => {
+    if (foi || minha !== geracao) return; foi = true;
+    v.play().catch(() => {});
+    v.classList.remove("sai"); ativo.classList.add("sai");
+    const antigo = ativo; setTimeout(() => { if (antigo !== ativo) { antigo.pause(); antigo.removeAttribute("src"); antigo.load(); } }, 600);
+    ativo = v; reserva = antigo;
+    $("#tNum").textContent = dois(item.num);
+    $("#tNumPalco").textContent = `Nº ${dois(item.num)}`;
+    $("#telao").classList.toggle("horizontal", !!item.h);
+    const L = tocaveis();
+    $("#tPos").textContent = `${ATUAL + 1} de ${L.length}`;
+    $("#tProx").textContent = L.length > 1 ? `Próximo: nº ${dois(depois.num)}` : "";
+    inicioTrecho = performance.now(); restante = Math.min(seg, v.duration || seg) * 1000;
+    if (!pausado) timer = setTimeout(() => proximo(1), restante);
+  };
+  v.onloadedmetadata = () => {
+    if (minha !== geracao) return;
+    const d = v.duration || 0;
+    if (d > seg + 1) {
+      // começa no meio do vídeo (o melhor da dança costuma estar ali) e mostra "seg" segundos
+      v.addEventListener("seeked", comecar, { once: true });
+      v.currentTime = d / 2 - seg / 2;
+    } else if (v.readyState >= 3) comecar();
+    else v.addEventListener("canplay", comecar, { once: true });
+  };
+  v.onerror = () => { if (minha !== geracao) return; item.ok = false; aviso(`Não consegui tocar ${item.nome}. Pulando.`); setTimeout(() => proximo(1), 300); };
+  v.src = item.url;
+}
+
+// barra de progresso e fundo desfocado (cópia pequena do vídeo, barata para o processador)
+const ctx = $("#fundo").getContext("2d");
+function quadro() {
+  requestAnimationFrame(quadro);
+  if ($("#telao").hidden) return;
+  if (!pausado && restante) {
+    const p = Math.min(1, (performance.now() - inicioTrecho) / restante);
+    $("#tBarra").style.width = `${p * 100}%`;
+  }
+  if (ativo.readyState >= 2) { try { ctx.drawImage(ativo, 0, 0, 48, 27); } catch {} }
+}
+requestAnimationFrame(quadro);
+
+function pausar() {
+  pausado = !pausado;
+  $("#tPausa").hidden = !pausado;
+  if (pausado) { clearTimeout(timer); ativo.pause(); restante -= performance.now() - inicioTrecho; }
+  else { ativo.play().catch(() => {}); inicioTrecho = performance.now(); timer = setTimeout(() => proximo(1), Math.max(500, restante)); }
+}
+function voltarConfig() {
+  clearTimeout(timer); ativo.pause();
+  $("#telao").hidden = true; $("#config").hidden = false;
+  if (document.fullscreenElement) document.exitFullscreen().catch(() => {});
+  try { wake && wake.release(); } catch {}
+  desenharFila();
+}
+document.addEventListener("keydown", (e) => {
+  if ($("#telao").hidden) return;
+  if (e.key === " ") { e.preventDefault(); pausar(); }
+  else if (e.key === "ArrowRight") { pausado = false; $("#tPausa").hidden = true; proximo(1); }
+  else if (e.key === "ArrowLeft") { pausado = false; $("#tPausa").hidden = true; proximo(-1); }
+  else if (e.key === "f" || e.key === "F") { document.fullscreenElement ? document.exitFullscreen() : document.documentElement.requestFullscreen().catch(() => {}); }
+  else if (e.key === "s" || e.key === "S") voltarConfig();
+});
+// se o Mac acordar ou a aba voltar, pede de novo para a tela não apagar
+document.addEventListener("visibilitychange", async () => { if (!document.hidden && !$("#telao").hidden) { try { wake = await navigator.wakeLock.request("screen"); } catch {} } });
+
+carregarBailes().then(desenharFila);
+</script>
+</body>
+</html>

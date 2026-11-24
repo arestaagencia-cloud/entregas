@@ -165,6 +165,22 @@
   .troca-modo{display:block;margin:16px auto 0;font-size:14px;color:var(--ink-2);text-decoration:underline;text-underline-offset:3px;min-height:44px;padding:0 8px}
   .troca-modo:hover{color:var(--ink)}
   #fCodigo{text-transform:uppercase;letter-spacing:.18em;font-variant-numeric:tabular-nums;font-weight:600}
+  /* "Me avise": cadastro para saber quando os vídeos chegarem */
+  .avise{max-width:720px;margin:22px auto 0;padding:0 16px}
+  .avise form,.avise .ok{border:1px solid rgba(246,173,3,.45);background:rgba(246,173,3,.06);border-radius:18px;padding:22px 22px 18px}
+  .avise h3{font-weight:700;font-size:clamp(20px,2.4vw,26px);line-height:1.2;letter-spacing:-.01em}
+  .avise h3 em{font-family:var(--serif);font-weight:400;font-style:italic;color:var(--gold)}
+  .avise p.sub{font-size:14px;color:var(--ink-2);margin-top:6px}
+  .avise .campos{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:14px}
+  .avise .campos label:first-child{grid-column:1/-1}
+  .avise label span{display:block;font-size:11px;letter-spacing:.2em;text-transform:uppercase;color:var(--muted);margin-bottom:6px}
+  .avise input{width:100%;border:1px solid var(--line);background:var(--bg);border-radius:10px;padding:12px 14px;font-size:16px;color:var(--ink);outline:none}
+  .avise input:focus{border-color:var(--gold)}
+  .avise .btn{margin-top:14px;width:100%}
+  .avise .nota{font-size:12px;color:var(--muted);margin-top:10px;text-align:center}
+  .avise .erro{margin-top:10px}
+  .avise .ok{text-align:center}
+  @media (max-width:560px){.avise .campos{grid-template-columns:1fr}}
   .aviso-cod{max-width:1180px;margin:18px auto 8px;padding:0 24px}
   .aviso-cod>div{display:flex;flex-wrap:wrap;align-items:center;gap:10px 18px;border:1px solid rgba(246,173,3,.45);background:rgba(246,173,3,.07);border-radius:14px;padding:14px 18px;font-size:15px;color:var(--ink-2)}
   .aviso-cod b{color:var(--ink);letter-spacing:.12em;font-variant-numeric:tabular-nums}
@@ -226,6 +242,21 @@
 </ol>
 
 <div class="aviso-cod" id="avisoCod" hidden></div>
+
+<div class="avise" id="avise" hidden>
+  <form id="fAvise" novalidate>
+    <h3>Quer saber quando o seu <em>vídeo chegar?</em></h3>
+    <p class="sub">Deixe seu WhatsApp ou e-mail e avisamos assim que os vídeos estiverem na galeria.</p>
+    <div class="campos">
+      <label><span>Seu nome</span><input id="aNome" autocomplete="name" maxlength="120" required></label>
+      <label><span>WhatsApp</span><input id="aWhats" type="tel" inputmode="tel" autocomplete="tel" maxlength="20" placeholder="(61) 9 9999-9999"></label>
+      <label><span>E-mail</span><input id="aEmail" type="email" inputmode="email" autocomplete="email" maxlength="200" placeholder="voce@email.com"></label>
+    </div>
+    <p class="erro" id="aErro" role="alert"></p>
+    <button class="btn ouro" id="aBtn" type="submit">Me avise</button>
+    <p class="nota">Usamos seus dados só para avisar sobre os vídeos deste baile.</p>
+  </form>
+</div>
 
 <div class="bar" id="bar">
   <div class="wrap">
@@ -568,6 +599,52 @@ async function prepararCodigo() {
   if (params.get("codigo")) history.replaceState(null, "", location.pathname);
 }
 
+// ---------- "Me avise" ----------
+const chaveAvise = `avise-${slug}`;
+function prepararAvise() {
+  const pedido = params.get("avise") === "1";
+  if (videos.length) {
+    if (pedido) avisoCodigo(`<span>Os vídeos já chegaram! Ache o seu pelo número logo abaixo.</span>`);
+    return;
+  }
+  $("#avise").hidden = false;
+  let feito = null;
+  try { feito = JSON.parse(localStorage.getItem(chaveAvise) || "null"); } catch {}
+  if (feito) avisoFeito(feito.nome);
+  else { try { const c = JSON.parse(localStorage.getItem("comprador") || "{}"); if (c.nome) $("#aNome").value = c.nome; if (c.email) $("#aEmail").value = c.email; } catch {} }
+  if (pedido) { requestAnimationFrame(() => $("#avise").scrollIntoView({ block: "center" })); if (!feito) setTimeout(() => $("#aNome").focus({ preventScroll: true }), 600); }
+}
+function avisoFeito(nome) {
+  $("#avise").innerHTML = `<div class="ok"><h3>Combinado, <em>${esc(String(nome || "").split(" ")[0])}!</em></h3><p class="sub">Avisamos assim que os vídeos do ${esc(evento.nome)} estiverem aqui. Enquanto isso, aproveite o baile.</p></div>`;
+}
+$("#aWhats").addEventListener("input", (e) => {
+  const d = e.target.value.replace(/\D/g, "").slice(0, 11);
+  e.target.value = d.length > 6 ? `(${d.slice(0, 2)}) ${d.slice(2, d.length - 4)}-${d.slice(-4)}` : d.length > 2 ? `(${d.slice(0, 2)}) ${d.slice(2)}` : d;
+});
+$("#fAvise").addEventListener("submit", async (e) => {
+  e.preventDefault();
+  const nome = $("#aNome").value.trim(), whatsapp = $("#aWhats").value.trim(), email = $("#aEmail").value.trim(), erro = $("#aErro"), btn = $("#aBtn");
+  erro.textContent = "";
+  if (nome.length < 2) { erro.textContent = "Informe seu nome."; return; }
+  if (!whatsapp && !email) { erro.textContent = "Deixe seu WhatsApp ou e-mail para avisarmos."; return; }
+  if (whatsapp && whatsapp.replace(/\D/g, "").length < 10) { erro.textContent = "Confira o WhatsApp, com DDD."; return; }
+  if (email && !/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(email)) { erro.textContent = "Confira o e-mail."; return; }
+  btn.disabled = true; btn.textContent = "Salvando...";
+  try {
+    const r = await fetch(api("/functions/v1/avise-me"), {
+      method: "POST", headers: { "Content-Type": "application/json", apikey: CONFIG.chavePublica },
+      body: JSON.stringify({ evento: slug, nome, whatsapp, email, origem: params.get("avise") === "1" ? "telao" : "galeria" }),
+    });
+    const d = await r.json().catch(() => ({}));
+    if (!r.ok || !d.ok) throw new Error(d.erro || "Não conseguimos salvar agora.");
+    try { localStorage.setItem(chaveAvise, JSON.stringify({ nome })); } catch {}
+    avisoFeito(nome);
+  } catch (err) {
+    erro.textContent = err.message;
+    btn.disabled = false; btn.textContent = "Me avise";
+  }
+});
+
 // ---------- Telas de estado ----------
 function modoEstado(html) {
   $("#hero").classList.add("compacto");
@@ -649,7 +726,7 @@ if (baixar && /^[0-9a-f]{64}$/.test(baixar)) {
   cabecalhoEstado();
   acompanharPedido(pedido);
 } else {
-  carregarGaleria().then(prepararCodigo);
+  carregarGaleria().then(() => { if (evento) { prepararAvise(); prepararCodigo(); } });
 }
 </script>
 </body>

@@ -308,6 +308,23 @@
   </div>
 </div>
 
+<div class="cod" id="inter" role="dialog" aria-modal="true" aria-labelledby="interT">
+  <div class="cod-in">
+    <div class="cod-top"><div><div class="k">Pediram para ser avisados</div><h3 id="interT"></h3></div><button class="cod-x" id="interX" type="button" aria-label="Fechar">✕</button></div>
+    <div class="cod-nums" id="interNums" style="grid-template-columns:repeat(4,minmax(0,1fr))"></div>
+    <div class="caixa" style="margin-top:12px">
+      <h4>Avisar que os vídeos chegaram</h4>
+      <p class="sub">Depois de publicar os vídeos: o e-mail sai para todos de uma vez; no WhatsApp, toque em "Enviar" em cada pessoa (a mensagem já vai pronta e a pessoa fica marcada como avisada).</p>
+      <div class="linha-acoes">
+        <button class="btn ouro" type="button" id="interEmail">Enviar e-mail a quem falta</button>
+        <button class="btn sec" type="button" id="interCopiar">Copiar lista do WhatsApp</button>
+      </div>
+      <p class="msg" id="interMsg" role="status"></p>
+    </div>
+    <div class="tab-wrap" style="margin-top:12px"><table class="tab"><thead><tr><th>Nome</th><th>WhatsApp</th><th>E-mail</th><th>Cadastro</th><th>Avisado</th></tr></thead><tbody id="interTab"></tbody></table></div>
+  </div>
+</div>
+
 <div class="carregando" id="carregando" hidden><div class="spinner"></div>Carregando os números...</div>
 <div class="tip" id="tip"></div>
 
@@ -428,6 +445,7 @@ function card(b) {
       ${b.por_dia.length ? `<div><div class="linha"><span>Vendas por dia</span><b>${num(b.por_dia.length)} ${b.por_dia.length === 1 ? "dia" : "dias"} com venda</b></div>
         <div class="spark">${b.por_dia.map((d) => `<i style="height:${Math.max(8, (d.n / maxDia) * 100)}%" data-tip="${diaCurto(d.dia)}: ${d.n} ${d.n === 1 ? "venda" : "vendas"} · ${brl(d.valor)}"></i>`).join("")}</div></div>` : ""}
       ${b.codigos && b.codigos.vendidos ? `<div class="linha"><span>Códigos vendidos no baile</span><b>${num(b.codigos.vendidos)} · ${brl(b.codigos.receita_centavos)} · ${num(b.codigos.a_resgatar)} a resgatar</b></div>` : ""}
+      <div class="linha"><span>Pediram aviso (Me avise)</span><b>${num(b.avisos ? b.avisos.total : 0)}${b.avisos && b.avisos.pendentes ? ` · ${num(b.avisos.pendentes)} a avisar` : ""}</b></div>
       <div class="linha"><span>Checkouts online</span><b>${num(b.checkouts)} (${pct(b.vendas_online, b.checkouts)}% viraram venda)</b></div>
       <div class="linha"><span>Downloads</span><b>${num(b.downloads)}</b></div>
       ${b.estornos ? `<div class="linha"><span>Estornos</span><b>${num(b.estornos)} · ${brl(b.estornado_centavos)}</b></div>` : ""}
@@ -436,6 +454,7 @@ function card(b) {
     <div class="baile-f">
       <a class="btn pri" href="${esc(b.link)}" target="_blank" rel="noopener">Abrir galeria →</a>
       <button class="btn sec" type="button" data-copiar="${esc(b.link)}">Copiar link</button>
+      <button class="btn sec" type="button" data-inter="${esc(b.slug)}">Interessados${b.avisos && b.avisos.total ? ` (${num(b.avisos.total)})` : ""}</button>
     </div>
     ${b.ultimas.length ? `<details class="mais"><summary>Últimas vendas (${b.ultimas.length})</summary>
       <table class="tab"><thead><tr><th>Quando</th><th>Vídeo</th><th>Cliente</th><th>Pagou com</th><th>E-mail</th></tr></thead><tbody>
@@ -595,6 +614,58 @@ document.addEventListener("click", async (e) => {
     try { await chamarCod({ acao: "desfazer", codigo: d.dataset.desfazer }); aplicarCod(await chamarCod({ acao: "listar" })); }
     catch (err) { alert(err.message); }
   }
+});
+
+// ---------- interessados ("Me avise") ----------
+const INT = { slug: null, ev: null, lista: [] };
+const foneBR = (d) => { d = String(d || ""); const n = d.startsWith("55") ? d.slice(2) : d; return n.length >= 10 ? `(${n.slice(0, 2)}) ${n.slice(2, n.length - 4)}-${n.slice(-4)}` : d; };
+function msgInteressado(a) {
+  const link = `${String(INT.ev.url_galeria || HUB_PUBLICO).replace(/\/+$/, "")}/`;
+  return `Oi, ${String(a.nome).split(" ")[0]}! Os vídeos do ${INT.ev.nome} chegaram: ${link}\n\nAche o seu pelo número, assista à prévia e garanta o seu vídeo completo. Se você comprou um código no baile, é só tocar em "Tenho um código".`;
+}
+async function abrirInteressados(slug) {
+  INT.slug = slug;
+  const b = D.bailes.find((x) => x.slug === slug);
+  $("#interT").textContent = b ? b.nome : slug;
+  $("#interTab").innerHTML = `<tr><td colspan="5" style="text-align:center;padding:30px">Carregando...</td></tr>`;
+  $("#interMsg").textContent = ""; $("#interNums").innerHTML = "";
+  $("#inter").classList.add("open"); document.body.style.overflow = "hidden";
+  try { aplicarInter(await chamarCod({ acao: "avisos", evento: slug })); } catch (e) { $("#interMsg").className = "msg erro"; $("#interMsg").textContent = e.message; }
+}
+function aplicarInter(d) {
+  INT.ev = d.evento; INT.lista = d.avisos;
+  const L = INT.lista, avisado = (a) => (a.email && a.email_avisado_em) || (a.whatsapp && a.whatsapp_avisado_em);
+  const faltaEmail = L.filter((a) => a.email && !a.email_avisado_em).length;
+  $("#interNums").innerHTML = [["Cadastros", num(L.length)], ["Com WhatsApp", num(L.filter((a) => a.whatsapp).length)], ["Com e-mail", num(L.filter((a) => a.email).length)], ["A avisar", num(L.filter((a) => !avisado(a)).length)]]
+    .map(([k, v]) => `<div><span>${k}</span><b>${v}</b></div>`).join("");
+  $("#interEmail").textContent = faltaEmail ? `Enviar e-mail a quem falta (${faltaEmail})` : "E-mails já enviados";
+  $("#interEmail").disabled = !faltaEmail;
+  $("#interTab").innerHTML = L.length ? L.map((a) => `<tr>
+    <td>${esc(a.nome)}${a.origem === "telao" ? ` <small style="color:var(--muted)">· telão</small>` : ""}</td>
+    <td style="white-space:nowrap">${a.whatsapp ? `${esc(foneBR(a.whatsapp))} <a class="acao" href="https://wa.me/${esc(a.whatsapp)}?text=${encodeURIComponent(msgInteressado(a))}" target="_blank" rel="noopener" data-wa="${esc(a.id)}">Enviar</a>` : ""}</td>
+    <td>${esc(a.email || "")}</td><td>${quando(a.criado_em)}</td>
+    <td>${[a.whatsapp_avisado_em ? "WhatsApp" : "", a.email_avisado_em ? "E-mail" : ""].filter(Boolean).join(" · ") || `<span style="color:var(--gold)">Falta</span>`}</td></tr>`).join("")
+    : `<tr><td colspan="5" style="text-align:center;padding:30px;color:var(--muted)">Ninguém pediu aviso ainda. O formulário aparece na galeria enquanto os vídeos não chegam e no QR do telão.</td></tr>`;
+}
+$("#interX").onclick = () => { $("#inter").classList.remove("open"); document.body.style.overflow = ""; carregar().catch(() => {}); };
+document.addEventListener("keydown", (e) => { if (e.key === "Escape" && $("#inter").classList.contains("open")) $("#interX").click(); });
+$("#interEmail").onclick = async () => {
+  const m = $("#interMsg"), b = $("#interEmail"); m.className = "msg";
+  if (!confirm("Enviar agora o e-mail \"os vídeos chegaram\" para todos que ainda não receberam?")) return;
+  b.disabled = true; b.textContent = "Enviando...";
+  try { const d = await chamarCod({ acao: "avisar_email", evento: INT.slug }); aplicarInter(d);
+    m.textContent = `${d.enviados} e-mail(s) enviados${d.falhas ? `, ${d.falhas} com erro (tente de novo)` : ""}.`; }
+  catch (e) { m.className = "msg erro"; m.textContent = e.message; b.disabled = false; b.textContent = "Enviar e-mail a quem falta"; }
+};
+$("#interCopiar").onclick = () => {
+  const L = INT.lista.filter((a) => a.whatsapp);
+  const t = L.map((a) => `${a.nome}: ${foneBR(a.whatsapp)}`).join("\n");
+  (navigator.clipboard ? navigator.clipboard.writeText(t) : Promise.reject()).then(() => { $("#interMsg").className = "msg"; $("#interMsg").textContent = `${L.length} contatos copiados.`; }).catch(() => prompt("Copie a lista:", t));
+};
+document.addEventListener("click", (e) => {
+  const i = e.target.closest("[data-inter]"), w = e.target.closest("[data-wa]");
+  if (i) abrirInteressados(i.dataset.inter);
+  if (w) chamarCod({ acao: "whats_avisado", id: w.dataset.wa }).then(() => chamarCod({ acao: "avisos", evento: INT.slug })).then(aplicarInter).catch(() => {});
 });
 
 // cartões para imprimir: A4, 10 por folha (85 x 54 mm), com QR que abre a galeria com o código
