@@ -288,13 +288,15 @@ Duas páginas, geradas por `python3 gerar_bailes.py`:
   do cartão (ou arquivos, ou arrasta) e toca cada vídeo N segundos (padrão 20, a partir do meio do vídeo), em loop.
   Os arquivos não saem do computador; novas levas entram no fim da fila e a numeração continua (números guardados por
   baile no navegador, editáveis na lista). **Número pequeno no canto superior esquerdo do vídeo** ("Nº 07"; a edição usa
-  os mesmos números, P. 07 / F. 07). Dois formatos: **TV deitada** (vídeo + painel com logos ARESTAGÊNCIA × parceiro em
-  destaque, "Se viu aqui? Garanta o seu vídeo completo", oferta do código com o preço do baile e QR para
-  `<url_galeria>/?avise=1`) e **TV em pé** (só os vídeos em tela cheia, marca d'água na parte de baixo do vídeo:
-  logo completa da Aresta `docs/bailes/logo-aresta-completa.png` × logo do parceiro). Na TV em pé
-  o Mac e a TV ficam sem nenhum ajuste: a página desenha o player girado 90° (`.giro`, unidades `cq*`) e a TV é
-  colocada em pé no suporte; lado do giro escolhido na configuração (esquerda/direita) ou tecla R. Teclas: espaço pausa,
-  ← → anterior/próximo, F tela cheia, R inverte o giro, S configuração.
+  os mesmos números, P. 07 / F. 07). **Três escolhas independentes** na configuração (salvas no navegador):
+  1) **TV deitada ou em pé**: em pé, o Mac e a TV ficam sem nenhum ajuste; a página desenha a imagem girada 90°
+  (`.quadro`, container `quadro`, unidades `cq*`) e a TV é colocada em pé no suporte; 2) **lado do giro**
+  (esquerda/direita, ou tecla R); 3) **com ou sem oferta** (tecla O). Com oferta: painel com a logo completa da Aresta
+  (`docs/bailes/logo-aresta-completa.png`) × parceiro, "Se viu aqui? Garanta o seu vídeo completo", oferta do código
+  com o preço do baile e QR para `<url_galeria>/?avise=1`; na TV deitada é uma coluna à direita, na TV em pé vira uma
+  faixa embaixo do vídeo (`@container quadro (orientation: portrait)`). Sem oferta: vídeo em tela cheia com a mesma
+  dupla de logos como marca d'água na parte de baixo. Teclas: espaço pausa, ← → anterior/próximo, F tela cheia,
+  R inverte o giro, O liga/desliga a oferta, S configuração.
 - **Novo baile** = criar o evento no Supabase (tabela `eventos`, com `url_galeria`, `aberto` e o preço do código),
   acrescentar em `bailes.json`, rodar `gerar_bailes.py` e cadastrar os vídeos; ele aparece sozinho na página pública
   (se `aberto`), no painel interno e na lista de bailes da venda de códigos.

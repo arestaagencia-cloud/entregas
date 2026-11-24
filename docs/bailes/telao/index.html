@@ -66,54 +66,77 @@
   .dicas kbd{display:inline-block;border:1px solid #333;border-radius:5px;padding:0 6px;font:inherit;font-size:12px;color:var(--ink-2)}
   @media (max-width:820px){.grade{grid-template-columns:1fr}}
 
-  /* ---------- telão (16:9) ---------- */
-  .telao{position:fixed;inset:0;background:#000;display:grid;grid-template-columns:minmax(0,1fr) 38vw;cursor:none}
-  .telao.horizontal{grid-template-columns:minmax(0,1fr) 32vw}
-  .giro{position:relative;overflow:hidden;background:#000;container-type:size}
-  .palco{position:absolute;inset:0;overflow:hidden;background:#000}
+  /* ---------- telão ----------
+     .quadro = a imagem que vai para a TV. Na TV deitada ocupa a tela do Mac; na TV em pé é desenhado girado 90°
+     (o Mac e a TV não precisam de nenhum ajuste: só se coloca a TV em pé no suporte).
+     Três escolhas independentes: deitada/em pé, lado do giro e com/sem oferta. */
+  .telao{position:fixed;inset:0;background:#000;cursor:none;overflow:hidden}
+  .quadro{position:absolute;inset:0;display:grid;grid-template-columns:minmax(0,1fr) 38cqw;container:quadro / size}
+  .telao{container-type:size}
+  .telao.vid-h .quadro{grid-template-columns:minmax(0,1fr) 32cqw}
+  .telao.vertical .quadro{inset:auto;top:50%;left:50%;width:100vh;height:100vw;transform:translate(-50%,-50%) rotate(-90deg);grid-template-columns:1fr;grid-template-rows:minmax(0,1fr) auto}
+  .telao.vertical.dir .quadro{transform:translate(-50%,-50%) rotate(90deg)}
+  .telao.sem-oferta .quadro{grid-template-columns:1fr;grid-template-rows:1fr}
+  .telao.sem-oferta .painel{display:none}
+  .palco{position:relative;overflow:hidden;background:#000;container-type:size;min-height:0}
   .num-video{position:absolute;left:2.4cqmin;top:2.4cqmin;z-index:3;font-weight:600;font-size:max(12px,2.3cqmin);letter-spacing:.08em;color:#fff;background:rgba(0,0,0,.5);backdrop-filter:blur(6px);-webkit-backdrop-filter:blur(6px);padding:.5cqmin 1.3cqmin;border-radius:999px;font-variant-numeric:tabular-nums}
   .palco canvas{position:absolute;inset:-8%;width:116%;height:116%;filter:blur(38px) saturate(1.2) brightness(.55);transform:scale(1.05)}
   .palco video{position:absolute;inset:0;width:100%;height:100%;object-fit:contain;transition:opacity .5s ease}
+  .telao.vertical.sem-oferta:not(.vid-h) .palco video{object-fit:cover}
   .palco video.sai{opacity:0}
-  .painel{position:relative;display:flex;flex-direction:column;justify-content:space-between;padding:3vw 3vw 2.4vw;background:radial-gradient(120% 70% at 100% 0%,#3c1e1e 0%,#140b0b 45%,#040404 100%);border-left:1px solid #1d1d1d}
-  .p-marca{display:flex;align-items:center;gap:.9vw;font-weight:700;letter-spacing:.16em;font-size:1.05vw}
-  .p-marca img.m{width:2.3vw;height:2.3vw;object-fit:contain}
-  .p-marca .x{opacity:.5;font-weight:400}
-  .p-marca img.parc{height:6.4vw;width:auto;object-fit:contain}
-  .p-baile{margin-top:.8vw;font-size:1vw;letter-spacing:.3em;text-transform:uppercase;color:var(--ink-2)}
-  .p-chamada .k{font-size:.95vw;letter-spacing:.3em;text-transform:uppercase;color:var(--muted)}
-  .p-chamada b{display:block;font-weight:700;font-size:4.6vw;line-height:.95;letter-spacing:-.01em;text-transform:uppercase;margin-top:.6vw}
-  .p-chamada .sub{font-family:var(--serif);font-style:italic;font-size:2.6vw;line-height:1.1;color:var(--ink-2);margin-top:.5vw}
+  /* painel da oferta: TV deitada = coluna à direita */
+  .painel{position:relative;display:flex;flex-direction:column;justify-content:space-between;padding:3cqw 3cqw 2.4cqw;background:radial-gradient(120% 70% at 100% 0%,#3c1e1e 0%,#140b0b 45%,#040404 100%);border-left:1px solid #1d1d1d;min-width:0}
+  .p-marca{display:flex;align-items:center;gap:1.2cqw}
+  .p-marca img.ag{height:6.4cqw;width:auto;object-fit:contain}
+  .p-marca .x{opacity:.5;font-weight:400;font-size:1.3cqw}
+  .p-marca img.parc{height:6.4cqw;width:auto;object-fit:contain}
+  .p-baile{margin-top:.8cqw;font-size:1cqw;letter-spacing:.3em;text-transform:uppercase;color:var(--ink-2)}
+  .p-chamada .k{font-size:.95cqw;letter-spacing:.3em;text-transform:uppercase;color:var(--muted)}
+  .p-chamada b{display:block;font-weight:700;font-size:4.6cqw;line-height:.95;letter-spacing:-.01em;text-transform:uppercase;margin-top:.6cqw}
+  .p-chamada .sub{font-family:var(--serif);font-style:italic;font-size:2.6cqw;line-height:1.1;color:var(--ink-2);margin-top:.5cqw}
   .p-chamada .sub em{color:var(--gold)}
-  .oferta{border:1px solid rgba(246,173,3,.55);background:rgba(246,173,3,.08);border-radius:1.2vw;padding:1.3vw 1.5vw}
-  .oferta .k{font-size:.85vw;letter-spacing:.24em;text-transform:uppercase;color:var(--gold)}
-  .oferta b{display:block;font-weight:700;font-size:2.1vw;line-height:1.1;margin-top:.4vw}
+  .oferta{border:1px solid rgba(246,173,3,.55);background:rgba(246,173,3,.08);border-radius:1.2cqw;padding:1.3cqw 1.5cqw}
+  .oferta .k{font-size:.85cqw;letter-spacing:.24em;text-transform:uppercase;color:var(--gold)}
+  .oferta b{display:block;font-weight:700;font-size:2.1cqw;line-height:1.1;margin-top:.4cqw}
   .oferta b span{color:var(--gold)}
-  .oferta p{font-size:1.05vw;color:var(--ink-2);margin-top:.4vw}
-  .qr{display:flex;align-items:center;gap:1.3vw;margin-top:1.3vw}
-  .qr .q{flex:none;width:9.5vw;height:9.5vw;background:#fff;border-radius:.8vw;padding:.6vw}
+  .oferta p{font-size:1.05cqw;color:var(--ink-2);margin-top:.4cqw}
+  .qr{display:flex;align-items:center;gap:1.3cqw;margin-top:1.3cqw}
+  .qr .q{flex:none;width:9.5cqw;height:9.5cqw;background:#fff;border-radius:.8cqw;padding:.6cqw}
   .qr .q svg{width:100%;height:100%;display:block}
-  .qr b{display:block;font-weight:600;font-size:1.35vw;line-height:1.2}
-  .qr p{font-size:.98vw;color:var(--ink-2);margin-top:.3vw}
-  .barra{height:.35vw;background:rgba(255,255,255,.12);border-radius:999px;overflow:hidden;margin-top:1.4vw}
+  .qr b{display:block;font-weight:600;font-size:1.35cqw;line-height:1.2}
+  .qr p{font-size:.98cqw;color:var(--ink-2);margin-top:.3cqw}
+  .barra{height:.35cqw;background:rgba(255,255,255,.12);border-radius:999px;overflow:hidden;margin-top:1.4cqw}
   .barra i{display:block;height:100%;width:0;background:var(--gold)}
-  .prox{display:flex;justify-content:space-between;font-size:.9vw;color:var(--muted);margin-top:.6vw}
-  /* telão vertical: o Mac continua normal; a página desenha o player DEITADO (girado 90°) e a TV é colocada em pé.
-     Assim não é preciso mexer em nenhuma configuração do computador nem da TV. */
-  .telao.vertical{grid-template-columns:1fr}
-  .telao.vertical .painel{display:none}
-  .telao.vertical .giro{position:fixed;top:50%;left:50%;width:100vh;height:100vw;transform:translate(-50%,-50%) rotate(-90deg)}
-  .telao.vertical.dir .giro{transform:translate(-50%,-50%) rotate(90deg)}
-  .telao.vertical .palco video{object-fit:cover}
-  .telao.vertical.horizontal .palco video{object-fit:contain}
+  .prox{display:flex;justify-content:space-between;font-size:.9cqw;color:var(--muted);margin-top:.6cqw}
+  /* painel da oferta: TV em pé = faixa embaixo do vídeo */
+  @container quadro (orientation: portrait) {
+    .painel{display:grid;grid-template-columns:minmax(0,1fr) auto;grid-template-areas:"marca qr" "chamada qr" "oferta oferta" "barra barra";align-items:center;gap:2cqw 4cqw;padding:3.6cqw 5cqw 3.2cqw;border-left:0;border-top:1px solid #1d1d1d;background:radial-gradient(120% 90% at 100% 100%,#3c1e1e 0%,#140b0b 50%,#040404 100%)}
+    .p-topo,.p-base{display:contents}
+    .p-marca{grid-area:marca;gap:2.4cqw}
+    .p-marca img.ag{height:9cqw}
+    .p-marca .x{font-size:2.8cqw}
+    .p-marca img.parc{height:10cqw}
+    .p-baile,.prox,.p-chamada .k{display:none}
+    .p-chamada{grid-area:chamada}
+    .p-chamada b{font-size:7.2cqw;margin-top:0}
+    .p-chamada .sub{font-size:4.2cqw;margin-top:.6cqw}
+    .oferta{grid-area:oferta;display:flex;align-items:baseline;flex-wrap:wrap;gap:.4cqw 2.4cqw;border-radius:2cqw;padding:2cqw 2.6cqw}
+    .oferta .k{font-size:1.7cqw}
+    .oferta b{font-size:4cqw;margin-top:0}
+    .oferta p{font-size:2.1cqw;margin-top:0;flex-basis:100%}
+    .qr{grid-area:qr;flex-direction:column;align-items:center;text-align:center;gap:1.4cqw;margin:0;width:24cqw;align-self:start}
+    .qr .q{width:22cqw;height:22cqw;border-radius:1.6cqw;padding:1.3cqw}
+    .qr b{font-size:2.1cqw}
+    .qr p{display:none}
+    .barra{grid-area:barra;height:.6cqw;margin:0}
+  }
+  /* marca d'água (sem oferta): logo da Aresta × parceiro embaixo do vídeo */
   .marca-agua{display:none;position:absolute;left:0;right:0;bottom:4cqh;z-index:2;justify-content:center;align-items:center;gap:1.6cqh;opacity:.78;pointer-events:none;filter:drop-shadow(0 .3cqh 1.2cqh rgba(0,0,0,.55))}
-  .telao.vertical .marca-agua{display:flex}
+  .telao.sem-oferta .marca-agua{display:flex}
   .marca-agua img.ag{height:8cqh;width:auto}
-  .marca-agua span{font-weight:700;letter-spacing:.16em;font-size:2cqh;color:#fff}
   .marca-agua .x{font-weight:400;opacity:.6;letter-spacing:0;font-size:2.4cqh;color:#fff}
   .marca-agua img.parc{height:8cqh;width:auto}
-  .telao.vertical .num-video{top:2.4cqmin}
-  .telao.vertical .barra-v{display:block}
+  .telao.sem-oferta .barra-v{display:block}
   .barra-v{display:none;position:absolute;left:0;right:0;bottom:0;height:.5cqh;z-index:2;background:rgba(255,255,255,.12)}
   .barra-v i{display:block;height:100%;width:0;background:var(--gold)}
   .lado{display:none;margin-top:8px}
@@ -121,7 +144,7 @@
   .formato{display:grid;grid-template-columns:1fr 1fr;gap:6px}
   .formato button{border:1px solid var(--line);border-radius:10px;padding:10px 6px;font-size:14px;color:var(--ink-2);background:var(--bg);min-height:44px}
   .formato button.on{border-color:var(--ink);color:#fff;background:var(--card-2)}
-  .pausa{position:absolute;inset:auto 0 0 0;z-index:3;text-align:center;padding:1vw;font-size:1.1vw;color:var(--gold);background:rgba(0,0,0,.6)}
+  .pausa{position:absolute;inset:auto 0 0 0;z-index:3;text-align:center;padding:1.2cqmin;font-size:max(13px,1.8cqmin);color:var(--gold);background:rgba(0,0,0,.6)}
   .toast{position:fixed;left:50%;bottom:24px;transform:translateX(-50%);z-index:40;background:#1b1b1b;border:1px solid #333;border-radius:10px;padding:10px 16px;font-size:14px;color:#fff;display:none}
 </style>
 </head>
@@ -144,8 +167,9 @@
           <label class="campo"><span>Segundos por vídeo</span><input id="cSeg" inputmode="numeric" value="20"></label>
         </div>
         <label class="campo"><span>Frase da oferta</span><input id="cOferta" maxlength="80" value="Fale com a nossa equipe e garanta o seu código"></label>
-        <div class="campo"><span>Formato do telão</span><div class="formato" id="cFormato"><button type="button" data-f="horizontal" class="on">TV deitada · vídeo + oferta</button><button type="button" data-f="vertical">TV em pé · só vídeos</button></div>
-          <div class="formato lado" id="cLado"><button type="button" data-l="esq">TV girada para a esquerda ↺</button><button type="button" data-l="dir">TV girada para a direita ↻</button></div></div>
+        <div class="campo"><span>Formato do telão</span><div class="formato" id="cFormato"><button type="button" data-f="horizontal" class="on">TV deitada</button><button type="button" data-f="vertical">TV em pé</button></div>
+          <div class="formato lado" id="cLado"><button type="button" data-l="esq">TV girada para a esquerda ↺</button><button type="button" data-l="dir">TV girada para a direita ↻</button></div>
+          <div class="formato" id="cComOferta" style="margin-top:8px"><button type="button" data-o="1" class="on">Com oferta e QR</button><button type="button" data-o="0">Só vídeos (logos por cima)</button></div></div>
       </div>
       <div class="caixa">
         <h2>Vídeos</h2>
@@ -169,8 +193,8 @@
     </div>
 
     <div class="dicas">
-      <b>TV em pé:</b> não mexa em nada no Mac nem na TV. Escolha "TV em pé · só vídeos": a página desenha o player deitado e você só coloca a TV em pé no suporte. Se a imagem ficar de cabeça para baixo, aperte <kbd>R</kbd> (ou troque o lado aqui).<br>
-      <b>No telão:</b> <kbd>espaço</kbd> pausa · <kbd>←</kbd> <kbd>→</kbd> vídeo anterior / próximo · <kbd>F</kbd> tela cheia · <kbd>R</kbd> inverte o giro da TV em pé · <kbd>S</kbd> volta para esta tela (o telão continua de onde parou).<br>
+      <b>TV em pé:</b> não mexa em nada no Mac nem na TV. Escolha "TV em pé": a página desenha o player deitado e você só coloca a TV em pé no suporte. Se a imagem ficar de cabeça para baixo, aperte <kbd>R</kbd> (ou troque o lado aqui).<br>
+      <b>No telão:</b> <kbd>espaço</kbd> pausa · <kbd>←</kbd> <kbd>→</kbd> vídeo anterior / próximo · <kbd>F</kbd> tela cheia · <kbd>R</kbd> inverte o giro da TV em pé · <kbd>O</kbd> liga/desliga a oferta · <kbd>S</kbd> volta para esta tela (o telão continua de onde parou).<br>
       <b>Antes do baile:</b> abra esta página com internet e deixe a aba aberta. No Mac, ligue o carregador e, em Ajustes › Bateria, evite que a tela desligue. Vídeos em H.264 ou HEVC (MP4/MOV) tocam direto; se algum aparecer como "não tocou", exporte uma versão MP4 rápida.
     </div>
   </div>
@@ -178,7 +202,7 @@
 
 <!-- ========== telão ========== -->
 <section class="telao" id="telao" hidden>
-  <div class="giro"><div class="palco">
+  <div class="quadro"><div class="palco">
     <canvas id="fundo" width="48" height="27"></canvas>
     <video id="vA" muted playsinline preload="auto"></video>
     <video id="vB" muted playsinline preload="auto" class="sai"></video>
@@ -186,9 +210,9 @@
     <div class="barra-v"><i id="tBarraV"></i></div>
     <div class="num-video" id="tNum"></div>
     <div class="pausa" id="tPausa" hidden>Pausado · espaço para continuar</div>
-  </div></div>
+  </div>
   <aside class="painel">
-    <div>
+    <div class="p-topo">
       <div class="p-marca" id="tMarca"></div>
       <div class="p-baile" id="tBaile"></div>
     </div>
@@ -197,7 +221,7 @@
       <b>Se viu aqui?</b>
       <div class="sub">Garanta o <em>seu vídeo</em> completo</div>
     </div>
-    <div>
+    <div class="p-base">
       <div class="oferta">
         <div class="k">Aqui no baile</div>
         <b>Seu vídeo por <span id="tPreco">R$ 35</span></b>
@@ -211,6 +235,7 @@
       <div class="prox"><span id="tPos"></span><span id="tProx"></span></div>
     </div>
   </aside>
+  </div>
 </section>
 <div class="toast" id="toast"></div>
 
@@ -324,11 +349,20 @@ let FORMATO = ler("telao-formato", "horizontal");
 function marcarFormato() { $("#cFormato").querySelectorAll("button").forEach((b) => b.classList.toggle("on", b.dataset.f === FORMATO)); }
 $("#cFormato").addEventListener("click", (e) => { const b = e.target.closest("button"); if (!b) return; FORMATO = b.dataset.f; guardar("telao-formato", FORMATO); marcarFormato(); });
 let LADO = ler("telao-lado", "esq");
+let COM_OFERTA = ler("telao-com-oferta", true);
+function aplicarModo() {
+  const t = $("#telao");
+  t.classList.toggle("vertical", FORMATO === "vertical");
+  t.classList.toggle("dir", LADO === "dir");
+  t.classList.toggle("sem-oferta", !COM_OFERTA);
+}
 function marcarLado() {
   $("#cLado").classList.toggle("on", FORMATO === "vertical");
   $("#cLado").querySelectorAll("button").forEach((b) => b.classList.toggle("on", b.dataset.l === LADO));
-  $("#telao").classList.toggle("dir", LADO === "dir");
+  $("#cComOferta").querySelectorAll("button").forEach((b) => b.classList.toggle("on", (b.dataset.o === "1") === COM_OFERTA));
+  aplicarModo();
 }
+$("#cComOferta").addEventListener("click", (e) => { const b = e.target.closest("button"); if (!b) return; COM_OFERTA = b.dataset.o === "1"; guardar("telao-com-oferta", COM_OFERTA); marcarLado(); });
 $("#cLado").addEventListener("click", (e) => { const b = e.target.closest("button"); if (!b) return; LADO = b.dataset.l; guardar("telao-lado", LADO); marcarLado(); });
 $("#cFormato").addEventListener("click", marcarLado);
 marcarFormato(); marcarLado();
@@ -343,11 +377,11 @@ const tocaveis = () => FILA.filter((x) => x.ok !== false);
 
 function montarPainel() {
   const e = baile(), g = GALERIAS[e.slug] || {};
-  const marcas = `<img class="m" src="/bailes/logo-mark.png" alt=""><span>ARESTAGÊNCIA</span>${g.logo ? `<span class="x">×</span><img class="parc" src="${esc(g.logo)}" alt="">` : ""}`;
+  const marcas = `<img class="ag" src="/bailes/logo-aresta-completa.png" alt="ArestAgência">${g.logo ? `<span class="x">×</span><img class="parc" src="${esc(g.logo)}" alt="">` : ""}`;
   $("#tMarca").innerHTML = marcas;
   // marca d'água sobre o vídeo (TV em pé): logo completa da Aresta × parceiro, embaixo do vídeo
   $("#tMarcaAgua").innerHTML = `<img class="ag" src="/bailes/logo-aresta-completa.png" alt="">${g.logo ? `<span class="x">×</span><img class="parc" src="${esc(g.logo)}" alt="">` : ""}`;
-  $("#telao").classList.toggle("vertical", FORMATO === "vertical");
+  aplicarModo();
   $("#tBaile").textContent = e.nome;
   const c = Math.round(Number(String($("#cPreco").value).replace(/\./g, "").replace(",", ".")) * 100);
   $("#tPreco").textContent = c > 0 ? reais(c) : "";
@@ -385,7 +419,7 @@ function tocar(item, depois) {
     v.classList.remove("sai"); ativo.classList.add("sai");
     const antigo = ativo; setTimeout(() => { if (antigo !== ativo) { antigo.pause(); antigo.removeAttribute("src"); antigo.load(); } }, 600);
     ativo = v; reserva = antigo;
-    $("#telao").classList.toggle("horizontal", !!item.h);
+    $("#telao").classList.toggle("vid-h", !!item.h);
     $("#tNum").textContent = `Nº ${dois(item.num)}`;
     const L = tocaveis();
     $("#tPos").textContent = ""; $("#tProx").textContent = "";
@@ -440,6 +474,7 @@ document.addEventListener("keydown", (e) => {
   else if (e.key === "f" || e.key === "F") { document.fullscreenElement ? document.exitFullscreen() : document.documentElement.requestFullscreen().catch(() => {}); }
   else if (e.key === "s" || e.key === "S") voltarConfig();
   else if ((e.key === "r" || e.key === "R") && FORMATO === "vertical") { LADO = LADO === "dir" ? "esq" : "dir"; guardar("telao-lado", LADO); marcarLado(); }
+  else if (e.key === "o" || e.key === "O") { COM_OFERTA = !COM_OFERTA; guardar("telao-com-oferta", COM_OFERTA); marcarLado(); }
 });
 // se o Mac acordar ou a aba voltar, pede de novo para a tela não apagar
 document.addEventListener("visibilitychange", async () => { if (!document.hidden && !$("#telao").hidden) { try { wake = await navigator.wakeLock.request("screen"); } catch {} } });
