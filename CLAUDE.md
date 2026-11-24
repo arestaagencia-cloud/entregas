@@ -239,3 +239,17 @@ Painel interno dividido em duas áreas: "Clientes Recorrentes" e "Clientes Freel
 Drive: "Contrato N" (pasta-contêiner, o robô entra nela) > "NN. Tuiuti - Contrato N - Primeira Leva - Mês.AA" > (Verticais/Horizontais opcionais). Painel `tuiuti`: `filtro_pasta` {"rotulo":"Contrato","regex":"contrato\\s*\\d+"} lê o contrato do nome da pasta; `remover_titulo` tira "Tuiuti 2.2 - " do título. No Notion o cliente é "Universidade Tuiuti" e cada leva é um Serviço com o nome da pasta.
 Equipe Prime: nome começando pela região ("Sudoeste - ...") vira "Sudoeste · Geral" (aparece dentro da região); "Geral" em qualquer trecho do nome = Gerais. Faber ganhou o tópico Periodontia.
 Freelancers (`tipo_cliente: freelancer`): capa do painel com uma imagem só (`capa`; sem ela, usa a miniatura do vídeo horizontal mais recente) e o card no painel interno mostra essa mesma imagem em vez do mosaico.
+
+## Hub de Bailes (`/bailes/`, desde 24/11/2026)
+Painel interno das coberturas de bailes (venda dos vídeos de cada casal em `https://videos.arestagencia.com.br`,
+repositório `arestaagencia-cloud/videos`). Aparece no HUB como card na coluna **Freelancers**, vindo de `hub.json` →
+`extras` (painéis especiais sem Drive: `nome`, `url`, `img`, `descricao`, `rotulo`; `gerar_hub.py` leva a lista para
+os dados cifrados e `cardExtra()` em `hub_template.html` desenha o card). Capa do card: `docs/bailes/capa.jpg`.
+- **Página:** `bailes_template.html` → `python3 gerar_bailes.py` → `docs/bailes/index.html` (só troca o `{{LOGO}}`;
+  não leva dados). Login Google igual ao HUB (mesmo client_id e escopo `drive`).
+- **Números ao vivo:** função `painel-bailes` do Supabase (projeto `arestagencia-bailes`, id `jlogxdjttufiiikiezfe`).
+  A página manda o token Google no cabeçalho `x-google-token`; a função só responde se essa conta abre a
+  "Chave do Hub" no Drive (mesmo controle de acesso do HUB). Devolve totais e, por baile: vídeos publicados,
+  vendas, vídeos vendidos, arrecadado (bruto), Pix x cartão, vendas por dia, checkouts abertos, downloads,
+  estornos, mais vendidos, últimas vendas e alerta de venda paga sem e-mail enviado.
+- **Novo baile** = criar o evento no Supabase (tabela `eventos`) e cadastrar os vídeos; ele aparece sozinho aqui.

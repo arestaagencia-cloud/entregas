@@ -419,8 +419,18 @@ function renderPaineis(){
     .sort((a,b)=>b.ultimo.localeCompare(a.ultimo)||b.total-a.total);
   $('#cols').innerHTML=[['recorrente','Recorrentes',''],['freelancer','Freelancers','free']].map(([t,h,c])=>{
     const la=l.filter(p=>p.tipo===t);
-    return `<div class="col"><div class="col-h ${c}"><i></i><h3>${h}</h3><span>${pl(la.length,'painel','painéis')}</span></div>
-      ${la.length?`<div class="cards">${la.map(card).join('')}</div>`:'<div class="vazio">Nenhum painel encontrado.</div>'}</div>`}).join('');
+    const ex=t==='freelancer'?((D&&D.extras)||[]).filter(x=>!q||nrm(x.nome).includes(q)||nrm(x.descricao).includes(q)):[];  // painéis especiais (ex.: Bailes), sem dados do Drive
+    const n=la.length+ex.length;
+    return `<div class="col"><div class="col-h ${c}"><i></i><h3>${h}</h3><span>${pl(n,'painel','painéis')}</span></div>
+      ${n?`<div class="cards">${ex.map(cardExtra).join('')}${la.map(card).join('')}</div>`:'<div class="vazio">Nenhum painel encontrado.</div>'}</div>`}).join('');
+}
+function cardExtra(p){
+  return `<article class="card free">
+    <a class="cv" href="${p.url}" target="_blank" rel="noopener" aria-label="Abrir ${esc(p.nome)}">${p.img?`<img src="${p.img}" alt="" loading="lazy" onerror="this.remove()">`:''}</a>
+    <div class="cb"><div class="nm">${esc(p.nome)}</div><div class="rs">${esc(p.descricao||'')}</div>
+      <div class="cf"><span class="um">${esc(p.rotulo||'Painel interno')}</span>
+        <span class="ab"><button type="button" class="cp" data-copiar="${p.url}" title="Copiar link do painel">Copiar link</button><a href="${p.url}" target="_blank" rel="noopener">Abrir →</a></span></div>
+    </div></article>`;
 }
 function card(p){
   const fr=p.tipo==='freelancer';

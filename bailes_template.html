@@ -1,0 +1,342 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<link rel="icon" href="/favicon.ico" sizes="any"><link rel="icon" type="image/png" sizes="32x32" href="/favicon-32.png"><link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#040404">
+<meta name="color-scheme" content="dark">
+<meta name="robots" content="noindex, nofollow">
+<title>Bailes · Hub ArestAgência</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@400;500;600;700&family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#040404; --ink:#F8F4F2; --ink-2:#d9d2ce; --muted:#8f8784;
+    --line:#232323; --card:#0f0f0f; --card-2:#161616; --accent:#882725; --accent-dark:#3c1e1e; --gold:#F6AD03;
+    --radius:14px;
+    --sans:"Inter Tight","Helvetica Neue",Helvetica,Arial,sans-serif;
+    --serif:"Instrument Serif",Georgia,serif;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  :root{color-scheme:dark}
+  :focus-visible{outline:2px solid var(--gold);outline-offset:2px;border-radius:6px}
+  body{background:var(--bg);color:var(--ink);font-family:var(--sans);-webkit-font-smoothing:antialiased;line-height:1.45}
+  a{color:inherit;text-decoration:none}
+  button{font:inherit;cursor:pointer;border:0;background:none;color:inherit}
+  [hidden]{display:none!important}
+
+  /* login (igual ao HUB) */
+  .gate{position:fixed;inset:0;z-index:70;background:var(--bg);display:flex;align-items:center;justify-content:center;padding:24px}
+  .gate .box{width:100%;max-width:360px;text-align:center}
+  .gate .logo{display:flex;flex-direction:column;align-items:center;gap:10px}
+  .gate .logo img{width:56px;height:56px;object-fit:contain}
+  .gate .logo span{font-weight:700;letter-spacing:.32em;font-size:12px}
+  .gate h2{font-weight:700;font-size:30px;letter-spacing:-.01em;margin:18px 0 6px}
+  .gate p{color:var(--muted);font-size:14px;margin-bottom:22px}
+  .g-btn{width:100%;display:flex;align-items:center;justify-content:center;gap:10px;background:#fff;color:#1f1f1f;border-radius:999px;padding:12px;font-weight:600}
+  .g-btn[disabled]{opacity:.6;cursor:wait}
+  .gate .erro{color:#ff8b7b;font-size:13px;min-height:20px;margin-top:12px;white-space:pre-line}
+  .gate .voltar{display:inline-block;margin-top:18px;font-size:13px;color:var(--muted);text-decoration:underline;text-underline-offset:3px}
+
+  /* topo */
+  .top{position:sticky;top:0;z-index:30;display:grid;grid-template-columns:1fr auto 1fr;align-items:center;gap:12px;padding:14px clamp(16px,4vw,48px);background:rgba(4,4,4,.88);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);border-bottom:1px solid var(--line)}
+  .top .esq{display:flex;align-items:center;gap:10px}
+  .top .dir{display:flex;justify-content:flex-end;align-items:center;gap:10px}
+  .brand{display:flex;align-items:center;gap:10px;color:#fff}
+  .brand img{width:30px;height:30px;object-fit:contain}
+  .brand span{font-weight:700;letter-spacing:.14em;font-size:13px}
+  .chip{display:inline-flex;align-items:center;gap:8px;white-space:nowrap;border:1px solid var(--line);background:var(--card);border-radius:999px;padding:7px 14px;font-size:13px;color:var(--ink-2);transition:.15s}
+  .chip:hover{border-color:#3a3a3a;color:#fff}
+  .chip.rodando{border-color:var(--gold);color:var(--gold)}
+  .quem{font-size:12px;color:var(--muted);max-width:220px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+
+  .wrap{max-width:1320px;margin:0 auto;padding:0 clamp(16px,4vw,48px)}
+
+  /* abertura */
+  .hero{padding:clamp(40px,8vh,84px) 0 8px;text-align:center}
+  .eyebrow{font-size:12px;letter-spacing:.42em;text-transform:uppercase;color:var(--muted)}
+  .hero h1{font-weight:700;font-size:clamp(44px,9vw,112px);line-height:.9;letter-spacing:.03em;margin:14px -.03em 0 0;text-transform:uppercase}
+  .hero h2{font-family:var(--serif);font-weight:400;font-size:clamp(22px,2.8vw,34px);color:var(--ink-2);margin-top:14px}
+  .hero h2 em{color:var(--gold)}
+  .kpis{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:8px;margin-top:clamp(28px,5vh,48px)}
+  .kpi{background:var(--card);border:1px solid var(--line);border-radius:var(--radius);padding:18px 18px 16px;text-align:left}
+  .kpi span{display:block;font-size:11px;letter-spacing:.2em;text-transform:uppercase;color:var(--muted)}
+  .kpi b{display:block;font-weight:600;font-size:clamp(26px,2.6vw,36px);line-height:1.1;margin-top:8px;font-variant-numeric:tabular-nums}
+  .kpi small{display:block;font-size:12px;color:var(--muted);margin-top:4px}
+
+  .aviso{display:flex;gap:12px;align-items:flex-start;margin-top:16px;border:1px solid rgba(246,173,3,.45);background:rgba(246,173,3,.06);border-radius:var(--radius);padding:14px 16px;font-size:14px;color:var(--ink-2)}
+  .aviso b{color:var(--gold)}
+
+  /* seções */
+  .secao{margin-top:56px}
+  .sec-h{display:flex;align-items:baseline;justify-content:space-between;gap:12px;flex-wrap:wrap;margin-bottom:18px}
+  .sec-h h3{font-weight:700;font-size:clamp(22px,2.4vw,30px);letter-spacing:-.01em}
+  .sec-h span{font-size:13px;letter-spacing:.14em;text-transform:uppercase;color:var(--muted)}
+  .seg{display:inline-flex;border:1px solid var(--line);border-radius:10px;overflow:hidden}
+  .seg button{padding:8px 14px;font-size:14px;color:var(--ink-2)}
+  .seg button.on{background:var(--card-2);color:#fff}
+
+  /* gráfico de barras horizontais (uma série) */
+  .painel{background:var(--card);border:1px solid var(--line);border-radius:var(--radius);padding:20px}
+  .barras{display:flex;flex-direction:column;gap:10px}
+  .barra{display:grid;grid-template-columns:minmax(120px,220px) 1fr minmax(90px,auto);align-items:center;gap:14px;font-size:14px}
+  .barra .nm{color:var(--ink-2);overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+  .barra .trilho{position:relative;height:22px}
+  .barra .fill{position:absolute;left:0;top:3px;bottom:3px;border-radius:0 4px 4px 0;background:var(--ink-2);min-width:2px;transition:width .5s}
+  .barra .vl{text-align:right;font-variant-numeric:tabular-nums;color:var(--ink)}
+  .barra .vl small{color:var(--muted);margin-left:6px}
+  .vazio{padding:40px 0;text-align:center;color:var(--muted);font-size:14px}
+
+  /* cards de baile */
+  .bailes{display:grid;grid-template-columns:repeat(auto-fill,minmax(380px,1fr));gap:12px}
+  .baile{background:var(--card);border:1px solid var(--line);border-radius:var(--radius);overflow:hidden;display:flex;flex-direction:column}
+  .baile-h{padding:20px 20px 0}
+  .baile-h .k{display:flex;align-items:center;gap:8px;font-size:11px;letter-spacing:.2em;text-transform:uppercase;color:var(--muted)}
+  .st{display:inline-flex;align-items:center;gap:6px;letter-spacing:.08em}
+  .st i{width:7px;height:7px;border-radius:50%;background:#6fbf8b}
+  .st.fechado i{background:var(--muted)}
+  .baile-h h4{font-weight:700;font-size:24px;letter-spacing:-.01em;line-height:1.15;margin-top:8px}
+  .nums{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:1px;background:var(--line);margin:18px 0 0;border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
+  .nums div{background:var(--card);padding:14px 14px;min-width:0}
+  .nums span{display:block;font-size:10px;letter-spacing:.18em;text-transform:uppercase;color:var(--muted)}
+  .nums b{display:block;font-weight:600;font-size:19px;margin-top:4px;font-variant-numeric:tabular-nums;white-space:nowrap}
+  .det{padding:16px 20px;display:flex;flex-direction:column;gap:14px}
+  .linha{display:flex;justify-content:space-between;gap:12px;font-size:13px;color:var(--muted)}
+  .linha b{color:var(--ink-2);font-weight:500}
+  .prog{height:6px;border-radius:999px;background:var(--card-2);overflow:hidden;margin-top:6px}
+  .prog i{display:block;height:100%;background:var(--ink-2);border-radius:999px}
+  .mix{display:flex;height:6px;border-radius:999px;overflow:hidden;gap:2px;margin-top:6px;background:var(--card)}
+  .mix i{display:block;height:100%}
+  .mix .pix{background:var(--ink-2)}.mix .car{background:#6d6461}
+  .leg{display:flex;gap:14px;font-size:12px;color:var(--muted);margin-top:6px}
+  .leg i{display:inline-block;width:8px;height:8px;border-radius:2px;margin-right:6px;vertical-align:0}
+  .spark{display:flex;align-items:flex-end;gap:2px;height:44px;margin-top:8px}
+  .spark i{flex:1;min-width:3px;background:var(--ink-2);border-radius:3px 3px 0 0;opacity:.85;position:relative}
+  .spark i:hover{opacity:1;background:#fff}
+  .baile-f{margin-top:auto;display:flex;align-items:center;gap:8px;flex-wrap:wrap;padding:0 20px 20px}
+  .btn{display:inline-flex;align-items:center;gap:8px;border-radius:999px;padding:9px 16px;font-size:13px;font-weight:500}
+  .btn.pri{background:var(--ink);color:#0b0b0b}
+  .btn.sec{border:1px solid #333;color:#fff}
+  .btn.sec:hover{border-color:#555}
+
+  /* detalhes (vendas) */
+  details.mais{border-top:1px solid var(--line)}
+  details.mais summary{cursor:pointer;list-style:none;padding:14px 20px;font-size:13px;color:var(--ink-2)}
+  details.mais summary::-webkit-details-marker{display:none}
+  details.mais summary::after{content:" ↓";color:var(--muted)}
+  details.mais[open] summary::after{content:" ↑"}
+  .tab{width:100%;border-collapse:collapse;font-size:13px;margin:0 0 16px}
+  .tab th{font-weight:500;text-align:left;font-size:10px;letter-spacing:.16em;text-transform:uppercase;color:var(--muted);padding:6px 20px;border-bottom:1px solid var(--line)}
+  .tab td{padding:8px 20px;border-bottom:1px solid #161616;color:var(--ink-2);font-variant-numeric:tabular-nums}
+  .tab td.ok{color:#6fbf8b}.tab td.nok{color:var(--gold)}
+
+  .tip{position:fixed;z-index:80;pointer-events:none;background:#1b1b1b;border:1px solid #333;border-radius:8px;padding:6px 10px;font-size:12px;color:#fff;white-space:nowrap;transform:translate(-50%,-110%);display:none}
+
+  footer{margin:80px 0 40px;text-align:center;color:var(--muted);font-size:13px}
+  .carregando{padding:120px 0;text-align:center;color:var(--muted)}
+  .spinner{width:34px;height:34px;border-radius:50%;border:3px solid var(--line);border-top-color:var(--gold);margin:0 auto 18px;animation:gira 1s linear infinite}
+  @keyframes gira{to{transform:rotate(360deg)}}
+
+  @media (max-width:900px){.kpis{grid-template-columns:repeat(2,minmax(0,1fr))}.kpis .kpi:first-child{grid-column:1/-1}}
+  @media (max-width:760px){
+    .top{grid-template-columns:auto 1fr auto}.top .brand span,.quem{display:none}
+    .bailes{grid-template-columns:1fr}
+    .barra{grid-template-columns:1fr auto;row-gap:4px}.barra .trilho{grid-column:1/-1;order:3}
+    .nums{grid-template-columns:repeat(2,minmax(0,1fr))}
+  }
+</style>
+</head>
+<body>
+
+<div class="gate" id="gate">
+  <div class="box">
+    <div class="logo"><img src="data:image/png;base64,{{LOGO}}" alt=""><span>ARESTAGÊNCIA</span></div>
+    <h2>Hub de Bailes</h2>
+    <p>Entre com a mesma conta Google do Hub de entregas.</p>
+    <button type="button" class="g-btn" id="gBtn"><svg width="18" height="18" viewBox="0 0 48 48" aria-hidden="true"><path fill="#FFC107" d="M43.6 20.5H42V20H24v8h11.3C33.7 32.7 29.2 36 24 36c-6.6 0-12-5.4-12-12s5.4-12 12-12c3.1 0 5.8 1.2 7.9 3.1l5.7-5.7C34 6.1 29.3 4 24 4 12.9 4 4 12.9 4 24s8.9 20 20 20 20-8.9 20-20c0-1.3-.1-2.4-.4-3.5z"/><path fill="#FF3D00" d="m6.3 14.7 6.6 4.8C14.7 15.1 19 12 24 12c3.1 0 5.8 1.2 7.9 3.1l5.7-5.7C34 6.1 29.3 4 24 4 16.3 4 9.7 8.3 6.3 14.7z"/><path fill="#4CAF50" d="M24 44c5.2 0 9.9-2 13.4-5.2l-6.2-5.2C29.2 35.1 26.7 36 24 36c-5.2 0-9.6-3.3-11.3-8l-6.5 5C9.5 39.6 16.2 44 24 44z"/><path fill="#1976D2" d="M43.6 20.5H42V20H24v8h11.3c-.8 2.2-2.2 4.2-4.1 5.6l6.2 5.2C37 39.2 44 34 44 24c0-1.3-.1-2.4-.4-3.5z"/></svg>Entrar com Google</button>
+    <p class="erro" id="gErro" role="alert"></p>
+    <a class="voltar" href="/">← Voltar ao Hub de entregas</a>
+  </div>
+</div>
+
+<header class="top" id="topo" hidden>
+  <div class="esq"><a class="chip" href="/">← Hub</a></div>
+  <div class="brand"><img src="data:image/png;base64,{{LOGO}}" alt=""><span>ARESTAGÊNCIA</span></div>
+  <div class="dir"><span class="quem" id="quem"></span><button class="chip" id="atualizar" type="button">Atualizar</button></div>
+</header>
+
+<main class="wrap" id="app" hidden>
+  <section class="hero">
+    <div class="eyebrow">Painel interno · Coberturas</div>
+    <h1>Bailes</h1>
+    <h2>Todos os bailes que <em>já cobrimos</em></h2>
+  </section>
+  <div class="kpis" id="kpis"></div>
+  <div id="avisos"></div>
+
+  <section class="secao">
+    <div class="sec-h"><h3>Desempenho por baile</h3>
+      <div class="seg" id="metrica">
+        <button data-m="receita" class="on">Arrecadado</button><button data-m="vendas">Vendas</button><button data-m="conv">% vendidos</button>
+      </div>
+    </div>
+    <div class="painel"><div class="barras" id="barras"></div></div>
+  </section>
+
+  <section class="secao">
+    <div class="sec-h"><h3>Coberturas</h3><span id="nBailes"></span></div>
+    <div class="bailes" id="lista"></div>
+  </section>
+  <footer>ArestAgência - Produção de Conteúdo<br><span id="gerado"></span></footer>
+</main>
+<div class="carregando" id="carregando" hidden><div class="spinner"></div>Carregando os números...</div>
+<div class="tip" id="tip"></div>
+
+<script>
+const CONF = {
+  google: "256356066322-476aa8jqbm3o19838bbuob4njl62cahr.apps.googleusercontent.com", // hub.json -> google_client_id
+  api: "https://jlogxdjttufiiikiezfe.supabase.co/functions/v1/painel-bailes",
+};
+const $ = (s) => document.querySelector(s);
+const esc = (s) => String(s ?? "").replace(/[&<>"']/g, (c) => ({ "&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;" }[c]));
+const brl = (c) => (c / 100).toLocaleString("pt-BR", { style: "currency", currency: "BRL", minimumFractionDigits: c % 100 ? 2 : 0 });
+const num = (n) => Number(n || 0).toLocaleString("pt-BR");
+const pct = (a, b) => (b ? Math.round((a / b) * 100) : 0);
+const dataBR = (d) => { if (!d) return "Sem data"; const [a, m, dd] = d.split("-").map(Number); return new Date(a, m - 1, dd).toLocaleDateString("pt-BR", { day: "2-digit", month: "short", year: "numeric" }).replace(".", ""); };
+const diaCurto = (d) => { const [a, m, dd] = d.split("-").map(Number); return new Date(a, m - 1, dd).toLocaleDateString("pt-BR", { day: "2-digit", month: "2-digit" }); };
+
+// ---------- login Google (mesma conta e mesmo app do HUB) ----------
+const G = { tok: null, exp: 0, cli: null, pend: null };
+const SESS = { get() { try { return JSON.parse(sessionStorage.getItem("aresta-bailes-s") || "null"); } catch { return null; } },
+               set(v) { try { v ? sessionStorage.setItem("aresta-bailes-s", JSON.stringify(v)) : sessionStorage.removeItem("aresta-bailes-s"); } catch {} } };
+function carregarGIS() { return new Promise((ok, nok) => { if (window.google && google.accounts) return ok();
+  const s = document.createElement("script"); s.src = "https://accounts.google.com/gsi/client"; s.async = true; s.onload = ok; s.onerror = nok; document.head.appendChild(s); }); }
+function pedirToken(prompt) {
+  return new Promise(async (ok, nok) => {
+    try { await carregarGIS(); } catch { return nok(new Error("Não consegui carregar o login do Google.")); }
+    if (!G.cli) G.cli = google.accounts.oauth2.initTokenClient({ client_id: CONF.google, scope: "https://www.googleapis.com/auth/drive",
+      callback: (r) => { const p = G.pend; G.pend = null; if (!p) return; if (r.error) return p.nok(new Error(r.error));
+        G.tok = r.access_token; G.exp = Date.now() + (r.expires_in - 120) * 1000; SESS.set({ tok: G.tok, exp: G.exp }); p.ok(); },
+      error_callback: (e) => { const p = G.pend; G.pend = null; p && p.nok(new Error(e.type || "login cancelado")); } });
+    G.pend = { ok, nok }; G.cli.requestAccessToken({ prompt: prompt ?? "" });
+  });
+}
+const logado = () => G.tok && Date.now() < G.exp;
+
+function bloquear(msg) {
+  $("#gate").hidden = false; $("#topo").hidden = true; $("#app").hidden = true; $("#carregando").hidden = true;
+  $("#gErro").textContent = msg || "";
+}
+$("#gBtn").onclick = async () => {
+  const b = $("#gBtn"); b.disabled = true; $("#gErro").textContent = "";
+  try { await pedirToken("select_account"); await carregar(); }
+  catch (e) { if (!e.auth) $("#gErro").textContent = "Login não concluído. Tente de novo."; }
+  finally { b.disabled = false; }
+};
+
+// ---------- dados ----------
+let D = null, METRICA = "receita";
+async function carregar() {
+  if (!logado()) return bloquear();
+  $("#gate").hidden = true; if (!D) $("#carregando").hidden = false;
+  $("#atualizar").classList.add("rodando");
+  try {
+    const r = await fetch(CONF.api, { headers: { "x-google-token": G.tok } });
+    if (r.status === 401) { G.tok = null; SESS.set(null); bloquear("Esta conta não tem acesso ao Hub.\nUse a mesma conta do Hub de entregas."); throw Object.assign(new Error("auth"), { auth: true }); }
+    if (!r.ok) throw new Error("Erro " + r.status);
+    D = await r.json();
+    desenhar();
+  } catch (e) {
+    if (!e.auth) { $("#carregando").hidden = true; if (!D) bloquear("Não consegui carregar os números. Tente de novo em instantes."); }
+    throw e;
+  } finally { $("#atualizar").classList.remove("rodando"); }
+}
+$("#atualizar").onclick = () => carregar().catch(() => {});
+
+function desenhar() {
+  $("#carregando").hidden = true; $("#topo").hidden = false; $("#app").hidden = false;
+  const u = D.usuario || {}; $("#quem").textContent = u.displayName || u.emailAddress || "";
+  const t = D.totais, B = D.bailes;
+  const ticketMedio = t.vendas ? Math.round(t.receita_centavos / t.vendas) : 0;
+  $("#kpis").innerHTML = [
+    ["Arrecadado", brl(t.receita_centavos), t.vendas ? `ticket médio ${brl(ticketMedio)}` : "valor bruto, antes das taxas"],
+    ["Vendas", num(t.vendas), `${num(t.compradores)} ${t.compradores === 1 ? "comprador" : "compradores"}`],
+    ["Vídeos publicados", num(t.videos), `${pct(B.reduce((s, b) => s + b.videos_vendidos, 0), t.videos)}% já vendidos`],
+    ["Bailes", num(t.bailes), `${B.filter((b) => b.aberto).length} com galeria aberta`],
+    ["Pix · Cartão", `${num(t.pix)} · ${num(t.cartao)}`, t.estornos ? `${num(t.estornos)} ${t.estornos === 1 ? "estorno" : "estornos"}` : "sem estornos"],
+  ].map(([k, v, s]) => `<div class="kpi"><span>${k}</span><b>${v}</b><small>${s}</small></div>`).join("");
+
+  $("#avisos").innerHTML = t.sem_email ? `<div class="aviso"><b>Atenção:</b> ${t.sem_email} ${t.sem_email === 1 ? "venda paga está" : "vendas pagas estão"} sem e-mail enviado. O cliente pagou e pode não ter recebido o link. Peça para reenviar.</div>` : "";
+  $("#nBailes").textContent = `${B.length} ${B.length === 1 ? "baile" : "bailes"}`;
+  $("#gerado").textContent = `Números ao vivo · atualizado às ${new Date(D.gerado).toLocaleTimeString("pt-BR", { hour: "2-digit", minute: "2-digit" })}`;
+  barras();
+  $("#lista").innerHTML = B.length ? B.map(card).join("") : `<div class="vazio">Nenhum baile cadastrado ainda.</div>`;
+}
+
+function barras() {
+  const B = D.bailes;
+  if (!B.length) { $("#barras").innerHTML = `<div class="vazio">Os números aparecem aqui depois do primeiro baile.</div>`; return; }
+  const val = (b) => METRICA === "receita" ? b.receita_centavos : METRICA === "vendas" ? b.vendas : pct(b.videos_vendidos, b.videos);
+  const fmt = (b) => METRICA === "receita" ? brl(b.receita_centavos) : METRICA === "vendas" ? `${num(b.vendas)}<small>de ${num(b.videos)} vídeos</small>` : `${pct(b.videos_vendidos, b.videos)}%<small>${num(b.videos_vendidos)}/${num(b.videos)}</small>`;
+  const max = Math.max(1, ...B.map(val));
+  $("#barras").innerHTML = B.map((b) => `<div class="barra"><span class="nm" title="${esc(b.nome)}">${esc(b.nome)}</span>
+    <span class="trilho"><i class="fill" style="width:${(val(b) / (METRICA === "conv" ? 100 : max)) * 100}%"></i></span><span class="vl">${fmt(b)}</span></div>`).join("");
+}
+$("#metrica").addEventListener("click", (e) => { const b = e.target.closest("button"); if (!b) return;
+  METRICA = b.dataset.m; $("#metrica").querySelectorAll("button").forEach((x) => x.classList.toggle("on", x === b)); barras(); });
+
+function card(b) {
+  const conv = pct(b.videos_vendidos, b.videos);
+  const metodo = b.pix + b.cartao;
+  const maxDia = Math.max(1, ...b.por_dia.map((d) => d.n));
+  return `<article class="baile">
+    <div class="baile-h">
+      <div class="k">${dataBR(b.data)}${b.local ? ` · ${esc(b.local)}` : ""} <span class="st ${b.aberto ? "" : "fechado"}"><i></i>${b.aberto ? "Galeria aberta" : "Galeria fechada"}</span></div>
+      <h4>${esc(b.nome)}</h4>
+    </div>
+    <div class="nums">
+      <div><span>Vídeos</span><b>${num(b.videos)}</b></div>
+      <div><span>Vendas</span><b>${num(b.vendas)}</b></div>
+      <div><span>Arrecadado</span><b>${brl(b.receita_centavos)}</b></div>
+      <div><span>Vendidos</span><b>${conv}%</b></div>
+    </div>
+    <div class="det">
+      <div><div class="linha"><span>Vídeos vendidos</span><b>${num(b.videos_vendidos)} de ${num(b.videos)}</b></div><div class="prog"><i style="width:${conv}%"></i></div></div>
+      ${metodo ? `<div><div class="linha"><span>Forma de pagamento</span><b>${pct(b.pix, metodo)}% Pix</b></div>
+        <div class="mix"><i class="pix" style="width:${pct(b.pix, metodo)}%"></i><i class="car" style="width:${100 - pct(b.pix, metodo)}%"></i></div>
+        <div class="leg"><span><i style="background:var(--ink-2)"></i>Pix ${num(b.pix)}</span><span><i style="background:#6d6461"></i>Cartão ${num(b.cartao)}</span></div></div>` : ""}
+      ${b.por_dia.length ? `<div><div class="linha"><span>Vendas por dia</span><b>${num(b.por_dia.length)} ${b.por_dia.length === 1 ? "dia" : "dias"} com venda</b></div>
+        <div class="spark">${b.por_dia.map((d) => `<i style="height:${Math.max(8, (d.n / maxDia) * 100)}%" data-tip="${diaCurto(d.dia)}: ${d.n} ${d.n === 1 ? "venda" : "vendas"} · ${brl(d.valor)}"></i>`).join("")}</div></div>` : ""}
+      <div class="linha"><span>Checkouts abertos</span><b>${num(b.checkouts)} (${pct(b.vendas, b.checkouts)}% viraram venda)</b></div>
+      <div class="linha"><span>Downloads</span><b>${num(b.downloads)}</b></div>
+      ${b.estornos ? `<div class="linha"><span>Estornos</span><b>${num(b.estornos)} · ${brl(b.estornado_centavos)}</b></div>` : ""}
+      ${b.mais_vendidos.length ? `<div class="linha"><span>Mais vendidos</span><b>${b.mais_vendidos.map((m) => `Nº ${esc(m.codigo)} (${m.n})`).join(" · ")}</b></div>` : ""}
+    </div>
+    <div class="baile-f">
+      <a class="btn pri" href="${esc(b.link)}" target="_blank" rel="noopener">Abrir galeria →</a>
+      <button class="btn sec" type="button" data-copiar="${esc(b.link)}">Copiar link</button>
+    </div>
+    ${b.ultimas.length ? `<details class="mais"><summary>Últimas vendas (${b.ultimas.length})</summary>
+      <table class="tab"><thead><tr><th>Quando</th><th>Vídeo</th><th>Cliente</th><th>Pagou com</th><th>E-mail</th></tr></thead><tbody>
+      ${b.ultimas.map((v) => `<tr><td>${new Date(v.quando).toLocaleString("pt-BR", { day: "2-digit", month: "2-digit", hour: "2-digit", minute: "2-digit" })}</td><td>Nº ${esc(v.codigo)}</td>
+        <td title="${esc(v.email)}">${esc(v.nome)}</td><td>${esc(v.metodo)}</td><td class="${v.email_ok ? "ok" : "nok"}">${v.email_ok ? "Enviado" : "Pendente"}</td></tr>`).join("")}
+      </tbody></table></details>` : ""}
+  </article>`;
+}
+
+// copiar link e dica das barrinhas
+document.addEventListener("click", (e) => { const b = e.target.closest("[data-copiar]"); if (!b) return;
+  (navigator.clipboard ? navigator.clipboard.writeText(b.dataset.copiar) : Promise.reject()).then(() => { const t = b.textContent; b.textContent = "Link copiado"; setTimeout(() => (b.textContent = t), 1600); }).catch(() => prompt("Copie o link:", b.dataset.copiar)); });
+document.addEventListener("mousemove", (e) => { const el = e.target.closest("[data-tip]"), tip = $("#tip");
+  if (!el) { tip.style.display = "none"; return; } tip.textContent = el.dataset.tip; tip.style.display = "block"; tip.style.left = e.clientX + "px"; tip.style.top = e.clientY + "px"; });
+
+// token do Google vence em 1 h: volta para o login
+setInterval(() => { if (D && !$("#app").hidden && !logado()) bloquear("Sua conexão com o Google terminou.\nEntre de novo para continuar."); }, 15000);
+
+// recarregou a aba dentro da hora: continua conectado
+(() => { const s = SESS.get(); if (s && s.tok && Date.now() < s.exp) { G.tok = s.tok; G.exp = s.exp; carregar().catch(() => {}); } else carregarGIS().catch(() => {}); })();
+</script>
+</body>
+</html>
