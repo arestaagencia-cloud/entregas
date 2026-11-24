@@ -551,7 +551,7 @@ $("#impBtn").onclick = async () => {
   const qr = (t) => { const q = qrcode(0, "M"); q.addData(t); q.make(); return q.createSvgTag({ cellSize: 3, margin: 0, scalable: true }); };
   const site = COD.ev.url_galeria.replace(/^https?:\/\//, "");
   const cartoes = L.map((c) => `<div class="c"><div class="t"><div class="m">ARESTAGÊNCIA</div><div class="e">${esc(COD.ev.nome)}</div>
-    <div class="h">Vale <em>1 vídeo</em> da sua dança</div><div class="lb">Seu código</div><div class="cd">${esc(c.codigo)}</div>
+    <div class="h">Vale 1 vídeo</div><div class="lb">Seu código</div><div class="cd">${esc(c.codigo)}</div>
     <div class="p">Aponte a câmera para o QR ou acesse<br><b>${esc(site).replace(/\//g, "/<wbr>")}</b> e digite o código.</div></div><div class="q">${qr(linkCod(c.codigo))}</div></div>`).join("");
   w.document.write(`<!DOCTYPE html><html lang="pt-BR"><head><meta charset="utf-8"><title>Cartões · ${esc(COD.ev.nome)}</title>
 <link href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@400;600;700&family=Instrument+Serif:ital@1&display=swap" rel="stylesheet">
