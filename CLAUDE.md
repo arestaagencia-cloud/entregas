@@ -287,7 +287,8 @@ Duas páginas, geradas por `python3 gerar_bailes.py`:
 - **Telão `/bailes/telao/`** (`bailes_telao_template.html`, sem login): no MacBook, escolhe o baile, adiciona a pasta
   do cartão (ou arquivos, ou arrasta) e toca cada vídeo N segundos (padrão 20, a partir do meio do vídeo), em loop.
   Os arquivos não saem do computador; novas levas entram no fim da fila e a numeração continua (números guardados por
-  baile no navegador, editáveis na lista). **Número pequeno no canto superior esquerdo do vídeo** ("Nº 07"; a edição usa
+  baile no navegador, editáveis na lista; o campo "Número do próximo vídeo" manda na contagem; "Recomeçar do 01"
+  renumera a fila e "Esvaziar fila" também volta a contagem para o 01). **Número pequeno no canto superior esquerdo do vídeo** ("Nº 07"; a edição usa
   os mesmos números, P. 07 / F. 07). **Três escolhas independentes** na configuração (salvas no navegador):
   1) **TV deitada ou em pé**: em pé, o Mac e a TV ficam sem nenhum ajuste; a página desenha a imagem girada 90°
   (`.quadro`, container `quadro`, unidades `cq*`) e a TV é colocada em pé no suporte; 2) **lado do giro**

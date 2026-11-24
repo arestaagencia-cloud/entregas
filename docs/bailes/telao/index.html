@@ -173,12 +173,13 @@
       </div>
       <div class="caixa">
         <h2>Vídeos</h2>
-        <p class="sub">Novas levas entram no fim da fila e a numeração continua. O número aparece pequeno no canto do vídeo.</p>
+        <p class="sub">Novas levas entram no fim da fila e a numeração continua. Para voltar ao 01, use "Recomeçar do 01" ou mude o número do próximo vídeo.</p>
         <div class="acoes">
           <label class="btn ouro" for="cPasta">Adicionar pasta</label>
           <input type="file" id="cPasta" webkitdirectory multiple hidden>
           <label class="btn sec" for="cArq">Adicionar arquivos</label>
           <input type="file" id="cArq" accept="video/*,.mov,.mp4,.m4v" multiple hidden>
+          <button class="btn sec" type="button" id="cZerar">Recomeçar do 01</button>
           <button class="btn sec" type="button" id="cLimpar">Esvaziar fila</button>
         </div>
         <label class="campo"><span>Número do próximo vídeo</span><input id="cProx" inputmode="numeric" value="1"></label>
@@ -294,8 +295,8 @@ function adicionar(files) {
     .sort((a, b) => natural.compare(a.webkitRelativePath || a.name, b.webkitRelativePath || b.name))
     .filter((f) => !FILA.some((x) => x.nome === f.name && x.file.size === f.size));
   if (!novos.length) { aviso("Nenhum vídeo novo nessa seleção."); return; }
-  // nunca repete um número já usado neste baile (mesmo depois de recarregar a página)
-  let prox = Math.max(parseInt($("#cProx").value, 10) || 1, ...Object.values(NUMEROS).map((n) => n + 1), 1);
+  // começa do número do campo "Número do próximo vídeo" (o mesmo arquivo adicionado de novo mantém o número dele)
+  let prox = Math.max(1, parseInt($("#cProx").value, 10) || 1);
   for (const f of novos) {
     const num = NUMEROS[f.name] ?? prox;
     if (NUMEROS[f.name] == null) NUMEROS[f.name] = num;
@@ -338,9 +339,20 @@ $("#cFila").addEventListener("click", (e) => {
 });
 $("#cPasta").addEventListener("change", (e) => { adicionar(e.target.files); e.target.value = ""; });
 $("#cArq").addEventListener("change", (e) => { adicionar(e.target.files); e.target.value = ""; });
+// Recomeçar do 01: renumera a fila atual (1, 2, 3...) na ordem em que está e esquece os números guardados
+$("#cZerar").onclick = () => {
+  if (!confirm("Recomeçar a numeração do 01? Os vídeos da fila serão renumerados na ordem atual.")) return;
+  NUMEROS = {};
+  FILA.forEach((x, i) => { x.num = i + 1; NUMEROS[x.nome] = i + 1; });
+  $("#cProx").value = FILA.length + 1;
+  salvarNumeros(); desenharFila(); aviso("Numeração recomeçada do 01.");
+};
+// Esvaziar fila: tira os vídeos e também zera a numeração (próximo vídeo volta a ser o 01)
 $("#cLimpar").onclick = () => {
-  if (FILA.length && !confirm("Tirar todos os vídeos da fila? Os arquivos não são apagados do computador.")) return;
-  FILA.forEach((x) => URL.revokeObjectURL(x.url)); FILA = []; desenharFila();
+  if (FILA.length && !confirm("Tirar todos os vídeos da fila e voltar a numeração para o 01? Os arquivos não são apagados do computador.")) return;
+  FILA.forEach((x) => URL.revokeObjectURL(x.url)); FILA = [];
+  NUMEROS = {}; salvarNumeros(); $("#cProx").value = 1;
+  desenharFila();
 };
 // arrastar e soltar arquivos na tela de configuração
 document.addEventListener("dragover", (e) => e.preventDefault());
