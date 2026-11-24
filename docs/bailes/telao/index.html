@@ -144,6 +144,7 @@
   .formato{display:grid;grid-template-columns:1fr 1fr;gap:6px}
   .formato button{border:1px solid var(--line);border-radius:10px;padding:10px 6px;font-size:14px;color:var(--ink-2);background:var(--bg);min-height:44px}
   .formato button.on{border-color:var(--ink);color:#fff;background:var(--card-2)}
+  .formato.lado:not(.on){display:none}
   .pausa{position:absolute;inset:auto 0 0 0;z-index:3;text-align:center;padding:1.2cqmin;font-size:max(13px,1.8cqmin);color:var(--gold);background:rgba(0,0,0,.6)}
   .toast{position:fixed;left:50%;bottom:24px;transform:translateX(-50%);z-index:40;background:#1b1b1b;border:1px solid #333;border-radius:10px;padding:10px 16px;font-size:14px;color:#fff;display:none}
 </style>
@@ -183,6 +184,7 @@
           <button class="btn sec" type="button" id="cLimpar">Esvaziar fila</button>
         </div>
         <label class="campo"><span>Número do próximo vídeo</span><input id="cProx" inputmode="numeric" value="1"></label>
+        <button class="btn ouro" type="button" id="cIniciarTopo" disabled style="width:100%;margin-top:14px;padding:14px 18px;font-size:15px">Iniciar telão em tela cheia</button>
       </div>
     </div>
 
@@ -195,8 +197,7 @@
 
     <div class="dicas">
       <b>TV em pé:</b> não mexa em nada no Mac nem na TV. Escolha "TV em pé": a página desenha o player deitado e você só coloca a TV em pé no suporte. Se a imagem ficar de cabeça para baixo, aperte <kbd>R</kbd> (ou troque o lado aqui).<br>
-      <b>No telão:</b> <kbd>espaço</kbd> pausa · <kbd>←</kbd> <kbd>→</kbd> vídeo anterior / próximo · <kbd>F</kbd> tela cheia · <kbd>R</kbd> inverte o giro da TV em pé · <kbd>O</kbd> liga/desliga a oferta · <kbd>S</kbd> volta para esta tela (o telão continua de onde parou).<br>
-      <b>Antes do baile:</b> abra esta página com internet e deixe a aba aberta. No Mac, ligue o carregador e, em Ajustes › Bateria, evite que a tela desligue. Vídeos em H.264 ou HEVC (MP4/MOV) tocam direto; se algum aparecer como "não tocou", exporte uma versão MP4 rápida.
+      <b>No telão:</b> <kbd>espaço</kbd> pausa · <kbd>←</kbd> <kbd>→</kbd> vídeo anterior / próximo · <kbd>F</kbd> tela cheia · <kbd>R</kbd> inverte o giro da TV em pé · <kbd>O</kbd> liga/desliga a oferta · <kbd>S</kbd> volta para esta tela (o telão continua de onde parou).
     </div>
   </div>
 </section>
@@ -325,7 +326,7 @@ function desenharFila() {
       <td><button class="x" type="button" data-tirar="${i}">tirar</button></td></tr>`).join("")
     : `<tr><td colspan="4" class="vazio">Nenhum vídeo ainda. Descarregue o cartão e toque em "Adicionar pasta".</td></tr>`;
   const bons = FILA.filter((x) => x.ok !== false).length;
-  $("#cIniciar").disabled = !bons || !baile();
+  $("#cIniciar").disabled = $("#cIniciarTopo").disabled = !bons || !baile();
   $("#cResumo").textContent = bons ? `${bons} ${bons === 1 ? "vídeo" : "vídeos"} · um ciclo dura ${mmss(bons * segundos())}` : "";
 }
 $("#cFila").addEventListener("change", (e) => {
@@ -413,7 +414,7 @@ async function iniciar() {
   pausado = false; $("#tPausa").hidden = true;
   proximo(1);
 }
-$("#cIniciar").onclick = iniciar;
+$("#cIniciar").onclick = $("#cIniciarTopo").onclick = iniciar;
 
 function proximo(passo) {
   const L = tocaveis(); if (!L.length) return;
