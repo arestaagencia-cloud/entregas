@@ -306,6 +306,8 @@ Duas páginas, geradas por `python3 gerar_bailes.py`:
   a partir de 5 s. Só faz o que falta. Vídeo deitado é girado (`GIRAR_HORIZONTAIS` no config.txt). Opcional
   `.destino-drive` na pasta do baile: copia P/F para Prévias/Finais da pasta do baile no Google Drive para computador.
   Parceiro novo = refazer `recursos/logos-baixo.png` com o logo branco dele.
+  Testado em 24/11/2026 com bruto real da A7IV (XAVC HS 4K HEVC 4:2:0 10 bit 59,94p, `rotate=90`: vertical marcado,
+  o FFmpeg e o navegador já giram sozinhos). No Mac usa `-hwaccel videotoolbox` + `h264_videotoolbox`.
 - **Novo baile** = criar o evento no Supabase (tabela `eventos`, com `url_galeria`, `aberto` e o preço do código),
   acrescentar em `bailes.json`, rodar `gerar_bailes.py` e cadastrar os vídeos; ele aparece sozinho na página pública
   (se `aberto`), no painel interno e na lista de bailes da venda de códigos.

@@ -30,11 +30,13 @@ fi
 
 # Codificador: o do próprio Mac (rápido) quando existe; senão o x264.
 if "$FFMPEG" -hide_banner -encoders 2>/dev/null | grep -q h264_videotoolbox; then
+  HWDEC=(-hwaccel videotoolbox)   # decodifica o HEVC 10 bit da A7IV no chip do Mac (bem mais rápido)
   ENC_FINAL=(-c:v h264_videotoolbox -b:v 16M -maxrate 22M -profile:v high)
   ENC_PREVIA=(-c:v h264_videotoolbox -b:v 3M -maxrate 4M -profile:v high)
 else
+  HWDEC=()
   ENC_FINAL=(-c:v libx264 -preset veryfast -crf 18 -profile:v high)
-  ENC_PREVIA=(-c:v libx264 -preset veryfast -crf 26 -profile:v high)
+  ENC_PREVIA=(-c:v libx264 -preset veryfast -crf 23 -profile:v high)
 fi
 
 # ---------- numeração ----------
@@ -56,9 +58,11 @@ echo "Vídeos brutos: $total ($novos novos na numeração)"
 # horizontal, gira conforme GIRAR_HORIZONTAIS do config.txt (direita | esquerda | nao).
 giro() {
   local w h r
-  w=$("$FFPROBE" -v error -select_streams v:0 -show_entries stream=width -of csv=p=0 "$1")
-  h=$("$FFPROBE" -v error -select_streams v:0 -show_entries stream=height -of csv=p=0 "$1")
-  r=$("$FFPROBE" -v error -select_streams v:0 -show_entries stream_side_data=rotation -of csv=p=0 "$1" | head -n1 | tr -d ' -')
+  w=$("$FFPROBE" -v error -select_streams v:0 -show_entries stream=width -of default=nw=1:nk=1 "$1" | head -n1 | tr -cd '0-9')
+  h=$("$FFPROBE" -v error -select_streams v:0 -show_entries stream=height -of default=nw=1:nk=1 "$1" | head -n1 | tr -cd '0-9')
+  # rotação marcada no arquivo (a A7IV marca o vídeo vertical como rotate=90): o FFmpeg já gira sozinho
+  r=$("$FFPROBE" -v error -select_streams v:0 -show_entries stream_tags=rotate -of default=nw=1:nk=1 "$1" 2>/dev/null | head -n1 | tr -cd '0-9')
+  [ -z "$r" ] && r=$("$FFPROBE" -v error -select_streams v:0 -show_entries stream_side_data=rotation -of default=nw=1:nk=1 "$1" 2>/dev/null | head -n1 | tr -cd '0-9')
   if [ "${r:-0}" = "90" ] || [ "${r:-0}" = "270" ]; then local t=$w; w=$h; h=$t; fi   # o FFmpeg já gira sozinho
   if [ "${w:-0}" -gt "${h:-0}" ]; then
     case "$GIRAR_HORIZONTAIS" in direita) echo "transpose=1,";; esquerda) echo "transpose=2,";; *) echo "";; esac
@@ -92,7 +96,7 @@ while IFS=';' read -r num nome; do
   echo "  [$NN/$total] $nome"
   if [ ! -s "$F" ]; then
     printf '        final 1080x1920 ... '
-    if "$FFMPEG" -nostdin -hide_banner -loglevel error -y -i "$bruto" -i "$REC/logos-baixo.png" \
+    if "$FFMPEG" -nostdin -hide_banner -loglevel error -y ${HWDEC[@]+"${HWDEC[@]}"} -i "$bruto" -i "$REC/logos-baixo.png" \
         -filter_complex "$(filtro 1080 1920 "$g" 0)" -map "[o]" -map "0:a?" "${ENC_FINAL[@]}" \
         -c:a aac -b:a 192k -movflags +faststart "$FINAIS/.F. $NN.tmp.mp4"; then
       mv "$FINAIS/.F. $NN.tmp.mp4" "$F"; echo "ok"
@@ -100,7 +104,7 @@ while IFS=';' read -r num nome; do
   fi
   if [ ! -s "$P" ]; then
     printf '        prévia 720x1280 ... '
-    if "$FFMPEG" -nostdin -hide_banner -loglevel error -y -i "$bruto" -i "$REC/logos-baixo.png" \
+    if "$FFMPEG" -nostdin -hide_banner -loglevel error -y ${HWDEC[@]+"${HWDEC[@]}"} -i "$bruto" -i "$REC/logos-baixo.png" \
         -loop 1 -framerate 30 -i "$REC/previa.png" \
         -filter_complex "$(filtro 720 1280 "$g" 1)" -map "[o]" -map "0:a?" "${ENC_PREVIA[@]}" \
         -c:a aac -b:a 128k -movflags +faststart "$PREVIAS/.P. $NN.tmp.mp4"; then

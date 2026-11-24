@@ -52,10 +52,11 @@ adicione sempre a pasta "1. Brutos" inteira.
 
 Câmera (Sony A7IV)
 ------------------
-Grave em XAVC S 4K, 4:2:0 8 bit (ex.: 30p 100M). Esse formato toca no telão (navegador) e no editor.
-4:2:2 10 bit (XAVC S-I ou XAVC S 4:2:2) NÃO toca no navegador: o telão mostraria "não tocou".
-Se algum vídeo vier deitado (a câmera nem sempre marca o vídeo como vertical), o editor gira sozinho
-para a direita. Se ficar de cabeça para baixo, troque GIRAR_HORIZONTAIS para "esquerda" no config.txt.
+Testado em 24/11/2026 com um vídeo real da A7IV (XAVC HS 4K, HEVC 4:2:0 10 bit, 59,94p, vertical):
+a câmera marca o vídeo como vertical e o editor e o telão já mostram em pé, sem ajuste.
+Evite os modos 4:2:2 (XAVC S-I / 4:2:2 10 bit): não tocam no navegador (o telão mostraria "não tocou").
+Se algum vídeo vier deitado, o editor gira para a direita; se ficar de cabeça para baixo, troque
+GIRAR_HORIZONTAIS para "esquerda" no config.txt.
 
 
 Ajustes (config.txt)
