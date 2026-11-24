@@ -252,4 +252,12 @@ os dados cifrados e `cardExtra()` em `hub_template.html` desenha o card). Capa d
   "Chave do Hub" no Drive (mesmo controle de acesso do HUB). Devolve totais e, por baile: vídeos publicados,
   vendas, vídeos vendidos, arrecadado (bruto), Pix x cartão, vendas por dia, checkouts abertos, downloads,
   estornos, mais vendidos, últimas vendas e alerta de venda paga sem e-mail enviado.
-- **Novo baile** = criar o evento no Supabase (tabela `eventos`) e cadastrar os vídeos; ele aparece sozinho aqui.
+- **Galerias públicas de cada baile:** `https://entregas.arestagencia.com.br/bailes/<pasta>/` (ex.: `/bailes/idalhesamba/`),
+  geradas por `gerar_bailes.py` a partir de `galeria_template.html` e da lista `bailes.json`
+  (`pasta`, `evento` = slug no Supabase, `parceiro` opcional com `nome` e `logo`, arquivo em `docs/bailes/<pasta>/`;
+  o logo aparece ao lado da marca, "ARESTAGÊNCIA × logo"). A galeria lê eventos/vídeos pela chave pública, abre a
+  compra (função `criar-checkout`), mostra a confirmação (`?pedido=`) e o download (`?baixar=`). O Supabase guarda o
+  endereço em `eventos.url_galeria`: é para lá que o Mercado Pago devolve o cliente e para onde aponta o link do e-mail.
+  O endereço antigo `videos.arestagencia.com.br` (repo `arestaagencia-cloud/videos`) só redireciona para cá.
+- **Novo baile** = criar o evento no Supabase (tabela `eventos`, com `url_galeria`), acrescentar em `bailes.json`,
+  rodar `gerar_bailes.py` e cadastrar os vídeos; ele aparece sozinho no Hub de Bailes.

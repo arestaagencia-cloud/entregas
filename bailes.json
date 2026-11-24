@@ -1,0 +1,9 @@
+{
+  "galerias": [
+    {
+      "pasta": "idalhesamba",
+      "evento": "da-lhe-samba",
+      "parceiro": {"nome": "I Dá-lhe Samba", "logo": "logo-cliente.png"}
+    }
+  ]
+}

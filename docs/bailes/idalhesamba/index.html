@@ -1,0 +1,547 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta name="robots" content="noindex">
+<link rel="icon" href="/favicon.ico" sizes="any"><link rel="icon" type="image/png" sizes="32x32" href="/favicon-32.png"><link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#040404">
+<meta name="color-scheme" content="dark">
+<title>Vídeos do Baile | ArestAgência</title>
+<meta name="description" content="Encontre e compre o vídeo da sua dança no baile. Produção ArestAgência.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@400;500;600;700&family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#040404; --ink:#F8F4F2; --ink-2:#d9d2ce; --muted:#8f8784;
+    --line:#232323; --card:#0f0f0f; --card-2:#161616; --accent:#882725; --accent-dark:#3c1e1e; --gold:#F6AD03;
+    --radius:14px;
+    --sans:"Inter Tight","Helvetica Neue",Helvetica,Arial,sans-serif;
+    --serif:"Instrument Serif",Georgia,serif;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  :root{color-scheme:dark}
+  :focus-visible{outline:2px solid var(--gold);outline-offset:2px;border-radius:6px}
+  html{scroll-behavior:smooth}
+  body{background:var(--bg);color:var(--ink);font-family:var(--sans);-webkit-font-smoothing:antialiased;line-height:1.45}
+  a{color:inherit;text-decoration:none}
+  button,input{font:inherit;color:inherit}
+  button{cursor:pointer;border:0;background:none}
+  img{display:block;max-width:100%}
+  [hidden]{display:none!important}
+
+  /* topo e abertura (mesmo padrão dos painéis) */
+  .top{position:absolute;inset:0 0 auto 0;z-index:5;display:flex;align-items:center;justify-content:center;padding:28px clamp(20px,5vw,64px)}
+  .brand{display:flex;align-items:center;gap:12px;color:#fff}
+  .brand-mark{width:40px;height:40px;object-fit:contain}
+  .brand-name{font-weight:700;letter-spacing:.14em;font-size:15px}
+  /* parceria: logo do cliente ao lado da marca */
+  .brand .x{font-size:18px;opacity:.55;margin:0 2px;font-weight:400}
+  .brand .parceiro{width:64px;height:64px;border-radius:12px;background:#fff;object-fit:contain;padding:3px;box-shadow:0 6px 20px rgba(0,0,0,.35)}
+  @media (max-width:420px){.brand .parceiro{width:52px;height:52px}}
+
+  .hero{position:relative;height:80vh;height:80svh;min-height:460px;display:flex;align-items:flex-end;justify-content:center;text-align:center;overflow:hidden}
+  .hero.compacto{height:auto;min-height:0;padding-top:120px}
+  .mosaic{position:absolute;inset:-60px -20px;display:flex;gap:8px}
+  .mcol{flex:1;display:flex;flex-direction:column;gap:8px;animation:drift 70s ease-in-out infinite alternate}
+  .mcol:nth-child(even){animation-direction:alternate-reverse;margin-top:-110px}
+  .mtile{width:100%;aspect-ratio:9/16;border-radius:6px;background:var(--accent-dark) center/cover no-repeat;flex:none}
+  @keyframes drift{from{transform:translateY(0)}to{transform:translateY(-160px)}}
+  @media (prefers-reduced-motion:reduce){.mcol{animation:none}}
+  .hero::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(4,4,4,.75) 0%,rgba(4,4,4,.45) 30%,rgba(4,4,4,.65) 60%,rgba(4,4,4,1) 100%)}
+  .hero-inner{position:relative;z-index:2;color:#fff;padding:0 24px clamp(28px,6vh,72px);max-width:960px}
+  .eyebrow{font-size:13px;letter-spacing:.42em;text-transform:uppercase;opacity:.85;margin-bottom:18px}
+  .hero h1{font-weight:700;font-size:clamp(26px,min(9vw,12vh),112px);line-height:.95;letter-spacing:.03em;margin-right:-.03em;text-transform:uppercase;white-space:nowrap}
+  .hero h2.sub{font-family:var(--serif);font-weight:400;font-size:clamp(24px,3.2vw,40px);line-height:1.1;margin-top:18px;color:var(--ink-2)}
+  .hero h2.sub em{color:var(--gold);font-style:italic}
+  .hero p.data{margin-top:14px;color:var(--ink-2);font-size:clamp(15px,1.6vw,18px)}
+  .stats{display:flex;justify-content:center;gap:clamp(20px,5vw,56px);margin-top:clamp(18px,3.5vh,32px);flex-wrap:wrap}
+  .stat b{display:block;font-weight:600;font-size:clamp(28px,3.4vw,42px);line-height:1;font-variant-numeric:tabular-nums}
+  .stat span{font-size:12px;letter-spacing:.18em;text-transform:uppercase;color:var(--muted)}
+  .hero.compacto h1{font-size:clamp(24px,min(6vw,9vh),72px)}
+  .hero.compacto .hero-inner{padding-bottom:0}
+  .hero.compacto ~ #estado .estado{margin-top:28px}
+
+  .wrap{max-width:1320px;margin:0 auto;padding:0 clamp(16px,4vw,48px)}
+
+  /* como funciona */
+  .passos{display:flex;justify-content:center;gap:8px;flex-wrap:wrap;margin:6px auto 0;padding:0 16px;list-style:none}
+  .passos li{display:flex;align-items:center;gap:8px;border:1px solid var(--line);background:var(--card);border-radius:999px;padding:7px 14px 7px 8px;font-size:14px;color:var(--ink-2)}
+  .passos li b{display:grid;place-items:center;width:22px;height:22px;border-radius:50%;background:var(--card-2);color:var(--gold);font-size:12px;font-weight:600}
+
+  /* barra de busca */
+  .bar{position:sticky;top:0;z-index:20;background:rgba(4,4,4,.88);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);border-bottom:1px solid var(--line);margin-top:28px}
+  .bar .wrap{display:flex;align-items:center;gap:12px;padding-top:14px;padding-bottom:14px;flex-wrap:wrap}
+  .lbl{font-size:11px;letter-spacing:.2em;text-transform:uppercase;color:var(--muted)}
+  .busca{position:relative;flex:1;min-width:200px;max-width:360px}
+  .busca input{width:100%;border:1px solid var(--line);background:var(--card);border-radius:10px;padding:9px 32px 9px 34px;font-size:14px;color:var(--ink);outline:none}
+  .busca input:focus{border-color:var(--gold)}
+  .busca svg{position:absolute;left:11px;top:50%;transform:translateY(-50%);width:15px;height:15px;stroke:var(--muted)}
+  .grow{flex:1}
+  .count{font-size:14px;color:var(--muted)}
+
+  /* grade de vídeos */
+  .month{margin-top:44px}
+  .month h2{font-weight:700;font-size:clamp(22px,2.4vw,30px);letter-spacing:-.01em;display:flex;align-items:baseline;gap:6px 14px;flex-wrap:wrap;margin-bottom:18px}
+  .month h2 span{font-size:13px;letter-spacing:.14em;text-transform:uppercase;color:var(--muted)}
+  .grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(170px,1fr));gap:8px}
+  .card{position:relative;display:block;width:100%;background:var(--card);border:1px solid var(--line);border-radius:var(--radius);overflow:hidden;text-align:left;cursor:pointer;transition:transform .2s,border-color .2s}
+  .card:hover{transform:translateY(-3px);border-color:#3a3a3a}
+  .card:focus-visible{outline-offset:3px}
+  .thumb{position:relative;aspect-ratio:9/14;background:var(--accent-dark);overflow:hidden}
+  .thumb img{display:block;width:100%;height:100%;object-fit:cover;transition:transform .4s}
+  .card:hover .thumb img{transform:scale(1.04)}
+  .sem-capa{position:absolute;inset:0;display:grid;place-items:center;color:var(--muted);font-size:13px}
+  /* "Em breve": capa provisória enquanto os vídeos não são publicados */
+  .ph{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:10px;
+      background:radial-gradient(120% 80% at 50% 0%,#5a2a26 0%,var(--accent-dark) 45%,#140b0b 100%);overflow:hidden}
+  .ph::before{content:"";position:absolute;inset:0;background:url(/bailes/logo-mark.png) center 38%/38% no-repeat;opacity:.07}
+  .ph em{position:relative;font-family:var(--serif);font-style:italic;font-size:clamp(22px,2.2vw,30px);color:var(--gold);line-height:1}
+  .ph small{position:relative;font-size:10px;letter-spacing:.28em;text-transform:uppercase;color:rgba(248,244,242,.55)}
+  .mtile.ph{position:relative}
+  .mtile.ph em{font-size:clamp(16px,1.6vw,22px)}
+  .mtile.ph small{display:none}
+  .card.breve{cursor:default}
+  .card.breve:hover{transform:none;border-color:var(--line)}
+  .badge{position:absolute;top:8px;left:8px;font-size:11px;letter-spacing:.06em;background:rgba(0,0,0,.6);backdrop-filter:blur(6px);padding:4px 8px;border-radius:999px;color:#fff}
+  .play{position:absolute;inset:0;display:grid;place-items:center;pointer-events:none}
+  .play i{width:42px;height:42px;border-radius:50%;background:rgba(0,0,0,.45);backdrop-filter:blur(4px);display:grid;place-items:center;opacity:.9}
+  .play i::after{content:"";border-left:13px solid #fff;border-top:8px solid transparent;border-bottom:8px solid transparent;margin-left:4px}
+  .meta{padding:8px 10px 9px}
+  .meta b{display:block;font-weight:500;font-size:14px;line-height:1.25}
+  .meta>span{display:flex;align-items:center;margin-top:3px;font-size:12px;color:var(--muted)}
+  .dot{display:inline-block;width:7px;height:7px;border-radius:50%;margin-right:6px;background:var(--gold)}
+  .empty{padding:80px 0;text-align:center;color:var(--muted)}
+  .spinner{width:34px;height:34px;border-radius:50%;border:3px solid var(--line);border-top-color:var(--gold);margin:0 auto 18px;animation:gira 1s linear infinite}
+  @keyframes gira{to{transform:rotate(360deg)}}
+
+  /* telas de estado (confirmação, link expirado...) */
+  .estado{max-width:560px;margin:40px auto 0;background:var(--card);border:1px solid var(--line);border-radius:20px;padding:36px 26px;text-align:center}
+  .estado .k{font-size:12px;letter-spacing:.2em;text-transform:uppercase;color:var(--muted)}
+  .estado h3{font-weight:700;font-size:clamp(24px,3vw,32px);line-height:1.15;letter-spacing:-.01em;margin:10px 0 12px}
+  .estado h3 em{font-family:var(--serif);font-weight:400;font-style:italic;color:var(--gold)}
+  .estado p{color:var(--ink-2);font-size:15px;margin:0 0 14px}
+  .estado .miniatura{width:150px;aspect-ratio:9/14;object-fit:cover;border-radius:12px;margin:0 auto 20px;background:var(--accent-dark)}
+  .estado .nota{font-size:13px;color:var(--muted)}
+
+  /* botões */
+  .btns{display:flex;gap:10px;margin-top:22px;flex-wrap:wrap;justify-content:center}
+  .btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;border-radius:999px;padding:12px 20px;font-size:15px;font-weight:500}
+  .btn.pri{background:var(--ink);color:#0b0b0b}
+  .btn.ouro{background:var(--gold);color:#0b0b0b;font-weight:600}
+  .btn.sec{border:1px solid #333;color:#fff}
+  .btn.sec:hover{border-color:#555}
+  .btn[disabled]{opacity:.6;cursor:wait}
+  .btn.bloco{width:100%}
+
+  /* lightbox de compra */
+  .lb{position:fixed;inset:0;z-index:60;background:rgba(4,4,4,.97);display:none;align-items:center;justify-content:center;padding:24px}
+  .lb.open{display:flex}
+  .lb-box{display:flex;gap:36px;align-items:center;max-width:1100px;width:100%;max-height:92vh}
+  .lb-media{flex:none;position:relative;height:min(86vh,820px);aspect-ratio:9/16;background:#000;border-radius:12px;overflow:hidden}
+  /* o player do Drive é desenhado em 540x960 e reduzido para caber: no celular os controles ficam proporcionais (mesma técnica dos painéis) */
+  .lb-media iframe{position:absolute;top:0;left:0;width:540px;height:960px;border:0;transform-origin:0 0}
+  .lb-info{flex:1;min-width:0;max-width:420px}
+  .lb-info .k{font-size:12px;letter-spacing:.2em;text-transform:uppercase;color:var(--muted)}
+  .lb-info h3{font-weight:700;font-size:clamp(26px,2.8vw,36px);line-height:1.1;letter-spacing:-.01em;margin:10px 0 6px}
+  .lb-info h3 em{font-family:var(--serif);font-weight:400;font-style:italic;color:var(--gold)}
+  .preco{display:flex;align-items:baseline;gap:8px;margin:14px 0 4px}
+  .preco b{font-weight:600;font-size:34px;line-height:1;font-variant-numeric:tabular-nums}
+  .preco{flex-wrap:wrap;margin:14px 0 20px}
+  .preco span{font-size:15px;color:var(--ink-2)}
+  .preco .de s{color:var(--muted);text-decoration-thickness:1.5px}
+  .inclui{list-style:none;margin:14px 0 18px;font-size:14px;color:var(--ink-2)}
+  .inclui li{display:flex;align-items:center;gap:10px;padding:3px 0}
+  .inclui li::before{content:"";width:7px;height:7px;border-radius:50%;background:var(--gold);flex:none}
+  .form label{display:block;font-size:11px;letter-spacing:.2em;text-transform:uppercase;color:var(--muted);margin:14px 0 6px}
+  .form input{width:100%;border:1px solid var(--line);background:var(--card);border-radius:10px;padding:12px 14px;font-size:16px;color:var(--ink);outline:none}
+  .form input:focus{border-color:var(--gold)}
+  .ajuda{font-size:12px;color:var(--muted);margin-top:6px}
+  .erro{color:#ff8a7a;font-size:14px;margin-top:12px;min-height:1em}
+  .form .btn{margin-top:14px}
+  .seguro{font-size:12px;color:var(--muted);text-align:center;margin-top:12px}
+  .lb-x{position:absolute;top:18px;right:22px;font-size:28px;color:#fff;opacity:.8;width:44px;height:44px;z-index:3}
+  .lb-nav{position:absolute;top:50%;transform:translateY(-50%);font-size:30px;color:#fff;opacity:.6;width:48px;height:64px;z-index:3}
+  .lb-nav:hover,.lb-x:hover{opacity:1}
+  .lb-prev{left:8px}.lb-next{right:8px}
+
+  footer{margin:80px 0 40px;text-align:center;color:var(--muted);font-size:13px;padding:0 20px}
+  footer p+p{margin-top:6px}
+  footer a{text-decoration:underline;text-underline-offset:3px}
+
+  .wa-fab{position:fixed;right:max(18px,env(safe-area-inset-right));bottom:max(18px,env(safe-area-inset-bottom));z-index:40;width:56px;height:56px;border-radius:50%;background:#25D366;color:#fff;display:flex;align-items:center;justify-content:center;box-shadow:0 6px 22px rgba(0,0,0,.45);transition:transform .2s,box-shadow .2s}
+  .wa-fab:hover{transform:translateY(-2px) scale(1.04);box-shadow:0 10px 28px rgba(0,0,0,.5)}
+  .wa-fab svg{width:30px;height:30px}
+  .lb.open ~ .wa-fab{display:none}
+
+  @media (max-width:760px){
+    .grid{grid-template-columns:repeat(2,1fr);gap:6px}
+    .passos{display:grid;grid-template-columns:1fr 1fr;max-width:420px}
+    .passos li{font-size:13px;padding:7px 10px 7px 7px}
+    .bar .wrap{flex-wrap:nowrap}
+    .busca{max-width:none}
+    .bar .lbl{display:none}
+    .lb{align-items:flex-start;padding:0;overflow:auto}
+    .lb-box{flex-direction:column;gap:18px;max-height:none;padding:64px 16px 32px}
+    .lb-media{height:auto;width:min(88vw,calc(62vh * 9 / 16))}
+    .lb-info{max-width:none;width:100%}
+    .lb-info h3,.lb-info .k{text-align:center}
+    .preco{justify-content:center}
+    .lb-x{position:fixed;top:10px;right:10px;width:48px;height:48px}
+    .lb-nav{position:absolute;transform:none;top:calc(64px + min(88vw * 16 / 9, 62vh) / 2 - 32px)}
+    .wa-fab{width:52px;height:52px}.wa-fab svg{width:28px;height:28px}
+  }
+</style>
+</head>
+<body>
+<header class="top">
+  <div class="brand"><img class="brand-mark" src="/bailes/logo-mark.png" alt=""><span class="brand-name">ARESTAGÊNCIA</span><span class="x" aria-hidden="true">×</span><img class="parceiro" src="logo-cliente.png" alt="I Dá-lhe Samba"></div>
+</header>
+
+<section class="hero" id="hero">
+  <div class="mosaic" id="mosaic"></div>
+  <div class="hero-inner">
+    <div class="eyebrow">Vídeos do baile</div>
+    <h1 id="titulo">Seu baile</h1>
+    <h2 class="sub">Reviva a <em>sua dança</em></h2>
+    <p class="data" id="data"></p>
+  </div>
+</section>
+
+<ol class="passos" id="passos">
+  <li><b>1</b>Ache o seu vídeo</li>
+  <li><b>2</b>Assista à prévia</li>
+  <li><b>3</b>Pix ou cartão</li>
+  <li><b>4</b>Receba por e-mail</li>
+</ol>
+
+<div class="bar" id="bar">
+  <div class="wrap">
+    <span class="lbl">Buscar</span>
+    <label class="busca"><svg viewBox="0 0 24 24" fill="none" stroke-width="2"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg><input id="fBusca" type="search" inputmode="numeric" placeholder="Número do vídeo" aria-label="Buscar pelo número do vídeo" autocomplete="off"></label>
+    <span class="grow"></span>
+    <span class="count" id="count"></span>
+  </div>
+</div>
+
+<main class="wrap" id="lista"></main>
+<main class="wrap" id="estado" hidden></main>
+
+<footer>
+  <p>ArestAgência - Produção de Conteúdo</p>
+  <p>Não quer que o seu vídeo apareça nesta galeria? <a href="https://wa.me/5561991283546" target="_blank" rel="noopener">Fale com a gente</a> e retiramos.</p>
+</footer>
+
+<div class="lb" id="lb" role="dialog" aria-modal="true" aria-labelledby="lbT">
+  <button class="lb-x" id="lbX" aria-label="Fechar">✕</button>
+  <button class="lb-nav lb-prev" id="lbP" aria-label="Vídeo anterior">‹</button>
+  <button class="lb-nav lb-next" id="lbN" aria-label="Próximo vídeo">›</button>
+  <div class="lb-box">
+    <div class="lb-media"><iframe id="lbV" title="Prévia do vídeo" allow="autoplay; fullscreen" allowfullscreen></iframe></div>
+    <div class="lb-info">
+      <div class="k" id="lbK"></div>
+      <h3 id="lbT">Acesse seu <em>vídeo completo</em>:</h3>
+      <div class="preco"><span class="de" id="lbDe" hidden>de <s id="lbPrecoDe"></s> por</span><b id="lbPreco"></b></div>
+      <form class="form" id="fCompra" novalidate>
+        <label for="fNome">Seu nome</label>
+        <input id="fNome" autocomplete="name" required maxlength="120">
+        <label for="fEmail">Seu e-mail</label>
+        <input id="fEmail" type="email" inputmode="email" autocomplete="email" required maxlength="200">
+        <p class="ajuda">O vídeo chega neste e-mail. Confira se está certinho.</p>
+        <p class="erro" id="fErro" role="alert"></p>
+        <button class="btn ouro bloco" id="fComprar" type="submit">Comprar meu vídeo</button>
+        <p class="seguro">Pagamento seguro pelo Mercado Pago · Pix, débito ou crédito</p>
+      </form>
+    </div>
+  </div>
+</div>
+
+<a class="wa-fab" href="https://wa.me/5561991283546?text=Ol%C3%A1!%20Vim%20pela%20galeria%20de%20v%C3%ADdeos%20do%20baile." target="_blank" rel="noopener" aria-label="Falar com a ArestAgência no WhatsApp" title="Falar no WhatsApp"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2zm0 18.2c-1.5 0-3-.4-4.3-1.2l-.3-.2-3 .8.8-2.9-.2-.3A8.2 8.2 0 1 1 12 20.2zm4.5-6.1c-.2-.1-1.5-.7-1.7-.8-.2-.1-.4-.1-.6.1l-.8 1c-.1.2-.3.2-.5.1-1.4-.6-2.3-1.2-3.2-2.7-.2-.4.2-.4.7-1.3.1-.2 0-.3 0-.4l-.8-1.8c-.2-.5-.4-.4-.6-.4h-.5c-.2 0-.4.1-.7.3-.2.3-.9.9-.9 2.2s.9 2.5 1 2.7c.1.2 1.8 2.8 4.4 3.9 1.6.7 2.3.8 3.1.6.5-.1 1.5-.6 1.7-1.2.2-.6.2-1.1.2-1.2-.1-.1-.3-.2-.5-.3z"/></svg></a>
+
+<script>
+// ====== CONFIGURAÇÃO ======
+const CONFIG = {
+  supabaseUrl: "https://jlogxdjttufiiikiezfe.supabase.co",
+  chavePublica: "sb_publishable_ilWt8PPFiHuOBCmiCcsZ3A_CTmqyjmR",
+  eventoPadrao: "da-lhe-samba",    // o baile desta página (gerado por gerar_bailes.py)
+  whatsapp: "https://wa.me/5561991283546",
+};
+// ==========================
+
+const $ = (s) => document.querySelector(s);
+const params = new URLSearchParams(location.search);
+const slug = params.get("evento") || CONFIG.eventoPadrao;
+const api = (p) => `${CONFIG.supabaseUrl}${p}`;
+const reais = (c) => (c / 100).toLocaleString("pt-BR", { style: "currency", currency: "BRL", minimumFractionDigits: c % 100 ? 2 : 0 });
+const esc = (s) => String(s ?? "").replace(/[&<>"']/g, (c) => ({ "&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;" }[c]));
+// Capa servida pelo servidor: imagem escolhida em Capas/ ou miniatura automática do vídeo (sem expor o arquivo final)
+const capaUrl = (videoId, w = 600) => api(`/functions/v1/capa?v=${encodeURIComponent(videoId)}&w=${w}`);
+const previaUrl = (id) => `https://drive.google.com/file/d/${encodeURIComponent(id)}/preview`;
+const capaDrive = (id, w = 400) => `https://drive.google.com/thumbnail?id=${encodeURIComponent(id)}&sz=w${w}`;
+
+let evento = null, videos = [], visiveis = [], atual = -1;
+
+async function rest(caminho) {
+  const r = await fetch(api(`/rest/v1/${caminho}`), { headers: { apikey: CONFIG.chavePublica } });
+  if (!r.ok) throw new Error(`Erro ${r.status}`);
+  return r.json();
+}
+
+function dataLonga(d) {
+  if (!d) return "";
+  const [a, m, dia] = d.split("-").map(Number);
+  return new Date(a, m - 1, dia).toLocaleDateString("pt-BR", { day: "numeric", month: "long", year: "numeric" });
+}
+
+const PH = `<em>Em breve</em><small>ArestAgência</small>`;
+
+function montarMosaico() {
+  const m = $("#mosaic");
+  m.innerHTML = "";
+  const cols = innerWidth < 700 ? 4 : 8, porCol = 6;
+  for (let c = 0; c < cols; c++) {
+    const col = document.createElement("div");
+    col.className = "mcol";
+    for (let i = 0; i < porCol; i++) {
+      const t = document.createElement("div");
+      if (videos.length) {
+        const v = videos[(c * porCol + i * 3 + c) % videos.length];
+        t.className = "mtile";
+        const im = new Image();
+        im.onload = () => (t.style.backgroundImage = `url("${im.src}")`);
+        im.src = capaUrl(v.id, 300);
+      } else {
+        t.className = "mtile ph";
+        t.innerHTML = PH;
+      }
+      col.appendChild(t);
+    }
+    m.appendChild(col);
+  }
+}
+
+// Grade provisória enquanto os vídeos não são publicados
+function desenharEmBreve(n = 20) {
+  $("#bar").hidden = true;
+  const cards = Array.from({ length: n }, (_, i) => {
+    const nn = String(i + 1).padStart(2, "0");
+    return `<div class="card breve" aria-hidden="true"><div class="thumb"><div class="ph">${PH}</div><span class="badge">Nº ${nn}</span></div>
+      <div class="meta"><b>Vídeo nº ${nn}</b><span><i class="dot"></i>Disponível após o baile</span></div></div>`;
+  }).join("");
+  $("#lista").innerHTML = `<section class="month"><h2>Os vídeos chegam aqui <span>em breve</span></h2><div class="grid">${cards}</div></section>`;
+}
+
+function cabecalho() {
+  document.title = `${evento.nome} | Vídeos ArestAgência`;
+  $("#titulo").textContent = evento.nome;
+  $("#data").textContent = dataLonga(evento.data);
+}
+
+// ---------- Galeria ----------
+async function carregarGaleria() {
+  const lista = $("#lista");
+  lista.innerHTML = `<div class="empty"><div class="spinner"></div>Carregando vídeos...</div>`;
+  try {
+    evento = (await rest(`eventos?slug=eq.${encodeURIComponent(slug)}&select=id,nome,data,preco_centavos,preco_cheio_centavos`))[0];
+    if (!evento) {
+      $("#titulo").textContent = "Galeria indisponível";
+      lista.innerHTML = `<div class="empty">Esta galeria não está disponível no momento.</div>`;
+      $("#bar").hidden = true; $("#passos").hidden = true;
+      return;
+    }
+    videos = await rest(`videos?evento_id=eq.${evento.id}&select=id,codigo,previa_drive_id&order=ordem.asc,codigo.asc`);
+    cabecalho();
+    montarMosaico();
+    if (!videos.length) {
+      desenharEmBreve(20);
+      return;
+    }
+    desenhar();
+  } catch (e) {
+    console.error(e);
+    lista.innerHTML = `<div class="empty">Não conseguimos carregar a galeria. Atualize a página em instantes.</div>`;
+  }
+}
+
+function desenhar() {
+  const q = $("#fBusca").value.trim().replace(/\D/g, "");
+  visiveis = q ? videos.filter((v) => String(v.codigo).replace(/^0+/, "").startsWith(q.replace(/^0+/, "")) || v.codigo === q) : videos;
+  $("#count").textContent = `${visiveis.length} ${visiveis.length === 1 ? "vídeo" : "vídeos"}`;
+  const lista = $("#lista");
+  if (!visiveis.length) {
+    lista.innerHTML = `<div class="empty">Nenhum vídeo com esse número.</div>`;
+    return;
+  }
+  lista.innerHTML = `<section class="month"><h2>Escolha o seu vídeo <span>${visiveis.length} ${visiveis.length === 1 ? "vídeo" : "vídeos"}</span></h2><div class="grid" id="grade"></div></section>`;
+  const grade = $("#grade");
+  visiveis.forEach((v, i) => {
+    const b = document.createElement("button");
+    b.type = "button";
+    b.className = "card";
+    b.setAttribute("aria-label", `Ver prévia do vídeo ${v.codigo}`);
+    b.innerHTML = `<div class="thumb"><img src="${capaUrl(v.id, 500)}" alt="" loading="lazy" onerror="this.replaceWith(Object.assign(document.createElement('div'),{className:'sem-capa',textContent:'Capa em breve'}))"><span class="badge">Nº ${esc(v.codigo)}</span><span class="play"><i></i></span></div>
+      <div class="meta"><b>Vídeo nº ${esc(v.codigo)}</b></div>`;
+    b.addEventListener("click", () => abrir(i));
+    grade.appendChild(b);
+  });
+}
+$("#fBusca").addEventListener("input", () => videos.length && desenhar());
+
+// ---------- Lightbox de compra ----------
+function abrir(i) {
+  atual = i;
+  const v = visiveis[i];
+  $("#lbK").textContent = `Vídeo nº ${v.codigo}`;
+  $("#lbPreco").textContent = reais(evento.preco_centavos);
+  const cheio = evento.preco_cheio_centavos;
+  $("#lbDe").hidden = !(cheio > evento.preco_centavos);
+  if (cheio > evento.preco_centavos) $("#lbPrecoDe").textContent = reais(cheio);
+  $("#lbV").src = v.previa_drive_id ? previaUrl(v.previa_drive_id) : "about:blank";
+  requestAnimationFrame(ajustarPlayer);
+  $("#fErro").textContent = "";
+  $("#lbP").hidden = i <= 0;
+  $("#lbN").hidden = i >= visiveis.length - 1;
+  $("#lb").classList.add("open");
+  $("#lb").scrollTop = 0;
+  document.body.style.overflow = "hidden";
+  try {
+    const s = JSON.parse(localStorage.getItem("comprador") || "{}");
+    if (s.nome && !$("#fNome").value) $("#fNome").value = s.nome;
+    if (s.email && !$("#fEmail").value) $("#fEmail").value = s.email;
+  } catch {}
+}
+function ajustarPlayer() {
+  const box = document.querySelector(".lb-media");
+  if (box && box.clientWidth) $("#lbV").style.transform = `scale(${box.clientWidth / 540})`;
+}
+addEventListener("resize", ajustarPlayer);
+
+function fechar() {
+  $("#lb").classList.remove("open");
+  $("#lbV").src = "about:blank";
+  document.body.style.overflow = "";
+  atual = -1;
+}
+$("#lbX").addEventListener("click", fechar);
+$("#lbP").addEventListener("click", () => atual > 0 && abrir(atual - 1));
+$("#lbN").addEventListener("click", () => atual < visiveis.length - 1 && abrir(atual + 1));
+$("#lb").addEventListener("click", (e) => { if (e.target.id === "lb") fechar(); });
+document.addEventListener("keydown", (e) => {
+  if (!$("#lb").classList.contains("open")) return;
+  if (e.key === "Escape") fechar();
+  if (e.target.tagName === "INPUT") return;
+  if (e.key === "ArrowLeft") $("#lbP").click();
+  if (e.key === "ArrowRight") $("#lbN").click();
+});
+
+$("#fCompra").addEventListener("submit", async (e) => {
+  e.preventDefault();
+  const nome = $("#fNome").value.trim(), email = $("#fEmail").value.trim(), erro = $("#fErro");
+  erro.textContent = "";
+  if (nome.length < 2) { erro.textContent = "Informe seu nome."; return; }
+  if (!/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(email)) { erro.textContent = "Confira o seu e-mail."; return; }
+  const btn = $("#fComprar");
+  btn.disabled = true; btn.textContent = "Abrindo pagamento...";
+  try {
+    try { localStorage.setItem("comprador", JSON.stringify({ nome, email })); } catch {}
+    const r = await fetch(api("/functions/v1/criar-checkout"), {
+      method: "POST",
+      headers: { "Content-Type": "application/json", apikey: CONFIG.chavePublica },
+      body: JSON.stringify({ video_id: visiveis[atual].id, nome, email }),
+    });
+    const d = await r.json().catch(() => ({}));
+    if (!r.ok || !d.url) throw new Error(d.erro || "Não foi possível abrir o pagamento.");
+    location.href = d.url;
+  } catch (err) {
+    erro.textContent = err.message;
+    btn.disabled = false; btn.textContent = "Comprar meu vídeo";
+  }
+});
+
+// ---------- Telas de estado ----------
+function modoEstado(html) {
+  $("#hero").classList.add("compacto");
+  $("#passos").hidden = true; $("#bar").hidden = true; $("#lista").hidden = true;
+  const el = $("#estado");
+  el.hidden = false;
+  el.innerHTML = `<div class="estado">${html}</div>`;
+}
+async function cabecalhoEstado() {
+  try {
+    evento = (await rest(`eventos?slug=eq.${encodeURIComponent(slug)}&select=id,nome,data,preco_centavos`))[0];
+    if (evento) { $("#titulo").textContent = evento.nome; $("#data").textContent = dataLonga(evento.data); }
+  } catch {}
+}
+const linkGaleria = () => `?evento=${encodeURIComponent(slug)}`;
+
+async function acompanharPedido(pedidoId) {
+  const pagamentoId = params.get("payment_id") || params.get("collection_id") || "";
+  modoEstado(`<div class="spinner"></div><h3>Confirmando seu <em>pagamento</em></h3><p>Isso costuma levar poucos segundos.</p>`);
+  const inicio = Date.now();
+  let tentativa = 0;
+  const verificar = async () => {
+    tentativa++;
+    try {
+      const q = new URLSearchParams({ pedido: pedidoId });
+      if (/^\d+$/.test(pagamentoId)) q.set("payment_id", pagamentoId);
+      const r = await fetch(api(`/functions/v1/status-pedido?${q}`), { headers: { apikey: CONFIG.chavePublica } });
+      const d = await r.json();
+      if (!r.ok) throw new Error(d.erro || "Pedido não encontrado");
+      if (d.status === "pago") {
+        const validade = d.expira_em ? new Date(d.expira_em).toLocaleDateString("pt-BR") : "";
+        modoEstado(`
+          ${d.capa_drive_id ? `<img class="miniatura" src="${capaDrive(d.capa_drive_id)}" alt="">` : ""}
+          <div class="k">Vídeo nº ${esc(d.codigo)}</div>
+          <h3>Pagamento <em>confirmado!</em></h3>
+          <p>${d.email_enviado ? `Também enviamos o link para <b>${esc(d.email)}</b>.` : `Em instantes você também recebe o link em <b>${esc(d.email)}</b>.`}</p>
+          <div class="btns"><a class="btn ouro" href="${esc(d.link)}">Baixar meu vídeo</a></div>
+          <p class="nota" style="margin-top:16px">O link fica disponível${validade ? ` até ${validade}` : ""}. Se o e-mail não chegar, olhe a caixa de spam ou promoções.</p>
+          <div class="btns"><a class="btn sec" href="${linkGaleria()}">Ver outros vídeos</a></div>`);
+        return;
+      }
+      if (d.status === "recusado") {
+        modoEstado(`<h3>Pagamento <em>não aprovado</em></h3><p>Nenhum valor foi cobrado. Você pode tentar de novo com outro meio de pagamento.</p><div class="btns"><a class="btn ouro" href="${linkGaleria()}">Voltar para a galeria</a></div>`);
+        return;
+      }
+      if (d.status === "estornado") {
+        modoEstado(`<h3>Pedido <em>estornado</em></h3><p>Este pagamento foi devolvido. Dúvidas? Fale com a gente.</p><div class="btns"><a class="btn sec" href="${CONFIG.whatsapp}" target="_blank" rel="noopener">Falar no WhatsApp</a></div>`);
+        return;
+      }
+      if (Date.now() - inicio > 10 * 60 * 1000) {
+        modoEstado(`<h3>Ainda aguardando <em>o pagamento</em></h3><p>Se você já pagou, fique tranquilo: assim que o Mercado Pago confirmar, o vídeo chega no seu e-mail.</p><div class="btns"><a class="btn sec" href="${CONFIG.whatsapp}" target="_blank" rel="noopener">Falar no WhatsApp</a></div>`);
+        return;
+      }
+      if (tentativa === 4) {
+        modoEstado(`<div class="spinner"></div><h3>Aguardando a <em>confirmação</em></h3><p>Se você pagou com Pix, conclua o pagamento no app do seu banco. Esta página atualiza sozinha.</p>`);
+      }
+    } catch (e) {
+      console.error(e);
+      if (tentativa > 3) {
+        modoEstado(`<h3>Não encontramos <em>este pedido</em></h3><p>Se você fez um pagamento, fale com a gente no WhatsApp que resolvemos.</p><div class="btns"><a class="btn sec" href="${CONFIG.whatsapp}" target="_blank" rel="noopener">Falar no WhatsApp</a></div>`);
+        return;
+      }
+    }
+    setTimeout(verificar, tentativa < 10 ? 3000 : 6000);
+  };
+  verificar();
+}
+
+// ---------- Roteamento ----------
+const pedido = params.get("pedido"), baixar = params.get("baixar");
+if (baixar && /^[0-9a-f]{64}$/.test(baixar)) {
+  modoEstado(`<div class="spinner"></div><h3>Abrindo seu <em>vídeo</em></h3><p>Você será levado ao arquivo em alta qualidade. Use o botão de download para salvar.</p>`);
+  cabecalhoEstado();
+  location.replace(api(`/functions/v1/download?t=${baixar}`));
+} else if (params.get("link") === "invalido") {
+  modoEstado(`<h3>Este link <em>expirou</em></h3><p>Fale com a gente no WhatsApp que enviamos um novo.</p><div class="btns"><a class="btn ouro" href="${CONFIG.whatsapp}" target="_blank" rel="noopener">Falar no WhatsApp</a></div>`);
+  cabecalhoEstado();
+} else if (pedido && /^[0-9a-f-]{36}$/i.test(pedido)) {
+  cabecalhoEstado();
+  acompanharPedido(pedido);
+} else {
+  carregarGaleria();
+}
+</script>
+</body>
+</html>
