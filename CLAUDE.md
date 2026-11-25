@@ -323,6 +323,16 @@ Duas páginas, geradas por `python3 gerar_bailes.py`:
   (mesma da edição). Fonte "brutos" (assim que chegam) ou "prontos" (toca o F. NN, sem marca d'água por cima).
   Link da galeria, preço do código e fonte ficam nos ajustes do baile; logo do parceiro = `Recursos do editor/parceiro.png`.
   Galerias conhecidas embutidas + lista do Supabase quando há internet (guardada no navegador). O telão online continua como reserva.
+- **Publicação automática na galeria (25/11/2026):** função `sincronizar-drive` (verify_jwt off, pg_cron
+  `sincronizar-drive-bailes` a cada minuto, via pg_net). Para cada evento `aberto` com `drive_previas`/`drive_finais`
+  (e opcional `drive_capas`) lê as pastas pela listagem pública (embeddedfolderview; pastas como "qualquer pessoa com o
+  link") e, para cada número com prévia E final (`P. 07.mp4` + `F. 07.mp4`), cria/atualiza o vídeo `07`
+  (`videos` + `videos_finais`). Nunca apaga nem desativa. Cada baile no máximo a cada 30 s (`drive_sincronizado_em`).
+  Conferir o que ela enxerga: POST `{"listar":"<id da pasta>"}` (só leitura). A galeria confere vídeos novos a cada
+  minuto e sai sozinha do "Em breve". Caminho completo: editor no Mac → cópia para a pasta do baile no Google Drive
+  para computador → Drive sobe → função publica. I Dá-lhe Samba: Prévias `1rOm3nSo8OyqYL3vuYv2AOjiUMZFFkt4k`,
+  Finais `1c--33ya_Ny2UiJnnzUUjQuS5juR6SItf`, Capas `1NOfTnRGjWKAstHP01O-JXZ9QaLyN23bf`.
+  Novo baile: preencher as três colunas no evento.
 - **Novo baile** = criar o evento no Supabase (tabela `eventos`, com `url_galeria`, `aberto` e o preço do código),
   acrescentar em `bailes.json`, rodar `gerar_bailes.py` e cadastrar os vídeos; ele aparece sozinho na página pública
   (se `aberto`), no painel interno e na lista de bailes da venda de códigos.

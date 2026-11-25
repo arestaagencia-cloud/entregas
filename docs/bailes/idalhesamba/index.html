@@ -411,6 +411,25 @@ async function carregarGaleria() {
   }
 }
 
+// Vídeos novos aparecem sozinhos: o robô publica o que chega no Drive e a galeria confere a cada minuto.
+setInterval(async () => {
+  if (!evento || document.hidden) return;
+  try {
+    const nv = await rest(`videos?evento_id=eq.${evento.id}&select=id,codigo,previa_drive_id&order=ordem.asc,codigo.asc`);
+    if (nv.length === videos.length && nv.every((v, i) => v.id === videos[i].id)) return;
+    const estavaVazia = !videos.length;
+    videos = nv;
+    if (estavaVazia) {
+      // saiu do "Em breve": recarrega a página, a não ser que a pessoa esteja preenchendo o "Me avise"
+      const av = $("#avise");
+      if (av && av.contains(document.activeElement)) return;
+      location.reload();
+      return;
+    }
+    if (!$("#lb").classList.contains("open")) desenhar();
+  } catch {}
+}, 60000);
+
 function desenhar() {
   const q = $("#fBusca").value.trim().replace(/\D/g, "");
   visiveis = q ? videos.filter((v) => String(v.codigo).replace(/^0+/, "").startsWith(q.replace(/^0+/, "")) || v.codigo === q) : videos;
