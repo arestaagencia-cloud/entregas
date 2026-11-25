@@ -40,6 +40,9 @@ AJUSTES_PADRAO = {
     "girar": "direita",       # vídeo deitado: direita | esquerda | nao
     "destino_drive": "",
     "parceiro_tamanho": 100,
+    "url_galeria": "",        # telão: link da galeria do baile (QR do "Me avise")
+    "preco_codigo": 0,        # telão: preço do código em centavos
+    "telao_fonte": "brutos",  # telão: brutos | prontos
 }
 
 
@@ -187,6 +190,12 @@ def salvar_ajustes(baile, novos):
         a["girar"] = novos["girar"]
     if "destino_drive" in novos:
         a["destino_drive"] = str(novos["destino_drive"] or "")
+    if "url_galeria" in novos:
+        a["url_galeria"] = str(novos["url_galeria"] or "").strip()[:300]
+    if "preco_codigo" in novos:
+        a["preco_codigo"] = max(0, min(100000, int(novos["preco_codigo"] or 0)))
+    if novos.get("telao_fonte") in ("brutos", "prontos"):
+        a["telao_fonte"] = novos["telao_fonte"]
     gravar_json(os.path.join(p["rec"], "ajustes.json"), a)
     return a
 
@@ -658,6 +667,53 @@ class Handler(BaseHTTPRequestHandler):
         except (BrokenPipeError, ConnectionResetError):
             pass  # a janela desistiu do pedido (ex.: trocou o exemplo antes de terminar)
 
+    def video(self, q):
+        baile = q.get("baile", "")
+        if q.get("tipo") == "final":
+            cam = saida(baile, int(q.get("num", "0")), "final")
+        else:
+            alvo = [a for a in arquivos_brutos(baile) if nfc(a) == nfc(q.get("arquivo", ""))]
+            if not alvo:
+                return self.erro("vídeo não encontrado", 404)
+            cam = os.path.join(pastas(baile)["brutos"], alvo[0])
+        if not os.path.isfile(cam):
+            return self.erro("vídeo não encontrado", 404)
+        total = os.path.getsize(cam)
+        ini, fim = 0, total - 1
+        faixa = re.match(r"bytes=(\d*)-(\d*)", self.headers.get("Range") or "")
+        if faixa:
+            if faixa.group(1):
+                ini = int(faixa.group(1))
+                if faixa.group(2):
+                    fim = min(fim, int(faixa.group(2)))
+            elif faixa.group(2):
+                ini = max(0, total - int(faixa.group(2)))
+            if ini > fim:
+                self.send_response(416)
+                self.send_header("Content-Range", "bytes */%d" % total)
+                self.end_headers()
+                return None
+        try:
+            self.send_response(206 if faixa else 200)
+            self.send_header("Content-Type", "video/mp4")
+            self.send_header("Accept-Ranges", "bytes")
+            self.send_header("Content-Length", str(fim - ini + 1))
+            if faixa:
+                self.send_header("Content-Range", "bytes %d-%d/%d" % (ini, fim, total))
+            self.end_headers()
+            with open(cam, "rb") as f:
+                f.seek(ini)
+                falta = fim - ini + 1
+                while falta > 0:
+                    bloco = f.read(min(1 << 20, falta))
+                    if not bloco:
+                        break
+                    self.wfile.write(bloco)
+                    falta -= len(bloco)
+        except (BrokenPipeError, ConnectionResetError):
+            pass
+        return None
+
     def erro(self, e, codigo=400):
         self.responder(codigo, {"erro": str(e)})
 
@@ -669,9 +725,15 @@ class Handler(BaseHTTPRequestHandler):
             if u.path in ("/", "/index.html"):
                 with open(os.path.join(AQUI, "index.html"), "rb") as f:
                     return self.responder(200, f.read(), "text/html; charset=utf-8")
-            if u.path.startswith("/recursos/") and re.match(r"^/recursos/[\w.-]+\.(png|svg)$", u.path):
+            if u.path in ("/telao", "/telao/"):
+                with open(os.path.join(AQUI, "telao.html"), "rb") as f:
+                    return self.responder(200, f.read(), "text/html; charset=utf-8")
+            if u.path.startswith("/recursos/") and re.match(r"^/recursos/[\w.-]+\.(png|svg|js)$", u.path):
+                tipo = "application/javascript" if u.path.endswith(".js") else "image/png"
                 with open(os.path.join(REC_APP, u.path.split("/")[-1]), "rb") as f:
-                    return self.responder(200, f.read(), "image/png", cache=True)
+                    return self.responder(200, f.read(), tipo, cache=True)
+            if u.path == "/api/video":
+                return self.video(q)
             if u.path == "/api/ping":
                 return self.responder(200, {"ok": True})
             if u.path == "/api/inicio":

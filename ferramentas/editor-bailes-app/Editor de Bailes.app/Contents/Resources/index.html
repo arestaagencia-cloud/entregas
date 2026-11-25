@@ -137,6 +137,7 @@
       <button id="btNovo">+ Novo baile</button>
     </div>
     <div class="esp"></div>
+    <button id="btTelao" title="Abre o telão numa janela nova: arraste para a TV">Abrir telão</button>
     <span id="pillHw" class="pill"></span>
     <button class="leve" id="btSair" title="Fecha o editor (cancela a fila)">Fechar editor</button>
   </div>
@@ -454,6 +455,7 @@ $("#nOk").onclick=async()=>{
   try{const r=await api("/api/criar-baile",{nome:$("#nNome").value,data:$("#nData").value});$("#dlgNovo").close();await iniciar();$("#selBaile").value=r.nome;await trocarBaile(r.nome);toast("Baile criado")}
   catch(e){toast(e.message)}
 };
+$("#btTelao").onclick=()=>{const w=window.open(`/telao?baile=${enc(E.baile)}`,"telao","popup,width=1280,height=800");if(!w)location.href=`/telao?baile=${enc(E.baile)}`};
 $("#btPasta").onclick=async()=>{try{await api("/api/trocar-pasta-bailes",{});await iniciar()}catch(e){toast(e.message)}};
 $("#btSair").onclick=async()=>{
   const ocup=E.fila.some(j=>["aguardando","preparando","editando","copiando"].includes(j.estado));

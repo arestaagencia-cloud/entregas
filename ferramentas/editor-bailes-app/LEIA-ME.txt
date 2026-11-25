@@ -27,6 +27,14 @@ Como usar
    com a porcentagem e o tempo que falta. Dá para cancelar um vídeo ou a fila inteira.
    O Mac não dorme enquanto a fila estiver rodando e avisa quando terminar.
 
+Telão (dentro do mesmo app, funciona sem internet)
+1. Clique em "Abrir telão" no topo do editor. Abre uma janela nova: arraste para a TV.
+2. Confira o link da galeria e o preço do código (ficam guardados no baile) e o logo do parceiro
+   (para o I Dá-Lhe Samba: "Logo parceiro I Dá-Lhe Samba (branco).png").
+3. Escolha o que passa no telão: todos os brutos assim que chegam, ou só os já editados.
+4. Iniciar telão em tela cheia. Vídeos novos copiados para 1. Brutos entram sozinhos, com o mesmo número da edição.
+   Teclas: espaço pausa, setas trocam o vídeo, F tela cheia, R inverte o giro, O liga/desliga a oferta, S configura.
+
 Bom saber
 - A edição lê o vídeo 4K uma vez só e gera o final e a prévia juntos, usando o chip do Mac.
 - "Refazer os que já estão prontos" edita de novo e substitui os arquivos (use depois de mudar as logos).

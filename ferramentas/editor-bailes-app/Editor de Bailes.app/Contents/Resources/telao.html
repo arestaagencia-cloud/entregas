@@ -1,0 +1,493 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<link rel="icon" href="/recursos/mark.png">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#040404">
+<meta name="color-scheme" content="dark">
+<meta name="robots" content="noindex, nofollow">
+<title>Telão · Editor de Bailes</title>
+<script src="/recursos/qrcode.min.js"></script>
+<style>
+  :root{
+    --bg:#040404; --ink:#F8F4F2; --ink-2:#d9d2ce; --muted:#8f8784;
+    --line:#232323; --card:#0f0f0f; --card-2:#161616; --accent:#882725; --accent-dark:#3c1e1e; --gold:#F6AD03;
+    --sans:-apple-system,BlinkMacSystemFont,"Inter Tight","Helvetica Neue",Helvetica,Arial,sans-serif;
+    --serif:"Instrument Serif",Georgia,serif;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html,body{height:100%}
+  body{background:var(--bg);color:var(--ink);font-family:var(--sans);-webkit-font-smoothing:antialiased;line-height:1.45;overflow:hidden}
+  button,input,select{font:inherit;color:inherit}
+  button{cursor:pointer;border:0;background:none}
+  [hidden]{display:none!important}
+  :focus-visible{outline:2px solid var(--gold);outline-offset:2px;border-radius:6px}
+
+  /* ---------- configuração ---------- */
+  .config{position:fixed;inset:0;overflow-y:auto;z-index:20;background:var(--bg)}
+  .config-in{max-width:980px;margin:0 auto;padding:36px 28px 60px}
+  .marca{display:flex;align-items:center;gap:10px;font-weight:700;letter-spacing:.14em;font-size:13px}
+  .marca img{width:30px;height:30px;object-fit:contain}
+  .config h1{font-weight:700;font-size:clamp(30px,4vw,44px);letter-spacing:-.01em;margin-top:26px}
+  .config h1 em{font-style:normal;color:var(--gold)}
+  .config .lead{color:var(--ink-2);margin-top:8px;max-width:680px}
+  .grade{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:26px}
+  .caixa{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:20px}
+  .caixa h2{font-weight:600;font-size:16px;margin-bottom:4px}
+  .caixa p.sub{font-size:13px;color:var(--muted);margin-bottom:12px}
+  .campo{display:block;margin-top:12px}
+  .campo>span{display:block;font-size:10px;letter-spacing:.18em;text-transform:uppercase;color:var(--muted);margin-bottom:6px}
+  .campo input,.campo select{width:100%;border:1px solid var(--line);background:var(--bg);border-radius:10px;padding:11px 12px;font-size:15px;outline:none}
+  .campo input:focus,.campo select:focus{border-color:var(--gold)}
+  .duas{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+  .btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;border-radius:999px;padding:11px 18px;font-size:14px;font-weight:500}
+  .btn.ouro{background:var(--gold);color:#0b0b0b;font-weight:600}
+  .btn.sec{border:1px solid #333;color:#fff}
+  .btn.sec:hover{border-color:#555}
+  .btn[disabled]{opacity:.45;cursor:not-allowed}
+  .acoes{display:flex;gap:8px;flex-wrap:wrap;margin-top:14px}
+  .iniciar{display:flex;align-items:center;gap:14px;flex-wrap:wrap;margin-top:18px}
+  .iniciar .btn.ouro{padding:15px 28px;font-size:16px}
+  .iniciar small{color:var(--muted);font-size:13px}
+  .fila{margin-top:12px;border:1px solid var(--line);border-radius:14px;background:var(--card);overflow:hidden}
+  .fila table{width:100%;border-collapse:collapse;font-size:13px}
+  .fila th{font-weight:500;text-align:left;font-size:10px;letter-spacing:.16em;text-transform:uppercase;color:var(--muted);padding:10px 16px;border-bottom:1px solid var(--line)}
+  .fila td{padding:7px 16px;border-bottom:1px solid #161616;color:var(--ink-2)}
+  .fila td input{width:70px;border:1px solid var(--line);background:var(--bg);border-radius:8px;padding:6px 8px;font-size:14px;font-weight:600;text-align:center}
+  .fila td .x{color:var(--muted);text-decoration:underline;text-underline-offset:3px;font-size:12px}
+  .fila .vazio{padding:28px 16px;text-align:center;color:var(--muted)}
+  .ruim{color:#ff8b7b}
+  .dicas{margin-top:22px;font-size:13px;color:var(--muted);line-height:1.6}
+  .dicas b{color:var(--ink-2);font-weight:500}
+  .dicas kbd{display:inline-block;border:1px solid #333;border-radius:5px;padding:0 6px;font:inherit;font-size:12px;color:var(--ink-2)}
+  @media (max-width:820px){.grade{grid-template-columns:1fr}}
+
+  /* ---------- telão ----------
+     .quadro = a imagem que vai para a TV. Na TV deitada ocupa a tela do Mac; na TV em pé é desenhado girado 90°
+     (o Mac e a TV não precisam de nenhum ajuste: só se coloca a TV em pé no suporte).
+     Três escolhas independentes: deitada/em pé, lado do giro e com/sem oferta. */
+  .telao{position:fixed;inset:0;background:#000;cursor:none;overflow:hidden}
+  .quadro{position:absolute;inset:0;display:grid;grid-template-columns:minmax(0,1fr) 38cqw;container:quadro / size}
+  .telao{container-type:size}
+  .telao.vid-h .quadro{grid-template-columns:minmax(0,1fr) 32cqw}
+  .telao.vertical .quadro{inset:auto;top:50%;left:50%;width:100vh;height:100vw;transform:translate(-50%,-50%) rotate(-90deg);grid-template-columns:1fr;grid-template-rows:minmax(0,1fr) auto}
+  .telao.vertical.dir .quadro{transform:translate(-50%,-50%) rotate(90deg)}
+  .telao.sem-oferta .quadro{grid-template-columns:1fr;grid-template-rows:1fr}
+  .telao.sem-oferta .painel{display:none}
+  .palco{position:relative;overflow:hidden;background:#000;container-type:size;min-height:0}
+  .num-video{position:absolute;left:2.4cqmin;top:2.4cqmin;z-index:3;font-weight:600;font-size:max(12px,2.3cqmin);letter-spacing:.08em;color:#fff;background:rgba(0,0,0,.5);backdrop-filter:blur(6px);-webkit-backdrop-filter:blur(6px);padding:.5cqmin 1.3cqmin;border-radius:999px;font-variant-numeric:tabular-nums}
+  .palco canvas{position:absolute;inset:-8%;width:116%;height:116%;filter:blur(38px) saturate(1.2) brightness(.55);transform:scale(1.05)}
+  .palco video{position:absolute;inset:0;width:100%;height:100%;object-fit:contain;transition:opacity .5s ease}
+  .telao.vertical.sem-oferta:not(.vid-h) .palco video{object-fit:cover}
+  .palco video.sai{opacity:0}
+  /* painel da oferta: TV deitada = coluna à direita */
+  .painel{position:relative;display:flex;flex-direction:column;justify-content:space-between;padding:3cqw 3cqw 2.4cqw;background:radial-gradient(120% 70% at 100% 0%,#3c1e1e 0%,#140b0b 45%,#040404 100%);border-left:1px solid #1d1d1d;min-width:0}
+  .p-marca{display:flex;align-items:center;gap:1.2cqw}
+  .p-marca img.ag{height:6.4cqw;width:auto;object-fit:contain}
+  .p-marca .x{opacity:.5;font-weight:400;font-size:1.3cqw}
+  .p-marca img.parc{height:6.4cqw;width:auto;object-fit:contain}
+  .p-baile{margin-top:.8cqw;font-size:1cqw;letter-spacing:.3em;text-transform:uppercase;color:var(--ink-2)}
+  .p-chamada .k{font-size:.95cqw;letter-spacing:.3em;text-transform:uppercase;color:var(--muted)}
+  .p-chamada b{display:block;font-weight:700;font-size:4.6cqw;line-height:.95;letter-spacing:-.01em;text-transform:uppercase;margin-top:.6cqw}
+  .p-chamada .sub{font-family:var(--serif);font-style:italic;font-size:2.6cqw;line-height:1.1;color:var(--ink-2);margin-top:.5cqw}
+  .p-chamada .sub em{color:var(--gold)}
+  .oferta{border:1px solid rgba(246,173,3,.55);background:rgba(246,173,3,.08);border-radius:1.2cqw;padding:1.3cqw 1.5cqw}
+  .oferta .k{font-size:.85cqw;letter-spacing:.24em;text-transform:uppercase;color:var(--gold)}
+  .oferta b{display:block;font-weight:700;font-size:2.1cqw;line-height:1.1;margin-top:.4cqw}
+  .oferta b span{color:var(--gold)}
+  .oferta p{font-size:1.05cqw;color:var(--ink-2);margin-top:.4cqw}
+  .qr{display:flex;align-items:center;gap:1.3cqw;margin-top:1.3cqw}
+  .qr .q{flex:none;width:9.5cqw;height:9.5cqw;background:#fff;border-radius:.8cqw;padding:.6cqw}
+  .qr .q svg{width:100%;height:100%;display:block}
+  .qr b{display:block;font-weight:600;font-size:1.35cqw;line-height:1.2}
+  .qr p{font-size:.98cqw;color:var(--ink-2);margin-top:.3cqw}
+  .barra{height:.35cqw;background:rgba(255,255,255,.12);border-radius:999px;overflow:hidden;margin-top:1.4cqw}
+  .barra i{display:block;height:100%;width:0;background:var(--gold)}
+  .prox{display:flex;justify-content:space-between;font-size:.9cqw;color:var(--muted);margin-top:.6cqw}
+  /* painel da oferta: TV em pé = faixa embaixo do vídeo */
+  @container quadro (orientation: portrait) {
+    .painel{display:grid;grid-template-columns:minmax(0,1fr) auto;grid-template-areas:"marca qr" "chamada qr" "oferta oferta" "barra barra";align-items:center;gap:2cqw 4cqw;padding:3.6cqw 5cqw 3.2cqw;border-left:0;border-top:1px solid #1d1d1d;background:radial-gradient(120% 90% at 100% 100%,#3c1e1e 0%,#140b0b 50%,#040404 100%)}
+    .p-topo,.p-base{display:contents}
+    .p-marca{grid-area:marca;gap:2.4cqw}
+    .p-marca img.ag{height:9cqw}
+    .p-marca .x{font-size:2.8cqw}
+    .p-marca img.parc{height:10cqw}
+    .p-baile,.prox,.p-chamada .k{display:none}
+    .p-chamada{grid-area:chamada}
+    .p-chamada b{font-size:7.2cqw;margin-top:0}
+    .p-chamada .sub{font-size:4.2cqw;margin-top:.6cqw}
+    .oferta{grid-area:oferta;display:flex;align-items:baseline;flex-wrap:wrap;gap:.4cqw 2.4cqw;border-radius:2cqw;padding:2cqw 2.6cqw}
+    .oferta .k{font-size:1.7cqw}
+    .oferta b{font-size:4cqw;margin-top:0}
+    .oferta p{font-size:2.1cqw;margin-top:0;flex-basis:100%}
+    .qr{grid-area:qr;flex-direction:column;align-items:center;text-align:center;gap:1.4cqw;margin:0;width:24cqw;align-self:start}
+    .qr .q{width:22cqw;height:22cqw;border-radius:1.6cqw;padding:1.3cqw}
+    .qr b{font-size:2.1cqw}
+    .qr p{display:none}
+    .barra{grid-area:barra;height:.6cqw;margin:0}
+  }
+  /* marca d'água (sem oferta): logo da Aresta × parceiro embaixo do vídeo */
+  .marca-agua{display:none;position:absolute;left:0;right:0;bottom:4cqh;z-index:2;justify-content:center;align-items:center;gap:1.6cqh;opacity:.78;pointer-events:none;filter:drop-shadow(0 .3cqh 1.2cqh rgba(0,0,0,.55))}
+  .telao.sem-oferta .marca-agua{display:flex}
+  .telao.ja-tem-logo .marca-agua{display:none}
+  .fonte .on{}
+  td.st{color:var(--muted);font-size:12px} td.st.ok{color:#57c47b} tr.fora td{opacity:.45}
+  .marca-agua img.ag{height:8cqh;width:auto}
+  .marca-agua .x{font-weight:400;opacity:.6;letter-spacing:0;font-size:2.4cqh;color:#fff}
+  .marca-agua img.parc{height:8cqh;width:auto}
+  .telao.sem-oferta .barra-v{display:block}
+  .barra-v{display:none;position:absolute;left:0;right:0;bottom:0;height:.5cqh;z-index:2;background:rgba(255,255,255,.12)}
+  .barra-v i{display:block;height:100%;width:0;background:var(--gold)}
+  .lado{display:none;margin-top:8px}
+  .lado.on{display:grid}
+  .formato{display:grid;grid-template-columns:1fr 1fr;gap:6px}
+  .formato button{border:1px solid var(--line);border-radius:10px;padding:10px 6px;font-size:14px;color:var(--ink-2);background:var(--bg);min-height:44px}
+  .formato button.on{border-color:var(--ink);color:#fff;background:var(--card-2)}
+  .formato.lado:not(.on){display:none}
+  .pausa{position:absolute;inset:auto 0 0 0;z-index:3;text-align:center;padding:1.2cqmin;font-size:max(13px,1.8cqmin);color:var(--gold);background:rgba(0,0,0,.6)}
+  .toast{position:fixed;left:50%;bottom:24px;transform:translateX(-50%);z-index:40;background:#1b1b1b;border:1px solid #333;border-radius:10px;padding:10px 16px;font-size:14px;color:#fff;display:none}
+</style>
+</head>
+<body>
+
+<!-- ========== configuração ========== -->
+<section class="config" id="config">
+  <div class="config-in">
+    <div class="marca"><img src="/recursos/mark.png" alt=""><span>ARESTAGÊNCIA</span></div>
+    <h1>Telão do <em>baile</em></h1>
+
+    <div class="grade">
+      <div class="caixa">
+        <h2>Baile e oferta</h2>
+        <p class="sub">Funciona sem internet. O QR leva para o "Me avise" da galeria (quem escaneia usa a internet do celular).</p>
+        <label class="campo"><span>Baile</span><select id="cEv"></select></label>
+        <label class="campo"><span>Link da galeria deste baile</span><input id="cLink" list="galerias" placeholder="https://entregas.arestagencia.com.br/bailes/..."></label>
+        <datalist id="galerias"></datalist>
+        <div class="campo"><span>Logo do parceiro (versão branca, PNG sem fundo)</span>
+          <div style="display:flex;align-items:center;gap:12px;min-height:44px"><img id="cParcImg" alt="" style="height:44px;max-width:160px;object-fit:contain;display:none"><span id="cParcTxt" class="sub" style="margin:0">Sem logo do parceiro: o telão mostra só a ArestAgência.</span>
+          <label class="btn sec" for="cParcArq" style="margin-left:auto">Escolher PNG</label><input type="file" id="cParcArq" accept="image/png" hidden></div></div>
+        <div class="duas">
+          <label class="campo"><span>Preço do código (R$)</span><input id="cPreco" inputmode="decimal" placeholder="35"></label>
+          <label class="campo"><span>Segundos por vídeo</span><input id="cSeg" inputmode="numeric" value="20"></label>
+        </div>
+        <label class="campo"><span>Frase da oferta</span><input id="cOferta" maxlength="80" value="Fale com a nossa equipe e garanta o seu código"></label>
+        <div class="campo"><span>Formato do telão</span><div class="formato" id="cFormato"><button type="button" data-f="horizontal" class="on">TV deitada</button><button type="button" data-f="vertical">TV em pé</button></div>
+          <div class="formato lado" id="cLado"><button type="button" data-l="esq">TV girada para a esquerda ↺</button><button type="button" data-l="dir">TV girada para a direita ↻</button></div>
+          <div class="formato" id="cComOferta" style="margin-top:8px"><button type="button" data-o="1" class="on">Com oferta e QR</button><button type="button" data-o="0">Só vídeos (logos por cima)</button></div></div>
+      </div>
+      <div class="caixa">
+        <h2>Vídeos</h2>
+        <p class="sub">O telão lê a pasta 1. Brutos do baile sozinho: cada vídeo novo entra na fila em poucos segundos, com o mesmo número da edição.</p>
+        <div class="campo"><span>O que passa no telão</span>
+          <div class="formato fonte" id="cFonte"><button type="button" data-fonte="brutos" class="on">Todos os brutos, assim que chegam</button><button type="button" data-fonte="prontos">Só os já editados</button></div></div>
+        <p class="sub" id="cResumo" style="margin-top:10px"></p>
+        <button class="btn ouro" type="button" id="cIniciarTopo" disabled style="width:100%;margin-top:14px;padding:14px 18px;font-size:15px">Iniciar telão em tela cheia</button>
+      </div>
+    </div>
+
+    <div class="fila"><table><thead><tr><th>Nº</th><th>Arquivo</th><th>Duração</th><th>Situação</th><th></th></tr></thead><tbody id="cFila"></tbody></table></div>
+
+    <div class="dicas">
+      <b>No telão:</b> <kbd>espaço</kbd> pausa · <kbd>←</kbd> <kbd>→</kbd> vídeo anterior / próximo · <kbd>F</kbd> tela cheia · <kbd>R</kbd> inverte o giro da TV em pé · <kbd>O</kbd> liga/desliga a oferta · <kbd>S</kbd> volta para esta tela (o telão continua de onde parou).
+      <br>Arraste esta janela para a TV antes de iniciar.
+    </div>
+  </div>
+</section>
+
+<!-- ========== telão ========== -->
+<section class="telao" id="telao" hidden>
+  <div class="quadro"><div class="palco">
+    <canvas id="fundo" width="48" height="27"></canvas>
+    <video id="vA" muted playsinline preload="auto"></video>
+    <video id="vB" muted playsinline preload="auto" class="sai"></video>
+    <div class="marca-agua" id="tMarcaAgua"></div>
+    <div class="barra-v"><i id="tBarraV"></i></div>
+    <div class="num-video" id="tNum"></div>
+    <div class="pausa" id="tPausa" hidden>Pausado · espaço para continuar</div>
+  </div>
+  <aside class="painel">
+    <div class="p-topo">
+      <div class="p-marca" id="tMarca"></div>
+      <div class="p-baile" id="tBaile"></div>
+    </div>
+    <div class="p-chamada">
+      <div class="k">No telão agora</div>
+      <b>Se viu aqui?</b>
+      <div class="sub">Garanta o <em>seu vídeo</em> completo</div>
+    </div>
+    <div class="p-base">
+      <div class="oferta">
+        <div class="k">Aqui no baile</div>
+        <b>Seu vídeo por <span id="tPreco">R$ 35</span></b>
+        <p id="tOferta"></p>
+      </div>
+      <div class="qr">
+        <div class="q" id="tQR"></div>
+        <div><b>Quer ser avisado quando os vídeos chegarem?</b><p>Aponte a câmera do celular para o QR e deixe seu WhatsApp.</p></div>
+      </div>
+      <div class="barra"><i id="tBarra"></i></div>
+      <div class="prox"><span id="tPos"></span><span id="tProx"></span></div>
+    </div>
+  </aside>
+  </div>
+</section>
+<div class="toast" id="toast"></div>
+
+<script>
+// Telão do baile dentro do Editor de Bailes: lê a pasta do baile pelo editor (127.0.0.1), sem internet.
+// A numeração é a mesma da edição (numeracao.csv): o Nº 07 do telão é o F. 07 / P. 07.
+const GALERIAS = [{"nome": "I Dá-lhe Samba", "chave": "idalhesamba", "url": "https://entregas.arestagencia.com.br/bailes/idalhesamba", "preco": 3500}];
+
+const $ = (s) => document.querySelector(s);
+const esc = (s) => String(s ?? "").replace(/[&<>"']/g, (c) => ({ "&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;" }[c]));
+const reais = (c) => (c / 100).toLocaleString("pt-BR", { style: "currency", currency: "BRL", minimumFractionDigits: c % 100 ? 2 : 0 });
+const dois = (n) => String(n).padStart(2, "0");
+const mmss = (s) => s ? `${Math.floor(s / 60)}:${dois(Math.round(s % 60))}` : "";
+const enc = encodeURIComponent;
+const guardar = (k, v) => { try { localStorage.setItem(k, JSON.stringify(v)); } catch {} };
+const ler = (k, d) => { try { return JSON.parse(localStorage.getItem(k) || "null") ?? d; } catch { return d; } };
+function aviso(t) { const el = $("#toast"); el.textContent = t; el.style.display = "block"; clearTimeout(aviso.t); aviso.t = setTimeout(() => (el.style.display = "none"), 2600); }
+async function api(caminho, corpo) {
+  const op = corpo === undefined ? {} : { method: "POST", headers: { "X-Editor": "1", "Content-Type": "application/json" }, body: JSON.stringify(corpo) };
+  const r = await fetch(caminho, op); const d = await r.json().catch(() => ({}));
+  if (!r.ok) throw new Error(d.erro || "Erro"); return d;
+}
+
+// ---------- bailes (pastas do editor) ----------
+let BAILES = [], DADOS = null, TEM_PARCEIRO = false;
+try { for (const g of JSON.parse(localStorage.getItem("telao-galerias") || "[]")) if (!GALERIAS.some((x) => x.url === g.url)) GALERIAS.push(g); } catch {}
+fetch("https://jlogxdjttufiiikiezfe.supabase.co/rest/v1/eventos?select=nome,url_galeria,preco_codigo_centavos&url_galeria=not.is.null",
+  { headers: { apikey: "sb_publishable_ilWt8PPFiHuOBCmiCcsZ3A_CTmqyjmR" } }).then((r) => r.ok ? r.json() : []).then((ev) => {
+  const lista = ev.map((e) => ({ nome: e.nome, chave: e.nome.toLowerCase().normalize("NFD").replace(/[̀-ͯ]/g, "").replace(/[^a-z0-9]/g, ""), url: e.url_galeria, preco: e.preco_codigo_centavos || 0 }));
+  guardar("telao-galerias", lista);
+  for (const g of lista) if (!GALERIAS.some((x) => x.url === g.url)) GALERIAS.push(g);
+  $("#galerias").innerHTML = GALERIAS.map((g) => `<option value="${esc(g.url)}">${esc(g.nome)}</option>`).join("");
+}).catch(() => {});
+$("#galerias").innerHTML = GALERIAS.map((g) => `<option value="${esc(g.url)}">${esc(g.nome)}</option>`).join("");
+async function carregarBailes() {
+  const d = await api("/api/inicio");
+  BAILES = d.bailes;
+  const sel = $("#cEv"), pedido = new URLSearchParams(location.search).get("baile");
+  sel.innerHTML = BAILES.map((b) => `<option>${esc(b)}</option>`).join("") || `<option value="">Nenhum baile na pasta</option>`;
+  if (pedido && BAILES.includes(pedido)) sel.value = pedido; else if (d.baile_atual) sel.value = d.baile_atual;
+  await aoTrocarBaile();
+}
+const baileNome = () => $("#cEv").value;
+const nomeExibido = () => baileNome().replace(/^\d{4}-\d{2}-\d{2}\s*-?\s*/, "");
+async function aoTrocarBaile() {
+  if (!baileNome()) return;
+  await lerBaile();
+  const a = DADOS.ajustes;
+  // link e preço guardados no baile; na primeira vez, tenta achar a galeria pelo nome do baile
+  let link = a.url_galeria || "", preco = a.preco_codigo || 0;
+  if (!link) {
+    const n = nomeExibido().toLowerCase().normalize("NFD").replace(/[̀-ͯ]/g, "").replace(/[^a-z0-9]/g, "");
+    const g = GALERIAS.find((g) => n.includes(g.chave) || g.chave.includes(n));
+    if (g) { link = g.url; if (!preco) preco = g.preco; salvarBaile({ url_galeria: link, preco_codigo: preco }); }
+  }
+  $("#cLink").value = link;
+  $("#cPreco").value = preco ? (preco / 100).toLocaleString("pt-BR") : "";
+  FONTE = a.telao_fonte || "brutos"; marcarFonte();
+  const of = ler("telao-oferta", null); if (of) $("#cOferta").value = of;
+  const sg = ler("telao-seg", null); if (sg) $("#cSeg").value = sg;
+  FORA = new Set(ler(`telao-fora-${baileNome()}`, []));
+  verParceiro();
+  montarFila();
+}
+function verParceiro() {
+  const src = `/api/imagem?baile=${enc(baileNome())}&tipo=parceiro&v=${Date.now()}`, im = new Image();
+  im.onload = () => { TEM_PARCEIRO = true; $("#cParcImg").src = src; $("#cParcImg").style.display = ""; $("#cParcTxt").style.display = "none"; };
+  im.onerror = () => { TEM_PARCEIRO = false; $("#cParcImg").style.display = "none"; $("#cParcTxt").style.display = ""; };
+  im.src = src;
+}
+$("#cParcArq").addEventListener("change", (e) => {
+  const f = e.target.files[0]; e.target.value = ""; if (!f) return;
+  const fr = new FileReader();
+  fr.onload = async () => { try { await api("/api/upload-json", { baile: baileNome(), tipo: "parceiro", dados: String(fr.result).split(",")[1] }); verParceiro(); aviso("Logo do parceiro salvo."); } catch (er) { aviso(er.message); } };
+  fr.readAsDataURL(f);
+});
+async function lerBaile() { DADOS = await api(`/api/baile?nome=${enc(baileNome())}`); }
+function salvarBaile(aj) { api("/api/ajustes", { baile: baileNome(), ajustes: aj }).catch((e) => aviso(e.message)); }
+$("#cEv").addEventListener("change", () => { FILA = []; ATUAL = -1; aoTrocarBaile(); });
+$("#cLink").addEventListener("change", () => salvarBaile({ url_galeria: $("#cLink").value.trim() }));
+$("#cPreco").addEventListener("change", () => { const c = Math.round(Number(String($("#cPreco").value).replace(/\./g, "").replace(",", ".")) * 100); salvarBaile({ preco_codigo: c > 0 ? c : 0 }); });
+
+// ---------- fila: vem da pasta do baile ----------
+let FILA = [];   // { nome, num, dur, h, url, pronto }
+let FORA = new Set();
+let FONTE = "brutos";
+function marcarFonte() { $("#cFonte").querySelectorAll("button").forEach((b) => b.classList.toggle("on", b.dataset.fonte === FONTE)); }
+$("#cFonte").addEventListener("click", (e) => { const b = e.target.closest("button"); if (!b) return; FONTE = b.dataset.fonte; marcarFonte(); salvarBaile({ telao_fonte: FONTE }); montarFila(); });
+function montarFila() {
+  if (!DADOS) return;
+  const novos = [];
+  for (const b of DADOS.brutos) {
+    if (FONTE === "prontos" && !b.final) continue;
+    const pronto = FONTE === "prontos";
+    const url = pronto ? `/api/video?baile=${enc(baileNome())}&num=${b.num}&tipo=final` : `/api/video?baile=${enc(baileNome())}&arquivo=${enc(b.arquivo)}`;
+    const velho = FILA.find((x) => x.url === url);
+    novos.push(velho || { nome: b.arquivo, num: b.num, dur: b.duracao, h: pronto ? false : b.deitado, url, pronto, ok: null });
+  }
+  const atual = tocaveis()[ATUAL];
+  FILA = novos.sort((a, b) => a.num - b.num);
+  if (atual) { const i = tocaveis().indexOf(atual); if (i >= 0) ATUAL = i; }
+  desenharFila();
+}
+function desenharFila() {
+  if (!DADOS) return;
+  const prontos = DADOS.brutos.filter((b) => b.final).length;
+  $("#cResumo").textContent = `${DADOS.brutos.length} vídeo${DADOS.brutos.length === 1 ? "" : "s"} na pasta · ${prontos} já editado${prontos === 1 ? "" : "s"}`;
+  $("#cFila").innerHTML = FILA.length ? FILA.map((x, i) => `<tr class="${FORA.has(x.nome) ? "fora" : ""}">
+      <td>${dois(x.num)}</td>
+      <td>${esc(x.nome)}${x.ok === false ? ` <span class="ruim">· não tocou</span>` : ""}</td>
+      <td>${mmss(x.dur)}</td>
+      <td class="st ${x.pronto ? "ok" : ""}">${x.pronto ? "editado" : (DADOS.brutos.find((b) => b.arquivo === x.nome) || {}).final ? "bruto · já editado" : "bruto"}</td>
+      <td><button class="x" type="button" data-tirar="${i}">${FORA.has(x.nome) ? "voltar" : "tirar"}</button></td></tr>`).join("")
+    : `<tr><td colspan="5" class="vazio">${FONTE === "prontos" ? "Nenhum vídeo editado ainda." : "Nenhum vídeo em 1. Brutos ainda. Copie os arquivos do cartão para essa pasta."}</td></tr>`;
+  $("#cIniciarTopo").disabled = !tocaveis().length;
+}
+$("#cFila").addEventListener("click", (e) => {
+  const i = e.target.dataset.tirar; if (i == null) return;
+  const n = FILA[i].nome; FORA.has(n) ? FORA.delete(n) : FORA.add(n);
+  guardar(`telao-fora-${baileNome()}`, [...FORA]); desenharFila();
+});
+// vídeos novos entram sozinhos (a cada 5 s)
+setInterval(async () => { if (!baileNome()) return; try { await lerBaile(); montarFila(); } catch {} }, 5000);
+let FORMATO = ler("telao-formato", "horizontal");
+function marcarFormato() { $("#cFormato").querySelectorAll("button").forEach((b) => b.classList.toggle("on", b.dataset.f === FORMATO)); }
+$("#cFormato").addEventListener("click", (e) => { const b = e.target.closest("button"); if (!b) return; FORMATO = b.dataset.f; guardar("telao-formato", FORMATO); marcarFormato(); });
+let LADO = ler("telao-lado", "esq");
+let COM_OFERTA = ler("telao-com-oferta", true);
+function aplicarModo() {
+  const t = $("#telao");
+  t.classList.toggle("vertical", FORMATO === "vertical");
+  t.classList.toggle("dir", LADO === "dir");
+  t.classList.toggle("sem-oferta", !COM_OFERTA);
+}
+function marcarLado() {
+  $("#cLado").classList.toggle("on", FORMATO === "vertical");
+  $("#cLado").querySelectorAll("button").forEach((b) => b.classList.toggle("on", b.dataset.l === LADO));
+  $("#cComOferta").querySelectorAll("button").forEach((b) => b.classList.toggle("on", (b.dataset.o === "1") === COM_OFERTA));
+  aplicarModo();
+}
+$("#cComOferta").addEventListener("click", (e) => { const b = e.target.closest("button"); if (!b) return; COM_OFERTA = b.dataset.o === "1"; guardar("telao-com-oferta", COM_OFERTA); marcarLado(); });
+$("#cLado").addEventListener("click", (e) => { const b = e.target.closest("button"); if (!b) return; LADO = b.dataset.l; guardar("telao-lado", LADO); marcarLado(); });
+$("#cFormato").addEventListener("click", marcarLado);
+marcarFormato(); marcarLado();
+const segundos = () => Math.min(120, Math.max(5, parseInt($("#cSeg").value, 10) || 20));
+$("#cSeg").addEventListener("change", () => { guardar("telao-seg", segundos()); desenharFila(); });
+$("#cOferta").addEventListener("change", () => guardar("telao-oferta", $("#cOferta").value));
+$("#cPreco").addEventListener("change", () => { const e = baile(); const c = Math.round(Number(String($("#cPreco").value).replace(",", ".")) * 100); if (e && c > 0) guardar(`telao-preco-${e.slug}`, c); });
+
+// ---------- reprodução ----------
+let ATUAL = -1, pausado = false, timer = null, inicioTrecho = 0, restante = 0, wake = null, ativo = $("#vA"), reserva = $("#vB");
+const tocaveis = () => FILA.filter((x) => x.ok !== false && !FORA.has(x.nome));
+
+function montarPainel() {
+  const parc = TEM_PARCEIRO ? `<span class="x">×</span><img class="parc" src="/api/imagem?baile=${enc(baileNome())}&tipo=parceiro" alt="">` : "";
+  $("#tMarca").innerHTML = `<img class="ag" src="/recursos/aresta.png" alt="ArestAgência">${parc}`;
+  $("#tMarcaAgua").innerHTML = `<img class="ag" src="/recursos/aresta.png" alt="">${parc}`;
+  aplicarModo();
+  $("#tBaile").textContent = nomeExibido();
+  const c = Math.round(Number(String($("#cPreco").value).replace(/\./g, "").replace(",", ".")) * 100);
+  $("#tPreco").textContent = c > 0 ? reais(c) : "";
+  $("#tOferta").textContent = $("#cOferta").value;
+  const base = ($("#cLink").value.trim() || "https://entregas.arestagencia.com.br/bailes").replace(/\/+$/, "");
+  try { const q = qrcode(0, "M"); q.addData(`${base}/?avise=1`); q.make(); $("#tQR").innerHTML = q.createSvgTag({ cellSize: 4, margin: 0, scalable: true }); }
+  catch { $("#tQR").innerHTML = ""; }
+}
+
+async function iniciar() {
+  if (!tocaveis().length) return;
+  montarPainel();
+  $("#config").hidden = true; $("#telao").hidden = false;
+  try { await document.documentElement.requestFullscreen(); } catch {}
+  try { wake = await navigator.wakeLock.request("screen"); } catch {}
+  if (ATUAL < 0 || ATUAL >= tocaveis().length) ATUAL = -1;
+  pausado = false; $("#tPausa").hidden = true;
+  proximo(1);
+}
+$("#cIniciarTopo").onclick = iniciar;
+
+function proximo(passo) {
+  const L = tocaveis(); if (!L.length) return;
+  ATUAL = (ATUAL + passo + L.length) % L.length;
+  tocar(L[ATUAL], L[(ATUAL + 1) % L.length]);
+}
+let geracao = 0;
+function tocar(item, depois) {
+  clearTimeout(timer);
+  const seg = segundos(), minha = ++geracao, v = reserva;
+  let foi = false;
+  const comecar = () => {
+    if (foi || minha !== geracao) return; foi = true;
+    v.play().catch(() => {});
+    v.classList.remove("sai"); ativo.classList.add("sai");
+    const antigo = ativo; setTimeout(() => { if (antigo !== ativo) { antigo.pause(); antigo.removeAttribute("src"); antigo.load(); } }, 600);
+    ativo = v; reserva = antigo;
+    $("#telao").classList.toggle("vid-h", !!item.h);
+    $("#telao").classList.toggle("ja-tem-logo", !!item.pronto);
+    $("#tNum").textContent = `Nº ${dois(item.num)}`;
+    const L = tocaveis();
+    $("#tPos").textContent = ""; $("#tProx").textContent = "";
+    inicioTrecho = performance.now(); restante = Math.min(seg, v.duration || seg) * 1000;
+    if (!pausado) timer = setTimeout(() => proximo(1), restante);
+  };
+  v.onloadedmetadata = () => {
+    if (minha !== geracao) return;
+    const d = v.duration || 0;
+    if (d > seg + 1) {
+      // começa no meio do vídeo (o melhor da dança costuma estar ali) e mostra "seg" segundos
+      v.addEventListener("seeked", comecar, { once: true });
+      v.currentTime = d / 2 - seg / 2;
+    } else if (v.readyState >= 3) comecar();
+    else v.addEventListener("canplay", comecar, { once: true });
+  };
+  v.onerror = () => { if (minha !== geracao) return; item.ok = false; aviso(`Não consegui tocar ${item.nome}. Pulando.`); setTimeout(() => proximo(1), 300); };
+  v.src = item.url;
+}
+
+// barra de progresso e fundo desfocado (cópia pequena do vídeo, barata para o processador)
+const ctx = $("#fundo").getContext("2d");
+function quadro() {
+  requestAnimationFrame(quadro);
+  if ($("#telao").hidden) return;
+  if (!pausado && restante) {
+    const p = Math.min(1, (performance.now() - inicioTrecho) / restante);
+    $("#tBarra").style.width = $("#tBarraV").style.width = `${p * 100}%`;
+  }
+  if (ativo.readyState >= 2) { try { ctx.drawImage(ativo, 0, 0, 48, 27); } catch {} }
+}
+requestAnimationFrame(quadro);
+
+function pausar() {
+  pausado = !pausado;
+  $("#tPausa").hidden = !pausado;
+  if (pausado) { clearTimeout(timer); ativo.pause(); restante -= performance.now() - inicioTrecho; }
+  else { ativo.play().catch(() => {}); inicioTrecho = performance.now(); timer = setTimeout(() => proximo(1), Math.max(500, restante)); }
+}
+function voltarConfig() {
+  clearTimeout(timer); ativo.pause();
+  $("#telao").hidden = true; $("#config").hidden = false;
+  if (document.fullscreenElement) document.exitFullscreen().catch(() => {});
+  try { wake && wake.release(); } catch {}
+  desenharFila();
+}
+document.addEventListener("keydown", (e) => {
+  if ($("#telao").hidden) return;
+  if (e.key === " ") { e.preventDefault(); pausar(); }
+  else if (e.key === "ArrowRight") { pausado = false; $("#tPausa").hidden = true; proximo(1); }
+  else if (e.key === "ArrowLeft") { pausado = false; $("#tPausa").hidden = true; proximo(-1); }
+  else if (e.key === "f" || e.key === "F") { document.fullscreenElement ? document.exitFullscreen() : document.documentElement.requestFullscreen().catch(() => {}); }
+  else if (e.key === "s" || e.key === "S") voltarConfig();
+  else if ((e.key === "r" || e.key === "R") && FORMATO === "vertical") { LADO = LADO === "dir" ? "esq" : "dir"; guardar("telao-lado", LADO); marcarLado(); }
+  else if (e.key === "o" || e.key === "O") { COM_OFERTA = !COM_OFERTA; guardar("telao-com-oferta", COM_OFERTA); marcarLado(); }
+});
+// se o Mac acordar ou a aba voltar, pede de novo para a tela não apagar
+document.addEventListener("visibilitychange", async () => { if (!document.hidden && !$("#telao").hidden) { try { wake = await navigator.wakeLock.request("screen"); } catch {} } });
+
+carregarBailes().catch((e) => aviso(e.message));
+</script>
+</body>
+</html>
