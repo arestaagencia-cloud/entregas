@@ -203,12 +203,17 @@ s = s[:ini] + r'''function montarPainel() {
   const ch = Math.round(Number(String($("#cCheio").value).replace(/\./g, "").replace(",", ".")) * 100) || 0;
   $("#tDe").innerHTML = ch > c && c > 0 ? `de <s>${reais(ch)}</s> ` : "";
   $("#tOferta").textContent = $("#cOferta").value;
-  const base = ($("#cLink").value.trim() || "https://entregas.arestagencia.com.br/bailes").replace(/\/+$/, "");
-  try { const q = qrcode(0, "M"); q.addData(`${base}/?avise=1`); q.make(); $("#tQR").innerHTML = q.createSvgTag({ cellSize: 4, margin: 0, scalable: true }); }
-  catch { $("#tQR").innerHTML = ""; }
+  QR_ATUAL = "";
+  if (ITEM_ATUAL) situacao(ITEM_ATUAL);
+  else { try { const q = qrcode(0, "M"); q.addData(`${baseGaleria()}/avise/`); q.make(); $("#tQR").innerHTML = q.createSvgTag({ cellSize: 4, margin: 0, scalable: true }); } catch {} }
+  lerDisponiveis();
 }
 
 ''' + s[fim:]
+s = troca(s, 'const filtroEvento = () => { const e = baile(); return e ? `slug=eq.${encodeURIComponent(e.slug)}` : ""; };',
+  'const filtroEvento = () => { const u = ($("#cLink").value || "").trim().replace(/\\/+$/, ""); return u ? `or=(url_galeria.eq.${encodeURIComponent(u)},url_galeria.eq.${encodeURIComponent(u + "/")})` : ""; };')
+i0 = s.index("const baseGaleria = () => {"); i1 = s.index("\n", s.index("return String(e.url_galeria", i0))
+s = s[:i0] + 'const baseGaleria = () => ($("#cLink").value.trim() || "https://entregas.arestagencia.com.br/bailes").replace(/\\/+$/, "");' + s[i1:]
 s = troca(s, "    $(\"#telao\").classList.toggle(\"vid-h\", !!item.h);", "    $(\"#telao\").classList.toggle(\"vid-h\", !!item.h);\n    $(\"#telao\").classList.toggle(\"ja-tem-logo\", !!item.pronto);")
 s = troca(s, 'carregarBailes().then(desenharFila);', 'carregarBailes().catch((e) => aviso(e.message));')
 import json, unicodedata

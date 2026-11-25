@@ -39,8 +39,9 @@
   /* parceria: logo do cliente ao lado da marca */
   .brand .x{font-size:18px;opacity:.55;margin:0 2px;font-weight:400}
   /* logo do parceiro sempre na versão toda branca (PNG transparente), sem fundo */
-  .brand .parceiro{height:60px;width:auto;object-fit:contain}
-  @media (max-width:420px){.brand .parceiro{height:50px}}
+  .brand{max-width:calc(100vw - 32px);min-width:0}
+  .brand .parceiro{height:60px;width:auto;max-width:min(260px,40vw);object-fit:contain;object-position:left center;min-width:0}
+  @media (max-width:420px){.brand .parceiro{height:50px;max-width:38vw}}
 
   .hero{position:relative;height:80vh;height:80svh;min-height:460px;display:flex;align-items:flex-end;justify-content:center;text-align:center;overflow:hidden}
   .hero.compacto{height:auto;min-height:0;padding-top:120px}
@@ -61,6 +62,7 @@
   .stat b{display:block;font-weight:600;font-size:clamp(28px,3.4vw,42px);line-height:1;font-variant-numeric:tabular-nums}
   .stat span{font-size:12px;letter-spacing:.18em;text-transform:uppercase;color:var(--muted)}
   .hero.compacto h1{font-size:clamp(24px,min(6vw,9vh),72px)}
+  .hero h1.longo{white-space:normal;text-wrap:balance;font-size:clamp(24px,min(5.6vw,8vh),76px);max-width:94vw;margin-left:auto;margin-right:auto}
   .hero.compacto .hero-inner{padding-bottom:0}
   .hero.compacto ~ #estado .estado{margin-top:28px}
 
@@ -181,6 +183,11 @@
   .avise .erro{margin-top:10px}
   .avise .ok{text-align:center}
   @media (max-width:560px){.avise .campos{grid-template-columns:1fr}}
+  .avise-cta{display:flex;flex-direction:column;align-items:center;gap:8px;margin:6px 0 22px;text-align:center}
+  .avise-cta p{font-size:14px;color:var(--ink-2)}
+  .avise .ok .btn{margin-top:14px;width:auto;display:inline-flex}
+  body.so-avise #passos,body.so-avise #bar,body.so-avise #lista{display:none!important}
+  body.so-avise .avise{margin-top:28px;margin-bottom:60px}
   .aviso-cod{max-width:1180px;margin:18px auto 8px;padding:0 24px}
   .aviso-cod>div{display:flex;flex-wrap:wrap;align-items:center;gap:10px 18px;border:1px solid rgba(246,173,3,.45);background:rgba(246,173,3,.07);border-radius:14px;padding:14px 18px;font-size:15px;color:var(--ink-2)}
   .aviso-cod b{color:var(--ink);letter-spacing:.12em;font-variant-numeric:tabular-nums}
@@ -311,7 +318,8 @@
 const CONFIG = {
   supabaseUrl: "https://jlogxdjttufiiikiezfe.supabase.co",
   chavePublica: "sb_publishable_ilWt8PPFiHuOBCmiCcsZ3A_CTmqyjmR",
-  eventoPadrao: "planet-teste",    // o baile desta página (gerado por gerar_bailes.py)
+  eventoPadrao: "planet-teste",
+  modo: "galeria",              // "galeria" ou "avise" (página só com o formulário, /bailes/<pasta>/avise/)    // o baile desta página (gerado por gerar_bailes.py)
   whatsapp: "https://wa.me/5561991283546",
 };
 // ==========================
@@ -328,6 +336,10 @@ const previaUrl = (id) => `https://drive.google.com/file/d/${encodeURIComponent(
 const capaDrive = (id, w = 400) => `https://drive.google.com/thumbnail?id=${encodeURIComponent(id)}&sz=w${w}`;
 
 let evento = null, videos = [], visiveis = [], atual = -1;
+const SO_AVISE = CONFIG.modo === "avise";
+const raizGaleria = () => location.pathname.replace(/avise\/?(index\.html)?$/, "").replace(/index\.html$/, "").replace(/\/?$/, "/");
+const linkAvise = () => `${raizGaleria()}avise/`;
+let pedirVideo = null; // ?v=07: abre direto o vídeo do casal (QR do telão)
 
 async function rest(caminho) {
   const r = await fetch(api(`/rest/v1/${caminho}`), { headers: { apikey: CONFIG.chavePublica } });
@@ -376,13 +388,16 @@ function desenharEmBreve(n = 20) {
     return `<div class="card breve" aria-hidden="true"><div class="thumb"><div class="ph">${PH}</div><span class="badge">Nº ${nn}</span></div>
       <div class="meta"><b>Vídeo nº ${nn}</b><span><i class="dot"></i>Disponível após o baile</span></div></div>`;
   }).join("");
-  $("#lista").innerHTML = `<section class="month"><h2>Os vídeos chegam aqui <span>em breve</span></h2><div class="grid">${cards}</div></section>`;
+  $("#lista").innerHTML = `<section class="month"><h2>Os vídeos chegam aqui <span>em breve</span></h2>
+    <div class="avise-cta"><a class="btn ouro" href="${linkAvise()}">Quero ser avisado</a><p>Deixe seu WhatsApp ou e-mail e avisamos quando o seu vídeo chegar.</p></div>
+    <div class="grid">${cards}</div></section>`;
 }
 
 function cabecalho() {
   document.title = `${evento.nome} | Vídeos ArestAgência`;
   $("#titulo").textContent = evento.nome;
   $("#data").textContent = dataLonga(evento.data);
+  $("#titulo").classList.toggle("longo", evento.nome.length > 16); // nome comprido quebra em linhas em vez de cortar
 }
 
 // ---------- Galeria ----------
@@ -426,9 +441,9 @@ setInterval(async () => {
       location.reload();
       return;
     }
-    if (!$("#lb").classList.contains("open")) desenhar();
+    if (!$("#lb").classList.contains("open")) { desenhar(); abrirPedido(false); }
   } catch {}
-}, 60000);
+}, 20000);
 
 function desenhar() {
   const q = $("#fBusca").value.trim().replace(/\D/g, "");
@@ -453,6 +468,13 @@ function desenhar() {
   });
 }
 $("#fBusca").addEventListener("input", () => videos.length && desenhar());
+
+function abrirPedido(primeira) {
+  if (!pedirVideo) return;
+  const i = visiveis.findIndex((x) => x.codigo === pedirVideo);
+  if (i >= 0) { const n = pedirVideo; pedirVideo = null; $("#avisoCod").hidden = true; abrir(i); history.replaceState(null, "", location.pathname); return n; }
+  if (primeira) avisoCodigo(`<span>O vídeo nº ${esc(pedirVideo)} está terminando de ser publicado. Ele abre sozinho aqui em instantes.</span>`);
+}
 
 // ---------- Lightbox de compra ----------
 function abrir(i) {
@@ -621,20 +643,23 @@ async function prepararCodigo() {
 // ---------- "Me avise" ----------
 const chaveAvise = `avise-${slug}`;
 function prepararAvise() {
-  const pedido = params.get("avise") === "1";
-  if (videos.length) {
-    if (pedido) avisoCodigo(`<span>Os vídeos já chegaram! Ache o seu pelo número logo abaixo.</span>`);
+  if (!SO_AVISE) {
+    if (params.get("avise") === "1") location.replace(linkAvise()); // QR antigo
     return;
   }
+  document.body.classList.add("so-avise");
   $("#avise").hidden = false;
   let feito = null;
   try { feito = JSON.parse(localStorage.getItem(chaveAvise) || "null"); } catch {}
   if (feito) avisoFeito(feito.nome);
   else { try { const c = JSON.parse(localStorage.getItem("comprador") || "{}"); if (c.nome) $("#aNome").value = c.nome; if (c.email) $("#aEmail").value = c.email; } catch {} }
-  if (pedido) { requestAnimationFrame(() => $("#avise").scrollIntoView({ block: "center" })); if (!feito) setTimeout(() => $("#aNome").focus({ preventScroll: true }), 600); }
+  const n = (params.get("n") || "").replace(/\D/g, "").slice(0, 4);
+  if (n) $("#avise h3").innerHTML = `Seu vídeo nº ${esc(n.padStart(2, "0"))} está <em>em edição</em>`;
+  requestAnimationFrame(() => $("#avise").scrollIntoView({ block: "center" }));
+  if (!feito) setTimeout(() => $("#aNome").focus({ preventScroll: true }), 600);
 }
 function avisoFeito(nome) {
-  $("#avise").innerHTML = `<div class="ok"><h3>Combinado, <em>${esc(String(nome || "").split(" ")[0])}!</em></h3><p class="sub">Avisamos assim que os vídeos do ${esc(evento.nome)} estiverem aqui. Enquanto isso, aproveite o baile.</p></div>`;
+  $("#avise").innerHTML = `<div class="ok"><h3>Combinado, <em>${esc(String(nome || "").split(" ")[0])}!</em></h3><p class="sub">Avisamos assim que os vídeos do ${esc(evento.nome)} estiverem aqui. Enquanto isso, aproveite o baile.</p>${videos.length ? `<a class="btn sec" href="${raizGaleria()}">Ver os vídeos que já chegaram</a>` : ""}</div>`;
 }
 $("#aWhats").addEventListener("input", (e) => {
   const d = e.target.value.replace(/\D/g, "").slice(0, 11);
@@ -652,7 +677,7 @@ $("#fAvise").addEventListener("submit", async (e) => {
   try {
     const r = await fetch(api("/functions/v1/avise-me"), {
       method: "POST", headers: { "Content-Type": "application/json", apikey: CONFIG.chavePublica },
-      body: JSON.stringify({ evento: slug, nome, whatsapp, email, origem: params.get("avise") === "1" ? "telao" : "galeria" }),
+      body: JSON.stringify({ evento: slug, nome, whatsapp, email, origem: params.get("n") ? `telao-${String(params.get("n")).replace(/\D/g, "").slice(0, 4)}` : (SO_AVISE ? "pagina-avise" : "galeria") }),
     });
     const d = await r.json().catch(() => ({}));
     if (!r.ok || !d.ok) throw new Error(d.erro || "Não conseguimos salvar agora.");
@@ -745,7 +770,12 @@ if (baixar && /^[0-9a-f]{64}$/.test(baixar)) {
   cabecalhoEstado();
   acompanharPedido(pedido);
 } else {
-  carregarGaleria().then(() => { if (evento) { prepararAvise(); prepararCodigo(); } });
+  carregarGaleria().then(() => {
+    if (!evento) return;
+    prepararAvise(); prepararCodigo();
+    const v = (params.get("v") || "").replace(/\D/g, "").slice(0, 4);
+    if (v && !SO_AVISE) { pedirVideo = v.padStart(2, "0"); abrirPedido(true); }
+  });
 }
 </script>
 </body>

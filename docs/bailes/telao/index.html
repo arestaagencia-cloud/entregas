@@ -81,6 +81,10 @@
   .telao.sem-oferta .painel{display:none}
   .palco{position:relative;overflow:hidden;background:#000;container-type:size;min-height:0}
   .num-video{position:absolute;left:2.4cqmin;top:2.4cqmin;z-index:3;font-weight:600;font-size:max(12px,2.3cqmin);letter-spacing:.08em;color:#fff;background:rgba(0,0,0,.5);backdrop-filter:blur(6px);-webkit-backdrop-filter:blur(6px);padding:.5cqmin 1.3cqmin;border-radius:999px;font-variant-numeric:tabular-nums}
+  .num-video .tag{display:inline-block;margin-left:.9em;padding:.15em .7em;border-radius:999px;font-size:.78em;letter-spacing:.04em;font-weight:700;vertical-align:.08em}
+  .num-video .tag.ok{background:#1f7a45;color:#fff}
+  .num-video .tag.ed{background:rgba(246,173,3,.95);color:#111}
+  .qr.disp .q{box-shadow:0 0 0 .35cqw #2fa463}
   .palco canvas{position:absolute;inset:-8%;width:116%;height:116%;filter:blur(38px) saturate(1.2) brightness(.55);transform:scale(1.05)}
   .palco video{position:absolute;inset:0;width:100%;height:100%;object-fit:contain;transition:opacity .5s ease}
   .telao.vertical.sem-oferta:not(.vid-h) .palco video{object-fit:cover}
@@ -226,7 +230,7 @@
       </div>
       <div class="qr">
         <div class="q" id="tQR"></div>
-        <div><b>Quer ser avisado quando os vídeos chegarem?</b><p>Aponte a câmera do celular para o QR e deixe seu WhatsApp.</p></div>
+        <div><b id="tQrTit">Quer ser avisado quando os vídeos chegarem?</b><p id="tQrSub">Aponte a câmera do celular para o QR e deixe seu WhatsApp.</p></div>
       </div>
       <div class="barra"><i id="tBarra"></i></div>
       <div class="prox"><span id="tPos"></span><span id="tProx"></span></div>
@@ -385,6 +389,44 @@ $("#cPreco").addEventListener("change", () => { const e = baile(); const c = Mat
 let ATUAL = -1, pausado = false, timer = null, inicioTrecho = 0, restante = 0, wake = null, ativo = $("#vA"), reserva = $("#vB");
 const tocaveis = () => FILA.filter((x) => x.ok !== false);
 
+let DISPONIVEIS = new Set(), ID_EVENTO = {};
+const filtroEvento = () => { const e = baile(); return e ? `slug=eq.${encodeURIComponent(e.slug)}` : ""; };
+async function lerDisponiveis() {
+  const f = filtroEvento(); if (!f) return;
+  try {
+    const h = { headers: { apikey: "sb_publishable_ilWt8PPFiHuOBCmiCcsZ3A_CTmqyjmR" } };
+    if (!ID_EVENTO[f]) {
+      const ev = await (await fetch(`https://jlogxdjttufiiikiezfe.supabase.co/rest/v1/eventos?${f}&select=id`, h)).json();
+      if (!ev[0]) return; ID_EVENTO[f] = ev[0].id;
+    }
+    const vs = await (await fetch(`https://jlogxdjttufiiikiezfe.supabase.co/rest/v1/videos?evento_id=eq.${ID_EVENTO[f]}&ativo=eq.true&select=codigo`, h)).json();
+    if (!Array.isArray(vs)) return;
+    const novo = new Set(vs.map((v) => String(v.codigo).replace(/^0+(?=\d)/, "").padStart(2, "0")));
+    const mudou = novo.size !== DISPONIVEIS.size || [...novo].some((c) => !DISPONIVEIS.has(c));
+    DISPONIVEIS = novo;
+    if (mudou && ITEM_ATUAL) situacao(ITEM_ATUAL);
+  } catch {}
+}
+setInterval(lerDisponiveis, 30000);
+const baseGaleria = () => { const e = baile() || {}; const g = (typeof GALERIAS === "object" && !Array.isArray(GALERIAS) && GALERIAS[e.slug]) || {};
+  return String(e.url_galeria || `https://entregas.arestagencia.com.br/bailes/${g.pasta || ""}`).replace(/\/+$/, ""); };
+let ITEM_ATUAL = null, QR_ATUAL = "";
+// Já disponível: QR abre o vídeo do casal na galeria. Em edição: QR leva para a página do "Me avise".
+function situacao(item) {
+  ITEM_ATUAL = item;
+  const nn = dois(item.num), disp = DISPONIVEIS.has(nn);
+  $("#tNum").innerHTML = `Nº ${nn}<span class="tag ${disp ? "ok" : "ed"}">${disp ? "Já disponível" : "Em edição"}</span>`;
+  $("#tQrTit").textContent = disp ? `O vídeo nº ${nn} já está à venda!` : `O vídeo nº ${nn} está em edição`;
+  $("#tQrSub").textContent = disp ? "Aponte a câmera do celular para o QR e garanta o seu agora." : "Aponte a câmera para o QR e deixe seu WhatsApp: avisamos quando chegar.";
+  document.querySelector(".qr").classList.toggle("disp", disp);
+  const link = disp ? `${baseGaleria()}/?v=${nn}` : `${baseGaleria()}/avise/?n=${nn}`;
+  if (link !== QR_ATUAL) {
+    QR_ATUAL = link;
+    try { const q = qrcode(0, "M"); q.addData(link); q.make(); $("#tQR").innerHTML = q.createSvgTag({ cellSize: 4, margin: 0, scalable: true }); }
+    catch { $("#tQR").innerHTML = ""; }
+  }
+}
+
 function montarPainel() {
   const e = baile(), g = GALERIAS[e.slug] || {};
   const marcas = `<img class="ag" src="/bailes/logo-aresta-completa.png" alt="ArestAgência">${g.logo ? `<span class="x">×</span><img class="parc" src="${esc(g.logo)}" alt="">` : ""}`;
@@ -398,9 +440,10 @@ function montarPainel() {
   const ch = Math.round(Number(String($("#cCheio").value).replace(/\./g, "").replace(",", ".")) * 100) || 0;
   $("#tDe").innerHTML = ch > c && c > 0 ? `de <s>${reais(ch)}</s> ` : "";
   $("#tOferta").textContent = $("#cOferta").value;
-  const link = `${String(e.url_galeria || `https://entregas.arestagencia.com.br/bailes/${g.pasta || ""}`).replace(/\/+$/, "")}/?avise=1`;
-  try { const q = qrcode(0, "M"); q.addData(link); q.make(); $("#tQR").innerHTML = q.createSvgTag({ cellSize: 4, margin: 0, scalable: true }); }
-  catch { $("#tQR").innerHTML = ""; }
+  QR_ATUAL = "";
+  if (ITEM_ATUAL) situacao(ITEM_ATUAL);
+  else { try { const q = qrcode(0, "M"); q.addData(`${baseGaleria()}/avise/`); q.make(); $("#tQR").innerHTML = q.createSvgTag({ cellSize: 4, margin: 0, scalable: true }); } catch {} }
+  lerDisponiveis();
 }
 
 async function iniciar() {
@@ -432,7 +475,7 @@ function tocar(item, depois) {
     const antigo = ativo; setTimeout(() => { if (antigo !== ativo) { antigo.pause(); antigo.removeAttribute("src"); antigo.load(); } }, 600);
     ativo = v; reserva = antigo;
     $("#telao").classList.toggle("vid-h", !!item.h);
-    $("#tNum").textContent = `Nº ${dois(item.num)}`;
+    situacao(item);
     const L = tocaveis();
     $("#tPos").textContent = ""; $("#tProx").textContent = "";
     inicioTrecho = performance.now(); restante = Math.min(seg, v.duration || seg) * 1000;

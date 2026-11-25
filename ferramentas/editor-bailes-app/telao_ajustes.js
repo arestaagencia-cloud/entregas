@@ -32,7 +32,11 @@ function sincronizarPrevia() {
   if (est === ultimoEstado) return;
   try { if (f.contentWindow && f.contentWindow.receberPrevia && f.contentWindow.receberPrevia(JSON.parse(est))) ultimoEstado = est; } catch {}
 }
-if (!PREVIA) setInterval(() => { if (!$("#config").hidden) sincronizarPrevia(); }, 400);
+// com o telão rodando, a pré-visualização é descarregada (não toca um segundo vídeo 4K escondido)
+if (!PREVIA) setInterval(() => {
+  if (!$("#config").hidden) return sincronizarPrevia();
+  const f = $("#prev"); if (f && f.getAttribute("src")) { f.removeAttribute("src"); ultimoEstado = ""; }
+}, 400);
 $("#cEv").addEventListener("change", () => { const f = $("#prev"); if (f) { f.removeAttribute("src"); ultimoEstado = ""; } });
 // dentro do iframe: recebe o estado da configuração e redesenha (devolve true quando aplicou)
 window.receberPrevia = (d) => {

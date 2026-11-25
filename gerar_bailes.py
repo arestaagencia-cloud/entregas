@@ -47,5 +47,11 @@ for g in galerias:
                     f'<img class="parceiro" src="{html.escape(p["logo"])}" alt="{html.escape(p.get("nome", ""))}">')
     destino = DOCS / g["pasta"] / "index.html"
     destino.parent.mkdir(parents=True, exist_ok=True)
-    destino.write_text(modelo.replace("{{EVENTO}}", g["evento"]).replace("{{PARCEIRO}}", parceiro))
+    destino.write_text(modelo.replace("{{EVENTO}}", g["evento"]).replace("{{PARCEIRO}}", parceiro).replace("{{MODO}}", "galeria"))
     print(destino, "→ evento", g["evento"])
+    # página só do "Me avise" (QR do telão para vídeos ainda em edição)
+    avise = DOCS / g["pasta"] / "avise" / "index.html"
+    avise.parent.mkdir(parents=True, exist_ok=True)
+    parc_avise = parceiro.replace('src="', 'src="../') if p.get("logo") and "://" not in p["logo"] and not p["logo"].startswith("/") else parceiro
+    avise.write_text(modelo.replace("{{EVENTO}}", g["evento"]).replace("{{PARCEIRO}}", parc_avise).replace("{{MODO}}", "avise"))
+    print(avise)

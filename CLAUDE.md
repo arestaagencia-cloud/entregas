@@ -341,6 +341,15 @@ Duas páginas, geradas por `python3 gerar_bailes.py`:
   galeria `/bailes/planet-teste/`, Drive "Baile Teste - Aula de Samba Planet - 25-11-26" (`1YMqavplEyWNO99xs8nIW6KzkTUtaNZ3_`,
   link público; Capas/Prévias/Finais dentro). Logo colorido (só para teste). Telão mostra "de R$ X" riscado quando há
   preço cheio (`preco_cheio_centavos` no site; `preco_cheio` nos ajustes do baile no app).
+- **Situação por vídeo no telão + "Me avise" separado (25/11/2026):** cada baile tem `/bailes/<pasta>/avise/` (mesmo
+  `galeria_template.html` com `{{MODO}}=avise`: só o formulário; `?n=07` muda o título e grava `origem: telao-07`).
+  A galeria não mostra mais o formulário: no "Em breve" há o botão "Quero ser avisado" (→ `/avise/`); `?avise=1` antigo
+  redireciona. `?v=07` abre direto o vídeo do casal (se ainda não publicado, avisa e abre sozinho; a galeria confere a
+  cada 20 s). Telão (site e app): lê a cada 30 s os `videos` ativos do baile no Supabase (chave pública; app acha o
+  evento pelo `url_galeria`, site pelo slug) e mostra junto ao número "Já disponível" (verde; QR → `<galeria>/?v=NN`)
+  ou "Em edição" (dourado; QR → `<galeria>/avise/?n=NN`); sem internet = "Em edição". Título e frase do QR acompanham.
+  No app, a pré-visualização é descarregada enquanto o telão roda. Galeria: nome longo quebra em linhas (`h1.longo`)
+  e logo largo do parceiro tem largura máxima no topo.
 - **Novo baile** = criar o evento no Supabase (tabela `eventos`, com `url_galeria`, `aberto` e o preço do código),
   acrescentar em `bailes.json`, rodar `gerar_bailes.py` e cadastrar os vídeos; ele aparece sozinho na página pública
   (se `aberto`), no painel interno e na lista de bailes da venda de códigos.
