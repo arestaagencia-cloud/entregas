@@ -88,6 +88,8 @@
   .job .st.concluido{color:var(--ok)}.job .st.erro{color:var(--erro)}.job .st.cancelado{color:var(--muted)}
   .job .msg{font-size:12px;color:var(--erro);margin-top:4px;word-break:break-word}
   .resumo{font-size:12px;color:var(--muted)}
+  .gal{font-size:12px;margin-top:5px;color:var(--gold)}
+  .gal.publicado{color:var(--ok)} .gal.sem_internet,.gal.demorando{color:var(--muted)}
   .pe{display:flex;gap:8px;padding:12px 16px;justify-content:space-between}
 
   /* aparência */
@@ -416,6 +418,7 @@ function desenharFila(){
         <div class="etapa"><span class="st ${j.estado}">${esc(etapa)}</span><span class="muted num">${info}</span></div>
         <div class="barra"><i style="width:${pct}%"></i></div>
         ${j.erro?`<div class="msg">${esc(j.erro)}</div>`:""}
+        ${j.galeria?`<div class="gal ${j.galeria}">${{subindo:"Subindo para o Drive e publicando na galeria…",publicado:"✓ À venda na galeria",sem_internet:"Sem internet: publica quando a conexão voltar",demorando:"O Drive está demorando: o site confere de novo sozinho"}[j.galeria]||""}</div>`:""}
       </div>
       <div>${ativo||j.estado==="aguardando"?`<button class="leve" data-canc="${j.id}" title="Cancelar" aria-label="Cancelar">✕</button>`:
         j.estado==="concluido"?`<button class="leve" data-abrirjob="${esc(j.baile)}" title="Abrir a pasta dos finais">Abrir</button>`:""}</div>

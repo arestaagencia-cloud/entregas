@@ -384,8 +384,8 @@ ULTIMO_ACESSO = [time.time()]
 
 
 def job_publico(j):
-    return {k: j[k] for k in ("id", "baile", "arquivo", "num", "saidas", "estado", "etapa", "pct", "eta",
-                              "velocidade", "erro", "criado", "inicio", "fim", "duracao")}
+    return {k: j.get(k) for k in ("id", "baile", "arquivo", "num", "saidas", "estado", "etapa", "pct", "eta",
+                                  "velocidade", "erro", "criado", "inicio", "fim", "duracao", "galeria")}
 
 
 def adicionar(baile, arquivos, saidas, refazer):
@@ -535,6 +535,39 @@ def processar(j):
                 os.replace(alvo + ".copiando", alvo)
     j["estado"] = "concluido"
     j["etapa"] = "Concluído" if fazer else "Já estava pronto"
+    if destino and "final" in j["saidas"] and "previa" in j["saidas"]:
+        j["galeria"] = "subindo"
+        threading.Thread(target=acompanhar_galeria, args=(j, aj.get("url_galeria") or ""), daemon=True).start()
+
+
+SINCRONIZAR = "https://jlogxdjttufiiikiezfe.supabase.co/functions/v1/sincronizar-drive"
+
+
+def acompanhar_galeria(j, url_galeria):
+    """Avisa o site que chegou vídeo no Drive e acompanha até ele aparecer na galeria.
+    O Drive do Mac sobe o arquivo em segundo plano, então o aviso se repete algumas vezes (o robô do site
+    também confere sozinho a cada 10 min, como reserva)."""
+    codigo = "%02d" % j["num"]
+    alvo = url_galeria.rstrip("/").lower()
+    for espera in (20, 40, 60, 90, 120, 180, 300, 300, 600):
+        time.sleep(espera)
+        try:
+            r = subprocess.run(["curl", "-fsS", "-m", "40", "-X", "POST", "-H", "Content-Type: application/json",
+                                "-d", "{}", SINCRONIZAR], capture_output=True, text=True, timeout=60)
+            d = json.loads(r.stdout or "{}")
+        except Exception:
+            j["galeria"] = "sem_internet"
+            continue
+        if j.get("galeria") == "sem_internet":
+            j["galeria"] = "subindo"
+        for ev in d.get("resumo", []):
+            if alvo and (ev.get("url_galeria") or "").rstrip("/").lower() != alvo:
+                continue
+            if codigo in (ev.get("publicados") or []):
+                j["galeria"] = "publicado"
+                return
+    if j.get("galeria") != "publicado":
+        j["galeria"] = "demorando"
 
 
 def trabalhador():

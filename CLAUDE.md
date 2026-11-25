@@ -323,8 +323,9 @@ Duas páginas, geradas por `python3 gerar_bailes.py`:
   (mesma da edição). Fonte "brutos" (assim que chegam) ou "prontos" (toca o F. NN, sem marca d'água por cima).
   Link da galeria, preço do código e fonte ficam nos ajustes do baile; logo do parceiro = `Recursos do editor/parceiro.png`.
   Galerias conhecidas embutidas + lista do Supabase quando há internet (guardada no navegador). O telão online continua como reserva.
-- **Publicação automática na galeria (25/11/2026):** função `sincronizar-drive` (verify_jwt off, pg_cron
-  `sincronizar-drive-bailes` a cada minuto, via pg_net). Para cada evento `aberto` com `drive_previas`/`drive_finais`
+- **Publicação automática na galeria (25/11/2026):** função `sincronizar-drive` (verify_jwt off). Quem chama: o Editor de Bailes,
+  logo depois de copiar P/F para o Drive (repete em 20 s, 1, 2, 3.5, 5.5, 8.5, 13.5, 18.5 e 28.5 min até o número aparecer em
+  `publicados`, e mostra "À venda na galeria" na fila); reserva: pg_cron `sincronizar-drive-bailes` a cada 10 min (pg_net). Para cada evento `aberto` com `drive_previas`/`drive_finais`
   (e opcional `drive_capas`) lê as pastas pela listagem pública (embeddedfolderview; pastas como "qualquer pessoa com o
   link") e, para cada número com prévia E final (`P. 07.mp4` + `F. 07.mp4`), cria/atualiza o vídeo `07`
   (`videos` + `videos_finais`). Nunca apaga nem desativa. Cada baile no máximo a cada 30 s (`drive_sincronizado_em`).
