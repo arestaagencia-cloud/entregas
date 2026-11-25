@@ -9,9 +9,10 @@ export PATH="/opt/homebrew/bin:/usr/local/bin:/usr/bin:/bin:$PATH"
 aviso() { osascript -e "display dialog \"$1\" buttons {\"OK\"} default button 1 with title \"Editor de Bailes\" with icon caution" >/dev/null 2>&1; }
 
 abrir() {
-  # janela própria (sem barra de endereço) quando o Chrome está instalado; senão, o navegador padrão
+  # Janela própria num perfil separado do Chrome (sem pedir login e sem mexer no seu Chrome); sem Chrome, navegador padrão
   if [ -d "/Applications/Google Chrome.app" ]; then
-    open -na "Google Chrome" --args --app="$URL" --window-size=1440,920
+    open -na "Google Chrome" --args --user-data-dir="$HOME/Library/Application Support/Editor de Bailes/Janela" \
+      --no-first-run --no-default-browser-check --disable-sync --app="$URL" --window-size=1440,920
   else
     open "$URL"
   fi

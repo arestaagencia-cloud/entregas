@@ -780,7 +780,12 @@ class Handler(BaseHTTPRequestHandler):
 SERVIDOR = {}
 
 
-def desligar():
+def registrar(msg):
+    print("%s [pid %d] %s" % (time.strftime("%Y-%m-%d %H:%M:%S"), os.getpid(), msg), flush=True)
+
+
+def desligar(motivo="botão Fechar editor"):
+    registrar("encerrando: " + motivo)
     time.sleep(0.5)
     SERVIDOR["s"].shutdown()
 
@@ -790,7 +795,7 @@ def vigia():
     while True:
         time.sleep(30)
         if not fila_ocupada() and time.time() - ULTIMO_ACESSO[0] > 20 * 60:
-            desligar()
+            desligar("20 min sem uso")
             return
 
 
@@ -836,9 +841,17 @@ def main():
     SERVIDOR["s"] = s
     threading.Thread(target=trabalhador, daemon=True).start()
     threading.Thread(target=vigia, daemon=True).start()
-    signal.signal(signal.SIGTERM, lambda *a: threading.Thread(target=desligar, daemon=True).start())
-    print("Editor de Bailes em http://127.0.0.1:%d/ (ffmpeg: %s, videotoolbox: %s)" % (porta, FFMPEG, VT), flush=True)
+    for sig in (signal.SIGTERM, signal.SIGINT):
+        signal.signal(sig, lambda n, f: threading.Thread(target=desligar, args=("recebi o sinal %d do sistema" % n,),
+                                                          daemon=True).start())
+    registrar("Editor de Bailes em http://127.0.0.1:%d/ (python %s, ffmpeg: %s, videotoolbox: %s, pasta: %s)" % (
+        porta, sys.version.split()[0], FFMPEG, VT, config()["pasta_bailes"]))
+    try:
+        os.listdir(config()["pasta_bailes"])
+    except Exception as e:
+        registrar("SEM ACESSO à pasta dos bailes: %s" % e)
     s.serve_forever()
+    registrar("encerrado")
     if ATUAL["proc"]:
         try:
             ATUAL["proc"].terminate()
