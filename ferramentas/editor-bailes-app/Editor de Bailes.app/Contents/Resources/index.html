@@ -250,23 +250,33 @@
 <input type="file" id="fileParc" accept="image/png" hidden>
 <input type="file" id="filePrevia" accept="image/png" hidden>
 <div class="toast" id="toast"></div>
+<div id="desligado" hidden style="position:fixed;top:0;left:0;right:0;z-index:60;background:#5a1d1b;color:#fff;text-align:center;padding:10px 16px;font-weight:600">O editor parou de responder. Feche esta janela e abra o app Editor de Bailes de novo.</div>
 <div class="fechado" id="fechado"><div><h2 style="font-size:20px;margin-bottom:8px">Editor fechado</h2><p class="muted">Pode fechar esta janela. Para abrir de novo, use o app Editor de Bailes.</p></div></div>
 
 <script>
 const $ = s => document.querySelector(s);
-const E = {baile:"", dados:null, sel:new Set(), fila:[], aba:"videos", tSalvar:null, tEx:null, exVer:0};
+const E = {falhas:0, baile:"", dados:null, sel:new Set(), fila:[], aba:"videos", tSalvar:null, tEx:null, exVer:0};
 
 async function api(caminho, corpo){
   const op = corpo === undefined ? {} : {method:"POST", headers:{"X-Editor":"1","Content-Type":"application/json"}, body:JSON.stringify(corpo)};
-  const r = await fetch(caminho, op);
+  let r;
+  try{ r = await fetch(caminho, op) }
+  catch(e){ throw new Error("O editor não está respondendo. Feche esta janela e abra o app Editor de Bailes de novo.") }
   const d = await r.json().catch(()=>({}));
   if(!r.ok) throw new Error(d.erro || "Erro");
   return d;
 }
+function lerArquivo(blob){ // lê o PNG aqui na janela antes de enviar
+  return new Promise((ok,falha)=>{
+    const fr=new FileReader();
+    fr.onload=()=>ok(String(fr.result).split(",")[1]||"");
+    fr.onerror=()=>falha(new Error("Não consegui ler esse arquivo. Copie o PNG para a Mesa e tente de novo."));
+    fr.readAsDataURL(blob);
+  });
+}
 async function enviarPng(tipo, blob){
-  const r = await fetch(`/api/upload?baile=${enc(E.baile)}&tipo=${tipo}`, {method:"POST", headers:{"X-Editor":"1"}, body:blob});
-  const d = await r.json().catch(()=>({}));
-  if(!r.ok) throw new Error(d.erro || "Erro ao enviar");
+  const dados = await lerArquivo(blob);
+  await api("/api/upload-json", {baile:E.baile, tipo, dados});
 }
 const enc = encodeURIComponent;
 function toast(t){const e=$("#toast");e.textContent=t;e.classList.add("on");clearTimeout(e._t);e._t=setTimeout(()=>e.classList.remove("on"),2600)}
@@ -369,7 +379,8 @@ document.addEventListener("click", e=>{
 // ---------- fila ----------
 const NOMES = {aguardando:"Na fila", preparando:"Preparando", editando:"Editando", copiando:"Copiando", concluido:"Concluído", erro:"Erro", cancelado:"Cancelado"};
 async function lerFila(){
-  try{ const d = await api("/api/fila"); E.fila = d.fila; desenharFila() }catch(e){}
+  try{ const d = await api("/api/fila"); E.fila = d.fila; desenharFila(); E.falhas=0; $("#desligado").hidden=true }
+  catch(e){ if(++E.falhas>=3) $("#desligado").hidden=false }
 }
 function desenharFila(){
   const F=$("#fila"), f=E.fila;

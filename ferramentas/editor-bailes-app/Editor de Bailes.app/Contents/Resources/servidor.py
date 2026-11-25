@@ -4,7 +4,9 @@
 #   F. NN.mp4 (1080x1920, logos embaixo) e P. NN.mp4 (720x1280, logos + PNG "prévia" com fade).
 # Compatível com o Python 3.9 que vem com as ferramentas de linha de comando da Apple.
 
+import base64
 import json
+import traceback
 import os
 import re
 import shutil
@@ -637,12 +639,15 @@ class Handler(BaseHTTPRequestHandler):
             corpo = json.dumps(corpo, ensure_ascii=False).encode("utf-8")
         elif isinstance(corpo, str):
             corpo = corpo.encode("utf-8")
-        self.send_response(codigo)
-        self.send_header("Content-Type", tipo)
-        self.send_header("Content-Length", str(len(corpo)))
-        self.send_header("Cache-Control", "max-age=86400" if cache else "no-store")
-        self.end_headers()
-        self.wfile.write(corpo)
+        try:
+            self.send_response(codigo)
+            self.send_header("Content-Type", tipo)
+            self.send_header("Content-Length", str(len(corpo)))
+            self.send_header("Cache-Control", "max-age=86400" if cache else "no-store")
+            self.end_headers()
+            self.wfile.write(corpo)
+        except (BrokenPipeError, ConnectionResetError):
+            pass  # a janela desistiu do pedido (ex.: trocou o exemplo antes de terminar)
 
     def erro(self, e, codigo=400):
         self.responder(codigo, {"erro": str(e)})
@@ -686,6 +691,7 @@ class Handler(BaseHTTPRequestHandler):
                                                    "previa" if q.get("tipo") == "previa" else "final"), "image/jpeg")
             return self.erro("não encontrado", 404)
         except Exception as e:
+            traceback.print_exc()
             return self.erro(e)
 
     def do_POST(self):
@@ -698,6 +704,11 @@ class Handler(BaseHTTPRequestHandler):
         n = int(self.headers.get("Content-Length") or 0)
         corpo = self.rfile.read(n) if n else b""
         try:
+            if u.path == "/api/upload-json":
+                d = json.loads(corpo.decode("utf-8") or "{}")
+                q = {"baile": d.get("baile", ""), "tipo": d.get("tipo", "")}
+                corpo = base64.b64decode(d.get("dados", ""))
+                u = u._replace(path="/api/upload")
             if u.path == "/api/upload":
                 tipo = q.get("tipo")
                 arq = {"logos": "logos-baixo.png", "previa": "previa.png", "parceiro": "parceiro.png"}.get(tipo)
@@ -762,6 +773,7 @@ class Handler(BaseHTTPRequestHandler):
                 return None
             return self.erro("não encontrado", 404)
         except Exception as e:
+            traceback.print_exc()
             return self.erro(e)
 
 
