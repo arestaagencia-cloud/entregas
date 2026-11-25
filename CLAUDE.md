@@ -334,6 +334,10 @@ Duas páginas, geradas por `python3 gerar_bailes.py`:
   para computador → Drive sobe → função publica. I Dá-lhe Samba: Prévias `1rOm3nSo8OyqYL3vuYv2AOjiUMZFFkt4k`,
   Finais `1c--33ya_Ny2UiJnnzUUjQuS5juR6SItf`, Capas `1NOfTnRGjWKAstHP01O-JXZ9QaLyN23bf`.
   Novo baile: preencher as três colunas no evento.
+- **Baile de teste "planet-teste" (25/11/2026):** "Baile Teste - Aula de Samba Planet", vídeo R$ 2 (de R$ 5), código R$ 2,
+  galeria `/bailes/planet-teste/`, Drive "Baile Teste - Aula de Samba Planet - 25-11-26" (`1YMqavplEyWNO99xs8nIW6KzkTUtaNZ3_`,
+  link público; Capas/Prévias/Finais dentro). Logo colorido (só para teste). Telão mostra "de R$ X" riscado quando há
+  preço cheio (`preco_cheio_centavos` no site; `preco_cheio` nos ajustes do baile no app).
 - **Novo baile** = criar o evento no Supabase (tabela `eventos`, com `url_galeria`, `aberto` e o preço do código),
   acrescentar em `bailes.json`, rodar `gerar_bailes.py` e cadastrar os vídeos; ele aparece sozinho na página pública
   (se `aberto`), no painel interno e na lista de bailes da venda de códigos.

@@ -42,6 +42,7 @@ AJUSTES_PADRAO = {
     "parceiro_tamanho": 100,
     "url_galeria": "",        # telão: link da galeria do baile (QR do "Me avise")
     "preco_codigo": 0,        # telão: preço do código em centavos
+    "preco_cheio": 0,         # telão: preço "de" riscado (centavos), opcional
     "telao_fonte": "brutos",  # telão: brutos | prontos
 }
 
@@ -194,6 +195,8 @@ def salvar_ajustes(baile, novos):
         a["url_galeria"] = str(novos["url_galeria"] or "").strip()[:300]
     if "preco_codigo" in novos:
         a["preco_codigo"] = max(0, min(100000, int(novos["preco_codigo"] or 0)))
+    if "preco_cheio" in novos:
+        a["preco_cheio"] = max(0, min(100000, int(novos["preco_cheio"] or 0)))
     if novos.get("telao_fonte") in ("brutos", "prontos"):
         a["telao_fonte"] = novos["telao_fonte"]
     gravar_json(os.path.join(p["rec"], "ajustes.json"), a)

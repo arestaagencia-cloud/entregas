@@ -22,6 +22,7 @@
   button,input,select{font:inherit;color:inherit}
   button{cursor:pointer;border:0;background:none}
   [hidden]{display:none!important}
+  #tDe{font-weight:400;opacity:.7} #tDe s{text-decoration-thickness:.08em}
   :focus-visible{outline:2px solid var(--gold);outline-offset:2px;border-radius:6px}
 
   /* ---------- configuração ---------- */
@@ -86,7 +87,7 @@
   .p-marca{display:flex;align-items:center;gap:1.2cqw}
   .p-marca img.ag{height:6.4cqw;width:auto;object-fit:contain}
   .p-marca .x{opacity:.5;font-weight:400;font-size:1.3cqw}
-  .p-marca img.parc{height:6.4cqw;width:auto;object-fit:contain}
+  .p-marca img.parc{height:6.4cqw;width:auto;max-width:20cqw;object-fit:contain;object-position:left center;min-width:0}
   .p-baile{margin-top:.8cqw;font-size:1cqw;letter-spacing:.3em;text-transform:uppercase;color:var(--ink-2)}
   .p-chamada .k{font-size:.95cqw;letter-spacing:.3em;text-transform:uppercase;color:var(--muted)}
   .p-chamada b{display:block;font-weight:700;font-size:4.6cqw;line-height:.95;letter-spacing:-.01em;text-transform:uppercase;margin-top:.6cqw}
@@ -112,7 +113,7 @@
     .p-marca{grid-area:marca;gap:2.4cqw}
     .p-marca img.ag{height:9cqw}
     .p-marca .x{font-size:2.8cqw}
-    .p-marca img.parc{height:10cqw}
+    .p-marca img.parc{height:10cqw;max-width:42cqw}
     .p-baile,.prox,.p-chamada .k{display:none}
     .p-chamada{grid-area:chamada}
     .p-chamada b{font-size:7.2cqw;margin-top:0}
@@ -135,7 +136,7 @@
   td.st{color:var(--muted);font-size:12px} td.st.ok{color:#57c47b} tr.fora td{opacity:.45}
   .marca-agua img.ag{height:8cqh;width:auto}
   .marca-agua .x{font-weight:400;opacity:.6;letter-spacing:0;font-size:2.4cqh;color:#fff}
-  .marca-agua img.parc{height:8cqh;width:auto}
+  .marca-agua img.parc{height:8cqh;width:auto;max-width:34cqw;object-fit:contain}
   .telao.sem-oferta .barra-v{display:block}
   .barra-v{display:none;position:absolute;left:0;right:0;bottom:0;height:.5cqh;z-index:2;background:rgba(255,255,255,.12)}
   .barra-v i{display:block;height:100%;width:0;background:var(--gold)}
@@ -171,6 +172,7 @@
           <label class="campo"><span>Preço do código (R$)</span><input id="cPreco" inputmode="decimal" placeholder="35"></label>
           <label class="campo"><span>Segundos por vídeo</span><input id="cSeg" inputmode="numeric" value="20"></label>
         </div>
+        <label class="campo"><span>Preço "de" riscado na oferta (R$, opcional)</span><input id="cCheio" inputmode="decimal" placeholder="ex.: 5"></label>
         <label class="campo"><span>Frase da oferta</span><input id="cOferta" maxlength="80" value="Fale com a nossa equipe e garanta o seu código"></label>
         <div class="campo"><span>Formato do telão</span><div class="formato" id="cFormato"><button type="button" data-f="horizontal" class="on">TV deitada</button><button type="button" data-f="vertical">TV em pé</button></div>
           <div class="formato lado" id="cLado"><button type="button" data-l="esq">TV girada para a esquerda ↺</button><button type="button" data-l="dir">TV girada para a direita ↻</button></div>
@@ -219,7 +221,7 @@
     <div class="p-base">
       <div class="oferta">
         <div class="k">Aqui no baile</div>
-        <b>Seu vídeo por <span id="tPreco">R$ 35</span></b>
+        <b>Seu vídeo <span id="tDe"></span>por <span id="tPreco">R$ 35</span></b>
         <p id="tOferta"></p>
       </div>
       <div class="qr">
@@ -237,7 +239,7 @@
 <script>
 // Telão do baile dentro do Editor de Bailes: lê a pasta do baile pelo editor (127.0.0.1), sem internet.
 // A numeração é a mesma da edição (numeracao.csv): o Nº 07 do telão é o F. 07 / P. 07.
-const GALERIAS = [{"nome": "I Dá-lhe Samba", "chave": "idalhesamba", "url": "https://entregas.arestagencia.com.br/bailes/idalhesamba", "preco": 3500}];
+const GALERIAS = [{"nome": "I Dá-lhe Samba", "chave": "idalhesamba", "url": "https://entregas.arestagencia.com.br/bailes/idalhesamba", "preco": 3500}, {"nome": "Baile Teste - Aula de Samba Planet", "chave": "auladesambaplanet", "url": "https://entregas.arestagencia.com.br/bailes/planet-teste", "preco": 200, "cheio": 500}];
 
 const $ = (s) => document.querySelector(s);
 const esc = (s) => String(s ?? "").replace(/[&<>"']/g, (c) => ({ "&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;" }[c]));
@@ -257,9 +259,9 @@ async function api(caminho, corpo) {
 // ---------- bailes (pastas do editor) ----------
 let BAILES = [], DADOS = null, TEM_PARCEIRO = false;
 try { for (const g of JSON.parse(localStorage.getItem("telao-galerias") || "[]")) if (!GALERIAS.some((x) => x.url === g.url)) GALERIAS.push(g); } catch {}
-fetch("https://jlogxdjttufiiikiezfe.supabase.co/rest/v1/eventos?select=nome,url_galeria,preco_codigo_centavos&url_galeria=not.is.null",
+fetch("https://jlogxdjttufiiikiezfe.supabase.co/rest/v1/eventos?select=nome,url_galeria,preco_codigo_centavos,preco_cheio_centavos&url_galeria=not.is.null",
   { headers: { apikey: "sb_publishable_ilWt8PPFiHuOBCmiCcsZ3A_CTmqyjmR" } }).then((r) => r.ok ? r.json() : []).then((ev) => {
-  const lista = ev.map((e) => ({ nome: e.nome, chave: e.nome.toLowerCase().normalize("NFD").replace(/[̀-ͯ]/g, "").replace(/[^a-z0-9]/g, ""), url: e.url_galeria, preco: e.preco_codigo_centavos || 0 }));
+  const lista = ev.map((e) => ({ nome: e.nome, chave: e.nome.toLowerCase().normalize("NFD").replace(/[̀-ͯ]/g, "").replace(/[^a-z0-9]/g, ""), url: e.url_galeria, preco: e.preco_codigo_centavos || 0, cheio: e.preco_cheio_centavos || 0 }));
   guardar("telao-galerias", lista);
   for (const g of lista) if (!GALERIAS.some((x) => x.url === g.url)) GALERIAS.push(g);
   $("#galerias").innerHTML = GALERIAS.map((g) => `<option value="${esc(g.url)}">${esc(g.nome)}</option>`).join("");
@@ -280,14 +282,15 @@ async function aoTrocarBaile() {
   await lerBaile();
   const a = DADOS.ajustes;
   // link e preço guardados no baile; na primeira vez, tenta achar a galeria pelo nome do baile
-  let link = a.url_galeria || "", preco = a.preco_codigo || 0;
+  let link = a.url_galeria || "", preco = a.preco_codigo || 0, cheio = a.preco_cheio || 0;
   if (!link) {
     const n = nomeExibido().toLowerCase().normalize("NFD").replace(/[̀-ͯ]/g, "").replace(/[^a-z0-9]/g, "");
     const g = GALERIAS.find((g) => n.includes(g.chave) || g.chave.includes(n));
-    if (g) { link = g.url; if (!preco) preco = g.preco; salvarBaile({ url_galeria: link, preco_codigo: preco }); }
+    if (g) { link = g.url; if (!preco) preco = g.preco; if (!cheio) cheio = g.cheio || 0; salvarBaile({ url_galeria: link, preco_codigo: preco, preco_cheio: cheio }); }
   }
   $("#cLink").value = link;
   $("#cPreco").value = preco ? (preco / 100).toLocaleString("pt-BR") : "";
+  $("#cCheio").value = cheio ? (cheio / 100).toLocaleString("pt-BR") : "";
   FONTE = a.telao_fonte || "brutos"; marcarFonte();
   const of = ler("telao-oferta", null); if (of) $("#cOferta").value = of;
   const sg = ler("telao-seg", null); if (sg) $("#cSeg").value = sg;
@@ -311,6 +314,7 @@ async function lerBaile() { DADOS = await api(`/api/baile?nome=${enc(baileNome()
 function salvarBaile(aj) { api("/api/ajustes", { baile: baileNome(), ajustes: aj }).catch((e) => aviso(e.message)); }
 $("#cEv").addEventListener("change", () => { FILA = []; ATUAL = -1; aoTrocarBaile(); });
 $("#cLink").addEventListener("change", () => salvarBaile({ url_galeria: $("#cLink").value.trim() }));
+$("#cCheio").addEventListener("change", () => { const c = Math.round(Number(String($("#cCheio").value).replace(/\./g, "").replace(",", ".")) * 100); salvarBaile({ preco_cheio: c > 0 ? c : 0 }); });
 $("#cPreco").addEventListener("change", () => { const c = Math.round(Number(String($("#cPreco").value).replace(/\./g, "").replace(",", ".")) * 100); salvarBaile({ preco_codigo: c > 0 ? c : 0 }); });
 
 // ---------- fila: vem da pasta do baile ----------
@@ -378,6 +382,7 @@ marcarFormato(); marcarLado();
 const segundos = () => Math.min(120, Math.max(5, parseInt($("#cSeg").value, 10) || 20));
 $("#cSeg").addEventListener("change", () => { guardar("telao-seg", segundos()); desenharFila(); });
 $("#cOferta").addEventListener("change", () => guardar("telao-oferta", $("#cOferta").value));
+$("#cCheio").addEventListener("change", () => { const e = baile(); const c = Math.round(Number(String($("#cCheio").value).replace(/\./g, "").replace(",", ".")) * 100) || 0; if (e) guardar(`telao-cheio-${e.slug}`, c); });
 $("#cPreco").addEventListener("change", () => { const e = baile(); const c = Math.round(Number(String($("#cPreco").value).replace(",", ".")) * 100); if (e && c > 0) guardar(`telao-preco-${e.slug}`, c); });
 
 // ---------- reprodução ----------
@@ -392,6 +397,8 @@ function montarPainel() {
   $("#tBaile").textContent = nomeExibido();
   const c = Math.round(Number(String($("#cPreco").value).replace(/\./g, "").replace(",", ".")) * 100);
   $("#tPreco").textContent = c > 0 ? reais(c) : "";
+  const ch = Math.round(Number(String($("#cCheio").value).replace(/\./g, "").replace(",", ".")) * 100) || 0;
+  $("#tDe").innerHTML = ch > c && c > 0 ? `de <s>${reais(ch)}</s> ` : "";
   $("#tOferta").textContent = $("#cOferta").value;
   const base = ($("#cLink").value.trim() || "https://entregas.arestagencia.com.br/bailes").replace(/\/+$/, "");
   try { const q = qrcode(0, "M"); q.addData(`${base}/?avise=1`); q.make(); $("#tQR").innerHTML = q.createSvgTag({ cellSize: 4, margin: 0, scalable: true }); }

@@ -1,9 +1,20 @@
 {
   "galerias": [
     {
+      "pasta": "planet-teste",
+      "evento": "planet-teste",
+      "parceiro": {
+        "nome": "Planet",
+        "logo": "logo-cliente.png"
+      }
+    },
+    {
       "pasta": "idalhesamba",
       "evento": "da-lhe-samba",
-      "parceiro": {"nome": "I Dá-lhe Samba", "logo": "logo-cliente.png"}
+      "parceiro": {
+        "nome": "I Dá-lhe Samba",
+        "logo": "logo-cliente.png"
+      }
     }
   ]
 }
