@@ -314,7 +314,10 @@ async function carregarBaile(primeira){
   try{ E.dados = await api(`/api/baile?nome=${enc(E.baile)}`) }catch(e){toast(e.message);return}
   desenharLista();
   if(primeira) preencherAjustes();
-  else if(E.dados.versao_recursos!==E.verRec) atualizarImagens();
+  else {
+    if(E.dados.versao_recursos!==E.verRec) atualizarImagens();
+    if(listaExemplo() && E.aba==="aparencia") atualizarExemplo(true);
+  }
 }
 
 // ---------- lista de brutos ----------
@@ -447,7 +450,7 @@ document.querySelectorAll("[data-aba]").forEach(b=>b.onclick=()=>{
   E.aba=b.dataset.aba;
   $("#abaVideos").hidden = E.aba!=="videos";
   $("#abaAparencia").hidden = E.aba!=="aparencia";
-  if(E.aba==="aparencia") atualizarExemplo();
+  if(E.aba==="aparencia") { listaExemplo(); atualizarExemplo(true); }
 });
 
 // ---------- baile ----------
@@ -481,8 +484,17 @@ function preencherAjustes(){
   $("#aGirar").value=a.girar;
   $("#rParc").value=a.parceiro_tamanho||100; $("#oParc").value=$("#rParc").value+"%";
   desenharDrive(a);
-  $("#exVideo").innerHTML = E.dados.brutos.map(b=>`<option value="${esc(b.arquivo)}">Nº ${nn(b.num)} · ${esc(b.arquivo)}</option>`).join("");
+  listaExemplo();
   atualizarImagens();
+}
+// lista de vídeos do exemplo: acompanha os brutos que chegam (antes só era montada ao abrir o baile)
+function listaExemplo(){
+  const sel=$("#exVideo"), antes=sel.value, b=(E.dados&&E.dados.brutos)||[];
+  const html=b.length?b.map(x=>`<option value="${esc(x.arquivo)}">Nº ${nn(x.num)} · ${esc(x.arquivo)}</option>`).join(""):`<option value="">Nenhum vídeo em 1. Brutos</option>`;
+  if(sel._html===html) return false;
+  sel._html=html; sel.innerHTML=html;
+  if(antes&&b.some(x=>x.arquivo===antes)) sel.value=antes;
+  return !antes&&b.length>0; // apareceu o primeiro vídeo
 }
 function atualizarImagens(){
   E.verRec=E.dados.versao_recursos;
@@ -517,7 +529,7 @@ function atualizarExemplo(ja){
   clearTimeout(E.tEx);
   E.tEx=setTimeout(()=>{
     const a=$("#exVideo").value;
-    if(!a){$("#exFc").hidden=$("#exPc").hidden=false;return}
+    if(!a){for(const c of ["#exFc","#exPc"]){$(c).hidden=false;$(c).textContent="Copie um vídeo para 1. Brutos para ver o exemplo"}return}
     const v=++E.exVer, t=$("#exT").value||8;
     for(const [img,car,tipo] of [["#exF","#exFc","final"],["#exP","#exPc","previa"]]){
       const c=$(car); c.hidden=false; c.textContent="Gerando…";
