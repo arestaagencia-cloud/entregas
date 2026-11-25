@@ -317,6 +317,12 @@ Duas páginas, geradas por `python3 gerar_bailes.py`:
   fallback sem `-hwaccel`. Ajustes e PNGs por baile em `<baile>/Recursos do editor/`; pasta dos bailes padrão
   `~/Documents/Bailes` (config em `~/Library/Application Support/Editor de Bailes/`). POST exige cabeçalho `X-Editor: 1`.
   O servidor é o próprio processo do app (`exec ... --app`, `LSUIElement`): em segundo plano o macOS o encerrava segundos depois de abrir e negava acesso a ~/Documents. Fecha sozinho 2 min após a janela fechar (sem fila). Registro em ~/Library/Logs/Editor de Bailes.log. Testado no Linux com Python 3.9 e bruto real da A7IV.
+- **Telão dentro do app (25/11/2026):** botão "Abrir telão" no editor abre `/telao` (`Resources/telao.html`, gerado de
+  `bailes_telao_template.html` por `ferramentas/editor-bailes-app/gerar_telao.py`: rode de novo se mudar o telão do site).
+  Sem internet: lê `1. Brutos` pelo servidor local (`/api/video` com Range) a cada 5 s, numeração = `numeracao.csv`
+  (mesma da edição). Fonte "brutos" (assim que chegam) ou "prontos" (toca o F. NN, sem marca d'água por cima).
+  Link da galeria, preço do código e fonte ficam nos ajustes do baile; logo do parceiro = `Recursos do editor/parceiro.png`.
+  Galerias conhecidas embutidas + lista do Supabase quando há internet (guardada no navegador). O telão online continua como reserva.
 - **Novo baile** = criar o evento no Supabase (tabela `eventos`, com `url_galeria`, `aberto` e o preço do código),
   acrescentar em `bailes.json`, rodar `gerar_bailes.py` e cadastrar os vídeos; ele aparece sozinho na página pública
   (se `aberto`), no painel interno e na lista de bailes da venda de códigos.

@@ -1,7 +1,7 @@
 # Gera Resources/telao.html (telão dentro do app) a partir de bailes_telao_template.html do site.
 import re, sys
 from pathlib import Path
-src = Path(__file__).resolve().parents[2] / "bailes_telao_template.html".read_text()
+src = (Path(__file__).resolve().parents[2] / "bailes_telao_template.html").read_text()
 out = Path(__file__).resolve().parent / "Editor de Bailes.app/Contents/Resources/telao.html"
 
 def troca(s, a, b, n=1):
