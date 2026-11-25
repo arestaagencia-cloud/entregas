@@ -653,8 +653,6 @@ function prepararAvise() {
   try { feito = JSON.parse(localStorage.getItem(chaveAvise) || "null"); } catch {}
   if (feito) avisoFeito(feito.nome);
   else { try { const c = JSON.parse(localStorage.getItem("comprador") || "{}"); if (c.nome) $("#aNome").value = c.nome; if (c.email) $("#aEmail").value = c.email; } catch {} }
-  const n = (params.get("n") || "").replace(/\D/g, "").slice(0, 4);
-  if (n) $("#avise h3").innerHTML = `Seu vídeo nº ${esc(n.padStart(2, "0"))} está <em>em edição</em>`;
   requestAnimationFrame(() => $("#avise").scrollIntoView({ block: "center" }));
   if (!feito) setTimeout(() => $("#aNome").focus({ preventScroll: true }), 600);
 }
@@ -677,7 +675,7 @@ $("#fAvise").addEventListener("submit", async (e) => {
   try {
     const r = await fetch(api("/functions/v1/avise-me"), {
       method: "POST", headers: { "Content-Type": "application/json", apikey: CONFIG.chavePublica },
-      body: JSON.stringify({ evento: slug, nome, whatsapp, email, origem: params.get("n") ? `telao-${String(params.get("n")).replace(/\D/g, "").slice(0, 4)}` : (SO_AVISE ? "pagina-avise" : "galeria") }),
+      body: JSON.stringify({ evento: slug, nome, whatsapp, email, origem: params.get("de") === "telao" ? "telao" : (SO_AVISE ? "pagina-avise" : "galeria") }),
     });
     const d = await r.json().catch(() => ({}));
     if (!r.ok || !d.ok) throw new Error(d.erro || "Não conseguimos salvar agora.");

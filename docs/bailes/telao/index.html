@@ -417,9 +417,9 @@ function situacao(item) {
   const nn = dois(item.num), disp = DISPONIVEIS.has(nn);
   $("#tNum").innerHTML = `Nº ${nn}<span class="tag ${disp ? "ok" : "ed"}">${disp ? "Já disponível" : "Em edição"}</span>`;
   $("#tQrTit").textContent = disp ? `O vídeo nº ${nn} já está à venda!` : `O vídeo nº ${nn} está em edição`;
-  $("#tQrSub").textContent = disp ? "Aponte a câmera do celular para o QR e garanta o seu agora." : "Aponte a câmera para o QR e deixe seu WhatsApp: avisamos quando chegar.";
+  $("#tQrSub").textContent = disp ? "Aponte a câmera do celular para o QR e garanta o seu agora." : "Aponte a câmera para o QR e deixe seu WhatsApp: avisamos quando os vídeos chegarem.";
   document.querySelector(".qr").classList.toggle("disp", disp);
-  const link = disp ? `${baseGaleria()}/?v=${nn}` : `${baseGaleria()}/avise/?n=${nn}`;
+  const link = disp ? `${baseGaleria()}/?v=${nn}` : `${baseGaleria()}/avise/?de=telao`;
   if (link !== QR_ATUAL) {
     QR_ATUAL = link;
     try { const q = qrcode(0, "M"); q.addData(link); q.make(); $("#tQR").innerHTML = q.createSvgTag({ cellSize: 4, margin: 0, scalable: true }); }
@@ -442,7 +442,7 @@ function montarPainel() {
   $("#tOferta").textContent = $("#cOferta").value;
   QR_ATUAL = "";
   if (ITEM_ATUAL) situacao(ITEM_ATUAL);
-  else { try { const q = qrcode(0, "M"); q.addData(`${baseGaleria()}/avise/`); q.make(); $("#tQR").innerHTML = q.createSvgTag({ cellSize: 4, margin: 0, scalable: true }); } catch {} }
+  else { try { const q = qrcode(0, "M"); q.addData(`${baseGaleria()}/avise/?de=telao`); q.make(); $("#tQR").innerHTML = q.createSvgTag({ cellSize: 4, margin: 0, scalable: true }); } catch {} }
   lerDisponiveis();
 }
 

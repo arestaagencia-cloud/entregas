@@ -205,7 +205,7 @@ s = s[:ini] + r'''function montarPainel() {
   $("#tOferta").textContent = $("#cOferta").value;
   QR_ATUAL = "";
   if (ITEM_ATUAL) situacao(ITEM_ATUAL);
-  else { try { const q = qrcode(0, "M"); q.addData(`${baseGaleria()}/avise/`); q.make(); $("#tQR").innerHTML = q.createSvgTag({ cellSize: 4, margin: 0, scalable: true }); } catch {} }
+  else { try { const q = qrcode(0, "M"); q.addData(`${baseGaleria()}/avise/?de=telao`); q.make(); $("#tQR").innerHTML = q.createSvgTag({ cellSize: 4, margin: 0, scalable: true }); } catch {} }
   lerDisponiveis();
 }
 
