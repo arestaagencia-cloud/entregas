@@ -521,10 +521,10 @@ function atualizarExemplo(ja){
     const v=++E.exVer, t=$("#exT").value||8;
     for(const [img,car,tipo] of [["#exF","#exFc","final"],["#exP","#exPc","previa"]]){
       const c=$(car); c.hidden=false; c.textContent="Gerando…";
-      const im=new Image();
-      im.onload=()=>{if(v!==E.exVer)return;$(img).src=im.src;c.hidden=true};
-      im.onerror=()=>{if(v!==E.exVer)return;c.textContent="Não consegui gerar o exemplo"};
-      im.src=`/api/amostra?baile=${enc(E.baile)}&arquivo=${enc(a)}&t=${t}&tipo=${tipo}&v=${v}-${Date.now()}`;
+      fetch(`/api/amostra?baile=${enc(E.baile)}&arquivo=${enc(a)}&t=${t}&tipo=${tipo}&v=${v}-${Date.now()}`)
+        .then(async r=>{ if(!r.ok){const d=await r.json().catch(()=>({}));throw new Error(d.erro||"erro")} return r.blob() })
+        .then(b=>{ if(v!==E.exVer)return; const u=URL.createObjectURL(b); const el=$(img); if(el._u)URL.revokeObjectURL(el._u); el._u=u; el.src=u; c.hidden=true })
+        .catch(e=>{ if(v!==E.exVer)return; c.textContent="Não consegui gerar o exemplo: "+e.message });
     }
   }, ja?0:500);
 }

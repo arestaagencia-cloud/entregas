@@ -344,7 +344,7 @@ def giro(inf, aj):
     return ""
 
 
-def cadeia(origem, W, H, aj, idx_logo, idx_previa, nome, fade=True):
+def cadeia(origem, W, H, aj, idx_logo, idx_previa, nome, fade=True, fmt="yuv420p"):
     """Filtro para uma saída W x H: logos embaixo e (opcional) PNG da prévia por cima."""
     lw = max(2, int(W * aj["logo_largura"] / 100) // 2 * 2)
     mb = int(H * aj["logo_margem"] / 100)
@@ -356,16 +356,16 @@ def cadeia(origem, W, H, aj, idx_logo, idx_previa, nome, fade=True):
         fd = ",fade=t=in:st=%.3f:d=%.3f:alpha=1" % (aj["previa_inicio"], max(0.01, aj["previa_fade"])) if fade else ""
         f += ";[%s]scale=%d:%d,format=rgba,colorchannelmixer=aa=%.3f%s[p%s]" % (
             idx_previa, W, H, aj["previa_opacidade"], fd, nome)
-        f += ";[a%s][p%s]overlay=0:0:shortest=1,format=yuv420p[o%s]" % (nome, nome, nome)
+        f += ";[a%s][p%s]overlay=0:0:shortest=1,format=%s[o%s]" % (nome, nome, fmt, nome)
     else:
-        f += ";[a%s]format=yuv420p[o%s]" % (nome, nome)
+        f += ";[a%s]format=%s[o%s]" % (nome, fmt, nome)
     return f
 
 
 TAMANHOS = {"final": (1080, 1920), "previa": (720, 1280)}
 
 
-def montar_filtro(inf, aj, saidas, fade=True):
+def montar_filtro(inf, aj, saidas, fade=True, fmt="yuv420p"):
     """Uma leitura do bruto, duas saídas: o vídeo 4K é decodificado uma vez só."""
     g = giro(inf, aj)
     n = len(saidas)
@@ -374,7 +374,7 @@ def montar_filtro(inf, aj, saidas, fade=True):
     partes = []
     for i, tipo in enumerate(saidas):
         W, H = TAMANHOS[tipo]
-        partes.append(cadeia("s%d" % i, W, H, aj, "lg%d" % i, "2:v" if tipo == "previa" else None, str(i), fade))
+        partes.append(cadeia("s%d" % i, W, H, aj, "lg%d" % i, "2:v" if tipo == "previa" else None, str(i), fade, fmt))
     return f + ";".join(partes)
 
 
@@ -658,14 +658,24 @@ def amostra(baile, arquivo, t, tipo):
     ent = ["-ss", "%.2f" % t, "-i", bruto, "-i", os.path.join(p["rec"], "logos-baixo.png")]
     if tipo == "previa":
         ent += ["-loop", "1", "-framerate", "30", "-i", os.path.join(p["rec"], "previa.png")]
-    filtro = montar_filtro(inf, aj, [tipo], fade=False)
+    filtro = montar_filtro(inf, aj, [tipo], fade=False, fmt="yuvj420p")
+    erro = ""
     with TRAVA_IMG:
-        hw = ["-hwaccel", "videotoolbox"] if VT else []
-        r = subprocess.run([FFMPEG, "-nostdin", "-loglevel", "error", "-y"] + hw + ent +
-                           ["-filter_complex", filtro, "-map", "[o0]", "-frames:v", "1", "-q:v", "3", out],
-                           capture_output=True, text=True, timeout=180)
-    if r.returncode != 0:
-        raise RuntimeError((r.stderr or "erro").strip().splitlines()[-1][:300])
+        for hw in ((["-hwaccel", "videotoolbox"], []) if VT else ([],)):
+            try:
+                os.remove(out)
+            except OSError:
+                pass
+            r = subprocess.run([FFMPEG, "-nostdin", "-loglevel", "error", "-y"] + list(hw) + ent +
+                               ["-filter_complex", filtro, "-map", "[o0]", "-frames:v", "1", "-q:v", "3", out],
+                               capture_output=True, text=True, timeout=180)
+            if r.returncode == 0 and os.path.isfile(out) and os.path.getsize(out) > 0:
+                erro = ""
+                break
+            erro = ((r.stderr or "").strip().splitlines() or ["o FFmpeg não gerou a imagem"])[-1][:300]
+    if erro:
+        registrar("amostra falhou: " + erro)
+        raise RuntimeError(erro)
     with open(out, "rb") as f:
         return f.read()
 
