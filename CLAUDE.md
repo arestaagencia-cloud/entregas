@@ -316,7 +316,7 @@ Duas páginas, geradas por `python3 gerar_bailes.py`:
   etapa, %, tempo restante e cancelar; uma leitura do 4K gera final e prévia juntos (split), VideoToolbox com
   fallback sem `-hwaccel`. Ajustes e PNGs por baile em `<baile>/Recursos do editor/`; pasta dos bailes padrão
   `~/Documents/Bailes` (config em `~/Library/Application Support/Editor de Bailes/`). POST exige cabeçalho `X-Editor: 1`.
-  Fecha sozinho após 20 min sem uso e sem fila. Testado no Linux com Python 3.9 e bruto real da A7IV.
+  Fecha sozinho após 20 min sem uso e sem fila. O servidor sai do grupo de processos do app (`--separar`, fork+setsid): sem isso o launchd o encerrava segundos depois de abrir. Testado no Linux com Python 3.9 e bruto real da A7IV.
 - **Novo baile** = criar o evento no Supabase (tabela `eventos`, com `url_galeria`, `aberto` e o preço do código),
   acrescentar em `bailes.json`, rodar `gerar_bailes.py` e cadastrar os vídeos; ele aparece sozinho na página pública
   (se `aberto`), no painel interno e na lista de bailes da venda de códigos.

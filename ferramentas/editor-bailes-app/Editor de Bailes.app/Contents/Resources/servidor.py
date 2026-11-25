@@ -807,10 +807,29 @@ def limpar_temporarios():
         pass
 
 
+def separar(log):
+    """Sai do grupo de processos do app. Quando o app termina, o macOS (launchd) encerra todos os processos do
+    mesmo grupo; sem isto o servidor morria alguns segundos depois de abrir a janela."""
+    if os.fork() > 0:
+        os._exit(0)
+    os.setsid()
+    if os.fork() > 0:
+        os._exit(0)
+    signal.signal(signal.SIGHUP, signal.SIG_IGN)
+    os.makedirs(os.path.dirname(log), exist_ok=True)
+    fd = os.open(log, os.O_WRONLY | os.O_CREAT | os.O_APPEND, 0o644)
+    nulo = os.open(os.devnull, os.O_RDONLY)
+    os.dup2(nulo, 0)
+    os.dup2(fd, 1)
+    os.dup2(fd, 2)
+
+
 def main():
     porta = 8765
     if "--porta" in sys.argv:
         porta = int(sys.argv[sys.argv.index("--porta") + 1])
+    if "--separar" in sys.argv:
+        separar(os.path.join(HOME, "Library", "Logs", "Editor de Bailes.log"))
     limpar_temporarios()
     s = ThreadingHTTPServer(("127.0.0.1", porta), Handler)
     s.daemon_threads = True

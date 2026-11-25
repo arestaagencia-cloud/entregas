@@ -34,8 +34,8 @@ fi
 
 mkdir -p "$(dirname "$LOG")"
 echo "--- $(date) ---" >> "$LOG"
-nohup "$PY" -I "$R/servidor.py" --porta "$PORTA" >> "$LOG" 2>&1 &
-disown
+# --separar: o servidor sai do grupo de processos do app (senão o macOS o encerra quando este script termina)
+"$PY" -I "$R/servidor.py" --porta "$PORTA" --separar >> "$LOG" 2>&1
 for i in $(seq 1 40); do
   curl -fsS -m 1 "${URL}api/ping" >/dev/null 2>&1 && { abrir; exit 0; }
   sleep 0.25
