@@ -659,12 +659,22 @@ function prepararAvise() {
 function avisoFeito(nome) {
   $("#avise").innerHTML = `<div class="ok"><h3>Combinado, <em>${esc(String(nome || "").split(" ")[0])}!</em></h3><p class="sub">Avisamos assim que os vídeos do ${esc(evento.nome)} estiverem aqui. Enquanto isso, aproveite o baile.</p>${videos.length ? `<a class="btn sec" href="${raizGaleria()}">Ver os vídeos que já chegaram</a>` : ""}</div>`;
 }
-$("#aWhats").addEventListener("input", (e) => {
-  const d = e.target.value.replace(/\D/g, "").slice(0, 11);
-  e.target.value = d.length > 6 ? `(${d.slice(0, 2)}) ${d.slice(2, d.length - 4)}-${d.slice(-4)}` : d.length > 2 ? `(${d.slice(0, 2)}) ${d.slice(2)}` : d;
-});
+// WhatsApp: o preenchimento automático do celular costuma trazer "+55 (61) 98557-5058" (com o código do país).
+// Tira o +55 / 0055 / 0 de operadora antes de formatar, para não cortar os últimos dígitos.
+function digitosBR(v) {
+  let d = String(v || "").replace(/\D/g, "").replace(/^00/, "");
+  if ((d.length === 12 || d.length === 13) && d.startsWith("55")) d = d.slice(2);
+  d = d.replace(/^0+/, "");
+  return d.slice(0, 11);
+}
+function formatarWhats(el) {
+  const d = digitosBR(el.value);
+  el.value = d.length > 6 ? `(${d.slice(0, 2)}) ${d.slice(2, d.length - 4)}-${d.slice(-4)}` : d.length > 2 ? `(${d.slice(0, 2)}) ${d.slice(2)}` : d;
+}
+["input", "change", "blur"].forEach((ev) => $("#aWhats").addEventListener(ev, (e) => formatarWhats(e.target)));
 $("#fAvise").addEventListener("submit", async (e) => {
   e.preventDefault();
+  formatarWhats($("#aWhats"));
   const nome = $("#aNome").value.trim(), whatsapp = $("#aWhats").value.trim(), email = $("#aEmail").value.trim(), erro = $("#aErro"), btn = $("#aBtn");
   erro.textContent = "";
   if (nome.length < 2) { erro.textContent = "Informe seu nome."; return; }
