@@ -128,8 +128,8 @@
     .qr p{display:none}
     .barra{grid-area:barra;height:.6cqw;margin:0}
   }
-  /* marca d'água (sem oferta): logo da Aresta × parceiro embaixo do vídeo */
-  .marca-agua{display:none;position:absolute;left:0;right:0;bottom:4cqh;z-index:2;justify-content:center;align-items:center;gap:1.6cqh;opacity:.78;pointer-events:none;filter:drop-shadow(0 .3cqh 1.2cqh rgba(0,0,0,.55))}
+  /* marca d'água: logo da Aresta × parceiro embaixo do vídeo (com e sem oferta) */
+  .marca-agua{display:flex;position:absolute;left:0;right:0;bottom:4cqh;z-index:2;justify-content:center;align-items:center;gap:1.6cqh;opacity:.78;pointer-events:none;filter:drop-shadow(0 .3cqh 1.2cqh rgba(0,0,0,.55))}
   .telao.sem-oferta .marca-agua{display:flex}
   .telao.ja-tem-logo .marca-agua{display:none}
   .fonte .on{}
@@ -416,7 +416,7 @@ $("#cCheio").addEventListener("change", () => { const e = baile(); const c = Mat
 $("#cPreco").addEventListener("change", () => { const e = baile(); const c = Math.round(Number(String($("#cPreco").value).replace(",", ".")) * 100); if (e && c > 0) guardar(`telao-preco-${e.slug}`, c); });
 
 // ---------- tamanhos + pré-visualização ----------
-var PADRAO_ESC = { logo: 1, texto: 1, qr: 1, painel: 1, marca: 1, num: 1 };
+var PADRAO_ESC = { logo: 0.65, texto: 0.85, qr: 1, painel: 1.16, marca: 0.75, num: 1.8 }; // padrão escolhido pela Aresta (25/11/2026)
 var ESC = Object.assign({}, PADRAO_ESC, ler("telao-escalas", {}));
 function aplicarEscalas() { if (!ESC) return; const t = $("#telao"); for (const k in ESC) t.style.setProperty(`--k-${k}`, ESC[k]); }
 function marcarEscalas() {

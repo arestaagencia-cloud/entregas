@@ -296,7 +296,7 @@ Duas páginas, geradas por `python3 gerar_bailes.py`:
   (`docs/bailes/logo-aresta-completa.png`) × parceiro, "Se viu aqui? Garanta o seu vídeo completo", oferta do código
   com o preço do baile e QR para `<url_galeria>/?avise=1`; na TV deitada é uma coluna à direita, na TV em pé vira uma
   faixa embaixo do vídeo (`@container quadro (orientation: portrait)`). Sem oferta: vídeo em tela cheia com a mesma
-  dupla de logos como marca d'água na parte de baixo. Teclas: espaço pausa, ← → anterior/próximo, F tela cheia,
+  dupla de logos como marca d'água na parte de baixo (a marca d'água aparece também COM oferta, desde 25/11/2026; some só quando o vídeo já tem as logos, fonte "prontos"). Teclas: espaço pausa, ← → anterior/próximo, F tela cheia,
   R inverte o giro, O liga/desliga a oferta, S configuração.
 - **Editor de Bailes (Mac, desde 24/11/2026):** `ferramentas/editor-bailes/` (a Aresta usa a cópia baixada no Mac).
   Estrutura por baile em `~/Movies/Bailes/<AAAA-MM-DD Nome>/`: `1. Brutos` (cartão da A7IV, só .MP4, sem subpastas;
@@ -324,7 +324,7 @@ Duas páginas, geradas por `python3 gerar_bailes.py`:
   Link da galeria, preço do código e fonte ficam nos ajustes do baile; logo do parceiro = `Recursos do editor/parceiro.png`.
   Galerias conhecidas embutidas + lista do Supabase quando há internet (guardada no navegador). O telão online continua como reserva.
   Configuração tem "Tamanhos" (logos do painel, textos, QR, largura da oferta, logos sobre o vídeo, número; variáveis CSS
-  `--k-*`, guardadas no navegador) com pré-visualização ao vivo (iframe `/telao?previa=1`, girado na TV em pé). Peças em
+  `--k-*`, guardadas no navegador; padrão da Aresta: logos 65%, textos 85%, QR 100%, oferta 116%, logos sobre o vídeo 75%, número 180%) com pré-visualização ao vivo (iframe `/telao?previa=1`, girado na TV em pé). Peças em
   `telao_ajustes.py/.html/.css/.js` e `telao_inicio.js`, aplicadas por `gerar_telao.py`.
 - **Publicação automática na galeria (25/11/2026):** função `sincronizar-drive` (verify_jwt off). Quem chama: o Editor de Bailes,
   logo depois de copiar P/F para o Drive (repete em 20 s, 1, 2, 3.5, 5.5, 8.5, 13.5, 18.5 e 28.5 min até o número aparecer em

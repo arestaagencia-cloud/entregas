@@ -1,5 +1,5 @@
 // ---------- tamanhos + pré-visualização ----------
-var PADRAO_ESC = { logo: 1, texto: 1, qr: 1, painel: 1, marca: 1, num: 1 };
+var PADRAO_ESC = { logo: 0.65, texto: 0.85, qr: 1, painel: 1.16, marca: 0.75, num: 1.8 }; // padrão escolhido pela Aresta (25/11/2026)
 var ESC = Object.assign({}, PADRAO_ESC, ler("telao-escalas", {}));
 function aplicarEscalas() { if (!ESC) return; const t = $("#telao"); for (const k in ESC) t.style.setProperty(`--k-${k}`, ESC[k]); }
 function marcarEscalas() {
