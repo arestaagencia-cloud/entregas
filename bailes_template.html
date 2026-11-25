@@ -281,21 +281,26 @@
         <div id="vOk"></div>
       </form>
       <div class="caixa">
-        <h4>Preço e cartões</h4>
-        <p class="sub">Cada baile tem o seu preço do código. Os cartões são os mesmos para todos os bailes.</p>
+        <h4>Preço do código</h4>
+        <p class="sub">Cada baile tem o seu preço. Os cartões são os mesmos para todos os bailes.</p>
         <label class="campo"><span>Baile</span><select id="pEv"></select></label>
         <div class="linha-acoes">
           <label class="campo"><span>Preço do código (R$)</span><input id="pValor" inputmode="decimal" placeholder="35"></label>
           <button class="btn sec" type="button" id="pBtn" style="margin-top:20px">Salvar preço</button>
         </div>
-        <div class="linha-acoes" style="margin-top:12px">
-          <label class="campo"><span>Gerar mais códigos</span><input id="gQtd" inputmode="numeric" placeholder="40"></label>
+        <h4 style="margin-top:22px">Estoque de cartões</h4>
+        <p class="sub" id="estResumo"></p>
+        <div class="linha-acoes" style="margin-top:8px">
+          <label class="campo"><span>Gerar mais códigos</span><input id="gQtd" inputmode="numeric" placeholder="25"></label>
           <button class="btn sec" type="button" id="gBtnCod" style="margin-top:20px">Gerar</button>
         </div>
-        <div class="linha-acoes" style="margin-top:18px">
-          <button class="btn pri" type="button" id="impBtn">Imprimir cartões em estoque</button>
+        <label class="campo" style="margin-top:12px"><span>Quais cartões</span><select id="impQuais"></select></label>
+        <div class="linha-acoes" style="margin-top:12px">
+          <button class="btn pri" type="button" id="impBtn">Imprimir cartões</button>
           <button class="btn sec" type="button" id="listaBtn">Copiar lista</button>
+          <button class="btn sec" type="button" id="remLote" hidden>Remover este lote</button>
         </div>
+        <p class="sub" style="margin-top:8px">Só códigos em estoque (nunca vendidos) podem ser removidos. Para tirar um só, use "Remover" na linha dele, na tabela abaixo.</p>
         <p class="msg" id="pMsg" role="status"></p>
       </div>
     </div>
@@ -523,8 +528,23 @@ function aplicarCod(d, inicio) {
   const vend = L.filter((c) => c.status === "vendido" || c.status === "resgatado");
   $("#codNums").innerHTML = [["Em estoque", num(n("disponivel"))], ["Vendidos", num(vend.length)], ["A resgatar", num(n("vendido"))], ["Resgatados", num(n("resgatado"))],
     ["Arrecadado", brl(vend.reduce((s, c) => s + (c.valor_centavos || 0), 0))]].map(([k, v]) => `<div><span>${k}</span><b>${v}</b></div>`).join("");
+  lotesCod();
   tabelaCod();
 }
+// lotes = códigos em estoque criados no mesmo minuto (cada "Gerar" vira um lote)
+function lotesCod() {
+  const disp = COD.lista.filter((c) => c.status === "disponivel"), g = {};
+  for (const c of disp) { const k = String(c.criado_em || "").slice(0, 16); (g[k] = g[k] || []).push(c); }
+  const chaves = Object.keys(g).sort().reverse(), sel = $("#impQuais"), antes = COD.lote ?? sel.value;
+  const quando = (k) => { const d = new Date(k + ":00Z"); return isNaN(d) ? "sem data" : d.toLocaleString("pt-BR", { day: "2-digit", month: "2-digit", hour: "2-digit", minute: "2-digit" }); };
+  sel.innerHTML = `<option value="">Todos em estoque (${num(disp.length)})</option>` +
+    chaves.map((k) => `<option value="${esc(k)}">Lote de ${quando(k)} · ${num(g[k].length)} em estoque</option>`).join("");
+  if (antes && g[antes]) sel.value = antes;
+  COD.lote = null;
+  $("#remLote").hidden = !sel.value;
+  $("#estResumo").textContent = `${num(COD.lista.length)} códigos no total · ${num(disp.length)} em estoque, em ${chaves.length} ${chaves.length === 1 ? "lote" : "lotes"}.`;
+}
+const selecionadosImp = () => { const k = $("#impQuais").value; return COD.lista.filter((c) => c.status === "disponivel" && (!k || String(c.criado_em || "").slice(0, 16) === k)); };
 const METODO_NOME = { pix: "Pix", cartao: "Cartão", dinheiro: "Dinheiro", cortesia: "Cortesia" };
 const SIT = { disponivel: ["Em estoque", ""], vendido: ["A resgatar", "vendido"], resgatado: ["Resgatado", "resgatado"], cancelado: ["Cancelado", ""] };
 function tabelaCod() {
@@ -538,7 +558,7 @@ function tabelaCod() {
     <td title="${esc(c.comprador_contato || "")}">${esc(c.comprador_nome || "")}${c.comprador_contato ? `<br><small style="color:var(--muted)">${esc(c.comprador_contato)}</small>` : ""}</td>
     <td title="${esc(c.vendido_por || "")}">${quando(c.vendido_em)}</td>
     <td>${c.resgate ? `Nº ${esc(c.resgate.video)} · ${esc(String(c.resgate.nome).split(" ")[0])}<br><small style="color:var(--muted)">${quando(c.resgatado_em)}</small>` : ""}</td>
-    <td style="white-space:nowrap">${c.status === "disponivel" ? `<button class="acao" type="button" data-vender="${esc(c.codigo)}">Vender</button>` : ""}
+    <td style="white-space:nowrap">${c.status === "disponivel" ? `<button class="acao" type="button" data-vender="${esc(c.codigo)}">Vender</button><button class="acao" type="button" data-remover="${esc(c.codigo)}">Remover</button>` : ""}
       ${c.status === "vendido" ? `<button class="acao" type="button" data-msg="${esc(c.codigo)}">Mensagem</button><button class="acao" type="button" data-desfazer="${esc(c.codigo)}">Desfazer</button>` : ""}</td></tr>`).join("")
     : `<tr><td colspan="9" style="text-align:center;padding:30px;color:var(--muted)">${COD.lista.length ? "Nenhum código nesta situação." : "Nenhum código ainda. Gere um lote ao lado."}</td></tr>`;
 }
@@ -594,18 +614,34 @@ $("#pBtn").onclick = async () => { const m = $("#pMsg"); m.className = "msg";
 $("#gBtnCod").onclick = async () => { const m = $("#pMsg"), b = $("#gBtnCod"); m.className = "msg";
   const q = parseInt($("#gQtd").value, 10); if (!(q >= 1 && q <= 300)) { m.className = "msg erro"; m.textContent = "Escolha de 1 a 300 códigos."; return; }
   b.disabled = true;
-  try { aplicarCod(await chamarCod({ acao: "gerar", quantidade: q })); m.textContent = `${q} códigos criados.`; $("#gQtd").value = ""; }
+  try {
+    const antes = new Set(COD.lista.map((c) => c.codigo)), d = await chamarCod({ acao: "gerar", quantidade: q });
+    const novo = d.codigos.find((c) => !antes.has(c.codigo)); COD.lote = novo ? String(novo.criado_em || "").slice(0, 16) : null;
+    aplicarCod(d); m.textContent = `${d.criados ?? q} códigos criados. "Quais cartões" já está neste lote novo: é só imprimir.`; $("#gQtd").value = ""; }
   catch (e) { m.className = "msg erro"; m.textContent = e.message; } finally { b.disabled = false; } };
 $("#codFiltro").addEventListener("click", (e) => { const b = e.target.closest("button"); if (!b) return; COD.filtro = b.dataset.f;
   $("#codFiltro").querySelectorAll("button").forEach((x) => x.classList.toggle("on", x === b)); tabelaCod(); });
 $("#codX").onclick = fecharCodigos;
 document.addEventListener("keydown", (e) => { if (e.key === "Escape" && $("#cod").classList.contains("open")) fecharCodigos(); });
+$("#impQuais").onchange = () => { $("#remLote").hidden = !$("#impQuais").value; };
+$("#remLote").onclick = async () => {
+  const L = selecionadosImp(), m = $("#pMsg"); m.className = "msg";
+  if (!L.length || !confirm(`Remover ${L.length} códigos deste lote? Use só se os cartões não foram impressos ou foram descartados.`)) return;
+  try { const d = await chamarCod({ acao: "remover", codigos: L.map((c) => c.codigo) }); aplicarCod(d); m.textContent = `${d.removidos} códigos removidos.`; }
+  catch (e) { m.className = "msg erro"; m.textContent = e.message; }
+};
 $("#listaBtn").onclick = () => {
-  const L = COD.lista.filter((c) => c.status === "disponivel");
+  const L = selecionadosImp();
   const t = `Códigos em estoque (valem para qualquer baile)\nResgate em: ${HUB_PUBLICO}/\n\n` + L.map((c) => `${c.codigo}  ${linkPublico(c.codigo)}`).join("\n");
   (navigator.clipboard ? navigator.clipboard.writeText(t) : Promise.reject()).then(() => { $("#pMsg").className = "msg"; $("#pMsg").textContent = `Lista com ${L.length} códigos copiada.`; }).catch(() => prompt("Copie a lista:", t));
 };
 document.addEventListener("click", async (e) => {
+  const r = e.target.closest("[data-remover]");
+  if (r) {
+    if (!confirm(`Remover o código ${r.dataset.remover}? O cartão dele deixa de valer.`)) return;
+    try { aplicarCod(await chamarCod({ acao: "remover", codigos: [r.dataset.remover] })); } catch (er) { alert(er.message); }
+    return;
+  }
   const v = e.target.closest("[data-vender]"), m = e.target.closest("[data-msg]"), d = e.target.closest("[data-desfazer]"), c = e.target.closest("[data-codigos]");
   if (c) return abrirCodigos();
   if (v) { $("#vCod").value = v.dataset.vender; $("#vCod").focus(); $("#fVenda").scrollIntoView({ behavior: "smooth", block: "start" }); }
@@ -672,7 +708,7 @@ document.addEventListener("click", (e) => {
 function carregarQR() { return new Promise((ok, nok) => { if (window.qrcode) return ok();
   const s = document.createElement("script"); s.src = "/bailes/qrcode.min.js"; s.onload = ok; s.onerror = nok; document.head.appendChild(s); }); }
 $("#impBtn").onclick = async () => {
-  const L = COD.lista.filter((c) => c.status === "disponivel");
+  const L = selecionadosImp();
   if (!L.length) { $("#pMsg").className = "msg erro"; $("#pMsg").textContent = "Não há códigos disponíveis para imprimir."; return; }
   const w = window.open("", "_blank");
   if (!w) { $("#pMsg").className = "msg erro"; $("#pMsg").textContent = "O navegador bloqueou a janela. Libere pop-ups para esta página."; return; }

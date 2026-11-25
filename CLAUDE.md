@@ -271,7 +271,9 @@ Duas páginas, geradas por `python3 gerar_bailes.py`:
   `eventos.preco_codigo_centavos`), Pix/Cartão/Dinheiro/Cortesia, nome e contato opcionais, mensagem pronta para
   WhatsApp (link direto da galeria do baile); preço por baile; gerar lote; **imprimir cartões** (A4, 10 por folha,
   "VALE 1 VÍDEO", QR para `https://entregas.arestagencia.com.br/bailes/?codigo=XXXXXXXX`, lib `docs/bailes/qrcode.min.js`);
-  copiar lista; filtro por situação e por baile. Função `codigos-admin` (mesmo acesso Google). **Código não marcado como
+  copiar lista; filtro por situação e por baile. Caixa **Estoque de cartões**: gerar mais, "Quais cartões" (todos ou um lote,
+  lote = códigos criados no mesmo minuto; depois de gerar já seleciona o lote novo) para imprimir/copiar só aquele lote, e
+  remover (lote inteiro ou "Remover" na linha); só remove código em estoque, nunca vendido/resgatado (ação `remover`). 50 códigos desde 25/11/2026. Função `codigos-admin` (mesmo acesso Google). **Código não marcado como
   vendido não resgata.** Galeria: `?codigo=` mostra o aviso (ou redireciona para a galeria do baile certo); na janela do
   vídeo, "Tenho um código" troca a compra pelo resgate (função pública `resgatar-codigo`, até 8 erros por IP a cada
   15 min, resgate atômico na função SQL `resgatar_codigo`). O resgate cria um pedido `origem: codigo`, valor 0, pago, e
