@@ -346,7 +346,8 @@ Duas páginas, geradas por `python3 gerar_bailes.py`:
   4 min + 1 min a cada ~90 MB, copia DE NOVO só aquele arquivo (até 4 vezes, `MAX_TENTATIVAS`). Depois disso a fila
   mostra "Não chegou à galeria" + botão **Tentar de novo** (`POST /api/fila/reenviar`), que também aparece em
   "subindo"/"demorando". O telão do app lê o site a cada 10 s e também a fila do editor (vídeo publicado vira
-  "Já disponível" na hora).
+  "Já disponível" na hora). Vídeo que não tocou no telão (ainda sendo copiado do cartão ou com erro) volta a ser tentado quando o tamanho
+  do arquivo muda ou a cada 20 s (antes ficava pulado até reabrir o telão).
 - **Baile de teste "planet-teste" (25/11/2026):** "Baile Teste - Aula de Samba Planet", vídeo R$ 2 (de R$ 5), código R$ 2,
   galeria `/bailes/planet-teste/`, Drive "Baile Teste - Aula de Samba Planet - 25-11-26" (`1YMqavplEyWNO99xs8nIW6KzkTUtaNZ3_`,
   link público; Capas/Prévias/Finais dentro). Logo colorido (só para teste). Telão mostra "de R$ X" riscado quando há

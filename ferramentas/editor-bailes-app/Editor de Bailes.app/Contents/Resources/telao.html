@@ -363,8 +363,11 @@ function montarFila() {
     if (FONTE === "prontos" && !b.final) continue;
     const pronto = FONTE === "prontos";
     const url = pronto ? `/api/video?baile=${enc(baileNome())}&num=${b.num}&tipo=final` : `/api/video?baile=${enc(baileNome())}&arquivo=${enc(b.arquivo)}`;
-    const velho = FILA.find((x) => x.url === url);
-    novos.push(velho || { nome: b.arquivo, num: b.num, dur: b.duracao, h: pronto ? false : b.deitado, url, pronto, ok: null });
+    const velho = FILA.find((x) => x.url.split("&v=")[0] === url);
+    // arquivo que ainda estava sendo copiado do cartão (ou deu erro) volta a ser tentado: quando o tamanho muda ou a cada 20 s
+    const tentarDeNovo = velho && velho.ok === false && (velho.bytes !== b.bytes || Date.now() - (velho.falhou || 0) > 20000);
+    if (velho && !tentarDeNovo && velho.bytes === b.bytes) { velho.dur = b.duracao || velho.dur; novos.push(velho); continue; }
+    novos.push({ nome: b.arquivo, num: b.num, dur: b.duracao, h: pronto ? false : b.deitado, url: `${url}&v=${b.bytes}`, pronto, ok: null, bytes: b.bytes });
   }
   const atual = tocaveis()[ATUAL];
   FILA = novos.sort((a, b) => a.num - b.num);
@@ -579,7 +582,7 @@ function tocar(item, depois) {
     } else if (v.readyState >= 3) comecar();
     else v.addEventListener("canplay", comecar, { once: true });
   };
-  v.onerror = () => { if (minha !== geracao) return; item.ok = false; aviso(`Não consegui tocar ${item.nome}. Pulando.`); setTimeout(() => proximo(1), 300); };
+  v.onerror = () => { if (minha !== geracao) return; item.ok = false; item.falhou = Date.now(); aviso(`Não consegui tocar ${item.nome}. Pulando.`); setTimeout(() => proximo(1), 300); };
   v.src = item.url;
 }
 
