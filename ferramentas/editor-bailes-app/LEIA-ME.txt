@@ -32,5 +32,8 @@ Bom saber
 - "Refazer os que já estão prontos" edita de novo e substitui os arquivos (use depois de mudar as logos).
 - Cópia para o Drive (opcional, em Aparência > Outros ajustes): ao terminar cada vídeo, copia para
   Prévias e Finais dentro da pasta escolhida no Google Drive do Mac.
-- Fechar a janela não para a fila. "Fechar editor" para tudo. Sem uso por 20 minutos e sem fila, ele se fecha sozinho.
+- Na primeira vez, o Mac pergunta se o Editor de Bailes pode acessar a pasta Documentos: clique em Permitir.
+- Fechar a janela não para a fila: o editor termina os vídeos e depois se fecha sozinho.
+  Sem fila, ele se fecha 2 minutos depois de fechar a janela. "Fechar editor" para tudo na hora.
+- Se fechar a janela no meio da fila e quiser acompanhar, abra no Chrome o endereço 127.0.0.1:8765
 - Se algo der errado, o registro fica em ~/Library/Logs/Editor de Bailes.log

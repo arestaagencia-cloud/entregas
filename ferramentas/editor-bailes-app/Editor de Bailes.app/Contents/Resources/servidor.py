@@ -97,11 +97,20 @@ def gravar_json(caminho, dados):
     os.replace(tmp, caminho)
 
 
+def tem_bailes(pasta):
+    try:
+        return any(os.path.isdir(os.path.join(pasta, n, "1. Brutos")) for n in os.listdir(pasta))
+    except OSError:
+        return False
+
+
 def config():
     c = ler_json(CONF, {})
-    if not c.get("pasta_bailes"):
-        doc = os.path.join(HOME, "Documents", "Bailes")
-        c["pasta_bailes"] = doc if os.path.isdir(doc) else os.path.join(HOME, "Movies", "Bailes")
+    doc = os.path.join(HOME, "Documents", "Bailes")
+    # pasta padrão: Documentos/Bailes. Também corrige quem ficou em Filmes/Bailes vazia (versão anterior sem acesso)
+    if not c.get("pasta_bailes") or (not tem_bailes(c["pasta_bailes"]) and c["pasta_bailes"] != doc and tem_bailes(doc)):
+        c["pasta_bailes"] = doc if (os.path.isdir(doc) or not os.path.isdir(os.path.join(HOME, "Movies", "Bailes"))) \
+            else os.path.join(HOME, "Movies", "Bailes")
     return c
 
 
@@ -790,12 +799,12 @@ def desligar(motivo="botão Fechar editor"):
     SERVIDOR["s"].shutdown()
 
 
-def vigia():
-    # fecha sozinho depois de 20 min sem a janela aberta e sem nada na fila
+def vigia(limite):
+    # fecha sozinho quando a janela foi fechada (a janela consulta a fila a cada segundo) e não há nada na fila
     while True:
-        time.sleep(30)
-        if not fila_ocupada() and time.time() - ULTIMO_ACESSO[0] > 20 * 60:
-            desligar("20 min sem uso")
+        time.sleep(10)
+        if not fila_ocupada() and time.time() - ULTIMO_ACESSO[0] > limite:
+            desligar("janela fechada há %d s e fila vazia" % limite)
             return
 
 
@@ -840,7 +849,8 @@ def main():
     s.daemon_threads = True
     SERVIDOR["s"] = s
     threading.Thread(target=trabalhador, daemon=True).start()
-    threading.Thread(target=vigia, daemon=True).start()
+    # --app: o servidor é o próprio app (fica aberto enquanto a janela estiver aberta)
+    threading.Thread(target=vigia, args=(120 if "--app" in sys.argv else 20 * 60,), daemon=True).start()
     for sig in (signal.SIGTERM, signal.SIGINT):
         signal.signal(sig, lambda n, f: threading.Thread(target=desligar, args=("recebi o sinal %d do sistema" % n,),
                                                           daemon=True).start())

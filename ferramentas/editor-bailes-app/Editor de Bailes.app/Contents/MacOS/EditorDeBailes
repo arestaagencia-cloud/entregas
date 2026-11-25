@@ -35,11 +35,12 @@ fi
 
 mkdir -p "$(dirname "$LOG")"
 echo "--- $(date) ---" >> "$LOG"
-# --separar: o servidor sai do grupo de processos do app (senão o macOS o encerra quando este script termina)
-"$PY" -I "$R/servidor.py" --porta "$PORTA" --separar >> "$LOG" 2>&1
-for i in $(seq 1 40); do
-  curl -fsS -m 1 "${URL}api/ping" >/dev/null 2>&1 && { abrir; exit 0; }
-  sleep 0.25
-done
-aviso "Não consegui abrir o editor. Veja o registro em ~/Library/Logs/Editor de Bailes.log"
-exit 1
+# abre a janela assim que o editor responder
+( for i in $(seq 1 80); do
+    curl -fsS -m 1 "${URL}api/ping" >/dev/null 2>&1 && { abrir; exit 0; }
+    sleep 0.25
+  done
+  aviso "Não consegui abrir o editor. Veja o registro em ~/Library/Logs/Editor de Bailes.log" ) &
+# O editor roda como o próprio app (não em segundo plano): assim o macOS não o encerra e o pedido de acesso
+# à pasta Documentos aparece em nome do "Editor de Bailes". Ele fecha sozinho 2 min depois que a janela é fechada.
+exec "$PY" -I "$R/servidor.py" --porta "$PORTA" --app >> "$LOG" 2>&1

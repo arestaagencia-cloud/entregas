@@ -12,5 +12,10 @@
   <key>CFBundleIconFile</key><string>AppIcon</string>
   <key>LSMinimumSystemVersion</key><string>11.0</string>
   <key>NSHighResolutionCapable</key><true/>
+  <key>LSUIElement</key><true/>
+  <key>NSDocumentsFolderUsageDescription</key><string>O Editor de Bailes lê os vídeos brutos e salva as prévias e os finais na pasta Bailes.</string>
+  <key>NSDesktopFolderUsageDescription</key><string>O Editor de Bailes lê e salva vídeos dos bailes.</string>
+  <key>NSDownloadsFolderUsageDescription</key><string>O Editor de Bailes lê e salva vídeos dos bailes.</string>
+  <key>NSRemovableVolumesUsageDescription</key><string>O Editor de Bailes lê vídeos do cartão da câmera.</string>
 </dict>
 </plist>
