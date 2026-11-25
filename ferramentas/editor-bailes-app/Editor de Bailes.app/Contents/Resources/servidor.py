@@ -388,7 +388,7 @@ ULTIMO_ACESSO = [time.time()]
 
 def job_publico(j):
     return {k: j.get(k) for k in ("id", "baile", "arquivo", "num", "saidas", "estado", "etapa", "pct", "eta",
-                                  "velocidade", "erro", "criado", "inicio", "fim", "duracao", "galeria")}
+                                  "velocidade", "erro", "criado", "inicio", "fim", "duracao", "galeria", "galeria_info")}
 
 
 def adicionar(baile, arquivos, saidas, refazer):
@@ -526,6 +526,7 @@ def processar(j):
         if not os.path.isdir(destino):
             raise RuntimeError("A pasta do Drive não foi encontrada: " + destino)
         j["estado"], j["etapa"], j["eta"] = "copiando", "Copiando para o Drive", None
+        j["drive_arqs"] = {}
         for s in j["saidas"]:
             orig = saida(baile, j["num"], s)
             if not os.path.isfile(orig):
@@ -533,44 +534,146 @@ def processar(j):
             d = os.path.join(destino, "Finais" if s == "final" else "Prévias")
             os.makedirs(d, exist_ok=True)
             alvo = os.path.join(d, os.path.basename(orig))
+            j["drive_arqs"][s] = (orig, alvo)
             if j["refazer"] or not os.path.isfile(alvo) or os.path.getsize(alvo) != os.path.getsize(orig):
                 shutil.copyfile(orig, alvo + ".copiando")
                 os.replace(alvo + ".copiando", alvo)
     j["estado"] = "concluido"
     j["etapa"] = "Concluído" if fazer else "Já estava pronto"
     if destino and "final" in j["saidas"] and "previa" in j["saidas"]:
-        j["galeria"] = "subindo"
+        j["galeria"], j["galeria_info"], j["tentativas"] = "subindo", "", 0
         threading.Thread(target=acompanhar_galeria, args=(j, aj.get("url_galeria") or ""), daemon=True).start()
 
 
 SINCRONIZAR = "https://jlogxdjttufiiikiezfe.supabase.co/functions/v1/sincronizar-drive"
 
 
-def acompanhar_galeria(j, url_galeria):
+# Estado do upload no Google Drive para computador (macOS, File Provider): enviado, enviando, erro.
+JXA_DRIVE = r'''ObjC.import("Foundation");
+function run(argv) {
+  var ks = {up: "NSURLUbiquitousItemIsUploadedKey", ing: "NSURLUbiquitousItemIsUploadingKey", err: "NSURLUbiquitousItemUploadingErrorKey"};
+  return JSON.stringify(argv.map(function (p) {
+    var u = $.NSURL.fileURLWithPath(p), r = {};
+    for (var k in ks) {
+      try { var ref = Ref(); u.getResourceValueForKeyError(ref, $(ks[k]), null); var v = ref[0];
+        if (v && !v.isNil()) r[k] = k === "err" ? ObjC.unwrap(v.localizedDescription) : ObjC.unwrap(v); } catch (e) {}
+    }
+    return r;
+  }));
+}'''
+
+
+def estado_drive(caminhos):
+    """[{up, ing, err}] por arquivo, ou None se não der para saber (fora do Mac, erro do osascript)."""
+    if not EH_MAC or not caminhos:
+        return None
+    try:
+        js = os.path.join(CONF_DIR, "estado-drive.js")
+        if not os.path.isfile(js) or open(js, encoding="utf-8").read() != JXA_DRIVE:
+            with open(js, "w", encoding="utf-8") as f:
+                f.write(JXA_DRIVE)
+        r = subprocess.run(["osascript", "-l", "JavaScript", js] + list(caminhos), capture_output=True, text=True, timeout=20)
+        out = json.loads(r.stdout or "null")
+        return out if isinstance(out, list) and len(out) == len(caminhos) else None
+    except Exception:
+        return None
+
+
+def recopiar(orig, alvo):
+    """Copia de novo para a pasta do Drive: o Drive vê um arquivo novo e tenta subir outra vez."""
+    shutil.copyfile(orig, alvo + ".copiando")
+    os.replace(alvo + ".copiando", alvo)
+
+
+def sincronizar_site():
+    r = subprocess.run(["curl", "-fsS", "-m", "40", "-X", "POST", "-H", "Content-Type: application/json",
+                        "-d", "{}", SINCRONIZAR], capture_output=True, text=True, timeout=60)
+    return json.loads(r.stdout or "{}")
+
+
+MAX_TENTATIVAS = 4
+
+
+def acompanhar_galeria(j, url_galeria, reenviar_ja=False):
     """Avisa o site que chegou vídeo no Drive e acompanha até ele aparecer na galeria.
-    O Drive do Mac sobe o arquivo em segundo plano, então o aviso se repete algumas vezes (o robô do site
-    também confere sozinho a cada 10 min, como reserva)."""
+    O Drive do Mac sobe o arquivo em segundo plano. Se um arquivo não chega (erro do Drive, como
+    "Não foi possível comunicar com um aplicativo auxiliar", ou parado por tempo demais), copia de novo
+    sozinho até MAX_TENTATIVAS vezes; depois disso a fila mostra "Tentar de novo"."""
+    meu = uuid.uuid4().hex
+    j["acomp"] = meu
     codigo = "%02d" % j["num"]
-    alvo = url_galeria.rstrip("/").lower()
-    for espera in (20, 40, 60, 90, 120, 180, 300, 300, 600):
-        time.sleep(espera)
+    alvo_url = url_galeria.rstrip("/").lower()
+    arqs = j.get("drive_arqs") or {}
+    nomes = {"final": "final (F. %s)" % codigo, "previa": "prévia (P. %s)" % codigo}
+    enviado = {t: time.time() for t in arqs}
+
+    def reenviar(t, motivo):
+        orig, alvo = arqs[t]
         try:
-            r = subprocess.run(["curl", "-fsS", "-m", "40", "-X", "POST", "-H", "Content-Type: application/json",
-                                "-d", "{}", SINCRONIZAR], capture_output=True, text=True, timeout=60)
-            d = json.loads(r.stdout or "{}")
+            recopiar(orig, alvo)
+        except Exception as e:
+            registrar("reenvio falhou %s: %s" % (alvo, e))
+            return
+        j["tentativas"] = j.get("tentativas", 0) + 1
+        enviado[t] = time.time()
+        j["galeria"] = "reenviando"
+        j["galeria_info"] = "%s O %s foi enviado de novo (%dª tentativa)." % (motivo, nomes[t], j["tentativas"] + 1)
+        registrar("reenviado %s (%s)" % (alvo, motivo))
+
+    esperas = (5, 15, 30, 40, 60, 60, 90, 120, 120, 180, 180, 240, 300, 300, 300, 600, 600)
+    if not reenviar_ja:
+        esperas = (20,) + esperas[2:]
+    for n, espera in enumerate(esperas):
+        time.sleep(espera)
+        if j.get("acomp") != meu:
+            return  # um "Tentar de novo" começou outro acompanhamento
+        try:
+            d = sincronizar_site()
         except Exception:
-            j["galeria"] = "sem_internet"
+            j["galeria"], j["galeria_info"] = "sem_internet", ""
             continue
-        if j.get("galeria") == "sem_internet":
-            j["galeria"] = "subindo"
-        for ev in d.get("resumo", []):
-            if alvo and (ev.get("url_galeria") or "").rstrip("/").lower() != alvo:
+        ev = next((e for e in d.get("resumo", []) if not alvo_url or (e.get("url_galeria") or "").rstrip("/").lower() == alvo_url), None)
+        if not ev:
+            continue
+        if codigo in (ev.get("publicados") or []):
+            j["galeria"], j["galeria_info"] = "publicado", ""
+            return
+        if j.get("galeria") in ("sem_internet", "falhou"):
+            j["galeria"], j["galeria_info"] = "subindo", ""
+        no_drive = ev.get("no_drive")  # sem ele (leitura pulada), nesta rodada só vale o estado local
+        tipos = list(arqs)
+        local = estado_drive([arqs[t][1] for t in tipos]) or [{} for _ in tipos]
+        for t, st in zip(tipos, local):
+            if no_drive is not None and codigo in (no_drive.get("finais" if t == "final" else "previas") or []):
+                continue  # o site já enxerga este arquivo
+            if no_drive is None and not st.get("err") and not (reenviar_ja and n == 0):
+                continue  # sem a leitura do site, só reenvia quando o Drive do Mac acusa erro
+            if reenviar_ja and n == 0:
+                if j.get("tentativas", 0) < MAX_TENTATIVAS + 3:
+                    reenviar(t, "Pedido de novo envio.")
                 continue
-            if codigo in (ev.get("publicados") or []):
-                j["galeria"] = "publicado"
-                return
-    if j.get("galeria") != "publicado":
-        j["galeria"] = "demorando"
+            orig = arqs[t][0]
+            limite = 240 + (os.path.getsize(orig) if os.path.isfile(orig) else 0) / 1.5e6  # ~1,5 MB/s de upload
+            if j.get("tentativas", 0) >= MAX_TENTATIVAS:
+                continue
+            if st.get("err") and time.time() - enviado[t] > 60:
+                reenviar(t, "O Drive deu erro ao subir (%s)." % st["err"])
+            elif not st.get("ing") and not st.get("up") and time.time() - enviado[t] > limite:
+                reenviar(t, "O Drive não subiu o arquivo a tempo.")
+            elif st.get("up") and time.time() - enviado[t] > limite + 300:
+                reenviar(t, "O Drive diz que subiu, mas o arquivo não apareceu.")
+    if j.get("acomp") == meu and j.get("galeria") != "publicado":
+        j["galeria"] = "falhou"
+        j["galeria_info"] = "Não chegou à galeria depois de %d tentativas. Confira o Google Drive no Mac (ícone na barra de menus) e toque em \"Tentar de novo\"." % (j.get("tentativas", 0) + 1)
+
+
+def tentar_de_novo(jid):
+    with TRAVA:
+        j = next((x for x in FILA if x["id"] == jid), None)
+    if not j or not j.get("drive_arqs"):
+        raise ValueError("Esse vídeo não foi copiado para o Drive")
+    j["galeria"], j["galeria_info"] = "reenviando", "Enviando de novo para o Drive…"
+    threading.Thread(target=acompanhar_galeria, args=(j, ajustes(j["baile"]).get("url_galeria") or "", True), daemon=True).start()
 
 
 def trabalhador():
@@ -869,6 +972,9 @@ class Handler(BaseHTTPRequestHandler):
                 ids = adicionar(d.get("baile", ""), d.get("arquivos", []), d.get("saidas", ["final", "previa"]),
                                 d.get("refazer", False))
                 return self.responder(200, {"ids": ids})
+            if u.path == "/api/fila/reenviar":
+                tentar_de_novo(d.get("id", ""))
+                return self.responder(200, {"ok": True})
             if u.path == "/api/fila/cancelar":
                 cancelar(d.get("id", ""))
                 return self.responder(200, {"ok": True})

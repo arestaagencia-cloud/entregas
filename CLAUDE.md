@@ -339,6 +339,14 @@ Duas páginas, geradas por `python3 gerar_bailes.py`:
   para computador → Drive sobe → função publica. I Dá-lhe Samba: Prévias `1rOm3nSo8OyqYL3vuYv2AOjiUMZFFkt4k`,
   Finais `1c--33ya_Ny2UiJnnzUUjQuS5juR6SItf`, Capas `1NOfTnRGjWKAstHP01O-JXZ9QaLyN23bf`.
   Novo baile: preencher as três colunas no evento.
+  **Upload que falha no Drive (25/11/2026):** a função devolve também `no_drive` {previas, finais} (números que ela enxerga).
+  O editor guarda os arquivos copiados (`drive_arqs`) e, a cada rodada, confere o estado do upload no Drive do Mac
+  (JXA `estado_drive()`: NSURLUbiquitousItemIsUploaded/IsUploading/UploadingError) e o `no_drive`: se o Drive acusa
+  erro ("Não foi possível comunicar com um aplicativo auxiliar") ou o arquivo não aparece no site depois de
+  4 min + 1 min a cada ~90 MB, copia DE NOVO só aquele arquivo (até 4 vezes, `MAX_TENTATIVAS`). Depois disso a fila
+  mostra "Não chegou à galeria" + botão **Tentar de novo** (`POST /api/fila/reenviar`), que também aparece em
+  "subindo"/"demorando". O telão do app lê o site a cada 10 s e também a fila do editor (vídeo publicado vira
+  "Já disponível" na hora).
 - **Baile de teste "planet-teste" (25/11/2026):** "Baile Teste - Aula de Samba Planet", vídeo R$ 2 (de R$ 5), código R$ 2,
   galeria `/bailes/planet-teste/`, Drive "Baile Teste - Aula de Samba Planet - 25-11-26" (`1YMqavplEyWNO99xs8nIW6KzkTUtaNZ3_`,
   link público; Capas/Prévias/Finais dentro). Logo colorido (só para teste). Telão mostra "de R$ X" riscado quando há

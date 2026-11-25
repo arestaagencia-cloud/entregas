@@ -90,6 +90,8 @@
   .resumo{font-size:12px;color:var(--muted)}
   .gal{font-size:12px;margin-top:5px;color:var(--gold)}
   .gal.publicado{color:var(--ok)} .gal.sem_internet,.gal.demorando{color:var(--muted)}
+  .gal.falhou{color:#ff7a6b;font-weight:600} .gal small{display:block;color:var(--muted);font-weight:400;margin-top:2px;line-height:1.35}
+  .gal .tentar{display:block;margin-top:6px;font-size:12px;padding:5px 10px}
   .pe{display:flex;gap:8px;padding:12px 16px;justify-content:space-between}
 
   /* aparência */
@@ -421,7 +423,7 @@ function desenharFila(){
         <div class="etapa"><span class="st ${j.estado}">${esc(etapa)}</span><span class="muted num">${info}</span></div>
         <div class="barra"><i style="width:${pct}%"></i></div>
         ${j.erro?`<div class="msg">${esc(j.erro)}</div>`:""}
-        ${j.galeria?`<div class="gal ${j.galeria}">${{subindo:"Subindo para o Drive e publicando na galeria…",publicado:"✓ À venda na galeria",sem_internet:"Sem internet: publica quando a conexão voltar",demorando:"O Drive está demorando: o site confere de novo sozinho"}[j.galeria]||""}</div>`:""}
+        ${j.galeria?`<div class="gal ${j.galeria}">${{subindo:"Subindo para o Drive e publicando na galeria…",publicado:"✓ À venda na galeria",sem_internet:"Sem internet: publica quando a conexão voltar",demorando:"O Drive está demorando: o site confere de novo sozinho",reenviando:"Enviando de novo para o Drive…",falhou:"Não chegou à galeria"}[j.galeria]||""}${j.galeria_info&&j.galeria!=="publicado"?`<small>${esc(j.galeria_info)}</small>`:""}${["falhou","demorando","subindo"].includes(j.galeria)&&j.estado==="concluido"?`<button class="leve tentar" type="button" data-reenviar="${j.id}">Tentar de novo</button>`:""}</div>`:""}
       </div>
       <div>${ativo||j.estado==="aguardando"?`<button class="leve" data-canc="${j.id}" title="Cancelar" aria-label="Cancelar">✕</button>`:
         j.estado==="concluido"?`<button class="leve" data-abrirjob="${esc(j.baile)}" title="Abrir a pasta dos finais">Abrir</button>`:""}</div>
@@ -430,6 +432,7 @@ function desenharFila(){
 function durDe(j){const b=E.dados&&j.baile===E.baile&&E.dados.brutos.find(x=>x.arquivo===j.arquivo);return b?b.duracao:120}
 $("#fila").addEventListener("click", async e=>{
   const c=e.target.closest("[data-canc]"); if(c){await api("/api/fila/cancelar",{id:c.dataset.canc}); lerFila(); return}
+  const r=e.target.closest("[data-reenviar]"); if(r){r.disabled=true; r.textContent="Enviando de novo…"; try{await api("/api/fila/reenviar",{id:r.dataset.reenviar})}catch(er){alert(er.message)} lerFila(); return}
   const a=e.target.closest("[data-abrirjob]"); if(a) api("/api/abrir",{baile:a.dataset.abrirjob,pasta:"finais"});
 });
 $("#btLimpar").onclick=async()=>{await api("/api/fila/limpar",{});lerFila()};

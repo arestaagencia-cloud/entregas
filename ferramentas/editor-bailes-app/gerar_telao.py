@@ -216,6 +216,29 @@ i0 = s.index("const baseGaleria = () => {"); i1 = s.index("\n", s.index("return 
 s = s[:i0] + 'const baseGaleria = () => ($("#cLink").value.trim() || "https://entregas.arestagencia.com.br/bailes").replace(/\\/+$/, "");' + s[i1:]
 s = troca(s, "    $(\"#telao\").classList.toggle(\"vid-h\", !!item.h);", "    $(\"#telao\").classList.toggle(\"vid-h\", !!item.h);\n    $(\"#telao\").classList.toggle(\"ja-tem-logo\", !!item.pronto);")
 s = troca(s, 'carregarBailes().then(desenharFila);', 'carregarBailes().catch((e) => aviso(e.message));')
+# ---- "Já disponível": lê o site a cada 10 s e também a fila do editor (o editor sabe na hora quando publicou)
+i0 = s.index("async function lerDisponiveis() {"); i1 = s.index("setInterval(lerDisponiveis, 30000);")
+s = s[:i0] + r'''async function lerDisponiveis() {
+  const novo = new Set(DISP_SITE);
+  const f = filtroEvento();
+  if (f) try {
+    const h = { headers: { apikey: "sb_publishable_ilWt8PPFiHuOBCmiCcsZ3A_CTmqyjmR" }, cache: "no-store" };
+    if (!ID_EVENTO[f]) {
+      const ev = await (await fetch(`https://jlogxdjttufiiikiezfe.supabase.co/rest/v1/eventos?${f}&select=id`, h)).json();
+      if (ev[0]) ID_EVENTO[f] = ev[0].id;
+    }
+    if (ID_EVENTO[f]) {
+      const vs = await (await fetch(`https://jlogxdjttufiiikiezfe.supabase.co/rest/v1/videos?evento_id=eq.${ID_EVENTO[f]}&ativo=eq.true&select=codigo`, h)).json();
+      if (Array.isArray(vs)) { DISP_SITE = new Set(vs.map((v) => String(v.codigo).replace(/^0+(?=\d)/, "").padStart(2, "0"))); novo.clear(); DISP_SITE.forEach((c) => novo.add(c)); }
+    }
+  } catch {}
+  try { const d = await api("/api/fila"); for (const j of d.fila || []) if (j.galeria === "publicado" && j.baile === baileNome()) novo.add(dois(j.num)); } catch {}
+  const mudou = novo.size !== DISPONIVEIS.size || [...novo].some((c) => !DISPONIVEIS.has(c));
+  DISPONIVEIS = novo;
+  if (mudou && ITEM_ATUAL) situacao(ITEM_ATUAL);
+}
+let DISP_SITE = new Set();
+setInterval(lerDisponiveis, 10000);''' + s[i1 + len("setInterval(lerDisponiveis, 30000);"):]
 import json, unicodedata
 AQUI_GER = Path(__file__).resolve().parent
 exec((AQUI_GER / "telao_ajustes.py").read_text())
