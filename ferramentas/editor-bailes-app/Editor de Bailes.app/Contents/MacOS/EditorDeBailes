@@ -1,0 +1,44 @@
+#!/bin/bash
+# Abre o Editor de Bailes: liga o servidor local (se ainda não estiver ligado) e abre a janela.
+R="$(cd "$(dirname "$0")/../Resources" && pwd)"
+PORTA=8765
+URL="http://127.0.0.1:$PORTA/"
+LOG="$HOME/Library/Logs/Editor de Bailes.log"
+export PATH="/opt/homebrew/bin:/usr/local/bin:/usr/bin:/bin:$PATH"
+
+aviso() { osascript -e "display dialog \"$1\" buttons {\"OK\"} default button 1 with title \"Editor de Bailes\" with icon caution" >/dev/null 2>&1; }
+
+abrir() {
+  # janela própria (sem barra de endereço) quando o Chrome está instalado; senão, o navegador padrão
+  if [ -d "/Applications/Google Chrome.app" ]; then
+    open -na "Google Chrome" --args --app="$URL" --window-size=1440,920
+  else
+    open "$URL"
+  fi
+}
+
+if curl -fsS -m 1 "${URL}api/ping" >/dev/null 2>&1; then abrir; exit 0; fi
+
+if ! command -v ffmpeg >/dev/null 2>&1; then
+  aviso "O FFmpeg não está instalado neste Mac.\n\nAbra o Terminal e rode:\nbrew install ffmpeg\n\nDepois abra o Editor de Bailes de novo."
+  exit 1
+fi
+
+PY=""
+for c in /opt/homebrew/bin/python3 /usr/local/bin/python3; do [ -x "$c" ] && { PY="$c"; break; }; done
+if [ -z "$PY" ] && xcode-select -p >/dev/null 2>&1 && [ -x /usr/bin/python3 ]; then PY=/usr/bin/python3; fi
+if [ -z "$PY" ]; then
+  aviso "Falta o Python neste Mac.\n\nAbra o Terminal e rode:\nxcode-select --install\n\nDepois abra o Editor de Bailes de novo."
+  exit 1
+fi
+
+mkdir -p "$(dirname "$LOG")"
+echo "--- $(date) ---" >> "$LOG"
+nohup "$PY" -I "$R/servidor.py" --porta "$PORTA" >> "$LOG" 2>&1 &
+disown
+for i in $(seq 1 40); do
+  curl -fsS -m 1 "${URL}api/ping" >/dev/null 2>&1 && { abrir; exit 0; }
+  sleep 0.25
+done
+aviso "Não consegui abrir o editor. Veja o registro em ~/Library/Logs/Editor de Bailes.log"
+exit 1

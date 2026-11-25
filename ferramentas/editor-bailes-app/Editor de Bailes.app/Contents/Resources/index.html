@@ -1,0 +1,579 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Editor de Bailes</title>
+<link rel="icon" href="/recursos/mark.png">
+<style>
+  :root{
+    --bg:#040404;--ink:#F8F4F2;--ink-2:#d9d2ce;--muted:#8f8784;--line:#232323;--card:#0f0f0f;--card-2:#161616;
+    --gold:#F6AD03;--ok:#57c47b;--erro:#e5605b;--azul:#6fa8ff;
+    --sans:-apple-system,BlinkMacSystemFont,"SF Pro Text","Inter Tight","Helvetica Neue",Helvetica,Arial,sans-serif;
+    color-scheme:dark;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html,body{height:100%}
+  body{background:var(--bg);color:var(--ink);font:14px/1.45 var(--sans);-webkit-font-smoothing:antialiased}
+  button,input,select{font:inherit;color:inherit}
+  button{cursor:pointer;border:1px solid var(--line);background:var(--card-2);border-radius:8px;padding:7px 12px;white-space:nowrap}
+  button:hover{border-color:#3a3a3a;background:#1d1d1d}
+  button:focus-visible,select:focus-visible,input:focus-visible{outline:2px solid var(--gold);outline-offset:2px}
+  button.prim{background:var(--gold);border-color:var(--gold);color:#111;font-weight:600}
+  button.prim:hover{filter:brightness(1.07)}
+  button.prim:disabled{background:#3a3226;border-color:#3a3226;color:#8b7b5a;cursor:not-allowed;filter:none}
+  button.leve{background:none;border-color:transparent;color:var(--ink-2);padding:6px 8px}
+  button.leve:hover{background:var(--card-2)}
+  select{background:var(--card-2);border:1px solid var(--line);border-radius:8px;padding:7px 10px}
+  .muted{color:var(--muted)}
+  .num{font-variant-numeric:tabular-nums}
+
+  /* topo */
+  header{position:sticky;top:0;z-index:20;background:rgba(4,4,4,.92);backdrop-filter:blur(10px);border-bottom:1px solid var(--line)}
+  .topo{display:flex;align-items:center;gap:14px;padding:12px 20px}
+  .marca{display:flex;align-items:center;gap:10px;font-weight:650;letter-spacing:.01em;margin-right:8px}
+  .marca img{width:26px;height:26px}
+  .marca span{color:var(--gold)}
+  .baile-sel{display:flex;align-items:center;gap:8px}
+  .baile-sel select{min-width:260px;font-weight:600}
+  .esp{flex:1}
+  .pill{font-size:12px;border:1px solid var(--line);border-radius:999px;padding:4px 10px;color:var(--ink-2)}
+  .pill.ok::before{content:"";display:inline-block;width:7px;height:7px;border-radius:50%;background:var(--ok);margin-right:6px;vertical-align:1px}
+  .pill.aviso::before{content:"";display:inline-block;width:7px;height:7px;border-radius:50%;background:var(--gold);margin-right:6px;vertical-align:1px}
+  .abas{display:flex;gap:4px;padding:0 20px}
+  .abas button{border:none;background:none;border-bottom:2px solid transparent;border-radius:0;padding:10px 12px;color:var(--muted);font-weight:600}
+  .abas button.on{color:var(--ink);border-bottom-color:var(--gold)}
+  .abas .caminho{margin-left:auto;align-self:center;font-size:12px}
+
+  main{display:grid;grid-template-columns:minmax(0,1fr) 400px;gap:20px;padding:20px;align-items:start}
+  .card{background:var(--card);border:1px solid var(--line);border-radius:14px}
+  .card h2{font-size:15px;font-weight:650}
+  .card-h{display:flex;align-items:center;gap:10px;padding:14px 16px;border-bottom:1px solid var(--line);flex-wrap:wrap}
+
+  /* brutos */
+  .lista{max-height:calc(100vh - 290px);overflow:auto}
+  .linha{display:grid;grid-template-columns:28px 54px 66px minmax(0,1fr) auto;gap:12px;align-items:center;padding:10px 16px;border-bottom:1px solid #191919;cursor:pointer}
+  .linha:hover{background:#131313}
+  .linha.sel{background:#1a1609}
+  .linha input{width:17px;height:17px;accent-color:var(--gold);cursor:pointer}
+  .thumb{width:54px;height:96px;border-radius:6px;background:#1a1a1a center/cover no-repeat;object-fit:cover}
+  .nn{font-size:22px;font-weight:700;color:var(--ink-2)}
+  .nome{font-weight:600;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+  .det{font-size:12px;color:var(--muted);margin-top:2px}
+  .chips{display:flex;gap:6px;flex-wrap:wrap;justify-content:flex-end}
+  .chip{font-size:12px;border-radius:999px;padding:3px 9px;border:1px solid var(--line);color:var(--muted)}
+  .chip.ok{border-color:#24452f;color:var(--ok);background:#0f1d14}
+  .chip.fila{border-color:#4a3a10;color:var(--gold);background:#1c1606}
+  .acoes{position:sticky;bottom:0;display:flex;align-items:center;gap:16px;padding:12px 16px;border-top:1px solid var(--line);background:var(--card);border-radius:0 0 14px 14px;flex-wrap:wrap}
+  .acoes label{display:flex;align-items:center;gap:7px;cursor:pointer;color:var(--ink-2)}
+  .acoes input{accent-color:var(--gold);width:16px;height:16px}
+  .vazio{padding:40px 20px;text-align:center;color:var(--muted)}
+  .vazio b{color:var(--ink-2)}
+
+  /* fila */
+  .fila{position:sticky;top:120px}
+  .fila .lista{max-height:calc(100vh - 260px)}
+  .job{display:grid;grid-template-columns:40px minmax(0,1fr) auto;gap:12px;padding:12px 16px;border-bottom:1px solid #191919;align-items:center}
+  .job .thumb{width:40px;height:71px}
+  .job .titulo{display:flex;gap:8px;align-items:baseline;min-width:0}
+  .job .titulo b{font-size:15px}
+  .job .titulo span{overflow:hidden;text-overflow:ellipsis;white-space:nowrap;color:var(--ink-2);font-size:13px}
+  .etapa{font-size:12px;margin-top:3px;display:flex;gap:4px 8px;align-items:baseline;flex-wrap:wrap}.etapa .st,.etapa .num{white-space:nowrap}
+  .etapa .st{font-weight:600}
+  .barra{height:5px;border-radius:5px;background:#222;margin-top:7px;overflow:hidden}
+  .barra i{display:block;height:100%;background:var(--gold);border-radius:5px;transition:width .6s}
+  .job.concluido .barra i{background:var(--ok)}
+  .job.erro .barra i{background:var(--erro)}
+  .job .st.aguardando{color:var(--muted)}.job .st.editando,.job .st.preparando,.job .st.copiando{color:var(--gold)}
+  .job .st.concluido{color:var(--ok)}.job .st.erro{color:var(--erro)}.job .st.cancelado{color:var(--muted)}
+  .job .msg{font-size:12px;color:var(--erro);margin-top:4px;word-break:break-word}
+  .resumo{font-size:12px;color:var(--muted)}
+  .pe{display:flex;gap:8px;padding:12px 16px;justify-content:space-between}
+
+  /* aparência */
+  .ap{display:grid;gap:20px}
+  .bloco{padding:16px;display:grid;gap:14px}
+  .duas{display:grid;grid-template-columns:1fr 1fr;gap:20px}
+  .xadrez{background:#2a2a2a;background-image:linear-gradient(45deg,#333 25%,transparent 25%),linear-gradient(-45deg,#333 25%,transparent 25%),linear-gradient(45deg,transparent 75%,#333 75%),linear-gradient(-45deg,transparent 75%,#333 75%);background-size:16px 16px;background-position:0 0,0 8px,8px -8px,-8px 0;border-radius:10px;display:grid;place-items:center;padding:14px;min-height:150px}
+  .xadrez img{max-width:100%;max-height:170px}
+  .campo{display:grid;grid-template-columns:150px 1fr 64px;gap:12px;align-items:center}
+  .campo label{color:var(--ink-2)}
+  .campo input[type=range]{accent-color:var(--gold);width:100%}
+  .campo output{text-align:right;color:var(--ink-2);font-variant-numeric:tabular-nums}
+  .botoes{display:flex;gap:8px;flex-wrap:wrap;align-items:center}
+  .nota{font-size:12px;color:var(--muted)}
+  .exemplo{display:grid;grid-template-columns:repeat(2,minmax(0,300px));gap:24px;justify-content:center}
+  .exemplo figure{display:grid;gap:8px}
+  .exemplo .tela{aspect-ratio:9/16;background:#111;border-radius:10px;overflow:hidden;position:relative;border:1px solid var(--line)}
+  .exemplo .tela img{width:100%;height:100%;object-fit:cover;display:block}
+  .exemplo .tela .car{position:absolute;inset:0;display:grid;place-items:center;color:var(--muted);font-size:13px;background:rgba(0,0,0,.4)}
+  .exemplo figcaption{font-size:12px;color:var(--muted);text-align:center}
+  .comp{display:none;gap:12px;border:1px dashed #3a3a3a;border-radius:10px;padding:12px}
+  .comp.on{display:grid}
+  .drive{display:flex;gap:10px;align-items:center;flex-wrap:wrap}
+  .drive code{background:var(--card-2);border:1px solid var(--line);border-radius:6px;padding:5px 8px;font-size:12px;max-width:100%;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+
+  /* diálogo */
+  dialog{margin:auto;border:1px solid var(--line);background:var(--card);color:var(--ink);border-radius:14px;padding:22px;width:min(420px,92vw)}
+  dialog::backdrop{background:rgba(0,0,0,.6)}
+  dialog h3{font-size:17px;margin-bottom:14px}
+  dialog .f{display:grid;gap:6px;margin-bottom:12px}
+  dialog input{background:var(--card-2);border:1px solid var(--line);border-radius:8px;padding:9px 10px}
+  dialog .botoes{justify-content:flex-end;margin-top:8px}
+  .toast{position:fixed;left:50%;bottom:22px;transform:translateX(-50%) translateY(20px);background:#1d1d1d;border:1px solid #333;border-radius:10px;padding:10px 16px;opacity:0;transition:.25s;pointer-events:none;z-index:50}
+  .toast.on{opacity:1;transform:translateX(-50%)}
+  .fechado{position:fixed;inset:0;background:var(--bg);display:none;place-items:center;text-align:center;z-index:100}
+  .fechado.on{display:grid}
+  @media (max-width:1000px){main{grid-template-columns:1fr}.fila{position:static}.duas{grid-template-columns:1fr}}
+  [hidden]{display:none!important}
+</style>
+</head>
+<body>
+<header>
+  <div class="topo">
+    <div class="marca"><img src="/recursos/mark.png" alt="">Editor de <span>Bailes</span></div>
+    <div class="baile-sel">
+      <select id="selBaile" aria-label="Baile"></select>
+      <button id="btNovo">+ Novo baile</button>
+    </div>
+    <div class="esp"></div>
+    <span id="pillHw" class="pill"></span>
+    <button class="leve" id="btSair" title="Fecha o editor (cancela a fila)">Fechar editor</button>
+  </div>
+  <nav class="abas" role="tablist">
+    <button class="on" data-aba="videos" role="tab">Vídeos</button>
+    <button data-aba="aparencia" role="tab">Aparência</button>
+    <span class="caminho muted">Pasta dos bailes: <span id="txtPasta"></span> <button class="leve" id="btPasta">Trocar</button></span>
+  </nav>
+</header>
+
+<main>
+  <section>
+    <!-- VÍDEOS -->
+    <div id="abaVideos" class="card">
+      <div class="card-h">
+        <h2>Vídeos brutos</h2>
+        <span id="contagem" class="muted"></span>
+        <div class="esp"></div>
+        <button class="leve" data-sel="pendentes">Selecionar pendentes</button>
+        <button class="leve" data-sel="todos">Todos</button>
+        <button class="leve" data-sel="nenhum">Nenhum</button>
+        <button data-abrir="brutos">Abrir pasta</button>
+      </div>
+      <div class="lista" id="lista"></div>
+      <div class="acoes">
+        <label><input type="checkbox" id="opFinal" checked> Final</label>
+        <label><input type="checkbox" id="opPrevia" checked> Prévia</label>
+        <label title="Edita de novo e substitui os arquivos que já existem"><input type="checkbox" id="opRefazer"> Refazer os que já estão prontos</label>
+        <div class="esp"></div>
+        <button class="prim" id="btEditar" disabled>Editar</button>
+      </div>
+    </div>
+
+    <!-- APARÊNCIA -->
+    <div id="abaAparencia" class="ap" hidden>
+      <div class="card">
+        <div class="card-h"><h2>Exemplo</h2><span class="muted">um quadro do vídeo com os ajustes atuais</span><div class="esp"></div>
+          <select id="exVideo" aria-label="Vídeo do exemplo"></select>
+          <label class="muted">no segundo <input id="exT" type="number" min="0" step="1" value="8" style="width:64px;background:var(--card-2);border:1px solid var(--line);border-radius:8px;padding:6px 8px"></label>
+          <button id="btExemplo">Atualizar</button>
+        </div>
+        <div class="bloco">
+          <div class="exemplo">
+            <figure><div class="tela"><img id="exF" alt="Exemplo do vídeo final"><div class="car" id="exFc">Sem vídeo bruto ainda</div></div><figcaption>Final (1080×1920)</figcaption></figure>
+            <figure><div class="tela"><img id="exP" alt="Exemplo da prévia"><div class="car" id="exPc">Sem vídeo bruto ainda</div></div><figcaption>Prévia (720×1280), com a marca já visível</figcaption></figure>
+          </div>
+        </div>
+      </div>
+
+      <div class="duas">
+        <div class="card">
+          <div class="card-h"><h2>Logos embaixo</h2></div>
+          <div class="bloco">
+            <div class="xadrez"><img id="imgLogos" alt="Logos embaixo do vídeo"></div>
+            <div class="botoes">
+              <button id="btParceiro">Montar com o logo do parceiro</button>
+              <button class="leve" id="btLogosPronto">Usar um PNG pronto</button>
+            </div>
+            <div class="comp" id="comp">
+              <div class="nota">Use a versão toda branca do logo do parceiro, em PNG com fundo transparente.</div>
+              <div class="xadrez"><canvas id="cv" style="max-width:100%;max-height:170px"></canvas></div>
+              <div class="campo"><label for="rParc">Tamanho do parceiro</label><input type="range" id="rParc" min="50" max="160" step="1"><output id="oParc"></output></div>
+              <div class="botoes"><button class="prim" id="btSalvarComp">Usar estas logos</button><button class="leve" id="btTrocarParc">Trocar o logo do parceiro</button><button class="leve" id="btCancComp">Cancelar</button></div>
+            </div>
+            <div class="campo"><label for="aLarg">Largura</label><input type="range" id="aLarg" data-k="logo_largura" min="10" max="80" step="1"><output></output></div>
+            <div class="campo"><label for="aOpac">Opacidade</label><input type="range" id="aOpac" data-k="logo_opacidade" min="0.2" max="1" step="0.05"><output></output></div>
+            <div class="campo"><label for="aMarg">Distância de baixo</label><input type="range" id="aMarg" data-k="logo_margem" min="0" max="20" step="0.5"><output></output></div>
+          </div>
+        </div>
+        <div class="card">
+          <div class="card-h"><h2>Marca da prévia</h2></div>
+          <div class="bloco">
+            <div class="xadrez"><img id="imgPrevia" alt="PNG da prévia"></div>
+            <div class="botoes"><button id="btPrevia">Trocar o PNG da prévia</button></div>
+            <div class="campo"><label for="pOpac">Opacidade</label><input type="range" id="pOpac" data-k="previa_opacidade" min="0.05" max="1" step="0.05"><output></output></div>
+            <div class="campo"><label for="pIni">Começa no segundo</label><input type="range" id="pIni" data-k="previa_inicio" min="0" max="20" step="0.5"><output></output></div>
+            <div class="campo"><label for="pFade">Fade de entrada</label><input type="range" id="pFade" data-k="previa_fade" min="0" max="5" step="0.1"><output></output></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card-h"><h2>Outros ajustes</h2></div>
+        <div class="bloco">
+          <div class="campo" style="grid-template-columns:150px auto"><label for="aGirar">Vídeo deitado</label>
+            <select id="aGirar"><option value="direita">Girar para a direita</option><option value="esquerda">Girar para a esquerda</option><option value="nao">Não girar (fica com faixas pretas)</option></select></div>
+          <div class="nota">Os vídeos verticais da A7IV já vêm marcados e ficam em pé sozinhos. Isto só vale para um vídeo que chegar deitado.</div>
+          <div class="campo" style="grid-template-columns:150px 1fr"><label>Cópia para o Drive</label>
+            <div class="drive"><code id="txtDrive">Desligada</code><button id="btDrive">Escolher pasta</button><button class="leve" id="btDriveOff" hidden>Desligar</button></div></div>
+          <div class="nota">Opcional. Escolha a pasta do baile no Google Drive do Mac: ao terminar cada vídeo, o editor copia para as subpastas Prévias e Finais dela.</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <aside class="card fila">
+    <div class="card-h"><h2>Fila de edição</h2><div class="esp"></div><span class="resumo" id="resumo"></span></div>
+    <div class="lista" id="fila"><div class="vazio">Nada na fila.<br>Marque os vídeos e clique em <b>Editar</b>.</div></div>
+    <div class="pe"><button class="leve" id="btLimpar">Limpar concluídos</button><button class="leve" id="btCancTudo">Cancelar tudo</button></div>
+  </aside>
+</main>
+
+<dialog id="dlgNovo">
+  <h3>Novo baile</h3>
+  <div class="f"><label for="nNome">Nome</label><input id="nNome" placeholder="I Dá-Lhe Samba"></div>
+  <div class="f"><label for="nData">Data</label><input id="nData" type="date"></div>
+  <div class="nota">Cria a pasta com 1. Brutos, 2. Prévias e 3. Finais.</div>
+  <div class="botoes"><button class="leve" id="nCanc">Cancelar</button><button class="prim" id="nOk">Criar</button></div>
+</dialog>
+<input type="file" id="fileLogos" accept="image/png" hidden>
+<input type="file" id="fileParc" accept="image/png" hidden>
+<input type="file" id="filePrevia" accept="image/png" hidden>
+<div class="toast" id="toast"></div>
+<div class="fechado" id="fechado"><div><h2 style="font-size:20px;margin-bottom:8px">Editor fechado</h2><p class="muted">Pode fechar esta janela. Para abrir de novo, use o app Editor de Bailes.</p></div></div>
+
+<script>
+const $ = s => document.querySelector(s);
+const E = {baile:"", dados:null, sel:new Set(), fila:[], aba:"videos", tSalvar:null, tEx:null, exVer:0};
+
+async function api(caminho, corpo){
+  const op = corpo === undefined ? {} : {method:"POST", headers:{"X-Editor":"1","Content-Type":"application/json"}, body:JSON.stringify(corpo)};
+  const r = await fetch(caminho, op);
+  const d = await r.json().catch(()=>({}));
+  if(!r.ok) throw new Error(d.erro || "Erro");
+  return d;
+}
+async function enviarPng(tipo, blob){
+  const r = await fetch(`/api/upload?baile=${enc(E.baile)}&tipo=${tipo}`, {method:"POST", headers:{"X-Editor":"1"}, body:blob});
+  const d = await r.json().catch(()=>({}));
+  if(!r.ok) throw new Error(d.erro || "Erro ao enviar");
+}
+const enc = encodeURIComponent;
+function toast(t){const e=$("#toast");e.textContent=t;e.classList.add("on");clearTimeout(e._t);e._t=setTimeout(()=>e.classList.remove("on"),2600)}
+function dur(s){s=Math.round(s||0);const m=Math.floor(s/60);return m+":"+String(s%60).padStart(2,"0")}
+function tam(b){return b>=1e9?(b/1e9).toLocaleString("pt-BR",{maximumFractionDigits:1})+" GB":Math.round(b/1e6)+" MB"}
+function resta(s){if(s==null)return"";if(s<60)return"falta menos de 1 min";const m=Math.round(s/60);return m<60?`faltam ${m} min`:`faltam ${Math.floor(m/60)}h${String(m%60).padStart(2,"0")}`}
+const nn = n => String(n).padStart(2,"0");
+const mini = a => `/api/miniatura?baile=${enc(E.baile)}&arquivo=${enc(a)}`;
+
+// ---------- início ----------
+async function iniciar(){
+  const d = await api("/api/inicio");
+  $("#txtPasta").textContent = d.pasta_bailes.replace(/^\/Users\/[^/]+/,"~");
+  const p = $("#pillHw");
+  if(!d.ffmpeg){p.className="pill aviso";p.textContent="FFmpeg não encontrado"}
+  else if(d.videotoolbox){p.className="pill ok";p.textContent="Usando o chip do Mac"}
+  else {p.className="pill aviso";p.textContent="Sem aceleração (mais lento)"}
+  const s = $("#selBaile");
+  s.innerHTML = d.bailes.length ? d.bailes.map(b=>`<option>${esc(b)}</option>`).join("") : `<option value="">Nenhum baile ainda</option>`;
+  if(d.baile_atual){s.value=d.baile_atual}
+  await trocarBaile(s.value);
+}
+function esc(t){return String(t).replace(/[&<>"]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]))}
+
+async function trocarBaile(nome){
+  E.baile = nome; E.sel.clear();
+  if(nome) api("/api/baile-atual",{nome}).catch(()=>{});
+  await carregarBaile(true);
+}
+async function carregarBaile(primeira){
+  if(!E.baile){E.dados=null;desenharLista();return}
+  try{ E.dados = await api(`/api/baile?nome=${enc(E.baile)}`) }catch(e){toast(e.message);return}
+  desenharLista();
+  if(primeira) preencherAjustes();
+  else if(E.dados.versao_recursos!==E.verRec) atualizarImagens();
+}
+
+// ---------- lista de brutos ----------
+function emFila(a){return E.fila.find(j=>j.baile===E.baile&&j.arquivo===a&&["aguardando","preparando","editando","copiando"].includes(j.estado))}
+function desenharLista(){
+  const L = $("#lista"), d = E.dados;
+  if(!d){L.innerHTML=`<div class="vazio">Crie um baile em <b>+ Novo baile</b>.</div>`;$("#contagem").textContent="";atualizarBotao();return}
+  const b = d.brutos;
+  const prontos = b.filter(x=>x.final&&x.previa).length;
+  $("#contagem").textContent = b.length ? `${b.length} vídeo${b.length>1?"s":""} · ${prontos} pronto${prontos!==1?"s":""} · ${b.length-prontos} pendente${b.length-prontos!==1?"s":""}` : "";
+  if(!b.length){L.innerHTML=`<div class="vazio">Nenhum vídeo em <b>1. Brutos</b>.<br>Copie os arquivos do cartão para essa pasta.<br><br><button data-abrir="brutos">Abrir 1. Brutos</button></div>`;atualizarBotao();return}
+  const ex = new Set([...L.querySelectorAll(".linha")].map(x=>x.dataset.a));
+  const mesmo = ex.size===b.length && b.every(x=>ex.has(x.arquivo));
+  if(!mesmo){
+    L.innerHTML = b.map(x=>`<div class="linha" data-a="${esc(x.arquivo)}">
+      <input type="checkbox" aria-label="Selecionar ${esc(x.arquivo)}">
+      <img class="thumb" loading="lazy" src="${mini(x.arquivo)}" alt="">
+      <div class="nn num">${nn(x.num)}</div>
+      <div><div class="nome">${esc(x.arquivo)}</div><div class="det num"></div></div>
+      <div class="chips"></div></div>`).join("");
+  }
+  for(const x of b){
+    const el = L.querySelector(`.linha[data-a="${CSS.escape(x.arquivo)}"]`); if(!el) continue;
+    const s = E.sel.has(x.arquivo);
+    el.classList.toggle("sel",s); el.querySelector("input").checked = s;
+    el.querySelector(".det").textContent = `${dur(x.duracao)} · ${tam(x.bytes)} · ${String(x.codec).toUpperCase()} ${x.bits} bit${x.deitado?" · deitado":""}`;
+    const j = emFila(x.arquivo);
+    el.querySelector(".chips").innerHTML = j ? `<span class="chip fila">Na fila</span>` :
+      `<span class="chip ${x.final?"ok":""}">${x.final?"✓ ":""}Final</span><span class="chip ${x.previa?"ok":""}">${x.previa?"✓ ":""}Prévia</span>`;
+  }
+  atualizarBotao();
+}
+$("#lista").addEventListener("click", e=>{
+  const l = e.target.closest(".linha"); if(!l) return;
+  const a = l.dataset.a;
+  E.sel.has(a) ? E.sel.delete(a) : E.sel.add(a);
+  desenharLista();
+});
+document.querySelectorAll("[data-sel]").forEach(b=>b.onclick=()=>{
+  if(!E.dados) return;
+  const m=b.dataset.sel; E.sel.clear();
+  if(m==="todos") E.dados.brutos.forEach(x=>E.sel.add(x.arquivo));
+  if(m==="pendentes") E.dados.brutos.filter(x=>!(x.final&&x.previa)&&!emFila(x.arquivo)).forEach(x=>E.sel.add(x.arquivo));
+  desenharLista();
+});
+function atualizarBotao(){
+  const n=E.sel.size, b=$("#btEditar"), algum=$("#opFinal").checked||$("#opPrevia").checked;
+  b.disabled = !n || !algum;
+  b.textContent = n ? `Editar ${n} vídeo${n>1?"s":""}` : "Editar";
+}
+["#opFinal","#opPrevia"].forEach(s=>$(s).onchange=atualizarBotao);
+$("#btEditar").onclick = async ()=>{
+  const saidas=[]; if($("#opFinal").checked)saidas.push("final"); if($("#opPrevia").checked)saidas.push("previa");
+  const arquivos = E.dados.brutos.filter(x=>E.sel.has(x.arquivo)).map(x=>x.arquivo);
+  try{
+    const r = await api("/api/fila/adicionar",{baile:E.baile, arquivos, saidas, refazer:$("#opRefazer").checked});
+    toast(r.ids.length ? `${r.ids.length} vídeo${r.ids.length>1?"s":""} na fila` : "Esses vídeos já estão na fila");
+    E.sel.clear(); await lerFila(); desenharLista();
+  }catch(e){toast(e.message)}
+};
+document.addEventListener("click", e=>{
+  const b=e.target.closest("[data-abrir]"); if(b&&E.baile) api("/api/abrir",{baile:E.baile,pasta:b.dataset.abrir});
+});
+
+// ---------- fila ----------
+const NOMES = {aguardando:"Na fila", preparando:"Preparando", editando:"Editando", copiando:"Copiando", concluido:"Concluído", erro:"Erro", cancelado:"Cancelado"};
+async function lerFila(){
+  try{ const d = await api("/api/fila"); E.fila = d.fila; desenharFila() }catch(e){}
+}
+function desenharFila(){
+  const F=$("#fila"), f=E.fila;
+  const ativos=f.filter(j=>["aguardando","preparando","editando","copiando"].includes(j.estado));
+  const feitos=f.filter(j=>j.estado==="concluido").length;
+  const atual=f.find(j=>["preparando","editando","copiando"].includes(j.estado));
+  let txt="";
+  const validos=f.filter(j=>j.estado!=="cancelado").length;
+  if(validos){
+    txt=`${feitos} de ${validos} pronto${validos>1?"s":""}`;
+    if(atual&&atual.eta!=null){
+      const espera = ativos.filter(j=>j.estado==="aguardando");
+      const taxa = atual.pct>3 ? (Date.now()/1000-atual.inicio)/(atual.pct/100*Math.max(1,atual.duracao)) : null;
+      const resto = atual.eta + (taxa ? espera.reduce((s,j)=>s+durDe(j),0)*taxa : 0);
+      txt += " · " + resta(resto);
+    }
+  }
+  $("#resumo").textContent=txt;
+  if(!f.length){F.innerHTML=`<div class="vazio">Nada na fila.<br>Marque os vídeos e clique em <b>Editar</b>.</div>`;return}
+  F.innerHTML = f.map(j=>{
+    const ativo=["preparando","editando","copiando"].includes(j.estado);
+    const pct = j.estado==="concluido"?100:(j.pct||0);
+    let info = "";
+    if(j.estado==="editando") info = `${Math.floor(pct)}%${j.eta!=null?" · "+resta(j.eta):""}${j.velocidade?" · "+String(j.velocidade).replace(".",",")+"x":""}`;
+    if(j.estado==="concluido"&&j.inicio&&j.fim) info = `em ${dur(j.fim-j.inicio)}`;
+    if(j.estado==="aguardando") info = j.saidas.map(s=>s==="final"?"final":"prévia").join(" + ");
+    const etapa = j.estado==="editando"||j.estado==="preparando"||j.estado==="copiando"||j.estado==="concluido" ? j.etapa : NOMES[j.estado];
+    return `<div class="job ${j.estado}">
+      <img class="thumb" src="/api/miniatura?baile=${enc(j.baile)}&arquivo=${enc(j.arquivo)}" alt="">
+      <div style="min-width:0">
+        <div class="titulo"><b class="num">Nº ${nn(j.num)}</b><span>${esc(j.arquivo)}${j.baile!==E.baile?" · "+esc(j.baile):""}</span></div>
+        <div class="etapa"><span class="st ${j.estado}">${esc(etapa)}</span><span class="muted num">${info}</span></div>
+        <div class="barra"><i style="width:${pct}%"></i></div>
+        ${j.erro?`<div class="msg">${esc(j.erro)}</div>`:""}
+      </div>
+      <div>${ativo||j.estado==="aguardando"?`<button class="leve" data-canc="${j.id}" title="Cancelar" aria-label="Cancelar">✕</button>`:
+        j.estado==="concluido"?`<button class="leve" data-abrirjob="${esc(j.baile)}" title="Abrir a pasta dos finais">Abrir</button>`:""}</div>
+    </div>`}).join("");
+}
+function durDe(j){const b=E.dados&&j.baile===E.baile&&E.dados.brutos.find(x=>x.arquivo===j.arquivo);return b?b.duracao:120}
+$("#fila").addEventListener("click", async e=>{
+  const c=e.target.closest("[data-canc]"); if(c){await api("/api/fila/cancelar",{id:c.dataset.canc}); lerFila(); return}
+  const a=e.target.closest("[data-abrirjob]"); if(a) api("/api/abrir",{baile:a.dataset.abrirjob,pasta:"finais"});
+});
+$("#btLimpar").onclick=async()=>{await api("/api/fila/limpar",{});lerFila()};
+$("#btCancTudo").onclick=async()=>{if(!E.fila.some(j=>["aguardando","preparando","editando","copiando"].includes(j.estado)))return;if(confirm("Cancelar todos os vídeos da fila?")){await api("/api/fila/cancelar",{id:"todos"});lerFila()}};
+
+let antesOcupada=false;
+setInterval(async()=>{
+  await lerFila();
+  const ocupada = E.fila.some(j=>["aguardando","preparando","editando","copiando"].includes(j.estado));
+  if(antesOcupada!==ocupada || ocupada) desenharLista();
+  antesOcupada=ocupada;
+},1000);
+setInterval(()=>{ if(!document.hidden) carregarBaile(false) },4000);
+
+// ---------- abas ----------
+document.querySelectorAll("[data-aba]").forEach(b=>b.onclick=()=>{
+  document.querySelectorAll("[data-aba]").forEach(x=>x.classList.toggle("on",x===b));
+  E.aba=b.dataset.aba;
+  $("#abaVideos").hidden = E.aba!=="videos";
+  $("#abaAparencia").hidden = E.aba!=="aparencia";
+  if(E.aba==="aparencia") atualizarExemplo();
+});
+
+// ---------- baile ----------
+$("#selBaile").onchange = e=>trocarBaile(e.target.value);
+$("#btNovo").onclick=()=>{$("#nNome").value="";$("#nData").value=new Date(Date.now()-new Date().getTimezoneOffset()*6e4).toISOString().slice(0,10);$("#dlgNovo").showModal();$("#nNome").focus()};
+$("#nCanc").onclick=()=>$("#dlgNovo").close();
+$("#nOk").onclick=async()=>{
+  try{const r=await api("/api/criar-baile",{nome:$("#nNome").value,data:$("#nData").value});$("#dlgNovo").close();await iniciar();$("#selBaile").value=r.nome;await trocarBaile(r.nome);toast("Baile criado")}
+  catch(e){toast(e.message)}
+};
+$("#btPasta").onclick=async()=>{try{await api("/api/trocar-pasta-bailes",{});await iniciar()}catch(e){toast(e.message)}};
+$("#btSair").onclick=async()=>{
+  const ocup=E.fila.some(j=>["aguardando","preparando","editando","copiando"].includes(j.estado));
+  if(ocup&&!confirm("Ainda tem vídeo na fila. Fechar mesmo assim? A edição em andamento será cancelada."))return;
+  try{await api("/api/sair",{})}catch(e){}
+  $("#fechado").classList.add("on");
+};
+
+// ---------- aparência ----------
+const CAMPOS=["aLarg","aOpac","aMarg","pOpac","pIni","pFade"];
+function fmt(k,v){v=Number(v);
+  if(k==="logo_largura")return v+"%";
+  if(k==="logo_margem")return String(v).replace(".",",")+"%";
+  if(k.endsWith("opacidade"))return Math.round(v*100)+"%";
+  return String(v).replace(".",",")+" s";}
+function preencherAjustes(){
+  if(!E.dados) return;
+  const a=E.dados.ajustes;
+  for(const id of CAMPOS){const i=$("#"+id);i.value=a[i.dataset.k];i.nextElementSibling.value=fmt(i.dataset.k,i.value)}
+  $("#aGirar").value=a.girar;
+  $("#rParc").value=a.parceiro_tamanho||100; $("#oParc").value=$("#rParc").value+"%";
+  desenharDrive(a);
+  $("#exVideo").innerHTML = E.dados.brutos.map(b=>`<option value="${esc(b.arquivo)}">Nº ${nn(b.num)} · ${esc(b.arquivo)}</option>`).join("");
+  atualizarImagens();
+}
+function atualizarImagens(){
+  E.verRec=E.dados.versao_recursos;
+  $("#imgLogos").src=`/api/imagem?baile=${enc(E.baile)}&tipo=logos&v=${E.verRec}`;
+  $("#imgPrevia").src=`/api/imagem?baile=${enc(E.baile)}&tipo=previa&v=${E.verRec}`;
+}
+function desenharDrive(a){
+  $("#txtDrive").textContent = a.destino_drive ? a.destino_drive.replace(/^\/Users\/[^/]+/,"~") : "Desligada";
+  $("#btDriveOff").hidden = !a.destino_drive;
+  $("#btDrive").textContent = a.destino_drive ? "Trocar" : "Escolher pasta";
+}
+for(const id of CAMPOS){
+  const i=$("#"+id);
+  i.oninput=()=>{i.nextElementSibling.value=fmt(i.dataset.k,i.value); salvarDepois()};
+}
+$("#aGirar").onchange=salvarDepois;
+function salvarDepois(){
+  clearTimeout(E.tSalvar);
+  E.tSalvar=setTimeout(async()=>{
+    const aj={girar:$("#aGirar").value}; for(const id of CAMPOS){const i=$("#"+id);aj[i.dataset.k]=Number(i.value)}
+    try{E.dados.ajustes=await api("/api/ajustes",{baile:E.baile,ajustes:aj}); atualizarExemplo()}catch(e){toast(e.message)}
+  },350);
+}
+$("#btDrive").onclick=async()=>{try{const a=await api("/api/escolher-drive",{baile:E.baile});E.dados.ajustes=a;desenharDrive(a)}catch(e){toast(e.message)}};
+$("#btDriveOff").onclick=async()=>{const a=await api("/api/ajustes",{baile:E.baile,ajustes:{destino_drive:""}});E.dados.ajustes=a;desenharDrive(a)};
+
+// exemplo
+$("#btExemplo").onclick=()=>atualizarExemplo(true);
+$("#exVideo").onchange=()=>atualizarExemplo(true);
+$("#exT").onchange=()=>atualizarExemplo(true);
+function atualizarExemplo(ja){
+  clearTimeout(E.tEx);
+  E.tEx=setTimeout(()=>{
+    const a=$("#exVideo").value;
+    if(!a){$("#exFc").hidden=$("#exPc").hidden=false;return}
+    const v=++E.exVer, t=$("#exT").value||8;
+    for(const [img,car,tipo] of [["#exF","#exFc","final"],["#exP","#exPc","previa"]]){
+      const c=$(car); c.hidden=false; c.textContent="Gerando…";
+      const im=new Image();
+      im.onload=()=>{if(v!==E.exVer)return;$(img).src=im.src;c.hidden=true};
+      im.onerror=()=>{if(v!==E.exVer)return;c.textContent="Não consegui gerar o exemplo"};
+      im.src=`/api/amostra?baile=${enc(E.baile)}&arquivo=${enc(a)}&t=${t}&tipo=${tipo}&v=${v}-${Date.now()}`;
+    }
+  }, ja?0:500);
+}
+
+// PNGs
+$("#btLogosPronto").onclick=()=>$("#fileLogos").click();
+$("#btPrevia").onclick=()=>$("#filePrevia").click();
+$("#fileLogos").onchange=async e=>{const f=e.target.files[0];e.target.value="";if(!f)return;try{await enviarPng("logos",f);await carregarBaile(false);atualizarImagens();atualizarExemplo(true);toast("Logos atualizadas")}catch(er){toast(er.message)}};
+$("#filePrevia").onchange=async e=>{const f=e.target.files[0];e.target.value="";if(!f)return;try{await enviarPng("previa",f);await carregarBaile(false);atualizarImagens();atualizarExemplo(true);toast("Marca da prévia atualizada")}catch(er){toast(er.message)}};
+
+// montar logos: Aresta × parceiro (feito aqui no navegador, com a mesma sombra das logos atuais)
+const ARESTA=new Image(); ARESTA.src="/recursos/aresta.png";
+let PARC=null;
+$("#btParceiro").onclick=async()=>{
+  // reaproveita o logo do parceiro já enviado para este baile, se houver
+  const im=new Image();
+  im.onload=()=>{PARC=im;$("#comp").classList.add("on");compor()};
+  im.onerror=()=>$("#fileParc").click();
+  im.src=`/api/imagem?baile=${enc(E.baile)}&tipo=parceiro&v=${Date.now()}`;
+};
+$("#fileParc").onchange=e=>{
+  const f=e.target.files[0];e.target.value="";if(!f)return;
+  const im=new Image();im.onload=()=>{PARC=im;PARC._arquivo=f;$("#comp").classList.add("on");compor()};im.src=URL.createObjectURL(f);
+};
+$("#rParc").oninput=()=>{$("#oParc").value=$("#rParc").value+"%";compor()};
+$("#btCancComp").onclick=()=>$("#comp").classList.remove("on");
+function recortar(img){ // tira a sobra transparente em volta do logo
+  const c=document.createElement("canvas");c.width=img.naturalWidth;c.height=img.naturalHeight;
+  const x=c.getContext("2d");x.drawImage(img,0,0);
+  const d=x.getImageData(0,0,c.width,c.height).data;let t=c.height,b=0,l=c.width,r=0;
+  for(let y=0;y<c.height;y++)for(let i=0;i<c.width;i++){if(d[(y*c.width+i)*4+3]>12){if(y<t)t=y;if(y>b)b=y;if(i<l)l=i;if(i>r)r=i}}
+  if(r<l)return c;
+  const o=document.createElement("canvas");o.width=r-l+1;o.height=b-t+1;o.getContext("2d").drawImage(c,l,t,o.width,o.height,0,0,o.width,o.height);return o;
+}
+function compor(){
+  if(!PARC||!ARESTA.complete)return;
+  const H=380, pad=30, gap=46, xs=44;
+  const a=recortar(ARESTA), p=recortar(PARC);
+  const aw=a.width*H/a.height;
+  let ph=H*Number($("#rParc").value)/100*0.92, pw=p.width*ph/p.height;
+  if(pw>H*1.9){pw=H*1.9;ph=p.height*pw/p.width}
+  const W=Math.round(pad+aw+gap+xs+gap+pw+pad), HH=Math.round(Math.max(H,ph)+pad*2);
+  const cv=$("#cv");cv.width=W;cv.height=HH;
+  const x=cv.getContext("2d");x.clearRect(0,0,W,HH);
+  x.shadowColor="rgba(0,0,0,.55)";x.shadowBlur=18;x.shadowOffsetY=4;
+  const cy=HH/2;
+  x.drawImage(a,pad,cy-H/2,aw,H);
+  const xc=pad+aw+gap+xs/2;
+  x.strokeStyle="rgba(255,255,255,.85)";x.lineWidth=3.5;x.lineCap="round";
+  x.beginPath();x.moveTo(xc-xs/2,cy-xs/2);x.lineTo(xc+xs/2,cy+xs/2);x.moveTo(xc+xs/2,cy-xs/2);x.lineTo(xc-xs/2,cy+xs/2);x.stroke();
+  x.drawImage(p,pad+aw+gap+xs+gap,cy-ph/2,pw,ph);
+}
+$("#btSalvarComp").onclick=async()=>{
+  try{
+    const blob=await new Promise(r=>$("#cv").toBlob(r,"image/png"));
+    if(PARC._arquivo) await enviarPng("parceiro",PARC._arquivo);
+    await enviarPng("logos",blob);
+    await api("/api/ajustes",{baile:E.baile,ajustes:{parceiro_tamanho:Number($("#rParc").value)}});
+    $("#comp").classList.remove("on");
+    await carregarBaile(false);atualizarImagens();atualizarExemplo(true);toast("Logos atualizadas");
+  }catch(e){toast(e.message)}
+};
+$("#btTrocarParc").onclick=()=>$("#fileParc").click();
+
+iniciar().catch(e=>toast(e.message));
+</script>
+</body>
+</html>

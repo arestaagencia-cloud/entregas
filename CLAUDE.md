@@ -308,6 +308,15 @@ Duas páginas, geradas por `python3 gerar_bailes.py`:
   Parceiro novo = refazer `recursos/logos-baixo.png` com o logo branco dele.
   Testado em 24/11/2026 com bruto real da A7IV (XAVC HS 4K HEVC 4:2:0 10 bit 59,94p, `rotate=90`: vertical marcado,
   o FFmpeg e o navegador já giram sozinhos). No Mac usa `-hwaccel videotoolbox` + `h264_videotoolbox`.
+- **App "Editor de Bailes" (Mac, desde 25/11/2026, substitui os .command):** `ferramentas/editor-bailes-app/`
+  (`Editor de Bailes.app`: launcher bash em `Contents/MacOS` liga `Resources/servidor.py` (Python 3.9, só stdlib,
+  127.0.0.1:8765) e abre `index.html` (janela do Chrome `--app` ou navegador padrão). Abas Vídeos (brutos com nº,
+  miniatura, Final/Prévia prontos, selecionar e Editar) e Aparência (exemplo ao vivo de um quadro, logos montadas no
+  navegador Aresta × parceiro ou PNG pronto, PNG da prévia, sliders, giro, cópia para o Drive). Fila à direita com
+  etapa, %, tempo restante e cancelar; uma leitura do 4K gera final e prévia juntos (split), VideoToolbox com
+  fallback sem `-hwaccel`. Ajustes e PNGs por baile em `<baile>/Recursos do editor/`; pasta dos bailes padrão
+  `~/Documents/Bailes` (config em `~/Library/Application Support/Editor de Bailes/`). POST exige cabeçalho `X-Editor: 1`.
+  Fecha sozinho após 20 min sem uso e sem fila. Testado no Linux com Python 3.9 e bruto real da A7IV.
 - **Novo baile** = criar o evento no Supabase (tabela `eventos`, com `url_galeria`, `aberto` e o preço do código),
   acrescentar em `bailes.json`, rodar `gerar_bailes.py` e cadastrar os vídeos; ele aparece sozinho na página pública
   (se `aberto`), no painel interno e na lista de bailes da venda de códigos.

@@ -1,0 +1,36 @@
+EDITOR DE BAILES · ArestAgência
+
+O que faz
+Para cada vídeo bruto (um arquivo por casal), gera:
+  F. NN.mp4 · vídeo final 1080x1920, com as logos embaixo do começo ao fim
+  P. NN.mp4 · prévia 720x1280, com as logos e a marca PRÉVIA entrando depois de alguns segundos
+O número (NN) é o mesmo do telão e não muda quando entram vídeos novos.
+
+Antes da primeira vez (uma vez só neste Mac)
+1. Instale o FFmpeg: abra o Terminal e rode  brew install ffmpeg
+   (se o Mac não tiver o Homebrew, instale antes pelo site brew.sh)
+2. Arraste o "Editor de Bailes.app" para a pasta Aplicativos (opcional, mas fica mais fácil de achar).
+3. Na primeira vez o Mac pode bloquear o app (ele não vem da App Store). Clique com o botão direito > Abrir > Abrir.
+   Se não aparecer essa opção: Ajustes do Sistema > Privacidade e Segurança > role até o fim > "Abrir Mesmo Assim".
+4. Para o I Dá-Lhe Samba: na aba Aparência, clique em "Usar um PNG pronto" e escolha "Logos I Dá-Lhe Samba.png"
+   (são as mesmas logos do telão e do teste).
+
+Como usar
+1. Abra o Editor de Bailes. Abre uma janela com o seu baile.
+2. Escolha o baile no topo (ou crie um em "+ Novo baile": ele cria 1. Brutos, 2. Prévias e 3. Finais).
+3. Copie os vídeos do cartão para a pasta 1. Brutos do baile ("Abrir pasta"). Eles aparecem sozinhos na lista.
+4. Aba "Aparência": logos de baixo (monte com o logo branco do parceiro ou envie um PNG pronto), marca da prévia,
+   tamanhos, opacidades e tempo do fade. O exemplo mostra um quadro do seu vídeo com os ajustes.
+   Cada baile guarda os próprios ajustes (pasta "Recursos do editor" dentro do baile).
+5. Aba "Vídeos": marque os vídeos (ou "Selecionar pendentes") e clique em Editar.
+6. A fila, à direita, mostra cada vídeo: Na fila > Lendo o vídeo > Editando > Copiando para o Drive > Concluído,
+   com a porcentagem e o tempo que falta. Dá para cancelar um vídeo ou a fila inteira.
+   O Mac não dorme enquanto a fila estiver rodando e avisa quando terminar.
+
+Bom saber
+- A edição lê o vídeo 4K uma vez só e gera o final e a prévia juntos, usando o chip do Mac.
+- "Refazer os que já estão prontos" edita de novo e substitui os arquivos (use depois de mudar as logos).
+- Cópia para o Drive (opcional, em Aparência > Outros ajustes): ao terminar cada vídeo, copia para
+  Prévias e Finais dentro da pasta escolhida no Google Drive do Mac.
+- Fechar a janela não para a fila. "Fechar editor" para tudo. Sem uso por 20 minutos e sem fila, ele se fecha sozinho.
+- Se algo der errado, o registro fica em ~/Library/Logs/Editor de Bailes.log
