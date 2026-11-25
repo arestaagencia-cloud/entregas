@@ -69,15 +69,15 @@
      (o Mac e a TV não precisam de nenhum ajuste: só se coloca a TV em pé no suporte).
      Três escolhas independentes: deitada/em pé, lado do giro e com/sem oferta. */
   .telao{position:fixed;inset:0;background:#000;cursor:none;overflow:hidden}
-  .quadro{position:absolute;inset:0;display:grid;grid-template-columns:minmax(0,1fr) 38cqw;container:quadro / size}
+  .quadro{position:absolute;inset:0;display:grid;grid-template-columns:minmax(0,1fr) calc(38cqw*var(--k-painel,1));container:quadro / size}
   .telao{container-type:size}
-  .telao.vid-h .quadro{grid-template-columns:minmax(0,1fr) 32cqw}
+  .telao.vid-h .quadro{grid-template-columns:minmax(0,1fr) calc(32cqw*var(--k-painel,1))}
   .telao.vertical .quadro{inset:auto;top:50%;left:50%;width:100vh;height:100vw;transform:translate(-50%,-50%) rotate(-90deg);grid-template-columns:1fr;grid-template-rows:minmax(0,1fr) auto}
   .telao.vertical.dir .quadro{transform:translate(-50%,-50%) rotate(90deg)}
   .telao.sem-oferta .quadro{grid-template-columns:1fr;grid-template-rows:1fr}
   .telao.sem-oferta .painel{display:none}
   .palco{position:relative;overflow:hidden;background:#000;container-type:size;min-height:0}
-  .num-video{position:absolute;left:2.4cqmin;top:2.4cqmin;z-index:3;font-weight:600;font-size:max(12px,2.3cqmin);letter-spacing:.08em;color:#fff;background:rgba(0,0,0,.5);backdrop-filter:blur(6px);-webkit-backdrop-filter:blur(6px);padding:.5cqmin 1.3cqmin;border-radius:999px;font-variant-numeric:tabular-nums}
+  .num-video{position:absolute;left:2.4cqmin;top:2.4cqmin;z-index:3;font-weight:600;font-size:max(12px,calc(2.3cqmin*var(--k-num,1)));letter-spacing:.08em;color:#fff;background:rgba(0,0,0,.5);backdrop-filter:blur(6px);-webkit-backdrop-filter:blur(6px);padding:.5cqmin 1.3cqmin;border-radius:999px;font-variant-numeric:tabular-nums}
   .palco canvas{position:absolute;inset:-8%;width:116%;height:116%;filter:blur(38px) saturate(1.2) brightness(.55);transform:scale(1.05)}
   .palco video{position:absolute;inset:0;width:100%;height:100%;object-fit:contain;transition:opacity .5s ease}
   .telao.vertical.sem-oferta:not(.vid-h) .palco video{object-fit:cover}
@@ -85,46 +85,46 @@
   /* painel da oferta: TV deitada = coluna à direita */
   .painel{position:relative;display:flex;flex-direction:column;justify-content:space-between;padding:3cqw 3cqw 2.4cqw;background:radial-gradient(120% 70% at 100% 0%,#3c1e1e 0%,#140b0b 45%,#040404 100%);border-left:1px solid #1d1d1d;min-width:0}
   .p-marca{display:flex;align-items:center;gap:1.2cqw}
-  .p-marca img.ag{height:6.4cqw;width:auto;object-fit:contain}
-  .p-marca .x{opacity:.5;font-weight:400;font-size:1.3cqw}
-  .p-marca img.parc{height:6.4cqw;width:auto;max-width:20cqw;object-fit:contain;object-position:left center;min-width:0}
-  .p-baile{margin-top:.8cqw;font-size:1cqw;letter-spacing:.3em;text-transform:uppercase;color:var(--ink-2)}
-  .p-chamada .k{font-size:.95cqw;letter-spacing:.3em;text-transform:uppercase;color:var(--muted)}
-  .p-chamada b{display:block;font-weight:700;font-size:4.6cqw;line-height:.95;letter-spacing:-.01em;text-transform:uppercase;margin-top:.6cqw}
-  .p-chamada .sub{font-family:var(--serif);font-style:italic;font-size:2.6cqw;line-height:1.1;color:var(--ink-2);margin-top:.5cqw}
+  .p-marca img.ag{height:calc(6.4cqw*var(--k-logo,1));width:auto;object-fit:contain}
+  .p-marca .x{opacity:.5;font-weight:400;font-size:calc(1.3cqw*var(--k-logo,1))}
+  .p-marca img.parc{height:calc(6.4cqw*var(--k-logo,1));width:auto;max-width:calc(20cqw*var(--k-logo,1));object-fit:contain;object-position:left center;min-width:0}
+  .p-baile{margin-top:.8cqw;font-size:calc(1cqw*var(--k-texto,1));letter-spacing:.3em;text-transform:uppercase;color:var(--ink-2)}
+  .p-chamada .k{font-size:calc(.95cqw*var(--k-texto,1));letter-spacing:.3em;text-transform:uppercase;color:var(--muted)}
+  .p-chamada b{display:block;font-weight:700;font-size:calc(4.6cqw*var(--k-texto,1));line-height:.95;letter-spacing:-.01em;text-transform:uppercase;margin-top:.6cqw}
+  .p-chamada .sub{font-family:var(--serif);font-style:italic;font-size:calc(2.6cqw*var(--k-texto,1));line-height:1.1;color:var(--ink-2);margin-top:.5cqw}
   .p-chamada .sub em{color:var(--gold)}
   .oferta{border:1px solid rgba(246,173,3,.55);background:rgba(246,173,3,.08);border-radius:1.2cqw;padding:1.3cqw 1.5cqw}
-  .oferta .k{font-size:.85cqw;letter-spacing:.24em;text-transform:uppercase;color:var(--gold)}
-  .oferta b{display:block;font-weight:700;font-size:2.1cqw;line-height:1.1;margin-top:.4cqw}
+  .oferta .k{font-size:calc(.85cqw*var(--k-texto,1));letter-spacing:.24em;text-transform:uppercase;color:var(--gold)}
+  .oferta b{display:block;font-weight:700;font-size:calc(2.1cqw*var(--k-texto,1));line-height:1.1;margin-top:.4cqw}
   .oferta b span{color:var(--gold)}
-  .oferta p{font-size:1.05cqw;color:var(--ink-2);margin-top:.4cqw}
+  .oferta p{font-size:calc(1.05cqw*var(--k-texto,1));color:var(--ink-2);margin-top:.4cqw}
   .qr{display:flex;align-items:center;gap:1.3cqw;margin-top:1.3cqw}
-  .qr .q{flex:none;width:9.5cqw;height:9.5cqw;background:#fff;border-radius:.8cqw;padding:.6cqw}
+  .qr .q{flex:none;width:calc(9.5cqw*var(--k-qr,1));height:calc(9.5cqw*var(--k-qr,1));background:#fff;border-radius:.8cqw;padding:.6cqw}
   .qr .q svg{width:100%;height:100%;display:block}
-  .qr b{display:block;font-weight:600;font-size:1.35cqw;line-height:1.2}
-  .qr p{font-size:.98cqw;color:var(--ink-2);margin-top:.3cqw}
+  .qr b{display:block;font-weight:600;font-size:calc(1.35cqw*var(--k-texto,1));line-height:1.2}
+  .qr p{font-size:calc(.98cqw*var(--k-texto,1));color:var(--ink-2);margin-top:.3cqw}
   .barra{height:.35cqw;background:rgba(255,255,255,.12);border-radius:999px;overflow:hidden;margin-top:1.4cqw}
   .barra i{display:block;height:100%;width:0;background:var(--gold)}
-  .prox{display:flex;justify-content:space-between;font-size:.9cqw;color:var(--muted);margin-top:.6cqw}
+  .prox{display:flex;justify-content:space-between;font-size:calc(.9cqw*var(--k-texto,1));color:var(--muted);margin-top:.6cqw}
   /* painel da oferta: TV em pé = faixa embaixo do vídeo */
   @container quadro (orientation: portrait) {
     .painel{display:grid;grid-template-columns:minmax(0,1fr) auto;grid-template-areas:"marca qr" "chamada qr" "oferta oferta" "barra barra";align-items:center;gap:2cqw 4cqw;padding:3.6cqw 5cqw 3.2cqw;border-left:0;border-top:1px solid #1d1d1d;background:radial-gradient(120% 90% at 100% 100%,#3c1e1e 0%,#140b0b 50%,#040404 100%)}
     .p-topo,.p-base{display:contents}
     .p-marca{grid-area:marca;gap:2.4cqw}
-    .p-marca img.ag{height:9cqw}
-    .p-marca .x{font-size:2.8cqw}
-    .p-marca img.parc{height:10cqw;max-width:42cqw}
+    .p-marca img.ag{height:calc(9cqw*var(--k-logo,1))}
+    .p-marca .x{font-size:calc(2.8cqw*var(--k-logo,1))}
+    .p-marca img.parc{height:calc(10cqw*var(--k-logo,1));max-width:calc(42cqw*var(--k-logo,1))}
     .p-baile,.prox,.p-chamada .k{display:none}
     .p-chamada{grid-area:chamada}
-    .p-chamada b{font-size:7.2cqw;margin-top:0}
-    .p-chamada .sub{font-size:4.2cqw;margin-top:.6cqw}
+    .p-chamada b{font-size:calc(7.2cqw*var(--k-texto,1));margin-top:0}
+    .p-chamada .sub{font-size:calc(4.2cqw*var(--k-texto,1));margin-top:.6cqw}
     .oferta{grid-area:oferta;display:flex;align-items:baseline;flex-wrap:wrap;gap:.4cqw 2.4cqw;border-radius:2cqw;padding:2cqw 2.6cqw}
-    .oferta .k{font-size:1.7cqw}
-    .oferta b{font-size:4cqw;margin-top:0}
-    .oferta p{font-size:2.1cqw;margin-top:0;flex-basis:100%}
-    .qr{grid-area:qr;flex-direction:column;align-items:center;text-align:center;gap:1.4cqw;margin:0;width:24cqw;align-self:start}
-    .qr .q{width:22cqw;height:22cqw;border-radius:1.6cqw;padding:1.3cqw}
-    .qr b{font-size:2.1cqw}
+    .oferta .k{font-size:calc(1.7cqw*var(--k-texto,1))}
+    .oferta b{font-size:calc(4cqw*var(--k-texto,1));margin-top:0}
+    .oferta p{font-size:calc(2.1cqw*var(--k-texto,1));margin-top:0;flex-basis:100%}
+    .qr{grid-area:qr;flex-direction:column;align-items:center;text-align:center;gap:1.4cqw;margin:0;width:calc(24cqw*var(--k-qr,1));align-self:start}
+    .qr .q{width:calc(22cqw*var(--k-qr,1));height:calc(22cqw*var(--k-qr,1));border-radius:1.6cqw;padding:1.3cqw}
+    .qr b{font-size:calc(2.1cqw*var(--k-texto,1))}
     .qr p{display:none}
     .barra{grid-area:barra;height:.6cqw;margin:0}
   }
@@ -133,10 +133,20 @@
   .telao.sem-oferta .marca-agua{display:flex}
   .telao.ja-tem-logo .marca-agua{display:none}
   .fonte .on{}
+  .ajuste-telao{display:grid;grid-template-columns:minmax(260px,1fr) minmax(0,1.6fr);gap:24px;margin-top:16px}
+  .aj-linha{display:grid;grid-template-columns:140px 1fr 48px;gap:10px;align-items:center;margin-top:10px;font-size:14px;color:var(--ink-2)}
+  .aj-linha input{accent-color:var(--gold);width:100%}
+  .aj-linha output{text-align:right;font-variant-numeric:tabular-nums;color:var(--muted)}
+  .prev-caixa{position:relative;width:100%;aspect-ratio:16/9;border:1px solid var(--line);border-radius:12px;overflow:hidden;background:#000}
+  .prev-caixa.vert{aspect-ratio:9/16;width:auto;height:min(560px,70vh);margin:0 auto}
+  .prev-caixa iframe{position:absolute;left:50%;top:50%;width:1280px;height:720px;border:0;transform-origin:center;pointer-events:none}
+  @media (max-width:900px){.ajuste-telao{grid-template-columns:1fr}}
+  body.modo-previa{overflow:hidden} body.modo-previa .telao{cursor:default}
+
   td.st{color:var(--muted);font-size:12px} td.st.ok{color:#57c47b} tr.fora td{opacity:.45}
-  .marca-agua img.ag{height:8cqh;width:auto}
-  .marca-agua .x{font-weight:400;opacity:.6;letter-spacing:0;font-size:2.4cqh;color:#fff}
-  .marca-agua img.parc{height:8cqh;width:auto;max-width:34cqw;object-fit:contain}
+  .marca-agua img.ag{height:calc(8cqh*var(--k-marca,1));width:auto}
+  .marca-agua .x{font-weight:400;opacity:.6;letter-spacing:0;font-size:calc(2.4cqh*var(--k-marca,1));color:#fff}
+  .marca-agua img.parc{height:calc(8cqh*var(--k-marca,1));width:auto;max-width:calc(34cqw*var(--k-marca,1));object-fit:contain}
   .telao.sem-oferta .barra-v{display:block}
   .barra-v{display:none;position:absolute;left:0;right:0;bottom:0;height:.5cqh;z-index:2;background:rgba(255,255,255,.12)}
   .barra-v i{display:block;height:100%;width:0;background:var(--gold)}
@@ -185,6 +195,24 @@
           <div class="formato fonte" id="cFonte"><button type="button" data-fonte="brutos" class="on">Todos os brutos, assim que chegam</button><button type="button" data-fonte="prontos">Só os já editados</button></div></div>
         <p class="sub" id="cResumo" style="margin-top:10px"></p>
         <button class="btn ouro" type="button" id="cIniciarTopo" disabled style="width:100%;margin-top:14px;padding:14px 18px;font-size:15px">Iniciar telão em tela cheia</button>
+      </div>
+    </div>
+
+    <div class="caixa ajuste-telao">
+      <div class="aj-esq">
+        <h2>Tamanhos</h2>
+        <p class="sub">A pré-visualização ao lado mostra o telão como vai aparecer na TV.</p>
+        <div class="aj-linha"><span>Logos do painel</span><input type="range" min="0.5" max="1.8" step="0.05" data-esc="logo"><output></output></div>
+        <div class="aj-linha"><span>Textos do painel</span><input type="range" min="0.6" max="1.6" step="0.05" data-esc="texto"><output></output></div>
+        <div class="aj-linha"><span>QR Code</span><input type="range" min="0.6" max="1.8" step="0.05" data-esc="qr"><output></output></div>
+        <div class="aj-linha"><span>Largura da oferta</span><input type="range" min="0.75" max="1.35" step="0.01" data-esc="painel"><output></output></div>
+        <div class="aj-linha"><span>Logos sobre o vídeo</span><input type="range" min="0.5" max="2" step="0.05" data-esc="marca"><output></output></div>
+        <div class="aj-linha"><span>Número do vídeo</span><input type="range" min="0.6" max="2.2" step="0.05" data-esc="num"><output></output></div>
+        <button class="btn sec" type="button" id="cEscPadrao" style="margin-top:12px">Voltar ao padrão</button>
+      </div>
+      <div class="aj-dir">
+        <div class="prev-caixa" id="prevCaixa"><iframe id="prev" title="Pré-visualização do telão" tabindex="-1"></iframe></div>
+        <p class="sub" id="prevNota" style="text-align:center;margin-top:8px"></p>
       </div>
     </div>
 
@@ -311,7 +339,8 @@ $("#cParcArq").addEventListener("change", (e) => {
   fr.readAsDataURL(f);
 });
 async function lerBaile() { DADOS = await api(`/api/baile?nome=${enc(baileNome())}`); }
-function salvarBaile(aj) { api("/api/ajustes", { baile: baileNome(), ajustes: aj }).catch((e) => aviso(e.message)); }
+function salvarBaile(aj) {
+  if (new URLSearchParams(location.search).has("previa")) return; api("/api/ajustes", { baile: baileNome(), ajustes: aj }).catch((e) => aviso(e.message)); }
 $("#cEv").addEventListener("change", () => { FILA = []; ATUAL = -1; aoTrocarBaile(); });
 $("#cLink").addEventListener("change", () => salvarBaile({ url_galeria: $("#cLink").value.trim() }));
 $("#cCheio").addEventListener("change", () => { const c = Math.round(Number(String($("#cCheio").value).replace(/\./g, "").replace(",", ".")) * 100); salvarBaile({ preco_cheio: c > 0 ? c : 0 }); });
@@ -368,6 +397,7 @@ function aplicarModo() {
   t.classList.toggle("vertical", FORMATO === "vertical");
   t.classList.toggle("dir", LADO === "dir");
   t.classList.toggle("sem-oferta", !COM_OFERTA);
+  if (typeof aplicarEscalas === "function") aplicarEscalas();
 }
 function marcarLado() {
   $("#cLado").classList.toggle("on", FORMATO === "vertical");
@@ -384,6 +414,54 @@ $("#cSeg").addEventListener("change", () => { guardar("telao-seg", segundos()); 
 $("#cOferta").addEventListener("change", () => guardar("telao-oferta", $("#cOferta").value));
 $("#cCheio").addEventListener("change", () => { const e = baile(); const c = Math.round(Number(String($("#cCheio").value).replace(/\./g, "").replace(",", ".")) * 100) || 0; if (e) guardar(`telao-cheio-${e.slug}`, c); });
 $("#cPreco").addEventListener("change", () => { const e = baile(); const c = Math.round(Number(String($("#cPreco").value).replace(",", ".")) * 100); if (e && c > 0) guardar(`telao-preco-${e.slug}`, c); });
+
+// ---------- tamanhos + pré-visualização ----------
+var PADRAO_ESC = { logo: 1, texto: 1, qr: 1, painel: 1, marca: 1, num: 1 };
+var ESC = Object.assign({}, PADRAO_ESC, ler("telao-escalas", {}));
+function aplicarEscalas() { if (!ESC) return; const t = $("#telao"); for (const k in ESC) t.style.setProperty(`--k-${k}`, ESC[k]); }
+function marcarEscalas() {
+  document.querySelectorAll("[data-esc]").forEach((i) => { i.value = ESC[i.dataset.esc]; i.nextElementSibling.value = Math.round(ESC[i.dataset.esc] * 100) + "%"; });
+}
+document.querySelectorAll("[data-esc]").forEach((i) => i.addEventListener("input", () => {
+  ESC[i.dataset.esc] = Number(i.value); i.nextElementSibling.value = Math.round(i.value * 100) + "%"; guardar("telao-escalas", ESC); aplicarEscalas();
+}));
+$("#cEscPadrao").onclick = () => { ESC = Object.assign({}, PADRAO_ESC); guardar("telao-escalas", ESC); marcarEscalas(); aplicarEscalas(); };
+marcarEscalas();
+const PREVIA = new URLSearchParams(location.search).has("previa");
+function estadoPrevia() {
+  return { baile: baileNome(), link: $("#cLink").value, preco: $("#cPreco").value, cheio: $("#cCheio").value, oferta: $("#cOferta").value,
+    formato: FORMATO, lado: LADO, comOferta: COM_OFERTA, esc: ESC, fonte: FONTE, parceiro: TEM_PARCEIRO, fora: [...FORA] };
+}
+let ultimoEstado = "", ultimoTam = "";
+function sincronizarPrevia() {
+  const f = $("#prev"); if (!f || !baileNome()) return;
+  const caixa = $("#prevCaixa"), vert = FORMATO === "vertical";
+  caixa.classList.toggle("vert", vert);
+  const W = caixa.clientWidth, H = caixa.clientHeight;
+  // o iframe desenha a tela do Mac (1280x720); na TV em pé, gira de volta para ficar como quem olha a TV
+  const esc = vert ? Math.min(W / 720, H / 1280) : Math.min(W / 1280, H / 720);
+  const giro = vert ? (LADO === "dir" ? -90 : 90) : 0;
+  const tam = `translate(-50%,-50%) rotate(${giro}deg) scale(${esc})`;
+  if (tam !== ultimoTam) { f.style.transform = tam; ultimoTam = tam; }
+  $("#prevNota").textContent = vert ? "TV em pé, como o público vê" : "TV deitada";
+  if (!f.getAttribute("src")) { f.src = `/telao?previa=1&baile=${enc(baileNome())}`; ultimoEstado = ""; }
+  const est = JSON.stringify(estadoPrevia());
+  if (est === ultimoEstado) return;
+  try { if (f.contentWindow && f.contentWindow.receberPrevia && f.contentWindow.receberPrevia(JSON.parse(est))) ultimoEstado = est; } catch {}
+}
+if (!PREVIA) setInterval(() => { if (!$("#config").hidden) sincronizarPrevia(); }, 400);
+$("#cEv").addEventListener("change", () => { const f = $("#prev"); if (f) { f.removeAttribute("src"); ultimoEstado = ""; } });
+// dentro do iframe: recebe o estado da configuração e redesenha (devolve true quando aplicou)
+window.receberPrevia = (d) => {
+  if (!PREVIA || !DADOS || d.baile !== baileNome()) return false;
+  $("#cLink").value = d.link; $("#cPreco").value = d.preco; $("#cCheio").value = d.cheio; $("#cOferta").value = d.oferta;
+  FORMATO = d.formato; LADO = d.lado; COM_OFERTA = d.comOferta; ESC = d.esc; FORA = new Set(d.fora);
+  if (FONTE !== d.fonte) { FONTE = d.fonte; montarFila(); }
+  if (d.parceiro !== TEM_PARCEIRO) verParceiro();
+  montarPainel(); aplicarEscalas();
+  if (tocaveis().length && ATUAL < 0) proximo(1);
+  return true;
+};
 
 // ---------- reprodução ----------
 let ATUAL = -1, pausado = false, timer = null, inicioTrecho = 0, restante = 0, wake = null, ativo = $("#vA"), reserva = $("#vB");
@@ -482,7 +560,7 @@ function voltarConfig() {
   desenharFila();
 }
 document.addEventListener("keydown", (e) => {
-  if ($("#telao").hidden) return;
+  if ($("#telao").hidden || document.body.classList.contains("modo-previa")) return;
   if (e.key === " ") { e.preventDefault(); pausar(); }
   else if (e.key === "ArrowRight") { pausado = false; $("#tPausa").hidden = true; proximo(1); }
   else if (e.key === "ArrowLeft") { pausado = false; $("#tPausa").hidden = true; proximo(-1); }
@@ -494,7 +572,15 @@ document.addEventListener("keydown", (e) => {
 // se o Mac acordar ou a aba voltar, pede de novo para a tela não apagar
 document.addEventListener("visibilitychange", async () => { if (!document.hidden && !$("#telao").hidden) { try { wake = await navigator.wakeLock.request("screen"); } catch {} } });
 
-carregarBailes().catch((e) => aviso(e.message));
+carregarBailes().then(() => {
+  if (!PREVIA) return;
+  // pré-visualização (dentro do iframe da configuração): mostra o telão direto, sem tela cheia
+  document.body.classList.add("modo-previa");
+  montarPainel(); aplicarEscalas();
+  $("#config").hidden = true; $("#telao").hidden = false;
+  pausado = false; ATUAL = -1;
+  (function espera() { if (tocaveis().length) proximo(1); else setTimeout(espera, 2000); })();
+}).catch((e) => aviso(e.message));
 </script>
 </body>
 </html>

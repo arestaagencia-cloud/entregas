@@ -323,6 +323,9 @@ Duas páginas, geradas por `python3 gerar_bailes.py`:
   (mesma da edição). Fonte "brutos" (assim que chegam) ou "prontos" (toca o F. NN, sem marca d'água por cima).
   Link da galeria, preço do código e fonte ficam nos ajustes do baile; logo do parceiro = `Recursos do editor/parceiro.png`.
   Galerias conhecidas embutidas + lista do Supabase quando há internet (guardada no navegador). O telão online continua como reserva.
+  Configuração tem "Tamanhos" (logos do painel, textos, QR, largura da oferta, logos sobre o vídeo, número; variáveis CSS
+  `--k-*`, guardadas no navegador) com pré-visualização ao vivo (iframe `/telao?previa=1`, girado na TV em pé). Peças em
+  `telao_ajustes.py/.html/.css/.js` e `telao_inicio.js`, aplicadas por `gerar_telao.py`.
 - **Publicação automática na galeria (25/11/2026):** função `sincronizar-drive` (verify_jwt off). Quem chama: o Editor de Bailes,
   logo depois de copiar P/F para o Drive (repete em 20 s, 1, 2, 3.5, 5.5, 8.5, 13.5, 18.5 e 28.5 min até o número aparecer em
   `publicados`, e mostra "À venda na galeria" na fila); reserva: pg_cron `sincronizar-drive-bailes` a cada 10 min (pg_net). Para cada evento `aberto` com `drive_previas`/`drive_finais`

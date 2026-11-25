@@ -212,6 +212,8 @@ s = s[:ini] + r'''function montarPainel() {
 s = troca(s, "    $(\"#telao\").classList.toggle(\"vid-h\", !!item.h);", "    $(\"#telao\").classList.toggle(\"vid-h\", !!item.h);\n    $(\"#telao\").classList.toggle(\"ja-tem-logo\", !!item.pronto);")
 s = troca(s, 'carregarBailes().then(desenharFila);', 'carregarBailes().catch((e) => aviso(e.message));')
 import json, unicodedata
+AQUI_GER = Path(__file__).resolve().parent
+exec((AQUI_GER / "telao_ajustes.py").read_text())
 def chave(n): return re.sub(r"[^a-z0-9]", "", unicodedata.normalize("NFD", n.lower()).encode("ascii", "ignore").decode())
 GAL = [{"nome": "I Dá-lhe Samba", "chave": chave("I Dá-lhe Samba"), "url": "https://entregas.arestagencia.com.br/bailes/idalhesamba", "preco": 3500},
        {"nome": "Baile Teste - Aula de Samba Planet", "chave": chave("Aula de Samba Planet"), "url": "https://entregas.arestagencia.com.br/bailes/planet-teste", "preco": 200, "cheio": 500}]
