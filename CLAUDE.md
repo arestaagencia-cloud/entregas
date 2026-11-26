@@ -348,6 +348,17 @@ Duas páginas, geradas por `python3 gerar_bailes.py`:
   (ano-mês-dia para ordenar certo; sem data na pasta, fica sem data). Número sempre no fim: `sincronizar-drive` lê o
   último número do nome, então nomes antigos (`F. 07.mp4`) e novos convivem. `saida()` reaproveita um arquivo já
   existente do mesmo número com outro nome (não duplica nem reedita).
+- **Cor e filtro (26/11/2026):** aba Aparência > "Cor e filtro": galeria de LUTs .cube (Rec709, como a A7IV grava) com
+  miniaturas do mesmo quadro do exemplo, "Sem filtro" (padrão), intensidade, brilho, contraste, saturação e temperatura
+  (esquerda esfria/tira o amarelo do salão), "Ver sem cor" (antes/depois no exemplo), "Adicionar filtro (.cube)" e
+  "Abrir pasta de filtros". Vale por baile, para final e prévia (`ajustes.lut`, `lut_intensidade`, `cor_*`). LUTs do
+  editor em `Resources/luts/` (8 looks gerados por `ferramentas/editor-bailes-app/gerar_luts.py`: Natural+, Quente
+  dourado, Corrige luz amarela, Cinema suave, Noite elegante, Vintage, Vibrante, Preto e branco); os da equipe em
+  `~/Library/Application Support/Editor de Bailes/LUTs/`. Desempenho: o 4K é reduzido para 1080x1920 UMA vez, a cor é
+  aplicada ali e só então divide em final/prévia; correções + LUT + intensidade são "assados" num único .cube de 65 pontos
+  (`lut_combinado()`, Python puro, cache em /tmp/editor-bailes-luts) lido com `lut3d interp=nearest` em rgb24 (metade do
+  custo do trilinear; ~46 dB de PSNR, diferença imperceptível). Medido no servidor de testes (2 núcleos, 4K HEVC 10 bits,
+  15 s): 85 s sem filtro, ~101-104 s com filtro (+20%). No Mac a proporção pode ser maior (a decodificação é por hardware).
 - **Telão dentro do app (25/11/2026):** botão "Abrir telão" no editor abre `/telao` (`Resources/telao.html`, gerado de
   `bailes_telao_template.html` por `ferramentas/editor-bailes-app/gerar_telao.py`: rode de novo se mudar o telão do site).
   Sem internet: lê `1. Brutos` pelo servidor local (`/api/video` com Range) a cada 5 s, numeração = `numeracao.csv`

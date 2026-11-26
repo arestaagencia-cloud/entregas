@@ -5,6 +5,8 @@
 # Compatível com o Python 3.9 que vem com as ferramentas de linha de comando da Apple.
 
 import base64
+import hashlib
+import tempfile
 import json
 import traceback
 import os
@@ -45,11 +47,140 @@ AJUSTES_PADRAO = {
     "preco_cheio": 0,         # telão: preço "de" riscado (centavos), opcional
     "telao_fonte": "brutos",  # telão: brutos | prontos
     "sigla": "",              # nome dos arquivos: vazio = iniciais do nome do baile
+    "lut": "",                # filtro (.cube) aplicado na final e na prévia; vazio = sem filtro
+    "lut_intensidade": 100,   # %
+    "cor_brilho": 0,          # -100..100
+    "cor_contraste": 0,       # -100..100
+    "cor_saturacao": 0,       # -100..100
+    "cor_temperatura": 0,     # -100 (mais frio) .. 100 (mais quente)
 }
-
 
 def nfc(s):
     return unicodedata.normalize("NFC", s)
+
+
+# ---------------------------------------------------------------- cor: LUTs e ajustes rápidos
+LUTS_APP = os.path.join(AQUI, "luts")                       # os que vêm com o editor
+LUTS_USUARIO = os.path.join(CONF_DIR, "LUTs")               # os que a equipe adiciona
+
+
+def listar_luts():
+    vistos, out = set(), []
+    for pasta, origem in ((LUTS_USUARIO, "seu"), (LUTS_APP, "editor")):
+        try:
+            nomes = sorted(os.listdir(pasta), key=lambda x: x.lower())
+        except OSError:
+            continue
+        for f in nomes:
+            if f.lower().endswith(".cube") and not f.startswith(".") and nfc(f) not in vistos:
+                vistos.add(nfc(f))
+                out.append({"arquivo": nfc(f), "nome": re.sub(r"^\d+\s+", "", f[:-5]), "origem": origem})
+    return out
+
+
+def caminho_lut(nome):
+    nome = os.path.basename(nome or "")
+    for pasta in (LUTS_USUARIO, LUTS_APP):
+        c = os.path.join(pasta, nome)
+        if nome and os.path.isfile(c):
+            return c
+    return None
+
+
+def ler_cube(caminho):
+    """Lê um .cube 3D: (tamanho, [r,g,b...] com o vermelho variando mais rápido, domínio mín/máx)."""
+    n, dados, dmin, dmax = 0, [], (0.0, 0.0, 0.0), (1.0, 1.0, 1.0)
+    with open(caminho, encoding="utf-8", errors="ignore") as f:
+        for linha in f:
+            t = linha.strip()
+            if not t or t[0] == "#":
+                continue
+            u = t.upper()
+            if u.startswith("LUT_3D_SIZE"):
+                n = int(t.split()[1])
+            elif u.startswith("DOMAIN_MIN"):
+                dmin = tuple(float(x) for x in t.split()[1:4])
+            elif u.startswith("DOMAIN_MAX"):
+                dmax = tuple(float(x) for x in t.split()[1:4])
+            elif t[0] in "-.0123456789":
+                p = t.split()
+                if len(p) >= 3:
+                    dados.append((float(p[0]), float(p[1]), float(p[2])))
+    if n < 2 or len(dados) < n ** 3:
+        raise ValueError("LUT inválido: %s" % os.path.basename(caminho))
+    return n, dados[:n ** 3], dmin, dmax
+
+
+def amostrar(cube, r, g, b):
+    """Interpolação trilinear num LUT 3D."""
+    n, d, dmin, dmax = cube
+    def idx(v, lo, hi):
+        x = (v - lo) / ((hi - lo) or 1) * (n - 1)
+        x = 0.0 if x < 0 else (n - 1.0 if x > n - 1 else x)
+        i = min(int(x), n - 2)
+        return i, x - i
+    (ri, rf), (gi, gf), (bi, bf) = idx(r, dmin[0], dmax[0]), idx(g, dmin[1], dmax[1]), idx(b, dmin[2], dmax[2])
+    out = [0.0, 0.0, 0.0]
+    for db, wb in ((0, 1 - bf), (1, bf)):
+        for dg, wg in ((0, 1 - gf), (1, gf)):
+            for dr, wr in ((0, 1 - rf), (1, rf)):
+                w = wr * wg * wb
+                if w:
+                    v = d[(ri + dr) + (gi + dg) * n + (bi + db) * n * n]
+                    out[0] += v[0] * w; out[1] += v[1] * w; out[2] += v[2] * w
+    return out
+
+
+def lut_combinado(aj, lut, n=65):
+    """Um só .cube com tudo junto: brilho, contraste, saturação, temperatura, o filtro escolhido e a intensidade.
+    Assim o vídeo passa por um único lut3d (bem mais rápido que vários filtros em sequência).
+    Devolve o caminho (sem espaço nem acento, aceito pelo FFmpeg) ou None quando não há nada a aplicar."""
+    b, c, sa, te = (float(aj.get(k) or 0) for k in ("cor_brilho", "cor_contraste", "cor_saturacao", "cor_temperatura"))
+    cam = caminho_lut(lut) if lut else None
+    k = max(0.0, min(1.0, float(aj.get("lut_intensidade", 100)) / 100)) if cam else 0.0
+    if not (b or c or sa or te or k):
+        return None
+    chave = "%s|%s|%.1f|%.1f|%.1f|%.1f|%.3f|%d" % (cam, os.path.getmtime(cam) if cam else 0, b, c, sa, te, k, n)
+    d = os.path.join(tempfile.gettempdir(), "editor-bailes-luts")
+    os.makedirs(d, exist_ok=True)
+    alvo = os.path.join(d, hashlib.sha1(chave.encode()).hexdigest()[:16] + ".cube")
+    if os.path.isfile(alvo):
+        return alvo
+    cube = ler_cube(cam) if k else None
+    bb, cc, ss, tt = b / 100 * 0.12, 1 + c / 100 * 0.3, 1 + sa / 100 * 0.5, te / 100 * 0.10
+    linhas = ["LUT_3D_SIZE %d" % n]
+    for bi in range(n):
+        for gi in range(n):
+            for ri in range(n):
+                r, g, bl = ri / (n - 1), gi / (n - 1), bi / (n - 1)
+                # correções (na ordem: temperatura, brilho, contraste, saturação)
+                r, bl = r + tt, bl - tt
+                r, g, bl = r + bb, g + bb, bl + bb
+                r, g, bl = (r - .5) * cc + .5, (g - .5) * cc + .5, (bl - .5) * cc + .5
+                y = .2126 * r + .7152 * g + .0722 * bl
+                r, g, bl = y + (r - y) * ss, y + (g - y) * ss, y + (bl - y) * ss
+                r, g, bl = (min(1.0, max(0.0, v)) for v in (r, g, bl))
+                if k:
+                    lr, lg, lb = amostrar(cube, r, g, bl)
+                    r, g, bl = r + (lr - r) * k, g + (lg - g) * k, bl + (lb - bl) * k
+                linhas.append("%.5f %.5f %.5f" % (min(1.0, max(0.0, r)), min(1.0, max(0.0, g)), min(1.0, max(0.0, bl))))
+    with open(alvo + ".tmp", "w") as f:
+        f.write("\n".join(linhas) + "\n")
+    os.replace(alvo + ".tmp", alvo)
+    return alvo
+
+
+def filtro_cor(aj, entrada, saida, lut=None, rapido=True):
+    """Cor do vídeo: um único lut3d com correções + filtro + intensidade (ver lut_combinado).
+    Roda já em 1080x1920 (depois de reduzir o 4K). No vídeo: LUT de 65 pontos lido sem interpolação, em RGB 8 bits
+    (metade do custo do trilinear de 33 pontos, diferença medida de ~46 dB de PSNR, imperceptível).
+    Nas miniaturas (rapido=False): 33 pontos com interpolação, que é mais rápido de calcular."""
+    cubo = lut_combinado(aj, aj.get("lut") if lut is None else lut, 65 if rapido else 33)
+    if not cubo:
+        return "[%s]null[%s]" % (entrada, saida)
+    if rapido:
+        return "[%s]format=rgb24,lut3d=file=%s:interp=nearest,format=yuv420p[%s]" % (entrada, cubo, saida)
+    return "[%s]format=rgb24,lut3d=file=%s:interp=tetrahedral[%s]" % (entrada, cubo, saida)
 
 
 # ---------------------------------------------------------------- ferramentas
@@ -198,6 +329,12 @@ def salvar_ajustes(baile, novos):
         a["preco_codigo"] = max(0, min(100000, int(novos["preco_codigo"] or 0)))
     if "preco_cheio" in novos:
         a["preco_cheio"] = max(0, min(100000, int(novos["preco_cheio"] or 0)))
+    if "lut" in novos:
+        a["lut"] = os.path.basename(str(novos["lut"] or "")) if (not novos["lut"] or caminho_lut(novos["lut"])) else a["lut"]
+    for k, (lo, hi) in {"lut_intensidade": (0, 100), "cor_brilho": (-100, 100), "cor_contraste": (-100, 100),
+                        "cor_saturacao": (-100, 100), "cor_temperatura": (-100, 100)}.items():
+        if k in novos:
+            a[k] = max(lo, min(hi, float(novos[k] or 0)))
     if "sigla" in novos:
         a["sigla"] = re.sub(r"[^A-Z0-9]", "", str(novos["sigla"] or "").upper())[:12]
     if novos.get("telao_fonte") in ("brutos", "prontos"):
@@ -408,7 +545,10 @@ def montar_filtro(inf, aj, saidas, fade=True, fmt="yuv420p"):
     """Uma leitura do bruto, duas saídas: o vídeo 4K é decodificado uma vez só."""
     g = giro(inf, aj)
     n = len(saidas)
-    f = "[0:v]%s%s" % (g, ("split=%d" % n) + "".join("[s%d]" % i for i in range(n)) + ";" if n > 1 else "null[s0];")
+    # reduz o 4K para 1080x1920 uma vez só, aplica a cor ali e então divide em final e prévia
+    f = "[0:v]%sscale=1080:1920:force_original_aspect_ratio=decrease,pad=1080:1920:(ow-iw)/2:(oh-ih)/2,setsar=1[base];" % g
+    f += filtro_cor(aj, "base", "cor") + ";"
+    f += "[cor]" + (("split=%d" % n) + "".join("[s%d]" % i for i in range(n)) + ";" if n > 1 else "null[s0];")
     f += "[1:v]" + (("split=%d" % n) + "".join("[lg%d]" % i for i in range(n)) if n > 1 else "null[lg0]") + ";"
     partes = []
     for i, tipo in enumerate(saidas):
@@ -785,17 +925,57 @@ def miniatura(baile, arquivo):
         return f.read()
 
 
-def amostra(baile, arquivo, t, tipo):
+def quadro_base(baile, arquivo, t):
+    """Um quadro do bruto em 540x960 (guardado), base das miniaturas da galeria de filtros."""
+    p = preparar_recursos(baile)
+    alvo = [a for a in arquivos_brutos(baile) if nfc(a) == nfc(arquivo)]
+    if not alvo:
+        raise ValueError("Arquivo não encontrado")
+    bruto = os.path.join(p["brutos"], alvo[0])
+    st = os.stat(bruto)
+    d = os.path.join(CONF_DIR, "quadros")
+    os.makedirs(d, exist_ok=True)
+    out = os.path.join(d, hashlib.sha1(("%s|%s|%d|%s" % (baile, alvo[0], st.st_size, t)).encode()).hexdigest()[:16] + ".png")
+    if os.path.isfile(out):
+        return out
+    inf = info_video(bruto)
+    tt = max(0.0, min(float(t), max(0.0, inf["duracao"] - 0.5)))
+    vf = "%sscale=540:960:force_original_aspect_ratio=decrease,pad=540:960:(ow-iw)/2:(oh-ih)/2,setsar=1" % giro(inf, ajustes(baile))
+    for hw in ((["-hwaccel", "videotoolbox"], []) if VT else ([],)):
+        r = subprocess.run([FFMPEG, "-nostdin", "-loglevel", "error", "-y"] + list(hw) + ["-ss", "%.2f" % tt, "-i", bruto,
+                            "-vf", vf, "-frames:v", "1", out + ".tmp.png"], capture_output=True, text=True, timeout=120)
+        if r.returncode == 0 and os.path.isfile(out + ".tmp.png"):
+            os.replace(out + ".tmp.png", out)
+            return out
+    raise RuntimeError(((r.stderr or "").strip().splitlines() or ["o FFmpeg não gerou o quadro"])[-1][:300])
+
+
+def miniatura_lut(baile, arquivo, t, lut):
+    """O mesmo quadro com um filtro (e os ajustes de cor atuais), em 270x480."""
+    base = quadro_base(baile, arquivo, t)
+    aj = ajustes(baile)
+    filtro = filtro_cor(aj, "0:v", "c", lut=lut, rapido=False) + ";[c]scale=270:480,format=yuvj420p[o]"
+    r = subprocess.run([FFMPEG, "-nostdin", "-loglevel", "error", "-y", "-i", base, "-filter_complex", filtro,
+                        "-map", "[o]", "-frames:v", "1", "-q:v", "4", "-f", "image2pipe", "-vcodec", "mjpeg", "-"],
+                       capture_output=True, timeout=60)
+    if r.returncode != 0 or not r.stdout:
+        raise RuntimeError((r.stderr or b"").decode("utf-8", "replace").strip()[-300:] or "falhou")
+    return r.stdout
+
+
+def amostra(baile, arquivo, t, tipo, sem_cor=False):
     """Um quadro do vídeo com as logos (e a prévia já visível), com os ajustes atuais."""
     p = preparar_recursos(baile)
     aj = ajustes(baile)
+    if sem_cor:
+        aj.update(lut="", cor_brilho=0, cor_contraste=0, cor_saturacao=0, cor_temperatura=0)
     alvo = [a for a in arquivos_brutos(baile) if nfc(a) == nfc(arquivo)]
     if not alvo:
         raise ValueError("Arquivo não encontrado")
     bruto = os.path.join(p["brutos"], alvo[0])
     inf = info_video(bruto)
     t = max(0.0, min(float(t), max(0.0, inf["duracao"] - 0.5)))
-    out = os.path.join(CONF_DIR, "amostra-%s.jpg" % tipo)
+    out = os.path.join(CONF_DIR, "amostra-%s%s.jpg" % (tipo, "-antes" if sem_cor else ""))
     os.makedirs(CONF_DIR, exist_ok=True)
     ent = ["-ss", "%.2f" % t, "-i", bruto, "-i", os.path.join(p["rec"], "logos-baixo.png")]
     if tipo == "previa":
@@ -947,7 +1127,13 @@ class Handler(BaseHTTPRequestHandler):
                 return self.responder(200, miniatura(q.get("baile", ""), q.get("arquivo", "")), "image/jpeg", cache=True)
             if u.path == "/api/amostra":
                 return self.responder(200, amostra(q.get("baile", ""), q.get("arquivo", ""), q.get("t", "8"),
-                                                   "previa" if q.get("tipo") == "previa" else "final"), "image/jpeg")
+                                                   "previa" if q.get("tipo") == "previa" else "final",
+                                                   q.get("antes") == "1"), "image/jpeg")
+            if u.path == "/api/luts":
+                return self.responder(200, {"luts": listar_luts(), "pasta": LUTS_USUARIO})
+            if u.path == "/api/lut-amostra":
+                return self.responder(200, miniatura_lut(q.get("baile", ""), q.get("arquivo", ""), q.get("t", "8"),
+                                                         q.get("lut", "")), "image/jpeg")
             return self.erro("não encontrado", 404)
         except Exception as e:
             traceback.print_exc()
@@ -968,6 +1154,16 @@ class Handler(BaseHTTPRequestHandler):
                 q = {"baile": d.get("baile", ""), "tipo": d.get("tipo", "")}
                 corpo = base64.b64decode(d.get("dados", ""))
                 u = u._replace(path="/api/upload")
+            if u.path == "/api/lut-upload":
+                nome = os.path.basename(nfc(q.get("nome", "")))
+                txt = corpo[:200000].decode("utf-8", "ignore").upper()
+                if not nome.lower().endswith(".cube") or "LUT_3D_SIZE" not in txt or len(corpo) > 60_000_000:
+                    return self.erro("Envie um arquivo .cube (LUT 3D)")
+                os.makedirs(LUTS_USUARIO, exist_ok=True)
+                with open(os.path.join(LUTS_USUARIO, nome + ".tmp"), "wb") as f:
+                    f.write(corpo)
+                os.replace(os.path.join(LUTS_USUARIO, nome + ".tmp"), os.path.join(LUTS_USUARIO, nome))
+                return self.responder(200, {"ok": True, "arquivo": nome, "luts": listar_luts()})
             if u.path == "/api/upload":
                 tipo = q.get("tipo")
                 arq = {"logos": "logos-baixo.png", "previa": "previa.png", "parceiro": "parceiro.png"}.get(tipo)
@@ -1025,6 +1221,9 @@ class Handler(BaseHTTPRequestHandler):
                 alvo = p.get(d.get("pasta", "baile"))
                 if d.get("pasta") == "drive":
                     alvo = ajustes(d.get("baile", "")).get("destino_drive")
+                if d.get("pasta") == "luts":
+                    os.makedirs(LUTS_USUARIO, exist_ok=True)
+                    alvo = LUTS_USUARIO
                 if alvo and os.path.isdir(alvo) and EH_MAC:
                     subprocess.Popen(["open", alvo])
                 return self.responder(200, {"ok": True})

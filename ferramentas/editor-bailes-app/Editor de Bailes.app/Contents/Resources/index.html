@@ -98,6 +98,17 @@
   .ap{display:grid;gap:20px}
   .bloco{padding:16px;display:grid;gap:14px}
   .duas{display:grid;grid-template-columns:1fr 1fr;gap:20px}
+  .luts{display:grid;grid-template-columns:repeat(auto-fill,minmax(98px,1fr));gap:10px;margin-bottom:16px}
+  .lut{display:flex;flex-direction:column;gap:6px;padding:6px;border:2px solid transparent;border-radius:12px;background:var(--card-2);cursor:pointer;text-align:center;font-size:12px;color:var(--muted);line-height:1.25}
+  .lut .mini{aspect-ratio:9/16;border-radius:8px;background:#000 center/cover no-repeat;position:relative;overflow:hidden}
+  .lut .mini img{width:100%;height:100%;object-fit:cover;display:block;opacity:0;transition:opacity .25s}
+  .lut .mini img.ok{opacity:1}
+  .lut:hover{color:#fff}
+  .lut.on{border-color:var(--gold);color:#fff}
+  .lut small{display:block;font-size:10px;color:var(--gold)}
+  .ajcor{display:grid;grid-template-columns:1fr 1fr;gap:10px 28px;margin:6px 0 14px}
+  .ajcor .campo{grid-template-columns:110px 1fr 48px}
+  @media (max-width:1100px){.ajcor{grid-template-columns:1fr}}
   .xadrez{background:#2a2a2a;background-image:linear-gradient(45deg,#333 25%,transparent 25%),linear-gradient(-45deg,#333 25%,transparent 25%),linear-gradient(45deg,transparent 75%,#333 75%),linear-gradient(-45deg,transparent 75%,#333 75%);background-size:16px 16px;background-position:0 0,0 8px,8px -8px,-8px 0;border-radius:10px;display:grid;place-items:center;padding:14px;min-height:150px}
   .xadrez img{max-width:100%;max-height:170px}
   .campo{display:grid;grid-template-columns:150px 1fr 64px;gap:12px;align-items:center}
@@ -188,6 +199,28 @@
             <figure><div class="tela"><img id="exF" alt="Exemplo do vídeo final"><div class="car" id="exFc">Sem vídeo bruto ainda</div></div><figcaption>Final (1080×1920)</figcaption></figure>
             <figure><div class="tela"><img id="exP" alt="Exemplo da prévia"><div class="car" id="exPc">Sem vídeo bruto ainda</div></div><figcaption>Prévia (720×1280), com a marca já visível</figcaption></figure>
           </div>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card-h"><h2>Cor e filtro</h2><span class="muted">vale para a final e a prévia deste baile</span><div class="esp"></div>
+          <button class="leve" id="btAntes" aria-pressed="false">Ver sem cor</button></div>
+        <div class="bloco">
+          <div class="luts" id="luts" role="listbox" aria-label="Filtros"></div>
+          <div class="campo" id="campoInt"><label for="cInt">Intensidade do filtro</label><input type="range" id="cInt" data-k="lut_intensidade" min="0" max="100" step="5"><output></output></div>
+          <div class="ajcor">
+            <div class="campo"><label for="cBri">Brilho</label><input type="range" id="cBri" data-k="cor_brilho" min="-100" max="100" step="5"><output></output></div>
+            <div class="campo"><label for="cCon">Contraste</label><input type="range" id="cCon" data-k="cor_contraste" min="-100" max="100" step="5"><output></output></div>
+            <div class="campo"><label for="cSat">Saturação</label><input type="range" id="cSat" data-k="cor_saturacao" min="-100" max="100" step="5"><output></output></div>
+            <div class="campo"><label for="cTem">Temperatura</label><input type="range" id="cTem" data-k="cor_temperatura" min="-100" max="100" step="5"><output></output></div>
+          </div>
+          <div class="botoes">
+            <button class="leve" id="btZerarCor">Zerar ajustes</button>
+            <button class="leve" id="btAddLut">Adicionar filtro (.cube)</button>
+            <button class="leve" id="btPastaLuts">Abrir pasta de filtros</button>
+            <input type="file" id="fileLut" accept=".cube" hidden>
+          </div>
+          <div class="nota">Escolha o visual olhando o exemplo acima. Os filtros são para vídeo em Rec709, como a A7IV grava. Temperatura: para a esquerda esfria (tira o amarelo da luz do salão), para a direita esquenta. Com filtro, cada vídeo leva um pouco mais para editar.</div>
         </div>
       </div>
 
@@ -489,6 +522,7 @@ function preencherAjustes(){
   for(const id of CAMPOS){const i=$("#"+id);i.value=a[i.dataset.k];i.nextElementSibling.value=fmt(i.dataset.k,i.value)}
   $("#aGirar").value=a.girar;
   desenharSigla();
+  desenharCor();
   $("#rParc").value=a.parceiro_tamanho||100; $("#oParc").value=$("#rParc").value+"%";
   desenharDrive(a);
   listaExemplo();
@@ -541,9 +575,77 @@ $("#btDrive").onclick=async()=>{try{const a=await api("/api/escolher-drive",{bai
 $("#btDriveOff").onclick=async()=>{const a=await api("/api/ajustes",{baile:E.baile,ajustes:{destino_drive:""}});E.dados.ajustes=a;desenharDrive(a)};
 
 // exemplo
-$("#btExemplo").onclick=()=>atualizarExemplo(true);
-$("#exVideo").onchange=()=>atualizarExemplo(true);
-$("#exT").onchange=()=>atualizarExemplo(true);
+$("#btExemplo").onclick=()=>{atualizarExemplo(true);miniaturasLut()};
+$("#exVideo").onchange=()=>{atualizarExemplo(true);miniaturasLut()};
+$("#exT").onchange=()=>{atualizarExemplo(true);miniaturasLut()};
+
+// ---------- Cor e filtro (LUTs .cube + ajustes rápidos)
+const CAMPOS_COR=["cInt","cBri","cCon","cSat","cTem"];
+const fmtCor=(id,v)=>id==="cInt"?`${v}%`:(v>0?`+${v}`:`${v}`);
+E.luts=[]; E.miniVer=0; E.miniCache={};
+async function carregarLuts(){ try{ E.luts=(await (await fetch("/api/luts")).json()).luts||[] }catch{ E.luts=[] } desenharLuts() }
+function desenharLuts(){
+  const a=(E.dados&&E.dados.ajustes)||{}, atual=a.lut||"";
+  const itens=[{arquivo:"",nome:"Sem filtro"}].concat(E.luts);
+  $("#luts").innerHTML=itens.map(l=>`<button type="button" class="lut${l.arquivo===atual?" on":""}" role="option" aria-selected="${l.arquivo===atual}" data-lut="${esc(l.arquivo)}"><div class="mini"><img alt=""${E.miniCache[l.arquivo]?` class="ok" src="${E.miniCache[l.arquivo]}"`:""}></div><span>${esc(l.nome)}${l.origem==="seu"?"<small>seu filtro</small>":""}</span></button>`).join("");
+  $("#campoInt").style.opacity=atual?1:.45; $("#cInt").disabled=!atual;
+  miniaturasLut();
+}
+function miniaturasLut(){
+  clearTimeout(E.tMini);
+  E.tMini=setTimeout(async()=>{
+    const arq=$("#exVideo").value, t=$("#exT").value||8, v=++E.miniVer;
+    if(!arq) return;
+    for(const b of document.querySelectorAll("#luts .lut")){        // uma de cada vez, para não pesar no Mac
+      if(v!==E.miniVer) return;
+      const img=b.querySelector("img");
+      try{
+        const r=await fetch(`/api/lut-amostra?baile=${enc(E.baile)}&arquivo=${enc(arq)}&t=${t}&lut=${enc(b.dataset.lut)}&v=${v}-${Date.now()}`);
+        if(!r.ok) continue;
+        const u=URL.createObjectURL(await r.blob()), velho=E.miniCache[b.dataset.lut];
+        E.miniCache[b.dataset.lut]=u; img.src=u; img.className="ok"; if(velho) setTimeout(()=>URL.revokeObjectURL(velho),2000);
+      }catch{}
+    }
+  }, 700);
+}
+function desenharCor(){
+  const a=(E.dados&&E.dados.ajustes)||{};
+  for(const id of CAMPOS_COR){const i=$("#"+id); i.value=a[i.dataset.k]??(id==="cInt"?100:0); i.nextElementSibling.value=fmtCor(id,i.value)}
+  if(!E.luts.length) carregarLuts(); else desenharLuts();
+}
+async function salvarCor(aj){
+  try{ E.dados.ajustes=await api("/api/ajustes",{baile:E.baile,ajustes:aj}); E.semCor=false; $("#btAntes").textContent="Ver sem cor"; $("#btAntes").setAttribute("aria-pressed","false"); atualizarExemplo(true); miniaturasLut() }
+  catch(e){ toast(e.message) }
+}
+$("#luts").addEventListener("click",e=>{
+  const b=e.target.closest(".lut"); if(!b) return;
+  document.querySelectorAll("#luts .lut").forEach(x=>{x.classList.toggle("on",x===b);x.setAttribute("aria-selected",x===b)});
+  $("#campoInt").style.opacity=b.dataset.lut?1:.45; $("#cInt").disabled=!b.dataset.lut;
+  salvarCor({lut:b.dataset.lut});
+});
+for(const id of CAMPOS_COR){
+  const i=$("#"+id);
+  i.addEventListener("input",()=>{i.nextElementSibling.value=fmtCor(id,i.value)});
+  i.addEventListener("change",()=>salvarCor({[i.dataset.k]:Number(i.value)}));
+}
+$("#btZerarCor").onclick=()=>{ for(const id of CAMPOS_COR){const i=$("#"+id); i.value=id==="cInt"?100:0; i.nextElementSibling.value=fmtCor(id,i.value)}
+  salvarCor({lut_intensidade:100,cor_brilho:0,cor_contraste:0,cor_saturacao:0,cor_temperatura:0}) };
+$("#btAddLut").onclick=()=>$("#fileLut").click();
+$("#fileLut").onchange=async e=>{
+  const f=e.target.files[0]; e.target.value=""; if(!f) return;
+  try{
+    const r=await fetch(`/api/lut-upload?nome=${enc(f.name)}`,{method:"POST",headers:{"X-Editor":"1"},body:f});
+    const d=await r.json(); if(!r.ok) throw new Error(d.erro||"Não consegui adicionar");
+    E.luts=d.luts; desenharLuts(); toast(`Filtro ${f.name.replace(/\.cube$/i,"")} adicionado`);
+  }catch(er){ toast(er.message) }
+};
+$("#btPastaLuts").onclick=()=>api("/api/abrir",{baile:E.baile,pasta:"luts"}).catch(()=>{});
+// antes/depois no exemplo grande
+$("#btAntes").onclick=()=>{
+  E.semCor=!E.semCor; const b=$("#btAntes");
+  b.textContent=E.semCor?"Ver com cor":"Ver sem cor"; b.setAttribute("aria-pressed",E.semCor);
+  atualizarExemplo(true);
+};
 function atualizarExemplo(ja){
   clearTimeout(E.tEx);
   E.tEx=setTimeout(()=>{
@@ -552,7 +654,7 @@ function atualizarExemplo(ja){
     const v=++E.exVer, t=$("#exT").value||8;
     for(const [img,car,tipo] of [["#exF","#exFc","final"],["#exP","#exPc","previa"]]){
       const c=$(car); c.hidden=false; c.textContent="Gerando…";
-      fetch(`/api/amostra?baile=${enc(E.baile)}&arquivo=${enc(a)}&t=${t}&tipo=${tipo}&v=${v}-${Date.now()}`)
+      fetch(`/api/amostra?baile=${enc(E.baile)}&arquivo=${enc(a)}&t=${t}&tipo=${tipo}${E.semCor?"&antes=1":""}&v=${v}-${Date.now()}`)
         .then(async r=>{ if(!r.ok){const d=await r.json().catch(()=>({}));throw new Error(d.erro||"erro")} return r.blob() })
         .then(b=>{ if(v!==E.exVer)return; const u=URL.createObjectURL(b); const el=$(img); if(el._u)URL.revokeObjectURL(el._u); el._u=u; el.src=u; c.hidden=true })
         .catch(e=>{ if(v!==E.exVer)return; c.textContent="Não consegui gerar o exemplo: "+e.message });
