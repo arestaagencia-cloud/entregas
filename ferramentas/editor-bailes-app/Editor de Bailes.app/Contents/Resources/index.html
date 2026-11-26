@@ -226,6 +226,9 @@
       <div class="card">
         <div class="card-h"><h2>Outros ajustes</h2></div>
         <div class="bloco">
+          <div class="campo" style="grid-template-columns:150px 1fr"><label for="aSigla">Sigla do baile</label>
+            <input id="aSigla" maxlength="12" autocomplete="off" spellcheck="false" style="text-transform:uppercase;max-width:180px;background:#111;border:1px solid #333;border-radius:8px;padding:9px 12px;color:#fff;font:inherit;letter-spacing:.06em"></div>
+          <div class="nota">Nome dos arquivos: <code id="exNome"></code>. A sigla sai sozinha das iniciais do nome do baile; mude aqui se quiser outra. A data vem do nome da pasta do baile.</div>
           <div class="campo" style="grid-template-columns:150px auto"><label for="aGirar">Vídeo deitado</label>
             <select id="aGirar"><option value="direita">Girar para a direita</option><option value="esquerda">Girar para a esquerda</option><option value="nao">Não girar (fica com faixas pretas)</option></select></div>
           <div class="nota">Os vídeos verticais da A7IV já vêm marcados e ficam em pé sozinhos. Isto só vale para um vídeo que chegar deitado.</div>
@@ -485,6 +488,7 @@ function preencherAjustes(){
   const a=E.dados.ajustes;
   for(const id of CAMPOS){const i=$("#"+id);i.value=a[i.dataset.k];i.nextElementSibling.value=fmt(i.dataset.k,i.value)}
   $("#aGirar").value=a.girar;
+  desenharSigla();
   $("#rParc").value=a.parceiro_tamanho||100; $("#oParc").value=$("#rParc").value+"%";
   desenharDrive(a);
   listaExemplo();
@@ -514,6 +518,18 @@ for(const id of CAMPOS){
   i.oninput=()=>{i.nextElementSibling.value=fmt(i.dataset.k,i.value); salvarDepois()};
 }
 $("#aGirar").onchange=salvarDepois;
+function desenharSigla(){
+  const idt=(E.dados&&E.dados.identidade)||{}, a=(E.dados&&E.dados.ajustes)||{}, i=$("#aSigla");
+  if(document.activeElement!==i) i.value=a.sigla||"";
+  i.placeholder=idt.sigla_auto||"";
+  const sig=(i.value||idt.sigla_auto||"").toUpperCase().replace(/[^A-Z0-9]/g,"");
+  $("#exNome").textContent=`F. ${sig} ${idt.data?idt.data+" ":""}- 01.mp4`;
+}
+$("#aSigla").oninput=desenharSigla;
+$("#aSigla").onchange=async()=>{
+  const v=$("#aSigla").value.toUpperCase().replace(/[^A-Z0-9]/g,""); $("#aSigla").value=v;
+  try{E.dados.ajustes=await api("/api/ajustes",{baile:E.baile,ajustes:{sigla:v}}); desenharSigla(); toast(v?`Sigla ${v} salva`:"Sigla automática")}catch(e){toast(e.message)}
+};
 function salvarDepois(){
   clearTimeout(E.tSalvar);
   E.tSalvar=setTimeout(async()=>{

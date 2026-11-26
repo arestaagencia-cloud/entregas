@@ -44,6 +44,7 @@ AJUSTES_PADRAO = {
     "preco_codigo": 0,        # telão: preço do código em centavos
     "preco_cheio": 0,         # telão: preço "de" riscado (centavos), opcional
     "telao_fonte": "brutos",  # telão: brutos | prontos
+    "sigla": "",              # nome dos arquivos: vazio = iniciais do nome do baile
 }
 
 
@@ -197,6 +198,8 @@ def salvar_ajustes(baile, novos):
         a["preco_codigo"] = max(0, min(100000, int(novos["preco_codigo"] or 0)))
     if "preco_cheio" in novos:
         a["preco_cheio"] = max(0, min(100000, int(novos["preco_cheio"] or 0)))
+    if "sigla" in novos:
+        a["sigla"] = re.sub(r"[^A-Z0-9]", "", str(novos["sigla"] or "").upper())[:12]
     if novos.get("telao_fonte") in ("brutos", "prontos"):
         a["telao_fonte"] = novos["telao_fonte"]
     gravar_json(os.path.join(p["rec"], "ajustes.json"), a)
@@ -283,10 +286,44 @@ def info_video(caminho):
     return out
 
 
+def sigla_auto(nome):
+    """Inicial de cada palavra do nome, sem acento (o hífen também separa): "I Dá-lhe Samba" -> IDLS."""
+    sem = unicodedata.normalize("NFKD", nome or "").encode("ascii", "ignore").decode()
+    return "".join(w[0] for w in re.split(r"[^A-Za-z0-9]+", sem) if w).upper()[:12] or "BAILE"
+
+
+def identidade(baile):
+    """Data (AAAA-MM-DD) e sigla do baile, tiradas do nome da pasta "AAAA-MM-DD Nome" e dos ajustes."""
+    m = re.match(r"^(\d{4}-\d{2}-\d{2})\s+(.*)$", baile or "")
+    data, nome = (m.group(1), m.group(2)) if m else ("", baile or "")
+    auto = sigla_auto(nome)
+    manual = re.sub(r"[^A-Z0-9]", "", (ler_json(os.path.join(pastas(baile)["rec"], "ajustes.json"), {}).get("sigla") or "").upper())[:12]
+    return {"data": data, "sigla": manual or auto, "sigla_auto": auto}
+
+
+def numero_arquivo(nome):
+    base = nome.rsplit(".", 1)[0]
+    m = re.search(r"(\d{1,4})\s*$", base)
+    return int(m.group(1)) if m else None
+
+
 def saida(baile, num, tipo):
+    """F. IDLS 2026-11-28 - 01.mp4 / P. IDLS 2026-11-28 - 01.mp4.
+    Se já existe um arquivo desse número com outro nome (o antigo "F. 01.mp4" ou outra sigla), usa ele."""
     p = pastas(baile)
-    nn = "%02d" % num
-    return os.path.join(p["finais"], "F. %s.mp4" % nn) if tipo == "final" else os.path.join(p["previas"], "P. %s.mp4" % nn)
+    pasta, letra = (p["finais"], "F") if tipo == "final" else (p["previas"], "P")
+    idt = identidade(baile)
+    nome = "%s. %s %s- %02d.mp4" % (letra, idt["sigla"], (idt["data"] + " ") if idt["data"] else "", num)
+    novo = os.path.join(pasta, nome)
+    if os.path.isfile(novo):
+        return novo
+    try:
+        for f in os.listdir(pasta):
+            if f.startswith(letra + ".") and f.lower().endswith(".mp4") and numero_arquivo(f) == num:
+                return os.path.join(pasta, f)
+    except OSError:
+        pass
+    return novo
 
 
 def estado_baile(baile):
@@ -308,7 +345,9 @@ def estado_baile(baile):
             "previa": os.path.isfile(pv) and os.path.getsize(pv) > 0,
         })
     lista.sort(key=lambda x: x["num"])
-    return {"nome": baile, "caminho": p["baile"], "ajustes": ajustes(baile), "brutos": lista,
+    idt = identidade(baile)
+    idt["exemplo"] = os.path.basename(saida(baile, 999, "final")).replace("999", "01")
+    return {"nome": baile, "caminho": p["baile"], "ajustes": ajustes(baile), "brutos": lista, "identidade": idt,
             "versao_recursos": versao_recursos(baile)}
 
 

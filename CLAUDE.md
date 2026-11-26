@@ -341,6 +341,13 @@ Duas páginas, geradas por `python3 gerar_bailes.py`:
   fallback sem `-hwaccel`. Ajustes e PNGs por baile em `<baile>/Recursos do editor/`; pasta dos bailes padrão
   `~/Documents/Bailes` (config em `~/Library/Application Support/Editor de Bailes/`). POST exige cabeçalho `X-Editor: 1`.
   O servidor é o próprio processo do app (`exec ... --app`, `LSUIElement`): em segundo plano o macOS o encerrava segundos depois de abrir e negava acesso a ~/Documents. Fecha sozinho 2 min após a janela fechar (sem fila). Registro em ~/Library/Logs/Editor de Bailes.log. Testado no Linux com Python 3.9 e bruto real da A7IV.
+- **Nome dos arquivos editados (26/11/2026):** `F. <SIGLA> <AAAA-MM-DD> - NN.mp4` e `P. <SIGLA> <AAAA-MM-DD> - NN.mp4`
+  (ex.: `F. IDLS 2026-11-28 - 01.mp4`, `P. BTADSP 2026-11-25 - 01.mp4`). Sigla = inicial de TODAS as palavras do nome do
+  baile, sem acento, hífen separa (`sigla_auto()`; "I Dá-lhe Samba" = IDLS, "Baile Teste - Aula de Samba Planet" = BTADSP),
+  editável em Aparência > Outros ajustes > "Sigla do baile" (`ajustes.sigla`). Data = do nome da pasta "AAAA-MM-DD Nome"
+  (ano-mês-dia para ordenar certo; sem data na pasta, fica sem data). Número sempre no fim: `sincronizar-drive` lê o
+  último número do nome, então nomes antigos (`F. 07.mp4`) e novos convivem. `saida()` reaproveita um arquivo já
+  existente do mesmo número com outro nome (não duplica nem reedita).
 - **Telão dentro do app (25/11/2026):** botão "Abrir telão" no editor abre `/telao` (`Resources/telao.html`, gerado de
   `bailes_telao_template.html` por `ferramentas/editor-bailes-app/gerar_telao.py`: rode de novo se mudar o telão do site).
   Sem internet: lê `1. Brutos` pelo servidor local (`/api/video` com Range) a cada 5 s, numeração = `numeracao.csv`
