@@ -164,6 +164,16 @@
   .erro{color:#ff8a7a;font-size:14px;margin-top:12px;min-height:1em}
   .form .btn{margin-top:14px}
   .seguro{font-size:12px;color:var(--muted);text-align:center;margin-top:12px}
+  #fCartao{margin-top:10px}
+  .pix-k{font-size:13px;color:var(--muted);margin-bottom:6px}
+  .pix-qr{margin:6px auto 16px}
+  .pix-qr summary{cursor:pointer;color:var(--ink-2);font-size:14px;text-decoration:underline;text-underline-offset:3px;min-height:44px;display:flex;align-items:center;justify-content:center;list-style:none}
+  .pix-qr summary::-webkit-details-marker{display:none}
+  .pix-qr img{display:block;width:220px;max-width:70vw;aspect-ratio:1;margin:8px auto 0;background:#fff;border-radius:12px;padding:10px}
+  .pix-codigo{width:100%;margin:12px 0 4px;background:var(--card-2);border:1px solid var(--line);border-radius:10px;color:var(--ink-2);font:12px/1.4 ui-monospace,Menlo,monospace;padding:10px;resize:none;height:62px}
+  .pix-status{display:flex;align-items:center;justify-content:center;gap:8px;margin:14px 0 6px;font-size:14px;color:var(--ink-2)}
+  .pix-status .dot{margin:0;animation:pisca 1.4s ease-in-out infinite}
+  @keyframes pisca{50%{opacity:.25}}
   .troca-modo{display:block;margin:16px auto 0;font-size:14px;color:var(--ink-2);text-decoration:underline;text-underline-offset:3px;min-height:44px;padding:0 8px}
   .troca-modo:hover{color:var(--ink)}
   #fCodigo{text-transform:uppercase;letter-spacing:.18em;font-variant-numeric:tabular-nums;font-weight:600}
@@ -303,8 +313,9 @@
         <input id="fEmail" type="email" inputmode="email" autocomplete="email" required maxlength="200">
         <p class="ajuda">O vídeo chega neste e-mail. Confira se está certinho.</p>
         <p class="erro" id="fErro" role="alert"></p>
-        <button class="btn ouro bloco" id="fComprar" type="submit">Comprar meu vídeo</button>
-        <p class="seguro" id="fSeguro">Pagamento seguro pelo Mercado Pago · Pix, débito ou crédito</p>
+        <button class="btn ouro bloco" id="fComprar" type="submit" data-metodo="pix">Pagar com Pix</button>
+        <button class="btn sec bloco" id="fCartao" type="submit" data-metodo="cartao">Pagar com cartão</button>
+        <p class="seguro" id="fSeguro">Pix na hora, aqui mesmo · Cartão pelo Mercado Pago</p>
       </form>
       <button type="button" class="troca-modo" id="lbModo">Tenho um código</button>
     </div>
@@ -526,12 +537,14 @@ document.addEventListener("keydown", (e) => {
 
 $("#fCompra").addEventListener("submit", async (e) => {
   e.preventDefault();
+  const metodo = (e.submitter && e.submitter.dataset.metodo) || "pix";
   const nome = $("#fNome").value.trim(), email = $("#fEmail").value.trim(), erro = $("#fErro");
   erro.textContent = "";
   if (nome.length < 2) { erro.textContent = "Informe seu nome."; return; }
   if (!/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(email)) { erro.textContent = "Confira o seu e-mail."; return; }
   if (emModoCodigo) return resgatar(nome, email);
-  const btn = $("#fComprar");
+  if (metodo === "pix") return pagarPix(nome, email);
+  const btn = $("#fCartao");
   btn.disabled = true; btn.textContent = "Abrindo pagamento...";
   try {
     try { localStorage.setItem("comprador", JSON.stringify({ nome, email })); } catch {}
@@ -545,9 +558,98 @@ $("#fCompra").addEventListener("submit", async (e) => {
     location.href = d.url;
   } catch (err) {
     erro.textContent = err.message;
-    btn.disabled = false; btn.textContent = "Comprar meu vídeo";
+    btn.disabled = false; btn.textContent = "Pagar com cartão";
   }
 });
+
+// ---------- Pix na própria galeria (sem sair da página nem abrir o app do Mercado Pago) ----------
+const chavePix = (id) => `pix-${id}`;
+async function pagarPix(nome, email) {
+  const erro = $("#fErro"), btn = $("#fComprar"), v = visiveis[atual];
+  btn.disabled = true; btn.textContent = "Gerando o Pix...";
+  try {
+    try { localStorage.setItem("comprador", JSON.stringify({ nome, email })); } catch {}
+    const r = await fetch(api("/functions/v1/criar-checkout"), {
+      method: "POST",
+      headers: { "Content-Type": "application/json", apikey: CONFIG.chavePublica },
+      body: JSON.stringify({ video_id: v.id, nome, email, metodo: "pix" }),
+    });
+    const d = await r.json().catch(() => ({}));
+    if (!r.ok || !d.pix) throw new Error(d.erro || "Não foi possível gerar o Pix.");
+    const dados = { ...d, video_id: v.id, nome, email };
+    try { sessionStorage.setItem(chavePix(d.pedido), JSON.stringify(dados)); } catch {}
+    fechar();
+    history.replaceState(null, "", `${location.pathname}?pedido=${d.pedido}`);
+    mostrarPix(dados);
+  } catch (err) {
+    erro.textContent = err.message;
+  } finally {
+    btn.disabled = false; btn.textContent = "Pagar com Pix";
+  }
+}
+
+async function copiarTexto(t) {
+  try { await navigator.clipboard.writeText(t); return true; } catch {}
+  const el = $("#pxCodigo");
+  if (!el) return false;
+  el.focus(); el.select(); el.setSelectionRange(0, t.length);
+  try { return document.execCommand("copy"); } catch { return false; }
+}
+
+let pixTimer = 0;
+function mostrarPix(d) {
+  clearInterval(pixTimer);
+  const desktop = matchMedia("(hover: hover) and (pointer: fine)").matches;
+  modoEstado(`
+    ${d.video_id ? `<img class="miniatura" style="width:92px;margin-bottom:12px" src="${capaUrl(d.video_id, 200)}" alt="">` : ""}
+    <div class="pix-k">Vídeo nº ${esc(d.codigo)} · ${reais(d.valor_centavos)}</div>
+    <h3>Pague com <em>Pix</em></h3>
+    <p>${desktop ? "Abra o app do seu banco e leia o QR Code, ou copie o código abaixo." : "Copie o código e cole no app do seu banco, na opção <b>Pix Copia e Cola</b>."}</p>
+    <div class="btns"><button class="btn ouro" type="button" id="pxCopiar">Copiar código Pix</button></div>
+    <textarea class="pix-codigo" id="pxCodigo" readonly aria-label="Código Pix copia e cola">${esc(d.pix.copia_cola)}</textarea>
+    ${d.pix.qr_base64 ? `<details class="pix-qr"${desktop ? " open" : ""}><summary>${desktop ? "QR Code" : "Vai pagar com outro celular? Mostrar QR Code"}</summary><img alt="QR Code do Pix" src="data:image/png;base64,${d.pix.qr_base64}"></details>` : ""}
+    <div class="pix-status" role="status"><span class="dot"></span><span>Aguardando o pagamento · expira em <b id="pxTempo">30:00</b></span></div>
+    <p class="nota">Esta tela muda sozinha quando o pagamento cair, e o vídeo também chega em ${esc(d.email || "seu e-mail")}.</p>
+    <div class="btns" style="margin-top:14px"><button class="btn sec" type="button" id="pxCartao">Prefiro pagar com cartão</button></div>`);
+  $("#pxCopiar").addEventListener("click", async (e) => {
+    const ok = await copiarTexto(d.pix.copia_cola);
+    e.currentTarget.textContent = ok ? "Código copiado! Agora cole no app do banco" : "Selecione o código abaixo e copie";
+  });
+  $("#pxCartao").addEventListener("click", async (e) => {
+    const b = e.currentTarget; b.disabled = true; b.textContent = "Abrindo pagamento...";
+    try {
+      const r = await fetch(api("/functions/v1/criar-checkout"), {
+        method: "POST", headers: { "Content-Type": "application/json", apikey: CONFIG.chavePublica },
+        body: JSON.stringify({ video_id: d.video_id, nome: d.nome, email: d.email }),
+      });
+      const x = await r.json().catch(() => ({}));
+      if (!r.ok || !x.url) throw new Error(x.erro || "Não foi possível abrir o pagamento.");
+      location.href = x.url;
+    } catch (err) { b.disabled = false; b.textContent = "Prefiro pagar com cartão"; alert(err.message); }
+  });
+  const fim = new Date(d.pix.expira_em).getTime() || Date.now() + 30 * 60_000;
+  const tic = () => {
+    const s = Math.max(0, Math.round((fim - Date.now()) / 1000));
+    const el = $("#pxTempo"); if (el) el.textContent = `${String(Math.floor(s / 60)).padStart(2, "0")}:${String(s % 60).padStart(2, "0")}`;
+    return s;
+  };
+  tic();
+  let n = 0, ocupado = false;
+  pixTimer = setInterval(async () => {
+    const resta = tic();
+    if (ocupado || (++n % 4 && resta > 0)) return; // confere o pagamento a cada 4 s
+    ocupado = true;
+    try {
+      const r = await fetch(api(`/functions/v1/status-pedido?pedido=${d.pedido}`), { headers: { apikey: CONFIG.chavePublica } });
+      const x = await r.json();
+      if (x.status === "pago") { clearInterval(pixTimer); try { sessionStorage.removeItem(chavePix(d.pedido)); } catch {} acompanharPedido(d.pedido); return; }
+      if (x.status === "recusado" || resta <= 0) {
+        clearInterval(pixTimer); try { sessionStorage.removeItem(chavePix(d.pedido)); } catch {}
+        modoEstado(`<h3>Este Pix <em>expirou</em></h3><p>Nenhum valor foi cobrado. É só gerar um novo na galeria.</p><div class="btns"><a class="btn ouro" href="${location.pathname}?v=${encodeURIComponent(d.codigo)}">Gerar um novo Pix</a></div>`);
+      }
+    } catch {} finally { ocupado = false; }
+  }, 1000);
+}
 
 // ---------- Código de resgate (vendido no baile) ----------
 const chaveCodigo = `codigo-${slug}`;
@@ -564,7 +666,8 @@ function modoCodigo(sim) {
   $("#lbModo").textContent = sim ? "Não tenho código, quero comprar" : "Tenho um código";
   if (sim && codigoAtivo && !$("#fCodigo").value) $("#fCodigo").value = verCodigo(codigoAtivo);
   const v = visiveis[atual];
-  $("#fComprar").textContent = sim ? `Resgatar o vídeo nº ${v ? v.codigo : ""}` : "Comprar meu vídeo";
+  $("#fComprar").textContent = sim ? `Resgatar o vídeo nº ${v ? v.codigo : ""}` : "Pagar com Pix";
+  $("#fCartao").hidden = sim;
   $("#fErro").textContent = "";
 }
 $("#lbModo").addEventListener("click", () => { modoCodigo(!emModoCodigo); if (emModoCodigo) $("#fCodigo").focus(); });
@@ -776,7 +879,10 @@ if (baixar && /^[0-9a-f]{64}$/.test(baixar)) {
   cabecalhoEstado();
 } else if (pedido && /^[0-9a-f-]{36}$/i.test(pedido)) {
   cabecalhoEstado();
-  acompanharPedido(pedido);
+  let pix = null;
+  try { pix = JSON.parse(sessionStorage.getItem(chavePix(pedido)) || "null"); } catch {}
+  if (pix && new Date(pix.pix.expira_em).getTime() > Date.now()) mostrarPix(pix); // recarregou a página no meio do Pix
+  else acompanharPedido(pedido);
 } else {
   carregarGaleria().then(() => {
     if (!evento) return;

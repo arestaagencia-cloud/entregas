@@ -279,6 +279,16 @@ Duas páginas, geradas por `python3 gerar_bailes.py`:
   15 min, resgate atômico na função SQL `resgatar_codigo`). O resgate cria um pedido `origem: codigo`, valor 0, pago, e
   manda o e-mail de sempre. Métricas: vendas e arrecadado somam códigos vendidos (pelo valor da venda), sem contar o resgate.
   Primeiro lote: 25 códigos (24/11/2026), preço no I Dá-lhe Samba R$ 35.
+- **Pix dentro da galeria (26/11/2026):** a janela do vídeo tem "Pagar com Pix" (principal) e "Pagar com cartão".
+  Pix: `criar-checkout` com `metodo: "pix"` cria o pagamento direto em `/v1/payments` (vence em 30 min,
+  `external_reference` = pedido, mesmo `notification_url`) e devolve `copia_cola` + `qr_base64`; a galeria mostra
+  "Copiar código Pix" (celular) ou o QR (computador), contagem regressiva, e confere `status-pedido` a cada 4 s
+  (que agora consulta o Mercado Pago pelo `mp_pagamento_id` guardado no pedido, sem depender do webhook). Pago =
+  mesma tela de confirmação de sempre; expirado = "Gerar um novo Pix". Recarregar a página no meio do Pix mostra o
+  mesmo código (sessionStorage `pix-<pedido>`). Assim a pessoa não sai da página nem cai no app do Mercado Pago.
+  Cartão continua pelo Checkout Pro (pode abrir o app do Mercado Pago no celular). Próximo passo combinado: cartão
+  embutido (Card Payment Brick) com a Public Key de produção `APP_USR-572f6dc5-7b04-4f8a-aa0b-cad349ad0b0b`
+  (não é segredo).
 - **"Me avise" (desde 24/11/2026):** na galeria, enquanto não há vídeos, aparece o formulário "Quer saber quando o seu
   vídeo chegar?" (nome + WhatsApp e/ou e-mail); `?avise=1` (QR do telão) rola até ele. Função pública `avise-me`
   (até 60 cadastros por IP/hora; mesmo baile + mesmo e-mail/WhatsApp atualiza em vez de duplicar) grava na tabela
