@@ -166,7 +166,9 @@
   .seguro{font-size:12px;color:var(--muted);text-align:center;margin-top:12px}
   #fCartao{margin-top:10px}
   .entrega-player{margin:4px auto 18px;width:min(100%,calc(68svh * 9 / 16));aspect-ratio:9/16;border-radius:16px;overflow:hidden;background:#000;border:1px solid var(--line)}
-  .entrega-player video{width:100%;height:100%;display:block;object-fit:contain;background:#000}
+  .entrega-player iframe{width:100%;height:100%;display:block;border:0;background:#000}
+  .entrega-player.cheia{position:fixed;inset:0;z-index:999;width:100vw;height:100svh;max-width:none;margin:0;border:0;border-radius:0;aspect-ratio:auto}
+  .sair-cheia{position:fixed;top:max(12px,env(safe-area-inset-top));right:12px;z-index:1000;width:48px;height:48px;border-radius:50%;background:rgba(0,0,0,.7);color:#fff;font-size:26px;line-height:48px;text-align:center;border:1px solid #444}
   .entrega-btns{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin:0 0 12px}
   .entrega-btns .btn{width:100%;min-height:54px;font-size:15px;font-weight:600;white-space:nowrap;padding:12px 14px}
   .entrega-btns svg{width:20px;height:20px;flex:none}
@@ -903,8 +905,7 @@ async function paginaEntrega(token) {
   modoEstado(`
     <div class="pix-k">Vídeo nº ${esc(d.codigo)}${d.evento ? ` · ${esc(d.evento)}` : ""}</div>
     <h3>${d.nome ? `${esc(d.nome)}, aqui está` : "Aqui está"} <em>a sua dança</em></h3>
-    <div class="entrega-player"><video id="enV" controls playsinline preload="metadata" crossorigin="anonymous"
-      ${d.capa_drive_id ? `poster="${capaDrive(d.capa_drive_id)}"` : (d.video_id ? `poster="${capaUrl(d.video_id, 600)}"` : "")} src="${esc(d.arquivo)}"></video></div>
+    <div class="entrega-player" id="enP"><iframe id="enV" src="${esc(d.drive.replace(/\/view$/, "/preview"))}" allow="autoplay; fullscreen" allowfullscreen title="Seu vídeo"></iframe></div>
     <div class="entrega-btns">
       <button class="btn ouro" type="button" id="enBaixar">${ICONE_BAIXAR}<span>Baixar vídeo</span></button>
       <button class="btn sec" type="button" id="enTela">${ICONE_TELA}<span>Tela cheia</span></button>
@@ -912,15 +913,21 @@ async function paginaEntrega(token) {
     <div class="barra-dl" id="enBarra" hidden><i></i></div>
     <p class="nota" id="enAjuda">${ajuda}</p>
     <p class="nota">O link fica disponível${validade ? ` até ${validade}` : ""}. Guarde o vídeo no seu celular ou computador.</p>
-    <p class="nota" id="enFalha" hidden>O vídeo não carregou aqui? <a href="${esc(d.drive)}" target="_blank" rel="noopener" style="text-decoration:underline">Abrir pelo Google Drive</a></p>
+    <p class="nota" id="enFalha" hidden>O vídeo não apareceu? <a href="${esc(d.drive)}" target="_blank" rel="noopener" style="text-decoration:underline">Abrir em outra aba</a></p>
     <div class="btns" style="margin-top:16px"><a class="btn sec" href="${esc(d.galeria)}/">Ver outros vídeos do baile</a></div>`);
-  const v = $("#enV"), bt = $("#enBaixar");
-  v.addEventListener("error", () => { $("#enFalha").hidden = false; });
+  const caixa = $("#enP"), bt = $("#enBaixar");
+  $("#enFalha").hidden = false;
+  // Tela cheia: a do navegador quando existe (Android, computador); no iPhone a caixa ocupa a tela inteira
+  const sairCheia = () => { caixa.classList.remove("cheia"); const x = $(".sair-cheia"); if (x) x.remove(); document.body.style.overflow = ""; };
   $("#enTela").addEventListener("click", () => {
-    try { v.play(); } catch {}
-    if (v.requestFullscreen) v.requestFullscreen().catch(() => v.webkitEnterFullscreen && v.webkitEnterFullscreen());
-    else if (v.webkitEnterFullscreen) v.webkitEnterFullscreen();
+    const pedir = caixa.requestFullscreen || caixa.webkitRequestFullscreen;
+    if (pedir && !IOS) { try { const r = pedir.call(caixa); if (r && r.catch) r.catch(() => {}); return; } catch {} }
+    caixa.classList.add("cheia"); document.body.style.overflow = "hidden";
+    const x = document.createElement("button");
+    x.className = "sair-cheia"; x.type = "button"; x.setAttribute("aria-label", "Sair da tela cheia"); x.textContent = "×";
+    x.addEventListener("click", sairCheia); document.body.appendChild(x);
   });
+  document.addEventListener("keydown", (e) => { if (e.key === "Escape") sairCheia(); });
 
   const baixarDireto = () => {
     const a = document.createElement("a");
