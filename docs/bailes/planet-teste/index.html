@@ -165,6 +165,14 @@
   .form .btn{margin-top:14px}
   .seguro{font-size:12px;color:var(--muted);text-align:center;margin-top:12px}
   #fCartao{margin-top:10px}
+  .entrega-player{margin:4px auto 18px;width:min(100%,calc(68svh * 9 / 16));aspect-ratio:9/16;border-radius:16px;overflow:hidden;background:#000;border:1px solid var(--line)}
+  .entrega-player video{width:100%;height:100%;display:block;object-fit:contain;background:#000}
+  .entrega-btns{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin:0 0 12px}
+  .entrega-btns .btn{width:100%;min-height:54px;font-size:15px;font-weight:600;white-space:nowrap;padding:12px 14px}
+  .entrega-btns svg{width:20px;height:20px;flex:none}
+  .barra-dl{height:8px;border-radius:99px;background:var(--card-2);overflow:hidden;margin:4px 0 12px}
+  .barra-dl i{display:block;height:100%;width:0;background:var(--gold);transition:width .3s}
+  @media (max-width:380px){.entrega-btns{grid-template-columns:1fr}}
   .pix-k{font-size:13px;color:var(--muted);margin-bottom:6px}
   .pix-qr{margin:6px auto 16px}
   .pix-qr summary{cursor:pointer;color:var(--ink-2);font-size:14px;text-decoration:underline;text-underline-offset:3px;min-height:44px;display:flex;align-items:center;justify-content:center;list-style:none}
@@ -868,12 +876,95 @@ async function acompanharPedido(pedidoId) {
   verificar();
 }
 
+// ---------- Página de entrega do vídeo comprado (player próprio + Baixar + Tela cheia) ----------
+const IOS = /iPad|iPhone|iPod/.test(navigator.userAgent) || (navigator.platform === "MacIntel" && navigator.maxTouchPoints > 1);
+const ICONE_BAIXAR = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3v12m0 0 5-5m-5 5-5-5M4 21h16"/></svg>';
+const ICONE_TELA = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 9V4h5M20 9V4h-5M4 15v5h5M20 15v5h-5"/></svg>';
+
+async function paginaEntrega(token) {
+  modoEstado(`<div class="spinner"></div><h3>Abrindo seu <em>vídeo</em></h3>`);
+  cabecalhoEstado();
+  let d;
+  try {
+    const r = await fetch(api(`/functions/v1/download?t=${token}&formato=json`), { headers: { apikey: CONFIG.chavePublica } });
+    d = await r.json();
+    if (!r.ok || !d.arquivo) throw new Error(d.erro || "invalido");
+  } catch {
+    modoEstado(`<h3>Este link <em>expirou</em></h3><p>Fale com a gente no WhatsApp que enviamos um novo.</p><div class="btns"><a class="btn ouro" href="${CONFIG.whatsapp}" target="_blank" rel="noopener">Falar no WhatsApp</a></div>`);
+    return;
+  }
+  const nomeArquivo = `Video ${d.codigo} - ${(d.evento || "Baile").replace(/[\\/:*?"<>|]/g, "")}.mp4`;
+  const validade = d.expira_em ? new Date(d.expira_em).toLocaleDateString("pt-BR") : "";
+  const ajuda = IOS
+    ? "No iPhone: toque em Baixar, espere carregar e depois em <b>Salvar no celular</b> e <b>Salvar vídeo</b>. Ele vai para o app Fotos."
+    : /Android/i.test(navigator.userAgent)
+      ? "O vídeo vai para a pasta <b>Downloads</b> do celular e também aparece na Galeria."
+      : "O vídeo vai para a pasta <b>Downloads</b> do computador.";
+  modoEstado(`
+    <div class="pix-k">Vídeo nº ${esc(d.codigo)}${d.evento ? ` · ${esc(d.evento)}` : ""}</div>
+    <h3>${d.nome ? `${esc(d.nome)}, aqui está` : "Aqui está"} <em>a sua dança</em></h3>
+    <div class="entrega-player"><video id="enV" controls playsinline preload="metadata" crossorigin="anonymous"
+      ${d.capa_drive_id ? `poster="${capaDrive(d.capa_drive_id)}"` : (d.video_id ? `poster="${capaUrl(d.video_id, 600)}"` : "")} src="${esc(d.arquivo)}"></video></div>
+    <div class="entrega-btns">
+      <button class="btn ouro" type="button" id="enBaixar">${ICONE_BAIXAR}<span>Baixar vídeo</span></button>
+      <button class="btn sec" type="button" id="enTela">${ICONE_TELA}<span>Tela cheia</span></button>
+    </div>
+    <div class="barra-dl" id="enBarra" hidden><i></i></div>
+    <p class="nota" id="enAjuda">${ajuda}</p>
+    <p class="nota">O link fica disponível${validade ? ` até ${validade}` : ""}. Guarde o vídeo no seu celular ou computador.</p>
+    <p class="nota" id="enFalha" hidden>O vídeo não carregou aqui? <a href="${esc(d.drive)}" target="_blank" rel="noopener" style="text-decoration:underline">Abrir pelo Google Drive</a></p>
+    <div class="btns" style="margin-top:16px"><a class="btn sec" href="${esc(d.galeria)}/">Ver outros vídeos do baile</a></div>`);
+  const v = $("#enV"), bt = $("#enBaixar");
+  v.addEventListener("error", () => { $("#enFalha").hidden = false; });
+  $("#enTela").addEventListener("click", () => {
+    try { v.play(); } catch {}
+    if (v.requestFullscreen) v.requestFullscreen().catch(() => v.webkitEnterFullscreen && v.webkitEnterFullscreen());
+    else if (v.webkitEnterFullscreen) v.webkitEnterFullscreen();
+  });
+
+  const baixarDireto = () => {
+    const a = document.createElement("a");
+    a.href = d.arquivo; a.download = nomeArquivo; a.rel = "noopener";
+    document.body.appendChild(a); a.click(); a.remove();
+  };
+  let arquivo = null; // iPhone: o vídeo fica pronto na memória e o 2º toque abre "Salvar vídeo"
+  bt.addEventListener("click", async () => {
+    if (arquivo) {
+      try { await navigator.share({ files: [arquivo] }); } catch (e) { if (e && e.name !== "AbortError") baixarDireto(); }
+      return;
+    }
+    if (!(IOS && navigator.canShare && window.ReadableStream)) { baixarDireto(); bt.querySelector("span").textContent = "Baixando..."; setTimeout(() => (bt.querySelector("span").textContent = "Baixar de novo"), 4000); return; }
+    bt.disabled = true;
+    const barra = $("#enBarra"), txt = bt.querySelector("span");
+    barra.hidden = false; txt.textContent = "Carregando 0%";
+    try {
+      const r = await fetch(d.arquivo);
+      if (!r.ok || !r.body) throw new Error("download");
+      const total = Number(r.headers.get("content-length")) || 0, leitor = r.body.getReader(), partes = [];
+      let recebido = 0;
+      for (;;) {
+        const { done, value } = await leitor.read();
+        if (done) break;
+        partes.push(value); recebido += value.length;
+        if (total) { const pct = Math.round(recebido / total * 100); txt.textContent = `Carregando ${pct}%`; barra.firstElementChild.style.width = pct + "%"; }
+      }
+      const f = new File(partes, nomeArquivo, { type: "video/mp4" });
+      if (!navigator.canShare({ files: [f] })) throw new Error("share");
+      arquivo = f;
+      txt.textContent = "Salvar no celular";
+      $("#enAjuda").innerHTML = "Pronto! Toque em <b>Salvar no celular</b> e depois em <b>Salvar vídeo</b>.";
+    } catch {
+      txt.textContent = "Baixar vídeo";
+      barra.hidden = true;
+      baixarDireto();
+    } finally { bt.disabled = false; }
+  });
+}
+
 // ---------- Roteamento ----------
 const pedido = params.get("pedido"), baixar = params.get("baixar");
 if (baixar && /^[0-9a-f]{64}$/.test(baixar)) {
-  modoEstado(`<div class="spinner"></div><h3>Abrindo seu <em>vídeo</em></h3><p>Você será levado ao arquivo em alta qualidade. Use o botão de download para salvar.</p>`);
-  cabecalhoEstado();
-  location.replace(api(`/functions/v1/download?t=${baixar}`));
+  paginaEntrega(baixar);
 } else if (params.get("link") === "invalido") {
   modoEstado(`<h3>Este link <em>expirou</em></h3><p>Fale com a gente no WhatsApp que enviamos um novo.</p><div class="btns"><a class="btn ouro" href="${CONFIG.whatsapp}" target="_blank" rel="noopener">Falar no WhatsApp</a></div>`);
   cabecalhoEstado();
