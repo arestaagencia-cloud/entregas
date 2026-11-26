@@ -291,13 +291,16 @@ Duas páginas, geradas por `python3 gerar_bailes.py`:
   (não é segredo).
 - **Página de entrega do vídeo (26/11/2026):** o link do e-mail e da confirmação (`<galeria>/?baixar=<token>`) abre uma
   página da própria galeria (não mais a página do Google Drive): player do Drive embutido (iframe `/file/d/<id>/preview`;
-  o player próprio com `<video>` deu erro no celular e foi descartado a pedido da Aresta), botões **Baixar vídeo** e **Tela cheia**,
+  o player próprio com `<video>` deu erro no celular e foi descartado a pedido da Aresta; iframe desenhado em 540x960 e
+  reduzido para caber, senão os ícones do Drive ficam enormes no celular), botões **Baixar vídeo** e **Tela cheia**,
   validade do link e "Ver outros vídeos". Dados vêm de `download?t=<token>&formato=json` (sem `formato`, links antigos
   continuam redirecionando para o Drive); conta `downloads` a cada abertura. O download usa
   `drive.usercontent.google.com/download?id=<id>&export=download&confirm=t` (aceita Range e CORS; testado com 132 MB).
   Tela cheia: a do navegador no Android/computador; no iPhone a caixa do player ocupa a tela, com botão × para sair. Baixar: Android/computador = download
   direto (pasta Downloads); iPhone = carrega com barra de % e o 2º toque abre o compartilhar → "Salvar vídeo" (vai
   para o app Fotos); se falhar, cai no download direto. Link discreto "Abrir em outra aba" como reserva.
+- **Atenção:** a checagem de vídeos novos da galeria (a cada 20 s) só roda na galeria; nas telas de estado
+  (entrega, Pix, confirmação: `#estado` visível) ela recarregava a página sozinha (corrigido em 26/11/2026).
 - **"Me avise" (desde 24/11/2026):** na galeria, enquanto não há vídeos, aparece o formulário "Quer saber quando o seu
   vídeo chegar?" (nome + WhatsApp e/ou e-mail); `?avise=1` (QR do telão) rola até ele. Função pública `avise-me`
   (até 60 cadastros por IP/hora; mesmo baile + mesmo e-mail/WhatsApp atualiza em vez de duplicar) grava na tabela
