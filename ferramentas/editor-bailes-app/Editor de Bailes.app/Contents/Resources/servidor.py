@@ -965,14 +965,14 @@ def miniatura(baile, arquivo):
     st = os.stat(bruto)
     d = os.path.join(p["rec"], ".miniaturas")
     os.makedirs(d, exist_ok=True)
-    jpg = os.path.join(d, "%s-%d.jpg" % (re.sub(r"[^\w.-]", "_", nfc(arquivo)), int(st.st_mtime)))
+    jpg = os.path.join(d, "%s-%d-480.jpg" % (re.sub(r"[^\w.-]", "_", nfc(arquivo)), int(st.st_mtime)))
     if not os.path.isfile(jpg):
         with TRAVA_IMG:
             inf = info_video(bruto)
             t = min(3.0, max(0.0, inf["duracao"] / 3))
             hw = ["-hwaccel", "videotoolbox"] if VT else []
             subprocess.run([FFMPEG, "-nostdin", "-loglevel", "error", "-y"] + hw + ["-ss", "%.2f" % t, "-i", bruto,
-                            "-frames:v", "1", "-vf", giro(inf, ajustes(baile)) + "scale=-2:320", "-q:v", "4", jpg],
+                            "-frames:v", "1", "-vf", giro(inf, ajustes(baile)) + "scale=-2:480", "-q:v", "4", jpg],  # 480: o iPad mostra com zoom no rosto
                            timeout=120)
     with open(jpg, "rb") as f:
         return f.read()

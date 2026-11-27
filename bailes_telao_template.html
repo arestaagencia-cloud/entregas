@@ -138,7 +138,7 @@
   /* marca d'água: logo da Aresta × parceiro embaixo do vídeo (com e sem oferta) */
   /* sem oferta: QR no canto superior direito, só quando o vídeo já está à venda */
   .qr-canto{display:none;position:absolute;right:2.4cqmin;top:2.4cqmin;z-index:3;flex-direction:column;align-items:center;gap:.8cqmin;
-    background:#fff;color:#111;border-radius:1.6cqmin;padding:1.3cqmin 1.3cqmin 1cqmin;box-shadow:0 .6cqmin 2.4cqmin rgba(0,0,0,.45)}
+    background:#fff;color:#111;border-radius:1.6cqmin;padding:1.3cqmin;box-shadow:0 .6cqmin 2.4cqmin rgba(0,0,0,.45)}
   .telao.sem-oferta .qr-canto.on{display:flex}
   .qr-canto #tQrC{width:calc(17cqmin*var(--k-qr,1));aspect-ratio:1}
   .qr-canto #tQrC svg{width:100%;height:100%;display:block}
@@ -217,7 +217,7 @@
     <div class="marca-agua" id="tMarcaAgua"></div>
     <div class="barra-v"><i id="tBarraV"></i></div>
     <div class="num-video" id="tNum"></div>
-    <div class="qr-canto" id="tQrCanto"><div id="tQrC"></div><span id="tQrCTxt"></span></div>
+    <div class="qr-canto" id="tQrCanto"><div id="tQrC"></div></div>
     <div class="pausa" id="tPausa" hidden>Pausado · espaço para continuar</div>
   </div>
   <aside class="painel">
@@ -434,7 +434,6 @@ function situacao(item) {
     catch { $("#tQR").innerHTML = $("#tQrC").innerHTML = ""; }
   }
   $("#tQrCanto").classList.toggle("on", disp);
-  $("#tQrCTxt").textContent = `Garanta o nº ${nn}`;
 }
 
 function montarPainel() {

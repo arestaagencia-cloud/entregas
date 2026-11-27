@@ -322,7 +322,7 @@ Duas páginas, geradas por `python3 gerar_bailes.py`:
   faixa embaixo do vídeo (`@container quadro (orientation: portrait)`). Sem oferta: vídeo em tela cheia com a mesma
   dupla de logos como marca d'água na parte de baixo (a marca d'água aparece também COM oferta, desde 25/11/2026; some só quando o vídeo já tem as logos, fonte "prontos"). Teclas: espaço pausa, ← → anterior/próximo, F tela cheia,
   R inverte o giro, O liga/desliga a oferta, S configuração.
-  **Sem oferta (27/11/2026):** QR no canto superior direito do vídeo (`.qr-canto`, "Garanta o nº NN", tamanho segue
+  **Sem oferta (27/11/2026):** QR no canto superior direito do vídeo (`.qr-canto`, só o QR, sem texto, tamanho segue
   `--k-qr`) só quando o vídeo já está à venda; em edição não aparece QR. É o modo que a Aresta usa (TV em pé, só vídeo).
 - **Editor de Bailes (Mac, desde 24/11/2026):** `ferramentas/editor-bailes/` (a Aresta usa a cópia baixada no Mac).
   Estrutura por baile em `~/Movies/Bailes/<AAAA-MM-DD Nome>/`: `1. Brutos` (cartão da A7IV, só .MP4, sem subpastas;
@@ -364,7 +364,7 @@ Duas páginas, geradas por `python3 gerar_bailes.py`:
 - **Tela do iPad (27/11/2026):** iPad ao lado do telão para a pessoa achar o próprio vídeo. Página `Resources/ipad.html`
   servida pelo editor em `http://<ip do Mac>:8765/ipad` (servidor agora escuta em 0.0.0.0; rede local, ex.: hotspot do
   iPhone com Mac e iPad conectados, sem precisar de internet). Botão "Tela do iPad" no editor mostra o endereço + QR
-  (`/api/controle/endereco`). Grade com miniatura (`/api/miniatura`, cache em disco), "Nº NN" e horário da gravação
+  (`/api/controle/endereco`). Grade com miniatura (`/api/miniatura`, 480 px, cache em disco; no iPad com zoom de 135% centrado um pouco acima do meio, para os rostos), "Nº NN" e horário da gravação
   (mtime do bruto), mais recentes primeiro, busca por número; volta ao topo e limpa a busca após 1 min parado. Toque =
   `POST /api/controle/tocar {num}` (trava 2,5 s entre toques); o telão do app consulta `/api/controle/pedido?baile=`
   a cada 0,5 s (`telao_ipad.js`, aplicado por `gerar_telao.py`) e TROCA NA HORA para aquele vídeo, sem fila (cada
