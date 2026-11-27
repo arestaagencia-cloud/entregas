@@ -261,9 +261,7 @@ fetch("https://jlogxdjttufiiikiezfe.supabase.co/rest/v1/eventos?select=nome,url_
   $("#galerias").innerHTML = GALERIAS.map((g) => `<option value="${esc(g.url)}">${esc(g.nome)}</option>`).join("");
 }).catch(() => {});
 $("#galerias").innerHTML = GALERIAS.map(""")
-# iPad escolhe o vídeo (tag "Escolhido no iPad" + troca imediata)
-s = troca(s, '''$("#tNum").innerHTML = `Nº ${nn}<span class="tag ${disp ? "ok" : "ed"}">${disp ? "Já disponível" : "Em edição"}</span>`;''', '''$("#tNum").innerHTML = `Nº ${nn}<span class="tag ${disp ? "ok" : "ed"}">${disp ? "Já disponível" : "Em edição"}</span>${typeof ITEM_IPAD !== "undefined" && ITEM_IPAD === item ? '<span class="tag ipad">Escolhido no iPad</span>' : ""}`;''')
-s = troca(s, "  .num-video .tag.ed{", "  .num-video .tag.ipad{background:#fff;color:#111}\n  .num-video .tag.ed{")
+# iPad escolhe o vídeo: troca imediata (sem etiqueta na tela, a pedido da Aresta em 27/11/2026)
 fim = s.rindex("</script>")
 s = s[:fim] + "\n" + (AQUI_GER / "telao_ipad.js").read_text() + s[fim:]
 out.write_text(s)

@@ -80,7 +80,6 @@
   .num-video{position:absolute;left:2.4cqmin;top:2.4cqmin;z-index:3;font-weight:600;font-size:max(12px,calc(2.3cqmin*var(--k-num,1)));letter-spacing:.08em;color:#fff;background:rgba(0,0,0,.5);backdrop-filter:blur(6px);-webkit-backdrop-filter:blur(6px);padding:.5cqmin 1.3cqmin;border-radius:999px;font-variant-numeric:tabular-nums}
   .num-video .tag{display:inline-block;margin-left:.9em;padding:.15em .7em;border-radius:999px;font-size:.78em;letter-spacing:.04em;font-weight:700;vertical-align:.08em}
   .num-video .tag.ok{background:#1f7a45;color:#fff}
-  .num-video .tag.ipad{background:#fff;color:#111}
   .num-video .tag.ed{background:rgba(246,173,3,.95);color:#111}
   .qr.disp .q{box-shadow:0 0 0 .35cqw #2fa463}
   .palco canvas{position:absolute;inset:-8%;width:116%;height:116%;filter:blur(38px) saturate(1.2) brightness(.55);transform:scale(1.05)}
@@ -134,6 +133,13 @@
     .barra{grid-area:barra;height:.6cqw;margin:0}
   }
   /* marca d'água: logo da Aresta × parceiro embaixo do vídeo (com e sem oferta) */
+  /* sem oferta: QR no canto superior direito, só quando o vídeo já está à venda */
+  .qr-canto{display:none;position:absolute;right:2.4cqmin;top:2.4cqmin;z-index:3;flex-direction:column;align-items:center;gap:.8cqmin;
+    background:#fff;color:#111;border-radius:1.6cqmin;padding:1.3cqmin 1.3cqmin 1cqmin;box-shadow:0 .6cqmin 2.4cqmin rgba(0,0,0,.45)}
+  .telao.sem-oferta .qr-canto.on{display:flex}
+  .qr-canto #tQrC{width:calc(17cqmin*var(--k-qr,1));aspect-ratio:1}
+  .qr-canto #tQrC svg{width:100%;height:100%;display:block}
+  .qr-canto span{font-weight:700;font-size:calc(1.9cqmin*var(--k-qr,1));letter-spacing:.02em;white-space:nowrap}
   .marca-agua{display:flex;position:absolute;left:0;right:0;bottom:4cqh;z-index:2;justify-content:center;align-items:center;gap:1.6cqh;opacity:.78;pointer-events:none;filter:drop-shadow(0 .3cqh 1.2cqh rgba(0,0,0,.55))}
   .telao.sem-oferta .marca-agua{display:flex}
   .telao.ja-tem-logo .marca-agua{display:none}
@@ -239,6 +245,7 @@
     <div class="marca-agua" id="tMarcaAgua"></div>
     <div class="barra-v"><i id="tBarraV"></i></div>
     <div class="num-video" id="tNum"></div>
+    <div class="qr-canto" id="tQrCanto"><div id="tQrC"></div><span id="tQrCTxt"></span></div>
     <div class="pausa" id="tPausa" hidden>Pausado · espaço para continuar</div>
   </div>
   <aside class="painel">
@@ -508,16 +515,18 @@ let ITEM_ATUAL = null, QR_ATUAL = "";
 function situacao(item) {
   ITEM_ATUAL = item;
   const nn = dois(item.num), disp = DISPONIVEIS.has(nn);
-  $("#tNum").innerHTML = `Nº ${nn}<span class="tag ${disp ? "ok" : "ed"}">${disp ? "Já disponível" : "Em edição"}</span>${typeof ITEM_IPAD !== "undefined" && ITEM_IPAD === item ? '<span class="tag ipad">Escolhido no iPad</span>' : ""}`;
+  $("#tNum").innerHTML = `Nº ${nn}<span class="tag ${disp ? "ok" : "ed"}">${disp ? "Já disponível" : "Em edição"}</span>`;
   $("#tQrTit").textContent = disp ? `O vídeo nº ${nn} já está à venda!` : `O vídeo nº ${nn} está em edição`;
   $("#tQrSub").textContent = disp ? "Aponte a câmera do celular para o QR e garanta o seu agora." : "Aponte a câmera para o QR e deixe seu WhatsApp: avisamos quando os vídeos chegarem.";
   document.querySelector(".qr").classList.toggle("disp", disp);
   const link = disp ? `${baseGaleria()}/?v=${nn}` : `${baseGaleria()}/avise/?de=telao`;
   if (link !== QR_ATUAL) {
     QR_ATUAL = link;
-    try { const q = qrcode(0, "M"); q.addData(link); q.make(); $("#tQR").innerHTML = q.createSvgTag({ cellSize: 4, margin: 0, scalable: true }); }
-    catch { $("#tQR").innerHTML = ""; }
+    try { const q = qrcode(0, "M"); q.addData(link); q.make(); $("#tQR").innerHTML = $("#tQrC").innerHTML = q.createSvgTag({ cellSize: 4, margin: 0, scalable: true }); }
+    catch { $("#tQR").innerHTML = $("#tQrC").innerHTML = ""; }
   }
+  $("#tQrCanto").classList.toggle("on", disp);
+  $("#tQrCTxt").textContent = `Garanta o nº ${nn}`;
 }
 
 function montarPainel() {

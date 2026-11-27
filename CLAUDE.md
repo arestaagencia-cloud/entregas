@@ -322,6 +322,8 @@ Duas páginas, geradas por `python3 gerar_bailes.py`:
   faixa embaixo do vídeo (`@container quadro (orientation: portrait)`). Sem oferta: vídeo em tela cheia com a mesma
   dupla de logos como marca d'água na parte de baixo (a marca d'água aparece também COM oferta, desde 25/11/2026; some só quando o vídeo já tem as logos, fonte "prontos"). Teclas: espaço pausa, ← → anterior/próximo, F tela cheia,
   R inverte o giro, O liga/desliga a oferta, S configuração.
+  **Sem oferta (27/11/2026):** QR no canto superior direito do vídeo (`.qr-canto`, "Garanta o nº NN", tamanho segue
+  `--k-qr`) só quando o vídeo já está à venda; em edição não aparece QR. É o modo que a Aresta usa (TV em pé, só vídeo).
 - **Editor de Bailes (Mac, desde 24/11/2026):** `ferramentas/editor-bailes/` (a Aresta usa a cópia baixada no Mac).
   Estrutura por baile em `~/Movies/Bailes/<AAAA-MM-DD Nome>/`: `1. Brutos` (cartão da A7IV, só .MP4, sem subpastas;
   o telão e o editor leem daqui), `2. Prévias`, `3. Finais`, `numeracao.csv` (nº ↔ bruto, estável). `Editar baile.command`
@@ -366,7 +368,7 @@ Duas páginas, geradas por `python3 gerar_bailes.py`:
   (mtime do bruto), mais recentes primeiro, busca por número; volta ao topo e limpa a busca após 1 min parado. Toque =
   `POST /api/controle/tocar {num}` (trava 2,5 s entre toques); o telão do app consulta `/api/controle/pedido?baile=`
   a cada 0,5 s (`telao_ipad.js`, aplicado por `gerar_telao.py`) e TROCA NA HORA para aquele vídeo, sem fila (cada
-  toque substitui o anterior), com a etiqueta "Escolhido no iPad"; ao terminar volta para o vídeo que foi interrompido e
+  toque substitui o anterior), sem etiqueta na tela (tirada a pedido em 27/11/2026); ao terminar volta para o vídeo que foi interrompido e
   segue a sequência. Pela rede só respondem `/ipad`, `/api/controle/lista`, `/api/miniatura`, `/recursos/*` e
   `POST /api/controle/tocar` (resto do editor: 403, só no próprio Mac). O iPad mostra "telão desligado" quando o telão
   não está consultando. Testado ponta a ponta no Linux (telão + iPad simulado por outro IP).

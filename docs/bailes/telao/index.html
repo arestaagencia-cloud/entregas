@@ -136,6 +136,13 @@
     .barra{grid-area:barra;height:.6cqw;margin:0}
   }
   /* marca d'água: logo da Aresta × parceiro embaixo do vídeo (com e sem oferta) */
+  /* sem oferta: QR no canto superior direito, só quando o vídeo já está à venda */
+  .qr-canto{display:none;position:absolute;right:2.4cqmin;top:2.4cqmin;z-index:3;flex-direction:column;align-items:center;gap:.8cqmin;
+    background:#fff;color:#111;border-radius:1.6cqmin;padding:1.3cqmin 1.3cqmin 1cqmin;box-shadow:0 .6cqmin 2.4cqmin rgba(0,0,0,.45)}
+  .telao.sem-oferta .qr-canto.on{display:flex}
+  .qr-canto #tQrC{width:calc(17cqmin*var(--k-qr,1));aspect-ratio:1}
+  .qr-canto #tQrC svg{width:100%;height:100%;display:block}
+  .qr-canto span{font-weight:700;font-size:calc(1.9cqmin*var(--k-qr,1));letter-spacing:.02em;white-space:nowrap}
   .marca-agua{display:flex;position:absolute;left:0;right:0;bottom:4cqh;z-index:2;justify-content:center;align-items:center;gap:1.6cqh;opacity:.78;pointer-events:none;filter:drop-shadow(0 .3cqh 1.2cqh rgba(0,0,0,.55))}
   .telao.sem-oferta .marca-agua{display:flex}
   .marca-agua img.ag{height:8cqh;width:auto}
@@ -210,6 +217,7 @@
     <div class="marca-agua" id="tMarcaAgua"></div>
     <div class="barra-v"><i id="tBarraV"></i></div>
     <div class="num-video" id="tNum"></div>
+    <div class="qr-canto" id="tQrCanto"><div id="tQrC"></div><span id="tQrCTxt"></span></div>
     <div class="pausa" id="tPausa" hidden>Pausado · espaço para continuar</div>
   </div>
   <aside class="painel">
@@ -422,9 +430,11 @@ function situacao(item) {
   const link = disp ? `${baseGaleria()}/?v=${nn}` : `${baseGaleria()}/avise/?de=telao`;
   if (link !== QR_ATUAL) {
     QR_ATUAL = link;
-    try { const q = qrcode(0, "M"); q.addData(link); q.make(); $("#tQR").innerHTML = q.createSvgTag({ cellSize: 4, margin: 0, scalable: true }); }
-    catch { $("#tQR").innerHTML = ""; }
+    try { const q = qrcode(0, "M"); q.addData(link); q.make(); $("#tQR").innerHTML = $("#tQrC").innerHTML = q.createSvgTag({ cellSize: 4, margin: 0, scalable: true }); }
+    catch { $("#tQR").innerHTML = $("#tQrC").innerHTML = ""; }
   }
+  $("#tQrCanto").classList.toggle("on", disp);
+  $("#tQrCTxt").textContent = `Garanta o nº ${nn}`;
 }
 
 function montarPainel() {
