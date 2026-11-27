@@ -359,6 +359,17 @@ Duas páginas, geradas por `python3 gerar_bailes.py`:
   (`lut_combinado()`, Python puro, cache em /tmp/editor-bailes-luts) lido com `lut3d interp=nearest` em rgb24 (metade do
   custo do trilinear; ~46 dB de PSNR, diferença imperceptível). Medido no servidor de testes (2 núcleos, 4K HEVC 10 bits,
   15 s): 85 s sem filtro, ~101-104 s com filtro (+20%). No Mac a proporção pode ser maior (a decodificação é por hardware).
+- **Tela do iPad (27/11/2026):** iPad ao lado do telão para a pessoa achar o próprio vídeo. Página `Resources/ipad.html`
+  servida pelo editor em `http://<ip do Mac>:8765/ipad` (servidor agora escuta em 0.0.0.0; rede local, ex.: hotspot do
+  iPhone com Mac e iPad conectados, sem precisar de internet). Botão "Tela do iPad" no editor mostra o endereço + QR
+  (`/api/controle/endereco`). Grade com miniatura (`/api/miniatura`, cache em disco), "Nº NN" e horário da gravação
+  (mtime do bruto), mais recentes primeiro, busca por número; volta ao topo e limpa a busca após 1 min parado. Toque =
+  `POST /api/controle/tocar {num}` (trava 2,5 s entre toques); o telão do app consulta `/api/controle/pedido?baile=`
+  a cada 0,5 s (`telao_ipad.js`, aplicado por `gerar_telao.py`) e TROCA NA HORA para aquele vídeo, sem fila (cada
+  toque substitui o anterior), com a etiqueta "Escolhido no iPad"; ao terminar volta para o vídeo que foi interrompido e
+  segue a sequência. Pela rede só respondem `/ipad`, `/api/controle/lista`, `/api/miniatura`, `/recursos/*` e
+  `POST /api/controle/tocar` (resto do editor: 403, só no próprio Mac). O iPad mostra "telão desligado" quando o telão
+  não está consultando. Testado ponta a ponta no Linux (telão + iPad simulado por outro IP).
 - **Telão dentro do app (25/11/2026):** botão "Abrir telão" no editor abre `/telao` (`Resources/telao.html`, gerado de
   `bailes_telao_template.html` por `ferramentas/editor-bailes-app/gerar_telao.py`: rode de novo se mudar o telão do site).
   Sem internet: lê `1. Brutos` pelo servidor local (`/api/video` com Range) a cada 5 s, numeração = `numeracao.csv`

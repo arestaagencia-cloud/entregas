@@ -80,6 +80,7 @@
   .num-video{position:absolute;left:2.4cqmin;top:2.4cqmin;z-index:3;font-weight:600;font-size:max(12px,calc(2.3cqmin*var(--k-num,1)));letter-spacing:.08em;color:#fff;background:rgba(0,0,0,.5);backdrop-filter:blur(6px);-webkit-backdrop-filter:blur(6px);padding:.5cqmin 1.3cqmin;border-radius:999px;font-variant-numeric:tabular-nums}
   .num-video .tag{display:inline-block;margin-left:.9em;padding:.15em .7em;border-radius:999px;font-size:.78em;letter-spacing:.04em;font-weight:700;vertical-align:.08em}
   .num-video .tag.ok{background:#1f7a45;color:#fff}
+  .num-video .tag.ipad{background:#fff;color:#111}
   .num-video .tag.ed{background:rgba(246,173,3,.95);color:#111}
   .qr.disp .q{box-shadow:0 0 0 .35cqw #2fa463}
   .palco canvas{position:absolute;inset:-8%;width:116%;height:116%;filter:blur(38px) saturate(1.2) brightness(.55);transform:scale(1.05)}
@@ -507,7 +508,7 @@ let ITEM_ATUAL = null, QR_ATUAL = "";
 function situacao(item) {
   ITEM_ATUAL = item;
   const nn = dois(item.num), disp = DISPONIVEIS.has(nn);
-  $("#tNum").innerHTML = `Nº ${nn}<span class="tag ${disp ? "ok" : "ed"}">${disp ? "Já disponível" : "Em edição"}</span>`;
+  $("#tNum").innerHTML = `Nº ${nn}<span class="tag ${disp ? "ok" : "ed"}">${disp ? "Já disponível" : "Em edição"}</span>${typeof ITEM_IPAD !== "undefined" && ITEM_IPAD === item ? '<span class="tag ipad">Escolhido no iPad</span>' : ""}`;
   $("#tQrTit").textContent = disp ? `O vídeo nº ${nn} já está à venda!` : `O vídeo nº ${nn} está em edição`;
   $("#tQrSub").textContent = disp ? "Aponte a câmera do celular para o QR e garanta o seu agora." : "Aponte a câmera para o QR e deixe seu WhatsApp: avisamos quando os vídeos chegarem.";
   document.querySelector(".qr").classList.toggle("disp", disp);
@@ -634,6 +635,31 @@ carregarBailes().then(() => {
   pausado = false; ATUAL = -1;
   (function espera() { if (tocaveis().length) proximo(1); else setTimeout(espera, 2000); })();
 }).catch((e) => aviso(e.message));
+
+// ---------- iPad: tocar num vídeo troca o telão NA HORA; depois volta para a sequência normal ----------
+// (sem fila: cada toque substitui o anterior). O iPad fala com este Mac pela rede local (/ipad).
+let PED_ID = -1, ITEM_IPAD = null, VOLTAR_PARA = null;
+const _proximoNormal = proximo;
+proximo = function (passo) {
+  ITEM_IPAD = null;
+  if (VOLTAR_PARA !== null) { ATUAL = VOLTAR_PARA; VOLTAR_PARA = null; }   // volta para o vídeo que foi interrompido
+  return _proximoNormal(passo);
+};
+async function lerPedidoIpad() {
+  let d;
+  try { const r = await fetch(`/api/controle/pedido?baile=${enc(baileNome())}`, { cache: "no-store" }); d = await r.json(); } catch { return; }
+  if (PED_ID < 0) { PED_ID = d.id; return; }        // pedidos de antes de abrir o telão não contam
+  if (d.id === PED_ID) return;
+  PED_ID = d.id;
+  if ($("#telao").hidden || Date.now() / 1000 - d.quando > 15) return;
+  const L = tocaveis(), i = L.findIndex((x) => Number(x.num) === Number(d.num));
+  if (i < 0) return;
+  if (VOLTAR_PARA === null) VOLTAR_PARA = ATUAL - 1;  // proximo(1) volta exatamente para o interrompido
+  if (pausado) { pausado = false; $("#tPausa").hidden = true; }
+  ITEM_IPAD = L[i];
+  tocar(L[i], L[(i + 1) % L.length]);
+}
+setInterval(lerPedidoIpad, 500);
 </script>
 </body>
 </html>

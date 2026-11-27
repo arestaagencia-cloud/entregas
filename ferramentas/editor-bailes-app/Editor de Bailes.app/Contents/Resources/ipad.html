@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, viewport-fit=cover">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="theme-color" content="#0b0b0c">
+<title>Encontre o seu vídeo</title>
+<style>
+  :root{--bg:#0b0b0c;--card:#17171a;--line:#2a2a2f;--ink:#f4f1ec;--muted:#9a958e;--gold:#f6ad03;color-scheme:dark}
+  *{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+  html,body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.4 -apple-system,BlinkMacSystemFont,"Helvetica Neue",Arial,sans-serif;-webkit-user-select:none;user-select:none;-webkit-touch-callout:none}
+  header{position:sticky;top:0;z-index:5;background:rgba(11,11,12,.92);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);
+    padding:calc(env(safe-area-inset-top) + 18px) 28px 16px;border-bottom:1px solid var(--line);display:flex;align-items:center;gap:20px;flex-wrap:wrap}
+  .marca{height:30px;opacity:.95}
+  .tit{flex:1;min-width:280px}
+  h1{margin:0;font-size:30px;line-height:1.1;letter-spacing:-.01em}
+  h1 em{font-style:normal;color:var(--gold)}
+  .sub{margin:4px 0 0;color:var(--muted);font-size:17px}
+  .busca{display:flex;align-items:center;gap:10px;background:var(--card);border:1px solid var(--line);border-radius:999px;padding:6px 8px 6px 18px}
+  .busca span{color:var(--muted);font-size:17px;font-weight:600}
+  .busca input{width:110px;background:none;border:0;color:var(--ink);font:600 24px/1 inherit;outline:none;-webkit-user-select:text;user-select:text}
+  .busca button{border:0;background:none;color:var(--muted);font-size:26px;width:44px;height:44px;border-radius:50%}
+  main{padding:22px 28px 60px}
+  .grade{display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:16px}
+  .v{position:relative;border:0;padding:0;background:var(--card);border-radius:16px;overflow:hidden;color:inherit;text-align:left;cursor:pointer;
+    box-shadow:0 0 0 1px var(--line);transition:transform .12s ease}
+  .v:active{transform:scale(.96)}
+  .v .img{aspect-ratio:9/16;background:#000 center/cover no-repeat}
+  .v .rot{position:absolute;left:0;right:0;bottom:0;padding:26px 12px 10px;background:linear-gradient(transparent,rgba(0,0,0,.85));display:flex;align-items:baseline;justify-content:space-between}
+  .v b{font-size:26px;letter-spacing:.02em}
+  .v small{color:#ddd;font-size:15px;font-variant-numeric:tabular-nums}
+  .v.tocando{box-shadow:0 0 0 4px var(--gold)}
+  .vazio{text-align:center;color:var(--muted);padding:80px 20px;font-size:20px}
+  .aviso{position:fixed;inset:0;z-index:20;display:none;align-items:center;justify-content:center;background:rgba(0,0,0,.72);backdrop-filter:blur(6px);-webkit-backdrop-filter:blur(6px)}
+  .aviso.on{display:flex}
+  .aviso div{background:var(--card);border:1px solid var(--line);border-radius:24px;padding:34px 44px;text-align:center;max-width:520px}
+  .aviso .grande{font-size:58px;font-weight:700;color:var(--gold);line-height:1}
+  .aviso p{margin:12px 0 0;font-size:22px}
+  .aviso small{display:block;margin-top:10px;color:var(--muted);font-size:16px}
+  .off{background:#3a2a00;color:#ffd77a;text-align:center;padding:10px;font-size:15px;display:none}
+  .off.on{display:block}
+</style>
+</head>
+<body>
+<div class="off" id="off">O telão está desligado no momento. Assim que ele voltar, é só tocar no seu vídeo.</div>
+<header>
+  <img class="marca" src="/recursos/aresta.png" alt="ArestAgência">
+  <div class="tit">
+    <h1>Encontre o <em>seu vídeo</em></h1>
+    <p class="sub">Toque no vídeo de vocês e ele passa agora no telão</p>
+  </div>
+  <label class="busca"><span>Nº</span><input id="busca" inputmode="numeric" pattern="[0-9]*" maxlength="4" placeholder="buscar" autocomplete="off"><button type="button" id="limpar" aria-label="Limpar busca" hidden>×</button></label>
+</header>
+<main>
+  <div class="grade" id="grade"></div>
+  <div class="vazio" id="vazio" hidden>Os vídeos vão aparecer aqui assim que forem gravados.</div>
+</main>
+<div class="aviso" id="aviso" role="status" aria-live="assertive"><div><div class="grande" id="avNum"></div><p id="avTxt"></p><small id="avSub"></small></div></div>
+<script>
+const $ = (s) => document.querySelector(s);
+const enc = encodeURIComponent;
+const dois = (n) => String(n).padStart(2, "0");
+let DADOS = { baile: "", videos: [] }, ASSINATURA = "", travado = 0;
+
+async function carregar() {
+  try {
+    const r = await fetch("/api/controle/lista", { cache: "no-store" });
+    const d = await r.json();
+    $("#off").classList.toggle("on", !d.telao);
+    const ass = d.baile + "|" + d.videos.map((v) => v.num).join(",");
+    DADOS = d;
+    if (ass !== ASSINATURA) { ASSINATURA = ass; desenhar(); }
+  } catch { $("#off").classList.add("on"); }
+}
+function desenhar() {
+  const q = $("#busca").value.replace(/\D/g, "");
+  const lista = DADOS.videos.filter((v) => !q || String(v.num).includes(String(Number(q))) || dois(v.num).includes(q));
+  $("#vazio").hidden = DADOS.videos.length > 0;
+  $("#grade").innerHTML = lista.map((v) => `
+    <button class="v" type="button" data-num="${v.num}">
+      <div class="img" style="background-image:url('/api/miniatura?baile=${enc(DADOS.baile)}&arquivo=${enc(v.arquivo)}')"></div>
+      <div class="rot"><b>Nº ${dois(v.num)}</b><small>${v.hora || ""}</small></div>
+    </button>`).join("");
+}
+$("#grade").addEventListener("click", async (e) => {
+  const b = e.target.closest(".v"); if (!b) return;
+  if (Date.now() < travado) return;                 // evita toques repetidos
+  travado = Date.now() + 2500;
+  const num = Number(b.dataset.num);
+  document.querySelectorAll(".v.tocando").forEach((x) => x.classList.remove("tocando"));
+  b.classList.add("tocando");
+  let ok = false, telao = false;
+  try {
+    const r = await fetch("/api/controle/tocar", { method: "POST", headers: { "Content-Type": "application/json", "X-Editor": "1" }, body: JSON.stringify({ num }) });
+    const d = await r.json(); ok = r.ok; telao = !!d.telao;
+  } catch {}
+  $("#avNum").textContent = `Nº ${dois(num)}`;
+  $("#avTxt").textContent = ok && telao ? "Olhe para o telão!" : "Não consegui falar com o telão";
+  $("#avSub").textContent = ok && telao ? "Gostou? Aponte a câmera para o QR do telão e garanta o seu vídeo." : "Confira se o telão está ligado e tente de novo.";
+  $("#aviso").classList.add("on");
+  clearTimeout(window._av); window._av = setTimeout(() => $("#aviso").classList.remove("on"), ok && telao ? 3500 : 3000);
+});
+$("#aviso").addEventListener("click", () => $("#aviso").classList.remove("on"));
+$("#busca").addEventListener("input", () => { $("#limpar").hidden = !$("#busca").value; desenhar(); window.scrollTo({ top: 0 }); });
+$("#limpar").addEventListener("click", () => { $("#busca").value = ""; $("#limpar").hidden = true; desenhar(); });
+// volta sozinho para o começo da lista (e limpa a busca) depois de 1 min sem ninguém mexer
+let parado = 0;
+["touchstart", "click", "input", "scroll"].forEach((ev) => addEventListener(ev, () => { parado = Date.now(); }, { passive: true }));
+setInterval(() => {
+  if (parado && Date.now() - parado > 60000) { parado = 0; $("#busca").value = ""; $("#limpar").hidden = true; desenhar(); window.scrollTo({ top: 0, behavior: "smooth" }); }
+}, 5000);
+carregar(); setInterval(carregar, 8000);
+</script>
+</body>
+</html>

@@ -153,6 +153,7 @@
     </div>
     <div class="esp"></div>
     <button id="btTelao" title="Abre o telão numa janela nova: arraste para a TV">Abrir telão</button>
+    <button id="btIpad" title="O iPad ao lado do telão: as pessoas tocam no vídeo delas e ele passa na hora">Tela do iPad</button>
     <span id="pillHw" class="pill"></span>
     <button class="leve" id="btSair" title="Fecha o editor (cancela a fila)">Fechar editor</button>
   </div>
@@ -287,6 +288,19 @@
   <div class="nota">Cria a pasta com 1. Brutos, 2. Prévias e 3. Finais.</div>
   <div class="botoes"><button class="leve" id="nCanc">Cancelar</button><button class="prim" id="nOk">Criar</button></div>
 </dialog>
+<dialog id="dlgIpad" style="max-width:520px">
+  <h3>Tela do iPad</h3>
+  <p class="muted" style="margin:0 0 14px">As pessoas veem todos os vídeos do baile, com o número e o horário, e tocam no delas: ele passa na hora no telão e depois o telão volta para a sequência normal.</p>
+  <ol style="margin:0 0 14px;padding-left:20px;line-height:1.6">
+    <li>Ligue o <b>hotspot do iPhone</b> e conecte nele <b>este Mac e o iPad</b> (não precisa de dados móveis).</li>
+    <li>Abra o telão aqui no Mac.</li>
+    <li>No iPad, aponte a câmera para o QR (ou digite o endereço no Safari).</li>
+  </ol>
+  <div id="ipQr" style="background:#fff;border-radius:12px;padding:12px;width:220px;margin:0 auto 10px"></div>
+  <div id="ipUrl" style="text-align:center;font:600 20px/1.3 ui-monospace,Menlo,monospace;margin-bottom:8px"></div>
+  <div class="nota" id="ipNota">Dica: no iPad, ative o Acesso Guiado (Ajustes > Acessibilidade) para ele ficar preso nessa página. Se o Mac perguntar se aceita conexões de rede, clique em Permitir.</div>
+  <div class="botoes"><button class="leve" id="ipAtual">Atualizar endereço</button><button class="prim" id="ipOk">Fechar</button></div>
+</dialog>
 <input type="file" id="fileLogos" accept="image/png" hidden>
 <input type="file" id="fileParc" accept="image/png" hidden>
 <input type="file" id="filePrevia" accept="image/png" hidden>
@@ -294,6 +308,7 @@
 <div id="desligado" hidden style="position:fixed;top:0;left:0;right:0;z-index:60;background:#5a1d1b;color:#fff;text-align:center;padding:10px 16px;font-weight:600">O editor parou de responder. Feche esta janela e abra o app Editor de Bailes de novo.</div>
 <div class="fechado" id="fechado"><div><h2 style="font-size:20px;margin-bottom:8px">Editor fechado</h2><p class="muted">Pode fechar esta janela. Para abrir de novo, use o app Editor de Bailes.</p></div></div>
 
+<script src="/recursos/qrcode.min.js"></script>
 <script>
 const $ = s => document.querySelector(s);
 const E = {falhas:0, baile:"", dados:null, sel:new Set(), fila:[], aba:"videos", tSalvar:null, tEx:null, exVer:0};
@@ -500,6 +515,16 @@ $("#nOk").onclick=async()=>{
   try{const r=await api("/api/criar-baile",{nome:$("#nNome").value,data:$("#nData").value});$("#dlgNovo").close();await iniciar();$("#selBaile").value=r.nome;await trocarBaile(r.nome);toast("Baile criado")}
   catch(e){toast(e.message)}
 };
+async function mostrarIpad(){
+  let ips=[]; try{ips=(await (await fetch("/api/controle/endereco")).json()).ips||[]}catch{}
+  if(!ips.length){ $("#ipUrl").textContent="Sem rede"; $("#ipQr").innerHTML=""; $("#ipQr").style.display="none";
+    $("#ipNota").textContent="Este Mac não está em nenhuma rede. Conecte o Mac e o iPad no hotspot do iPhone e toque em Atualizar endereço."; return }
+  const url=`http://${ips[0]}:8765/ipad`;
+  $("#ipUrl").textContent=url.replace("http://",""); $("#ipQr").style.display="";
+  try{const q=qrcode(0,"M");q.addData(url);q.make();$("#ipQr").innerHTML=q.createSvgTag({cellSize:5,margin:0,scalable:true})}catch{$("#ipQr").innerHTML=""}
+}
+$("#btIpad").onclick=()=>{$("#dlgIpad").showModal();mostrarIpad()};
+$("#ipAtual").onclick=mostrarIpad; $("#ipOk").onclick=()=>$("#dlgIpad").close();
 $("#btTelao").onclick=()=>{const w=window.open(`/telao?baile=${enc(E.baile)}`,"telao","popup,width=1280,height=800");if(!w)location.href=`/telao?baile=${enc(E.baile)}`};
 $("#btPasta").onclick=async()=>{try{await api("/api/trocar-pasta-bailes",{});await iniciar()}catch(e){toast(e.message)}};
 $("#btSair").onclick=async()=>{

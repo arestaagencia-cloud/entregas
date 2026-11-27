@@ -463,6 +463,59 @@ def saida(baile, num, tipo):
     return novo
 
 
+# ---------------------------------------------------------------- tela do iPad (escolher o vídeo do telão)
+# O iPad entra pela rede local (hotspot do iPhone, sem precisar de internet): http://<ip do Mac>:8765/ipad
+# Pela rede só valem a página do iPad, a lista, as miniaturas e o pedido "tocar". O resto do editor é só no Mac.
+CONTROLE = {"baile": "", "visto": 0.0, "pedido": {"id": 0, "num": None, "baile": "", "quando": 0.0}}
+LIVRE_NA_REDE_GET = ("/ipad", "/api/controle/lista", "/api/miniatura", "/favicon.ico")
+LIVRE_NA_REDE_POST = ("/api/controle/tocar",)
+
+
+def eh_local(ip):
+    return ip in ("127.0.0.1", "::1", "::ffff:127.0.0.1")
+
+
+def enderecos_rede():
+    ips = []
+    try:
+        import socket
+        k = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
+        k.connect(("10.255.255.255", 1))  # não envia nada; só descobre a interface de saída
+        ips.append(k.getsockname()[0]); k.close()
+    except Exception:
+        pass
+    if EH_MAC:
+        for itf in ("en0", "en1", "en2", "bridge100"):
+            try:
+                r = subprocess.run(["ipconfig", "getifaddr", itf], capture_output=True, text=True, timeout=3)
+                ip = r.stdout.strip()
+                if ip and ip not in ips:
+                    ips.append(ip)
+            except Exception:
+                pass
+    return [i for i in ips if i and not i.startswith("127.")]
+
+
+def lista_controle():
+    baile = CONTROLE["baile"] if CONTROLE["baile"] and time.time() - CONTROLE["visto"] < 30 else config().get("baile_atual", "")
+    if not baile:
+        return {"baile": "", "telao": False, "videos": []}
+    p = pastas(baile)
+    nums = numeracao(baile)
+    vids = []
+    for a in arquivos_brutos(baile):
+        n = nums.get(nfc(a))
+        if not n:
+            continue
+        try:
+            hora = time.strftime("%H:%M", time.localtime(os.path.getmtime(os.path.join(p["brutos"], a))))
+        except OSError:
+            hora = ""
+        vids.append({"num": n, "arquivo": nfc(a), "hora": hora})
+    vids.sort(key=lambda x: -x["num"])
+    return {"baile": baile, "telao": time.time() - CONTROLE["visto"] < 6, "videos": vids}
+
+
 def estado_baile(baile):
     p = preparar_recursos(baile)
     nums = numeracao(baile)
@@ -1089,7 +1142,20 @@ class Handler(BaseHTTPRequestHandler):
         ULTIMO_ACESSO[0] = time.time()
         u = urlparse(self.path)
         q = {k: v[0] for k, v in parse_qs(u.query).items()}
+        if not eh_local(self.client_address[0]) and u.path not in LIVRE_NA_REDE_GET and not u.path.startswith("/recursos/"):
+            return self.erro("proibido", 403)
         try:
+            if u.path == "/ipad":
+                with open(os.path.join(AQUI, "ipad.html"), "rb") as f:
+                    return self.responder(200, f.read(), "text/html; charset=utf-8")
+            if u.path == "/api/controle/lista":
+                return self.responder(200, lista_controle())
+            if u.path == "/api/controle/pedido":
+                # o telão pergunta várias vezes por segundo: diz qual baile está tocando e recebe o último pedido
+                CONTROLE["baile"], CONTROLE["visto"] = nfc(q.get("baile", "")), time.time()
+                return self.responder(200, CONTROLE["pedido"])
+            if u.path == "/api/controle/endereco":
+                return self.responder(200, {"ips": enderecos_rede()})
             if u.path in ("/", "/index.html"):
                 with open(os.path.join(AQUI, "index.html"), "rb") as f:
                     return self.responder(200, f.read(), "text/html; charset=utf-8")
@@ -1146,7 +1212,18 @@ class Handler(BaseHTTPRequestHandler):
             return self.erro("proibido", 403)
         u = urlparse(self.path)
         q = {k: v[0] for k, v in parse_qs(u.query).items()}
+        if not eh_local(self.client_address[0]) and u.path not in LIVRE_NA_REDE_POST:
+            return self.erro("proibido", 403)
         n = int(self.headers.get("Content-Length") or 0)
+        if u.path == "/api/controle/tocar":
+            try:
+                d = json.loads(self.rfile.read(min(n, 2000)).decode("utf-8") or "{}")
+                num = int(d.get("num"))
+            except Exception:
+                return self.erro("Número inválido")
+            ped = CONTROLE["pedido"]
+            CONTROLE["pedido"] = {"id": ped["id"] + 1, "num": num, "baile": CONTROLE["baile"], "quando": time.time()}
+            return self.responder(200, {"ok": True, "telao": time.time() - CONTROLE["visto"] < 6})
         corpo = self.rfile.read(n) if n else b""
         try:
             if u.path == "/api/upload-json":
@@ -1297,7 +1374,8 @@ def main():
     if "--separar" in sys.argv:
         separar(os.path.join(HOME, "Library", "Logs", "Editor de Bailes.log"))
     limpar_temporarios()
-    s = ThreadingHTTPServer(("127.0.0.1", porta), Handler)
+    # 0.0.0.0: o iPad entra pela rede local (só a página do iPad; ver LIVRE_NA_REDE_*)
+    s = ThreadingHTTPServer(("0.0.0.0", porta), Handler)
     s.daemon_threads = True
     SERVIDOR["s"] = s
     threading.Thread(target=trabalhador, daemon=True).start()
